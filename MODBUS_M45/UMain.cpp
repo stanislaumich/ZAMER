@@ -30,6 +30,7 @@ int Datchik;
 int Interval;
 float pP, pT, pS; // погрешности прибора
 float pisp;
+String nomer;
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 int __stdcall DataHandler(int DataType, void *Zapis, void *PContext);
@@ -199,11 +200,12 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender) {
 	// ---внесение данных в базу---
 	try {
 		Query1->SQL->Clear();
-		Query1->SQL->Add("INSERT INTO zamertmp (torq,rot,power,pnom)values( ");
+		Query1->SQL->Add("INSERT INTO zamertmp (torq,rot,power,pnom,nomer)values( ");
 		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", OsnIzm + pT)) + ", ");
 		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", Skorost + pS)) + ", ");
 		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", Moshn + pP)) +  ", ");
-		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", pisp)) + ") ");
+		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", pisp)) +  ", ");
+		Query1->SQL->Add(QuotedStr(nomer)+ ") ");
 		Query1->ExecSQL();
 	}
 	catch (...) {
@@ -237,7 +239,7 @@ void __fastcall TForm1::Timer3Timer(TObject *Sender) {
 	}
 	String dop = 0;
 	String file = 0;
-	String nomer = 0;
+
 
 	if (Query2->RecordCount > 0) {
 		dop = Query2->FieldByName("command")->AsString;

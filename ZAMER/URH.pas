@@ -45,6 +45,7 @@ type
     Label10: TLabel;
     Label11: TLabel;
     Edit3: TEdit;
+    QCommand: TFDQuery;
     procedure Timer1Timer(Sender: TObject);
     //procedure Timer2Timer(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
@@ -57,7 +58,7 @@ type
     procedure BitBtn3Click(Sender: TObject);
     procedure RadioButton2Click(Sender: TObject);
     procedure RadioButton3Click(Sender: TObject);
-    //procedure Timer1Timer(Sender: TObject);
+    procedure CommandStart(c: Integer; n: string; fn:string);
 //    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
@@ -85,36 +86,42 @@ uses umain;
 
 {$R *.dfm}
 
-
+function min(a:integer;b:integer):integer;
+ begin
+   if a<b then result:= a
+   else result:= b;
+ end;
 function max(a:integer;b:integer):integer;
  begin
    if a>b then result:= a
    else result:= b;
  end;
 
-
+procedure TFRH.CommandStart(c: Integer; n: string; fn:string);
+var
+    s      : string;
+    dectype: string;
+begin
+    QCommand.SQL.Clear;
+    QCommand.SQL.Add
+      ('insert into command (nomer, filename, command, dat, interval) values (');
+        {
+	   #define SIMULATOR_DECODER             4
+	   #define USB_DECODER_T35               6
+	   #define USB_DECODER_T45               10
+	 }
+    if (FMain.RadioButton1.Checked) then
+        dectype := '10';
+    if (FMain.RadioButton2.Checked) then
+        dectype := '4';
+    // dectype := '4';
+    QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ',' +
+      dectype + ', '+Fmain.Edit12.Text+')');
+    QCommand.ExecSQL;
+end;
 
 procedure TFRH.BitBtn1Click(Sender: TObject);
 begin
- {
-    SELECT
-    NOMER, UISP,PISP,
-    avg(U12) su12, avg(U23) su23, avg(U31) su31,
-    avg(I1) si1,avg(I2) si2, avg(I3) si3,
-    avg(P1) sp1,avg(P2) sp2, avg(P3) sp3,
-    0 mumax, 0 mpmax,avg(torq) t, avg(power) p, avg(rot) r
-    FROM ZAMER.ZRHALL
-    group by nomer, uisp, PISP
-    union all
-    SELECT
-    nomer,  UISP,PISP,
-    0 su12, 0 su23, 0 su31,
-    0 si1, 0 si2, 0 si3,
-    0 sp1, 0 sp2, 0 sp3,
-    max(dumax) mumax, max(dpmax) mpmax, 0 t, 0 p, 0 r
-    FROM ZAMER.ZRHALL
-    group by nomer, uisp, PISP
-  }
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.add('delete from zrhall where nomer=' + Quotedstr(Nomer) +
@@ -126,6 +133,7 @@ begin
   ProgressBar1.min  := 0;
   ProgressBar1.Max  := Strtoint(Edit1.Text);
   ProgressBar1.Step := 1;
+  commandstart(1, Umain.Nomer, Label8.Caption);
   Timer2.Enabled    := True;
   Timer1.Enabled    := True;
 end;
@@ -284,7 +292,7 @@ begin
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
     StringGrid2.row                                := 1;
-    tipispyt                                       := 1;
+    tipispyt                                       := 2;
     Label6.Caption:=Label3.Caption;
     Label8.Caption                                 := StringGrid2.cells[0, 1];
     BitBtn1.Enabled                                := True;
@@ -322,7 +330,7 @@ begin
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
     StringGrid2.row                                := 1;
-    tipispyt                                       := 1;
+    tipispyt                                       := 3;
     Label6.Caption:=Label3.Caption;
     Label8.Caption                                 := StringGrid2.cells[0, 1];
     BitBtn1.Enabled                                := True;
@@ -337,14 +345,27 @@ end;
 procedure TFRH.Timer1Timer(Sender: TObject);
 var
   i: Integer;
+  acount1, ncnt:integer;
 begin
+  //ShowMessage(inttostr(curtime);
   curtime := curtime + 1;
   if curtime > maxtime then
   begin
     Timer1.Enabled := false;
     Timer2.Enabled := false;
+    commandstart(0, Nomer, Label8.Caption);
+    //showmessage('a');
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select count(*) cnt from zamertmp');
+    acount1:=QTemp.FieldByName('cnt').AsInteger;
+    ncnt:=min(acount,acount1);
+    QTemp.Close;
+    Qtemp.SQL.Clear;
+    QTemp.Open('select * from zamertmp');
     /// //////////////////////////////////////////////////////////////////////////
-    for i := 1 to acount do
+    QTemp.First;
+    for i := 1 to ncnt do
     begin
       QinsAll.ParamByName('NOMER').AsString := Nomer;
       QinsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label6.Caption);
@@ -360,28 +381,32 @@ begin
       QinsAll.ParamByName('P3').AsFloat     := a[i].p3;
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
       QinsAll.ParamByName('DPMAX').AsFloat  := 0;
-      QinsAll.ParamByName('rot').AsFloat  := 0;
-      QinsAll.ParamByName('torq').AsFloat  := 0;
-      QinsAll.ParamByName('power').AsFloat  := 0;
+
+      QinsAll.ParamByName('rot').AsFloat  := QTemp.FieldByName('rot').AsFloat;
+      QinsAll.ParamByName('torq').AsFloat  := QTemp.FieldByName('torq').AsFloat;
+      QinsAll.ParamByName('power').AsFloat  := QTemp.FieldByName('power').AsFloat;
       QinsAll.ExecSQL;
+      QTemp.Next;
     end;
+    //showmessage('a');
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').AsString := Nomer;
     Qselectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
+    Qselectsred.ParamByName('pisp').AsFloat   := Strtofloat(Label8.Caption);
     Qselectsred.Open;
     QInsSvod.Close;
-    { NOMER, UISP, USRED,
-      ISRED, PSRED, TIP,
-      DUMAX }
+
     QTemp.Close;
     QTemp.SQL.Clear;
-    QTemp.SQL.add('delete from zhhsvod where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label6.Caption);
+    QTemp.SQL.add('delete from zrhsvod where nomer=' + Quotedstr(Nomer) +
+      ' and uisp=' + Label6.Caption+' and pisp='+Label8.Caption);
     QTemp.ExecSQL;
     QInsSvod.ParamByName('nomer').AsString :=
       Qselectsred.Fieldbyname('nomer').AsString;
     QInsSvod.ParamByName('uisp').AsFloat :=
       Qselectsred.Fieldbyname('uisp').AsFloat;
+    QInsSvod.ParamByName('pisp').AsFloat := Strtofloat(Label8.Caption);
+      //Qselectsred.Fieldbyname('pisp').AsFloat;
     QInsSvod.ParamByName('usred').AsFloat :=
       Qselectsred.Fieldbyname('u').AsFloat;
     QInsSvod.ParamByName('isred').AsFloat :=
@@ -390,7 +415,16 @@ begin
       Qselectsred.Fieldbyname('p').AsFloat;
     QInsSvod.ParamByName('dumax').AsFloat :=
       Qselectsred.Fieldbyname('umax').AsFloat;
-    QInsSvod.ParamByName('tip').Asinteger := tipispyt;;
+    QInsSvod.ParamByName('dpmax').AsFloat :=
+      Qselectsred.Fieldbyname('pmax').AsFloat;
+    QInsSvod.ParamByName('torq').AsFloat :=
+      Qselectsred.Fieldbyname('t').AsFloat;
+    QInsSvod.ParamByName('rot').AsFloat :=
+      Qselectsred.Fieldbyname('r').AsFloat;
+    QInsSvod.ParamByName('power').AsFloat :=
+      Qselectsred.Fieldbyname('pow').AsFloat;
+
+    QInsSvod.ParamByName('tip').Asinteger := tipispyt;
     QInsSvod.ExecSQL;
     StringGrid2.cells[1, StringGrid2.row] :=
       Qselectsred.Fieldbyname('u').AsString;
@@ -399,7 +433,14 @@ begin
     StringGrid2.cells[3, StringGrid2.row] :=
       Qselectsred.Fieldbyname('p').AsString;
     StringGrid2.cells[4, StringGrid2.row] :=
-      Qselectsred.Fieldbyname('umax').AsString;
+      Qselectsred.Fieldbyname('i').AsString;
+    StringGrid2.cells[5, StringGrid2.row] :=
+      Qselectsred.Fieldbyname('r').AsString;
+    StringGrid2.cells[6, StringGrid2.row] :=
+      Qselectsred.Fieldbyname('t').AsString;
+    StringGrid2.cells[7, StringGrid2.row] :=
+      Qselectsred.Fieldbyname('pmax').AsString;
+
     /// //////////////////////////////////////////////////////////////////////////
 
     ProgressBar1.Position := 0;
@@ -414,7 +455,7 @@ begin
     begin
       BitBtn3.Enabled := True;
       ShowMessage('Шаг завершен!');
-      Label6.Caption := StringGrid2.cells[0, StringGrid2.row];
+      Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
     end;
   end
   else

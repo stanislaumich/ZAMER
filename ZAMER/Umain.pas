@@ -29,7 +29,7 @@ uses
     FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
     FireDAC.Phys, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
     FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, FireDAC.Stan.Param,
-    FireDAC.DatS,
+    FireDAC.DatS,ShellApi,
     FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Vcl.ExtCtrls;
 
 type
@@ -702,6 +702,8 @@ begin
     BitBtn10.Click();
     ReadM45 := false;
     enableispyt(false);
+    ShellExecute(Handle, 'open', PWideChar(M45Exe), nil, nil,
+      SW_SHOWNORMAL);
 end;
 
 procedure TFMain.KRTCPConnector1ConnectionStatus(Sender: TObject;

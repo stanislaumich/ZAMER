@@ -195,8 +195,8 @@ object FRH: TFRH
       742
       400)
     object StringGrid2: TStringGrid
-      Left = 6
-      Top = 28
+      Left = 4
+      Top = 29
       Width = 733
       Height = 309
       Anchors = [akLeft, akTop, akRight, akBottom]
@@ -466,7 +466,7 @@ object FRH: TFRH
       '   :I2, :I3, :P1, '
       '   :P2, :P3, :TORQ, '
       '   :POWER, :ROT, :DUMAX, '
-      '   :DPMAX, :PISP );')
+      '   :DPMAX, :PISP )')
     Left = 427
     Top = 205
     ParamData = <
@@ -550,10 +550,12 @@ object FRH: TFRH
       'INSERT INTO ZAMER.ZRHSVOD ('
       '   NOMER, UISP, USRED, '
       '   ISRED, PSRED, TIP, '
-      '   DUMAX) '
+      '   TORQ, ROT, POWER, '
+      '   DUMAX, DPMAX, PISP) '
       'VALUES ( :NOMER, :UISP, :USRED, '
       '   :ISRED, :PSRED, :TIP, '
-      '   :DUMAX )')
+      '   :TORQ, :ROT, :POWER, '
+      '   :DUMAX, :DPMAX, :PISP )')
     Left = 523
     Top = 205
     ParamData = <
@@ -582,7 +584,27 @@ object FRH: TFRH
         ParamType = ptInput
       end
       item
+        Name = 'TORQ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ROT'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POWER'
+        ParamType = ptInput
+      end
+      item
         Name = 'DUMAX'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DPMAX'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PISP'
         ParamType = ptInput
       end>
   end
@@ -590,34 +612,40 @@ object FRH: TFRH
     Connection = FMain.FDOra
     SQL.Strings = (
       'select'
+      'nomer, uisp, sum(u) u, sum(i) i,sum(p) p, sum(umax) umax, '
+      'sum(pmax) pmax, sum(t) t,sum(r) r, sum (pow) pow'
+      'from('
+      'select'
       'NOMER, UISP,'
       'round((sum(su12)+sum(su23)+sum(su31))/3,4) u,'
       'round((sum(si1)+sum(si2)+sum(si3))/3,4) i,'
       'round((sum(sp1)+sum(sp2)+sum(sp3))/3,4) p,'
-      'round(sum(mumax),4) umax'
+      'round(sum(mumax),4) umax,'
+      'round(sum(mpmax),4) pmax,'
+      't,r,pow'
       'from'
       '('
       'SELECT'
-      'NOMER, UISP,'
-      'avg(U12) su12, avg(U23) su23, avg(U31) su31,'
-      'avg(I1) si1,avg(I2) si2, avg(I3) si3,'
-      'avg(P1) sp1,avg(P2) sp2, avg(P3) sp3,'
-      '0 mumax'
-      'FROM ZAMER.ZRHALL'
-      'where nomer=:nomer and uisp=:uisp'
-      'group by nomer, uisp'
-      'union all'
-      'SELECT'
-      'nomer,  UISP,'
-      '0 su12, 0 su23, 0 su31,'
-      '0 si1, 0 si2, 0 si3,'
-      '0 sp1, 0 sp2, 0 sp3,'
-      'max(dumax) mumax'
-      'FROM ZAMER.ZRHALL'
-      'where nomer=:nomer and uisp=:uisp'
-      'group by nomer, uisp'
-      ')'
-      'group by nomer, uisp')
+      '    NOMER, UISP,PISP,'
+      '    avg(U12) su12, avg(U23) su23, avg(U31) su31,'
+      '    avg(I1) si1,avg(I2) si2, avg(I3) si3,'
+      '    avg(P1) sp1,avg(P2) sp2, avg(P3) sp3,'
+      '    0 mumax, 0 mpmax,avg(torq) t, avg(power) pow, avg(rot) r'
+      '    FROM ZAMER.ZRHALL'
+      '    where nomer=:nomer and uisp=:uisp and pisp=:pisp '
+      '    group by nomer, uisp, PISP'
+      '    union all'
+      '    SELECT'
+      '    nomer,  UISP,PISP,'
+      '    0 su12, 0 su23, 0 su31,'
+      '    0 si1, 0 si2, 0 si3,'
+      '    0 sp1, 0 sp2, 0 sp3,'
+      '    max(dumax) mumax, max(dpmax) mpmax, 0 t, 0 pow, 0 r'
+      '    FROM ZAMER.ZRHALL'
+      '    where nomer=:nomer and uisp=:uisp and pisp=:pisp'
+      '    group by nomer, uisp, PISP'
+      '    )group by nomer, uisp, PISP,t,r,pow'
+      '    ) group by nomer, uisp')
     Left = 575
     Top = 205
     ParamData = <
@@ -628,6 +656,17 @@ object FRH: TFRH
       item
         Name = 'UISP'
         ParamType = ptInput
+      end
+      item
+        Name = 'PISP'
+        ParamType = ptInput
       end>
+  end
+  object QCommand: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'select * from command')
+    Left = 459
+    Top = 294
   end
 end
