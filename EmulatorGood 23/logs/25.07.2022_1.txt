@@ -1,0 +1,5 @@
+25.07.2022 11:34:54.275 - Запуск Modbus TCP/RTU Эмулятор
+25.07.2022 11:34:54.610 - TModbusTCPServer.Create
+25.07.2022 11:35:06.709 - TModbusTCPServer.Stop
+25.07.2022 11:35:06.709 - TModbusTCPServer.Destroy
+25.07.2022 11:35:06.709 - Останов Modbus TCP/RTU Эмулятор

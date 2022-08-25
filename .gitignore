@@ -67,3 +67,6 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
+
+./Example4/.vs/Example4/v16/Browse.VC.db
+./Example3/.vs/Example3/v16/Browse.VC.db

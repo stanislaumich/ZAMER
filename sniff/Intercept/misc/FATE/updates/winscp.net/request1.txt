@@ -1,0 +1,5 @@
+GET /updates.php?v=
+---answer---
+version=6.6.6.0
+newsurl=http://winscp.net/updatenews.php?v=5.5.3.4214&beta=0&to=6.6.6.0
+newssize=,200

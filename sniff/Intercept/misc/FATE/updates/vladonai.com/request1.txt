@@ -1,0 +1,15 @@
+GET /online_update_checker.php?
+---answer---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+.<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+.<meta name="robots" content="noindex, nofollow" />
+.<meta http-equiv="content-language" content="en" />
+.<meta name="author" content="Volodymyr Frytskyy (Vladonai Software)" />
+.<meta name="copyright" content="(c) Vladonai Software. All rights reserved." />
+.<meta name="publisher" content="Vladonai Software" />
+.<title>Check For Updates</title>
+</head>
+<body>
+Success<br />Transmit[fD5JRDoxMDExfD5FWFA6MjIwNzIwMTZ8Pk1TRzpXYW50IERlbHV4ZSBFZGl0aW9uPyBVc2UgY291cG9uIE9NU0sgZm9yIC01MCUgT0ZGIGRpc2NvdW50IG9uIERlbHV4ZSBFZGl0aW9uISEhIENvdXBvbiBFWFBJUkVTIC0gMjIgSnVsIChGcmlkYXkpLiAgQ2xpY2sgaGVyZSBmb3IgZGV0YWlscy4uLnw+VVJMOmh0dHA6Ly93d3cudmxhZG9uYWkuY29tL3JlZGlyZWN0LnBocD9kc3Q9YnV5JmNvdXBvbj1PTVNLfD5GUkVFRURPTkxZfD5FTkQu]<br>UpdateAvailable<br>VersionStrFull:[2.94 (build 586)]<br>VersionMajor:[2]<br>VersionMinor:[94]<br>VersionBuild:[586]<br>UpdateType:[Minor]<br>NotificationType:[]<br>DownloadURL:[http://www.vladonai.com/%PAYLOAD_NAME%]<br>WhatsNewURL:[http://www.vladonai.com/allmynotes-organizer-history-whats-new?v=2.84.b585]<br></body></html>

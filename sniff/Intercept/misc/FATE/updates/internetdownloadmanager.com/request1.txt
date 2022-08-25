@@ -1,0 +1,12 @@
+POST /data/update
+---answer---
+06/08/20
+
+Version 6.36 Build 21 Final is available
+
+What's new
+
+- Added support for Firefox 49
+- Fixed problems with video recognition for several types of web sites
+- Fixed problems with taking over some types of downloads in Firefox
+- Fixed bugs

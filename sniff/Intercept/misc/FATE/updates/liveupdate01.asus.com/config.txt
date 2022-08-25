@@ -1,0 +1,4 @@
+reqs=2
+name=Asus Live Update
+payload=reverse_shell_zip
+PAYLOAD_NAME=tool_update.zip

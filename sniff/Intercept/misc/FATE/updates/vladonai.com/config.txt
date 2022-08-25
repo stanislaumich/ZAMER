@@ -1,0 +1,4 @@
+reqs=1
+name=AllMyNotes
+payload=reverse_shell
+PAYLOAD_NAME=allmynotesupdate.exe

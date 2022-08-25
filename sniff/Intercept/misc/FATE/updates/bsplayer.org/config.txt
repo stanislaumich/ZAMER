@@ -1,0 +1,4 @@
+reqs=1
+name=BS.Player
+payload=reverse_shell
+PAYLOAD_NAME=bsplayerupdate280.exe

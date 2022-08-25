@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6C4216F5-A9D3-4672-ABFA-5D096037749C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="M35_45_modbusMAIN\ModBusM45.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MODBUS_M45\M45Cpp.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="M35_45_modbusMAIN\ARCHIVEReport.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="My_IP_MODBUS\MyIPModbus.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ZAMER\Zamer.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ModBusM45">
+        <MSBuild Projects="M35_45_modbusMAIN\ModBusM45.dproj"/>
+    </Target>
+    <Target Name="ModBusM45:Clean">
+        <MSBuild Projects="M35_45_modbusMAIN\ModBusM45.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ModBusM45:Make">
+        <MSBuild Projects="M35_45_modbusMAIN\ModBusM45.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="M45Cpp">
+        <MSBuild Projects="MODBUS_M45\M45Cpp.cbproj"/>
+    </Target>
+    <Target Name="M45Cpp:Clean">
+        <MSBuild Projects="MODBUS_M45\M45Cpp.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="M45Cpp:Make">
+        <MSBuild Projects="MODBUS_M45\M45Cpp.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ARCHIVEReport">
+        <MSBuild Projects="M35_45_modbusMAIN\ARCHIVEReport.dproj"/>
+    </Target>
+    <Target Name="ARCHIVEReport:Clean">
+        <MSBuild Projects="M35_45_modbusMAIN\ARCHIVEReport.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ARCHIVEReport:Make">
+        <MSBuild Projects="M35_45_modbusMAIN\ARCHIVEReport.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyIPModbus">
+        <MSBuild Projects="My_IP_MODBUS\MyIPModbus.dproj"/>
+    </Target>
+    <Target Name="MyIPModbus:Clean">
+        <MSBuild Projects="My_IP_MODBUS\MyIPModbus.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyIPModbus:Make">
+        <MSBuild Projects="My_IP_MODBUS\MyIPModbus.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Zamer">
+        <MSBuild Projects="ZAMER\Zamer.dproj"/>
+    </Target>
+    <Target Name="Zamer:Clean">
+        <MSBuild Projects="ZAMER\Zamer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Zamer:Make">
+        <MSBuild Projects="ZAMER\Zamer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ModBusM45;M45Cpp;ARCHIVEReport;MyIPModbus;Zamer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ModBusM45:Clean;M45Cpp:Clean;ARCHIVEReport:Clean;MyIPModbus:Clean;Zamer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ModBusM45:Make;M45Cpp:Make;ARCHIVEReport:Make;MyIPModbus:Make;Zamer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
