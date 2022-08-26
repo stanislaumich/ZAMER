@@ -12,6 +12,7 @@ object FSoprot: TFSoprot
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   DesignSize = (
     590
     479)

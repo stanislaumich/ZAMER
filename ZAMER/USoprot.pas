@@ -37,6 +37,7 @@ type
     Label1: TLabel;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,7 +64,10 @@ begin
 end;
 
 procedure TFSoprot.BitBtn5Click(Sender: TObject);
+var
+ i,j:integer;
 begin
+
   Fmain.Qtemp.Close;
   Fmain.Qtemp.SQL.Clear;
   Fmain.Qtemp.SQL.add('delete from ZSOPROT where nomer=' +
@@ -80,6 +84,11 @@ begin
     QSoprot.ParamByName('IZOLED').Asstring   := ComboBox10.Text;
     QSoprot.ParamByName('IZOLKORP').AsFloat  := Strtofloat(Edit13.Text);
     QSoprot.ParamByName('IZOLOBMOT').AsFloat := Strtofloat(Edit16.Text);
+
+    for I := 1 to 3 do
+      for j:=1 to 3 do
+        if Stringgrid3.cells[i,j]='' then
+         Stringgrid3.cells[i,j]:='0';
 
     QSoprot.ParamByName('IZM1U1U2').AsFloat :=
       Strtofloat(StringGrid3.Cells[1, 1]);
@@ -112,6 +121,28 @@ begin
   Fmain.Label28.font.Color := clGreen;
   Fmain.Label28.Caption    := 'ПРОЙДЕН';
   FSoprot.Close;
+end;
+
+procedure TFSoprot.FormCreate(Sender: TObject);
+var
+ i,j:integer;
+begin
+
+stringgrid3.cells[0,1]:='Изм. 1';
+stringgrid3.cells[0,2]:='Изм. 2';
+stringgrid3.cells[0,3]:='Изм. 3';
+
+stringgrid3.cells[1,0]:='U1-U2(U-V)/гл.';
+stringgrid3.cells[2,0]:='V1-V2(V-W)/всп.';
+stringgrid3.cells[3,0]:='W1-W2(W-U)';
+
+for i:=1 to 3 do
+ for j:=1 to 3 do
+  begin
+    Stringgrid3.cells[i,j]:='111111';
+    Stringgrid3.ColWidths[i]:=150;
+  end;
+
 end;
 
 end.
