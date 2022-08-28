@@ -1,6 +1,6 @@
-cd M35_45_modbusMAIN\Win32\Release\BACKUP
+cd BACKUP
 call backupzamer.bat 
-cd ..\..\..\..
+cd ..
 git add .
 git commit -m "AUTO FROM WORK %date% %time%"
 git config --global http.version HTTP/1.1
