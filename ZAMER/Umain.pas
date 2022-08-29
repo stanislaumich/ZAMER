@@ -294,6 +294,7 @@ end;
 
 procedure TFMain.BitBtn5Click(Sender: TObject);
 begin
+    FKZam.Label12.Caption:=Nomer;
     FKzam.ShowModal;
 end;
 

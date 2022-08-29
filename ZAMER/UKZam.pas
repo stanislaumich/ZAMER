@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
+  Vcl.ExtCtrls;
 
 type
   TFKzam = class(TForm)
@@ -37,6 +38,9 @@ type
     Label10: TLabel;
     Edit1: TEdit;
     Label11: TLabel;
+    Label12: TLabel;
+    Timer1: TTimer;
+    Timer2: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -45,18 +49,38 @@ type
     procedure BitBtn5Click(Sender: TObject);
     procedure BitBtn6Click(Sender: TObject);
     procedure BitBtn7Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
   end;
+  {
+  INSERT INTO ZAMER.ZKZALL (
+   NOMER, UISP, U12,
+   U23, U31, I1,
+   I2, I3, P1,
+   P2, P3, TORQ)
+VALUES ( /* NOMER */,
+ /* UISP */,
+ /* U12 */,
+ /* U23 */,
+ /* U31 */,
+ /* I1 */,
+ /* I2 */,
+ /* I3 */,
+ /* P1 */,
+ /* P2 */,
+ /* P3 */,
+ /* TORQ */ );
+ }
 
 var
   FKzam: TFKzam;
   b:TBitmap;
 
 implementation
-
+ uses umain;
 {$R *.dfm}
 
 procedure TFKzam.BitBtn1Click(Sender: TObject);
@@ -135,6 +159,12 @@ begin
  BitBtn5.Glyph:=nil;
  BitBtn6.Glyph:=nil;
  BitBtn7.Glyph.LoadFromFile(extractfilepath(paramstr(0))+'apply.bmp');
+end;
+
+procedure TFKzam.FormActivate(Sender: TObject);
+begin
+ Stringgrid1.cells[0,1]:=floattostr(round(strtofloat(Fmain.Edit5.Text)/3.8));
+ Stringgrid1.cells[0,2]:=floattostr(round(strtofloat(Fmain.Edit5.Text)));
 end;
 
 procedure TFKzam.FormCreate(Sender: TObject);

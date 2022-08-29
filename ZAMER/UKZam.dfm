@@ -3523,9 +3523,17 @@ object FKzam: TFKzam
     00}
   OldCreateOrder = False
   Position = poScreenCenter
+  OnActivate = FormActivate
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 23
+  object Label12: TLabel
+    Left = 4
+    Top = 500
+    Width = 22
+    Height = 23
+    Caption = #8470
+  end
   object GroupBox1: TGroupBox
     Left = 4
     Top = 0
@@ -3769,6 +3777,7 @@ object FKzam: TFKzam
       Width = 506
       Height = 285
       Anchors = [akLeft, akTop, akRight]
+      FixedCols = 0
       TabOrder = 2
     end
   end
@@ -3844,9 +3853,9 @@ object FKzam: TFKzam
     end
   end
   object BitBtn10: TBitBtn
-    Left = 232
-    Top = 470
-    Width = 158
+    Left = 224
+    Top = 471
+    Width = 138
     Height = 52
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     Glyph.Data = {
@@ -3909,9 +3918,9 @@ object FKzam: TFKzam
     TabOrder = 3
   end
   object BitBtn11: TBitBtn
-    Left = 396
+    Left = 368
     Top = 470
-    Width = 160
+    Width = 150
     Height = 52
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
     Glyph.Data = {
@@ -3974,9 +3983,9 @@ object FKzam: TFKzam
     TabOrder = 4
   end
   object BitBtn12: TBitBtn
-    Left = 562
+    Left = 527
     Top = 470
-    Width = 155
+    Width = 190
     Height = 53
     Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100
     Glyph.Data = {
@@ -4037,5 +4046,14 @@ object FKzam: TFKzam
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 5
+  end
+  object Timer1: TTimer
+    Left = 116
+    Top = 283
+  end
+  object Timer2: TTimer
+    Interval = 50
+    Left = 180
+    Top = 283
   end
 end

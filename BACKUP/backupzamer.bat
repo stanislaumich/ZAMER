@@ -6,4 +6,4 @@ sqlplus zamer/zamer @backupzamer.sql
 exp zamer/zamer parfile=backupzamer.dat
 del *.log
 rar a -m5 -ag_dd.mm.yyyy-hh-mi-ss backupzamer @backupzamer.lst
-pause
+rem pause

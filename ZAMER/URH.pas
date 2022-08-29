@@ -347,7 +347,6 @@ var
   i: Integer;
   acount1, ncnt:integer;
 begin
-  //ShowMessage(inttostr(curtime);
   curtime := curtime + 1;
   if curtime > maxtime then
   begin
