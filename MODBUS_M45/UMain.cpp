@@ -128,7 +128,7 @@ void __fastcall TForm1::BConnect() {
 		return;
 	}
 	else {
-		Memo1->Lines->Add("Декодер М соединен");
+	   //	Memo1->Lines->Add("Декодер М соединен");
 	}
 }
 
@@ -167,7 +167,7 @@ void __fastcall TForm1::Button2Click(TObject *Sender) {
 		DecoderClose(PDecoder);
 		PDecoder = NULL;
 	}
-	Memo1->Lines->Add("Декодер М разъединен");
+	//Memo1->Lines->Add("Декодер М разъединен");
 }
 
 // ---------------------------------------------------------------------------
