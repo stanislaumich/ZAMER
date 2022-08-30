@@ -29,7 +29,7 @@ uses
     FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
     FireDAC.Phys, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
     FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, FireDAC.Stan.Param,
-    FireDAC.DatS,ShellApi,
+    FireDAC.DatS, ShellApi,
     FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Vcl.ExtCtrls;
 
 type
@@ -129,7 +129,8 @@ type
         RP3: TKRMBRegister;
         Label29: TLabel;
         BitBtn13: TBitBtn;
-    Label30: TLabel;
+        Label30: TLabel;
+        Label31: TLabel;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -268,6 +269,7 @@ end;
 
 procedure TFMain.BitBtn13Click(Sender: TObject);
 begin
+FArc.BitBtn3.Click();
     FArc.ShowModal;
 end;
 
@@ -294,7 +296,8 @@ end;
 
 procedure TFMain.BitBtn5Click(Sender: TObject);
 begin
-    FKzam.ShowModal;
+    FKZam.Label12.Caption := Nomer;
+    FKZam.ShowModal;
 end;
 
 procedure TFMain.BitBtn6Click(Sender: TObject);
@@ -482,52 +485,85 @@ begin
             Label30.Caption    := 'ПРОЙДЕН';
             Label30.Font.Color := clGreen;
         end;
-        {
-        tip := Qtemp.FieldByName('tip').AsInteger;
-        case tip of
-            1:
-                begin
-                    Frh.Radiobutton1Click(Fhhod);
-                    Frh.RadioButton1.Checked := True;
-                end;
-            2:
-                begin
-                    Frh.Radiobutton2Click(Fhhod);
-                    Frh.RadioButton2.Checked := True;
-                end;
-            3:
-                begin
-                    Frh.Radiobutton3Click(Fhhod);
-                    Frh.RadioButton3.Checked := True;
-                end;
+
+          tip := Qtemp.FieldByName('tip').AsInteger;
+          case tip of
+          1:
+          begin
+          Frh.Radiobutton1Click(Fhhod);
+          Frh.RadioButton1.Checked := True;
+          end;
+          2:
+          begin
+          Frh.Radiobutton2Click(Fhhod);
+          Frh.RadioButton2.Checked := True;
+          end;
+          3:
+          begin
+          Frh.Radiobutton3Click(Fhhod);
+          Frh.RadioButton3.Checked := True;
+          end;
+          end;
+          tip := 1;
+          while not(Qtemp.eof) do
+          begin
+          Frh.Stringgrid2.Cells[1, tip] :=
+          Qtemp.FieldByName('usred').Asstring;
+          Frh.Stringgrid2.Cells[2, tip] :=
+          Qtemp.FieldByName('isred').Asstring;
+          Frh.Stringgrid2.Cells[3, tip] :=
+          Qtemp.FieldByName('psred').Asstring;
+          Frh.Stringgrid2.Cells[4, tip] :=
+          Qtemp.FieldByName('dumax').Asstring;
+          Frh.Stringgrid2.Cells[5, tip] :=
+          Qtemp.FieldByName('usred').Asstring;
+          Frh.Stringgrid2.Cells[6, tip] :=
+          Qtemp.FieldByName('isred').Asstring;
+          Frh.Stringgrid2.Cells[7, tip] :=
+          Qtemp.FieldByName('psred').Asstring;
+          Frh.Stringgrid2.Cells[8, tip] :=
+          Qtemp.FieldByName('dumax').Asstring;
+          Qtemp.Next;
+          tip := tip + 1;
+          end;
+
+        /// ////////////////////////////////////////////////////////////
+        // загрузить Короткое замыкание если есть
+        Qtemp.Close;
+        Qtemp.SQL.Clear;
+        Qtemp.Open('select * from zkzsvod where nomer=' + Quotedstr(Nomer) +
+          ' order by uisp desc');
+        if Qtemp.RecordCount = 0 then
+        begin
+            Label31.Caption    := 'X';
+            Label31.Font.Color := clRed;
+        end
+        else
+        begin
+            Label31.Caption    := 'ПРОЙДЕН';
+            Label31.Font.Color := clGreen;
         end;
-        tip := 1;
+        FKZam.StringGrid1.row      := 1;
+        FKZam.StringGrid1.rowCount := 10;
         while not(Qtemp.eof) do
         begin
-            Frh.Stringgrid2.Cells[1, tip] :=
-              Qtemp.FieldByName('usred').Asstring;
-            Frh.Stringgrid2.Cells[2, tip] :=
-              Qtemp.FieldByName('isred').Asstring;
-            Frh.Stringgrid2.Cells[3, tip] :=
-              Qtemp.FieldByName('psred').Asstring;
-            Frh.Stringgrid2.Cells[4, tip] :=
-              Qtemp.FieldByName('dumax').Asstring;
-            Frh.Stringgrid2.Cells[5, tip] :=
-              Qtemp.FieldByName('usred').Asstring;
-            Frh.Stringgrid2.Cells[6, tip] :=
-              Qtemp.FieldByName('isred').Asstring;
-            Frh.Stringgrid2.Cells[7, tip] :=
-              Qtemp.FieldByName('psred').Asstring;
-            Frh.Stringgrid2.Cells[8, tip] :=
-              Qtemp.FieldByName('dumax').Asstring;
+            FKZam.StringGrid1.Cells[0, FKZam.StringGrid1.row] :=
+              Qtemp.FieldByName('uisp').Asstring;
+            FKZam.StringGrid1.Cells[1, FKZam.StringGrid1.row] :=
+              Qtemp.FieldByName('u').Asstring;
+            FKZam.StringGrid1.Cells[2, FKZam.StringGrid1.row] :=
+              Qtemp.FieldByName('i').Asstring;
+            FKZam.StringGrid1.Cells[3, FKZam.StringGrid1.row] :=
+              Qtemp.FieldByName('p').Asstring;
+            FKZam.StringGrid1.Cells[4, FKZam.StringGrid1.row] :=
+              Qtemp.FieldByName('m').Asstring;
+            FKZam.StringGrid1.row := FKZam.StringGrid1.row + 1;
             Qtemp.Next;
-            tip := tip + 1;
+
         end;
-         }
 
-       /// ////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////
         // загрузить
-
 
         enableispyt(True);
     end;
@@ -702,8 +738,7 @@ begin
     BitBtn10.Click();
     ReadM45 := false;
     enableispyt(false);
-    ShellExecute(Handle, 'open', PWideChar(M45Exe), nil, nil,
-      SW_SHOWNORMAL);
+    ShellExecute(Handle, 'open', PWideChar(M45Exe), nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TFMain.KRTCPConnector1ConnectionStatus(Sender: TObject;

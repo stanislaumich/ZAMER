@@ -119,7 +119,7 @@ procedure TFhhod.BitBtn2Click(Sender: TObject);
 begin
   Fmain.Label29.font.Color := clGreen;
   Fmain.Label29.Caption    := 'опнидем';
-
+  FHHod.Close;
 end;
 
 procedure TFhhod.BitBtn3Click(Sender: TObject);
