@@ -4055,6 +4055,8 @@ object FKzam: TFKzam
     OnClick = BitBtn12Click
   end
   object Timer1: TTimer
+    Interval = 500
+    OnTimer = Timer1Timer
     Left = 116
     Top = 283
   end

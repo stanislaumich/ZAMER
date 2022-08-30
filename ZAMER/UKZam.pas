@@ -65,6 +65,7 @@ type
     procedure StringGrid1Click(Sender: TObject);
     procedure BitBtn12Click(Sender: TObject);
     procedure BitBtn11Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -346,6 +347,13 @@ begin
     Label11.Caption := StringGrid1.cells[0, StringGrid1.row];
     BitBtn8.Enabled := true;
   end;
+end;
+
+procedure TFKzam.Timer1Timer(Sender: TObject);
+begin
+ Label7.Caption:=FMain.KrVarLabel1.Caption;
+ Label8.Caption:=FMain.KrVarLabel2.Caption;
+ Label9.Caption:=FMain.KrVarLabel3.Caption;
 end;
 
 procedure TFKzam.Timer2Timer(Sender: TObject);

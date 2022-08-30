@@ -269,6 +269,7 @@ end;
 
 procedure TFMain.BitBtn13Click(Sender: TObject);
 begin
+FArc.BitBtn3.Click();
     FArc.ShowModal;
 end;
 
@@ -484,7 +485,7 @@ begin
             Label30.Caption    := 'ПРОЙДЕН';
             Label30.Font.Color := clGreen;
         end;
-        {
+
           tip := Qtemp.FieldByName('tip').AsInteger;
           case tip of
           1:
@@ -525,7 +526,7 @@ begin
           Qtemp.Next;
           tip := tip + 1;
           end;
-        }
+
         /// ////////////////////////////////////////////////////////////
         // загрузить Короткое замыкание если есть
         Qtemp.Close;

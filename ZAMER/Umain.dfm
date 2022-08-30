@@ -579,7 +579,7 @@ object FMain: TFMain
         Height = 23
         Hint = ''
         Variable = Psred
-        Format = '0.0000'
+        Format = '0.00'
         Color = clWindow
         ErrorToHint = True
         FontColor = clWindowText
