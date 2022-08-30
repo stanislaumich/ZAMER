@@ -100,6 +100,177 @@ end; {setgridcolumnwidths }
 
 
 
+{procedure TForm1.FillBlank(ADocument: string);
+const
+    wdFindContinue     = 1;
+    wdReplaceOne       = 1;
+    wdReplaceAll       = 2;
+    wdDoNotSaveChanges = 0;
+var
+    WordApp                    : OLEVariant;
+    SearchString, ReplaceString: string;
+    i, j                       : Integer;
+begin
+    if not FileExists(ADocument) then
+    begin
+        ShowMessage('Бланк отчета не найден.');
+        exit;
+    end;
+    try
+        WordApp := CreateOLEObject('Word.Application');
+    except
+        on E: Exception do
+        begin
+            E.Message := 'Word недоступен';
+            raise;
+        end;
+    end;
+    FormReport.Show;
+    try
+        WordApp.Visible := false;
+        WordApp.Documents.Open(ADocument);
+        // холостой ход
+        for i := 1 to 10 do
+        begin
+            SearchString  := 'u' + inttostr(i) + 'hh';
+            ReplaceString := StringGrid2.Cells[1, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := true;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := true;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+        end;
+        for i := 1 to 10 do
+        begin
+            SearchString  := 'i' + inttostr(i) + 'hh';
+            ReplaceString := StringGrid2.Cells[2, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := true;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := true;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+        end;
+        for i := 1 to 10 do
+        begin
+            SearchString  := 'p' + inttostr(i) + 'hh';
+            ReplaceString := StringGrid2.Cells[3, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := true;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := true;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+        end;
+        // рабочая характеристика i p rot torq
+        i := 1;
+        while StringGrid6.Cells[0, i] <> '' do
+        begin
+            SearchString  := 'i' + inttostr(i) + 'rh';
+            ReplaceString := StringGrid6.Cells[2, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := true;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := true;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+            i := i + 1;
+        end;
+        i := 1;
+        while StringGrid6.Cells[0, i] <> '' do
+        begin
+            SearchString  := 'p' + inttostr(i) + 'rh';
+            ReplaceString := StringGrid6.Cells[6, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := true;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := true;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+            i := i + 1;
+        end;
+        i := 1;
+        while StringGrid6.Cells[0, i] <> '' do
+        begin
+            SearchString  := 'rot' + inttostr(i) + 'rh';
+            ReplaceString := StringGrid6.Cells[4, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := true;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := true;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+            i := i + 1;
+        end;
+        i := 1;
+        while StringGrid6.Cells[0, i] <> '' do
+        begin
+            SearchString  := 'torq' + inttostr(i) + 'rh';
+            ReplaceString := StringGrid6.Cells[5, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := true;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := true;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+            i := i + 1;
+        end;
+        // сохранение документа
+        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Edit5.Text + '.docx');
+        WordApp.ActiveDocument.Close(wdDoNotSaveChanges);
+    finally
+        WordApp.Quit;
+        WordApp := Unassigned;
+    end;
+    FormReport.Close;
+    ShowMessage('Отчет сформирован!');
+end;
+
+}
+
 procedure TFArc.BitBtn3Click(Sender: TObject);
 begin
  QSelect.Close;

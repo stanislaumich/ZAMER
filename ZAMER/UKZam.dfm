@@ -4055,12 +4055,14 @@ object FKzam: TFKzam
     OnClick = BitBtn12Click
   end
   object Timer1: TTimer
+    Enabled = False
     Interval = 500
     OnTimer = Timer1Timer
     Left = 116
     Top = 283
   end
   object Timer2: TTimer
+    Enabled = False
     Interval = 50
     OnTimer = Timer2Timer
     Left = 180
