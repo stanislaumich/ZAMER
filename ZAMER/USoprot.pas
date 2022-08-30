@@ -65,7 +65,7 @@ end;
 
 procedure TFSoprot.BitBtn5Click(Sender: TObject);
 var
- i,j:integer;
+  i, j: integer;
 begin
 
   Fmain.Qtemp.Close;
@@ -85,29 +85,29 @@ begin
     QSoprot.ParamByName('IZOLKORP').AsFloat  := Strtofloat(Edit13.Text);
     QSoprot.ParamByName('IZOLOBMOT').AsFloat := Strtofloat(Edit16.Text);
 
-    for I := 1 to 3 do
-      for j:=1 to 3 do
-        if Stringgrid3.cells[i,j]='' then
-         Stringgrid3.cells[i,j]:='0';
+    for i   := 1 to 3 do
+      for j := 1 to 3 do
+        if StringGrid3.cells[i, j] = '' then
+          StringGrid3.cells[i, j] := '0';
 
     QSoprot.ParamByName('IZM1U1U2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[1, 1]);
+      Strtofloat(StringGrid3.cells[1, 1]);
     QSoprot.ParamByName('IZM2U1U2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[1, 2]);
+      Strtofloat(StringGrid3.cells[1, 2]);
     QSoprot.ParamByName('IZM3U1U2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[1, 3]);
+      Strtofloat(StringGrid3.cells[1, 3]);
     QSoprot.ParamByName('IZM1V1V2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[2, 1]);
+      Strtofloat(StringGrid3.cells[2, 1]);
     QSoprot.ParamByName('IZM2V1V2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[2, 2]);
+      Strtofloat(StringGrid3.cells[2, 2]);
     QSoprot.ParamByName('IZM3V1V2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[2, 3]);
+      Strtofloat(StringGrid3.cells[2, 3]);
     QSoprot.ParamByName('IZM1W1W2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[3, 1]);
+      Strtofloat(StringGrid3.cells[3, 1]);
     QSoprot.ParamByName('IZM2W1W2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[3, 2]);
+      Strtofloat(StringGrid3.cells[3, 2]);
     QSoprot.ParamByName('IZM3W1W2').AsFloat :=
-      Strtofloat(StringGrid3.Cells[3, 3]);
+      Strtofloat(StringGrid3.cells[3, 3]);
   except
     on E: Exception do
     begin
@@ -125,23 +125,23 @@ end;
 
 procedure TFSoprot.FormCreate(Sender: TObject);
 var
- i,j:integer;
+  i, j: integer;
 begin
 
-stringgrid3.cells[0,1]:='Изм. 1';
-stringgrid3.cells[0,2]:='Изм. 2';
-stringgrid3.cells[0,3]:='Изм. 3';
+  StringGrid3.cells[0, 1] := 'Изм. 1';
+  StringGrid3.cells[0, 2] := 'Изм. 2';
+  StringGrid3.cells[0, 3] := 'Изм. 3';
 
-stringgrid3.cells[1,0]:='U1-U2(U-V)/гл.';
-stringgrid3.cells[2,0]:='V1-V2(V-W)/всп.';
-stringgrid3.cells[3,0]:='W1-W2(W-U)';
+  StringGrid3.cells[1, 0] := 'U1-U2(U-V)/гл.';
+  StringGrid3.cells[2, 0] := 'V1-V2(V-W)/всп.';
+  StringGrid3.cells[3, 0] := 'W1-W2(W-U)';
 
-for i:=1 to 3 do
- for j:=1 to 3 do
-  begin
-    Stringgrid3.cells[i,j]:='111111';
-    Stringgrid3.ColWidths[i]:=150;
-  end;
+  for i   := 1 to 3 do
+    for j := 1 to 3 do
+    begin
+      StringGrid3.cells[i, j]  := '111111';
+      StringGrid3.ColWidths[i] := 150;
+    end;
 
 end;
 

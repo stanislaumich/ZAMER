@@ -3586,9 +3586,9 @@ object FKzam: TFKzam
     object Label7: TLabel
       Left = 132
       Top = 32
-      Width = 54
+      Width = 30
       Height = 23
-      Caption = 'Label7'
+      Caption = '100'
     end
     object Label8: TLabel
       Left = 271
@@ -3621,10 +3621,10 @@ object FKzam: TFKzam
     object Edit1: TEdit
       Left = 241
       Top = 65
-      Width = 60
+      Width = 48
       Height = 31
       TabOrder = 0
-      Text = 'Edit1'
+      Text = '1'
     end
   end
   object GroupBox2: TGroupBox
@@ -3644,6 +3644,7 @@ object FKzam: TFKzam
       Height = 38
       Anchors = [akRight, akBottom]
       Caption = #1047#1072#1087#1080#1089#1100
+      Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000000000000000000000000000000000000FFFFFF215F1C
@@ -3702,7 +3703,7 @@ object FKzam: TFKzam
         9E81D69E81D69E81D69E81D69E81D69E81D59E81D59E81D59E81D59E81D59E81
         D59E81D59D81D59D81D59D81D49D81D49D81D39A85D097FFFFFF}
       TabOrder = 0
-      ExplicitTop = 384
+      OnClick = BitBtn8Click
     end
     object BitBtn9: TBitBtn
       Left = 364
@@ -3711,6 +3712,7 @@ object FKzam: TFKzam
       Height = 38
       Anchors = [akRight, akBottom]
       Caption = #1057#1090#1086#1087
+      Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
@@ -3769,7 +3771,7 @@ object FKzam: TFKzam
         FFFFFFFFFFFFFFF2F2FBC9C8EDE4E4F6D7D6F24B4DD0454CD5A2A1E1BCBBE88E
         8DD3C6C6E8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 1
-      ExplicitTop = 384
+      OnClick = BitBtn9Click
     end
     object StringGrid1: TStringGrid
       Left = 8
@@ -3777,8 +3779,11 @@ object FKzam: TFKzam
       Width = 506
       Height = 285
       Anchors = [akLeft, akTop, akRight]
+      DefaultColWidth = 95
       FixedCols = 0
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goFixedRowDefAlign]
       TabOrder = 2
+      OnClick = StringGrid1Click
     end
   end
   object GroupBox3: TGroupBox
@@ -3981,6 +3986,7 @@ object FKzam: TFKzam
       FFFFFFFFFFFFFFFFFFFFB5B3FC4E49F6140BF31C13F31C12F31C12F31C12F31C
       12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
     TabOrder = 4
+    OnClick = BitBtn11Click
   end
   object BitBtn12: TBitBtn
     Left = 527
@@ -4046,6 +4052,7 @@ object FKzam: TFKzam
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 5
+    OnClick = BitBtn12Click
   end
   object Timer1: TTimer
     Left = 116
@@ -4053,7 +4060,146 @@ object FKzam: TFKzam
   end
   object Timer2: TTimer
     Interval = 50
+    OnTimer = Timer2Timer
     Left = 180
     Top = 283
+  end
+  object QTemp: TFDQuery
+    Connection = FMain.FDOra
+    Left = 236
+    Top = 283
+  end
+  object QCommand: TFDQuery
+    Connection = FMain.FDOra
+    Left = 300
+    Top = 287
+  end
+  object QInsAll: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZKZALL ('
+      '   NOMER, UISP, U12,'
+      '   U23, U31, I1,'
+      '   I2, I3, P1,'
+      '   P2, P3, TORQ)'
+      'VALUES ( :NOMER, :UISP, :U12,'
+      '   :U23, :U31, :I1,'
+      '   :I2, :I3, :P1,'
+      '   :P2, :P3, :TORQ )')
+    Left = 356
+    Top = 283
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U12'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U23'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U31'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TORQ'
+        ParamType = ptInput
+      end>
+  end
+  object QSelectSred: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'select --*'
+      
+        'round(avg(u),4) u,round(avg(i),4) i, round(avg(p),4) p, round(av' +
+        'g(torq),4) t'
+      'from zkzall'
+      'where nomer=:nomer'
+      ' and uisp=:uisp')
+    Left = 408
+    Top = 283
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end>
+  end
+  object QInsSvod: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZKZSVOD ('
+      '   NOMER, UISP, U, '
+      '   I, P, M, '
+      '   TMP) '
+      'VALUES ( :NOMER, :UISP, :U, '
+      '   :I, :P, :M, '
+      '   :TMP )')
+    Left = 332
+    Top = 335
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'M'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TMP'
+        ParamType = ptInput
+      end>
   end
 end

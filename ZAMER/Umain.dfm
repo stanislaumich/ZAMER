@@ -444,10 +444,23 @@ object FMain: TFMain
     end
     object Label30: TLabel
       Left = 304
-      Top = 156
+      Top = 151
       Width = 103
       Height = 23
       AutoSize = False
+    end
+    object Label31: TLabel
+      Left = 304
+      Top = 87
+      Width = 103
+      Height = 23
+      AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object BitBtn1: TBitBtn
       Left = 3
@@ -917,8 +930,8 @@ object FMain: TFMain
     Connection = FDOra
     SQL.Strings = (
       'select torq, rot, power from zamer')
-    Left = 492
-    Top = 484
+    Left = 948
+    Top = 396
   end
   object QCommand: TFDQuery
     Connection = FDOra
@@ -927,8 +940,8 @@ object FMain: TFMain
       'dat, interval)values('
       ':nomer, :filename, :command,'
       ':dat, :interval)')
-    Left = 552
-    Top = 484
+    Left = 944
+    Top = 344
     ParamData = <
       item
         Name = 'NOMER'
@@ -969,8 +982,8 @@ object FMain: TFMain
       '   :PNOM, :HUMID, :PRESSUR, '
       '   :ENERGO, :STENDN, :STENDA, '
       '   :DOP1, :READY, :NOMER, :ISPOLN )')
-    Left = 420
-    Top = 484
+    Left = 948
+    Top = 448
     ParamData = <
       item
         Name = 'DATA'
@@ -1039,15 +1052,15 @@ object FMain: TFMain
   end
   object Qtemp: TFDQuery
     Connection = FDOra
-    Left = 320
-    Top = 484
+    Left = 824
+    Top = 452
   end
   object QAttestat: TFDQuery
     Connection = FDOra
     SQL.Strings = (
       'select * from stend where name=:name')
-    Left = 368
-    Top = 487
+    Left = 880
+    Top = 451
     ParamData = <
       item
         Name = 'NAME'
