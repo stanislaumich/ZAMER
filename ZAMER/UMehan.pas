@@ -238,14 +238,14 @@ begin
    amax[row,count].u1:= SimpleRoundTo(FMAin.RU1.Value, -4);
    amax[row,count].u2:= SimpleRoundTo(FMAin.RU2.Value, -4);
    amax[row,count].u3:= SimpleRoundTo(FMAin.RU3.Value, -4);
-   amax[row,count].usred:=SimpleRoundTo((amax[row,count].u1+amax[row,count].u2+amax[row,count].u3)/3,-4);
+   amax[row,count].usred:=0;//SimpleRoundTo((amax[row,count].u1+amax[row,count].u2+amax[row,count].u3)/3,-4);
   end;
  if curr=2 then
   begin
    amin[row,count].u1:= SimpleRoundTo(FMAin.RU1.Value, -4);
    amin[row,count].u2:= SimpleRoundTo(FMAin.RU2.Value, -4);
    amin[row,count].u3:= SimpleRoundTo(FMAin.RU3.Value, -4);
-   amin[row,count].usred:=SimpleRoundTo((amax[row,count].u1+amax[row,count].u2+amax[row,count].u3)/3,-4);
+   amin[row,count].usred:=0;//SimpleRoundTo((amax[row,count].u1+amax[row,count].u2+amax[row,count].u3)/3,-4);
   end;
  count:=count+1;
 end;
