@@ -18,6 +18,12 @@ interface
   P1=3427
   P2=3429
   P3=3431
+
+PRM_CODE_AUTHENTICATION	Authentication field for get write access through modbus	2	W	2 Bytes Integer	998	30999
+PRM_CODE_ACTIVE_CONNECTIONS_WEB	number of current active web interfaces	4	R	4 Bytes Integer	505	30506	Power Quality Analyzer G4400
+PRM_CODE_PT_PRIMARY	Potential Transformer Primary	4	RW	4 Bytes Integer	17	30018	Power Quality Analyzer G4400
+
+
 }
 uses
     Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
@@ -131,6 +137,8 @@ type
         BitBtn13: TBitBtn;
         Label30: TLabel;
         Label31: TLabel;
+    KRPASSWORD: TKRMBRegister;
+    KRTrans: TKRMBRegister;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);

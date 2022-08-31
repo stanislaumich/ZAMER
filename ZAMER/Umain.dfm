@@ -903,6 +903,20 @@ object FMain: TFMain
       HighDWordFirst = True
       Interval = 50
     end
+    object KRPASSWORD: TKRMBRegister
+      MCVarType = MCT_WORD
+      RegisterIndex = 998
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      UpAftWrite = False
+    end
+    object KRTrans: TKRMBRegister
+      MCVarType = MCT_WORD
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+    end
   end
   object KRTimer1: TKRTimer
     OnTimer = KRTimer1Timer
