@@ -514,4 +514,59 @@ object FMehan: TFMehan
     Left = 668
     Top = 152
   end
+  object QTemp: TFDQuery
+    Connection = FMain.FDOra
+    Left = 668
+    Top = 204
+  end
+  object QInsall: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZMEHALL ('
+      '   NOMER, USRED, U12, '
+      '   U23, U31, TORQ, '
+      '   ROT, TIP, NUMISP) '
+      'VALUES ( :NOMER, :USRED, :U12, '
+      '   :U23, :U31, :TORQ, '
+      '   :ROT, :TIP, :NUMISP )')
+    Left = 612
+    Top = 256
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'USRED'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U12'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U23'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U31'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TORQ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ROT'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMISP'
+        ParamType = ptInput
+      end>
+  end
 end

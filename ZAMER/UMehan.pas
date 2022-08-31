@@ -49,6 +49,8 @@ type
     Timer1: TTimer;
     Timer2: TTimer;
     QCommand: TFDQuery;
+    QTemp: TFDQuery;
+    QInsall: TFDQuery;
     procedure FormActivate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure Button27Click(Sender: TObject);
@@ -76,6 +78,21 @@ implementation
 
 uses umain;
 
+function min(a: Integer; b: Integer): Integer;
+begin
+  if a < b then
+    result := a
+  else
+    result := b;
+end;
+
+function max(a: Integer; b: Integer): Integer;
+begin
+  if a > b then
+    result := a
+  else
+    result := b;
+end;
 procedure TFMehan.CommandStart(c: Integer; n: string; fn: string);
 var
   s      : string;
@@ -120,8 +137,16 @@ begin// start
 
  count:=0;// current number
  curr:=1;// stringgrid7
-
  row:= stringgrid7.row;
+ QTemp.Close;
+ QTemp.SQL.Clear;
+ QTemp.SQL.Add('truncate table zamertmp');
+ QTemp.ExecSQL;
+ QTemp.Close;
+ QTemp.SQL.Clear;
+ QTemp.SQL.Add('delete from zmehall where nomer='+Quotedstr(Nomer)+' and tip=1 and numisp='+inttostr(row));
+ QTemp.ExecSQL;
+
  for i := 1 to 1000 do amax[row,i]:=tr;
  CommandStart(1, Nomer, '0');
  Timer1.Enabled:=true;
@@ -130,11 +155,48 @@ begin// start
 end;
 
 procedure TFMehan.Button32Click(Sender: TObject);
+var
+ t,i:integer;
 begin
  Timer1.Enabled:=false;
  Timer2.Enabled:=false;
  CommandStart(0, Nomer, '0');
+ // начинаем обсчеты
+ QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('select count(*) c from zamertmp');
+  QTemp.Open;
+  t:=min(count-1,qtemp.FieldByName('c').Asinteger);
+  QTemp.Close;
+  QTemp.Open('select * from zamertmp order by rowid');
+  QTemp.First;
+  Qinsall.Close;
+  for I := 1 to t do
+   begin
+    Qinsall.ParamByName('nomer').Asstring:=nomer;
+    Qinsall.ParamByName('usred').AsFloat:=SimpleRoundTo(amax[row,i].usred,-4);
+    Qinsall.ParamByName('u12').AsFloat:=SimpleRoundTo(amax[row,i].u1,-4);
+    Qinsall.ParamByName('u23').AsFloat:=SimpleRoundTo(amax[row,i].u2,-4);
+    Qinsall.ParamByName('u31').AsFloat:=SimpleRoundTo(amax[row,i].u3,-4);
+    Qinsall.ParamByName('torq').AsFloat:=SimpleRoundTo(Qtemp.FieldByName('torq').AsFloat,-4);
+    Qinsall.ParamByName('rot').AsFloat:=SimpleRoundTo(Qtemp.FieldByName('rot').AsFloat,-4);
+    Qinsall.ParamByName('tip').AsInteger:=1;
+    Qinsall.ParamByName('numisp').AsInteger:=row;
+    Qinsall.ExecSQL;
+    QTemp.Next;
+   end;
+   QTemp.Close;
+   34343
+   QTemp.Open('select * from zmehall where torq=(select max(torq) from zmehall) and nomer='+Quotedstr(nomer));
+   Stringgrid7.cells[1,row]:=FloatToStr(SimpleRoundTo(Qtemp.FieldByName('usred').AsFloat,-4));
+   Stringgrid7.cells[2,row]:=FloatToStr(SimpleRoundTo(Qtemp.FieldByName('torq').AsFloat,-4));
+   Stringgrid7.cells[3,row]:=FloatToStr(SimpleRoundTo(Qtemp.FieldByName('rot').AsFloat,-4));
+   QTemp.Close;
 
+   {
+
+   select * from zrhall where p2=(select max(p2) from zrhall)
+   }
 
 
 end;
@@ -167,7 +229,8 @@ procedure TFMehan.Timer2Timer(Sender: TObject);
 begin
  if count>=1000 then
   begin
-
+   ShowMessage('достигнуто максимальное количество замеров, замер остановлен');
+   Timer2.Enabled:=false;
    exit;
   end;
  if curr=1 then
@@ -176,12 +239,14 @@ begin
    amax[row,count].u2:= SimpleRoundTo(FMAin.RU2.Value, -4);
    amax[row,count].u3:= SimpleRoundTo(FMAin.RU3.Value, -4);
    amax[row,count].usred:=SimpleRoundTo((amax[row,count].u1+amax[row,count].u2+amax[row,count].u3)/3,-4);
-   //amax[row,count].n:=
-   //amax[row,count].m:=
   end;
-
-
-
+ if curr=2 then
+  begin
+   amin[row,count].u1:= SimpleRoundTo(FMAin.RU1.Value, -4);
+   amin[row,count].u2:= SimpleRoundTo(FMAin.RU2.Value, -4);
+   amin[row,count].u3:= SimpleRoundTo(FMAin.RU3.Value, -4);
+   amin[row,count].usred:=SimpleRoundTo((amax[row,count].u1+amax[row,count].u2+amax[row,count].u3)/3,-4);
+  end;
  count:=count+1;
 end;
 
