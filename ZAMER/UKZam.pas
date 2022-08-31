@@ -49,6 +49,7 @@ type
     QInsAll: TFDQuery;
     QSelectSred: TFDQuery;
     QInsSvod: TFDQuery;
+    QTorque: TFDQuery;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -208,7 +209,7 @@ begin
     dectype := '10';
   if (FMain.RadioButton2.Checked) then
     dectype := '4';
-   dectype := '10';
+  dectype   := '10';
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
     + dectype + ', ' + FMain.Edit12.Text + ')');
   QCommand.ExecSQL;
@@ -217,6 +218,15 @@ end;
 procedure TFKzam.BitBtn8Click(Sender: TObject);
 begin
   acount := 0;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zamertmp');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
+    ' and uisp=' + StringGrid1.cells[0, StringGrid1.row]);
+  QTemp.ExecSQL;
   CommandStart(1, Nomer, Label11.Caption);
   Timer1.Enabled  := true;
   Timer2.Enabled  := true;
@@ -242,38 +252,21 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.Open('select * from zamertmp');
-
   QTemp.First;
   for i := 1 to ncnt do
-  begin {
-      INSERT INTO ZAMER.ZKZALL (
-      NOMER, UISP, U12,
-      U23, U31, I1,
-      I2, I3, P1,
-      P2, P3, TORQ)
-      VALUES ( NOMER, UISP, U12,
-      U23, U31, I1,
-      I2, I3, P1,
-      P2, P3, TORQ ); }
+  begin
     QInsAll.ParamByName('NOMER').AsString := Nomer;
     QInsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label11.Caption);
-    // QinsAll.ParamByName('PISP').AsFloat   := Strtofloat(Label8.Caption);
-    QInsAll.ParamByName('U12').AsFloat := a[i].u1;
-    QInsAll.ParamByName('U23').AsFloat := a[i].u2;
-    QInsAll.ParamByName('U31').AsFloat := a[i].u3;
-    QInsAll.ParamByName('I1').AsFloat  := a[i].i1;
-    QInsAll.ParamByName('I2').AsFloat  := a[i].i2;
-    QInsAll.ParamByName('I3').AsFloat  := a[i].i3;
-    QInsAll.ParamByName('P1').AsFloat  := a[i].p1;
-    QInsAll.ParamByName('P2').AsFloat  := a[i].p2;
-    QInsAll.ParamByName('P3').AsFloat  := a[i].p3;
-    // QinsAll.ParamByName('Torq').AsFloat  := 0;
-    // QinsAll.ParamByName('DPMAX').AsFloat  := 0;
-
-    // QinsAll.ParamByName('rot').AsFloat  := QTemp.FieldByName('rot').AsFloat;
-    QInsAll.ParamByName('torq').AsFloat := QTemp.FieldByName('torq').AsFloat;
-    // QinsAll.ParamByName('power').AsFloat :=
-    // QTemp.FieldByName('power').AsFloat;
+    QInsAll.ParamByName('U12').AsFloat    := a[i].u1;
+    QInsAll.ParamByName('U23').AsFloat    := a[i].u2;
+    QInsAll.ParamByName('U31').AsFloat    := a[i].u3;
+    QInsAll.ParamByName('I1').AsFloat     := a[i].i1;
+    QInsAll.ParamByName('I2').AsFloat     := a[i].i2;
+    QInsAll.ParamByName('I3').AsFloat     := a[i].i3;
+    QInsAll.ParamByName('P1').AsFloat     := a[i].p1;
+    QInsAll.ParamByName('P2').AsFloat     := a[i].p2;
+    QInsAll.ParamByName('P3').AsFloat     := a[i].p3;
+    QInsAll.ParamByName('torq').AsFloat   := QTemp.FieldByName('torq').AsFloat;
     QInsAll.ExecSQL;
     QTemp.Next;
   end;
@@ -351,9 +344,13 @@ end;
 
 procedure TFKzam.Timer1Timer(Sender: TObject);
 begin
- Label7.Caption:=FMain.KrVarLabel1.Caption;
- Label8.Caption:=FMain.KrVarLabel2.Caption;
- Label9.Caption:=FMain.KrVarLabel3.Caption;
+  Label7.Caption := FMain.KrVarLabel1.Caption;
+  Label8.Caption := FMain.KrVarLabel2.Caption;
+  Label9.Caption := FMain.KrVarLabel3.Caption;
+  QTorque.Close;
+  QTorque.Open;
+  Label10.Caption := QTorque.FieldByName('torq').AsString;;
+
 end;
 
 procedure TFKzam.Timer2Timer(Sender: TObject);

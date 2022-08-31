@@ -46,6 +46,11 @@ type
     Label11: TLabel;
     Edit3: TEdit;
     QCommand: TFDQuery;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Timer3: TTimer;
     procedure Timer1Timer(Sender: TObject);
     // procedure Timer2Timer(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
@@ -59,6 +64,8 @@ type
     procedure RadioButton2Click(Sender: TObject);
     procedure RadioButton3Click(Sender: TObject);
     procedure CommandStart(c: Integer; n: string; fn: string);
+    procedure StringGrid2Click(Sender: TObject);
+    procedure Timer3Timer(Sender: TObject);
     // procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
@@ -120,7 +127,7 @@ begin
     dectype := '10';
   if (FMain.RadioButton2.Checked) then
     dectype := '4';
-   dectype := '10';
+  dectype   := '10';
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
     + dectype + ', ' + FMain.Edit12.Text + ')');
   QCommand.ExecSQL;
@@ -148,7 +155,7 @@ procedure TFRH.BitBtn2Click(Sender: TObject);
 begin
   FMain.Label30.font.Color := clGreen;
   FMain.Label30.Caption    := 'ПРОЙДЕН';
-  Frh.Close;
+  FRH.Close;
 end;
 
 procedure TFRH.BitBtn3Click(Sender: TObject);
@@ -192,8 +199,8 @@ begin
   StringGrid2.cells[3, 0]   := 'P сред';
   StringGrid2.cells[4, 0]   := 'N сред';
   StringGrid2.cells[5, 0]   := 'M сред';
-  StringGrid2.cells[6, 0]   := 'U макс';
-  StringGrid2.cells[7, 0]   := 'P макс';
+  StringGrid2.cells[6, 0]   := 'U откл';
+  StringGrid2.cells[7, 0]   := 'P откл';
 end;
 
 procedure TFRH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -343,6 +350,14 @@ begin
       ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
+procedure TFRH.StringGrid2Click(Sender: TObject);
+begin
+  if StringGrid2.cells[0, StringGrid2.row] = '' then
+    ShowMessage('Выбрано завершение испытания')
+  else
+    Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
+end;
+
 procedure TFRH.Timer1Timer(Sender: TObject);
 var
   i            : Integer;
@@ -481,6 +496,12 @@ begin
     a[acount].torq := SimpleRoundTo(Fmain.RP3.Value, -4);
     a[acount].power := SimpleRoundTo(Fmain.RP3.Value, -4);
   }
+end;
+
+procedure TFRH.Timer3Timer(Sender: TObject);
+begin
+  Label13.Caption := floattostr(SimpleRoundTo(FMain.Usred.Value, -3));
+  Label15.Caption := floattostr(SimpleRoundTo(FMain.Psred.Value, -2));
 end;
 
 end.

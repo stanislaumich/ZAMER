@@ -3586,37 +3586,37 @@ object FKzam: TFKzam
     object Label7: TLabel
       Left = 132
       Top = 32
-      Width = 30
+      Width = 10
       Height = 23
-      Caption = '100'
+      Caption = '0'
     end
     object Label8: TLabel
       Left = 271
       Top = 32
-      Width = 54
+      Width = 10
       Height = 23
-      Caption = 'Label8'
+      Caption = '0'
     end
     object Label9: TLabel
       Left = 454
       Top = 32
-      Width = 54
+      Width = 10
       Height = 23
-      Caption = 'Label9'
+      Caption = '0'
     end
     object Label10: TLabel
       Left = 608
       Top = 32
-      Width = 64
+      Width = 10
       Height = 23
-      Caption = 'Label10'
+      Caption = '0'
     end
     object Label11: TLabel
       Left = 544
       Top = 68
-      Width = 64
+      Width = 10
       Height = 23
-      Caption = 'Label11'
+      Caption = '0'
     end
     object Edit1: TEdit
       Left = 241
@@ -3639,7 +3639,7 @@ object FKzam: TFKzam
       357)
     object BitBtn8: TBitBtn
       Left = 220
-      Top = 316
+      Top = 315
       Width = 138
       Height = 38
       Anchors = [akRight, akBottom]
@@ -4205,5 +4205,12 @@ object FKzam: TFKzam
         Name = 'TMP'
         ParamType = ptInput
       end>
+  end
+  object QTorque: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'select torq from zamer')
+    Left = 400
+    Top = 335
   end
 end

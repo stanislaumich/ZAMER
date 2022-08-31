@@ -124,6 +124,58 @@ object FRH: TFRH
     Height = 23
     Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1084#1086#1097#1085#1086#1089#1090#1080', '#1074#1072#1090#1090':'
   end
+  object Label12: TLabel
+    Left = 712
+    Top = 12
+    Width = 42
+    Height = 33
+    Caption = 'U='
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label13: TLabel
+    Left = 762
+    Top = 12
+    Width = 17
+    Height = 33
+    Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label14: TLabel
+    Left = 716
+    Top = 42
+    Width = 40
+    Height = 33
+    Caption = 'P='
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label15: TLabel
+    Left = 762
+    Top = 42
+    Width = 17
+    Height = 33
+    Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object Edit1: TEdit
     Left = 188
     Top = 5
@@ -184,7 +236,7 @@ object FRH: TFRH
     end
   end
   object GroupBox2: TGroupBox
-    Left = 279
+    Left = 280
     Top = 78
     Width = 742
     Height = 400
@@ -210,6 +262,7 @@ object FRH: TFRH
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goRowSelect, goFixedRowDefAlign]
       ParentFont = False
       TabOrder = 0
+      OnClick = StringGrid2Click
     end
     object BitBtn1: TBitBtn
       Left = 12
@@ -441,7 +494,7 @@ object FRH: TFRH
   object Timer1: TTimer
     Enabled = False
     OnTimer = Timer1Timer
-    Left = 311
+    Left = 320
     Top = 205
   end
   object Timer2: TTimer
@@ -668,5 +721,11 @@ object FRH: TFRH
       'select * from command')
     Left = 459
     Top = 294
+  end
+  object Timer3: TTimer
+    Interval = 500
+    OnTimer = Timer3Timer
+    Left = 347
+    Top = 266
   end
 end

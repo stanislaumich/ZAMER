@@ -269,7 +269,7 @@ end;
 
 procedure TFMain.BitBtn13Click(Sender: TObject);
 begin
-FArc.BitBtn3.Click();
+    FArc.BitBtn3.Click();
     FArc.ShowModal;
 end;
 
@@ -486,46 +486,46 @@ begin
             Label30.Font.Color := clGreen;
         end;
 
-          tip := Qtemp.FieldByName('tip').AsInteger;
-          case tip of
-          1:
-          begin
-          Frh.Radiobutton1Click(Fhhod);
-          Frh.RadioButton1.Checked := True;
-          end;
-          2:
-          begin
-          Frh.Radiobutton2Click(Fhhod);
-          Frh.RadioButton2.Checked := True;
-          end;
-          3:
-          begin
-          Frh.Radiobutton3Click(Fhhod);
-          Frh.RadioButton3.Checked := True;
-          end;
-          end;
-          tip := 1;
-          while not(Qtemp.eof) do
-          begin
-          Frh.Stringgrid2.Cells[1, tip] :=
-          Qtemp.FieldByName('usred').Asstring;
-          Frh.Stringgrid2.Cells[2, tip] :=
-          Qtemp.FieldByName('isred').Asstring;
-          Frh.Stringgrid2.Cells[3, tip] :=
-          Qtemp.FieldByName('psred').Asstring;
-          Frh.Stringgrid2.Cells[4, tip] :=
-          Qtemp.FieldByName('dumax').Asstring;
-          Frh.Stringgrid2.Cells[5, tip] :=
-          Qtemp.FieldByName('usred').Asstring;
-          Frh.Stringgrid2.Cells[6, tip] :=
-          Qtemp.FieldByName('isred').Asstring;
-          Frh.Stringgrid2.Cells[7, tip] :=
-          Qtemp.FieldByName('psred').Asstring;
-          Frh.Stringgrid2.Cells[8, tip] :=
-          Qtemp.FieldByName('dumax').Asstring;
-          Qtemp.Next;
-          tip := tip + 1;
-          end;
+        tip := Qtemp.FieldByName('tip').AsInteger;
+        case tip of
+            1:
+                begin
+                    Frh.Radiobutton1Click(Fhhod);
+                    Frh.RadioButton1.Checked := True;
+                end;
+            2:
+                begin
+                    Frh.Radiobutton2Click(Fhhod);
+                    Frh.RadioButton2.Checked := True;
+                end;
+            3:
+                begin
+                    Frh.Radiobutton3Click(Fhhod);
+                    Frh.RadioButton3.Checked := True;
+                end;
+        end;
+        tip := 1;
+        while not(Qtemp.eof) do
+        begin
+            Frh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred')
+              .Asstring;
+            Frh.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred')
+              .Asstring;
+            Frh.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred')
+              .Asstring;
+            Frh.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('dumax')
+              .Asstring;
+            Frh.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('usred')
+              .Asstring;
+            Frh.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('isred')
+              .Asstring;
+            Frh.Stringgrid2.Cells[7, tip] := Qtemp.FieldByName('psred')
+              .Asstring;
+            Frh.Stringgrid2.Cells[8, tip] := Qtemp.FieldByName('dumax')
+              .Asstring;
+            Qtemp.Next;
+            tip := tip + 1;
+        end;
 
         /// ////////////////////////////////////////////////////////////
         // загрузить Короткое замыкание если есть
@@ -624,20 +624,23 @@ var
     l, t: Integer;
 begin
     Ini := Tinifile.Create(Extractfilepath(paramstr(0)) + 'settings.ini');
-    USR := Ini.ReadInteger('ELSPEC', 'Usr', 3529);
-    ISR := Ini.ReadInteger('ELSPEC', 'Isr', 3531);
-    PSR := Ini.ReadInteger('ELSPEC', 'Psr', 3439);
-    U12 := Ini.ReadInteger('ELSPEC', 'U12', 3511);
-    U23 := Ini.ReadInteger('ELSPEC', 'U23', 3513);
-    U31 := Ini.ReadInteger('ELSPEC', 'U31', 3515);
-    I1  := Ini.ReadInteger('ELSPEC', 'I1', 3521);
-    I2  := Ini.ReadInteger('ELSPEC', 'I2', 3523);
-    I3  := Ini.ReadInteger('ELSPEC', 'I3', 3525);
-    P1  := Ini.ReadInteger('ELSPEC', 'P1', 3427);
-    P2  := Ini.ReadInteger('ELSPEC', 'P2', 3429);
-    P3  := Ini.ReadInteger('ELSPEC', 'P3', 3431);
+    Edit1.Text := Ini.ReadString('ELSPEC', 'IP', '169.254.249.247');
+    Edit2.Text  := Ini.ReadString('ELSPEC', 'PORT', '502');
+    Edit3.Text  := Ini.ReadString('ELSPEC', 'ID', '159');
+    USR         := Ini.ReadInteger('ELSPEC', 'Usr', 3529);
+    ISR         := Ini.ReadInteger('ELSPEC', 'Isr', 3531);
+    PSR         := Ini.ReadInteger('ELSPEC', 'Psr', 3439);
+    U12         := Ini.ReadInteger('ELSPEC', 'U12', 3511);
+    U23         := Ini.ReadInteger('ELSPEC', 'U23', 3513);
+    U31         := Ini.ReadInteger('ELSPEC', 'U31', 3515);
+    I1          := Ini.ReadInteger('ELSPEC', 'I1', 3521);
+    I2          := Ini.ReadInteger('ELSPEC', 'I2', 3523);
+    I3          := Ini.ReadInteger('ELSPEC', 'I3', 3525);
+    P1          := Ini.ReadInteger('ELSPEC', 'P1', 3427);
+    P2          := Ini.ReadInteger('ELSPEC', 'P2', 3429);
+    P3          := Ini.ReadInteger('ELSPEC', 'P3', 3431);
     Edit12.Text := Ini.ReadString('M45', 'Interval', '50');
-    M45Exe := Ini.ReadString('DATCHIK', 'EXENAME',
+    M45Exe      := Ini.ReadString('DATCHIK', 'EXENAME',
       'Укажите файл сбора показаний');
     M45Path    := Extractfilepath(M45Exe);
     l          := Ini.ReadInteger('Position', 'Left', 100);
@@ -668,6 +671,9 @@ begin
     Ini.WriteString('DATCHIK', 'EXENAME', M45Exe);
     Ini.WriteInteger('Position', 'Left', FMain.Left);
     Ini.WriteInteger('Position', 'Top', FMain.Top);
+    Ini.WriteString('ELSPEC', 'IP', Edit1.Text);
+    Ini.WriteString('ELSPEC', 'PORT', Edit2.Text);
+    Ini.WriteString('ELSPEC', 'ID', Edit3.Text);
     // REGISTERS
     Ini.WriteInteger('ELSPEC', 'Usr', USR);
     Ini.WriteInteger('ELSPEC', 'Isr', ISR);
