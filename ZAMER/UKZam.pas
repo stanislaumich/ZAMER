@@ -50,6 +50,8 @@ type
     QSelectSred: TFDQuery;
     QInsSvod: TFDQuery;
     QTorque: TFDQuery;
+    Label13: TLabel;
+    Label14: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -111,6 +113,8 @@ end;
 
 procedure TFKzam.BitBtn12Click(Sender: TObject);
 begin
+  FMAin.Label31.Caption    := 'ÏÐÎÉÄÅÍ';
+  FMAin.Label31.Font.Color := clGreen;
   FKzam.Close;
 end;
 
@@ -205,13 +209,13 @@ begin
     #define USB_DECODER_T35               6
     #define USB_DECODER_T45               10
   }
-  if (FMain.RadioButton1.Checked) then
+  if (FMAin.RadioButton1.Checked) then
     dectype := '10';
-  if (FMain.RadioButton2.Checked) then
+  if (FMAin.RadioButton2.Checked) then
     dectype := '4';
   dectype   := '10';
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
-    + dectype + ', ' + FMain.Edit12.Text + ')');
+    + dectype + ', ' + FMAin.Edit12.Text + ')');
   QCommand.ExecSQL;
 end;
 
@@ -319,8 +323,8 @@ end;
 procedure TFKzam.FormActivate(Sender: TObject);
 begin
   StringGrid1.cells[0, 1] :=
-    floattostr(round(Strtofloat(FMain.Edit5.Text) / 3.8));
-  StringGrid1.cells[0, 2] := floattostr(round(Strtofloat(FMain.Edit5.Text)));
+    floattostr(round(Strtofloat(FMAin.Edit5.Text) / 3.8));
+  StringGrid1.cells[0, 2] := floattostr(round(Strtofloat(FMAin.Edit5.Text)));
 end;
 
 procedure TFKzam.FormCreate(Sender: TObject);
@@ -330,7 +334,7 @@ begin
   StringGrid1.cells[2, 0] := 'I ñðåä';
   StringGrid1.cells[3, 0] := 'P ñðåä';
   StringGrid1.cells[4, 0] := 'Ì ñðåä';
-
+  Label14.Caption         := '0';
 end;
 
 procedure TFKzam.StringGrid1Click(Sender: TObject);
@@ -344,9 +348,9 @@ end;
 
 procedure TFKzam.Timer1Timer(Sender: TObject);
 begin
-  Label7.Caption := FMain.KrVarLabel1.Caption;
-  Label8.Caption := FMain.KrVarLabel2.Caption;
-  Label9.Caption := FMain.KrVarLabel3.Caption;
+  Label7.Caption := FMAin.KrVarLabel1.Caption;
+  Label8.Caption := FMAin.KrVarLabel2.Caption;
+  Label9.Caption := FMAin.KrVarLabel3.Caption;
   QTorque.Close;
   QTorque.Open;
   Label10.Caption := QTorque.FieldByName('torq').AsString;;
@@ -356,7 +360,7 @@ end;
 procedure TFKzam.Timer2Timer(Sender: TObject);
 begin
   acount := acount + 1;
-  if acount = 1000 then
+  if acount >= 1000 then
   begin
     Timer2.Enabled := false;
     BitBtn9Click(FKzam);
@@ -364,15 +368,18 @@ begin
   end
   else
   begin
-    a[acount].u1 := SimpleRoundTo(FMain.RU1.Value, -4);
-    a[acount].u2 := SimpleRoundTo(FMain.RU2.Value, -4);
-    a[acount].u3 := SimpleRoundTo(FMain.RU3.Value, -4);
-    a[acount].i1 := SimpleRoundTo(FMain.RI1.Value, -4);
-    a[acount].i2 := SimpleRoundTo(FMain.RI2.Value, -4);
-    a[acount].i3 := SimpleRoundTo(FMain.RI3.Value, -4);
-    a[acount].p1 := SimpleRoundTo(FMain.RP1.Value, -4);
-    a[acount].p2 := SimpleRoundTo(FMain.RP2.Value, -4);
-    a[acount].p3 := SimpleRoundTo(FMain.RP3.Value, -4);
+    a[acount].u1 := SimpleRoundTo(FMAin.RU1.Value, -4);
+    a[acount].u2 := SimpleRoundTo(FMAin.RU2.Value, -4);
+    a[acount].u3 := SimpleRoundTo(FMAin.RU3.Value, -4);
+    a[acount].i1 := SimpleRoundTo(FMAin.RI1.Value, -4);
+    a[acount].i2 := SimpleRoundTo(FMAin.RI2.Value, -4);
+    a[acount].i3 := SimpleRoundTo(FMAin.RI3.Value, -4);
+    a[acount].p1 := SimpleRoundTo(FMAin.RP1.Value, -4);
+    a[acount].p2 := SimpleRoundTo(FMAin.RP2.Value, -4);
+    a[acount].p3 := SimpleRoundTo(FMAin.RP3.Value, -4);
+    if acount mod 10 = 0 then
+      Label14.Caption := inttostr(acount);
+
   end;
 end;
 

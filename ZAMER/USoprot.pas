@@ -139,7 +139,7 @@ begin
   for i   := 1 to 3 do
     for j := 1 to 3 do
     begin
-      StringGrid3.cells[i, j]  := '111111';
+      StringGrid3.cells[i, j]  := '0';
       StringGrid3.ColWidths[i] := 150;
     end;
 

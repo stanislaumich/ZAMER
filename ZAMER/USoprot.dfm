@@ -69,12 +69,12 @@ object FSoprot: TFSoprot
   end
   object Edit8: TEdit
     Left = 314
-    Top = 2
+    Top = 0
     Width = 115
     Height = 31
     Hint = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072' '#1086#1082#1088' '#1089#1088#1077#1076#1099' '#1057#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1077
     TabOrder = 0
-    Text = 'Edit8'
+    Text = '0'
   end
   object ComboBox7: TComboBox
     Left = 172
@@ -82,7 +82,6 @@ object FSoprot: TFSoprot
     Width = 257
     Height = 31
     TabOrder = 1
-    Text = 'ComboBox7'
     Items.Strings = (
       #1047#1074#1077#1079#1076#1072
       #1058#1088#1077#1091#1075#1086#1083#1100#1085#1080#1082)
@@ -93,7 +92,6 @@ object FSoprot: TFSoprot
     Width = 224
     Height = 31
     TabOrder = 2
-    Text = 'ComboBox8'
     Items.Strings = (
       #1064#1077#1089#1090#1100' '#1082#1086#1085#1094#1086#1074
       #1058#1088#1080' '#1082#1086#1085#1094#1072
@@ -141,7 +139,6 @@ object FSoprot: TFSoprot
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      Text = 'ComboBox9'
       Items.Strings = (
         #1084#1082#1054#1084
         #1084#1054#1084
@@ -201,7 +198,6 @@ object FSoprot: TFSoprot
       Width = 192
       Height = 31
       TabOrder = 0
-      Text = 'ComboBox10'
       Items.Strings = (
         #1084#1082#1054#1084
         #1084#1054#1084
@@ -217,7 +213,6 @@ object FSoprot: TFSoprot
       Height = 31
       Hint = #1057#1086#1087#1088' '#1080#1079#1086#1083
       TabOrder = 1
-      Text = 'Edit13'
     end
     object Edit16: TEdit
       Left = 375
@@ -226,7 +221,6 @@ object FSoprot: TFSoprot
       Height = 31
       Hint = #1057#1086#1087#1088' '#1084#1077#1078#1076#1091' '#1086#1073#1084#1086#1090#1082#1072#1084#1080
       TabOrder = 2
-      Text = 'Edit16'
     end
   end
   object BitBtn5: TBitBtn

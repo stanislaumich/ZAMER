@@ -3637,6 +3637,20 @@ object FKzam: TFKzam
     DesignSize = (
       517
       357)
+    object Label13: TLabel
+      Left = 8
+      Top = 324
+      Width = 87
+      Height = 23
+      Caption = #1054#1090#1089#1095#1077#1090#1086#1074':'
+    end
+    object Label14: TLabel
+      Left = 101
+      Top = 324
+      Width = 64
+      Height = 23
+      Caption = 'Label14'
+    end
     object BitBtn8: TBitBtn
       Left = 220
       Top = 315

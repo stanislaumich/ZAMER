@@ -462,6 +462,13 @@ object FMain: TFMain
       Font.Style = []
       ParentFont = False
     end
+    object Label32: TLabel
+      Left = 304
+      Top = 183
+      Width = 103
+      Height = 23
+      AutoSize = False
+    end
     object BitBtn1: TBitBtn
       Left = 3
       Top = 53

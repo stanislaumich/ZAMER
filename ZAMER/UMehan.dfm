@@ -3,7 +3,7 @@ object FMehan: TFMehan
   Top = 0
   Caption = #1052#1077#1093#1072#1085#1080#1095#1077#1089#1082#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
   ClientHeight = 451
-  ClientWidth = 656
+  ClientWidth = 736
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,44 +12,50 @@ object FMehan: TFMehan
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnActivate = FormActivate
+  DesignSize = (
+    736
+    451)
   PixelsPerInch = 96
   TextHeight = 23
   object Label25: TLabel
-    Left = 8
-    Top = 95
-    Width = 396
+    Left = 7
+    Top = 98
+    Width = 334
     Height = 23
-    Caption = #1044#1086#1087#1091#1089#1090#1080#1084#1086#1077' '#1086#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103', '#1074#1086#1083#1100#1090':'
+    Caption = #1044#1086#1087#1091#1089#1090#1080#1084#1086#1077' '#1086#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103':'
   end
   object Label1: TLabel
     Left = 416
-    Top = 95
+    Top = 98
     Width = 51
     Height = 23
     Caption = #1042#1086#1083#1100#1090
   end
   object GroupBox17: TGroupBox
     Left = 2
-    Top = 124
-    Width = 491
+    Top = 129
+    Width = 575
     Height = 163
     Caption = #9#1054#1087#1088#1077#1076#1077#1083#1077#1085#1080#1077' '#1084#1072#1082#1089#1080#1084#1072#1083#1100#1085#1086#1075#1086' '#1084#1086#1084#1077#1085#1090#1072#9
     TabOrder = 0
     DesignSize = (
-      491
+      575
       163)
     object StringGrid7: TStringGrid
       Left = 3
       Top = 24
-      Width = 266
+      Width = 414
       Height = 133
       ColCount = 4
+      DefaultColWidth = 100
       DefaultRowHeight = 20
       RowCount = 6
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
     end
     object Button27: TButton
-      Left = 358
+      Left = 442
       Top = 10
       Width = 130
       Height = 42
@@ -62,9 +68,11 @@ object FMehan: TFMehan
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnClick = Button27Click
+      ExplicitLeft = 358
     end
     object Button32: TButton
-      Left = 358
+      Left = 442
       Top = 58
       Width = 130
       Height = 42
@@ -77,76 +85,79 @@ object FMehan: TFMehan
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 406
+      OnClick = Button32Click
+      ExplicitLeft = 358
     end
     object RadioButton11: TRadioButton
-      Left = 275
+      Left = 420
       Top = 48
       Width = 20
       Height = 17
       TabOrder = 3
     end
     object RadioButton12: TRadioButton
-      Left = 275
+      Left = 420
       Top = 70
       Width = 20
       Height = 17
       TabOrder = 4
     end
     object RadioButton13: TRadioButton
-      Left = 275
+      Left = 420
       Top = 93
       Width = 20
       Height = 17
       TabOrder = 5
     end
     object RadioButton14: TRadioButton
-      Left = 275
+      Left = 420
       Top = 112
       Width = 20
       Height = 17
       TabOrder = 6
     end
     object RadioButton15: TRadioButton
-      Left = 275
+      Left = 420
       Top = 133
       Width = 20
       Height = 17
       TabOrder = 7
     end
     object Button47: TButton
-      Left = 358
+      Left = 442
       Top = 119
       Width = 130
       Height = 42
       Anchors = [akRight, akBottom]
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
       TabOrder = 8
-      ExplicitLeft = 406
+      ExplicitLeft = 358
     end
   end
   object GroupBox18: TGroupBox
     Left = 2
-    Top = 288
-    Width = 491
+    Top = 292
+    Width = 575
     Height = 161
     Caption = #9#1054#1087#1088#1077#1076#1077#1083#1077#1085#1080#1077' '#1084#1080#1085#1080#1084#1072#1083#1100#1085#1086#1075#1086' '#1084#1086#1084#1077#1085#1090#1072#9
     TabOrder = 1
     DesignSize = (
-      491
+      575
       161)
     object StringGrid8: TStringGrid
       Left = 3
       Top = 24
-      Width = 266
+      Width = 414
       Height = 133
       ColCount = 4
+      DefaultColWidth = 100
       DefaultRowHeight = 20
       RowCount = 6
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
     end
     object Button37: TButton
-      Left = 358
+      Left = 442
       Top = 14
       Width = 130
       Height = 42
@@ -159,10 +170,10 @@ object FMehan: TFMehan
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      ExplicitLeft = 406
+      ExplicitLeft = 358
     end
     object Button42: TButton
-      Left = 358
+      Left = 442
       Top = 58
       Width = 130
       Height = 42
@@ -175,75 +186,121 @@ object FMehan: TFMehan
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 406
+      ExplicitLeft = 358
     end
     object RadioButton16: TRadioButton
-      Left = 275
+      Left = 420
       Top = 51
       Width = 20
       Height = 17
       TabOrder = 3
     end
     object RadioButton17: TRadioButton
-      Left = 275
+      Left = 420
       Top = 73
       Width = 20
       Height = 17
       TabOrder = 4
     end
     object RadioButton18: TRadioButton
-      Left = 275
+      Left = 420
       Top = 95
       Width = 20
       Height = 17
       TabOrder = 5
     end
     object RadioButton19: TRadioButton
-      Left = 275
+      Left = 420
       Top = 115
       Width = 20
       Height = 17
       TabOrder = 6
     end
     object RadioButton20: TRadioButton
-      Left = 275
+      Left = 420
       Top = 136
       Width = 20
       Height = 17
       TabOrder = 7
     end
     object Button48: TButton
-      Left = 358
+      Left = 442
       Top = 116
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
       TabOrder = 8
+      ExplicitLeft = 358
     end
   end
   object Edit14: TEdit
     Left = 342
-    Top = 92
+    Top = 95
     Width = 68
-    Height = 27
+    Height = 31
     Hint = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1084#1077#1093#1072#1085#1080#1095#1077#1089#1082#1086#1081' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080
     TabOrder = 2
-    Text = '1'
+    Text = '10'
   end
   object GroupBox11: TGroupBox
     Left = 2
     Top = 0
-    Width = 491
+    Width = 574
     Height = 89
+    Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1086#1074
     TabOrder = 3
+    ExplicitWidth = 491
+    object Label2: TLabel
+      Left = 12
+      Top = 28
+      Width = 118
+      Height = 23
+      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077':'
+    end
+    object Label3: TLabel
+      Left = 56
+      Top = 57
+      Width = 74
+      Height = 23
+      Caption = #1052#1086#1084#1077#1085#1090':'
+    end
+    object Label4: TLabel
+      Left = 284
+      Top = 28
+      Width = 76
+      Height = 23
+      Caption = #1063#1072#1089#1090#1086#1090#1072':'
+    end
+    object Label5: TLabel
+      Left = 144
+      Top = 28
+      Width = 54
+      Height = 23
+      Caption = 'Label5'
+    end
+    object Label6: TLabel
+      Left = 144
+      Top = 57
+      Width = 54
+      Height = 23
+      Caption = 'Label6'
+    end
+    object Label7: TLabel
+      Left = 372
+      Top = 28
+      Width = 54
+      Height = 23
+      Caption = 'Label7'
+    end
   end
   object BitBtn1: TBitBtn
-    Left = 499
+    Left = 582
     Top = 8
     Width = 153
     Height = 53
+    Anchors = [akTop, akRight]
     Caption = #1047#1072#1087#1080#1089#1072#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
@@ -303,12 +360,15 @@ object FMehan: TFMehan
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 4
+    OnClick = BitBtn1Click
+    ExplicitLeft = 499
   end
   object BitBtn2: TBitBtn
-    Left = 499
+    Left = 582
     Top = 64
     Width = 153
     Height = 54
+    Anchors = [akTop, akRight]
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
@@ -368,12 +428,14 @@ object FMehan: TFMehan
       FFFFFFFFFFFFFFFFFFFFB5B3FC4E49F6140BF31C13F31C12F31C12F31C12F31C
       12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
     TabOrder = 5
+    ExplicitLeft = 499
   end
   object BitBtn3: TBitBtn
-    Left = 499
-    Top = 393
+    Left = 582
+    Top = 398
     Width = 153
     Height = 52
+    Anchors = [akTop, akRight]
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
@@ -433,5 +495,23 @@ object FMehan: TFMehan
       ED2118EBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFF2118EB2A23ED433EF0312BEE2219ECFFFFFF}
     TabOrder = 6
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 500
+    Left = 612
+    Top = 152
+  end
+  object Timer2: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = Timer2Timer
+    Left = 612
+    Top = 204
+  end
+  object QCommand: TFDQuery
+    Connection = FMain.FDOra
+    Left = 668
+    Top = 152
   end
 end
