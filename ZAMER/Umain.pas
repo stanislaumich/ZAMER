@@ -62,13 +62,6 @@ type
         Edit2: TEdit;
         Edit3: TEdit;
         Label12: TLabel;
-        GroupBox4: TGroupBox;
-        Label4: TLabel;
-        KRVarLabel1: TKRVarLabel;
-        KRVarLabel2: TKRVarLabel;
-        KRVarLabel3: TKRVarLabel;
-        Label5: TLabel;
-        Label6: TLabel;
         Usred: TKRMBRegister;
         Isred: TKRMBRegister;
         Psred: TKRMBRegister;
@@ -104,8 +97,6 @@ type
         FDOra: TFDConnection;
         Qm45Getsred: TFDQuery;
         QCommand: TFDQuery;
-        RadioButton1: TRadioButton;
-        RadioButton2: TRadioButton;
         Label27: TLabel;
         Edit12: TEdit;
         Button1: TButton;
@@ -128,12 +119,24 @@ type
         RP2: TKRMBRegister;
         RP3: TKRMBRegister;
         Label29: TLabel;
-        BitBtn13: TBitBtn;
         Label30: TLabel;
         Label31: TLabel;
         KRPASSWORD: TKRMBRegister;
         KRTrans: TKRMBRegister;
         Label32: TLabel;
+    BitBtn13: TBitBtn;
+    GroupBox4: TGroupBox;
+    Label4: TLabel;
+    KRVarLabel1: TKRVarLabel;
+    KRVarLabel2: TKRVarLabel;
+    KRVarLabel3: TKRVarLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    BitBtn14: TBitBtn;
+    Button2: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -164,6 +167,7 @@ type
         procedure BitBtn2Click(Sender: TObject);
         procedure BitBtn6Click(Sender: TObject);
         procedure BitBtn13Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -630,6 +634,14 @@ begin
         M45Exe := OpenDialog1.Filename;
 end;
 
+procedure TFMain.Button2Click(Sender: TObject);
+begin
+ Timer500.Enabled:=not Timer500.Enabled;
+ Label1.Visible:= not Label1.Visible;
+ Label2.Visible:= not Label2.Visible;
+ Label3.Visible:= not Label3.Visible;
+end;
+
 procedure TFMain.ComboBox4Change(Sender: TObject);
 begin
     QAttestat.ParamByName('name').Asstring := ComboBox4.Text;
@@ -648,10 +660,10 @@ begin
       #define USB_DECODER_T35               6
       #define USB_DECODER_T45               10
     }
-    if (RadioButton1.Checked) then
-        dectype := 10;
-    if (RadioButton2.Checked) then
-        dectype                                := 4;
+    {if (RadioButton2.Checked) then
+        dectype := 4;
+    if (RadioButton12.Checked) then }
+        dectype                                := 10;
     QCommand.ParamByName('nomer').Asstring     := n;
     QCommand.ParamByName('filename').Asstring  := 'fn';
     QCommand.ParamByName('comand').AsInteger   := c;
@@ -701,14 +713,11 @@ end;
 
 procedure TFMain.Timer500Timer(Sender: TObject);
 begin
- {   if ReadM45 then
-    begin
         Qm45Getsred.Open;
         Label2.Caption := Qm45Getsred.FieldByName('torq').Asstring;
         Label1.Caption := Qm45Getsred.FieldByName('rot').Asstring;
         Label3.Caption := Qm45Getsred.FieldByName('power').Asstring;
         Qm45Getsred.Close;
-    end;  }
 end;
 
 Procedure TFMain.WriteIni;

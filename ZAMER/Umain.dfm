@@ -3,7 +3,7 @@ object FMain: TFMain
   Top = 0
   Caption = #1048#1057#1055#1067#1058#1040#1053#1048#1045' '#1044#1042#1048#1043#1040#1058#1045#1051#1071
   ClientHeight = 557
-  ClientWidth = 1008
+  ClientWidth = 1003
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,10 +14,34 @@ object FMain: TFMain
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    1008
+    1003
     557)
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 735
+    Top = 278
+    Width = 6
+    Height = 13
+    Caption = '0'
+    Visible = False
+  end
+  object Label2: TLabel
+    Left = 735
+    Top = 259
+    Width = 6
+    Height = 13
+    Caption = '0'
+    Visible = False
+  end
+  object Label3: TLabel
+    Left = 735
+    Top = 297
+    Width = 6
+    Height = 13
+    Caption = '0'
+    Visible = False
+  end
   object GroupBox1: TGroupBox
     Left = 4
     Top = 0
@@ -366,46 +390,36 @@ object FMain: TFMain
       TabOrder = 3
       OnClick = BitBtn10Click
     end
-    object RadioButton1: TRadioButton
-      Left = 12
-      Top = 176
-      Width = 113
-      Height = 17
-      Caption = 'M45'
-      TabOrder = 4
-    end
-    object RadioButton2: TRadioButton
-      Left = 12
-      Top = 199
-      Width = 113
-      Height = 18
-      Caption = #1069#1084#1091#1083#1103#1090#1086#1088
-      Checked = True
-      TabOrder = 5
-      TabStop = True
-    end
     object Edit12: TEdit
       Left = 137
       Top = 215
       Width = 56
       Height = 31
-      TabOrder = 6
+      TabOrder = 4
       Text = '50'
     end
     object Button1: TButton
-      Left = 144
+      Left = 8
       Top = 172
-      Width = 49
+      Width = 185
       Height = 29
-      Caption = '...'
-      TabOrder = 7
+      Caption = #1044#1072#1090#1095#1080#1082' '#1052'45'
+      TabOrder = 5
       OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 32
+      Top = 204
+      Width = 97
+      Height = 13
+      TabOrder = 6
+      OnClick = Button2Click
     end
   end
   object GroupBox3: TGroupBox
-    Left = 4
+    Left = 8
     Top = 256
-    Width = 996
+    Width = 397
     Height = 281
     Anchors = [akLeft, akTop, akBottom]
     Caption = #1059#1087#1088#1072#1074#1083#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1077#1084
@@ -523,126 +537,13 @@ object FMain: TFMain
       TabOrder = 5
       OnClick = BitBtn6Click
     end
-    object GroupBox4: TGroupBox
-      Left = 664
-      Top = 12
-      Width = 321
-      Height = 141
-      Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1072' ELSPEC'
-      TabOrder = 6
-      object Label4: TLabel
-        Left = 3
-        Top = 24
-        Width = 117
-        Height = 41
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 'U '#1089#1088#1077#1076'.:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -27
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object KRVarLabel1: TKRVarLabel
-        Left = 131
-        Top = 24
-        Width = 178
-        Height = 33
-        Hint = ''
-        Variable = Usred
-        Format = '0.0000'
-        Color = clWindow
-        ErrorToHint = True
-        FontColor = clWindowText
-        AutoSize = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clOlive
-        Font.Height = -27
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object KRVarLabel2: TKRVarLabel
-        Left = 131
-        Top = 59
-        Width = 178
-        Height = 34
-        Hint = ''
-        Variable = Isred
-        Format = '0.0000'
-        Color = clWindow
-        ErrorToHint = True
-        FontColor = clWindowText
-        AutoSize = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clOlive
-        Font.Height = -27
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object KRVarLabel3: TKRVarLabel
-        Left = 131
-        Top = 92
-        Width = 178
-        Height = 37
-        Hint = ''
-        Variable = Psred
-        Format = '0.00'
-        Color = clWindow
-        ErrorToHint = True
-        FontColor = clWindowText
-        AutoSize = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clOlive
-        Font.Height = -27
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label5: TLabel
-        Left = 3
-        Top = 59
-        Width = 117
-        Height = 34
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 'I '#1089#1088#1077#1076'.:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -27
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label6: TLabel
-        Left = 3
-        Top = 92
-        Width = 117
-        Height = 37
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 'P '#1089#1088#1077#1076'.:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -27
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-    end
     object BitBtn11: TBitBtn
       Left = 3
       Top = 213
       Width = 295
       Height = 30
       Caption = #1055#1088#1086#1095#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
-      TabOrder = 7
+      TabOrder = 6
     end
     object BitBtn12: TBitBtn
       Left = 3
@@ -650,79 +551,13 @@ object FMain: TFMain
       Width = 295
       Height = 30
       Caption = #1042#1080#1073#1088#1072#1094#1080#1103', '#1091#1088#1086#1074#1077#1085#1100' '#1079#1074#1091#1082#1072', '#1084#1072#1089#1089#1072
-      TabOrder = 8
-    end
-    object BitBtn13: TBitBtn
-      Left = 437
-      Top = 21
-      Width = 221
-      Height = 62
-      Caption = #1040#1088#1093#1080#1074' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
-      Glyph.Data = {
-        F6060000424DF606000000000000360000002800000018000000180000000100
-        180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
-        FFFFFF7A4E0D7A4E0D7C4D087B4D087B4D087B4D087B4D087B4D087B4D087B4D
-        087B4D087B4D087B4D087B4D087B4D087A4C07764708764708764708FFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFF7A4E0DF2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4
-        F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EE
-        E4764708FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F5314EEE9E1FFFFFF00A3FF00
-        A3FFFFFFFF0000FF0000FFFFFFFF03E61803E618FFFFFFFFFFFFDE890ADE890A
-        DE890AFFFFFFF2EEE47F5314FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF90682AEEE9
-        E1FFFFFF0099E80099E3F2EFE30000E50000E5F2EFE503D81603D115ECE2DAED
-        E5DBD07D09D17D09CA7808FFFFFFE4DBCC835410FFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFF90682AEEE9E1FFFFFF009BED009BEEF5F2EE0000EE0000EEF5F2EE03DA
-        1603DC16F5F4EAF0F2EAF2F0EDF6F4F1F3EEE8FFFFFFE3DACA845611FFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9E1FFFFFF009BED009BEDF5F2EDF5F2ED
-        F5F2EDF5F2ED03DA1603DA16F5F2EBF4F2E7D58209D58209D38009FFFFFFE3D9
-        CA845611FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9E1FFFFFF009BED00
-        9BEDF5F2EDF5F2EDF5F2EDF5F2ED03DA1603DA16F6F2EEF6F3EED68309D68309
-        D48209FFFFFFE3D9CA845611FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9
-        E1FFFFFF009BED009BEDF5F2EDF5F2EDF5F2EDF5F2ED03DD1703DA16F6F2EFF9
-        F4F4F9F5F3F9F5F1F5F2EBFFFFFFE3D9C9845611FFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFF9E7B41EEE9E1FFFFFF009BED009BEDF5F2EDF5F2EDF5F2EDF5F1EC03DF
-        1703DA16F8F4F0FCF6F4DA8409DC840AD58009FFFFFFE3D9C9845611FFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9E1FFFFFFF5F3EDF5F2EDF5F2EDF5F2ED
-        F5F2EDF5F2EC03DD1603DD17FCF9F2FAF7F1DA8409DB850AD47F09FFFFFFE3DA
-        CB845612FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9E1FFFFFFF5F3EDF5
-        F2EDF5F2ECF3F0EBF4F0EBF8F0F003DA1703E017FAFDF1FBFCF9FCF8F9F7F3EE
-        EEE5DAFFFFFFE5DBCF845713FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9C7D4EEEE9
-        E1FFFFFFF7F4ECF6F2EFF5F2ECF7F4F0F9F5F3FAF4F303E11703E417FBFAF9FC
-        F7F6D78409D47F09CB7808FFFFFFE2D3C4855915FFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFA08659EEE9E1FFFFFFFBFAF4F9F8F3F8F8EFFAF8F6FBF9FBFAF9F8FAFB
-        F6FBFCFCF9F8F9F5F4EED37F09CE7D09C67608F8F4F2DACAB6875B17FFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFA58E65EEE9E1FFFFFFFCFFFCFAFCF6FAFCF4FAFAF9
-        FAFAFDFAFAFDFAFAFDFCF7F9F5F5F2EEF1E7EFE5E0E7E4DBDED4C7EFE6E0D1BF
-        A5885D1AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB1946EEEE9E1FFFFFFDB870ADA
-        860ADA860ADA860ADA860ADA860ADB870AD78409D38009CF7E09CB7909C67708
-        C06E07E3DBCCC7B6958A5E1DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB89E75EEE9
-        E1FFFFFFDB870ADA860ADA860ADA860ADA870ADA870AD8860AD78209D27F09CD
-        7D09CC7808C77408BE6B07DED2C1C1AE8F8B6220FFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFBBA47DEEE9E1FFFFFFF9FCFCFAFAFAFAFAFAFAFBFCFAFCF9F8F9F0F5F1
-        EBF0EEE5EBE3DAC5B395C5B395C4A688BEA57CBEA57CA480488E6527FFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFBCA682EEE9E1FFFFFFF7FCFCFAFAFAFAFBFBFAFCFA
-        F8F9F1F4F1E6F1EBE2EEEAE4E0D4C3BDA178FFFFFFF3F1F0F2EEE4DAD3C6B89D
-        7490682AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBCA584EEE9E1FFFFFFF9FCFCFA
-        FAFBFCFCFCF8F9F4F3F0EAEFE9E0EEE3DAEDE3DAD1C1A9BDA178FFFFFFF2EEE4
-        DCCEBDB89D749E7B41FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBEA886EEE9
-        E1FFFFFFFCFCFCFAFBFCFDFBF6F5F3EEEBE8E5E8DFD8E7D7CCE2D4C6CEB89EAC
-        9467F2EEE4EEE8E1B4986A9E7B41FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFBEAB89EEE9E1FFFFFFFAFAFCF6FAF3F9F0E9F4E8E0E8E2D8E3DBD0DED0
-        BDDCCEB8CAB28FAC9467D8D0C1B5996F9E7B41FFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFBEAB89EEE9E1FFFFFFFFFFFFFEFFFEF8F5F4F5EDE7
-        ECE4D9E0D7CBDACCB4D7C4AFC3AD86997B41BCA17B9E7B41FFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0AE8CEEE9E1EEE9E1F1EEE6EC
-        E3DCE2DBCEDED3C2D9CCB7CEC1A5CBB494C5AC8BAC9467997B419A723AFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0AE8CC1AC
-        8BBFA987BEA886BFA986BFA988C0AA89C0AB8BBEA27BBEA47EB59D6FA78D5C9A
-        723AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-      TabOrder = 9
-      OnClick = BitBtn13Click
+      TabOrder = 7
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 538
-    Width = 1008
+    Width = 1003
     Height = 19
     Panels = <
       item
@@ -737,6 +572,212 @@ object FMain: TFMain
       item
         Width = 50
       end>
+    ExplicitWidth = 1008
+  end
+  object BitBtn13: TBitBtn
+    Left = 408
+    Top = 403
+    Width = 321
+    Height = 64
+    Caption = #1040#1088#1093#1080#1074' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Glyph.Data = {
+      F6060000424DF606000000000000360000002800000018000000180000000100
+      180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
+      FFFFFF7A4E0D7A4E0D7C4D087B4D087B4D087B4D087B4D087B4D087B4D087B4D
+      087B4D087B4D087B4D087B4D087B4D087A4C07764708764708764708FFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFF7A4E0DF2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4
+      F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EEE4F2EE
+      E4764708FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F5314EEE9E1FFFFFF00A3FF00
+      A3FFFFFFFF0000FF0000FFFFFFFF03E61803E618FFFFFFFFFFFFDE890ADE890A
+      DE890AFFFFFFF2EEE47F5314FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF90682AEEE9
+      E1FFFFFF0099E80099E3F2EFE30000E50000E5F2EFE503D81603D115ECE2DAED
+      E5DBD07D09D17D09CA7808FFFFFFE4DBCC835410FFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFF90682AEEE9E1FFFFFF009BED009BEEF5F2EE0000EE0000EEF5F2EE03DA
+      1603DC16F5F4EAF0F2EAF2F0EDF6F4F1F3EEE8FFFFFFE3DACA845611FFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9E1FFFFFF009BED009BEDF5F2EDF5F2ED
+      F5F2EDF5F2ED03DA1603DA16F5F2EBF4F2E7D58209D58209D38009FFFFFFE3D9
+      CA845611FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9E1FFFFFF009BED00
+      9BEDF5F2EDF5F2EDF5F2EDF5F2ED03DA1603DA16F6F2EEF6F3EED68309D68309
+      D48209FFFFFFE3D9CA845611FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9
+      E1FFFFFF009BED009BEDF5F2EDF5F2EDF5F2EDF5F2ED03DD1703DA16F6F2EFF9
+      F4F4F9F5F3F9F5F1F5F2EBFFFFFFE3D9C9845611FFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFF9E7B41EEE9E1FFFFFF009BED009BEDF5F2EDF5F2EDF5F2EDF5F1EC03DF
+      1703DA16F8F4F0FCF6F4DA8409DC840AD58009FFFFFFE3D9C9845611FFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9E1FFFFFFF5F3EDF5F2EDF5F2EDF5F2ED
+      F5F2EDF5F2EC03DD1603DD17FCF9F2FAF7F1DA8409DB850AD47F09FFFFFFE3DA
+      CB845612FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9E7B41EEE9E1FFFFFFF5F3EDF5
+      F2EDF5F2ECF3F0EBF4F0EBF8F0F003DA1703E017FAFDF1FBFCF9FCF8F9F7F3EE
+      EEE5DAFFFFFFE5DBCF845713FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9C7D4EEEE9
+      E1FFFFFFF7F4ECF6F2EFF5F2ECF7F4F0F9F5F3FAF4F303E11703E417FBFAF9FC
+      F7F6D78409D47F09CB7808FFFFFFE2D3C4855915FFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFA08659EEE9E1FFFFFFFBFAF4F9F8F3F8F8EFFAF8F6FBF9FBFAF9F8FAFB
+      F6FBFCFCF9F8F9F5F4EED37F09CE7D09C67608F8F4F2DACAB6875B17FFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFA58E65EEE9E1FFFFFFFCFFFCFAFCF6FAFCF4FAFAF9
+      FAFAFDFAFAFDFAFAFDFCF7F9F5F5F2EEF1E7EFE5E0E7E4DBDED4C7EFE6E0D1BF
+      A5885D1AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB1946EEEE9E1FFFFFFDB870ADA
+      860ADA860ADA860ADA860ADA860ADB870AD78409D38009CF7E09CB7909C67708
+      C06E07E3DBCCC7B6958A5E1DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB89E75EEE9
+      E1FFFFFFDB870ADA860ADA860ADA860ADA870ADA870AD8860AD78209D27F09CD
+      7D09CC7808C77408BE6B07DED2C1C1AE8F8B6220FFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFBBA47DEEE9E1FFFFFFF9FCFCFAFAFAFAFAFAFAFBFCFAFCF9F8F9F0F5F1
+      EBF0EEE5EBE3DAC5B395C5B395C4A688BEA57CBEA57CA480488E6527FFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFBCA682EEE9E1FFFFFFF7FCFCFAFAFAFAFBFBFAFCFA
+      F8F9F1F4F1E6F1EBE2EEEAE4E0D4C3BDA178FFFFFFF3F1F0F2EEE4DAD3C6B89D
+      7490682AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBCA584EEE9E1FFFFFFF9FCFCFA
+      FAFBFCFCFCF8F9F4F3F0EAEFE9E0EEE3DAEDE3DAD1C1A9BDA178FFFFFFF2EEE4
+      DCCEBDB89D749E7B41FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBEA886EEE9
+      E1FFFFFFFCFCFCFAFBFCFDFBF6F5F3EEEBE8E5E8DFD8E7D7CCE2D4C6CEB89EAC
+      9467F2EEE4EEE8E1B4986A9E7B41FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFBEAB89EEE9E1FFFFFFFAFAFCF6FAF3F9F0E9F4E8E0E8E2D8E3DBD0DED0
+      BDDCCEB8CAB28FAC9467D8D0C1B5996F9E7B41FFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFBEAB89EEE9E1FFFFFFFFFFFFFEFFFEF8F5F4F5EDE7
+      ECE4D9E0D7CBDACCB4D7C4AFC3AD86997B41BCA17B9E7B41FFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0AE8CEEE9E1EEE9E1F1EEE6EC
+      E3DCE2DBCEDED3C2D9CCB7CEC1A5CBB494C5AC8BAC9467997B419A723AFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0AE8CC1AC
+      8BBFA987BEA886BFA986BFA988C0AA89C0AB8BBEA27BBEA47EB59D6FA78D5C9A
+      723AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    ParentFont = False
+    TabOrder = 4
+    OnClick = BitBtn13Click
+  end
+  object GroupBox4: TGroupBox
+    Left = 408
+    Top = 256
+    Width = 321
+    Height = 141
+    Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1072' ELSPEC'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    object Label4: TLabel
+      Left = 3
+      Top = 24
+      Width = 117
+      Height = 41
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = 'U '#1089#1088#1077#1076'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object KRVarLabel1: TKRVarLabel
+      Left = 131
+      Top = 24
+      Width = 178
+      Height = 33
+      Hint = ''
+      Variable = Usred
+      Format = '0.0000'
+      Color = clWindow
+      ErrorToHint = True
+      FontColor = clWindowText
+      AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clOlive
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object KRVarLabel2: TKRVarLabel
+      Left = 131
+      Top = 59
+      Width = 178
+      Height = 34
+      Hint = ''
+      Variable = Isred
+      Format = '0.0000'
+      Color = clWindow
+      ErrorToHint = True
+      FontColor = clWindowText
+      AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clOlive
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object KRVarLabel3: TKRVarLabel
+      Left = 131
+      Top = 92
+      Width = 178
+      Height = 37
+      Hint = ''
+      Variable = Psred
+      Format = '0.00'
+      Color = clWindow
+      ErrorToHint = True
+      FontColor = clWindowText
+      AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clOlive
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 3
+      Top = 59
+      Width = 117
+      Height = 34
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = 'I '#1089#1088#1077#1076'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 3
+      Top = 92
+      Width = 117
+      Height = 37
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = 'P '#1089#1088#1077#1076'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object BitBtn14: TBitBtn
+    Left = 408
+    Top = 473
+    Width = 321
+    Height = 64
+    Caption = #1056#1077#1079#1077#1088#1074#1085#1072#1103' '#1082#1086#1087#1080#1103' '#1073#1072#1079#1099
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 6
   end
   object KRTCPConnector1: TKRTCPConnector
     OnConnectionStatus = KRTCPConnector1ConnectionStatus
@@ -898,10 +939,11 @@ object FMain: TFMain
     Top = 24
   end
   object Timer500: TTimer
+    Enabled = False
     Interval = 500
     OnTimer = Timer500Timer
-    Left = 764
-    Top = 404
+    Left = 648
+    Top = 260
   end
   object FDOra: TFDConnection
     Params.Strings = (
@@ -911,15 +953,15 @@ object FMain: TFMain
       'User_Name=zamer')
     Connected = True
     LoginPrompt = False
-    Left = 944
-    Top = 292
+    Left = 692
+    Top = 260
   end
   object Qm45Getsred: TFDQuery
     Connection = FDOra
     SQL.Strings = (
       'select torq, rot, power from zamer')
-    Left = 948
-    Top = 396
+    Left = 796
+    Top = 260
   end
   object QCommand: TFDQuery
     Connection = FDOra
@@ -928,8 +970,8 @@ object FMain: TFMain
       'dat, interval)values('
       ':nomer, :filename, :command,'
       ':dat, :interval)')
-    Left = 944
-    Top = 344
+    Left = 736
+    Top = 260
     ParamData = <
       item
         Name = 'NOMER'
@@ -970,8 +1012,8 @@ object FMain: TFMain
       '   :PNOM, :HUMID, :PRESSUR, '
       '   :ENERGO, :STENDN, :STENDA, '
       '   :DOP1, :READY, :NOMER, :ISPOLN )')
-    Left = 948
-    Top = 448
+    Left = 856
+    Top = 260
     ParamData = <
       item
         Name = 'DATA'
@@ -1040,15 +1082,15 @@ object FMain: TFMain
   end
   object Qtemp: TFDQuery
     Connection = FDOra
-    Left = 824
-    Top = 476
+    Left = 916
+    Top = 260
   end
   object QAttestat: TFDQuery
     Connection = FDOra
     SQL.Strings = (
       'select * from stend where name=:name')
-    Left = 876
-    Top = 475
+    Left = 960
+    Top = 259
     ParamData = <
       item
         Name = 'NAME'
