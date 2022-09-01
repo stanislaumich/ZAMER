@@ -26,9 +26,6 @@ object FArc: TFArc
     Align = alTop
     Caption = #1057#1087#1080#1089#1086#1082' '#1079#1072#1074#1077#1088#1096#1077#1085#1085#1099#1093' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 0
-    ExplicitLeft = 4
-    ExplicitTop = 4
-    ExplicitWidth = 1041
     object DBGrid1: TDBGrid
       Left = 2
       Top = 25
@@ -54,9 +51,6 @@ object FArc: TFArc
     Align = alLeft
     Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1074#1099#1073#1088#1072#1085#1085#1086#1075#1086' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
     TabOrder = 1
-    ExplicitLeft = 7
-    ExplicitTop = 200
-    ExplicitHeight = 253
     object Label13: TLabel
       Left = 12
       Top = 28
@@ -296,9 +290,9 @@ object FArc: TFArc
     end
   end
   object BitBtn1: TBitBtn
-    Left = 789
+    Left = 796
     Top = 248
-    Width = 242
+    Width = 235
     Height = 41
     Caption = #1047#1072#1082#1088#1099#1090#1100
     Glyph.Data = {
@@ -361,9 +355,9 @@ object FArc: TFArc
     TabOrder = 2
   end
   object BitBtn2: TBitBtn
-    Left = 789
+    Left = 796
     Top = 201
-    Width = 242
+    Width = 235
     Height = 41
     Caption = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1086#1090#1095#1077#1090
     Glyph.Data = {
@@ -426,9 +420,9 @@ object FArc: TFArc
     TabOrder = 3
   end
   object BitBtn3: TBitBtn
-    Left = 789
+    Left = 796
     Top = 407
-    Width = 242
+    Width = 235
     Height = 45
     Anchors = [akLeft, akBottom]
     Caption = #1054#1073#1085#1086#1074#1080#1090#1100
