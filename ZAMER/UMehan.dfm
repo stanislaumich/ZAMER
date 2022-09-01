@@ -32,6 +32,20 @@ object FMehan: TFMehan
     Height = 23
     Caption = #1042#1086#1083#1100#1090
   end
+  object Label8: TLabel
+    Left = 667
+    Top = 129
+    Width = 10
+    Height = 23
+    Caption = '0'
+  end
+  object Label9: TLabel
+    Left = 588
+    Top = 129
+    Width = 73
+    Height = 23
+    Caption = #1047#1072#1084#1077#1088#1099':'
+  end
   object GroupBox17: TGroupBox
     Left = 2
     Top = 129
@@ -69,7 +83,6 @@ object FMehan: TFMehan
       ParentFont = False
       TabOrder = 1
       OnClick = Button27Click
-      ExplicitLeft = 358
     end
     object Button32: TButton
       Left = 442
@@ -78,6 +91,7 @@ object FMehan: TFMehan
       Height = 42
       Anchors = [akTop, akRight]
       Caption = #1057#1090#1086#1087
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19
@@ -86,7 +100,6 @@ object FMehan: TFMehan
       ParentFont = False
       TabOrder = 2
       OnClick = Button32Click
-      ExplicitLeft = 358
     end
     object RadioButton11: TRadioButton
       Left = 420
@@ -131,7 +144,6 @@ object FMehan: TFMehan
       Anchors = [akRight, akBottom]
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
       TabOrder = 8
-      ExplicitLeft = 358
     end
   end
   object GroupBox18: TGroupBox
@@ -170,7 +182,7 @@ object FMehan: TFMehan
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      ExplicitLeft = 358
+      OnClick = Button37Click
     end
     object Button42: TButton
       Left = 442
@@ -186,7 +198,7 @@ object FMehan: TFMehan
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 358
+      OnClick = Button42Click
     end
     object RadioButton16: TRadioButton
       Left = 420
@@ -231,7 +243,6 @@ object FMehan: TFMehan
       Anchors = [akTop, akRight]
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
       TabOrder = 8
-      ExplicitLeft = 358
     end
   end
   object Edit14: TEdit
@@ -251,7 +262,6 @@ object FMehan: TFMehan
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1086#1074
     TabOrder = 3
-    ExplicitWidth = 491
     object Label2: TLabel
       Left = 12
       Top = 28
@@ -361,7 +371,6 @@ object FMehan: TFMehan
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 4
     OnClick = BitBtn1Click
-    ExplicitLeft = 499
   end
   object BitBtn2: TBitBtn
     Left = 582
@@ -428,7 +437,7 @@ object FMehan: TFMehan
       FFFFFFFFFFFFFFFFFFFFB5B3FC4E49F6140BF31C13F31C12F31C12F31C12F31C
       12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
     TabOrder = 5
-    ExplicitLeft = 499
+    OnClick = BitBtn2Click
   end
   object BitBtn3: TBitBtn
     Left = 582
@@ -497,8 +506,8 @@ object FMehan: TFMehan
     TabOrder = 6
   end
   object Timer1: TTimer
-    Enabled = False
     Interval = 500
+    OnTimer = Timer1Timer
     Left = 612
     Top = 152
   end
@@ -566,6 +575,48 @@ object FMehan: TFMehan
       end
       item
         Name = 'NUMISP'
+        ParamType = ptInput
+      end>
+  end
+  object QInsSvod: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZMEHSVOD ('
+      '   NOMER, U, TORQ, '
+      '   ROT, TIP, NUMISP, '
+      '   CHECKED) '
+      'VALUES ( :NOMER, :U, :TORQ, '
+      '   :ROT, :TIP, :NUMISP, '
+      '   :CHECKED )')
+    Left = 668
+    Top = 256
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TORQ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ROT'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CHECKED'
         ParamType = ptInput
       end>
   end

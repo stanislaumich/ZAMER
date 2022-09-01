@@ -263,6 +263,7 @@ object FRH: TFRH
       ParentFont = False
       TabOrder = 0
       OnClick = StringGrid2Click
+      OnDrawCell = StringGrid2DrawCell
     end
     object BitBtn1: TBitBtn
       Left = 12

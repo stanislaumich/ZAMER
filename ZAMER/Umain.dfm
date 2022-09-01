@@ -527,23 +527,29 @@ object FMain: TFMain
       Left = 664
       Top = 12
       Width = 321
-      Height = 197
-      Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1086#1074
+      Height = 141
+      Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1072' ELSPEC'
       TabOrder = 6
       object Label4: TLabel
-        Left = 81
-        Top = 28
-        Width = 100
-        Height = 23
+        Left = 3
+        Top = 24
+        Width = 117
+        Height = 41
         Alignment = taRightJustify
         AutoSize = False
         Caption = 'U '#1089#1088#1077#1076'.:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -27
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object KRVarLabel1: TKRVarLabel
-        Left = 192
-        Top = 28
-        Width = 100
-        Height = 23
+        Left = 131
+        Top = 24
+        Width = 178
+        Height = 33
         Hint = ''
         Variable = Usred
         Format = '0.0000'
@@ -553,17 +559,17 @@ object FMain: TFMain
         AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clOlive
-        Font.Height = -19
+        Font.Height = -27
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
       end
       object KRVarLabel2: TKRVarLabel
-        Left = 192
-        Top = 55
-        Width = 100
-        Height = 23
+        Left = 131
+        Top = 59
+        Width = 178
+        Height = 34
         Hint = ''
         Variable = Isred
         Format = '0.0000'
@@ -573,17 +579,17 @@ object FMain: TFMain
         AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clOlive
-        Font.Height = -19
+        Font.Height = -27
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
       end
       object KRVarLabel3: TKRVarLabel
-        Left = 192
-        Top = 84
-        Width = 100
-        Height = 23
+        Left = 131
+        Top = 92
+        Width = 178
+        Height = 37
         Hint = ''
         Variable = Psred
         Format = '0.00'
@@ -593,80 +599,41 @@ object FMain: TFMain
         AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clOlive
-        Font.Height = -19
+        Font.Height = -27
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
       end
-      object Label1: TLabel
-        Left = 192
-        Top = 109
-        Width = 100
-        Height = 23
-        AutoSize = False
-        Caption = '0'
-      end
-      object Label2: TLabel
-        Left = 192
-        Top = 134
-        Width = 100
-        Height = 23
-        AutoSize = False
-        Caption = '0'
-      end
-      object Label3: TLabel
-        Left = 192
-        Top = 159
-        Width = 100
-        Height = 23
-        AutoSize = False
-        Caption = '0'
-      end
       object Label5: TLabel
-        Left = 81
-        Top = 55
-        Width = 100
-        Height = 23
+        Left = 3
+        Top = 59
+        Width = 117
+        Height = 34
         Alignment = taRightJustify
         AutoSize = False
         Caption = 'I '#1089#1088#1077#1076'.:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -27
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object Label6: TLabel
-        Left = 81
-        Top = 84
-        Width = 100
-        Height = 23
+        Left = 3
+        Top = 92
+        Width = 117
+        Height = 37
         Alignment = taRightJustify
         AutoSize = False
         Caption = 'P '#1089#1088#1077#1076'.:'
-      end
-      object Label7: TLabel
-        Left = 81
-        Top = 109
-        Width = 100
-        Height = 23
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = #1063#1072#1089#1090#1086#1090#1072':'
-      end
-      object Label8: TLabel
-        Left = 81
-        Top = 134
-        Width = 100
-        Height = 23
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = #1052#1086#1084#1077#1085#1090':'
-      end
-      object Label9: TLabel
-        Left = 81
-        Top = 159
-        Width = 100
-        Height = 23
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = #1052#1086#1097#1085#1086#1089#1090#1100':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -27
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
     end
     object BitBtn11: TBitBtn
@@ -933,8 +900,8 @@ object FMain: TFMain
   object Timer500: TTimer
     Interval = 500
     OnTimer = Timer500Timer
-    Left = 708
-    Top = 308
+    Left = 764
+    Top = 404
   end
   object FDOra: TFDConnection
     Params.Strings = (
@@ -1074,14 +1041,14 @@ object FMain: TFMain
   object Qtemp: TFDQuery
     Connection = FDOra
     Left = 824
-    Top = 452
+    Top = 476
   end
   object QAttestat: TFDQuery
     Connection = FDOra
     SQL.Strings = (
       'select * from stend where name=:name')
-    Left = 880
-    Top = 451
+    Left = 876
+    Top = 475
     ParamData = <
       item
         Name = 'NAME'

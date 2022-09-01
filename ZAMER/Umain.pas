@@ -67,14 +67,8 @@ type
         KRVarLabel1: TKRVarLabel;
         KRVarLabel2: TKRVarLabel;
         KRVarLabel3: TKRVarLabel;
-        Label1: TLabel;
-        Label2: TLabel;
-        Label3: TLabel;
         Label5: TLabel;
         Label6: TLabel;
-        Label7: TLabel;
-        Label8: TLabel;
-        Label9: TLabel;
         Usred: TKRMBRegister;
         Isred: TKRMBRegister;
         Psred: TKRMBRegister;
@@ -572,7 +566,52 @@ begin
         end;
 
         /// ////////////////////////////////////////////////////////////
+        // загрузить Механическую характеристику если есть
+        Qtemp.Close;
+        Qtemp.SQL.Clear;
+        Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer));
+        if Qtemp.RecordCount = 0 then
+        begin
+            Label32.Caption    := 'X';
+            Label32.Font.Color := clRed;
+        end
+        else
+        begin
+            Label32.Caption    := 'ПРОЙДЕН';
+            Label32.Font.Color := clGreen;
+        end;
+
+        Qtemp.Close;
+        Qtemp.SQL.Clear;
+        Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer)+' and tip=1');
+        while not(Qtemp.eof) do
+        begin
+            Fmehan.StringGrid7.Cells[1, Qtemp.FieldByName('numisp').AsInteger] :=
+              Qtemp.FieldByName('u').Asstring;
+            Fmehan.StringGrid7.Cells[2, Qtemp.FieldByName('numisp').AsInteger] :=
+              Qtemp.FieldByName('torq').Asstring;
+            Fmehan.StringGrid7.Cells[3, Qtemp.FieldByName('numisp').AsInteger] :=
+              Qtemp.FieldByName('rot').Asstring;
+            Qtemp.Next;
+
+        end;
+        Qtemp.Close;
+        Qtemp.SQL.Clear;
+        Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer)+' and tip=2');
+        while not(Qtemp.eof) do
+        begin
+            Fmehan.StringGrid8.Cells[1, Qtemp.FieldByName('numisp').AsInteger] :=
+              Qtemp.FieldByName('u').Asstring;
+            Fmehan.StringGrid8.Cells[2, Qtemp.FieldByName('numisp').AsInteger] :=
+              Qtemp.FieldByName('torq').Asstring;
+            Fmehan.StringGrid8.Cells[3, Qtemp.FieldByName('numisp').AsInteger] :=
+              Qtemp.FieldByName('rot').Asstring;
+            Qtemp.Next;
+
+        end;
+         /// ////////////////////////////////////////////////////////////
         // загрузить
+
 
         enableispyt(True);
     end;
@@ -662,14 +701,14 @@ end;
 
 procedure TFMain.Timer500Timer(Sender: TObject);
 begin
-    if ReadM45 then
+ {   if ReadM45 then
     begin
         Qm45Getsred.Open;
         Label2.Caption := Qm45Getsred.FieldByName('torq').Asstring;
         Label1.Caption := Qm45Getsred.FieldByName('rot').Asstring;
         Label3.Caption := Qm45Getsred.FieldByName('power').Asstring;
         Qm45Getsred.Close;
-    end;
+    end;  }
 end;
 
 Procedure TFMain.WriteIni;

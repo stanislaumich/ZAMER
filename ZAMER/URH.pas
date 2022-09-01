@@ -66,6 +66,8 @@ type
     procedure CommandStart(c: Integer; n: string; fn: string);
     procedure StringGrid2Click(Sender: TObject);
     procedure Timer3Timer(Sender: TObject);
+    procedure StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
     // procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
@@ -356,6 +358,31 @@ begin
     ShowMessage('¬ыбрано завершение испытани€')
   else
     Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
+end;
+
+procedure TFRH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  ok: Boolean;
+begin
+  if (ACol = 0) Or (ARow = 0) Then
+    exit;
+  if StringGrid2.cells[0, ARow] = '' then
+    exit;
+  if StringGrid2.cells[1, ARow] = '' then
+    exit;
+  { ok := (abs(Strtofloat(StringGrid2.cells[1, ARow]) -
+    Strtofloat(StringGrid2.cells[0, ARow])) < Strtofloat(Edit2.Text)) or
+    (StringGrid2.cells[4, ARow] = '');
+    if (ACol = 4) and (not ok) then
+    begin
+    // выбираем зеленный цвет и закрашиваем что нам нужно
+    StringGrid2.Canvas.Brush.Color := clYellow;
+    StringGrid2.Canvas.FillRect(Rect);
+    StringGrid2.Canvas.TextOut(Rect.Left, Rect.Top,
+    StringGrid2.cells[ACol, ARow]);
+    StringGrid2.Canvas.Brush.Color := clWhite;
+    end; }
 end;
 
 procedure TFRH.Timer1Timer(Sender: TObject);
