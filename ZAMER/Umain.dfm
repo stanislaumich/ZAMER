@@ -572,7 +572,6 @@ object FMain: TFMain
       item
         Width = 50
       end>
-    ExplicitWidth = 1008
   end
   object BitBtn13: TBitBtn
     Left = 408
