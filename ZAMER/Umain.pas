@@ -137,6 +137,14 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label33: TLabel;
+    Label34: TLabel;
+    Edit14: TEdit;
+    Edit15: TEdit;
+    Button3: TButton;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -168,6 +176,10 @@ type
         procedure BitBtn6Click(Sender: TObject);
         procedure BitBtn13Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure IsredError(Sender: TObject; Variable: TKRVariable);
+    procedure PsredError(Sender: TObject; Variable: TKRVariable);
+    procedure UsredError(Sender: TObject; Variable: TKRVariable);
+    procedure Button3Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -642,6 +654,12 @@ begin
  Label3.Visible:= not Label3.Visible;
 end;
 
+procedure TFMain.Button3Click(Sender: TObject);
+begin
+ KRTCPConnector1.Interval:=Strtoint(Edit14.Text);
+ KRTCPConnector1.ReadTimeout:=Strtoint(Edit15.Text);
+end;
+
 procedure TFMain.ComboBox4Change(Sender: TObject);
 begin
     QAttestat.ParamByName('name').Asstring := ComboBox4.Text;
@@ -718,6 +736,11 @@ begin
         Label1.Caption := Qm45Getsred.FieldByName('rot').Asstring;
         Label3.Caption := Qm45Getsred.FieldByName('power').Asstring;
         Qm45Getsred.Close;
+end;
+
+procedure TFMain.UsredError(Sender: TObject; Variable: TKRVariable);
+begin
+  Label8.Caption:=Inttostr(strtoint(Label8.Caption)+1);
 end;
 
 Procedure TFMain.WriteIni;
@@ -804,6 +827,11 @@ begin
     ShellExecute(Handle, 'open', PWideChar(M45Exe), nil, nil, SW_SHOWNORMAL);
 end;
 
+procedure TFMain.IsredError(Sender: TObject; Variable: TKRVariable);
+begin
+ Label8.Caption:=Inttostr(strtoint(Label8.Caption)+1);
+end;
+
 procedure TFMain.KRTCPConnector1ConnectionStatus(Sender: TObject;
   AStat: TKRConnectorStat; AReconnectTime: Cardinal);
 begin
@@ -840,6 +868,11 @@ begin
         Edit3.Color      := clRed;
         Edit3.Font.Color := clWhite;
     end;
+end;
+
+procedure TFMain.PsredError(Sender: TObject; Variable: TKRVariable);
+begin
+  Label8.Caption:=Inttostr(strtoint(Label8.Caption)+1);
 end;
 
 end.

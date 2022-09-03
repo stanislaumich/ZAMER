@@ -42,6 +42,41 @@ object FMain: TFMain
     Caption = '0'
     Visible = False
   end
+  object Label7: TLabel
+    Left = 735
+    Top = 316
+    Width = 44
+    Height = 13
+    Caption = #1054#1096#1080#1073#1086#1082':'
+  end
+  object Label8: TLabel
+    Left = 780
+    Top = 316
+    Width = 6
+    Height = 13
+    Caption = '0'
+  end
+  object Label9: TLabel
+    Left = 736
+    Top = 336
+    Width = 65
+    Height = 13
+    Caption = #1050#1054#1053#1053#1045#1050#1058#1054#1056' '
+  end
+  object Label33: TLabel
+    Left = 775
+    Top = 355
+    Width = 52
+    Height = 13
+    Caption = #1048#1053#1058#1045#1056#1042#1040#1051
+  end
+  object Label34: TLabel
+    Left = 739
+    Top = 378
+    Width = 91
+    Height = 13
+    Caption = #1058#1040#1049#1052#1040#1059#1058' '#1063#1058#1045#1053#1048#1071
+  end
   object GroupBox1: TGroupBox
     Left = 4
     Top = 0
@@ -778,13 +813,39 @@ object FMain: TFMain
     ParentFont = False
     TabOrder = 6
   end
+  object Edit14: TEdit
+    Left = 833
+    Top = 352
+    Width = 44
+    Height = 21
+    TabOrder = 7
+    Text = 'Edit14'
+  end
+  object Edit15: TEdit
+    Left = 833
+    Top = 375
+    Width = 44
+    Height = 21
+    TabOrder = 8
+    Text = 'Edit15'
+  end
+  object Button3: TButton
+    Left = 876
+    Top = 321
+    Width = 109
+    Height = 25
+    Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+    TabOrder = 9
+    OnClick = Button3Click
+  end
   object KRTCPConnector1: TKRTCPConnector
     OnConnectionStatus = KRTCPConnector1ConnectionStatus
-    CountErrorsForReconnect = 3000
+    CountErrorsForReconnect = 10
     ReconnectTime = 50
+    Interval = 10
     IP = '192.168.0.1'
     ConnectTimeout = 300
-    ReadTimeout = 10
+    ReadTimeout = 20
     Left = 856
     Top = 24
   end
@@ -808,6 +869,7 @@ object FMain: TFMain
       HighWordFirst = True
       HighDWordFirst = True
       Interval = 500
+      OnError = UsredError
     end
     object Isred: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -817,6 +879,7 @@ object FMain: TFMain
       HighWordFirst = True
       HighDWordFirst = True
       Interval = 500
+      OnError = IsredError
     end
     object Psred: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -826,6 +889,7 @@ object FMain: TFMain
       HighWordFirst = True
       HighDWordFirst = True
       Interval = 500
+      OnError = PsredError
     end
     object RU1: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
