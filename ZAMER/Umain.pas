@@ -145,6 +145,7 @@ type
     Edit14: TEdit;
     Edit15: TEdit;
     Button3: TButton;
+    BitBtn15: TBitBtn;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -180,6 +181,7 @@ type
     procedure PsredError(Sender: TObject; Variable: TKRVariable);
     procedure UsredError(Sender: TObject; Variable: TKRVariable);
     procedure Button3Click(Sender: TObject);
+    procedure BitBtn15Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -204,7 +206,7 @@ implementation
 
 {$R *.dfm}
 
-uses UHH, USoprot, UProdol, UKZam, UNagrev, URH, UMehan, UArc;
+uses UHH, USoprot, UProdol, UKZam, UNagrev, URH, UMehan, UArc, UDatchik;
 
 procedure TFMain.enableispyt(p: Boolean);
 begin
@@ -290,6 +292,11 @@ procedure TFMain.BitBtn13Click(Sender: TObject);
 begin
     FArc.BitBtn3.Click();
     FArc.ShowModal;
+end;
+
+procedure TFMain.BitBtn15Click(Sender: TObject);
+begin
+ FDatchik.Show;
 end;
 
 procedure TFMain.BitBtn1Click(Sender: TObject);

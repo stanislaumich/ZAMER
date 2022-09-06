@@ -838,6 +838,15 @@ object FMain: TFMain
     TabOrder = 9
     OnClick = Button3Click
   end
+  object BitBtn15: TBitBtn
+    Left = 735
+    Top = 480
+    Width = 145
+    Height = 52
+    Caption = 'BitBtn15'
+    TabOrder = 10
+    OnClick = BitBtn15Click
+  end
   object KRTCPConnector1: TKRTCPConnector
     OnConnectionStatus = KRTCPConnector1ConnectionStatus
     CountErrorsForReconnect = 10
