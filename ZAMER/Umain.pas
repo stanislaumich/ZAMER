@@ -104,7 +104,6 @@ type
         QInsertNewDvig: TFDQuery;
         Qtemp: TFDQuery;
         BitBtn11: TBitBtn;
-        BitBtn12: TBitBtn;
         Label28: TLabel;
         QAttestat: TFDQuery;
         StatusBar1: TStatusBar;
@@ -182,6 +181,7 @@ type
     procedure UsredError(Sender: TObject; Variable: TKRVariable);
     procedure Button3Click(Sender: TObject);
     procedure BitBtn15Click(Sender: TObject);
+    procedure BitBtn11Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -206,7 +206,7 @@ implementation
 
 {$R *.dfm}
 
-uses UHH, USoprot, UProdol, UKZam, UNagrev, URH, UMehan, UArc, UDatchik;
+uses UHH, USoprot, UProdol, UKZam, UNagrev, URH, UMehan, UArc, UDatchik, Uproch;
 
 procedure TFMain.enableispyt(p: Boolean);
 begin
@@ -217,7 +217,7 @@ begin
     BitBtn2.Enabled  := p;
     BitBtn6.Enabled  := p;
     BitBtn11.Enabled := p;
-    BitBtn12.Enabled := p;
+    //BitBtn12.Enabled := p;
 end;
 
 procedure TFMain.savecombo;
@@ -286,6 +286,11 @@ end;
 function RoundMax1000(Num: real): real;
 begin
     result := round(Num * 1000 + 0.5) / 1000;
+end;
+
+procedure TFMain.BitBtn11Click(Sender: TObject);
+begin
+ FProch.ShowModal;
 end;
 
 procedure TFMain.BitBtn13Click(Sender: TObject);

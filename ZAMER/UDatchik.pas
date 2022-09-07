@@ -30,7 +30,5 @@ procedure TFDatchik.Button1Click(Sender: TObject);
 begin
   //https://delphisources.ru/pages/faq/base/webbrowser_notes.html
 end;
- Webbrowser1.
-end;
 
 end.

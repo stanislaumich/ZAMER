@@ -13,7 +13,8 @@ uses
   UNagrev in 'UNagrev.pas' {FNagrev},
   UMehan in 'UMehan.pas' {FMehan},
   UArc in 'UArc.pas' {FArc},
-  UDatchik in 'UDatchik.pas' {FDatchik};
+  UDatchik in 'UDatchik.pas' {FDatchik},
+  Uproch in 'Uproch.pas' {FProch};
 
 {$R *.res}
 
@@ -32,6 +33,7 @@ begin
   Application.CreateForm(TFMehan, FMehan);
   Application.CreateForm(TFArc, FArc);
   Application.CreateForm(TFDatchik, FDatchik);
+  Application.CreateForm(TFProch, FProch);
   Application.Run;
 
 end.

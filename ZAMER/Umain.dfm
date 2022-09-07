@@ -2,7 +2,7 @@ object FMain: TFMain
   Left = 0
   Top = 0
   Caption = #1048#1057#1055#1067#1058#1040#1053#1048#1045' '#1044#1042#1048#1043#1040#1058#1045#1051#1071
-  ClientHeight = 557
+  ClientHeight = 521
   ClientWidth = 1003
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,7 +15,7 @@ object FMain: TFMain
   OnCreate = FormCreate
   DesignSize = (
     1003
-    557)
+    521)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -455,7 +455,7 @@ object FMain: TFMain
     Left = 8
     Top = 256
     Width = 397
-    Height = 281
+    Height = 245
     Anchors = [akLeft, akTop, akBottom]
     Caption = #1059#1087#1088#1072#1074#1083#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1077#1084
     Font.Charset = DEFAULT_CHARSET
@@ -465,6 +465,7 @@ object FMain: TFMain
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    ExplicitHeight = 281
     object Label28: TLabel
       Left = 304
       Top = 24
@@ -579,19 +580,12 @@ object FMain: TFMain
       Height = 30
       Caption = #1055#1088#1086#1095#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
       TabOrder = 6
-    end
-    object BitBtn12: TBitBtn
-      Left = 3
-      Top = 245
-      Width = 295
-      Height = 30
-      Caption = #1042#1080#1073#1088#1072#1094#1080#1103', '#1091#1088#1086#1074#1077#1085#1100' '#1079#1074#1091#1082#1072', '#1084#1072#1089#1089#1072
-      TabOrder = 7
+      OnClick = BitBtn11Click
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 538
+    Top = 502
     Width = 1003
     Height = 19
     Panels = <
@@ -607,12 +601,13 @@ object FMain: TFMain
       item
         Width = 50
       end>
+    ExplicitTop = 538
   end
   object BitBtn13: TBitBtn
     Left = 408
     Top = 403
     Width = 321
-    Height = 64
+    Height = 46
     Caption = #1040#1088#1093#1080#1074' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -801,9 +796,9 @@ object FMain: TFMain
   end
   object BitBtn14: TBitBtn
     Left = 408
-    Top = 473
+    Top = 452
     Width = 321
-    Height = 64
+    Height = 47
     Caption = #1056#1077#1079#1077#1088#1074#1085#1072#1103' '#1082#1086#1087#1080#1103' '#1073#1072#1079#1099
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -839,8 +834,8 @@ object FMain: TFMain
     OnClick = Button3Click
   end
   object BitBtn15: TBitBtn
-    Left = 735
-    Top = 480
+    Left = 800
+    Top = 429
     Width = 145
     Height = 52
     Caption = 'BitBtn15'
