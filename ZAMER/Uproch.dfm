@@ -2,7 +2,7 @@ object FProch: TFProch
   Left = 0
   Top = 0
   Caption = 'FProch'
-  ClientHeight = 553
+  ClientHeight = 528
   ClientWidth = 1026
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,6 +12,7 @@ object FProch: TFProch
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 23
   object GroupBox1: TGroupBox
@@ -154,18 +155,89 @@ object FProch: TFProch
   object GroupBox2: TGroupBox
     Left = 4
     Top = 235
-    Width = 825
-    Height = 105
+    Width = 1017
+    Height = 126
     Caption = #1042#1080#1073#1088#1086#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080
     TabOrder = 1
+    object StringGrid1: TStringGrid
+      Left = 2
+      Top = 25
+      Width = 1013
+      Height = 99
+      Align = alClient
+      ColCount = 19
+      RowCount = 3
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
+      TabOrder = 0
+      ExplicitLeft = 0
+      ExplicitTop = 24
+      ExplicitHeight = 167
+    end
   end
   object GroupBox3: TGroupBox
-    Left = 4
-    Top = 346
-    Width = 825
-    Height = 105
+    Left = 8
+    Top = 367
+    Width = 629
+    Height = 158
     Caption = #1059#1088#1086#1074#1077#1085#1100' '#1079#1074#1091#1082#1086#1074#1086#1081' '#1084#1086#1097#1085#1086#1089#1090#1080', '#1076#1041#1040
     TabOrder = 2
+    object Label10: TLabel
+      Left = 20
+      Top = 36
+      Width = 137
+      Height = 23
+      Caption = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072', '#1057
+    end
+    object Label11: TLabel
+      Left = 236
+      Top = 36
+      Width = 126
+      Height = 23
+      Caption = #1042#1083#1072#1078#1085#1086#1089#1090#1100', %'
+    end
+    object Label12: TLabel
+      Left = 427
+      Top = 36
+      Width = 130
+      Height = 23
+      Caption = #1044#1072#1074#1083#1077#1085#1080#1077', '#1082#1055#1072
+    end
+    object StringGrid2: TStringGrid
+      Left = 2
+      Top = 72
+      Width = 625
+      Height = 84
+      Align = alBottom
+      ColCount = 9
+      RowCount = 3
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
+      TabOrder = 0
+      ExplicitTop = 104
+    end
+    object Edit3: TEdit
+      Left = 163
+      Top = 32
+      Width = 61
+      Height = 31
+      TabOrder = 1
+      Text = '0'
+    end
+    object Edit4: TEdit
+      Left = 368
+      Top = 32
+      Width = 53
+      Height = 31
+      TabOrder = 2
+      Text = '0'
+    end
+    object Edit5: TEdit
+      Left = 563
+      Top = 32
+      Width = 62
+      Height = 31
+      TabOrder = 3
+      Text = '0'
+    end
   end
   object BitBtn1: TBitBtn
     Left = 835
@@ -350,6 +422,34 @@ object FProch: TFProch
       end
       item
         Name = 'EPROCHU'
+        ParamType = ptInput
+      end>
+  end
+  object Qinsvibro: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZVIBRO ('
+      '   NOMER, X, Y,'
+      '   VAL)'
+      'VALUES ( :NOMER, :X, :Y,'
+      '   :VAL )')
+    Left = 904
+    Top = 100
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'X'
+        ParamType = ptInput
+      end
+      item
+        Name = 'Y'
+        ParamType = ptInput
+      end
+      item
+        Name = 'VAL'
         ParamType = ptInput
       end>
   end
