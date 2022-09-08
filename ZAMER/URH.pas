@@ -125,11 +125,11 @@ begin
     #define USB_DECODER_T35               6
     #define USB_DECODER_T45               10
   }
-  {if (FMain.RadioButton1.Checked) then
+  { if (FMain.RadioButton1.Checked) then
     dectype := '10';
-  if (FMain.RadioButton2.Checked) then
-    dectype := '4';}
-  dectype   := '10';
+    if (FMain.RadioButton2.Checked) then
+    dectype := '4'; }
+  dectype := '10';
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
     + dectype + ', ' + FMain.Edit12.Text + ')');
   QCommand.ExecSQL;

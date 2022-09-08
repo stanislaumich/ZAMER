@@ -2,7 +2,7 @@ object FProch: TFProch
   Left = 0
   Top = 0
   Caption = 'FProch'
-  ClientHeight = 454
+  ClientHeight = 553
   ClientWidth = 1026
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -92,7 +92,7 @@ object FProch: TFProch
       Width = 62
       Height = 31
       TabOrder = 0
-      Text = 'Edit1'
+      Text = '0'
     end
     object CheckBox1: TCheckBox
       Left = 700
@@ -148,7 +148,7 @@ object FProch: TFProch
       Width = 72
       Height = 31
       TabOrder = 7
-      Text = 'Edit2'
+      Text = '0'
     end
   end
   object GroupBox2: TGroupBox
@@ -231,6 +231,7 @@ object FProch: TFProch
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 3
+    OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
     Left = 835
@@ -296,5 +297,60 @@ object FProch: TFProch
       ED2118EBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFF2118EB2A23ED433EF0312BEE2219ECFFFFFF}
     TabOrder = 4
+  end
+  object QTemp: TFDQuery
+    Connection = FMain.FDOra
+    Left = 848
+    Top = 100
+  end
+  object QInsProch: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZPROCH ('
+      '   NOMER, EPROCH, HIFREQ,'
+      '   PEREGRUZ, RIZOL, MASSA,'
+      '   U074, U113, EPROCHU)'
+      'VALUES ( :NOMER, :EPROCH, :HIFREQ,'
+      '   :PEREGRUZ, :RIZOL, :MASSA,'
+      '   :U074, :U113, :EPROCHU )')
+    Left = 848
+    Top = 152
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'EPROCH'
+        ParamType = ptInput
+      end
+      item
+        Name = 'HIFREQ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PEREGRUZ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'RIZOL'
+        ParamType = ptInput
+      end
+      item
+        Name = 'MASSA'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U074'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U113'
+        ParamType = ptInput
+      end
+      item
+        Name = 'EPROCHU'
+        ParamType = ptInput
+      end>
   end
 end

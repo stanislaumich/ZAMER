@@ -3,7 +3,8 @@ unit UDatchik;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, WebView2, Winapi.ActiveX, Vcl.OleCtrls,
   SHDocVw, Vcl.Edge, Vcl.StdCtrls;
 
@@ -25,10 +26,12 @@ var
 implementation
 
 {$R *.dfm}
+
 Uses Umain;
+
 procedure TFDatchik.Button1Click(Sender: TObject);
 begin
-  //https://delphisources.ru/pages/faq/base/webbrowser_notes.html
+  // https://delphisources.ru/pages/faq/base/webbrowser_notes.html
 end;
 
 end.

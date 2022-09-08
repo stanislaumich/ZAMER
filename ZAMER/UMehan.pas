@@ -117,9 +117,9 @@ begin
   }
   { if (FMAin.RadioButton1.Checked) then
     dectype := '10';
-  if (FMAin.RadioButton2.Checked) then
+    if (FMAin.RadioButton2.Checked) then
     dectype := '4'; }
-  dectype   := '10';
+  dectype := '10';
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
     + dectype + ', ' + FMAin.Edit12.Text + ')');
   QCommand.ExecSQL;
@@ -152,8 +152,8 @@ begin
         QInsSvod.ParamByName('checked').AsInteger := 0;
       QInsSvod.ExecSQL;
     end;
-    //////////
-   QTemp.Close;
+  /// ///////
+  QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add(' delete from zmehsvod where nomer=' + Quotedstr(nomer) +
     ' and tip=2');
@@ -176,8 +176,7 @@ begin
         QInsSvod.ParamByName('checked').AsInteger := 0;
       QInsSvod.ExecSQL;
     end;
-    //////////
-
+  /// ///////
 
   FMAin.Label32.Caption    := 'опнидем';
   FMAin.Label32.Font.Color := clGreen;
@@ -410,7 +409,7 @@ end;
 
 procedure TFMehan.Timer1Timer(Sender: TObject);
 begin
- Label5.Caption:=FMain.KrVarLabel1.Caption;
+  Label5.Caption := FMAin.KrVarLabel1.Caption;
 end;
 
 procedure TFMehan.Timer2Timer(Sender: TObject);

@@ -465,7 +465,6 @@ object FMain: TFMain
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitHeight = 281
     object Label28: TLabel
       Left = 304
       Top = 24
@@ -601,7 +600,6 @@ object FMain: TFMain
       item
         Width = 50
       end>
-    ExplicitTop = 538
   end
   object BitBtn13: TBitBtn
     Left = 408
