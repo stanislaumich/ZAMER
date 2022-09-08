@@ -288,6 +288,8 @@ end;
 
 procedure TFMain.BitBtn11Click(Sender: TObject);
 begin
+  Fproch.Edit4.Text:=Edit8.Text;
+  Fproch.Edit5.Text:=Edit9.Text;
   FProch.ShowModal;
 end;
 
@@ -611,7 +613,13 @@ begin
 
     end;
     /// ////////////////////////////////////////////////////////////
-    // загрузить
+    // загрузить прочие сипытания
+
+
+
+
+    /// ////////////////////////////////////////////////////////////
+    // загрузить нагрев
 
     enableispyt(True);
   end;
