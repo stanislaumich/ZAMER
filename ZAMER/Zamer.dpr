@@ -10,11 +10,11 @@ uses
   UProdol in 'UProdol.pas' {FProdol} ,
   URH in 'URH.pas' {FRH} ,
   UKZam in 'UKZam.pas' {FKzam} ,
-  UNagrev in 'UNagrev.pas' {FNagrev} ,
   UMehan in 'UMehan.pas' {FMehan} ,
   UArc in 'UArc.pas' {FArc} ,
   UDatchik in 'UDatchik.pas' {FDatchik} ,
-  Uproch in 'Uproch.pas' {FProch};
+  Uproch in 'Uproch.pas' {FProch} ,
+  UNagrev in 'UNagrev.pas' {FNagrev};
 
 {$R *.res}
 
@@ -29,11 +29,11 @@ begin
   Application.CreateForm(TFProdol, FProdol);
   Application.CreateForm(TFRH, FRH);
   Application.CreateForm(TFKzam, FKzam);
-  Application.CreateForm(TFNagrev, FNagrev);
   Application.CreateForm(TFMehan, FMehan);
   Application.CreateForm(TFArc, FArc);
   Application.CreateForm(TFDatchik, FDatchik);
   Application.CreateForm(TFProch, FProch);
+  Application.CreateForm(TFNagrev, FNagrev);
   Application.Run;
 
 end.

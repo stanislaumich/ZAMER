@@ -128,10 +128,6 @@
             <Form>FKzam</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UNagrev.pas">
-            <Form>FNagrev</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="UMehan.pas">
             <Form>FMehan</Form>
             <FormType>dfm</FormType>
@@ -146,6 +142,10 @@
         </DCCReference>
         <DCCReference Include="Uproch.pas">
             <Form>FProch</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UNagrev.pas">
+            <Form>FNagrev</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -170,13 +170,13 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Release\Zamer.exe" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\Zamer.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Zamer.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Debug\Zamer.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Release\Zamer.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Zamer.exe</RemoteName>
                         <Overwrite>true</Overwrite>

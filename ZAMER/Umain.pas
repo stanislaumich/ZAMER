@@ -289,9 +289,9 @@ end;
 
 procedure TFMain.BitBtn11Click(Sender: TObject);
 begin
-  Fproch.Edit4.Text:=Edit8.Text;
-  Fproch.Edit5.Text:=Edit9.Text;
-  FProch.ShowModal;
+  Fproch.Edit4.Text := Edit8.Text;
+  Fproch.Edit5.Text := Edit9.Text;
+  Fproch.ShowModal;
 end;
 
 procedure TFMain.BitBtn13Click(Sender: TObject);
@@ -382,10 +382,10 @@ begin
   end;
 end;
 
-function b(i:integer):boolean;
- begin
-  b:=i=1;
- end;
+function b(i: Integer): Boolean;
+begin
+  b := i = 1;
+end;
 
 procedure TFMain.BitBtn8Click(Sender: TObject);
 var
@@ -637,21 +637,21 @@ begin
     Qtemp.Close;
     Qtemp.SQL.Clear;
     Qtemp.Open('select * from zproch where nomer=' + Quotedstr(Nomer));
-    FProch.EDit1.text:=QTemp.FieldByName('eprochu').Asstring;
-    FProch.EDit2.text:=QTemp.FieldByName('massa').Asstring;
-    FProch.CheckBox1.Checked:=b(QTemp.FieldByName('eproch').AsInteger);
-    FProch.CheckBox2.Checked:=b(QTemp.FieldByName('hifreq').AsInteger);
-    FProch.CheckBox3.Checked:=b(QTemp.FieldByName('peregruz').AsInteger);
-    FProch.CheckBox4.Checked:=b(QTemp.FieldByName('rizol').AsInteger);
-    FProch.CheckBox5.Checked:=b(QTemp.FieldByName('u074').AsInteger);
-    FProch.CheckBox6.Checked:=b(QTemp.FieldByName('u113').AsInteger);
+    Fproch.Edit1.Text        := Qtemp.FieldByName('eprochu').Asstring;
+    Fproch.Edit2.Text        := Qtemp.FieldByName('massa').Asstring;
+    Fproch.CheckBox1.Checked := b(Qtemp.FieldByName('eproch').AsInteger);
+    Fproch.CheckBox2.Checked := b(Qtemp.FieldByName('hifreq').AsInteger);
+    Fproch.CheckBox3.Checked := b(Qtemp.FieldByName('peregruz').AsInteger);
+    Fproch.CheckBox4.Checked := b(Qtemp.FieldByName('rizol').AsInteger);
+    Fproch.CheckBox5.Checked := b(Qtemp.FieldByName('u074').AsInteger);
+    Fproch.CheckBox6.Checked := b(Qtemp.FieldByName('u113').AsInteger);
     Qtemp.Close;
     Qtemp.SQL.Clear;
     Qtemp.Open('select * from zvibro where nomer=' + Quotedstr(Nomer));
     while not(Qtemp.eof) do
     begin
-      Fproch.StringGrid1.Cells[Qtemp.FieldByName('y').AsInteger, Qtemp.FieldByName('x').AsInteger] :=
-        Qtemp.FieldByName('val').Asstring;
+      Fproch.StringGrid1.Cells[Qtemp.FieldByName('y').AsInteger,
+        Qtemp.FieldByName('x').AsInteger] := Qtemp.FieldByName('val').Asstring;
       Qtemp.Next;
     end;
     Qtemp.Close;
@@ -659,12 +659,10 @@ begin
     Qtemp.Open('select * from zzvuk where nomer=' + Quotedstr(Nomer));
     while not(Qtemp.eof) do
     begin
-      Fproch.StringGrid2.Cells[Qtemp.FieldByName('y').AsInteger, Qtemp.FieldByName('x').AsInteger] :=
-        Qtemp.FieldByName('val').Asstring;
+      Fproch.Stringgrid2.Cells[Qtemp.FieldByName('y').AsInteger,
+        Qtemp.FieldByName('x').AsInteger] := Qtemp.FieldByName('val').Asstring;
       Qtemp.Next;
     end;
-
-
 
     /// ////////////////////////////////////////////////////////////
     // загрузить нагрев
