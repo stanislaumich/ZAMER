@@ -1,7 +1,7 @@
 object FProch: TFProch
   Left = 0
   Top = 0
-  Caption = 'FProch'
+  Caption = #1055#1088#1086#1095#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
   ClientHeight = 528
   ClientWidth = 1026
   Color = clBtnFace

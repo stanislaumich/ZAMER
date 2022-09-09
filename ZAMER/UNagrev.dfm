@@ -1,9 +1,9 @@
 object FNagrev: TFNagrev
   Left = 0
   Top = 0
-  Caption = 'FNagrev'
+  Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072#1075#1088#1077#1074#1072
   ClientHeight = 504
-  ClientWidth = 961
+  ClientWidth = 948
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,98 +13,98 @@ object FNagrev: TFNagrev
   OldCreateOrder = False
   Position = poScreenCenter
   DesignSize = (
-    961
+    948
     504)
   PixelsPerInch = 96
   TextHeight = 23
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 961
+    Width = 948
     Height = 69
     Align = alTop
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1087#1088#1080#1073#1086#1088#1086#1074
     TabOrder = 0
     ExplicitWidth = 985
     object Label1: TLabel
-      Left = 16
+      Left = 8
       Top = 32
-      Width = 111
+      Width = 118
       Height = 23
-      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077
+      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077':'
     end
     object Label2: TLabel
-      Left = 208
+      Left = 200
       Top = 32
-      Width = 30
+      Width = 37
       Height = 23
-      Caption = #1058#1086#1082
+      Caption = #1058#1086#1082':'
     end
     object Label3: TLabel
-      Left = 316
+      Left = 312
       Top = 32
-      Width = 89
+      Width = 96
       Height = 23
-      Caption = #1052#1086#1097#1085#1086#1089#1090#1100
+      Caption = #1052#1086#1097#1085#1086#1089#1090#1100':'
     end
     object Label4: TLabel
-      Left = 496
+      Left = 480
       Top = 32
-      Width = 67
+      Width = 74
       Height = 23
-      Caption = #1052#1086#1084#1077#1085#1090
+      Caption = #1052#1086#1084#1077#1085#1090':'
     end
     object Label5: TLabel
-      Left = 644
+      Left = 636
       Top = 32
-      Width = 69
+      Width = 76
       Height = 23
-      Caption = #1063#1072#1089#1090#1086#1090#1072
+      Caption = #1063#1072#1089#1090#1086#1090#1072':'
     end
     object Label6: TLabel
-      Left = 789
+      Left = 785
       Top = 32
-      Width = 79
+      Width = 86
       Height = 23
-      Caption = #1053#1072#1075#1088#1091#1079#1082#1072
+      Caption = #1053#1072#1075#1088#1091#1079#1082#1072':'
     end
     object Label7: TLabel
-      Left = 140
+      Left = 132
       Top = 32
       Width = 54
       Height = 23
       Caption = 'Label7'
     end
     object Label8: TLabel
-      Left = 248
+      Left = 243
       Top = 32
       Width = 54
       Height = 23
       Caption = 'Label8'
     end
     object Label9: TLabel
-      Left = 420
+      Left = 411
       Top = 32
       Width = 54
       Height = 23
       Caption = 'Label9'
     end
     object Label10: TLabel
-      Left = 569
+      Left = 560
       Top = 32
       Width = 64
       Height = 23
       Caption = 'Label10'
     end
     object Label11: TLabel
-      Left = 719
+      Left = 715
       Top = 32
       Width = 64
       Height = 23
       Caption = 'Label11'
     end
     object Label12: TLabel
-      Left = 884
+      Left = 877
       Top = 32
       Width = 64
       Height = 23
@@ -114,7 +114,7 @@ object FNagrev: TFNagrev
   object GroupBox2: TGroupBox
     Left = 808
     Top = 151
-    Width = 145
+    Width = 133
     Height = 350
     Caption = #1044#1080#1072#1087'. '#1087#1086' '#1090#1086#1082#1091
     TabOrder = 1
@@ -178,7 +178,7 @@ object FNagrev: TFNagrev
   object GroupBox3: TGroupBox
     Left = 0
     Top = 67
-    Width = 961
+    Width = 948
     Height = 78
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
