@@ -51,6 +51,7 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -182,13 +183,31 @@ VALUES ( :NOMER, :X, :Y,
       end;
 
 
-  if (errx=0) and (errx1=0) then FProch.Close;
+  if (errx=0) and (errx1=0) then
+  begin
+   FMain.Label35.Caption    := 'ПРОЙДЕН';
+   FMain.Label35.Font.Color := clGreen;
+   FProch.Close;
+  end;
+end;
+
+procedure TFProch.BitBtn2Click(Sender: TObject);
+begin
+ FProch.Close;
 end;
 
 procedure TFProch.BitBtn3Click(Sender: TObject);
 var
  i:integer;
 begin
+ CheckBox1.Checked:=false;
+ CheckBox2.Checked:=false;
+ CheckBox3.Checked:=false;
+ CheckBox4.Checked:=false;
+ CheckBox5.Checked:=false;
+ CheckBox6.Checked:=false;
+ Edit1.TExt:='0';
+ Edit2.TExt:='0';
  StringGrid2.Cells[0,0]:='Точки';
  StringGrid2.Cells[0,1]:='Изм. 1';
  StringGrid2.Cells[0,2]:='Изм. 2';

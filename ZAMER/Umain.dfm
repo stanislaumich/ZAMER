@@ -518,6 +518,13 @@ object FMain: TFMain
       Height = 23
       AutoSize = False
     end
+    object Label35: TLabel
+      Left = 304
+      Top = 217
+      Width = 90
+      Height = 23
+      AutoSize = False
+    end
     object BitBtn1: TBitBtn
       Left = 3
       Top = 53
@@ -901,7 +908,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object RU2: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -911,7 +918,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object RU3: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -921,7 +928,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object RI1: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -931,7 +938,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object RI2: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -941,7 +948,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object RI3: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -951,7 +958,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object RP1: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -961,7 +968,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object RP2: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -971,7 +978,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object RP3: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
@@ -981,7 +988,7 @@ object FMain: TFMain
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
-      Interval = 50
+      Interval = 100
     end
     object KRPASSWORD: TKRMBRegister
       MCVarType = MCT_WORD

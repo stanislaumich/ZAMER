@@ -46,7 +46,7 @@
 				<Min>490</Min>
 				<Max>498</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>1</Period>
 				<RegFullName>Сервер.Устройство.usred</RegFullName>
@@ -69,12 +69,12 @@
 				<Min>3</Min>
 				<Max>7</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.isred</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>6,03734827041626</Value>
+				<Value>6.03734827041626</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -92,7 +92,7 @@
 				<Min>300</Min>
 				<Max>1700</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.psred</RegFullName>
@@ -115,12 +115,12 @@
 				<Min>494</Min>
 				<Max>495</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.u12</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>494,548736572266</Value>
+				<Value>494.548736572266</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -138,7 +138,7 @@
 				<Min>494</Min>
 				<Max>496</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.u23</RegFullName>
@@ -161,12 +161,12 @@
 				<Min>493</Min>
 				<Max>496</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.u31</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>495,314270019531</Value>
+				<Value>495.314270019531</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -184,7 +184,7 @@
 				<Min>0</Min>
 				<Max>7</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.i1</RegFullName>
@@ -207,12 +207,12 @@
 				<Min>0</Min>
 				<Max>7</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.i2</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>2,91162252426147</Value>
+				<Value>2.91162252426147</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -230,7 +230,7 @@
 				<Min>0</Min>
 				<Max>7</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.i3</RegFullName>
@@ -253,12 +253,12 @@
 				<Min>1000</Min>
 				<Max>2000</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.p1</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>1452,49780273438</Value>
+				<Value>1452.49780273438</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -276,12 +276,12 @@
 				<Min>1000</Min>
 				<Max>2000</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.p2</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>1878,53173828125</Value>
+				<Value>1878.53173828125</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -299,7 +299,7 @@
 				<Min>1000</Min>
 				<Max>2000</Max>
 				<WorkType>1</WorkType>
-				<DataFormat>4</DataFormat>
+				<DataFormat>6</DataFormat>
 				<Percent>0</Percent>
 				<Period>100</Period>
 				<RegFullName>Сервер.Устройство.p3</RegFullName>
