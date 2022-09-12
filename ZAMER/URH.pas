@@ -503,8 +503,6 @@ begin
 end;
 
 procedure TFRH.Timer2Timer(Sender: TObject);
-var
-  i: single;
 begin
   acount       := acount + 1;
   a[acount].u1 := SimpleRoundTo(FMain.RU1.Value, -4);
@@ -516,7 +514,6 @@ begin
   a[acount].p1 := SimpleRoundTo(FMain.RP1.Value, -4);
   a[acount].p2 := SimpleRoundTo(FMain.RP2.Value, -4);
   a[acount].p3 := SimpleRoundTo(FMain.RP3.Value, -4);
-
 end;
 
 procedure TFRH.Timer3Timer(Sender: TObject);

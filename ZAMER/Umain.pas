@@ -337,8 +337,8 @@ end;
 
 procedure TFMain.BitBtn6Click(Sender: TObject);
 begin
-    //FMehan.ShowModal;
-    FMH.ShowModal;
+    FMehan.ShowModal;
+    //FMH.ShowModal;
 end;
 
 procedure TFMain.BitBtn7Click(Sender: TObject);

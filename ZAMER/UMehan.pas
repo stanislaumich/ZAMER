@@ -54,6 +54,7 @@ type
     Label8: TLabel;
     Label9: TLabel;
     QInsSvod: TFDQuery;
+    QGetMN: TFDQuery;
     procedure BitBtn1Click(Sender: TObject);
     procedure Button27Click(Sender: TObject);
     procedure Button32Click(Sender: TObject);
@@ -67,6 +68,7 @@ type
     procedure StringGrid7Click(Sender: TObject);
     procedure StringGrid8Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormHide(Sender: TObject);
   private
     { Private declarations }
   public
@@ -378,7 +380,7 @@ end;
 
 procedure TFMehan.FormActivate(Sender: TObject);
 begin
- row:=1;
+ Timer1.Enabled:=true;
 end;
 
 procedure TFMehan.FormCreate(Sender: TObject);
@@ -404,6 +406,11 @@ begin
   StringGrid8.Cells[0, 5] := 'Изм. 5';
 end;
 
+procedure TFMehan.FormHide(Sender: TObject);
+begin
+ Timer1.Enabled:=false;
+end;
+
 procedure TFMehan.StringGrid7Click(Sender: TObject);
 begin
  row      := StringGrid7.row;
@@ -417,15 +424,20 @@ end;
 procedure TFMehan.Timer1Timer(Sender: TObject);
 begin
   Label5.Caption := FMAin.KrVarLabel1.Caption;
+  Qgetmn.Open('select * from zamer');
+  Label6.Caption:=QGETMN.FieldByName('torq').AsString;
+  Label7.Caption:=QGETMN.FieldByName('rot').AsString;
+
 end;
 
 procedure TFMehan.Timer2Timer(Sender: TObject);
 begin
+count := count + 1;
   if count >= 1000 then
   begin
+  Timer2.Enabled := false;
     ShowMessage('достигнуто максимальное количество замеров, замер остановлен');
-    Timer2.Enabled := false;
-    exit;
+   //exit;
   end;
   if curr = 1 then
   begin
@@ -443,7 +455,7 @@ begin
     amin[row, count].usred := 0;
 
   end;
-  count := count + 1;
+
   if count mod 10 = 0 then
     Label8.Caption := inttostr(count);
 end;

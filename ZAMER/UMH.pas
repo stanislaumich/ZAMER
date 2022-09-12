@@ -53,6 +53,7 @@ type
     Label8: TLabel;
     Label9: TLabel;
     QInsall: TFDQuery;
+    Timer3: TTimer;
 
     procedure CommandStart(c: Integer; n: string; fn: string);
     procedure Timer2Timer(Sender: TObject);
@@ -60,17 +61,16 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure Button27Click(Sender: TObject);
     procedure Button32Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
 
   private
     { Private declarations }
-    //rw:integer;
+    count:integer;
   public
     { Public declarations }
   end;
 
-  R = record
-    u1, u2, u3, n, m, usred: single;
-  end;
+
 
 var
   FMH: TFMH;
@@ -81,13 +81,17 @@ implementation
 {$R *.dfm}
 
 uses umain;
+type
+   R = record
+    u1, u2, u3, n, m, usred: single;
+  end;
 var
   amax, amin           : array [1 .. 5, 1 .. 1000] of R;
   cmax, cmin           : array [1 .. 5] of Integer;
-  count: Integer;
+  //count: Integer;
   num: Integer;
   tip: Integer;
-  rw: Integer;
+  //rw: Integer;
 
 
 
@@ -109,7 +113,7 @@ end;
 
 procedure TFMH.Button27Click(Sender: TObject);
 begin
-  {
+
   count    := 0; // current number
   Label5.Caption:='0';
   QTemp.Close;
@@ -122,14 +126,10 @@ begin
     ' and tip=1 and numisp=' + inttostr(StringGrid7.row));
   QTemp.ExecSQL;
   QTemp.Close;
-  }
-  CommandStart(1, nomer, '0');
-
+  CommandStart(1, Nomer, '0');
   Timer2.Enabled   := true;
-
   Button27.Enabled := false;
   Button32.Enabled := true;
-
 end;
 
 procedure TFMH.Button32Click(Sender: TObject);
@@ -202,6 +202,11 @@ begin
   QCommand.Close;
 end;
 
+procedure TFMH.FormActivate(Sender: TObject);
+begin
+ Timer2.Enabled:=false;
+end;
+
 procedure TFMH.FormCreate(Sender: TObject);
 begin
   StringGrid7.Cells[0, 0] := '';
@@ -233,6 +238,7 @@ end;
 
 procedure TFMH.Timer2Timer(Sender: TObject);
 begin
+  count := count + 1;
   if count >= 1000 then
   begin
   Timer2.Enabled := false;
@@ -247,7 +253,6 @@ begin
     amin[StringGrid8.row, count].u2    := SimpleRoundTo(FMAin.RU2.Value, -4);
     amin[StringGrid8.row, count].u3    := SimpleRoundTo(FMAin.RU3.Value, -4);
     amin[StringGrid8.row, count].usred := 0;
-  count := count + 1;
   if count mod 10 = 0 then
     Label8.Caption := inttostr(count);
 end;

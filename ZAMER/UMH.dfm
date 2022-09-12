@@ -11,6 +11,7 @@ object FMH: TFMH
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnActivate = FormActivate
   OnCreate = FormCreate
   DesignSize = (
     737
@@ -572,5 +573,11 @@ object FMH: TFMH
         Name = 'NUMISP'
         ParamType = ptInput
       end>
+  end
+  object Timer3: TTimer
+    Enabled = False
+    Interval = 50
+    Left = 644
+    Top = 160
   end
 end

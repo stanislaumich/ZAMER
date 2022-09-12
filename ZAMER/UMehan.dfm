@@ -14,6 +14,7 @@ object FMehan: TFMehan
   Position = poScreenCenter
   OnActivate = FormActivate
   OnCreate = FormCreate
+  OnHide = FormHide
   DesignSize = (
     736
     451)
@@ -289,23 +290,23 @@ object FMehan: TFMehan
     object Label5: TLabel
       Left = 144
       Top = 28
-      Width = 54
+      Width = 10
       Height = 23
-      Caption = 'Label5'
+      Caption = '0'
     end
     object Label6: TLabel
       Left = 144
       Top = 57
-      Width = 54
+      Width = 10
       Height = 23
-      Caption = 'Label6'
+      Caption = '0'
     end
     object Label7: TLabel
       Left = 372
       Top = 28
-      Width = 54
+      Width = 10
       Height = 23
-      Caption = 'Label7'
+      Caption = '0'
     end
   end
   object BitBtn1: TBitBtn
@@ -623,5 +624,10 @@ object FMehan: TFMehan
         Name = 'CHECKED'
         ParamType = ptInput
       end>
+  end
+  object QGetMN: TFDQuery
+    Connection = FMain.FDOra
+    Left = 612
+    Top = 308
   end
 end
