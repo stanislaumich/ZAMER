@@ -270,7 +270,8 @@ begin
     QInsAll.ParamByName('P1').AsFloat     := a[i].p1;
     QInsAll.ParamByName('P2').AsFloat     := a[i].p2;
     QInsAll.ParamByName('P3').AsFloat     := a[i].p3;
-    QInsAll.ParamByName('torq').AsFloat   := QTemp.FieldByName('torq').AsFloat;
+    QInsAll.ParamByName('torq').AsFloat   :=
+      SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -2);
     QInsAll.ExecSQL;
     QTemp.Next;
   end;
@@ -287,13 +288,7 @@ begin
   QTemp.SQL.Add('delete from zkzsvod where nomer=' + Quotedstr(Nomer) +
     ' and uisp=' + Label11.Caption);
   QTemp.ExecSQL;
-  { INSERT INTO ZAMER.ZKZSVOD (
-    NOMER, UISP, U,
-    I, P, M,
-    TMP)
-    VALUES ( :NOMER, :UISP, :U,
-    :I, :P, :M,
-    :TMP ) }
+
   QInsSvod.ParamByName('nomer').AsString := Nomer;
   QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label11.Caption);
 
@@ -304,8 +299,7 @@ begin
   QInsSvod.ParamByName('tmp').AsFloat := 0;
 
   QInsSvod.ExecSQL;
-  // StringGrid1.cells[1, StringGrid1.row] :=
-  // Qselectsred.FieldByName('u').AsString;
+
   StringGrid1.cells[1, StringGrid1.row] := QSelectSred.FieldByName('u')
     .AsString;
   StringGrid1.cells[2, StringGrid1.row] := QSelectSred.FieldByName('i')

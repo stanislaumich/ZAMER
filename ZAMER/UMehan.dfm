@@ -13,6 +13,7 @@ object FMehan: TFMehan
   OldCreateOrder = False
   Position = poScreenCenter
   OnActivate = FormActivate
+  OnCreate = FormCreate
   DesignSize = (
     736
     451)
@@ -57,7 +58,7 @@ object FMehan: TFMehan
       575
       163)
     object StringGrid7: TStringGrid
-      Left = 3
+      Left = 0
       Top = 24
       Width = 414
       Height = 133
@@ -67,10 +68,11 @@ object FMehan: TFMehan
       RowCount = 6
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
+      OnClick = StringGrid7Click
     end
     object Button27: TButton
       Left = 442
-      Top = 10
+      Top = 14
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]
@@ -86,7 +88,7 @@ object FMehan: TFMehan
     end
     object Button32: TButton
       Left = 442
-      Top = 58
+      Top = 64
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]
@@ -167,6 +169,7 @@ object FMehan: TFMehan
       RowCount = 6
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
+      OnClick = StringGrid8Click
     end
     object Button37: TButton
       Left = 442
@@ -506,6 +509,7 @@ object FMehan: TFMehan
     TabOrder = 6
   end
   object Timer1: TTimer
+    Enabled = False
     Interval = 500
     OnTimer = Timer1Timer
     Left = 612

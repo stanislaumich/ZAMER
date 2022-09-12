@@ -14,7 +14,8 @@ uses
   UArc in 'UArc.pas' {FArc} ,
   UDatchik in 'UDatchik.pas' {FDatchik} ,
   Uproch in 'Uproch.pas' {FProch} ,
-  UNagrev in 'UNagrev.pas' {FNagrev};
+  UNagrev in 'UNagrev.pas' {FNagrev} ,
+  UMH in 'UMH.pas' {FMH};
 
 {$R *.res}
 
@@ -34,6 +35,7 @@ begin
   Application.CreateForm(TFDatchik, FDatchik);
   Application.CreateForm(TFProch, FProch);
   Application.CreateForm(TFNagrev, FNagrev);
+  Application.CreateForm(TFMH, FMH);
   Application.Run;
 
 end.

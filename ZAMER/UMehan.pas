@@ -54,7 +54,6 @@ type
     Label8: TLabel;
     Label9: TLabel;
     QInsSvod: TFDQuery;
-    procedure FormActivate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure Button27Click(Sender: TObject);
     procedure Button32Click(Sender: TObject);
@@ -64,6 +63,10 @@ type
     procedure Button37Click(Sender: TObject);
     procedure Button42Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure StringGrid7Click(Sender: TObject);
+    procedure StringGrid8Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,16 +79,18 @@ type
 
 var
   FMehan               : TFMehan;
-  amax, amin           : array [1 .. 5, 1 .. 1000] of R;
-  cmax, cmin           : array [1 .. 5] of Integer;
-  count, num, curr, row: Integer;
+
 
 implementation
 
 {$R *.dfm}
 
 uses umain;
+var
 
+  amax, amin           : array [1 .. 5, 1 .. 1000] of R;
+  cmax, cmin           : array [1 .. 5] of Integer;
+  count, num, curr, row: Integer;
 function min(a: Integer; b: Integer): Integer;
 begin
   if a < b then
@@ -123,6 +128,7 @@ begin
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
     + dectype + ', ' + FMAin.Edit12.Text + ')');
   QCommand.ExecSQL;
+  QCommand.Close;
 end;
 
 procedure TFMehan.BitBtn1Click(Sender: TObject);
@@ -196,16 +202,17 @@ var
   i : Integer;
   tr: R;
 begin // start
+
   tr.u1    := 0;
   tr.u2    := 0;
   tr.u3    := 0;
   tr.usred := 0;
   tr.n     := 0;
   tr.m     := 0;
+  count    := 0; // current number
+  curr     := 1; // stringgrid7
+   row   := StringGrid7.row;
 
-  count := 0; // current number
-  curr  := 1; // stringgrid7
-  row   := StringGrid7.row;
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('truncate table zamertmp');
@@ -215,15 +222,14 @@ begin // start
   QTemp.SQL.Add('delete from zmehall where nomer=' + Quotedstr(nomer) +
     ' and tip=1 and numisp=' + inttostr(row));
   QTemp.ExecSQL;
-
+  QTemp.Close;
   for i          := 1 to 1000 do
-    amax[row, i] := tr;
+   amax[row, i] := tr;
   CommandStart(1, nomer, '0');
-  Timer1.Enabled   := true;
+  // Timer1.Enabled   := true;
   Timer2.Enabled   := true;
   Button27.Enabled := false;
   Button32.Enabled := true;
-
 end;
 
 procedure TFMehan.Button32Click(Sender: TObject);
@@ -231,7 +237,7 @@ var
   t, i: Integer;
   f   : single;
 begin
-  Timer1.Enabled := false;
+  // Timer1.Enabled := false;
   Timer2.Enabled := false;
   CommandStart(0, nomer, '0');
   // начинаем обсчеты
@@ -268,7 +274,6 @@ begin
     + Quotedstr(nomer) + ' and numisp=' + inttostr(row) +
     ' and tip=1) and nomer=' + Quotedstr(nomer) + ' and numisp=' + inttostr(row)
     + ' and tip=1');
-
   QTemp.Open;
   StringGrid7.Cells[1, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, -4));
@@ -277,14 +282,8 @@ begin
   StringGrid7.Cells[3, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4));
   QTemp.Close;
-
-  {
-
-    select * from zrhall where p2=(select max(p2) from zrhall)
-  }
-
   Button27.Enabled := true;
-  Button32.Enabled := false;;
+  Button32.Enabled := false;
 end;
 
 procedure TFMehan.Button37Click(Sender: TObject);
@@ -315,7 +314,7 @@ begin // start
   for i          := 1 to 1000 do
     amin[row, i] := tr;
   CommandStart(1, nomer, '0');
-  Timer1.Enabled   := true;
+  // Timer1.Enabled   := true;
   Timer2.Enabled   := true;
   Button37.Enabled := false;
   Button42.Enabled := true;
@@ -327,7 +326,7 @@ var
   t, i: Integer;
   f   : single;
 begin
-  Timer1.Enabled := false;
+  // Timer1.Enabled := false;
   Timer2.Enabled := false;
   CommandStart(0, nomer, '0');
   // начинаем обсчеты
@@ -373,17 +372,16 @@ begin
   StringGrid8.Cells[3, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4));
   QTemp.Close;
-
-  {
-
-    select * from zrhall where p2=(select max(p2) from zrhall)
-  }
-
   Button37.Enabled := true;
   Button42.Enabled := false;;
 end;
 
 procedure TFMehan.FormActivate(Sender: TObject);
+begin
+ row:=1;
+end;
+
+procedure TFMehan.FormCreate(Sender: TObject);
 begin
   StringGrid7.Cells[0, 0] := '';
   StringGrid7.Cells[1, 0] := 'Uсред, В';
@@ -394,7 +392,7 @@ begin
   StringGrid7.Cells[0, 3] := 'Изм. 3';
   StringGrid7.Cells[0, 4] := 'Изм. 4';
   StringGrid7.Cells[0, 5] := 'Изм. 5';
-
+  row:=1;
   StringGrid8.Cells[0, 0] := '';
   StringGrid8.Cells[1, 0] := 'Uсред, В';
   StringGrid8.Cells[2, 0] := 'M, Н/м';
@@ -404,7 +402,16 @@ begin
   StringGrid8.Cells[0, 3] := 'Изм. 3';
   StringGrid8.Cells[0, 4] := 'Изм. 4';
   StringGrid8.Cells[0, 5] := 'Изм. 5';
+end;
 
+procedure TFMehan.StringGrid7Click(Sender: TObject);
+begin
+ row      := StringGrid7.row;
+end;
+
+procedure TFMehan.StringGrid8Click(Sender: TObject);
+begin
+ row      := StringGrid8.row;
 end;
 
 procedure TFMehan.Timer1Timer(Sender: TObject);
@@ -426,7 +433,7 @@ begin
     amax[row, count].u2    := SimpleRoundTo(FMAin.RU2.Value, -4);
     amax[row, count].u3    := SimpleRoundTo(FMAin.RU3.Value, -4);
     amax[row, count].usred := 0;
-    // SimpleRoundTo((amax[row,count].u1+amax[row,count].u2+amax[row,count].u3)/3,-4);
+
   end;
   if curr = 2 then
   begin
@@ -434,7 +441,7 @@ begin
     amin[row, count].u2    := SimpleRoundTo(FMAin.RU2.Value, -4);
     amin[row, count].u3    := SimpleRoundTo(FMAin.RU3.Value, -4);
     amin[row, count].usred := 0;
-    // SimpleRoundTo((amax[row,count].u1+amax[row,count].u2+amax[row,count].u3)/3,-4);
+
   end;
   count := count + 1;
   if count mod 10 = 0 then

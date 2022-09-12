@@ -423,8 +423,7 @@ begin
       QinsAll.ParamByName('P3').AsFloat     := a[i].p3;
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
       QinsAll.ParamByName('DPMAX').AsFloat  := 0;
-
-      QinsAll.ParamByName('rot').AsFloat  := QTemp.FieldByName('rot').AsFloat;
+      QinsAll.ParamByName('rot').AsFloat := QTemp.FieldByName('rot').AsFloat;
       QinsAll.ParamByName('torq').AsFloat := QTemp.FieldByName('torq').AsFloat;
       QinsAll.ParamByName('power').AsFloat :=
         QTemp.FieldByName('power').AsFloat;
@@ -448,8 +447,7 @@ begin
       Qselectsred.FieldByName('nomer').AsString;
     QInsSvod.ParamByName('uisp').AsFloat :=
       Qselectsred.FieldByName('uisp').AsFloat;
-    QInsSvod.ParamByName('pisp').AsFloat := Strtofloat(Label8.Caption);
-    // Qselectsred.Fieldbyname('pisp').AsFloat;
+    QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
     QInsSvod.ParamByName('usred').AsFloat :=
       Qselectsred.FieldByName('u').AsFloat;
     QInsSvod.ParamByName('isred').AsFloat :=
@@ -518,11 +516,7 @@ begin
   a[acount].p1 := SimpleRoundTo(FMain.RP1.Value, -4);
   a[acount].p2 := SimpleRoundTo(FMain.RP2.Value, -4);
   a[acount].p3 := SimpleRoundTo(FMain.RP3.Value, -4);
-  {
-    a[acount].rot := SimpleRoundTo(Fmain.RP3.Value, -4);
-    a[acount].torq := SimpleRoundTo(Fmain.RP3.Value, -4);
-    a[acount].power := SimpleRoundTo(Fmain.RP3.Value, -4);
-  }
+
 end;
 
 procedure TFRH.Timer3Timer(Sender: TObject);

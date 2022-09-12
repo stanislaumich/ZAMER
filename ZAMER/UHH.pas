@@ -363,14 +363,14 @@ begin
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
       QinsAll.ExecSQL;
     end;
+    // тут считается среднее по показаниям только датчика
+    // напряжения, подвохов не ожидается
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').AsString := Nomer;
     Qselectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
     Qselectsred.Open;
     QInsSvod.Close;
-    { NOMER, UISP, USRED,
-      ISRED, PSRED, TIP,
-      DUMAX }
+
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.add('delete from zhhsvod where nomer=' + Quotedstr(Nomer) +
