@@ -125,10 +125,6 @@ begin
     #define USB_DECODER_T35               6
     #define USB_DECODER_T45               10
   }
-  { if (FMain.RadioButton1.Checked) then
-    dectype := '10';
-    if (FMain.RadioButton2.Checked) then
-    dectype := '4'; }
   dectype := '10';
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
     + dectype + ', ' + FMain.Edit12.Text + ')');
@@ -396,7 +392,6 @@ begin
     Timer1.Enabled := false;
     Timer2.Enabled := false;
     CommandStart(0, Nomer, Label8.Caption);
-    // showmessage('a');
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.Open('select count(*) cnt from zamertmp');
@@ -430,14 +425,12 @@ begin
       QinsAll.ExecSQL;
       QTemp.Next;
     end;
-    // showmessage('a');
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').AsString := Nomer;
     Qselectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
     Qselectsred.ParamByName('pisp').AsFloat   := Strtofloat(Label8.Caption);
     Qselectsred.Open;
     QInsSvod.Close;
-
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(Nomer) +
@@ -463,7 +456,6 @@ begin
     QInsSvod.ParamByName('rot').AsFloat := Qselectsred.FieldByName('r').AsFloat;
     QInsSvod.ParamByName('power').AsFloat :=
       Qselectsred.FieldByName('pow').AsFloat;
-
     QInsSvod.ParamByName('tip').AsInteger := tipispyt;
     QInsSvod.ExecSQL;
     StringGrid2.cells[1, StringGrid2.row] :=
@@ -480,9 +472,7 @@ begin
       Qselectsred.FieldByName('t').AsString;
     StringGrid2.cells[7, StringGrid2.row] :=
       Qselectsred.FieldByName('pmax').AsString;
-
     /// //////////////////////////////////////////////////////////////////////////
-
     ProgressBar1.Position := 0;
     StringGrid2.row       := StringGrid2.row + 1;
     if StringGrid2.cells[0, StringGrid2.row] = '' then

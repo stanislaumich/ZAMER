@@ -2,20 +2,19 @@ program Zamer;
 
 uses
   Vcl.Forms,
-  Umain in 'Umain.pas' {FMain} ,
+  Umain in 'Umain.pas' {FMain},
   Ustr in '..\M35_45_modbusMAIN\Ustr.pas',
-  UDATA in 'UDATA.pas' {Data: TDataModule} ,
-  UHH in 'UHH.pas' {Fhhod} ,
-  USoprot in 'USoprot.pas' {FSoprot} ,
-  UProdol in 'UProdol.pas' {FProdol} ,
-  URH in 'URH.pas' {FRH} ,
-  UKZam in 'UKZam.pas' {FKzam} ,
-  UMehan in 'UMehan.pas' {FMehan} ,
-  UArc in 'UArc.pas' {FArc} ,
-  UDatchik in 'UDatchik.pas' {FDatchik} ,
-  Uproch in 'Uproch.pas' {FProch} ,
-  UNagrev in 'UNagrev.pas' {FNagrev} ,
-  UMH in 'UMH.pas' {FMH};
+  UDATA in 'UDATA.pas' {Data: TDataModule},
+  UHH in 'UHH.pas' {Fhhod},
+  USoprot in 'USoprot.pas' {FSoprot},
+  UProdol in 'UProdol.pas' {FProdol},
+  URH in 'URH.pas' {FRH},
+  UKZam in 'UKZam.pas' {FKzam},
+  UMehan in 'UMehan.pas' {FMehan},
+  UArc in 'UArc.pas' {FArc},
+  UDatchik in 'UDatchik.pas' {FDatchik},
+  Uproch in 'Uproch.pas' {FProch},
+  UNagrev in 'UNagrev.pas' {FNagrev};
 
 {$R *.res}
 
@@ -35,7 +34,6 @@ begin
   Application.CreateForm(TFDatchik, FDatchik);
   Application.CreateForm(TFProch, FProch);
   Application.CreateForm(TFNagrev, FNagrev);
-  Application.CreateForm(TFMH, FMH);
   Application.Run;
 
 end.

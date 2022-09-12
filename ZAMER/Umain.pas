@@ -338,7 +338,6 @@ end;
 procedure TFMain.BitBtn6Click(Sender: TObject);
 begin
     FMehan.ShowModal;
-    //FMH.ShowModal;
 end;
 
 procedure TFMain.BitBtn7Click(Sender: TObject);
@@ -741,7 +740,6 @@ end;
 
 procedure TFMain.Commandstart(c: Integer; n: string);
 var
-    s      : string;
     dectype: Integer;
 begin
     {
@@ -749,9 +747,6 @@ begin
       #define USB_DECODER_T35               6
       #define USB_DECODER_T45               10
     }
-    { if (RadioButton2.Checked) then
-      dectype := 4;
-      if (RadioButton12.Checked) then }
     dectype                                    := 10;
     QCommand.ParamByName('nomer').Asstring     := n;
     QCommand.ParamByName('filename').Asstring  := 'fn';
@@ -759,7 +754,6 @@ begin
     QCommand.ParamByName('dat').AsInteger      := dectype;
     QCommand.ParamByName('interval').AsInteger := 50;
     QCommand.ExecSQL;
-
 end;
 
 procedure TFMain.Edit13Change(Sender: TObject);
@@ -849,7 +843,6 @@ begin
     KRTimer1.Enabled       := false;
     KRModbusClient1.Active := false;
     KRModbusMaster1.Active := false;
-
     KRTCPConnector1.IP                           := Edit1.Text;
     KRTCPConnector1.Port                         := strtoint(Edit2.Text);
     KRModbusClient1.Addres                       := strtoint(Edit3.Text);
@@ -869,7 +862,6 @@ begin
     KRModbusMaster1.Active           := false;
     KRModbusMaster1.Connector.Active := false;
     PostMessage(FindWindow(nil, '—бор показаний датчика M45'), WM_QUIT, 0, 0);
-
     savecombo;
     savegrids;
     WriteIni;
@@ -883,13 +875,11 @@ begin
     SettPAth := Extractfilepath(paramstr(0)) + 'SETTINGS\';
     CreateDirEx(SettPAth);
     DateTimePicker1.Date := Date;
-
     Qtemp.SQL.Add('update version set maintotal=maintotal+1');
     Qtemp.ExecSQL;
     Qtemp.SQL.Clear;
     Qtemp.Open('select * from version');
     StatusBar1.Panels[0].Text := Qtemp.FieldByName('maintotal').Asstring;
-
     restorecombo;
     restoregrids;
     BitBtn10.Click();
@@ -907,8 +897,6 @@ procedure TFMain.KRTCPConnector1ConnectionStatus(Sender: TObject;
   AStat: TKRConnectorStat; AReconnectTime: Cardinal);
 begin
     KRModbusClient1.updateAllWaitingVariabels;
-    // if Astat=cstConnected then Edit1.Color      := clGreen else Edit1.Color      := clRed;
-
 end;
 
 procedure TFMain.KRTimer1Timer(Sender: TObject);
