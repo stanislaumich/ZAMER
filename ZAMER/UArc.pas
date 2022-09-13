@@ -52,6 +52,7 @@ type
     Edit3: TEdit;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -269,6 +270,27 @@ end; { setgridcolumnwidths }
   end;
 
 }
+
+procedure TFArc.BitBtn2Click(Sender: TObject);
+begin
+  {
+    Label2.Caption       := QSelect.FieldByName('nomer').Asstring;
+    Edit4.TExt           := QSelect.FieldByName('nomdv').Asstring;
+    Edit5.TExt           := QSelect.FieldByName('unom').Asstring;
+    Edit6.TExt           := QSelect.FieldByName('uisp').Asstring;
+    Edit7.TExt           := QSelect.FieldByName('pnom').Asstring;
+    Edit8.TExt           := QSelect.FieldByName('humid').Asstring;
+    Edit9.TExt           := QSelect.FieldByName('pressur').Asstring;
+    Edit10.TExt          := QSelect.FieldByName('ispoln').Asstring;
+    Edit11.TExt          := QSelect.FieldByName('dop1').Asstring;
+    DateTimePicker1.date := QSelect.FieldByName('data').AsDateTime;
+    Edit1.TExt           := QSelect.FieldByName('tipdv').Asstring;
+    Edit2.TExt           := QSelect.FieldByName('energo').Asstring;
+    Label3.Caption       := QSelect.FieldByName('stendn').Asstring;
+    Label24.Caption      := QSelect.FieldByName('stenda').Asstring;
+    Edit3.TExt           := QSelect.FieldByName('polus').Asstring;
+  }
+end;
 
 procedure TFArc.BitBtn3Click(Sender: TObject);
 begin

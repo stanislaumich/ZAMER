@@ -35,7 +35,7 @@ uses
     FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
     FireDAC.Phys, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
     FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, FireDAC.Stan.Param,
-    FireDAC.DatS, ShellApi,
+    FireDAC.DatS, ShellApi, ComObj,
     FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Vcl.ExtCtrls;
 
 type
@@ -183,6 +183,9 @@ type
         procedure Button3Click(Sender: TObject);
         procedure BitBtn15Click(Sender: TObject);
         procedure BitBtn11Click(Sender: TObject);
+
+        procedure FormCurrentReport;
+        procedure LoadIspyt(Nomer: String);
     private
         { Private declarations }
     public
@@ -396,6 +399,301 @@ begin
     b := i = 1;
 end;
 
+procedure TFMain.LoadIspyt(Nomer: String);
+var
+    tip: Integer;
+begin
+    // загрузить сопротивление если есть
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zsoprot where nomer=' + Quotedstr(Nomer));
+    if Qtemp.RecordCount = 0 then
+    begin
+        Label28.Caption    := 'X';
+        Label28.Font.Color := clRed;
+    end
+    else
+    begin
+        Label28.Caption    := 'ПРОЙДЕН';
+        Label28.Font.Color := clGreen;
+    end;
+    // Label1.Caption := nomer;
+    FSoprot.Edit8.Text      := Qtemp.FieldByName('TEMPER').Asstring;
+    FSoprot.ComboBox7.Text  := Qtemp.FieldByName('PHAS').Asstring;
+    FSoprot.ComboBox8.Text  := Qtemp.FieldByName('SOED').Asstring;
+    FSoprot.ComboBox9.Text  := Qtemp.FieldByName('SOPRED').Asstring;
+    FSoprot.ComboBox10.Text := Qtemp.FieldByName('IZOLED').Asstring;
+    FSoprot.Edit13.Text     := Qtemp.FieldByName('IZOLKORP').Asstring;
+    FSoprot.Edit16.Text     := Qtemp.FieldByName('IZOLOBMOT').Asstring;
+
+    FSoprot.StringGrid3.Cells[1, 1] := Qtemp.FieldByName('IZM1U1U2').Asstring;
+    FSoprot.StringGrid3.Cells[1, 2] := Qtemp.FieldByName('IZM2U1U2').Asstring;
+    FSoprot.StringGrid3.Cells[1, 3] := Qtemp.FieldByName('IZM3U1U2').Asstring;
+    FSoprot.StringGrid3.Cells[2, 1] := Qtemp.FieldByName('IZM1V1V2').Asstring;
+    FSoprot.StringGrid3.Cells[2, 2] := Qtemp.FieldByName('IZM2V1V2').Asstring;
+    FSoprot.StringGrid3.Cells[2, 3] := Qtemp.FieldByName('IZM3V1V2').Asstring;
+    FSoprot.StringGrid3.Cells[3, 1] := Qtemp.FieldByName('IZM1W1W2').Asstring;
+    FSoprot.StringGrid3.Cells[3, 2] := Qtemp.FieldByName('IZM2W1W2').Asstring;
+    FSoprot.StringGrid3.Cells[3, 3] := Qtemp.FieldByName('IZM3W1W2').Asstring;
+
+    /// ////////////////////////////////////////////////////////////
+    // загрузить Холостой ход если есть
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zhhsvod where nomer=' + Quotedstr(Nomer) +
+      ' order by uisp desc');
+    if Qtemp.RecordCount = 0 then
+    begin
+        Label29.Caption    := 'X';
+        Label29.Font.Color := clRed;
+    end
+    else
+    begin
+        Label29.Caption    := 'ПРОЙДЕН';
+        Label29.Font.Color := clGreen;
+    end;
+    tip := Qtemp.FieldByName('tip').AsInteger;
+    case tip of
+        1:
+            begin
+                Fhhod.Radiobutton1Click(Fhhod);
+                Fhhod.RadioButton1.Checked := True;
+            end;
+        2:
+            begin
+                Fhhod.Radiobutton2Click(Fhhod);
+                Fhhod.RadioButton2.Checked := True;
+            end;
+        3:
+            begin
+                Fhhod.Radiobutton3Click(Fhhod);
+                Fhhod.RadioButton3.Checked := True;
+            end;
+    end;
+    tip := 1;
+    while not(Qtemp.eof) do
+    begin
+        Fhhod.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;
+        Fhhod.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred').Asstring;
+        Fhhod.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
+        Fhhod.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('dumax').Asstring;
+        Qtemp.Next;
+        tip := tip + 1;
+    end;
+
+    /// ////////////////////////////////////////////////////////////
+    // загрузить Рабочую характеристику если есть
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zrhsvod where nomer=' + Quotedstr(Nomer) +
+      ' order by pisp desc');
+    if Qtemp.RecordCount = 0 then
+    begin
+        Label30.Caption    := 'X';
+        Label30.Font.Color := clRed;
+    end
+    else
+    begin
+        Label30.Caption    := 'ПРОЙДЕН';
+        Label30.Font.Color := clGreen;
+    end;
+
+    tip := Qtemp.FieldByName('tip').AsInteger;
+    case tip of
+        1:
+            begin
+                Frh.Radiobutton1Click(Fhhod);
+                Frh.RadioButton1.Checked := True;
+            end;
+        2:
+            begin
+                Frh.Radiobutton2Click(Fhhod);
+                Frh.RadioButton2.Checked := True;
+            end;
+        3:
+            begin
+                Frh.Radiobutton3Click(Fhhod);
+                Frh.RadioButton3.Checked := True;
+            end;
+    end;
+    tip := 1;
+    while not(Qtemp.eof) do
+    begin
+        Frh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;
+        Frh.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred').Asstring;
+        Frh.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
+        Frh.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('dumax').Asstring;
+        Frh.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('usred').Asstring;
+        Frh.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('isred').Asstring;
+        Frh.Stringgrid2.Cells[7, tip] := Qtemp.FieldByName('psred').Asstring;
+        Frh.Stringgrid2.Cells[8, tip] := Qtemp.FieldByName('dumax').Asstring;
+        Qtemp.Next;
+        tip := tip + 1;
+    end;
+
+    /// ////////////////////////////////////////////////////////////
+    // загрузить Короткое замыкание если есть
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zkzsvod where nomer=' + Quotedstr(Nomer) +
+      ' order by uisp desc');
+    if Qtemp.RecordCount = 0 then
+    begin
+        Label31.Caption    := 'X';
+        Label31.Font.Color := clRed;
+    end
+    else
+    begin
+        Label31.Caption    := 'ПРОЙДЕН';
+        Label31.Font.Color := clGreen;
+    end;
+    FKZam.StringGrid1.row      := 1;
+    FKZam.StringGrid1.rowCount := 10;
+    while not(Qtemp.eof) do
+    begin
+        FKZam.StringGrid1.Cells[0, FKZam.StringGrid1.row] :=
+          Qtemp.FieldByName('uisp').Asstring;
+        FKZam.StringGrid1.Cells[1, FKZam.StringGrid1.row] :=
+          Qtemp.FieldByName('u').Asstring;
+        FKZam.StringGrid1.Cells[2, FKZam.StringGrid1.row] :=
+          Qtemp.FieldByName('i').Asstring;
+        FKZam.StringGrid1.Cells[3, FKZam.StringGrid1.row] :=
+          Qtemp.FieldByName('p').Asstring;
+        FKZam.StringGrid1.Cells[4, FKZam.StringGrid1.row] :=
+          Qtemp.FieldByName('m').Asstring;
+        FKZam.StringGrid1.row := FKZam.StringGrid1.row + 1;
+        Qtemp.Next;
+
+    end;
+
+    /// ////////////////////////////////////////////////////////////
+    // загрузить Механическую характеристику если есть
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer));
+    if Qtemp.RecordCount = 0 then
+    begin
+        Label32.Caption    := 'X';
+        Label32.Font.Color := clRed;
+    end
+    else
+    begin
+        Label32.Caption    := 'ПРОЙДЕН';
+        Label32.Font.Color := clGreen;
+    end;
+
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer) +
+      ' and tip=1');
+    while not(Qtemp.eof) do
+    begin
+        FMehan.StringGrid7.Cells[1, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('u').Asstring;
+        FMehan.StringGrid7.Cells[2, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('torq').Asstring;
+        FMehan.StringGrid7.Cells[3, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('rot').Asstring;
+        if Qtemp.FieldByName('checked').AsInteger = 1 then
+        begin
+            case Qtemp.FieldByName('numisp').AsInteger of
+                1:
+                    FMehan.RadioButton11.Checked := True;
+                2:
+                    FMehan.RadioButton12.Checked := True;
+                3:
+                    FMehan.RadioButton13.Checked := True;
+                4:
+                    FMehan.RadioButton14.Checked := True;
+                5:
+                    FMehan.RadioButton15.Checked := True;
+            end;
+        end;
+        Qtemp.Next;
+    end;
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer) +
+      ' and tip=2');
+    while not(Qtemp.eof) do
+    begin
+        FMehan.StringGrid8.Cells[1, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('u').Asstring;
+        FMehan.StringGrid8.Cells[2, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('torq').Asstring;
+        FMehan.StringGrid8.Cells[3, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('rot').Asstring;
+        if Qtemp.FieldByName('checked').AsInteger = 1 then
+        begin
+            case Qtemp.FieldByName('numisp').AsInteger of
+                1:
+                    FMehan.RadioButton16.Checked := True;
+                2:
+                    FMehan.RadioButton17.Checked := True;
+                3:
+                    FMehan.RadioButton18.Checked := True;
+                4:
+                    FMehan.RadioButton19.Checked := True;
+                5:
+                    FMehan.RadioButton20.Checked := True;
+            end;
+        end;
+        Qtemp.Next;
+
+    end;
+    /// ////////////////////////////////////////////////////////////
+    // загрузить прочие сипытания
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zproch where nomer=' + Quotedstr(Nomer));
+    if Qtemp.RecordCount = 0 then
+    begin
+        Label35.Caption    := 'X';
+        Label35.Font.Color := clRed;
+    end
+    else
+    begin
+        Label35.Caption    := 'ПРОЙДЕН';
+        Label35.Font.Color := clGreen;
+    end;
+    //
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zproch where nomer=' + Quotedstr(Nomer));
+    Fproch.Edit1.Text        := Qtemp.FieldByName('eprochu').Asstring;
+    Fproch.Edit2.Text        := Qtemp.FieldByName('massa').Asstring;
+    Fproch.CheckBox1.Checked := b(Qtemp.FieldByName('eproch').AsInteger);
+    Fproch.CheckBox2.Checked := b(Qtemp.FieldByName('hifreq').AsInteger);
+    Fproch.CheckBox3.Checked := b(Qtemp.FieldByName('peregruz').AsInteger);
+    Fproch.CheckBox4.Checked := b(Qtemp.FieldByName('rizol').AsInteger);
+    Fproch.CheckBox5.Checked := b(Qtemp.FieldByName('u074').AsInteger);
+    Fproch.CheckBox6.Checked := b(Qtemp.FieldByName('u113').AsInteger);
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zvibro where nomer=' + Quotedstr(Nomer));
+    while not(Qtemp.eof) do
+    begin
+        Fproch.StringGrid1.Cells[Qtemp.FieldByName('y').AsInteger,
+          Qtemp.FieldByName('x').AsInteger] := Qtemp.FieldByName('val')
+          .Asstring;
+        Qtemp.Next;
+    end;
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zzvuk where nomer=' + Quotedstr(Nomer));
+    while not(Qtemp.eof) do
+    begin
+        Fproch.Stringgrid2.Cells[Qtemp.FieldByName('y').AsInteger,
+          Qtemp.FieldByName('x').AsInteger] := Qtemp.FieldByName('val')
+          .Asstring;
+        Qtemp.Next;
+    end;
+
+    /// ////////////////////////////////////////////////////////////
+    // загрузить нагрев
+
+end;
+
 procedure TFMain.BitBtn8Click(Sender: TObject);
 var
     tip: Integer;
@@ -418,294 +716,198 @@ begin
         Label24.Caption := Fprodol.Label24.Caption;
         Edit11.Text     := Fprodol.Edit11.Text;
         Edit10.Text     := Fprodol.Edit10.Text;
-        // загрузить сопротивление если есть
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zsoprot where nomer=' + Quotedstr(Nomer));
-        if Qtemp.RecordCount = 0 then
-        begin
-            Label28.Caption    := 'X';
-            Label28.Font.Color := clRed;
-        end
-        else
-        begin
-            Label28.Caption    := 'ПРОЙДЕН';
-            Label28.Font.Color := clGreen;
-        end;
-        // Label1.Caption := nomer;
-        FSoprot.Edit8.Text      := Qtemp.FieldByName('TEMPER').Asstring;
-        FSoprot.ComboBox7.Text  := Qtemp.FieldByName('PHAS').Asstring;
-        FSoprot.ComboBox8.Text  := Qtemp.FieldByName('SOED').Asstring;
-        FSoprot.ComboBox9.Text  := Qtemp.FieldByName('SOPRED').Asstring;
-        FSoprot.ComboBox10.Text := Qtemp.FieldByName('IZOLED').Asstring;
-        FSoprot.Edit13.Text     := Qtemp.FieldByName('IZOLKORP').Asstring;
-        FSoprot.Edit16.Text     := Qtemp.FieldByName('IZOLOBMOT').Asstring;
 
-        FSoprot.StringGrid3.Cells[1, 1] :=
-          Qtemp.FieldByName('IZM1U1U2').Asstring;
-        FSoprot.StringGrid3.Cells[1, 2] :=
-          Qtemp.FieldByName('IZM2U1U2').Asstring;
-        FSoprot.StringGrid3.Cells[1, 3] :=
-          Qtemp.FieldByName('IZM3U1U2').Asstring;
-        FSoprot.StringGrid3.Cells[2, 1] :=
-          Qtemp.FieldByName('IZM1V1V2').Asstring;
-        FSoprot.StringGrid3.Cells[2, 2] :=
-          Qtemp.FieldByName('IZM2V1V2').Asstring;
-        FSoprot.StringGrid3.Cells[2, 3] :=
-          Qtemp.FieldByName('IZM3V1V2').Asstring;
-        FSoprot.StringGrid3.Cells[3, 1] :=
-          Qtemp.FieldByName('IZM1W1W2').Asstring;
-        FSoprot.StringGrid3.Cells[3, 2] :=
-          Qtemp.FieldByName('IZM2W1W2').Asstring;
-        FSoprot.StringGrid3.Cells[3, 3] :=
-          Qtemp.FieldByName('IZM3W1W2').Asstring;
-
-        /// ////////////////////////////////////////////////////////////
-        // загрузить Холостой ход если есть
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zhhsvod where nomer=' + Quotedstr(Nomer) +
-          ' order by uisp desc');
-        if Qtemp.RecordCount = 0 then
-        begin
-            Label29.Caption    := 'X';
-            Label29.Font.Color := clRed;
-        end
-        else
-        begin
-            Label29.Caption    := 'ПРОЙДЕН';
-            Label29.Font.Color := clGreen;
-        end;
-        tip := Qtemp.FieldByName('tip').AsInteger;
-        case tip of
-            1:
-                begin
-                    Fhhod.Radiobutton1Click(Fhhod);
-                    Fhhod.RadioButton1.Checked := True;
-                end;
-            2:
-                begin
-                    Fhhod.Radiobutton2Click(Fhhod);
-                    Fhhod.RadioButton2.Checked := True;
-                end;
-            3:
-                begin
-                    Fhhod.Radiobutton3Click(Fhhod);
-                    Fhhod.RadioButton3.Checked := True;
-                end;
-        end;
-        tip := 1;
-        while not(Qtemp.eof) do
-        begin
-            Fhhod.Stringgrid2.Cells[1, tip] :=
-              Qtemp.FieldByName('usred').Asstring;
-            Fhhod.Stringgrid2.Cells[2, tip] :=
-              Qtemp.FieldByName('isred').Asstring;
-            Fhhod.Stringgrid2.Cells[3, tip] :=
-              Qtemp.FieldByName('psred').Asstring;
-            Fhhod.Stringgrid2.Cells[4, tip] :=
-              Qtemp.FieldByName('dumax').Asstring;
-            Qtemp.Next;
-            tip := tip + 1;
-        end;
-
-        /// ////////////////////////////////////////////////////////////
-        // загрузить Рабочую характеристику если есть
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zrhsvod where nomer=' + Quotedstr(Nomer) +
-          ' order by pisp desc');
-        if Qtemp.RecordCount = 0 then
-        begin
-            Label30.Caption    := 'X';
-            Label30.Font.Color := clRed;
-        end
-        else
-        begin
-            Label30.Caption    := 'ПРОЙДЕН';
-            Label30.Font.Color := clGreen;
-        end;
-
-        tip := Qtemp.FieldByName('tip').AsInteger;
-        case tip of
-            1:
-                begin
-                    Frh.Radiobutton1Click(Fhhod);
-                    Frh.RadioButton1.Checked := True;
-                end;
-            2:
-                begin
-                    Frh.Radiobutton2Click(Fhhod);
-                    Frh.RadioButton2.Checked := True;
-                end;
-            3:
-                begin
-                    Frh.Radiobutton3Click(Fhhod);
-                    Frh.RadioButton3.Checked := True;
-                end;
-        end;
-        tip := 1;
-        while not(Qtemp.eof) do
-        begin
-            Frh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred')
-              .Asstring;
-            Frh.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred')
-              .Asstring;
-            Frh.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred')
-              .Asstring;
-            Frh.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('dumax')
-              .Asstring;
-            Frh.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('usred')
-              .Asstring;
-            Frh.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('isred')
-              .Asstring;
-            Frh.Stringgrid2.Cells[7, tip] := Qtemp.FieldByName('psred')
-              .Asstring;
-            Frh.Stringgrid2.Cells[8, tip] := Qtemp.FieldByName('dumax')
-              .Asstring;
-            Qtemp.Next;
-            tip := tip + 1;
-        end;
-
-        /// ////////////////////////////////////////////////////////////
-        // загрузить Короткое замыкание если есть
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zkzsvod where nomer=' + Quotedstr(Nomer) +
-          ' order by uisp desc');
-        if Qtemp.RecordCount = 0 then
-        begin
-            Label31.Caption    := 'X';
-            Label31.Font.Color := clRed;
-        end
-        else
-        begin
-            Label31.Caption    := 'ПРОЙДЕН';
-            Label31.Font.Color := clGreen;
-        end;
-        FKZam.StringGrid1.row      := 1;
-        FKZam.StringGrid1.rowCount := 10;
-        while not(Qtemp.eof) do
-        begin
-            FKZam.StringGrid1.Cells[0, FKZam.StringGrid1.row] :=
-              Qtemp.FieldByName('uisp').Asstring;
-            FKZam.StringGrid1.Cells[1, FKZam.StringGrid1.row] :=
-              Qtemp.FieldByName('u').Asstring;
-            FKZam.StringGrid1.Cells[2, FKZam.StringGrid1.row] :=
-              Qtemp.FieldByName('i').Asstring;
-            FKZam.StringGrid1.Cells[3, FKZam.StringGrid1.row] :=
-              Qtemp.FieldByName('p').Asstring;
-            FKZam.StringGrid1.Cells[4, FKZam.StringGrid1.row] :=
-              Qtemp.FieldByName('m').Asstring;
-            FKZam.StringGrid1.row := FKZam.StringGrid1.row + 1;
-            Qtemp.Next;
-
-        end;
-
-        /// ////////////////////////////////////////////////////////////
-        // загрузить Механическую характеристику если есть
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer));
-        if Qtemp.RecordCount = 0 then
-        begin
-            Label32.Caption    := 'X';
-            Label32.Font.Color := clRed;
-        end
-        else
-        begin
-            Label32.Caption    := 'ПРОЙДЕН';
-            Label32.Font.Color := clGreen;
-        end;
-
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer) +
-          ' and tip=1');
-        while not(Qtemp.eof) do
-        begin
-            FMehan.StringGrid7.Cells[1, Qtemp.FieldByName('numisp').AsInteger]
-              := Qtemp.FieldByName('u').Asstring;
-            FMehan.StringGrid7.Cells[2, Qtemp.FieldByName('numisp').AsInteger]
-              := Qtemp.FieldByName('torq').Asstring;
-            FMehan.StringGrid7.Cells[3, Qtemp.FieldByName('numisp').AsInteger]
-              := Qtemp.FieldByName('rot').Asstring;
-            Qtemp.Next;
-
-        end;
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer) +
-          ' and tip=2');
-        while not(Qtemp.eof) do
-        begin
-            FMehan.StringGrid8.Cells[1, Qtemp.FieldByName('numisp').AsInteger]
-              := Qtemp.FieldByName('u').Asstring;
-            FMehan.StringGrid8.Cells[2, Qtemp.FieldByName('numisp').AsInteger]
-              := Qtemp.FieldByName('torq').Asstring;
-            FMehan.StringGrid8.Cells[3, Qtemp.FieldByName('numisp').AsInteger]
-              := Qtemp.FieldByName('rot').Asstring;
-            Qtemp.Next;
-
-        end;
-        /// ////////////////////////////////////////////////////////////
-        // загрузить прочие сипытания
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zproch where nomer=' + Quotedstr(Nomer));
-        if Qtemp.RecordCount = 0 then
-        begin
-            Label35.Caption    := 'X';
-            Label35.Font.Color := clRed;
-        end
-        else
-        begin
-            Label35.Caption    := 'ПРОЙДЕН';
-            Label35.Font.Color := clGreen;
-        end;
-        //
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zproch where nomer=' + Quotedstr(Nomer));
-        Fproch.Edit1.Text        := Qtemp.FieldByName('eprochu').Asstring;
-        Fproch.Edit2.Text        := Qtemp.FieldByName('massa').Asstring;
-        Fproch.CheckBox1.Checked := b(Qtemp.FieldByName('eproch').AsInteger);
-        Fproch.CheckBox2.Checked := b(Qtemp.FieldByName('hifreq').AsInteger);
-        Fproch.CheckBox3.Checked := b(Qtemp.FieldByName('peregruz').AsInteger);
-        Fproch.CheckBox4.Checked := b(Qtemp.FieldByName('rizol').AsInteger);
-        Fproch.CheckBox5.Checked := b(Qtemp.FieldByName('u074').AsInteger);
-        Fproch.CheckBox6.Checked := b(Qtemp.FieldByName('u113').AsInteger);
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zvibro where nomer=' + Quotedstr(Nomer));
-        while not(Qtemp.eof) do
-        begin
-            Fproch.StringGrid1.Cells[Qtemp.FieldByName('y').AsInteger,
-              Qtemp.FieldByName('x').AsInteger] :=
-              Qtemp.FieldByName('val').Asstring;
-            Qtemp.Next;
-        end;
-        Qtemp.Close;
-        Qtemp.SQL.Clear;
-        Qtemp.Open('select * from zzvuk where nomer=' + Quotedstr(Nomer));
-        while not(Qtemp.eof) do
-        begin
-            Fproch.Stringgrid2.Cells[Qtemp.FieldByName('y').AsInteger,
-              Qtemp.FieldByName('x').AsInteger] :=
-              Qtemp.FieldByName('val').Asstring;
-            Qtemp.Next;
-        end;
-
-        /// ////////////////////////////////////////////////////////////
-        // загрузить нагрев
+        LoadIspyt(Nomer);
 
         enableispyt(True);
     end;
 end;
 
-procedure TFMain.BitBtn9Click(Sender: TObject);
+/// /////////////////////////////////////////////////////////////////////////////////////////////////////////
+procedure TFMain.FormCurrentReport;
+const
+    wdFindContinue     = 1;
+    wdReplaceOne       = 1;
+    wdReplaceAll       = 2;
+    wdDoNotSaveChanges = 0;
+var
+    WordApp                    : OLEVariant;
+    SearchString, ReplaceString: string;
+    i, j                       : Integer;
+    Blank:string;
 begin
+    Blank:=Extractfilepath(ParamStr(0))+'REPORT\BLANK.docx';
+    if not FileExists(Blank) then
+    begin
+        ShowMessage('Бланк отчета не найден.');
+        exit;
+    end;
+    try
+        WordApp := CreateOLEObject('Word.Application');
+    except
+        on E: Exception do
+        begin
+            E.Message := 'Word недоступен';
+            raise;
+        end;
+    end;
+    // FormReport.Show;
+    try
+        WordApp.Visible := false;
+        WordApp.Documents.Open(Blank);
+        // холостой ход
+        for i := 1 to 10 do
+        begin
+            SearchString  := 'u' + inttostr(i) + 'hh';
+            ReplaceString := Stringgrid2.Cells[1, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+        end;
+        for i := 1 to 10 do
+        begin
+            SearchString  := 'i' + inttostr(i) + 'hh';
+            ReplaceString := Stringgrid2.Cells[2, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+        end;
+        for i := 1 to 10 do
+        begin
+            SearchString  := 'p' + inttostr(i) + 'hh';
+            ReplaceString := Stringgrid2.Cells[3, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+        end;
+        // рабочая характеристика i p rot torq
+        i := 1;
+        while StringGrid6.Cells[0, i] <> '' do
+        begin
+            SearchString  := 'i' + inttostr(i) + 'rh';
+            ReplaceString := StringGrid6.Cells[2, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+            i := i + 1;
+        end;
+        i := 1;
+        while StringGrid6.Cells[0, i] <> '' do
+        begin
+            SearchString  := 'p' + inttostr(i) + 'rh';
+            ReplaceString := StringGrid6.Cells[6, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+            i := i + 1;
+        end;
+        i := 1;
+        while StringGrid6.Cells[0, i] <> '' do
+        begin
+            SearchString  := 'rot' + inttostr(i) + 'rh';
+            ReplaceString := StringGrid6.Cells[4, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+            i := i + 1;
+        end;
+        i := 1;
+        while StringGrid6.Cells[0, i] <> '' do
+        begin
+            SearchString  := 'torq' + inttostr(i) + 'rh';
+            ReplaceString := StringGrid6.Cells[5, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+            i := i + 1;
+        end;
+        // сохранение документа
+        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Edit5.Text + '.docx');
+        WordApp.ActiveDocument.Close(wdDoNotSaveChanges);
+    finally
+        WordApp.Quit;
+        WordApp := Unassigned;
+    end;
+    // FormReport.Close;
+    ShowMessage('Отчет сформирован!');
+end;
 
+/// //////////////////////////////////////////////////////////////////////////////////////////////
+procedure TFMain.BitBtn9Click(Sender: TObject);
+var
+    buttonSelected: Integer;
+begin
+    buttonSelected := MessageDlg('Сформировать отчет?', mtCustom,
+      [mbYes, mbNo], 0);
+
+    if buttonSelected = mrYes then
+    begin
+        ShowMessage('Была нажата Yes');
+        FormCurrentReport;
+    end;
     enableispyt(false);
 end;
 
@@ -805,7 +1007,7 @@ end;
 
 procedure TFMain.UsredError(Sender: TObject; Variable: TKRVariable);
 begin
-    Label8.Caption := Inttostr(strtoint(Label8.Caption) + 1);
+    Label8.Caption := inttostr(strtoint(Label8.Caption) + 1);
 end;
 
 Procedure TFMain.WriteIni;
@@ -839,10 +1041,10 @@ end;
 
 procedure TFMain.BitBtn10Click(Sender: TObject);
 begin
-    Activated              := false;
-    KRTimer1.Enabled       := false;
-    KRModbusClient1.Active := false;
-    KRModbusMaster1.Active := false;
+    Activated                                    := false;
+    KRTimer1.Enabled                             := false;
+    KRModbusClient1.Active                       := false;
+    KRModbusMaster1.Active                       := false;
     KRTCPConnector1.IP                           := Edit1.Text;
     KRTCPConnector1.Port                         := strtoint(Edit2.Text);
     KRModbusClient1.Addres                       := strtoint(Edit3.Text);
@@ -890,7 +1092,7 @@ end;
 
 procedure TFMain.IsredError(Sender: TObject; Variable: TKRVariable);
 begin
-    Label8.Caption := Inttostr(strtoint(Label8.Caption) + 1);
+    Label8.Caption := inttostr(strtoint(Label8.Caption) + 1);
 end;
 
 procedure TFMain.KRTCPConnector1ConnectionStatus(Sender: TObject;
@@ -905,8 +1107,8 @@ begin
     begin
         StatusBar1.Panels[1].Text := 'СОЕДИНЕН';
         StatusBar1.Panels[2].Text := KRTCPConnector1.IP + ':' +
-          Inttostr(KRTCPConnector1.Port) + '@' +
-          Inttostr(KRModbusClient1.Addres);
+          inttostr(KRTCPConnector1.Port) + '@' +
+          inttostr(KRModbusClient1.Addres);
         Edit1.Color      := clGreen;
         Edit1.Font.Color := clWhite;
         Edit2.Color      := clGreen;
@@ -918,8 +1120,8 @@ begin
     begin
         StatusBar1.Panels[1].Text := 'НЕТ СОЕДИНЕНИЯ';
         StatusBar1.Panels[2].Text := KRTCPConnector1.IP + ':' +
-          Inttostr(KRTCPConnector1.Port) + '@' +
-          Inttostr(KRModbusClient1.Addres);
+          inttostr(KRTCPConnector1.Port) + '@' +
+          inttostr(KRModbusClient1.Addres);
         Edit1.Color      := clRed;
         Edit1.Font.Color := clWhite;
         Edit2.Color      := clRed;
@@ -931,7 +1133,7 @@ end;
 
 procedure TFMain.PsredError(Sender: TObject; Variable: TKRVariable);
 begin
-    Label8.Caption := Inttostr(strtoint(Label8.Caption) + 1);
+    Label8.Caption := inttostr(strtoint(Label8.Caption) + 1);
 end;
 
 end.

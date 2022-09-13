@@ -80,19 +80,20 @@ type
   end;
 
 var
-  FMehan               : TFMehan;
-
+  FMehan: TFMehan;
 
 implementation
 
 {$R *.dfm}
 
 uses umain;
+
 var
 
   amax, amin           : array [1 .. 5, 1 .. 1000] of R;
   cmax, cmin           : array [1 .. 5] of Integer;
   count, num, curr, row: Integer;
+
 function min(a: Integer; b: Integer): Integer;
 begin
   if a < b then
@@ -188,7 +189,7 @@ begin
 
   FMAin.Label32.Caption    := 'ПРОЙДЕН';
   FMAin.Label32.Font.Color := clGreen;
-  // FMehan.Close;
+  FMehan.Close;
 end;
 
 procedure TFMehan.BitBtn2Click(Sender: TObject);
@@ -213,7 +214,7 @@ begin // start
   tr.m     := 0;
   count    := 0; // current number
   curr     := 1; // stringgrid7
-   row   := StringGrid7.row;
+  row      := StringGrid7.row;
 
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -226,7 +227,7 @@ begin // start
   QTemp.ExecSQL;
   QTemp.Close;
   for i          := 1 to 1000 do
-   amax[row, i] := tr;
+    amax[row, i] := tr;
   CommandStart(1, nomer, '0');
   // Timer1.Enabled   := true;
   Timer2.Enabled   := true;
@@ -380,7 +381,7 @@ end;
 
 procedure TFMehan.FormActivate(Sender: TObject);
 begin
- Timer1.Enabled:=true;
+  Timer1.Enabled := true;
 end;
 
 procedure TFMehan.FormCreate(Sender: TObject);
@@ -394,7 +395,7 @@ begin
   StringGrid7.Cells[0, 3] := 'Изм. 3';
   StringGrid7.Cells[0, 4] := 'Изм. 4';
   StringGrid7.Cells[0, 5] := 'Изм. 5';
-  row:=1;
+  row                     := 1;
   StringGrid8.Cells[0, 0] := '';
   StringGrid8.Cells[1, 0] := 'Uсред, В';
   StringGrid8.Cells[2, 0] := 'M, Н/м';
@@ -408,36 +409,36 @@ end;
 
 procedure TFMehan.FormHide(Sender: TObject);
 begin
- Timer1.Enabled:=false;
+  Timer1.Enabled := false;
 end;
 
 procedure TFMehan.StringGrid7Click(Sender: TObject);
 begin
- row      := StringGrid7.row;
+  row := StringGrid7.row;
 end;
 
 procedure TFMehan.StringGrid8Click(Sender: TObject);
 begin
- row      := StringGrid8.row;
+  row := StringGrid8.row;
 end;
 
 procedure TFMehan.Timer1Timer(Sender: TObject);
 begin
   Label5.Caption := FMAin.KrVarLabel1.Caption;
-  Qgetmn.Open('select * from zamer');
-  Label6.Caption:=QGETMN.FieldByName('torq').AsString;
-  Label7.Caption:=QGETMN.FieldByName('rot').AsString;
+  QGetMN.Open('select * from zamer');
+  Label6.Caption := QGetMN.FieldByName('torq').AsString;
+  Label7.Caption := QGetMN.FieldByName('rot').AsString;
 
 end;
 
 procedure TFMehan.Timer2Timer(Sender: TObject);
 begin
-count := count + 1;
+  count := count + 1;
   if count >= 1000 then
   begin
-  Timer2.Enabled := false;
+    Timer2.Enabled := false;
     ShowMessage('достигнуто максимальное количество замеров, замер остановлен');
-   //exit;
+    // exit;
   end;
   if curr = 1 then
   begin
