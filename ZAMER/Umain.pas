@@ -1035,11 +1035,11 @@ begin
           end;
          // прочие хар-ки
          FrepP.Label1.Caption:='Прочие характеристики';
-         for i:=1 to 2 do
+         //for i:=1 to 2 do
            for j:=1 to 18 do
           begin
-            SearchString  := 'Pr' + inttostr(i) +'-'+ inttostr(j);
-            ReplaceString := FProch.StringGrid1.Cells[j, i];
+            SearchString  := 'Pr' + inttostr(j+100);
+            ReplaceString := FProch.StringGrid1.Cells[j, 1];
             WordApp.Selection.Find.ClearFormatting;
             WordApp.Selection.Find.Text              := SearchString;
             WordApp.Selection.Find.Replacement.Text  := ReplaceString;
@@ -1053,6 +1053,42 @@ begin
             WordApp.Selection.Find.MatchAllWordForms := false;
             WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
           end;
+            for j:=1 to 18 do
+          begin
+            SearchString  := 'Pz' + inttostr(j+100);
+            ReplaceString := FProch.StringGrid1.Cells[j, 2];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          end;
+          for i:=1 to 2 do
+           for j:=1 to 8 do
+          begin
+            SearchString  := 'Wh' + inttostr(i) +'-'+ inttostr(j);
+            ReplaceString := FProch.StringGrid2.Cells[j, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          end;
+
           SearchString  := 'rrmass' ;
             ReplaceString := FProch.Edit2.Text;
             WordApp.Selection.Find.ClearFormatting;
@@ -1109,10 +1145,97 @@ begin
             WordApp.Selection.Find.MatchSoundsLike   := false;
             WordApp.Selection.Find.MatchAllWordForms := false;
             WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
-
-
-
-
+           // галочки
+          SearchString  := 'epr' ;
+            if FProch.CheckBox1.Checked then
+            ReplaceString := 'ДА' else ReplaceString := 'НЕТ';
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'ipc' ;
+            if FProch.CheckBox2.Checked then
+            ReplaceString := 'ДА' else ReplaceString := 'НЕТ';
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'ipt' ;
+            if FProch.CheckBox3.Checked then
+            ReplaceString := 'ДА' else ReplaceString := 'НЕТ';
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'triz' ;
+            if FProch.CheckBox4.Checked then
+            ReplaceString := 'ДА' else ReplaceString := 'НЕТ';
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+         SearchString  := 'u074' ;
+            if FProch.CheckBox5.Checked then
+            ReplaceString := 'ДА' else ReplaceString := 'НЕТ';
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+         SearchString  := 'u113' ;
+            if FProch.CheckBox6.Checked then
+            ReplaceString := 'ДА' else ReplaceString := 'НЕТ';
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
 
         // сохранение документа
         FrepP.Label1.Caption:='Сохранение документа';
