@@ -35,7 +35,7 @@ uses
     FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
     FireDAC.Phys, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
     FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, FireDAC.Stan.Param,
-    FireDAC.DatS, ShellApi, ComObj,
+    FireDAC.DatS, ShellApi, ComObj,URepProgress,
     FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Vcl.ExtCtrls;
 
 type
@@ -736,6 +736,8 @@ var
     i, j                       : Integer;
     Blank:string;
 begin
+    FrepP.Label1.Caption:='Создание документа';
+    FrepP.Show;
     Blank:=Extractfilepath(ParamStr(0))+'REPORT\BLANK.docx';
     if not FileExists(Blank) then
     begin
@@ -756,6 +758,8 @@ begin
         WordApp.Visible := false;
         WordApp.Documents.Open(Blank);
         // холостой ход
+        FrepP.Label1.Caption:='Холостой ход';
+
         for i := 1 to 10 do
         begin
             SearchString  := 'u' + inttostr(i) + 'hh';
@@ -808,7 +812,8 @@ begin
             WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
         end;
         // рабочая характеристика i p rot torq
-        i := 1;
+        FrepP.Label1.Caption:='Рабочая характеристика';
+        //i := 1;
         //while FRH.StringGrid2.Cells[0, i] <> '' do
         for i := 1 to 10 do
         begin
@@ -828,7 +833,7 @@ begin
             WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
             //i := i + 1;
         end;
-        i := 1;
+        //i := 1;
         for i := 1 to 10 do
         //while FRH.StringGrid2.Cells[0, i] <> '' do
         begin
@@ -848,7 +853,7 @@ begin
             WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
             //i := i + 1;
         end;
-        i := 1;
+        //i := 1;
         for i := 1 to 10 do
         //while FRH.StringGrid2.Cells[0, i] <> '' do
         begin
@@ -868,7 +873,7 @@ begin
             WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
             //i := i + 1;
         end;
-        i := 1;
+        //i := 1;
         for i := 1 to 10 do
         //while FRH.StringGrid2.Cells[0, i] <> '' do
         begin
@@ -888,17 +893,236 @@ begin
             WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
             //i := i + 1;
         end;
-        // рабочая характеристика
+        // сопротивление
+        FrepP.Label1.Caption:='Сопротивление';
+        // *fsoed *fprizn *st11-st33 *stred *rizoled rizolvk rizolob
+        for i:=1 to 3 do
+         for j:=1 to 3 do
+          begin
+            SearchString  := 'st' + inttostr(i) + inttostr(j);
+            ReplaceString := FSoprot.StringGrid3.Cells[j, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          end;
+
+         SearchString  := 'fsoed' ;
+            ReplaceString := FSoprot.ComboBox7.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+         SearchString  := 'fprizn' ;
+            ReplaceString := FSoprot.ComboBox8.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+         SearchString  := 'stred' ;
+            ReplaceString := FSoprot.ComboBox9.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'rizoled' ;
+            ReplaceString := FSoprot.ComboBox10.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'rizolvk' ;
+            ReplaceString := FSoprot.EDit13.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'rizolob' ;
+            ReplaceString := FSoprot.Edit16.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+         SearchString  := 'temper' ;
+            ReplaceString := FSoprot.Edit8.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+        FrepP.Label1.Caption:='Короткое замыкание';
+        //  короткое замыкание
+        for i:=1 to 5 do
+         for j:=1 to 4 do
+          begin
+            SearchString  := 'Kz' + inttostr(i) + inttostr(j);
+            ReplaceString := FKzam.StringGrid1.Cells[j, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          end;
+         // прочие хар-ки
+         FrepP.Label1.Caption:='Прочие характеристики';
+         for i:=1 to 2 do
+           for j:=1 to 18 do
+          begin
+            SearchString  := 'Pr' + inttostr(i) +'-'+ inttostr(j);
+            ReplaceString := FProch.StringGrid1.Cells[j, i];
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          end;
+          SearchString  := 'rrmass' ;
+            ReplaceString := FProch.Edit2.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'tmpr' ;
+            ReplaceString := FProch.Edit3.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'davl' ;
+            ReplaceString := FProch.Edit5.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+          SearchString  := 'vlag' ;
+            ReplaceString := FProch.Edit4.Text;
+            WordApp.Selection.Find.ClearFormatting;
+            WordApp.Selection.Find.Text              := SearchString;
+            WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+            WordApp.Selection.Find.Forward           := True;
+            WordApp.Selection.Find.Wrap              := wdFindContinue;
+            WordApp.Selection.Find.Format            := false;
+            WordApp.Selection.Find.MatchCase         := True;
+            WordApp.Selection.Find.MatchWholeWord    := false;
+            WordApp.Selection.Find.MatchWildcards    := false;
+            WordApp.Selection.Find.MatchSoundsLike   := false;
+            WordApp.Selection.Find.MatchAllWordForms := false;
+            WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+
+
+
 
 
         // сохранение документа
-        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Edit5.Text + '.docx');
+        FrepP.Label1.Caption:='Сохранение документа';
+        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Nomer + '.docx');
         WordApp.ActiveDocument.Close(wdDoNotSaveChanges);
     finally
         WordApp.Quit;
         WordApp := Unassigned;
     end;
-    // FormReport.Close;
+    FrepP.Hide;
     ShowMessage('Отчет сформирован!');
 end;
 
@@ -912,7 +1136,7 @@ begin
 
     if buttonSelected = mrYes then
     begin
-        ShowMessage('Была нажата Yes');
+        //ShowMessage('Была нажата Yes');
         FormCurrentReport;
     end;
     enableispyt(false);

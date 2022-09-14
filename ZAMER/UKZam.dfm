@@ -3647,9 +3647,9 @@ object FKzam: TFKzam
     object Label14: TLabel
       Left = 101
       Top = 324
-      Width = 64
+      Width = 10
       Height = 23
-      Caption = 'Label14'
+      Caption = '0'
     end
     object BitBtn8: TBitBtn
       Left = 220
