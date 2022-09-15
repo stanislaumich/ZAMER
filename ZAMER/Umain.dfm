@@ -1170,4 +1170,93 @@ object FMain: TFMain
         Value = Null
       end>
   end
+  object QUpdDvig: TFDQuery
+    Connection = FDOra
+    SQL.Strings = (
+      'UPDATE ZAMER.ZDVIGALL'
+      'SET    DATA    = :DATA,'
+      '       TIPDV   = :TIPDV,'
+      '       NOMDV   = :NOMDV,'
+      '       POLUS   = :POLUS,'
+      '       UNOM    = :UNOM,'
+      '       UISP    = :UISP,'
+      '       PNOM    = :PNOM,'
+      '       HUMID   = :HUMID,'
+      '       PRESSUR = :PRESSUR,'
+      '       ENERGO  = :ENERGO,'
+      '       STENDN  = :STENDN,'
+      '       STENDA  = :STENDA,'
+      '       DOP1    = :DOP1,'
+      '       READY   = :READY,'
+      '       NOMER   = :NOMER,'
+      '       ISPOLN  = :ISPOLN'
+      'WHERE  NOMER   = :NOMER')
+    Left = 928
+    Top = 376
+    ParamData = <
+      item
+        Name = 'DATA'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIPDV'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NOMDV'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POLUS'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UNOM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PNOM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'HUMID'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PRESSUR'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ENERGO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'STENDN'
+        ParamType = ptInput
+      end
+      item
+        Name = 'STENDA'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'READY'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ISPOLN'
+        ParamType = ptInput
+      end>
+  end
 end
