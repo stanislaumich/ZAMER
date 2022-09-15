@@ -819,7 +819,7 @@ object FMain: TFMain
     Width = 44
     Height = 21
     TabOrder = 7
-    Text = 'Edit14'
+    Text = '100'
   end
   object Edit15: TEdit
     Left = 833
@@ -827,10 +827,10 @@ object FMain: TFMain
     Width = 44
     Height = 21
     TabOrder = 8
-    Text = 'Edit15'
+    Text = '20'
   end
   object Button3: TButton
-    Left = 876
+    Left = 820
     Top = 321
     Width = 109
     Height = 25
@@ -851,7 +851,7 @@ object FMain: TFMain
     OnConnectionStatus = KRTCPConnector1ConnectionStatus
     CountErrorsForReconnect = 10
     ReconnectTime = 50
-    Interval = 10
+    Interval = 100
     IP = '192.168.0.1'
     ConnectTimeout = 300
     ReadTimeout = 20
