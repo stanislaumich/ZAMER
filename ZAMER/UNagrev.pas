@@ -6,7 +6,10 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Grids;
+  Vcl.Grids, Vcl.ExtCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TFNagrev = class(TForm)
@@ -49,6 +52,10 @@ type
     BitBtn9: TBitBtn;
     BitBtn10: TBitBtn;
     BitBtn11: TBitBtn;
+    Timer1: TTimer;
+    Timer2: TTimer;
+    QgetMN: TFDQuery;
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,5 +70,18 @@ implementation
 {$R *.dfm}
 
 uses umain;
+
+procedure TFNagrev.Timer1Timer(Sender: TObject);
+begin
+  Label7.Caption := FMAin.KrVarLabel1.Caption;
+  Label8.Caption := FMAin.KrVarLabel2.Caption;
+  Label9.Caption := FMAin.KrVarLabel3.Caption;
+
+
+  QGetMN.Open('select * from zamer');
+  Label10.Caption := QGetMN.FieldByName('torq').AsString;
+  Label11.Caption := QGetMN.FieldByName('rot').AsString;
+  Label12.Caption := QGetMN.FieldByName('power').AsString;
+end;
 
 end.

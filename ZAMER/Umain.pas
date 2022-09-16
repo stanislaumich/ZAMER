@@ -223,7 +223,6 @@ begin
     BitBtn2.Enabled  := p;
     BitBtn6.Enabled  := p;
     BitBtn11.Enabled := p;
-    // BitBtn12.Enabled := p;
 end;
 
 procedure TFMain.savecombo;
@@ -396,7 +395,7 @@ begin
 end;
 
 function b(i: Integer): Boolean;
-begin
+begin // нужна для расстановки галочек из базы
     b := i = 1;
 end;
 
@@ -426,7 +425,6 @@ begin
     FSoprot.ComboBox10.Text := Qtemp.FieldByName('IZOLED').Asstring;
     FSoprot.Edit13.Text     := Qtemp.FieldByName('IZOLKORP').Asstring;
     FSoprot.Edit16.Text     := Qtemp.FieldByName('IZOLOBMOT').Asstring;
-
     FSoprot.StringGrid3.Cells[1, 1] := Qtemp.FieldByName('IZM1U1U2').Asstring;
     FSoprot.StringGrid3.Cells[1, 2] := Qtemp.FieldByName('IZM2U1U2').Asstring;
     FSoprot.StringGrid3.Cells[1, 3] := Qtemp.FieldByName('IZM3U1U2').Asstring;
@@ -436,7 +434,6 @@ begin
     FSoprot.StringGrid3.Cells[3, 1] := Qtemp.FieldByName('IZM1W1W2').Asstring;
     FSoprot.StringGrid3.Cells[3, 2] := Qtemp.FieldByName('IZM2W1W2').Asstring;
     FSoprot.StringGrid3.Cells[3, 3] := Qtemp.FieldByName('IZM3W1W2').Asstring;
-
     /// ////////////////////////////////////////////////////////////
     // загрузить Холостой ход если есть
     Qtemp.Close;
@@ -523,13 +520,10 @@ begin
         Frh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;
         Frh.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred').Asstring;
         Frh.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
-
         Frh.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('rot').Asstring;
         Frh.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('torq').Asstring;
-
         Frh.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('dumax').Asstring;
         Frh.Stringgrid2.Cells[7, tip] := Qtemp.FieldByName('dpmax').Asstring;
-
         Qtemp.Next;
         tip := tip + 1;
     end;
@@ -719,9 +713,7 @@ begin
         Label24.Caption := Fprodol.Label24.Caption;
         Edit11.Text     := Fprodol.Edit11.Text;
         Edit10.Text     := Fprodol.Edit10.Text;
-
         LoadIspyt(Nomer);
-
         enableispyt(True);
     end;
 end;

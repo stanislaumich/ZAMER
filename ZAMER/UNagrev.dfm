@@ -25,7 +25,6 @@ object FNagrev: TFNagrev
     Align = alTop
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1087#1088#1080#1073#1086#1088#1086#1074
     TabOrder = 0
-    ExplicitWidth = 985
     object Label1: TLabel
       Left = 8
       Top = 32
@@ -71,44 +70,44 @@ object FNagrev: TFNagrev
     object Label7: TLabel
       Left = 132
       Top = 32
-      Width = 54
+      Width = 10
       Height = 23
-      Caption = 'Label7'
+      Caption = '0'
     end
     object Label8: TLabel
       Left = 243
       Top = 32
-      Width = 54
+      Width = 10
       Height = 23
-      Caption = 'Label8'
+      Caption = '0'
     end
     object Label9: TLabel
       Left = 411
       Top = 32
-      Width = 54
+      Width = 10
       Height = 23
-      Caption = 'Label9'
+      Caption = '0'
     end
     object Label10: TLabel
       Left = 560
       Top = 32
-      Width = 64
+      Width = 10
       Height = 23
-      Caption = 'Label10'
+      Caption = '0'
     end
     object Label11: TLabel
       Left = 715
       Top = 32
-      Width = 64
+      Width = 10
       Height = 23
-      Caption = 'Label11'
+      Caption = '0'
     end
     object Label12: TLabel
       Left = 877
       Top = 32
-      Width = 64
+      Width = 10
       Height = 23
-      Caption = 'Label12'
+      Caption = '0'
     end
   end
   object GroupBox2: TGroupBox
@@ -183,7 +182,6 @@ object FNagrev: TFNagrev
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 2
-    ExplicitWidth = 1018
     object Label13: TLabel
       Left = 8
       Top = 32
@@ -211,7 +209,7 @@ object FNagrev: TFNagrev
       Width = 57
       Height = 31
       TabOrder = 0
-      Text = 'Edit1'
+      Text = '15'
     end
     object Edit2: TEdit
       Left = 499
@@ -219,7 +217,7 @@ object FNagrev: TFNagrev
       Width = 63
       Height = 31
       TabOrder = 1
-      Text = 'Edit2'
+      Text = '1'
     end
     object Edit3: TEdit
       Left = 837
@@ -227,7 +225,7 @@ object FNagrev: TFNagrev
       Width = 81
       Height = 31
       TabOrder = 2
-      Text = 'Edit3'
+      Text = '10'
     end
   end
   object GroupBox4: TGroupBox
@@ -254,16 +252,16 @@ object FNagrev: TFNagrev
     object Label18: TLabel
       Left = 238
       Top = 152
-      Width = 64
+      Width = 10
       Height = 23
-      Caption = 'Label18'
+      Caption = '0'
     end
     object Label19: TLabel
       Left = 238
-      Top = 181
-      Width = 64
+      Top = 184
+      Width = 10
       Height = 23
-      Caption = 'Label19'
+      Caption = '0'
     end
     object StringGrid1: TStringGrid
       Left = 2
@@ -298,9 +296,6 @@ object FNagrev: TFNagrev
       Height = 25
       Align = alBottom
       TabOrder = 3
-      ExplicitLeft = 12
-      ExplicitTop = 248
-      ExplicitWidth = 537
     end
   end
   object BitBtn10: TBitBtn
@@ -432,5 +427,20 @@ object FNagrev: TFNagrev
       ED2118EBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFF2118EB2A23ED433EF0312BEE2219ECFFFFFF}
     TabOrder = 5
+  end
+  object Timer1: TTimer
+    Interval = 500
+    OnTimer = Timer1Timer
+    Left = 228
+    Top = 424
+  end
+  object Timer2: TTimer
+    Left = 280
+    Top = 424
+  end
+  object QgetMN: TFDQuery
+    Connection = FMain.FDOra
+    Left = 448
+    Top = 432
   end
 end

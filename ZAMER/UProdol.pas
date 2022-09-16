@@ -90,7 +90,6 @@ end;
 
 procedure TFProdol.BitBtn3Click(Sender: TObject);
 begin
-
   Qselectneokon.Close;
   Qselectneokon.Open;
 end;
