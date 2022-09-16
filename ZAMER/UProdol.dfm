@@ -509,7 +509,7 @@ object FProdol: TFProdol
     Connection = FMain.FDOra
     SQL.Strings = (
       'select * from zdvigall '
-      'where ready=0 '
+      '--where ready=0 '
       'order by nomer desc')
     Left = 752
     Top = 48

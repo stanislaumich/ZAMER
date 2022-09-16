@@ -523,11 +523,13 @@ begin
         Frh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;
         Frh.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred').Asstring;
         Frh.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
-        Frh.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('dumax').Asstring;
-        Frh.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('usred').Asstring;
-        Frh.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('isred').Asstring;
-        Frh.Stringgrid2.Cells[7, tip] := Qtemp.FieldByName('psred').Asstring;
-        Frh.Stringgrid2.Cells[8, tip] := Qtemp.FieldByName('dumax').Asstring;
+
+        Frh.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('rot').Asstring;
+        Frh.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('torq').Asstring;
+
+        Frh.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('dumax').Asstring;
+        Frh.Stringgrid2.Cells[7, tip] := Qtemp.FieldByName('dpmax').Asstring;
+
         Qtemp.Next;
         tip := tip + 1;
     end;
@@ -799,7 +801,7 @@ begin
         end;
         for i := 1 to 10 do
         begin
-            wrepl('p' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[6, i]);
+            wrepl('p' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[3, i]);
         end;
         for i := 1 to 10 do
         begin
@@ -923,7 +925,7 @@ begin
     QUpdDvig.ParamByName('STENDA').Asstring := Label24.Caption;
     QUpdDvig.ParamByName('DOP1').Asstring   := Edit11.Text;
     QUpdDvig.ParamByName('ISPOLN').Asstring := Edit10.Text;
-    QUpdDvig.ParamByName('READY').AsInteger := 0;
+    QUpdDvig.ParamByName('READY').AsInteger := 1;
     QUpdDvig.ParamByName('NOMER').Asstring  := Nomer;
     QUpdDvig.ExecSQL;
     /// /////
