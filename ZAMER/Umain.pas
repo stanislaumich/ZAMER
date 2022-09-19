@@ -147,6 +147,7 @@ type
         BitBtn15: TBitBtn;
         Label35: TLabel;
         QUpdDvig: TFDQuery;
+    Qinserr: TFDQuery;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -952,6 +953,7 @@ procedure TFMain.Button3Click(Sender: TObject);
 begin
     KRTCPConnector1.Interval    := strtoint(Edit14.Text);
     KRTCPConnector1.ReadTimeout := strtoint(Edit15.Text);
+    BitBtn10.Click;
 end;
 
 procedure TFMain.ComboBox4Change(Sender: TObject);
@@ -1005,6 +1007,8 @@ begin
     P1          := Ini.ReadInteger('ELSPEC', 'P1', 3427);
     P2          := Ini.ReadInteger('ELSPEC', 'P2', 3429);
     P3          := Ini.ReadInteger('ELSPEC', 'P3', 3431);
+    Edit14.Text := Ini.ReadString('ELSPEC', 'Interval', '50');
+    Edit15.Text := Ini.ReadString('ELSPEC', 'Timeout', '50');
     Edit12.Text := Ini.ReadString('M45', 'Interval', '50');
     M45Exe      := Ini.ReadString('DATCHIK', 'EXENAME',
       'Укажите файл сбора показаний');
@@ -1055,6 +1059,8 @@ begin
     Ini.WriteInteger('ELSPEC', 'P1', P1);
     Ini.WriteInteger('ELSPEC', 'P2', P2);
     Ini.WriteInteger('ELSPEC', 'P3', P3);
+    Ini.WriteString('ELSPEC', 'Interval', Edit14.Text);
+    Ini.WriteString('ELSPEC', 'Timeout', Edit15.Text);
     Ini.WriteString('M45', 'Interval', Edit12.Text);
     Ini.Free;
 
@@ -1066,9 +1072,13 @@ begin
     KRTimer1.Enabled                             := false;
     KRModbusClient1.Active                       := false;
     KRModbusMaster1.Active                       := false;
+    KRTCPConnector1.Active:=false;
     KRTCPConnector1.IP                           := Edit1.Text;
     KRTCPConnector1.Port                         := strtoint(Edit2.Text);
     KRModbusClient1.Addres                       := strtoint(Edit3.Text);
+    KRTCPConnector1.Interval    := strtoint(Edit14.Text);
+    KRTCPConnector1.ReadTimeout := strtoint(Edit15.Text);
+    KRTCPConnector1.Active:=true;
     KRModbusMaster1.Connector.OnConnectionStatus :=
       KRTCPConnector1ConnectionStatus;
     KRModbusMaster1.Connector.Active := True;
@@ -1080,6 +1090,8 @@ end;
 
 procedure TFMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
+    qinserr.ParamByName('num').Asinteger:=Strtoint(Label8.Caption);
+    Qinserr.ExecSQL;
     KRTimer1.Enabled                 := false;
     KRModbusClient1.Active           := false;
     KRModbusMaster1.Active           := false;

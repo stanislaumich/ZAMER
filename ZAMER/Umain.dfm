@@ -819,7 +819,7 @@ object FMain: TFMain
     Width = 44
     Height = 21
     TabOrder = 7
-    Text = '100'
+    Text = '10'
   end
   object Edit15: TEdit
     Left = 833
@@ -827,7 +827,7 @@ object FMain: TFMain
     Width = 44
     Height = 21
     TabOrder = 8
-    Text = '20'
+    Text = '10'
   end
   object Button3: TButton
     Left = 820
@@ -1256,6 +1256,18 @@ object FMain: TFMain
       end
       item
         Name = 'ISPOLN'
+        ParamType = ptInput
+      end>
+  end
+  object Qinserr: TFDQuery
+    Connection = FDOra
+    SQL.Strings = (
+      'insert into zerr (num) values(:num)')
+    Left = 740
+    Top = 404
+    ParamData = <
+      item
+        Name = 'NUM'
         ParamType = ptInput
       end>
   end
