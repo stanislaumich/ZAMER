@@ -874,6 +874,7 @@ object FMain: TFMain
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
       RegisterIndex = 3529
+      ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
@@ -884,6 +885,7 @@ object FMain: TFMain
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
       RegisterIndex = 3531
+      ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
@@ -894,6 +896,7 @@ object FMain: TFMain
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
       RegisterIndex = 3439
+      ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
