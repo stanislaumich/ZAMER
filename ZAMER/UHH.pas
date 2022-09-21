@@ -42,6 +42,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     TimerUpd: TTimer;
+    CheckBox2: TCheckBox;
     procedure RadioButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -58,6 +59,7 @@ type
     procedure BitBtn3Click(Sender: TObject);
     procedure TimerUpdTimer(Sender: TObject);
     procedure beep;
+    procedure FormHide(Sender: TObject);
 
   private
     { Private declarations }
@@ -86,10 +88,10 @@ implementation
 uses Umain;
 
 procedure TFhhod.beep;
- begin
-   // сделать звук
-   MessageBeep(word(-1));
- end;
+begin
+  // сделать звук
+  MessageBeep(word(-1));
+end;
 
 procedure TFhhod.BitBtn1Click(Sender: TObject);
 begin
@@ -120,7 +122,7 @@ var
   i, j: Integer;
 begin
   for i                       := 1 to StringGrid2.colcount - 1 do
-    for j                     := 1 to StringGrid2.rowcount - 1 do
+    for j                     := 0 to StringGrid2.rowcount - 1 do
       StringGrid2.cells[j, i] := '';
   StringGrid2.rowcount        := 2;
   RadioButton1.Checked        := false;
@@ -154,7 +156,7 @@ begin
   StringGrid2.cells[2, 0]   := 'I сред';
   StringGrid2.cells[3, 0]   := 'P сред';
   StringGrid2.cells[4, 0]   := 'U макс';
-
+  TimerUpd.Enabled          := True;
 end;
 
 procedure TFhhod.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -170,12 +172,26 @@ begin
       WriteLn(f, StringGrid1.cells[j, i]);
     end;
   CloseFile(f);
-  FMain.QDelta.sql.clear;
-  FMain.QDelta.SQL.Add('delete from zdelta where name='+Quotedstr('uhh'));
-  FMain.QDelta.ExecSQL;
-  FMain.QDelta.sql.clear;
-  FMain.QDelta.SQL.Add('insert into zdelta (name,value) values('+Quotedstr('uhh')+','+Fhhod.Edit2.Text+')');
-  FMain.QDelta.ExecSQL;
+  Fmain.QDelta.SQL.Clear;
+  Fmain.QDelta.SQL.add('delete from zdelta where name=' + Quotedstr('uhh'));
+  Fmain.QDelta.ExecSQL;
+  Fmain.QDelta.SQL.Clear;
+  Fmain.QDelta.SQL.add('insert into zdelta (name,value) values(' +
+    Quotedstr('uhh') + ',' + Fhhod.Edit2.Text + ')');
+  Fmain.QDelta.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.add('delete from ini where name=' + Quotedstr('hhdel'));
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  if CheckBox2.Checked then
+    QTemp.SQL.add('insert into ini (name,value) values(' +
+      Quotedstr('hhdel') + ',1)')
+  else
+    QTemp.SQL.add('insert into ini (name,value) values(' +
+      Quotedstr('hhdel') + ',0)');
+  QTemp.ExecSQL;
 end;
 
 procedure TFhhod.FormCreate(Sender: TObject);
@@ -193,16 +209,29 @@ begin
       StringGrid1.cells[j, i] := s;
     end;
   CloseFile(f);
-  FMain.QDelta.Open('select value from zdelta where name='+Quotedstr('uhh'));
-  Fhhod.Edit2.Text:=FMain.QDelta.FieldByName('value').Asstring;
+  Fmain.QDelta.Open('select value from zdelta where name=' + Quotedstr('uhh'));
+  Fhhod.Edit2.Text := Fmain.QDelta.FieldByName('value').Asstring;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.Open('select value from ini where name=' + Quotedstr('hhdel'));
+  CheckBox2.Checked := QTemp.FieldByName('value').Asinteger = 1;
+end;
+
+procedure TFhhod.FormHide(Sender: TObject);
+begin
+  TimerUpd.Enabled := false;
 end;
 
 procedure TFhhod.RadioButton1Click(Sender: TObject);
 var
-  i  : Integer;
-  cod: Integer;
+  i, j: Integer;
+  cod : Integer;
 
 begin
+  for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[j, i] := '';
+  StringGrid2.rowcount        := 2;
   if StringGrid1.cells[1, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
@@ -236,10 +265,14 @@ end;
 
 procedure TFhhod.RadioButton2Click(Sender: TObject);
 var
-  i  : Integer;
-  cod: Integer;
+  i, j: Integer;
+  cod : Integer;
 
 begin
+  for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[j, i] := '';
+  StringGrid2.rowcount        := 2;
   if StringGrid1.cells[2, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
@@ -273,10 +306,14 @@ end;
 
 procedure TFhhod.RadioButton3Click(Sender: TObject);
 var
-  i  : Integer;
-  cod: Integer;
+  i, j: Integer;
+  cod : Integer;
 
 begin
+  for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[j, i] := '';
+  StringGrid2.rowcount        := 2;
   if StringGrid1.cells[3, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
@@ -310,9 +347,9 @@ end;
 
 procedure TFhhod.StringGrid2Click(Sender: TObject);
 begin
-  if Stringgrid2.row=Stringgrid2.RowCount-1 then
-   Stringgrid2.row:=Stringgrid2.row-1;
-  Label6.Caption := StringGrid2.cells[0, StringGrid2.row];
+  if StringGrid2.row = StringGrid2.rowcount - 1 then
+    StringGrid2.row := StringGrid2.row - 1;
+  Label6.Caption    := StringGrid2.cells[0, StringGrid2.row];
 end;
 
 procedure TFhhod.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -353,7 +390,7 @@ begin
     /// //////////////////////////////////////////////////////////////////////////
     for i := 1 to acount do
     begin
-      QinsAll.ParamByName('NOMER').AsString := Nomer;
+      QinsAll.ParamByName('NOMER').Asstring := Nomer;
       QinsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label6.Caption);
       QinsAll.ParamByName('U12').AsFloat    := a[i].u1;
       QinsAll.ParamByName('U23').AsFloat    := a[i].u2;
@@ -368,10 +405,21 @@ begin
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
       QinsAll.ExecSQL;
     end;
+    // по просьбе удалим записи где мы выходим за пределы диапазона
+    // там dumax> edit2.text
+    If CheckBox2.Checked then
+    begin
+      QTemp.Close;
+      QTemp.SQL.Clear;
+      QTemp.SQL.add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
+        ' and uisp=' + Label6.Caption + ' and dumax>' + Edit2.Text);
+      QTemp.ExecSQL;
+    end;
+
     // тут считается среднее по показаниям только датчика
     // напряжения, подвохов не ожидается
     Qselectsred.Close;
-    Qselectsred.ParamByName('nomer').AsString := Nomer;
+    Qselectsred.ParamByName('nomer').Asstring := Nomer;
     Qselectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
     Qselectsred.Open;
     QInsSvod.Close;
@@ -381,28 +429,28 @@ begin
     QTemp.SQL.add('delete from zhhsvod where nomer=' + Quotedstr(Nomer) +
       ' and uisp=' + Label6.Caption);
     QTemp.ExecSQL;
-    QInsSvod.ParamByName('nomer').AsString :=
-      Qselectsred.Fieldbyname('nomer').AsString;
+    QInsSvod.ParamByName('nomer').Asstring :=
+      Qselectsred.FieldByName('nomer').Asstring;
     QInsSvod.ParamByName('uisp').AsFloat :=
-      Qselectsred.Fieldbyname('uisp').AsFloat;
+      Qselectsred.FieldByName('uisp').AsFloat;
     QInsSvod.ParamByName('usred').AsFloat :=
-      Qselectsred.Fieldbyname('u').AsFloat;
+      Qselectsred.FieldByName('u').AsFloat;
     QInsSvod.ParamByName('isred').AsFloat :=
-      Qselectsred.Fieldbyname('i').AsFloat;
+      Qselectsred.FieldByName('i').AsFloat;
     QInsSvod.ParamByName('psred').AsFloat :=
-      Qselectsred.Fieldbyname('ps').AsFloat;
+      Qselectsred.FieldByName('ps').AsFloat;
     QInsSvod.ParamByName('dumax').AsFloat :=
-      Qselectsred.Fieldbyname('umax').AsFloat;
+      Qselectsred.FieldByName('umax').AsFloat;
     QInsSvod.ParamByName('tip').Asinteger := tipispyt;;
     QInsSvod.ExecSQL;
     StringGrid2.cells[1, StringGrid2.row] :=
-      Qselectsred.Fieldbyname('u').AsString;
+      Qselectsred.FieldByName('u').Asstring;
     StringGrid2.cells[2, StringGrid2.row] :=
-      Qselectsred.Fieldbyname('i').AsString;
+      Qselectsred.FieldByName('i').Asstring;
     StringGrid2.cells[3, StringGrid2.row] :=
-      Qselectsred.Fieldbyname('ps').AsString;
+      Qselectsred.FieldByName('ps').Asstring;
     StringGrid2.cells[4, StringGrid2.row] :=
-      Qselectsred.Fieldbyname('umax').AsString;
+      Qselectsred.FieldByName('umax').Asstring;
     /// //////////////////////////////////////////////////////////////////////////
 
     ProgressBar1.Position := 0;
@@ -443,16 +491,18 @@ end;
 
 procedure TFhhod.TimerUpdTimer(Sender: TObject);
 begin
-  Label8.Caption:=FMAin.KRVarLabel1.Caption;
-  if abs(strtofloat(Label8.Caption)-strtofloat(Label6.Caption))<strtofloat(Edit2.Text) then
+  Label8.Caption := Fmain.KRVarLabel1.Caption;
+  if abs(Strtofloat(Label8.Caption) - Strtofloat(Label6.Caption)) <
+    Strtofloat(Edit2.Text) then
   begin
-   Label6.Font.Color:=clGreen
+    Label6.font.Color := clGreen
   end
   else
-   begin
-    Label6.Font.Color:=clRed;
-    if checkBox1.Checked then beep;
-   end;
+  begin
+    Label6.font.Color := clRed;
+    if CheckBox1.Checked then
+      beep;
+  end;
 end;
 
 end.

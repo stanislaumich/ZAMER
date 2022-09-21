@@ -123,24 +123,24 @@ object FMain: TFMain
     end
     object Label17: TLabel
       Left = 12
-      Top = 108
-      Width = 185
+      Top = 112
+      Width = 202
       Height = 23
-      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1085#1086#1084#1080#1085'.:'
+      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1085#1086#1084#1080#1085'. '#1042':'
     end
     object Label18: TLabel
       Left = 16
       Top = 144
-      Width = 183
+      Width = 200
       Height = 23
-      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1080#1089#1087#1099#1090'.:'
+      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1080#1089#1087#1099#1090'. '#1042':'
     end
     object Label19: TLabel
-      Left = 232
+      Left = 231
       Top = 67
-      Width = 163
+      Width = 195
       Height = 23
-      Caption = #1052#1086#1097#1085#1086#1089#1090#1100' '#1085#1086#1084#1080#1085'.:'
+      Caption = #1052#1086#1097#1085#1086#1089#1090#1100' '#1085#1086#1084#1080#1085'., '#1042#1090':'
     end
     object Label20: TLabel
       Left = 508
@@ -152,16 +152,16 @@ object FMain: TFMain
     object Label21: TLabel
       Left = 293
       Top = 108
-      Width = 102
+      Width = 133
       Height = 23
-      Caption = #1042#1083#1072#1078#1085#1086#1089#1090#1100':'
+      Caption = #1042#1083#1072#1078#1085#1086#1089#1090#1100', %:'
     end
     object Label22: TLabel
-      Left = 302
-      Top = 145
-      Width = 93
+      Left = 289
+      Top = 144
+      Width = 137
       Height = 23
-      Caption = #1044#1072#1074#1083#1077#1085#1080#1077':'
+      Caption = #1044#1072#1074#1083#1077#1085#1080#1077', '#1082#1055#1072':'
     end
     object Label23: TLabel
       Left = 513
@@ -172,7 +172,7 @@ object FMain: TFMain
     end
     object Label24: TLabel
       Left = 508
-      Top = 147
+      Top = 144
       Width = 279
       Height = 23
       AutoSize = False
@@ -265,23 +265,23 @@ object FMain: TFMain
       TabOrder = 6
     end
     object Edit5: TEdit
-      Left = 203
+      Left = 226
       Top = 105
       Width = 51
       Height = 31
       TabOrder = 7
     end
     object Edit6: TEdit
-      Left = 203
-      Top = 142
+      Left = 226
+      Top = 141
       Width = 51
       Height = 31
       TabOrder = 8
     end
     object Edit7: TEdit
-      Left = 401
+      Left = 428
       Top = 64
-      Width = 88
+      Width = 61
       Height = 31
       TabOrder = 9
     end
@@ -298,16 +298,16 @@ object FMain: TFMain
         'IE4')
     end
     object Edit8: TEdit
-      Left = 401
-      Top = 105
-      Width = 88
+      Left = 439
+      Top = 104
+      Width = 50
       Height = 31
       TabOrder = 11
     end
     object Edit9: TEdit
-      Left = 401
-      Top = 142
-      Width = 88
+      Left = 439
+      Top = 141
+      Width = 50
       Height = 31
       TabOrder = 12
     end
@@ -342,7 +342,7 @@ object FMain: TFMain
     end
     object Edit13: TEdit
       Left = 704
-      Top = 142
+      Top = 178
       Width = 83
       Height = 31
       TabOrder = 16
@@ -812,6 +812,7 @@ object FMain: TFMain
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 6
+    OnClick = BitBtn14Click
   end
   object Edit14: TEdit
     Left = 833

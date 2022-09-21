@@ -77,11 +77,10 @@ begin
   Label8.Caption := FMAin.KrVarLabel2.Caption;
   Label9.Caption := FMAin.KrVarLabel3.Caption;
 
-
-  QGetMN.Open('select * from zamer');
-  Label10.Caption := QGetMN.FieldByName('torq').AsString;
-  Label11.Caption := QGetMN.FieldByName('rot').AsString;
-  Label12.Caption := QGetMN.FieldByName('power').AsString;
+  QgetMN.Open('select * from zamer');
+  Label10.Caption := QgetMN.FieldByName('torq').AsString;
+  Label11.Caption := QgetMN.FieldByName('rot').AsString;
+  Label12.Caption := QgetMN.FieldByName('power').AsString;
 end;
 
 end.

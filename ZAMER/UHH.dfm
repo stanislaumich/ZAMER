@@ -15,6 +15,7 @@ object Fhhod: TFhhod
   OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnHide = FormHide
   DesignSize = (
     758
     531)
@@ -400,6 +401,14 @@ object Fhhod: TFhhod
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 5
   end
+  object CheckBox2: TCheckBox
+    Left = 188
+    Top = 414
+    Width = 97
+    Height = 17
+    Caption = #1059#1076#1072#1083#1103#1090#1100
+    TabOrder = 6
+  end
   object Timer1: TTimer
     Enabled = False
     OnTimer = Timer1Timer
@@ -570,6 +579,7 @@ object Fhhod: TFhhod
       end>
   end
   object TimerUpd: TTimer
+    Enabled = False
     Interval = 500
     OnTimer = TimerUpdTimer
     Left = 311
