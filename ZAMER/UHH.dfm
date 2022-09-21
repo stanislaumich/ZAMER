@@ -74,6 +74,32 @@ object Fhhod: TFhhod
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object Label7: TLabel
+    Left = 456
+    Top = 484
+    Width = 132
+    Height = 33
+    Caption = #1058#1077#1082#1091#1097#1077#1077':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 600
+    Top = 484
+    Width = 17
+    Height = 33
+    Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object Edit1: TEdit
     Left = 188
     Top = 5
@@ -394,11 +420,11 @@ object Fhhod: TFhhod
       '   NOMER, UISP, U12, '
       '   U23, U31, I1, '
       '   I2, I3, P1, '
-      '   P2, P3, DUMAX) '
+      '   P2, P3, DUMAX, ps) '
       'VALUES ( :NOMER, :UISP, :U12, '
       '   :U23, :U31, :I1, '
       '   :I2, :I3, :P1, '
-      '   :P2, :P3, :DUMAX )')
+      '   :P2, :P3, :DUMAX,:ps )')
     Left = 427
     Top = 205
     ParamData = <
@@ -448,6 +474,10 @@ object Fhhod: TFhhod
       end
       item
         Name = 'DUMAX'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PS'
         ParamType = ptInput
       end>
   end
@@ -503,9 +533,9 @@ object Fhhod: TFhhod
     SQL.Strings = (
       'select'
       'NOMER, UISP,'
-      'round((sum(su12)+sum(su23)+sum(su31))/3,4) u,'
-      'round((sum(si1)+sum(si2)+sum(si3))/3,4) i,'
-      'round((sum(sp1)+sum(sp2)+sum(sp3))/3,4) p,'
+      'round((sum(su12)+sum(su23)+sum(su31))/3,1) u,'
+      'round((sum(si1)+sum(si2)+sum(si3))/3,3) i,'
+      'round(sum(sp),2) ps,'
       'round(sum(mumax),4) umax'
       'from'
       '('
@@ -513,18 +543,15 @@ object Fhhod: TFhhod
       'NOMER, UISP,'
       'avg(U12) su12, avg(U23) su23, avg(U31) su31,'
       'avg(I1) si1,avg(I2) si2, avg(I3) si3,'
-      'avg(P1) sp1,avg(P2) sp2, avg(P3) sp3,'
-      '0 mumax'
+      'avg(ps) sp,0 mumax'
       'FROM ZAMER.ZHHALL'
       'where nomer=:nomer and uisp=:uisp'
       'group by nomer, uisp'
       'union all'
-      'SELECT'
-      'nomer,  UISP,'
+      'SELECT nomer,  UISP,'
       '0 su12, 0 su23, 0 su31,'
       '0 si1, 0 si2, 0 si3,'
-      '0 sp1, 0 sp2, 0 sp3,'
-      'max(dumax) mumax'
+      '0 sp, max(dumax) mumax'
       'FROM ZAMER.ZHHALL'
       'where nomer=:nomer and uisp=:uisp'
       'group by nomer, uisp'
@@ -541,5 +568,11 @@ object Fhhod: TFhhod
         Name = 'UISP'
         ParamType = ptInput
       end>
+  end
+  object TimerUpd: TTimer
+    Interval = 500
+    OnTimer = TimerUpdTimer
+    Left = 311
+    Top = 257
   end
 end

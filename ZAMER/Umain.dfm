@@ -715,7 +715,7 @@ object FMain: TFMain
       Height = 33
       Hint = ''
       Variable = Usred
-      Format = '0.0000'
+      Format = '0.0'
       Color = clWindow
       ErrorToHint = True
       FontColor = clWindowText
@@ -735,7 +735,7 @@ object FMain: TFMain
       Height = 34
       Hint = ''
       Variable = Isred
-      Format = '0.0000'
+      Format = '0.000'
       Color = clWindow
       ErrorToHint = True
       FontColor = clWindowText
@@ -1007,6 +1007,16 @@ object FMain: TFMain
       HighWordFirst = True
       HighDWordFirst = True
     end
+    object Psredq: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3439
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 100
+    end
   end
   object KRTimer1: TKRTimer
     OnTimer = KRTimer1Timer
@@ -1271,6 +1281,18 @@ object FMain: TFMain
     ParamData = <
       item
         Name = 'NUM'
+        ParamType = ptInput
+      end>
+  end
+  object QDelta: TFDQuery
+    Connection = FDOra
+    SQL.Strings = (
+      'select * from zdelta where name=:name')
+    Left = 748
+    Top = 456
+    ParamData = <
+      item
+        Name = 'NAME'
         ParamType = ptInput
       end>
   end

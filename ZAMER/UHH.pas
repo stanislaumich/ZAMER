@@ -39,6 +39,9 @@ type
     Label6: TLabel;
     QInsSvod: TFDQuery;
     Qselectsred: TFDQuery;
+    Label7: TLabel;
+    Label8: TLabel;
+    TimerUpd: TTimer;
     procedure RadioButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -53,6 +56,9 @@ type
     procedure StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure BitBtn3Click(Sender: TObject);
+    procedure TimerUpdTimer(Sender: TObject);
+    procedure beep;
+
   private
     { Private declarations }
   public
@@ -60,7 +66,7 @@ type
   end;
 
   R = record
-    u1, u2, u3, i1, i2, i3, p1, p2, p3: real;
+    u1, u2, u3, i1, i2, i3, p1, p2, p3, ps: real;
   end;
 
 var
@@ -79,27 +85,14 @@ implementation
 
 uses Umain;
 
+procedure TFhhod.beep;
+ begin
+   // сделать звук
+   MessageBeep(word(-1));
+ end;
+
 procedure TFhhod.BitBtn1Click(Sender: TObject);
 begin
-  {
-    SELECT
-    NOMER, UISP,
-    avg(U12) su12, avg(U23) su23, avg(U31) su31,
-    avg(I1) si1,avg(I2) si2, avg(I3) si3,
-    avg(P1) sp1,avg(P2) sp2, avg(P3) sp3,
-    0 mumax
-    FROM ZAMER.ZHHALL
-    group by nomer, uisp
-    union all
-    SELECT
-    nomer,  UISP,
-    0 su12, 0 su23, 0 su31,
-    0 si1, 0 si2, 0 si3,
-    0 sp1, 0 sp2, 0 sp3,
-    max(dumax) mumax
-    FROM ZAMER.ZHHALL
-    group by nomer, uisp
-  }
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
@@ -177,6 +170,12 @@ begin
       WriteLn(f, StringGrid1.cells[j, i]);
     end;
   CloseFile(f);
+  FMain.QDelta.sql.clear;
+  FMain.QDelta.SQL.Add('delete from zdelta where name='+Quotedstr('uhh'));
+  FMain.QDelta.ExecSQL;
+  FMain.QDelta.sql.clear;
+  FMain.QDelta.SQL.Add('insert into zdelta (name,value) values('+Quotedstr('uhh')+','+Fhhod.Edit2.Text+')');
+  FMain.QDelta.ExecSQL;
 end;
 
 procedure TFhhod.FormCreate(Sender: TObject);
@@ -194,6 +193,8 @@ begin
       StringGrid1.cells[j, i] := s;
     end;
   CloseFile(f);
+  FMain.QDelta.Open('select value from zdelta where name='+Quotedstr('uhh'));
+  Fhhod.Edit2.Text:=FMain.QDelta.FieldByName('value').Asstring;
 end;
 
 procedure TFhhod.RadioButton1Click(Sender: TObject);
@@ -309,6 +310,8 @@ end;
 
 procedure TFhhod.StringGrid2Click(Sender: TObject);
 begin
+  if Stringgrid2.row=Stringgrid2.RowCount-1 then
+   Stringgrid2.row:=Stringgrid2.row-1;
   Label6.Caption := StringGrid2.cells[0, StringGrid2.row];
 end;
 
@@ -341,6 +344,7 @@ procedure TFhhod.Timer1Timer(Sender: TObject);
 var
   i: Integer;
 begin
+
   curtime := curtime + 1;
   if curtime > maxtime then
   begin
@@ -360,6 +364,7 @@ begin
       QinsAll.ParamByName('P1').AsFloat     := a[i].p1;
       QinsAll.ParamByName('P2').AsFloat     := a[i].p2;
       QinsAll.ParamByName('P3').AsFloat     := a[i].p3;
+      QinsAll.ParamByName('Ps').AsFloat     := a[i].ps;
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
       QinsAll.ExecSQL;
     end;
@@ -385,7 +390,7 @@ begin
     QInsSvod.ParamByName('isred').AsFloat :=
       Qselectsred.Fieldbyname('i').AsFloat;
     QInsSvod.ParamByName('psred').AsFloat :=
-      Qselectsred.Fieldbyname('p').AsFloat;
+      Qselectsred.Fieldbyname('ps').AsFloat;
     QInsSvod.ParamByName('dumax').AsFloat :=
       Qselectsred.Fieldbyname('umax').AsFloat;
     QInsSvod.ParamByName('tip').Asinteger := tipispyt;;
@@ -395,7 +400,7 @@ begin
     StringGrid2.cells[2, StringGrid2.row] :=
       Qselectsred.Fieldbyname('i').AsString;
     StringGrid2.cells[3, StringGrid2.row] :=
-      Qselectsred.Fieldbyname('p').AsString;
+      Qselectsred.Fieldbyname('ps').AsString;
     StringGrid2.cells[4, StringGrid2.row] :=
       Qselectsred.Fieldbyname('umax').AsString;
     /// //////////////////////////////////////////////////////////////////////////
@@ -424,15 +429,30 @@ var
   i: single;
 begin
   acount       := acount + 1;
-  a[acount].u1 := SimpleRoundTo(Fmain.RU1.Value, -4);
-  a[acount].u2 := SimpleRoundTo(Fmain.RU2.Value, -4);
-  a[acount].u3 := SimpleRoundTo(Fmain.RU3.Value, -4);
-  a[acount].i1 := SimpleRoundTo(Fmain.RI1.Value, -4);
-  a[acount].i2 := SimpleRoundTo(Fmain.RI2.Value, -4);
-  a[acount].i3 := SimpleRoundTo(Fmain.RI3.Value, -4);
-  a[acount].p1 := SimpleRoundTo(Fmain.RP1.Value, -4);
-  a[acount].p2 := SimpleRoundTo(Fmain.RP2.Value, -4);
-  a[acount].p3 := SimpleRoundTo(Fmain.RP3.Value, -4);
+  a[acount].u1 := SimpleRoundTo(Fmain.RU1.Value, -1);
+  a[acount].u2 := SimpleRoundTo(Fmain.RU2.Value, -1);
+  a[acount].u3 := SimpleRoundTo(Fmain.RU3.Value, -1);
+  a[acount].i1 := SimpleRoundTo(Fmain.RI1.Value, -3);
+  a[acount].i2 := SimpleRoundTo(Fmain.RI2.Value, -3);
+  a[acount].i3 := SimpleRoundTo(Fmain.RI3.Value, -3);
+  a[acount].p1 := SimpleRoundTo(Fmain.RP1.Value, -2);
+  a[acount].p2 := SimpleRoundTo(Fmain.RP2.Value, -2);
+  a[acount].p3 := SimpleRoundTo(Fmain.RP3.Value, -2);
+  a[acount].ps := SimpleRoundTo(Fmain.PSredQ.Value, -2);
+end;
+
+procedure TFhhod.TimerUpdTimer(Sender: TObject);
+begin
+  Label8.Caption:=FMAin.KRVarLabel1.Caption;
+  if abs(strtofloat(Label8.Caption)-strtofloat(Label6.Caption))<strtofloat(Edit2.Text) then
+  begin
+   Label6.Font.Color:=clGreen
+  end
+  else
+   begin
+    Label6.Font.Color:=clRed;
+    if checkBox1.Checked then beep;
+   end;
 end;
 
 end.

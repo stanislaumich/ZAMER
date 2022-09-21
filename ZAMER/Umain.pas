@@ -148,6 +148,8 @@ type
         Label35: TLabel;
         QUpdDvig: TFDQuery;
     Qinserr: TFDQuery;
+    QDelta: TFDQuery;
+    Psredq: TKRMBRegister;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -186,6 +188,8 @@ type
         procedure BitBtn15Click(Sender: TObject);
         procedure BitBtn11Click(Sender: TObject);
 
+        procedure loaddelta;
+        procedure savedelta;
         procedure FormCurrentReport;
         procedure LoadIspyt(Nomer: String);
     private
@@ -241,6 +245,28 @@ begin
         end;
     end;
 end;
+
+procedure TFMain.loaddelta;
+ begin
+  // холостой ход
+  QDelta.Open('select value from zdelta where name='+Quotedstr('uhh'));
+  Fhhod.Edit2.Text:=QDelta.FieldByName('value').Asstring;
+   //
+
+
+ end;
+
+ procedure TFMain.savedelta;
+ begin
+ // холостой ход
+  QDelta.sql.clear;
+  QDelta.SQL.Add('delete from zdelta where name='+Quotedstr('uhh'));
+  QDelta.ExecSQL;
+  QDelta.sql.clear;
+  QDelta.SQL.Add('insert into zdelta (name,value) values('+Quotedstr('uhh')+','+Fhhod.Edit2.Text+')');
+  QDelta.ExecSQL;
+  //
+ end;
 
 procedure TFMain.restorecombo;
 var
@@ -367,8 +393,8 @@ begin
               strtoint(Edit5.Text);
             QInsertNewDvig.ParamByName('UISP').AsInteger :=
               strtoint(Edit6.Text);
-            QInsertNewDvig.ParamByName('PNOM').AsInteger :=
-              strtoint(Edit7.Text);
+            QInsertNewDvig.ParamByName('PNOM').AsFloat :=
+              strtofloat(Edit7.Text);
             QInsertNewDvig.ParamByName('HUMID').AsFloat :=
               Strtofloat(Edit8.Text);
             QInsertNewDvig.ParamByName('PRESSUR').AsFloat :=
@@ -470,6 +496,7 @@ begin
             end;
     end;
     tip := 1;
+    Fhhod.Stringgrid2.rowcount:= Qtemp.Recordcount+2;
     while not(Qtemp.eof) do
     begin
         Fhhod.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;
@@ -1121,6 +1148,7 @@ begin
     ReadM45 := false;
     enableispyt(false);
     ShellExecute(Handle, 'open', PWideChar(M45Exe), nil, nil, SW_SHOWNORMAL);
+    //loaddelta;
 end;
 
 procedure TFMain.IsredError(Sender: TObject; Variable: TKRVariable);
