@@ -36,9 +36,9 @@ object FRH: TFRH
   object Label3: TLabel
     Left = 319
     Top = 8
-    Width = 30
+    Width = 10
     Height = 23
-    Caption = '494'
+    Caption = '0'
   end
   object Label4: TLabel
     Left = 256
@@ -113,9 +113,9 @@ object FRH: TFRH
   object Label10: TLabel
     Left = 429
     Top = 8
-    Width = 40
+    Width = 10
     Height = 23
-    Caption = '5000'
+    Caption = '0'
   end
   object Label11: TLabel
     Left = 383
@@ -491,6 +491,14 @@ object FRH: TFRH
     Height = 31
     TabOrder = 6
     Text = '5'
+  end
+  object CheckBox2: TCheckBox
+    Left = 188
+    Top = 456
+    Width = 97
+    Height = 17
+    Caption = #1059#1076#1072#1083#1103#1090#1100
+    TabOrder = 7
   end
   object Timer1: TTimer
     Enabled = False

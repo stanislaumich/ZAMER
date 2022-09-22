@@ -81,6 +81,8 @@ var
   acount  : Integer;
   tipispyt: Integer;
 
+  pereU,pereI:Real;
+
 implementation
 
 {$R *.dfm}
@@ -106,6 +108,7 @@ begin
   ProgressBar1.min  := 0;
   ProgressBar1.Max  := Strtoint(Edit1.Text);
   ProgressBar1.Step := 1;
+  perei:=0;
   Timer2.Enabled    := True;
   Timer1.Enabled    := True;
 end;
@@ -172,6 +175,9 @@ begin
       WriteLn(f, StringGrid1.cells[j, i]);
     end;
   CloseFile(f);
+
+  // delta and del
+
   Fmain.QDelta.SQL.Clear;
   Fmain.QDelta.SQL.add('delete from zdelta where name=' + Quotedstr('uhh'));
   Fmain.QDelta.ExecSQL;
@@ -209,6 +215,7 @@ begin
       StringGrid1.cells[j, i] := s;
     end;
   CloseFile(f);
+
   Fmain.QDelta.Open('select value from zdelta where name=' + Quotedstr('uhh'));
   Fhhod.Edit2.Text := Fmain.QDelta.FieldByName('value').Asstring;
   QTemp.Close;
@@ -459,12 +466,12 @@ begin
     begin
       BitBtn2.Enabled := True;
       BitBtn3.Enabled := True;
-      ShowMessage('Испытание завершено!')
+      ShowMessage('Испытание завершено!!')
     end
     else
     begin
       BitBtn3.Enabled := True;
-      ShowMessage('Шаг завершен!');
+      ShowMessage('Шаг завершен c перекосом фаз по току в '+Floattostr(round(perei))+'% от среднего значения');
       Label6.Caption := StringGrid2.cells[0, StringGrid2.row];
     end;
   end
@@ -474,7 +481,7 @@ end;
 
 procedure TFhhod.Timer2Timer(Sender: TObject);
 var
-  i: single;
+  i, i1,i2,i3: single;
 begin
   acount       := acount + 1;
   a[acount].u1 := SimpleRoundTo(Fmain.RU1.Value, -1);
@@ -487,6 +494,13 @@ begin
   a[acount].p2 := SimpleRoundTo(Fmain.RP2.Value, -2);
   a[acount].p3 := SimpleRoundTo(Fmain.RP3.Value, -2);
   a[acount].ps := SimpleRoundTo(Fmain.PSredQ.Value, -2);
+  // перекос фаз
+  i:= (a[acount].i1+ a[acount].i2+ a[acount].i3)/3;
+  i1:= abs(100 - (a[acount].i1 / i)*100);
+  i2:= abs(100 - (a[acount].i2 / i)*100);
+  i3:= abs(100 - (a[acount].i3 / i)*100);
+  i:=max(max(i1,i2),i3);
+  if i>perei then perei:=i;
 end;
 
 procedure TFhhod.TimerUpdTimer(Sender: TObject);

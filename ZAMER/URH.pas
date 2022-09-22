@@ -51,6 +51,7 @@ type
     Label14: TLabel;
     Label15: TLabel;
     Timer3: TTimer;
+    CheckBox2: TCheckBox;
     procedure Timer1Timer(Sender: TObject);
     // procedure Timer2Timer(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
@@ -214,6 +215,39 @@ begin
       WriteLn(f, StringGrid1.cells[j, i]);
     end;
   CloseFile(f);
+
+    // delta and del
+
+  Fmain.QDelta.SQL.Clear;
+  Fmain.QDelta.SQL.add('delete from zdelta where name=' + Quotedstr('urh'));
+  Fmain.QDelta.ExecSQL;
+  Fmain.QDelta.SQL.Clear;
+  Fmain.QDelta.SQL.add('insert into zdelta (name,value) values(' +
+    Quotedstr('urh') + ',' + Frh.Edit2.Text + ')');
+  Fmain.QDelta.ExecSQL;
+
+  QTemp.Close;
+  Fmain.QDelta.SQL.Clear;
+  Fmain.QDelta.SQL.add('delete from zdelta where name=' + Quotedstr('prh'));
+  Fmain.QDelta.ExecSQL;
+  Fmain.QDelta.SQL.Clear;
+  Fmain.QDelta.SQL.add('insert into zdelta (name,value) values(' +
+    Quotedstr('prh') + ',' + Frh.Edit3.Text + ')');
+  Fmain.QDelta.ExecSQL;
+  QTemp.Close;
+
+  QTemp.SQL.Clear;
+  QTemp.SQL.add('delete from ini where name=' + Quotedstr('rhdel'));
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  if CheckBox2.Checked then
+    QTemp.SQL.add('insert into ini (name,value) values(' +
+      Quotedstr('rhdel') + ',1)')
+  else
+    QTemp.SQL.add('insert into ini (name,value) values(' +
+      Quotedstr('rhdel') + ',0)');
+  QTemp.ExecSQL;
 end;
 
 procedure TFRH.FormCreate(Sender: TObject);
@@ -232,21 +266,33 @@ begin
       StringGrid1.cells[j, i] := s;
     end;
   CloseFile(f);
+
+  Fmain.QDelta.Open('select value from zdelta where name=' + Quotedstr('urh'));
+  Frh.Edit2.Text := Fmain.QDelta.FieldByName('value').Asstring;
+  Fmain.QDelta.Open('select value from zdelta where name=' + Quotedstr('prh'));
+  Frh.Edit3.Text := Fmain.QDelta.FieldByName('value').Asstring;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.Open('select value from ini where name=' + Quotedstr('rhdel'));
+  CheckBox2.Checked := QTemp.FieldByName('value').Asinteger = 1;
 end;
 
 procedure TFRH.RadioButton1Click(Sender: TObject);
 var
-  i  : Integer;
+  i ,j : Integer;
   cod: Integer;
 
 begin
+for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[j, i] := '';
   if StringGrid1.cells[1, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
     exit;
   end;
 
-  val(Label10.Caption, currentpower, cod);
+  val(Label3.Caption, currentpower, cod);
   if cod = 0 then
   begin
     StringGrid2.rowcount := 2;
@@ -255,7 +301,7 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(round(currentpower / 100 *
+          floattostr(round(StrToFloat(label10.Caption) / 100 *
           Strtoint(StringGrid1.cells[1, i])));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
@@ -274,17 +320,20 @@ end;
 
 procedure TFRH.RadioButton2Click(Sender: TObject);
 var
-  i  : Integer;
+  i ,j : Integer;
   cod: Integer;
 
 begin
+for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[j, i] := '';
   if StringGrid1.cells[1, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
     exit;
   end;
 
-  val(Label10.Caption, currentpower, cod);
+  val(Label3.Caption, currentpower, cod);
   if cod = 0 then
   begin
     StringGrid2.rowcount := 2;
@@ -293,7 +342,7 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(round(currentpower / 100 *
+          floattostr(round(StrToFloat(label10.Caption) / 100 *
           Strtoint(StringGrid1.cells[2, i])));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
@@ -312,17 +361,21 @@ end;
 
 procedure TFRH.RadioButton3Click(Sender: TObject);
 var
-  i  : Integer;
+  i ,j : Integer;
   cod: Integer;
 
 begin
+for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[j, i] := '';
+
   if StringGrid1.cells[1, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
     exit;
   end;
 
-  val(Label10.Caption, currentpower, cod);
+  val(Label3.Caption, currentpower, cod);
   if cod = 0 then
   begin
     StringGrid2.rowcount := 2;
@@ -331,7 +384,7 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(round(currentpower / 100 *
+          floattostr(round(StrToFloat(label10.Caption) / 100 *
           Strtoint(StringGrid1.cells[3, i])));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
@@ -350,6 +403,9 @@ end;
 
 procedure TFRH.StringGrid2Click(Sender: TObject);
 begin
+  if StringGrid2.row = StringGrid2.rowcount - 1 then
+    StringGrid2.row := StringGrid2.row - 1;
+
   if StringGrid2.cells[0, StringGrid2.row] = '' then
     ShowMessage('Выбрано завершение испытания')
   else

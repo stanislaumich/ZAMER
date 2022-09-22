@@ -529,21 +529,22 @@ begin
   case tip of
     1:
       begin
-        Frh.Radiobutton1Click(Fhhod);
+        Frh.Radiobutton1Click(Frh);
         Frh.RadioButton1.Checked := True;
       end;
     2:
       begin
-        Frh.Radiobutton2Click(Fhhod);
+        Frh.Radiobutton2Click(Frh);
         Frh.RadioButton2.Checked := True;
       end;
     3:
       begin
-        Frh.Radiobutton3Click(Fhhod);
+        Frh.Radiobutton3Click(Frh);
         Frh.RadioButton3.Checked := True;
       end;
   end;
   tip := 1;
+  Frh.Stringgrid2.rowcount := Qtemp.RecordCount + 2;
   while not(Qtemp.eof) do
   begin
     Frh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;

@@ -40,7 +40,7 @@ object Fhhod: TFhhod
     Top = 8
     Width = 30
     Height = 23
-    Caption = '494'
+    Caption = '380'
   end
   object Label4: TLabel
     Left = 632
