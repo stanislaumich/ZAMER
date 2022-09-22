@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.ExtCtrls, Vcl.ComCtrls, Math;
+  FireDAC.Comp.Client, Vcl.ExtCtrls, Vcl.ComCtrls, Math, ustr;
 
 type
   TFRH = class(TForm)
@@ -69,6 +69,8 @@ type
     procedure Timer3Timer(Sender: TObject);
     procedure StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
+    procedure FormShow(Sender: TObject);
+    procedure FormHide(Sender: TObject);
     // procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
@@ -132,12 +134,17 @@ begin
   QCommand.ExecSQL;
 end;
 
+function Point(s:string):string;
+begin
+ Point:=strReplace(s,',','.');
+end;
+
 procedure TFRH.BitBtn1Click(Sender: TObject);
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zrhall where nomer=' + Quotedstr(Nomer) +
-    ' and uisp=' + Label6.Caption + ' and pisp=' + Label8.Caption);
+    ' and uisp=' + Label3.Caption + ' and pisp=' + point(Label10.Caption));
   QTemp.ExecSQL;
   acount            := 0;
   curtime           := 0;
@@ -161,9 +168,9 @@ procedure TFRH.BitBtn3Click(Sender: TObject);
 var
   i, j: Integer;
 begin
-  for i                       := 1 to StringGrid2.colcount - 1 do
+  for i                       := 0 to StringGrid2.colcount - 1 do
     for j                     := 1 to StringGrid2.rowcount - 1 do
-      StringGrid2.cells[j, i] := '';
+      StringGrid2.cells[i, j] := '';
   StringGrid2.rowcount        := 2;
   RadioButton1.Checked        := false;
   RadioButton2.Checked        := false;
@@ -232,7 +239,7 @@ begin
   Fmain.QDelta.ExecSQL;
   Fmain.QDelta.SQL.Clear;
   Fmain.QDelta.SQL.add('insert into zdelta (name,value) values(' +
-    Quotedstr('prh') + ',' + Frh.Edit3.Text + ')');
+    Quotedstr('prh') + ',' + point(Frh.Edit3.Text) + ')');
   Fmain.QDelta.ExecSQL;
   QTemp.Close;
 
@@ -277,15 +284,25 @@ begin
   CheckBox2.Checked := QTemp.FieldByName('value').Asinteger = 1;
 end;
 
+procedure TFRH.FormHide(Sender: TObject);
+begin
+ Timer3.Enabled:=false;
+end;
+
+procedure TFRH.FormShow(Sender: TObject);
+begin
+ Timer3.Enabled:=true;
+end;
+
 procedure TFRH.RadioButton1Click(Sender: TObject);
 var
   i ,j : Integer;
   cod: Integer;
 
 begin
-for i                       := 1 to StringGrid2.colcount - 1 do
-    for j                     := 0 to StringGrid2.rowcount - 1 do
-      StringGrid2.cells[j, i] := '';
+for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[i, j] := '';
   if StringGrid1.cells[1, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
@@ -301,8 +318,8 @@ for i                       := 1 to StringGrid2.colcount - 1 do
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(round(StrToFloat(label10.Caption) / 100 *
-          Strtoint(StringGrid1.cells[1, i])));
+          floattostr(simpleroundto(StrToFloat(label10.Caption) / 100 *
+          Strtoint(StringGrid1.cells[1, i]),-2));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
     StringGrid2.row                                := 1;
@@ -324,9 +341,9 @@ var
   cod: Integer;
 
 begin
-for i                       := 1 to StringGrid2.colcount - 1 do
-    for j                     := 0 to StringGrid2.rowcount - 1 do
-      StringGrid2.cells[j, i] := '';
+for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[i, j] := '';
   if StringGrid1.cells[1, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
@@ -342,8 +359,8 @@ for i                       := 1 to StringGrid2.colcount - 1 do
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(round(StrToFloat(label10.Caption) / 100 *
-          Strtoint(StringGrid1.cells[2, i])));
+          floattostr(simpleroundto(StrToFloat(label10.Caption) / 100 *
+          Strtoint(StringGrid1.cells[2, i]),-2));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
     StringGrid2.row                                := 1;
@@ -365,9 +382,9 @@ var
   cod: Integer;
 
 begin
-for i                       := 1 to StringGrid2.colcount - 1 do
-    for j                     := 0 to StringGrid2.rowcount - 1 do
-      StringGrid2.cells[j, i] := '';
+for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[i, j] := '';
 
   if StringGrid1.cells[1, 1] = '' then
   begin
@@ -384,8 +401,8 @@ for i                       := 1 to StringGrid2.colcount - 1 do
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(round(StrToFloat(label10.Caption) / 100 *
-          Strtoint(StringGrid1.cells[3, i])));
+          floattostr(simpleroundto(StrToFloat(label10.Caption) / 100 *
+          Strtoint(StringGrid1.cells[3, i]),-2));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
     StringGrid2.row                                := 1;
@@ -490,12 +507,12 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label6.Caption + ' and pisp=' + Label8.Caption);
+      ' and uisp=' + Label6.Caption + ' and pisp=' + point(Label8.Caption));
     QTemp.ExecSQL;
     QInsSvod.ParamByName('nomer').AsString :=
       Qselectsred.FieldByName('nomer').AsString;
-    QInsSvod.ParamByName('uisp').AsFloat :=
-      Qselectsred.FieldByName('uisp').AsFloat;
+    QInsSvod.ParamByName('uisp').AsFloat := Strtofloat(Label6.Caption);
+      //Qselectsred.FieldByName('uisp').AsFloat;
     QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
     QInsSvod.ParamByName('usred').AsFloat :=
       Qselectsred.FieldByName('u').AsFloat;
@@ -551,21 +568,31 @@ end;
 procedure TFRH.Timer2Timer(Sender: TObject);
 begin
   acount       := acount + 1;
-  a[acount].u1 := SimpleRoundTo(FMain.RU1.Value, -4);
-  a[acount].u2 := SimpleRoundTo(FMain.RU2.Value, -4);
-  a[acount].u3 := SimpleRoundTo(FMain.RU3.Value, -4);
-  a[acount].i1 := SimpleRoundTo(FMain.RI1.Value, -4);
-  a[acount].i2 := SimpleRoundTo(FMain.RI2.Value, -4);
-  a[acount].i3 := SimpleRoundTo(FMain.RI3.Value, -4);
-  a[acount].p1 := SimpleRoundTo(FMain.RP1.Value, -4);
-  a[acount].p2 := SimpleRoundTo(FMain.RP2.Value, -4);
-  a[acount].p3 := SimpleRoundTo(FMain.RP3.Value, -4);
+  a[acount].u1 := SimpleRoundTo(FMain.RU1.Value, -1);
+  a[acount].u2 := SimpleRoundTo(FMain.RU2.Value, -1);
+  a[acount].u3 := SimpleRoundTo(FMain.RU3.Value, -1);
+  a[acount].i1 := SimpleRoundTo(FMain.RI1.Value, -3);
+  a[acount].i2 := SimpleRoundTo(FMain.RI2.Value, -3);
+  a[acount].i3 := SimpleRoundTo(FMain.RI3.Value, -3);
+  a[acount].p1 := SimpleRoundTo(FMain.RP1.Value, -2);
+  a[acount].p2 := SimpleRoundTo(FMain.RP2.Value, -2);
+  a[acount].p3 := SimpleRoundTo(FMain.RP3.Value, -2);
 end;
 
 procedure TFRH.Timer3Timer(Sender: TObject);
 begin
-  Label13.Caption := floattostr(SimpleRoundTo(FMain.Usred.Value, -3));
+  Label13.Caption := floattostr(SimpleRoundTo(FMain.Usred.Value, -1));
   Label15.Caption := floattostr(SimpleRoundTo(FMain.Psred.Value, -2));
+  // e2 e3         6 8
+  if (ABS(strtofloat(Label13.Caption)-strtofloat(Label6.Caption))>strtofloat(Edit2.Text))  then
+   Label6.Font.Color:=clRed
+  else
+   Label6.Font.Color:=clGreen;
+  if (ABS(strtofloat(Label15.Caption)-strtofloat(Label8.Caption))>strtofloat(Edit3.Text))  then
+   Label8.Font.Color:=clRed
+  else
+   Label8.Font.Color:=clGreen;
+
 end;
 
 end.

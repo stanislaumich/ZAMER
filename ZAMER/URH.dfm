@@ -14,6 +14,8 @@ object FRH: TFRH
   OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnHide = FormHide
+  OnShow = FormShow
   DesignSize = (
     1024
     566)
@@ -732,6 +734,7 @@ object FRH: TFRH
     Top = 294
   end
   object Timer3: TTimer
+    Enabled = False
     Interval = 500
     OnTimer = Timer3Timer
     Left = 347

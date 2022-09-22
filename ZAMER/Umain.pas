@@ -547,6 +547,7 @@ begin
   Frh.Stringgrid2.rowcount := Qtemp.RecordCount + 2;
   while not(Qtemp.eof) do
   begin
+    Frh.Stringgrid2.Cells[0, tip] := Qtemp.FieldByName('pisp').Asstring;
     Frh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;
     Frh.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred').Asstring;
     Frh.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
@@ -936,7 +937,7 @@ begin
   QUpdDvig.ParamByName('POLUS').Asstring  := ComboBox2.Text;
   QUpdDvig.ParamByName('UNOM').AsInteger  := strtoint(Edit5.Text);
   QUpdDvig.ParamByName('UISP').AsInteger  := strtoint(Edit6.Text);
-  QUpdDvig.ParamByName('PNOM').AsInteger  := strtoint(Edit7.Text);
+  QUpdDvig.ParamByName('PNOM').AsFloat  := strtofloat(Edit7.Text);
   QUpdDvig.ParamByName('HUMID').AsFloat   := strtofloat(Edit8.Text);
   QUpdDvig.ParamByName('PRESSUR').AsFloat := strtofloat(Edit9.Text);
   QUpdDvig.ParamByName('ENERGO').Asstring := ComboBox3.Text;
