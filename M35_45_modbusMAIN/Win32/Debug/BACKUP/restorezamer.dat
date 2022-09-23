@@ -1,8 +1,0 @@
-FILE="backupzamer.DMP"
-LOG="impbackupzamer.log"
-FROMUSER=zamer
-TOUSER=zamer
-GRANTS=Y
-CONSTRAINTS=Y
-IGNORE=Y
-FEEDBACK=1000
