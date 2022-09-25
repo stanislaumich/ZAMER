@@ -12,7 +12,6 @@
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-
 // #define ENABLE_MODBUSPP_LOGGING
 
 TForm1 *Form1;
@@ -28,7 +27,7 @@ String IniFileName;
 int zamercnt;
 int Datchik;
 int Interval;
-float pP, pT, pS; // погрешности прибора
+float pP, pT, pS; // мои погрешности прибора
 float pisp;
 String nomer;
 // ---------------------------------------------------------------------------
@@ -55,16 +54,12 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	int t = Ini->ReadInteger("Position", "Top", 100);
 	Form1->Left = l;
 	Form1->Top = t;
-
 	Datchik = Ini->ReadInteger("DECODER", "Datchik", 4);
-
-	Edit1->Text = FloatToStr(Ini->ReadFloat("DECODER", "Torque", 0));
+	Edit1->Text = FloatToStr(Ini->ReadFloat("DECODER", "Torque",0));
 	Edit2->Text = FloatToStr(Ini->ReadFloat("DECODER", "Speed", 0));
 	Edit3->Text = FloatToStr(Ini->ReadFloat("DECODER", "Power", 0));
-
 	Ini->Free();
 }
-
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::BConnect() {
 	char ServerAddress[300];
@@ -76,8 +71,8 @@ void __fastcall TForm1::BConnect() {
 	int NKan = 1;
 	PSpecialParametrs = (struct _SpecialParametrs*)calloc
 		(sizeof(struct _SpecialParametrs), 1);
-	PSpecialParametrs->AveragingFactor = 1; // Data Averaging Coefficient
-	PSpecialParametrs->SpeedMeasurementPeriod = 100;
+	PSpecialParametrs->AveragingFactor = 10; // Data Averaging Coefficient
+	PSpecialParametrs->SpeedMeasurementPeriod = 50;
 	// Period of measurement of speed
 	PSpecialParametrs->ComPortNumber = 1;
 	PSpecialParametrs->MODBUS_DeviceAddress = 1;
@@ -248,19 +243,15 @@ void __fastcall TForm1::Timer3Timer(TObject *Sender) {
 		nomer = Query2->FieldByName("nomer")->AsString;
 		Datchik = Query2->FieldByName("dat")->AsInteger;
 		Interval=Query2->FieldByName("interval")->AsInteger;
-		//Interval = 50;
-
 		//////////////////////////////////
 		if (dop == "1") {
 			Datchik = Query2->FieldByName("dat")->AsInteger;
-			// Edit4->Text = nomer + ".db3";
 			Query1->SQL->Clear();
 			Query1->SQL->Text = "truncate table zamertmp";
 			Query1->ExecSQL();
 			BConnect();
 			Memo1->Lines->Add("Запущена серия замеров");
 			Timer1->Interval = Interval;
-			// comcount = 0;
 			Timer1->Enabled = true;
 			Query2->SQL->Clear();
 			Query2->SQL->Add("truncate table command");
@@ -290,7 +281,6 @@ void __fastcall TForm1::Timer3Timer(TObject *Sender) {
 				}
 			}
 			catch (...) {
-
 			}
 			try {
 				Query2->SQL->Clear();
