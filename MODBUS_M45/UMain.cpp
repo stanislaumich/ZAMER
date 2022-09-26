@@ -141,10 +141,10 @@ int __stdcall DataHandler(int DataType, void * PZapis, void * PContext) {
 	busy = true;
 	OsnIzm = PDataFrame->OsnIzmVel[0];
 	SummaZn_Osn += PDataFrame->OsnIzmVel[0];
-	if (SummaZn_Osn != 0)
-		KolIzmOto++;
-	if (KolIzmOto==20){
-	 myMoment= abs(SummaZn_Osn/20);
+	int TM=50;
+    KolIzmOto++;
+	if (KolIzmOto==TM){
+	 myMoment= abs(SummaZn_Osn/TM);
 	 SummaZn_Osn=0;
 	 KolIzmOto=0;
 	 //M=0;
