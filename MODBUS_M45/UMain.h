@@ -60,6 +60,7 @@ __published: // IDE-managed Components
 	TEdit *Edit2;
 	TEdit *Edit3;
 	TBitBtn *BitBtn1;
+	TButton *Button1;
 
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);

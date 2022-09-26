@@ -134,12 +134,12 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 43
+      Left = 33
       Top = 52
-      Width = 95
+      Width = 105
       Height = 29
       Alignment = taRightJustify
-      Caption = #1063#1072#1089#1090#1086#1090#1072':'
+      Caption = #1054#1073#1086#1088#1086#1090#1099':'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24
@@ -148,12 +148,12 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 18
+      Left = 4
       Top = 90
-      Width = 120
+      Width = 140
       Height = 29
       Alignment = taRightJustify
-      Caption = #1052#1086#1097#1085#1086#1089#1090#1100':'
+      Caption = #1059#1089#1088#1077#1076#1085#1077#1085#1080#1077':'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24
@@ -274,6 +274,14 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 3
       OnClick = BitBtn1Click
+    end
+    object Button1: TButton
+      Left = 223
+      Top = 11
+      Width = 21
+      Height = 38
+      Caption = '0'
+      TabOrder = 4
     end
   end
   object GroupBox4: TGroupBox

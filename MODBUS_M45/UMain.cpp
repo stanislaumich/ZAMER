@@ -27,9 +27,12 @@ String IniFileName;
 int zamercnt;
 int Datchik;
 int Interval;
-float pP, pT, pS; // мои погрешности прибора
+float  pT, pS; // мои погрешности прибора
+int pP=50;
 float pisp;
 String nomer;
+float myMoment=1;
+int M=1;
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 int __stdcall DataHandler(int DataType, void *Zapis, void *PContext);
@@ -57,7 +60,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	Datchik = Ini->ReadInteger("DECODER", "Datchik", 4);
 	Edit1->Text = FloatToStr(Ini->ReadFloat("DECODER", "Torque",0));
 	Edit2->Text = FloatToStr(Ini->ReadFloat("DECODER", "Speed", 0));
-	Edit3->Text = FloatToStr(Ini->ReadFloat("DECODER", "Power", 0));
+	Edit3->Text = IntToStr(Ini->ReadInteger("DECODER", "Average", 0));
 	Ini->Free();
 }
 // ---------------------------------------------------------------------------
@@ -71,7 +74,8 @@ void __fastcall TForm1::BConnect() {
 	int NKan = 1;
 	PSpecialParametrs = (struct _SpecialParametrs*)calloc
 		(sizeof(struct _SpecialParametrs), 1);
-	PSpecialParametrs->AveragingFactor = 10; // Data Averaging Coefficient
+	PSpecialParametrs->AveragingFactor = pP;
+	//PSpecialParametrs->AveragingFactor = 10; // Data Averaging Coefficient
 	PSpecialParametrs->SpeedMeasurementPeriod = 50;
 	// Period of measurement of speed
 	PSpecialParametrs->ComPortNumber = 1;
@@ -106,6 +110,7 @@ void __fastcall TForm1::BConnect() {
 	 #define MODBUS_INDICATOR              17
 	 #define ETHERNET_INDICATOR            18
 	 */
+	myMoment=0;
 	int dectype = Datchik;
 	PDecoder = (TDecoder*)DecoderCreate(1, // NKan,
 		dectype, // DecoderType,
@@ -138,23 +143,22 @@ int __stdcall DataHandler(int DataType, void * PZapis, void * PContext) {
 	SummaZn_Osn += PDataFrame->OsnIzmVel[0];
 	if (SummaZn_Osn != 0)
 		KolIzmOto++;
+	if (KolIzmOto==20){
+	 myMoment= abs(SummaZn_Osn/20);
+	 SummaZn_Osn=0;
+	 KolIzmOto=0;
+	 //M=0;
+	}
+
 	Temperature = PDataFrame->Temper;
-	Skorost = PDataFrame->Skorost;
-	Moshn = PDataFrame->Moschnost;
+	Skorost = abs(PDataFrame->Skorost);
+	//Moshn = PDataFrame->Moschnost;
+	Moshn = PDataFrame->Skorost * myMoment;
 	busy = false;
 	// PForm1-> SostDat_CrSe-> Leave ();
 	return 0;
 }
 
-/*
-
- // ................... Closing the decoder
- if (PDecoder != NULL) {
- DecoderClose(PDecoder);
- PDecoder = NULL;
- }
- Memo1->Lines->Add("Декодер М разъединен");
- */
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::Button2Click(TObject *Sender) {
 	// ................... Closing the decoder
@@ -162,7 +166,6 @@ void __fastcall TForm1::Button2Click(TObject *Sender) {
 		DecoderClose(PDecoder);
 		PDecoder = NULL;
 	}
-	//Memo1->Lines->Add("Декодер М разъединен");
 }
 
 // ---------------------------------------------------------------------------
@@ -183,7 +186,7 @@ void __fastcall TForm1::FormCloseQuery(TObject *Sender, bool &CanClose) {
 
 	Ini->WriteFloat("DECODER", "Torque", StrToFloat(Edit1->Text));
 	Ini->WriteFloat("DECODER", "Speed", StrToFloat(Edit2->Text));
-	Ini->WriteFloat("DECODER", "Power", StrToFloat(Edit3->Text));
+	Ini->WriteInteger("DECODER", "Average", StrToInt(Edit3->Text));
 
 	Ini->WriteInteger("DECODER", "Datchik", Datchik);
 	Ini->Free();
@@ -196,9 +199,9 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender) {
 	try {
 		Query1->SQL->Clear();
 		Query1->SQL->Add("INSERT INTO zamertmp (torq,rot,power,pnom,nomer)values( ");
-		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", OsnIzm + pT)) + ", ");
+		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", /*OsnIzm*/ myMoment + pT)) + ", ");
 		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", Skorost + pS)) + ", ");
-		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", Moshn + pP)) +  ", ");
+		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", Moshn)) +  ", ");
 		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", pisp)) +  ", ");
 		Query1->SQL->Add(QuotedStr(nomer)+ ") ");
 		Query1->ExecSQL();
@@ -213,18 +216,18 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender) {
 void __fastcall TForm1::Timer3Timer(TObject *Sender) {
 
 	Label12->Caption = FormatFloat("0.00", Skorost + pS);
-	Label13->Caption = FormatFloat("0.00", Moshn + pP);
-	Label11->Caption = FormatFloat("0.00", OsnIzm + pT);
+	Label13->Caption = FormatFloat("0.00", Moshn);
+	Label11->Caption = FormatFloat("0.00", /*OsnIzm*/myMoment + pT);
 	// while (busy);
 	try {
 		Query2->SQL->Clear();
 		Query2->SQL->Add("update zamer set ");
 		Query2->SQL->Add("torq = " + QuotedStr(FormatFloat("0.000",
-			OsnIzm + pT)) + ", ");
+			/*OsnIzm*/myMoment + pT)) + ", ");
 		Query2->SQL->Add("rot = " + QuotedStr(FormatFloat("0.000",
 			Skorost + pS)) + ", ");
 		Query2->SQL->Add("power = " + QuotedStr(FormatFloat("0.000",
-			Moshn + pP)) + "");
+			Moshn)) + "");
 		Query2->ExecSQL();
 		Query2->SQL->Clear();
 		Query2->SQL->Add("select * from command ");
@@ -323,7 +326,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::BitBtn1Click(TObject *Sender) {
-	pP = StrToFloat(Edit3->Text);
+	//pP = StrToFloat(Edit3->Text);
 	pS = StrToFloat(Edit2->Text);
 	pT = StrToFloat(Edit1->Text);
 }
