@@ -462,6 +462,13 @@ begin
   FSoprot.StringGrid3.Cells[3, 1] := Qtemp.FieldByName('IZM1W1W2').Asstring;
   FSoprot.StringGrid3.Cells[3, 2] := Qtemp.FieldByName('IZM2W1W2').Asstring;
   FSoprot.StringGrid3.Cells[3, 3] := Qtemp.FieldByName('IZM3W1W2').Asstring;
+  FSoprot.Edit1.Text:=Qtemp.FieldByName('BOLT').AsString;
+  case Qtemp.FieldByName('BOLT').AsInteger of
+   0: FSoprot.radiobutton6.Checked:=True;
+   1: FSoprot.radiobutton4.Checked:=True;
+   2: FSoprot.radiobutton5.Checked:=True;
+  end;
+
   /// ////////////////////////////////////////////////////////////
   // загрузить Холостой ход если есть
   Qtemp.Close;
@@ -801,7 +808,8 @@ begin
     WordApp.Documents.Open(Blank);
     // холостой ход
     FrepP.Label1.Caption := 'Холостой ход';
-
+    //wrepl('p' + inttostr(i) + 'hh', Fhhod.Stringgrid2.Cells[3, i]);
+    //wrepl('p' + inttostr(i) + 'hh', Fhhod.Stringgrid2.Cells[3, i]);
     for i := 1 to 10 do
     begin
       wrepl('u' + inttostr(i) + 'hh', Fhhod.Stringgrid2.Cells[1, i]);
@@ -814,6 +822,7 @@ begin
     begin
       wrepl('p' + inttostr(i) + 'hh', Fhhod.Stringgrid2.Cells[3, i]);
     end;
+
     // рабочая характеристика i p rot torq
     FrepP.Label1.Caption := 'Рабочая характеристика';
     for i                := 1 to 10 do
@@ -847,6 +856,11 @@ begin
     wrepl('rizolvk', FSoprot.Edit13.Text);
     wrepl('rizolob', FSoprot.Edit16.Text);
     wrepl('temper', FSoprot.Edit8.Text);
+    wrepl('bolt', FSoprot.Edit1.Text);
+    if FSoprot.radiobutton4.checked then wrepl('mvit', 'ВЫДЕРЖАЛ');
+    if FSoprot.radiobutton5.checked then wrepl('mvit', 'НЕ ВЫДЕРЖАЛ');
+    if FSoprot.radiobutton6.checked then wrepl('mvit', 'НЕ ИСПЫТЫВАЛОСЬ');
+
     FrepP.Label1.Caption := 'Короткое замыкание';
     // короткое замыкание
     for i   := 1 to 5 do

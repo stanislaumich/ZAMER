@@ -24,9 +24,6 @@ type
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     RadioButton3: TRadioButton;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
     CheckBox1: TCheckBox;
     Label3: TLabel;
     Label4: TLabel;
@@ -43,6 +40,11 @@ type
     Label8: TLabel;
     TimerUpd: TTimer;
     CheckBox2: TCheckBox;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    Label11: TLabel;
+    Label12: TLabel;
     procedure RadioButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -471,7 +473,8 @@ begin
     else
     begin
       BitBtn3.Enabled := True;
-      ShowMessage('Шаг завершен c перекосом фаз по току в '+Floattostr(round(perei))+'% от среднего значения');
+      //ShowMessage('Шаг завершен c перекосом фаз по току в '+Floattostr(round(perei))+'% от среднего значения');
+      Label12.Caption:= Floattostr(round(perei));
       Label6.Caption := StringGrid2.cells[0, StringGrid2.row];
     end;
   end

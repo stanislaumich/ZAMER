@@ -138,9 +138,9 @@ object FMain: TFMain
     object Label19: TLabel
       Left = 231
       Top = 67
-      Width = 195
+      Width = 204
       Height = 23
-      Caption = #1052#1086#1097#1085#1086#1089#1090#1100' '#1085#1086#1084#1080#1085'., '#1042#1090':'
+      Caption = #1052#1086#1097#1085#1086#1089#1090#1100' '#1085#1086#1084#1080#1085'., '#1082#1042#1090':'
     end
     object Label20: TLabel
       Left = 508
@@ -279,9 +279,9 @@ object FMain: TFMain
       TabOrder = 8
     end
     object Edit7: TEdit
-      Left = 428
+      Left = 439
       Top = 64
-      Width = 61
+      Width = 50
       Height = 31
       TabOrder = 9
     end
@@ -323,7 +323,7 @@ object FMain: TFMain
     object Edit10: TEdit
       Left = 396
       Top = 215
-      Width = 387
+      Width = 391
       Height = 31
       TabOrder = 14
     end
@@ -840,11 +840,11 @@ object FMain: TFMain
     OnClick = Button3Click
   end
   object BitBtn15: TBitBtn
-    Left = 800
-    Top = 429
-    Width = 145
-    Height = 52
-    Caption = 'BitBtn15'
+    Left = 735
+    Top = 475
+    Width = 77
+    Height = 21
+    Caption = #1044#1072#1090#1095#1080#1082#1080
     TabOrder = 10
     OnClick = BitBtn15Click
   end

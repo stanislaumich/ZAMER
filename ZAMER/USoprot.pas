@@ -35,9 +35,20 @@ type
     BitBtn1: TBitBtn;
     QSoprot: TFDQuery;
     Label1: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    RadioButton4: TRadioButton;
+    RadioButton5: TRadioButton;
+    RadioButton6: TRadioButton;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Edit1: TEdit;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Button50Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,7 +78,12 @@ procedure TFSoprot.BitBtn5Click(Sender: TObject);
 var
   i, j: integer;
 begin
-
+  if (radioButton4.Checked or radioButton5.Checked or radioButton6.Checked)=false
+   then
+    begin
+     ShowMessage('Не указано испытание межвитковой изоляции');
+     Exit
+    end;
   Fmain.Qtemp.Close;
   Fmain.Qtemp.SQL.Clear;
   Fmain.Qtemp.SQL.add('delete from ZSOPROT where nomer=' +
@@ -84,6 +100,13 @@ begin
     QSoprot.ParamByName('IZOLED').Asstring   := ComboBox10.Text;
     QSoprot.ParamByName('IZOLKORP').AsFloat  := Strtofloat(Edit13.Text);
     QSoprot.ParamByName('IZOLOBMOT').AsFloat := Strtofloat(Edit16.Text);
+    QSoprot.ParamByName('BOLT').AsFloat := Strtofloat(Edit1.Text);
+    if radiobutton4.Checked then
+      QSoprot.ParamByName('ISPYT13').AsInteger:=1;
+    if radiobutton5.Checked then
+      QSoprot.ParamByName('ISPYT13').AsInteger:=2;
+    if radiobutton6.Checked then
+      QSoprot.ParamByName('ISPYT13').AsInteger:=0;
 
     for i   := 1 to 3 do
       for j := 1 to 3 do
@@ -117,10 +140,28 @@ begin
     end;
   end;
   QSoprot.ExecSQL;
-  ShowMessage('Внесено!');
+  //ShowMessage('Внесено!');
   Fmain.Label28.font.Color := clGreen;
   Fmain.Label28.Caption    := 'ПРОЙДЕН';
   FSoprot.Close;
+end;
+
+procedure TFSoprot.Button50Click(Sender: TObject);
+var
+ i,j:integer;
+begin
+ Edit8.Text:='0';
+ Edit1.Text:='0';
+ ComboBox7.Text:='';
+ ComboBox8.Text:='';
+ for i:=1 to 3 do
+  for j:=1 to 3 do
+   Stringgrid3.Cells[i,j]:='0';
+ RadioButton4.Checked:=false;
+ RadioButton5.Checked:=false;
+ RadioButton6.Checked:=false;
+ Edit13.Text:='500';
+ Edit16.Text:='500';
 end;
 
 procedure TFSoprot.FormCreate(Sender: TObject);
@@ -132,15 +173,15 @@ begin
   StringGrid3.cells[0, 2] := 'Изм. 2';
   StringGrid3.cells[0, 3] := 'Изм. 3';
 
-  StringGrid3.cells[1, 0] := 'U1-U2(U-V)/гл.';
-  StringGrid3.cells[2, 0] := 'V1-V2(V-W)/всп.';
+  StringGrid3.cells[1, 0] := 'U1-U2(U-V)/гл.*';
+  StringGrid3.cells[2, 0] := 'V1-V2(V-W)/всп.*';
   StringGrid3.cells[3, 0] := 'W1-W2(W-U)';
 
   for i   := 1 to 3 do
     for j := 1 to 3 do
     begin
       StringGrid3.cells[i, j]  := '0';
-      StringGrid3.ColWidths[i] := 150;
+      StringGrid3.ColWidths[i] := 160;
     end;
 
 end;
