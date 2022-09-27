@@ -2,8 +2,8 @@ object FProch: TFProch
   Left = 0
   Top = 0
   Caption = #1055#1088#1086#1095#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
-  ClientHeight = 600
-  ClientWidth = 1026
+  ClientHeight = 717
+  ClientWidth = 1024
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,155 +15,394 @@ object FProch: TFProch
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 23
+  object Label9: TLabel
+    Left = 646
+    Top = 566
+    Width = 95
+    Height = 23
+    Caption = #1052#1072#1089#1089#1072', '#1082#1075'.:'
+  end
   object GroupBox1: TGroupBox
     Left = 4
     Top = 0
     Width = 825
-    Height = 229
+    Height = 389
     Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1103
     TabOrder = 0
-    object Label1: TLabel
-      Left = 190
-      Top = 20
-      Width = 349
-      Height = 23
-      Caption = #1069#1083#1077#1082#1090#1088#1080#1095#1077#1089#1082#1072#1103' '#1087#1088#1086#1095#1085#1086#1089#1090#1100' '#1080#1079#1086#1083#1103#1094#1080#1080' U='
-    end
-    object Label2: TLabel
-      Left = 613
-      Top = 20
-      Width = 73
-      Height = 23
-      Caption = #1042', 1'#1084#1080#1085'.'
-    end
-    object Label3: TLabel
-      Left = 12
-      Top = 46
-      Width = 674
-      Height = 23
-      Caption = 
-        #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1087#1088#1080' '#1087#1086#1074#1099#1096#1077#1085'. '#1095#1072#1089#1090#1086#1090#1077' '#1074#1088#1072#1097#1077#1085#1080#1103' N=1.2Nm'#1072#1093'('#1073#1077#1079#1086#1087'/'#1085#1086#1084')., 2' +
-        #1084#1080#1085'.'
-    end
-    object Label4: TLabel
-      Left = 256
-      Top = 72
-      Width = 430
-      Height = 23
-      Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072' '#1087#1077#1088#1077#1075#1088#1091#1079#1082#1091' '#1087#1086' '#1090#1086#1082#1091' I=1,5I'#1085', 2'#1084#1080#1085'.'
-    end
-    object Label5: TLabel
-      Left = 275
-      Top = 101
-      Width = 411
-      Height = 23
-      Caption = #1087#1086#1089#1083#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103' '#1085#1072' '#1087#1077#1088#1077#1075#1088#1091#1079#1082#1091' '#1087#1086' '#1090#1086#1082#1091' R'#1080#1079#1086#1083
-    end
-    object Label6: TLabel
-      Left = 148
-      Top = 140
-      Width = 399
-      Height = 23
-      Caption = #1044#1083#1103' '#1076#1074#1080#1075#1072#1090#1077#1083#1077#1081' 4'#1040#1057' '#1088#1072#1073#1086#1090#1086#1089#1087#1086#1089#1086#1073#1085#1086#1089#1090#1100' '#1087#1088#1080':'
-    end
-    object Label7: TLabel
-      Left = 530
-      Top = 169
-      Width = 156
-      Height = 23
-      Caption = '0,74U'#1085'('#1052#1085#1086#1084') 15'#1089
-    end
-    object Label8: TLabel
-      Left = 530
-      Top = 192
-      Width = 156
-      Height = 23
-      Caption = '1,13U'#1085'('#1052#1085#1086#1084') 15'#1089
-    end
-    object Label9: TLabel
-      Left = 16
-      Top = 192
-      Width = 95
-      Height = 23
-      Caption = #1052#1072#1089#1089#1072', '#1082#1075'.:'
-    end
-    object Edit1: TEdit
-      Left = 545
-      Top = 17
-      Width = 62
-      Height = 31
+    object GroupBox4: TGroupBox
+      Left = 1
+      Top = 21
+      Width = 820
+      Height = 64
+      Caption = #1069#1083#1077#1082#1090#1088#1080#1095#1077#1089#1082#1072#1103' '#1087#1088#1086#1095#1085#1086#1089#1090#1100' '#1080#1079#1086#1083#1103#1094#1080#1080
+      Color = clSilver
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 0
-      Text = '0'
+      object Label1: TLabel
+        Left = 12
+        Top = 27
+        Width = 26
+        Height = 23
+        Caption = 'U='
+      end
+      object Label2: TLabel
+        Left = 112
+        Top = 27
+        Width = 73
+        Height = 23
+        Caption = #1042', 1'#1084#1080#1085'.'
+      end
+      object Edit1: TEdit
+        Left = 44
+        Top = 24
+        Width = 62
+        Height = 31
+        TabOrder = 0
+        Text = '0'
+      end
+      object RadioButton1: TRadioButton
+        Left = 199
+        Top = 27
+        Width = 113
+        Height = 26
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 1
+      end
+      object RadioButton2: TRadioButton
+        Left = 319
+        Top = 27
+        Width = 137
+        Height = 26
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 2
+      end
+      object RadioButton3: TRadioButton
+        Left = 464
+        Top = 28
+        Width = 166
+        Height = 22
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 3
+      end
+      object CheckBox1: TCheckBox
+        Left = 605
+        Top = 10
+        Width = 117
+        Height = 17
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 4
+        Visible = False
+      end
+      object RadioButton19: TRadioButton
+        Left = 800
+        Top = 33
+        Width = 14
+        Height = 17
+        Caption = 'RadioButton19'
+        TabOrder = 5
+      end
     end
-    object CheckBox1: TCheckBox
-      Left = 700
-      Top = 24
-      Width = 117
-      Height = 17
-      Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+    object GroupBox5: TGroupBox
+      Left = 1
+      Top = 91
+      Width = 820
+      Height = 62
+      Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1087#1088#1080' '#1087#1086#1074#1099#1096#1077#1085'. '#1095#1072#1089#1090#1086#1090#1077' '#1074#1088#1072#1097#1077#1085#1080#1103
       TabOrder = 1
+      object Label13: TLabel
+        Left = 12
+        Top = 28
+        Width = 273
+        Height = 23
+        Caption = 'N=1.2Nm'#1072#1093'('#1073#1077#1079#1086#1087'/'#1085#1086#1084')., 2'#1084#1080#1085'.'
+      end
+      object RadioButton4: TRadioButton
+        Left = 295
+        Top = 27
+        Width = 113
+        Height = 27
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        Color = clGreen
+        ParentColor = False
+        TabOrder = 0
+      end
+      object RadioButton5: TRadioButton
+        Left = 412
+        Top = 28
+        Width = 141
+        Height = 25
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        Color = clRed
+        ParentColor = False
+        TabOrder = 1
+      end
+      object RadioButton6: TRadioButton
+        Left = 556
+        Top = 28
+        Width = 165
+        Height = 25
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        Color = clYellow
+        ParentColor = False
+        TabOrder = 2
+      end
+      object CheckBox2: TCheckBox
+        Left = 600
+        Top = 14
+        Width = 117
+        Height = 17
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 3
+        Visible = False
+      end
+      object RadioButton20: TRadioButton
+        Left = 800
+        Top = 32
+        Width = 16
+        Height = 17
+        Caption = 'RadioButton20'
+        TabOrder = 4
+      end
     end
-    object CheckBox2: TCheckBox
-      Left = 700
-      Top = 50
-      Width = 117
-      Height = 17
-      Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+    object GroupBox6: TGroupBox
+      Left = 1
+      Top = 159
+      Width = 820
+      Height = 56
+      Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072' '#1087#1077#1088#1077#1075#1088#1091#1079#1082#1091' '#1087#1086' '#1090#1086#1082#1091
+      Color = clSilver
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 2
+      object Label4: TLabel
+        Left = 12
+        Top = 26
+        Width = 127
+        Height = 23
+        Caption = 'I=1,5I'#1085', 2'#1084#1080#1085'.'
+      end
+      object RadioButton7: TRadioButton
+        Left = 150
+        Top = 27
+        Width = 113
+        Height = 23
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 0
+      end
+      object RadioButton8: TRadioButton
+        Left = 270
+        Top = 26
+        Width = 147
+        Height = 25
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 1
+      end
+      object RadioButton9: TRadioButton
+        Left = 417
+        Top = 24
+        Width = 165
+        Height = 30
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 2
+      end
+      object CheckBox3: TCheckBox
+        Left = 604
+        Top = 34
+        Width = 117
+        Height = 17
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 3
+        Visible = False
+      end
+      object RadioButton21: TRadioButton
+        Left = 800
+        Top = 32
+        Width = 13
+        Height = 17
+        Caption = 'RadioButton21'
+        TabOrder = 4
+      end
     end
-    object CheckBox3: TCheckBox
-      Left = 700
-      Top = 76
-      Width = 117
-      Height = 17
-      Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+    object GroupBox7: TGroupBox
+      Left = 1
+      Top = 221
+      Width = 820
+      Height = 57
+      Caption = #1055#1086#1089#1083#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103' '#1085#1072' '#1087#1077#1088#1077#1075#1088#1091#1079#1082#1091' '#1087#1086' '#1090#1086#1082#1091
+      Color = clBtnFace
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 3
+      object Label5: TLabel
+        Left = 11
+        Top = 24
+        Width = 53
+        Height = 23
+        Caption = 'R'#1080#1079#1086#1083
+      end
+      object RadioButton10: TRadioButton
+        Left = 73
+        Top = 24
+        Width = 113
+        Height = 25
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 0
+      end
+      object RadioButton11: TRadioButton
+        Left = 191
+        Top = 24
+        Width = 138
+        Height = 25
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 1
+      end
+      object RadioButton12: TRadioButton
+        Left = 335
+        Top = 24
+        Width = 161
+        Height = 25
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 2
+      end
+      object CheckBox4: TCheckBox
+        Left = 605
+        Top = 28
+        Width = 117
+        Height = 17
+        Caption = #1053#1086#1088#1084
+        TabOrder = 3
+        Visible = False
+      end
+      object RadioButton22: TRadioButton
+        Left = 800
+        Top = 28
+        Width = 13
+        Height = 17
+        Caption = 'RadioButton22'
+        TabOrder = 4
+      end
     end
-    object CheckBox4: TCheckBox
-      Left = 700
-      Top = 105
-      Width = 117
-      Height = 17
-      Caption = #1053#1086#1088#1084
+    object GroupBox8: TGroupBox
+      Left = 1
+      Top = 284
+      Width = 820
+      Height = 97
+      Caption = #1044#1083#1103' '#1076#1074#1080#1075#1072#1090#1077#1083#1077#1081' 4'#1040#1057' '#1088#1072#1073#1086#1090#1086#1089#1087#1086#1089#1086#1073#1085#1086#1089#1090#1100' '#1087#1088#1080':'
+      Color = clSilver
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 4
-    end
-    object CheckBox5: TCheckBox
-      Left = 700
-      Top = 173
-      Width = 117
-      Height = 17
-      Caption = #1042#1099#1076#1077#1088#1078#1072#1083
-      TabOrder = 5
-    end
-    object CheckBox6: TCheckBox
-      Left = 700
-      Top = 195
-      Width = 117
-      Height = 19
-      Caption = #1042#1099#1076#1077#1088#1078#1072#1083
-      TabOrder = 6
-    end
-    object Edit2: TEdit
-      Left = 117
-      Top = 189
-      Width = 72
-      Height = 31
-      TabOrder = 7
-      Text = '0'
+      object Label7: TLabel
+        Left = 14
+        Top = 26
+        Width = 156
+        Height = 23
+        Caption = '0,74U'#1085'('#1052#1085#1086#1084') 15'#1089
+      end
+      object Label8: TLabel
+        Left = 14
+        Top = 55
+        Width = 156
+        Height = 23
+        Caption = '1,13U'#1085'('#1052#1085#1086#1084') 15'#1089
+      end
+      object CheckBox5: TCheckBox
+        Left = 641
+        Top = 47
+        Width = 117
+        Height = 17
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 0
+        Visible = False
+      end
+      object CheckBox6: TCheckBox
+        Left = 641
+        Top = 22
+        Width = 117
+        Height = 19
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 1
+        Visible = False
+      end
+      object RadioButton13: TRadioButton
+        Left = 182
+        Top = 24
+        Width = 113
+        Height = 29
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 2
+      end
+      object RadioButton14: TRadioButton
+        Left = 307
+        Top = 26
+        Width = 142
+        Height = 26
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 3
+      end
+      object RadioButton15: TRadioButton
+        Left = 454
+        Top = 24
+        Width = 167
+        Height = 29
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 4
+      end
+      object RadioButton16: TRadioButton
+        Left = 182
+        Top = 55
+        Width = 113
+        Height = 25
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 5
+      end
+      object RadioButton17: TRadioButton
+        Left = 307
+        Top = 55
+        Width = 142
+        Height = 25
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 6
+      end
+      object RadioButton18: TRadioButton
+        Left = 455
+        Top = 55
+        Width = 166
+        Height = 25
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 7
+      end
+      object RadioButton23: TRadioButton
+        Left = 800
+        Top = 30
+        Width = 13
+        Height = 17
+        Caption = 'RadioButton23'
+        TabOrder = 8
+      end
+      object RadioButton24: TRadioButton
+        Left = 800
+        Top = 66
+        Width = 14
+        Height = 17
+        Caption = 'RadioButton24'
+        TabOrder = 9
+      end
     end
   end
   object GroupBox2: TGroupBox
-    Left = 8
-    Top = 235
+    Left = 4
+    Top = 390
     Width = 1017
-    Height = 193
+    Height = 170
     Caption = #1042#1080#1073#1088#1086#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080
     TabOrder = 1
     object StringGrid1: TStringGrid
       Left = 2
       Top = 68
       Width = 1013
-      Height = 123
+      Height = 100
       Align = alBottom
       ColCount = 19
       DefaultColWidth = 85
@@ -171,6 +410,7 @@ object FProch: TFProch
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       OnDrawCell = StringGrid1DrawCell
+      ExplicitTop = 92
     end
     object Panel1: TPanel
       Left = 89
@@ -195,7 +435,7 @@ object FProch: TFProch
     object Panel3: TPanel
       Left = 703
       Top = 32
-      Width = 306
+      Width = 312
       Height = 34
       Caption = #1042#1080#1073#1088#1086#1091#1089#1082#1086#1088#1077#1085#1080#1077
       Color = clSilver
@@ -204,8 +444,8 @@ object FProch: TFProch
     end
   end
   object GroupBox3: TGroupBox
-    Left = 8
-    Top = 434
+    Left = 4
+    Top = 559
     Width = 629
     Height = 158
     Caption = #1059#1088#1086#1074#1077#1085#1100' '#1079#1074#1091#1082#1086#1074#1086#1081' '#1084#1086#1097#1085#1086#1089#1090#1080', '#1076#1041#1040
@@ -465,10 +705,18 @@ object FProch: TFProch
     TabOrder = 5
     OnClick = BitBtn3Click
   end
+  object Edit2: TEdit
+    Left = 746
+    Top = 563
+    Width = 72
+    Height = 31
+    TabOrder = 6
+    Text = '0'
+  end
   object QTemp: TFDQuery
     Connection = FMain.FDOra
-    Left = 904
-    Top = 544
+    Left = 852
+    Top = 352
   end
   object QInsProch: TFDQuery
     Connection = FMain.FDOra
@@ -480,8 +728,8 @@ object FProch: TFProch
       'VALUES ( :NOMER, :EPROCH, :HIFREQ,'
       '   :PEREGRUZ, :RIZOL, :MASSA,'
       '   :U074, :U113, :EPROCHU )')
-    Left = 904
-    Top = 488
+    Left = 852
+    Top = 296
     ParamData = <
       item
         Name = 'NOMER'
@@ -528,8 +776,8 @@ object FProch: TFProch
       '   VAL)'
       'VALUES ( :NOMER, :X, :Y,'
       '   :VAL )')
-    Left = 960
-    Top = 488
+    Left = 908
+    Top = 296
     ParamData = <
       item
         Name = 'NOMER'
@@ -556,8 +804,8 @@ object FProch: TFProch
       '   VAL)'
       'VALUES ( :NOMER, :X, :Y,'
       '   :VAL )')
-    Left = 960
-    Top = 544
+    Left = 908
+    Top = 352
     ParamData = <
       item
         Name = 'NOMER'

@@ -14,25 +14,8 @@ uses
 type
   TFProch = class(TForm)
     GroupBox1: TGroupBox;
-    Label1: TLabel;
-    Edit1: TEdit;
-    Label2: TLabel;
-    CheckBox1: TCheckBox;
-    Label3: TLabel;
-    CheckBox2: TCheckBox;
-    Label4: TLabel;
-    CheckBox3: TCheckBox;
-    Label5: TLabel;
-    CheckBox4: TCheckBox;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
-    Label9: TLabel;
-    Edit2: TEdit;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     QTemp: TFDQuery;
@@ -51,6 +34,51 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
+    GroupBox4: TGroupBox;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    RadioButton3: TRadioButton;
+    GroupBox5: TGroupBox;
+    Label13: TLabel;
+    RadioButton4: TRadioButton;
+    RadioButton5: TRadioButton;
+    RadioButton6: TRadioButton;
+    GroupBox6: TGroupBox;
+    Label4: TLabel;
+    RadioButton7: TRadioButton;
+    RadioButton8: TRadioButton;
+    RadioButton9: TRadioButton;
+    GroupBox7: TGroupBox;
+    Label5: TLabel;
+    RadioButton10: TRadioButton;
+    RadioButton11: TRadioButton;
+    RadioButton12: TRadioButton;
+    CheckBox4: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox1: TCheckBox;
+    GroupBox8: TGroupBox;
+    Label7: TLabel;
+    CheckBox5: TCheckBox;
+    Label8: TLabel;
+    CheckBox6: TCheckBox;
+    RadioButton13: TRadioButton;
+    RadioButton14: TRadioButton;
+    RadioButton15: TRadioButton;
+    RadioButton16: TRadioButton;
+    RadioButton17: TRadioButton;
+    RadioButton18: TRadioButton;
+    RadioButton19: TRadioButton;
+    RadioButton20: TRadioButton;
+    RadioButton21: TRadioButton;
+    RadioButton22: TRadioButton;
+    RadioButton23: TRadioButton;
+    RadioButton24: TRadioButton;
+    Label9: TLabel;
+    Edit2: TEdit;
     procedure BitBtn1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
@@ -78,7 +106,6 @@ var
   cod, errx, erry, errx1, erry1: integer;
   s                            : string;
 begin
-
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zproch where nomer=' + Quotedstr(Nomer));
@@ -89,34 +116,38 @@ begin
     Exit;
   end;
 
+
+
   QInsProch.Close;
   QInsProch.PaRAMByName('nomer').Asstring  := Nomer;
   QInsProch.PaRAMByName('eprochu').AsFloat := strtofloat(Edit1.Text);
   QInsProch.PaRAMByName('massa').AsFloat   := strtofloat(Edit2.Text);
-  if CheckBox1.checked then
-    QInsProch.PaRAMByName('eproch').AsInteger := 1
-  else
-    QInsProch.PaRAMByName('eproch').AsInteger := 0;
-  if CheckBox2.checked then
-    QInsProch.PaRAMByName('HIFREQ').AsInteger := 1
-  else
-    QInsProch.PaRAMByName('HIFREQ').AsInteger := 0;
-  if CheckBox3.checked then
-    QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 1
-  else
-    QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 0;
-  if CheckBox4.checked then
-    QInsProch.PaRAMByName('RIZOL').AsInteger := 1
-  else
-    QInsProch.PaRAMByName('RIZOL').AsInteger := 0;
-  if CheckBox5.checked then
-    QInsProch.PaRAMByName('U074').AsInteger := 1
-  else
-    QInsProch.PaRAMByName('U074').AsInteger := 0;
-  if CheckBox6.checked then
-    QInsProch.PaRAMByName('U113').AsInteger := 1
-  else
-    QInsProch.PaRAMByName('U113').AsInteger := 0;
+  //----------------------------
+  If RadioButton1.Checked then QInsProch.PaRAMByName('eproch').AsInteger := 1;
+  If RadioButton2.Checked then QInsProch.PaRAMByName('eproch').AsInteger := 2;
+  If RadioButton3.Checked then QInsProch.PaRAMByName('eproch').AsInteger := 0;
+  //------------------------------
+  If RadioButton4.Checked then QInsProch.PaRAMByName('HIFREQ').AsInteger := 1;
+  If RadioButton5.Checked then QInsProch.PaRAMByName('HIFREQ').AsInteger := 2;
+  If RadioButton6.Checked then QInsProch.PaRAMByName('HIFREQ').AsInteger := 0;
+  //------------------------------
+  If RadioButton7.Checked then QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 1;
+  If RadioButton8.Checked then QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 2;
+  If RadioButton9.Checked then QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 0;
+  //------------------------------
+  If RadioButton10.Checked then QInsProch.PaRAMByName('RIZOL').AsInteger := 1;
+  If RadioButton11.Checked then QInsProch.PaRAMByName('RIZOL').AsInteger := 2;
+  If RadioButton12.Checked then QInsProch.PaRAMByName('RIZOL').AsInteger := 0;
+  //------------------------------
+  If RadioButton13.Checked then QInsProch.PaRAMByName('U074').AsInteger := 1;
+  If RadioButton14.Checked then QInsProch.PaRAMByName('U074').AsInteger := 2;
+  If RadioButton15.Checked then QInsProch.PaRAMByName('U074').AsInteger := 0;
+  //------------------------------
+  If RadioButton16.Checked then QInsProch.PaRAMByName('U11').AsInteger := 1;
+  If RadioButton17.Checked then QInsProch.PaRAMByName('U11').AsInteger := 2;
+  If RadioButton18.Checked then QInsProch.PaRAMByName('U11').AsInteger := 0;
+  //------------------------------
+
   QInsProch.ExecSQL;
   /// //////////////////////////////////
   { INSERT INTO ZAMER.ZVIBRO (
@@ -299,21 +330,21 @@ if (ARow>0) then
  begin
   if (ACol>0) and (ACol<7) then
    begin
-    StringGrid1.Canvas.Brush.Color := $00990000;//clYellow;
+    StringGrid1.Canvas.Brush.Color := $00990000;
     StringGrid1.Canvas.FillRect(Rect);
     StringGrid1.Canvas.font.Color:=clWhite;
     StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
    end;
   if (ACol>6) and (ACol<13) then
    begin
-    StringGrid1.Canvas.Brush.Color := $00009900;//clYellow;
+    StringGrid1.Canvas.Brush.Color := $00009900;
     StringGrid1.Canvas.FillRect(Rect);
     StringGrid1.Canvas.font.Color:=clWhite;
     StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
    end;
   if (ACol>12) and (ACol<19) then
    begin
-    StringGrid1.Canvas.Brush.Color := $00000099;//clYellow;
+    StringGrid1.Canvas.Brush.Color := $00000099;
     StringGrid1.Canvas.FillRect(Rect);
     StringGrid1.Canvas.font.Color:=clWhite;
     StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
