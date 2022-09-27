@@ -1,4 +1,4 @@
-unit UHH;
+п»їunit UHH;
 
 interface
 
@@ -93,7 +93,7 @@ uses Umain;
 
 procedure TFhhod.beep;
 begin
-  // сделать звук
+  // СЃРґРµР»Р°С‚СЊ Р·РІСѓРє
   MessageBeep(word(-1));
 end;
 
@@ -118,7 +118,7 @@ end;
 procedure TFhhod.BitBtn2Click(Sender: TObject);
 begin
   Fmain.Label29.font.Color := clGreen;
-  Fmain.Label29.Caption    := 'ПРОЙДЕН';
+  Fmain.Label29.Caption    := 'РџР РћР™Р”Р•Рќ';
   Fhhod.Close;
 end;
 
@@ -152,15 +152,15 @@ begin
   Label3.Caption            := Fmain.Edit6.Text;
   for i                     := 1 to 10 do
     StringGrid1.cells[0, i] := inttostr(i);
-  StringGrid1.cells[0, 0]   := '№';
-  StringGrid1.cells[1, 0]   := 'Вар. 1';
-  StringGrid1.cells[2, 0]   := 'Вар. 2';
-  StringGrid1.cells[3, 0]   := 'Вар. 3';
-  StringGrid2.cells[0, 0]   := 'Uхх';
-  StringGrid2.cells[1, 0]   := 'U сред';
-  StringGrid2.cells[2, 0]   := 'I сред';
-  StringGrid2.cells[3, 0]   := 'P сред';
-  StringGrid2.cells[4, 0]   := 'U макс';
+  StringGrid1.cells[0, 0]   := 'в„–';
+  StringGrid1.cells[1, 0]   := 'Р’Р°СЂ. 1';
+  StringGrid1.cells[2, 0]   := 'Р’Р°СЂ. 2';
+  StringGrid1.cells[3, 0]   := 'Р’Р°СЂ. 3';
+  StringGrid2.cells[0, 0]   := 'UС…С…';
+  StringGrid2.cells[1, 0]   := 'U СЃСЂРµРґ';
+  StringGrid2.cells[2, 0]   := 'I СЃСЂРµРґ';
+  StringGrid2.cells[3, 0]   := 'P СЃСЂРµРґ';
+  StringGrid2.cells[4, 0]   := 'в–ІUmax';
   TimerUpd.Enabled          := True;
 end;
 
@@ -243,7 +243,7 @@ begin
   StringGrid2.rowcount        := 2;
   if StringGrid1.cells[1, 1] = '' then
   begin
-    ShowMessage('Нет данных для испытания');
+    ShowMessage('РќРµС‚ РґР°РЅРЅС‹С… РґР»СЏ РёСЃРїС‹С‚Р°РЅРёСЏ');
     exit;
   end;
 
@@ -269,7 +269,7 @@ begin
   end
   else
     ShowMessage
-      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
+      ('РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёСЃРїС‹С‚Р°С‚РµР»СЊРЅРѕРµ РЅР°РїСЂСЏР¶РµРЅРёРµ РґРІРёРіР°С‚РµР»СЏ РёР· СѓСЃС‚Р°РЅРѕРІРѕРє С‚РµРєСѓС‰РµРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏ');
 end;
 
 procedure TFhhod.RadioButton2Click(Sender: TObject);
@@ -284,7 +284,7 @@ begin
   StringGrid2.rowcount        := 2;
   if StringGrid1.cells[2, 1] = '' then
   begin
-    ShowMessage('Нет данных для испытания');
+    ShowMessage('РќРµС‚ РґР°РЅРЅС‹С… РґР»СЏ РёСЃРїС‹С‚Р°РЅРёСЏ');
     exit;
   end;
 
@@ -310,7 +310,7 @@ begin
   end
   else
     ShowMessage
-      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
+      ('РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёСЃРїС‹С‚Р°С‚РµР»СЊРЅРѕРµ РЅР°РїСЂСЏР¶РµРЅРёРµ РґРІРёРіР°С‚РµР»СЏ РёР· СѓСЃС‚Р°РЅРѕРІРѕРє С‚РµРєСѓС‰РµРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏ');
 end;
 
 procedure TFhhod.RadioButton3Click(Sender: TObject);
@@ -325,7 +325,7 @@ begin
   StringGrid2.rowcount        := 2;
   if StringGrid1.cells[3, 1] = '' then
   begin
-    ShowMessage('Нет данных для испытания');
+    ShowMessage('РќРµС‚ РґР°РЅРЅС‹С… РґР»СЏ РёСЃРїС‹С‚Р°РЅРёСЏ');
     exit;
   end;
 
@@ -351,7 +351,7 @@ begin
   end
   else
     ShowMessage
-      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
+      ('РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёСЃРїС‹С‚Р°С‚РµР»СЊРЅРѕРµ РЅР°РїСЂСЏР¶РµРЅРёРµ РґРІРёРіР°С‚РµР»СЏ РёР· СѓСЃС‚Р°РЅРѕРІРѕРє С‚РµРєСѓС‰РµРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏ');
 end;
 
 procedure TFhhod.StringGrid2Click(Sender: TObject);
@@ -377,7 +377,7 @@ begin
     (StringGrid2.cells[4, ARow] = '');
   if (ACol = 4) and (not ok) then
   begin
-    // выбираем зеленный цвет и закрашиваем что нам нужно
+    // РІС‹Р±РёСЂР°РµРј Р·РµР»РµРЅРЅС‹Р№ С†РІРµС‚ Рё Р·Р°РєСЂР°С€РёРІР°РµРј С‡С‚Рѕ РЅР°Рј РЅСѓР¶РЅРѕ
     StringGrid2.Canvas.Brush.Color := clYellow;
     StringGrid2.Canvas.FillRect(Rect);
     StringGrid2.Canvas.TextOut(Rect.Left, Rect.Top,
@@ -414,8 +414,8 @@ begin
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
       QinsAll.ExecSQL;
     end;
-    // по просьбе удалим записи где мы выходим за пределы диапазона
-    // там dumax> edit2.text
+    // РїРѕ РїСЂРѕСЃСЊР±Рµ СѓРґР°Р»РёРј Р·Р°РїРёСЃРё РіРґРµ РјС‹ РІС‹С…РѕРґРёРј Р·Р° РїСЂРµРґРµР»С‹ РґРёР°РїР°Р·РѕРЅР°
+    // С‚Р°Рј dumax> edit2.text
     If CheckBox2.Checked then
     begin
       QTemp.Close;
@@ -425,8 +425,8 @@ begin
       QTemp.ExecSQL;
     end;
 
-    // тут считается среднее по показаниям только датчика
-    // напряжения, подвохов не ожидается
+    // С‚СѓС‚ СЃС‡РёС‚Р°РµС‚СЃСЏ СЃСЂРµРґРЅРµРµ РїРѕ РїРѕРєР°Р·Р°РЅРёСЏРј С‚РѕР»СЊРєРѕ РґР°С‚С‡РёРєР°
+    // РЅР°РїСЂСЏР¶РµРЅРёСЏ, РїРѕРґРІРѕС…РѕРІ РЅРµ РѕР¶РёРґР°РµС‚СЃСЏ
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').Asstring := Nomer;
     Qselectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
@@ -468,12 +468,12 @@ begin
     begin
       BitBtn2.Enabled := True;
       BitBtn3.Enabled := True;
-      ShowMessage('Испытание завершено!!')
+      ShowMessage('РСЃРїС‹С‚Р°РЅРёРµ Р·Р°РІРµСЂС€РµРЅРѕ!!')
     end
     else
     begin
       BitBtn3.Enabled := True;
-      //ShowMessage('Шаг завершен c перекосом фаз по току в '+Floattostr(round(perei))+'% от среднего значения');
+      //ShowMessage('РЁР°Рі Р·Р°РІРµСЂС€РµРЅ c РїРµСЂРµРєРѕСЃРѕРј С„Р°Р· РїРѕ С‚РѕРєСѓ РІ '+Floattostr(round(perei))+'% РѕС‚ СЃСЂРµРґРЅРµРіРѕ Р·РЅР°С‡РµРЅРёСЏ');
       Label12.Caption:= Floattostr(round(perei));
       Label6.Caption := StringGrid2.cells[0, StringGrid2.row];
     end;
@@ -497,7 +497,7 @@ begin
   a[acount].p2 := SimpleRoundTo(Fmain.RP2.Value, -2);
   a[acount].p3 := SimpleRoundTo(Fmain.RP3.Value, -2);
   a[acount].ps := SimpleRoundTo(Fmain.PSredQ.Value, -2);
-  // перекос фаз
+  // РїРµСЂРµРєРѕСЃ С„Р°Р·
   i:= (a[acount].i1+ a[acount].i2+ a[acount].i3)/3;
   i1:= abs(100 - (a[acount].i1 / i)*100);
   i2:= abs(100 - (a[acount].i2 / i)*100);

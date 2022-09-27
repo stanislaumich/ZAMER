@@ -1,1 +1,37 @@
 27.09.2022 09:24:29.328 - Запуск Modbus TCP/RTU Эмулятор
+27.09.2022 09:24:29.911 - TModbusTCPServer.Create
+27.09.2022 09:24:30.437 - TModbusTCPServer.Start
+27.09.2022 09:24:30.437 - TTCPAccept.Create IN, Port = 502
+27.09.2022 09:24:30.446 - TTCPAccept.Create OUT
+27.09.2022 09:24:30.449 - TTCPAccept.Execute IN
+27.09.2022 09:24:30.449 - TTCPAccept.InitSocket IN
+27.09.2022 09:24:30.454 - TTCPAccept.InitSocket - OUT
+27.09.2022 09:24:39.406 - TModbusTCPServer.ClientConnectEvent
+27.09.2022 09:24:39.530 - TModbusTCPServer.AddClient
+27.09.2022 09:24:39.530 - TModbusTCPClient.Start
+27.09.2022 09:24:39.530 - TTCPAccept.InitSocket IN
+27.09.2022 09:25:56.175 - TModbusTCPServer.OnClientDisconnect
+27.09.2022 09:30:06.525 - TModbusTCPServer.ClientConnectEvent
+27.09.2022 09:30:06.525 - TModbusTCPServer.RemoveClient
+27.09.2022 09:30:06.641 - TModbusTCPServer.AddClient
+27.09.2022 09:30:06.641 - TModbusTCPClient.Start
+27.09.2022 09:30:06.641 - TTCPAccept.InitSocket IN
+27.09.2022 09:31:12.482 - TModbusTCPServer.OnClientDisconnect
+27.09.2022 09:59:29.293 - TModbusTCPServer.ClientConnectEvent
+27.09.2022 09:59:29.293 - TModbusTCPServer.RemoveClient
+27.09.2022 09:59:29.395 - TModbusTCPServer.AddClient
+27.09.2022 09:59:29.395 - TModbusTCPClient.Start
+27.09.2022 09:59:29.395 - TTCPAccept.InitSocket IN
+27.09.2022 10:00:32.924 - TModbusTCPServer.OnClientDisconnect
+27.09.2022 10:00:45.290 - TModbusTCPServer.ClientConnectEvent
+27.09.2022 10:00:45.290 - TModbusTCPServer.RemoveClient
+27.09.2022 10:00:45.321 - TModbusTCPServer.AddClient
+27.09.2022 10:00:45.321 - TModbusTCPClient.Start
+27.09.2022 10:00:45.321 - TTCPAccept.InitSocket IN
+27.09.2022 10:01:26.688 - TModbusTCPServer.OnClientDisconnect
+27.09.2022 10:06:47.304 - TModbusTCPServer.ClientConnectEvent
+27.09.2022 10:06:47.304 - TModbusTCPServer.RemoveClient
+27.09.2022 10:06:47.389 - TModbusTCPServer.AddClient
+27.09.2022 10:06:47.389 - TModbusTCPClient.Start
+27.09.2022 10:06:47.389 - TTCPAccept.InitSocket IN
+27.09.2022 10:08:05.15 - TModbusTCPServer.OnClientDisconnect

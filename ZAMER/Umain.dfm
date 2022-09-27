@@ -841,12 +841,21 @@ object FMain: TFMain
   end
   object BitBtn15: TBitBtn
     Left = 735
-    Top = 475
+    Top = 464
     Width = 77
-    Height = 21
+    Height = 32
     Caption = #1044#1072#1090#1095#1080#1082#1080
     TabOrder = 10
     OnClick = BitBtn15Click
+  end
+  object BitBtn12: TBitBtn
+    Left = 925
+    Top = 471
+    Width = 75
+    Height = 25
+    Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
+    TabOrder = 11
+    OnClick = BitBtn12Click
   end
   object KRTCPConnector1: TKRTCPConnector
     OnConnectionStatus = KRTCPConnector1ConnectionStatus
@@ -1037,6 +1046,8 @@ object FMain: TFMain
       'Database=XE'
       'Password=zamer'
       'User_Name=zamer')
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
     Connected = True
     LoginPrompt = False
     Left = 692

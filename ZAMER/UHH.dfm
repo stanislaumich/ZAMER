@@ -80,7 +80,7 @@ object Fhhod: TFhhod
     ExplicitTop = 576
   end
   object Label7: TLabel
-    Left = 511
+    Left = 503
     Top = 551
     Width = 156
     Height = 39
@@ -92,10 +92,9 @@ object Fhhod: TFhhod
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitTop = 576
   end
   object Label8: TLabel
-    Left = 669
+    Left = 661
     Top = 551
     Width = 20
     Height = 39
@@ -107,7 +106,6 @@ object Fhhod: TFhhod
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitTop = 576
   end
   object Label11: TLabel
     Left = 4

@@ -2,7 +2,7 @@ object FProch: TFProch
   Left = 0
   Top = 0
   Caption = #1055#1088#1086#1095#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
-  ClientHeight = 528
+  ClientHeight = 600
   ClientWidth = 1026
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -153,27 +153,59 @@ object FProch: TFProch
     end
   end
   object GroupBox2: TGroupBox
-    Left = 4
+    Left = 8
     Top = 235
     Width = 1017
-    Height = 126
+    Height = 193
     Caption = #1042#1080#1073#1088#1086#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080
     TabOrder = 1
     object StringGrid1: TStringGrid
       Left = 2
-      Top = 25
+      Top = 68
       Width = 1013
-      Height = 99
-      Align = alClient
+      Height = 123
+      Align = alBottom
       ColCount = 19
+      DefaultColWidth = 85
       RowCount = 3
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnDrawCell = StringGrid1DrawCell
+    end
+    object Panel1: TPanel
+      Left = 89
+      Top = 32
+      Width = 306
+      Height = 34
+      Caption = #1042#1080#1073#1088#1086#1089#1082#1086#1088#1086#1089#1090#1100
+      Color = clSilver
+      ParentBackground = False
+      TabOrder = 1
+    end
+    object Panel2: TPanel
+      Left = 396
+      Top = 32
+      Width = 306
+      Height = 34
+      Caption = #1042#1080#1073#1088#1086#1089#1084#1077#1097#1077#1085#1080#1077
+      Color = clSilver
+      ParentBackground = False
+      TabOrder = 2
+    end
+    object Panel3: TPanel
+      Left = 703
+      Top = 32
+      Width = 306
+      Height = 34
+      Caption = #1042#1080#1073#1088#1086#1091#1089#1082#1086#1088#1077#1085#1080#1077
+      Color = clSilver
+      ParentBackground = False
+      TabOrder = 3
     end
   end
   object GroupBox3: TGroupBox
     Left = 8
-    Top = 367
+    Top = 434
     Width = 629
     Height = 158
     Caption = #1059#1088#1086#1074#1077#1085#1100' '#1079#1074#1091#1082#1086#1074#1086#1081' '#1084#1086#1097#1085#1086#1089#1090#1080', '#1076#1041#1040
@@ -435,8 +467,8 @@ object FProch: TFProch
   end
   object QTemp: TFDQuery
     Connection = FMain.FDOra
-    Left = 652
-    Top = 420
+    Left = 904
+    Top = 544
   end
   object QInsProch: TFDQuery
     Connection = FMain.FDOra
@@ -448,8 +480,8 @@ object FProch: TFProch
       'VALUES ( :NOMER, :EPROCH, :HIFREQ,'
       '   :PEREGRUZ, :RIZOL, :MASSA,'
       '   :U074, :U113, :EPROCHU )')
-    Left = 652
-    Top = 364
+    Left = 904
+    Top = 488
     ParamData = <
       item
         Name = 'NOMER'
@@ -496,8 +528,8 @@ object FProch: TFProch
       '   VAL)'
       'VALUES ( :NOMER, :X, :Y,'
       '   :VAL )')
-    Left = 708
-    Top = 364
+    Left = 960
+    Top = 488
     ParamData = <
       item
         Name = 'NOMER'
@@ -524,8 +556,8 @@ object FProch: TFProch
       '   VAL)'
       'VALUES ( :NOMER, :X, :Y,'
       '   :VAL )')
-    Left = 708
-    Top = 420
+    Left = 960
+    Top = 544
     ParamData = <
       item
         Name = 'NOMER'

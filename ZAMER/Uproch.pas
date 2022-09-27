@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Grids;
+  FireDAC.Comp.Client, Vcl.Grids, Vcl.ExtCtrls;
 
 type
   TFProch = class(TForm)
@@ -48,10 +48,15 @@ type
     Qinsvibro: TFDQuery;
     BitBtn3: TBitBtn;
     QInsZvuk: TFDQuery;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
     procedure BitBtn1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -285,6 +290,35 @@ begin
     StringGrid1.ColWidths[i] := 50;
   StringGrid1.ColWidths[0]   := 85;
 
+end;
+
+procedure TFProch.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+begin
+if (ARow>0) then
+ begin
+  if (ACol>0) and (ACol<7) then
+   begin
+    StringGrid1.Canvas.Brush.Color := $00990000;//clYellow;
+    StringGrid1.Canvas.FillRect(Rect);
+    StringGrid1.Canvas.font.Color:=clWhite;
+    StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
+   end;
+  if (ACol>6) and (ACol<13) then
+   begin
+    StringGrid1.Canvas.Brush.Color := $00009900;//clYellow;
+    StringGrid1.Canvas.FillRect(Rect);
+    StringGrid1.Canvas.font.Color:=clWhite;
+    StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
+   end;
+  if (ACol>12) and (ACol<19) then
+   begin
+    StringGrid1.Canvas.Brush.Color := $00000099;//clYellow;
+    StringGrid1.Canvas.FillRect(Rect);
+    StringGrid1.Canvas.font.Color:=clWhite;
+    StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
+   end;
+ end;
 end;
 
 end.

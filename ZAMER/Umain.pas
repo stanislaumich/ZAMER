@@ -150,6 +150,7 @@ type
     Qinserr: TFDQuery;
     QDelta: TFDQuery;
     Psredq: TKRMBRegister;
+    BitBtn12: TBitBtn;
     procedure BitBtn10Click(Sender: TObject);
     procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
       AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -193,6 +194,7 @@ type
     procedure FormCurrentReport;
     procedure LoadIspyt(Nomer: String);
     procedure BitBtn14Click(Sender: TObject);
+    procedure BitBtn12Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -218,7 +220,7 @@ implementation
 {$R *.dfm}
 
 uses UHH, USoprot, UProdol, UKZam, UNagrev, URH, UMehan, UArc, UDatchik, Uproch,
-  UMH;
+  UMH, USettings;
 
 procedure TFMain.enableispyt(p: Boolean);
 begin
@@ -324,6 +326,11 @@ begin
   Fproch.Edit4.Text := Edit8.Text;
   Fproch.Edit5.Text := Edit9.Text;
   Fproch.ShowModal;
+end;
+
+procedure TFMain.BitBtn12Click(Sender: TObject);
+begin
+ FSettings.ShowModal;
 end;
 
 procedure TFMain.BitBtn13Click(Sender: TObject);
