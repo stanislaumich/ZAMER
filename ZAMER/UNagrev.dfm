@@ -230,7 +230,7 @@ object FNagrev: TFNagrev
   end
   object GroupBox4: TGroupBox
     Left = 0
-    Top = 148
+    Top = 146
     Width = 802
     Height = 257
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
@@ -274,7 +274,7 @@ object FNagrev: TFNagrev
       TabOrder = 0
     end
     object BitBtn1: TBitBtn
-      Left = 333
+      Left = 676
       Top = 148
       Width = 123
       Height = 41
@@ -282,9 +282,9 @@ object FNagrev: TFNagrev
       TabOrder = 1
     end
     object BitBtn2: TBitBtn
-      Left = 468
-      Top = 148
-      Width = 113
+      Left = 676
+      Top = 188
+      Width = 123
       Height = 41
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
       TabOrder = 2
@@ -431,16 +431,16 @@ object FNagrev: TFNagrev
   object Timer1: TTimer
     Interval = 500
     OnTimer = Timer1Timer
-    Left = 228
-    Top = 424
+    Left = 488
+    Top = 412
   end
   object Timer2: TTimer
-    Left = 280
-    Top = 424
+    Left = 528
+    Top = 416
   end
   object QgetMN: TFDQuery
     Connection = FMain.FDOra
-    Left = 448
-    Top = 432
+    Left = 572
+    Top = 420
   end
 end

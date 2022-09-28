@@ -3671,7 +3671,7 @@ object FKzam: TFKzam
       Width = 138
       Height = 38
       Anchors = [akRight, akBottom]
-      Caption = #1047#1072#1087#1080#1089#1100
+      Caption = #1047#1072#1087#1080#1089#1100' F5'
       Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
@@ -3739,7 +3739,7 @@ object FKzam: TFKzam
       Width = 150
       Height = 38
       Anchors = [akRight, akBottom]
-      Caption = #1057#1090#1086#1087
+      Caption = #1057#1090#1086#1087' F9'
       Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
@@ -3803,7 +3803,7 @@ object FKzam: TFKzam
     end
     object StringGrid1: TStringGrid
       Left = 8
-      Top = 28
+      Top = 33
       Width = 506
       Height = 178
       Anchors = [akLeft, akTop, akRight]
@@ -3819,7 +3819,7 @@ object FKzam: TFKzam
       Width = 70
       Height = 31
       TabOrder = 3
-      Text = 'Edit2'
+      Text = '0'
     end
   end
   object GroupBox3: TGroupBox
@@ -4252,5 +4252,19 @@ object FKzam: TFKzam
       'select torq from zamer')
     Left = 400
     Top = 335
+  end
+  object ActionList1: TActionList
+    Left = 360
+    Top = 191
+    object KZStart: TAction
+      Caption = 'KZStart'
+      ShortCut = 116
+      OnExecute = KZStartExecute
+    end
+    object KZStop: TAction
+      Caption = 'KZStop'
+      ShortCut = 120
+      OnExecute = KZStopExecute
+    end
   end
 end

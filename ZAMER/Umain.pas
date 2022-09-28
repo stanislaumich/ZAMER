@@ -151,8 +151,8 @@ type
         QDelta: TFDQuery;
         Psredq: TKRMBRegister;
         BitBtn12: TBitBtn;
-    Label36: TLabel;
-    ComboBox5: TComboBox;
+        Label36: TLabel;
+        ComboBox5: TComboBox;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -433,7 +433,7 @@ begin
             QInsertNewDvig.ParamByName('ISPOLN').Asstring := Edit10.Text;
             QInsertNewDvig.ParamByName('READY').AsInteger := 0;
             QInsertNewDvig.ParamByName('NOMER').Asstring  := Nomer;
-            QInsertNewDvig.ParamByName('fio').Asstring  := ComboBox5.Text;
+            QInsertNewDvig.ParamByName('fio').Asstring    := ComboBox5.Text;
             QInsertNewDvig.ExecSQL;
             Label28.Caption := '';
             ShowMessage('Можно приступать к испытаниям двигателя');
@@ -627,7 +627,7 @@ begin
         FKZam.StringGrid1.Cells[4, FKZam.StringGrid1.row] :=
           Qtemp.FieldByName('m').Asstring;
         FKZam.StringGrid1.row := FKZam.StringGrid1.row + 1;
-        FKZam.Edit2.Text:=Qtemp.FieldByName('r').Asstring;
+        FKZam.Edit2.Text      := Qtemp.FieldByName('r').Asstring;
         Qtemp.Next;
 
     end;
@@ -826,7 +826,7 @@ begin
         Label24.Caption := Fprodol.Label24.Caption;
         Edit11.Text     := Fprodol.Edit11.Text;
         Edit10.Text     := Fprodol.Edit10.Text;
-        Combobox5.Text:= Fprodol.Edit1.Text;
+        ComboBox5.Text  := Fprodol.Edit1.Text;
         LoadIspyt(Nomer);
         enableispyt(True);
     end;
@@ -949,22 +949,23 @@ begin
         wrepl('rizolob', FSoprot.Edit16.Text);
         wrepl('temper', FSoprot.Edit8.Text);
         wrepl('bolt', FSoprot.Edit1.Text);
-        {if FSoprot.radiobutton4.Checked then
-            wrepl('mvit', 'ВЫДЕРЖАЛ');
-        if FSoprot.radiobutton5.Checked then
-            wrepl('mvit', 'НЕ ВЫДЕРЖАЛ');
-        if FSoprot.radiobutton6.Checked then
-            wrepl('mvit', 'НЕ ИСПЫТЫВАЛОСЬ');}
+        { if FSoprot.radiobutton4.Checked then
+          wrepl('mvit', 'ВЫДЕРЖАЛ');
+          if FSoprot.radiobutton5.Checked then
+          wrepl('mvit', 'НЕ ВЫДЕРЖАЛ');
+          if FSoprot.radiobutton6.Checked then
+          wrepl('mvit', 'НЕ ИСПЫТЫВАЛОСЬ'); }
 
-        if Fsoprot.RadioButton4.Checked then
+        if FSoprot.radiobutton4.Checked then
             wrepl('mvit', ans[2]);
-        if Fsoprot.RadioButton5.Checked then
+        if FSoprot.radiobutton5.Checked then
             wrepl('mvit', ans[0]);
-        if Fsoprot.RadioButton6.Checked then
+        if FSoprot.radiobutton6.Checked then
             wrepl('mvit', ans[1]);
 
         FrepP.Label1.Caption := 'Короткое замыкание';
         // короткое замыкание
+        wrepl('rkz', FKZam.Edit2.Text);
         for i     := 1 to 5 do
             for j := 1 to 4 do
             begin
@@ -999,11 +1000,11 @@ begin
             wrepl('epr', ans[2]);
         if Fproch.RadioButton3.Checked then
             wrepl('epr', ans[0]);
-        if Fproch.RadioButton4.Checked then
+        if Fproch.radiobutton4.Checked then
             wrepl('ipc', ans[1]);
-        if Fproch.RadioButton5.Checked then
+        if Fproch.radiobutton5.Checked then
             wrepl('ipc', ans[2]);
-        if Fproch.RadioButton6.Checked then
+        if Fproch.radiobutton6.Checked then
             wrepl('ipc', ans[0]);
         if Fproch.RadioButton7.Checked then
             wrepl('ipt', ans[1]);
@@ -1030,10 +1031,8 @@ begin
         if Fproch.RadioButton18.Checked then
             wrepl('u113', ans[0]);
 
-
-
         wrepl('IE', ComboBox3.Text);
-        wrepl('upri', FProch.Edit1.Text);
+        wrepl('upri', Fproch.Edit1.Text);
         wrepl('stendn', ComboBox4.Text);
         wrepl('stenda', Label24.Caption);
         wrepl('urab', Edit5.Text);
@@ -1069,7 +1068,7 @@ begin
     QUpdDvig.ParamByName('TIPDV').Asstring  := ComboBox1.Text;
     QUpdDvig.ParamByName('NOMDV').Asstring  := Edit4.Text;
     QUpdDvig.ParamByName('POLUS').Asstring  := ComboBox2.Text;
-    QUpdDvig.ParamByName('fio').Asstring  := ComboBox5.Text;
+    QUpdDvig.ParamByName('fio').Asstring    := ComboBox5.Text;
     QUpdDvig.ParamByName('UNOM').AsInteger  := strtoint(Edit5.Text);
     QUpdDvig.ParamByName('UISP').AsInteger  := strtoint(Edit6.Text);
     QUpdDvig.ParamByName('PNOM').AsFloat    := strtofloat(Edit7.Text);

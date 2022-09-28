@@ -112,7 +112,7 @@ begin
   Label24.caption := Qselectneokon.fieldbyname('stenda').AsString;
   Edit11.text     := Qselectneokon.fieldbyname('dop1').AsString;
   Edit10.text     := Qselectneokon.fieldbyname('ispoln').AsString;
-  Edit1.text     := Qselectneokon.fieldbyname('fio').AsString;
+  Edit1.text      := Qselectneokon.fieldbyname('fio').AsString;
 end;
 
 procedure TFProdol.FormActivate(Sender: TObject);

@@ -9,7 +9,7 @@ uses
   Vcl.ExtCtrls, Math, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList;
 
 type
   TFKzam = class(TForm)
@@ -55,6 +55,9 @@ type
     Label15: TLabel;
     Edit2: TEdit;
     Label16: TLabel;
+    ActionList1: TActionList;
+    KZStart: TAction;
+    KZStop: TAction;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -72,6 +75,8 @@ type
     procedure BitBtn12Click(Sender: TObject);
     procedure BitBtn11Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure KZStartExecute(Sender: TObject);
+    procedure KZStopExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -109,6 +114,16 @@ begin
     result := b;
 end;
 
+procedure TFKzam.KZStartExecute(Sender: TObject);
+begin
+ BitBtn8.Click;
+end;
+
+procedure TFKzam.KZStopExecute(Sender: TObject);
+begin
+  BitBtn9.Click;
+end;
+
 procedure TFKzam.BitBtn11Click(Sender: TObject);
 begin
   FKzam.Close;
@@ -131,7 +146,6 @@ begin
   BitBtn6.Glyph := nil;
   BitBtn7.Glyph := nil;
   BitBtn1.Repaint;
-
 
 end;
 
@@ -296,8 +310,8 @@ begin
 
   QInsSvod.ParamByName('nomer').AsString := Nomer;
   QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label11.Caption);
-  QInsSvod.ParamByName('r').AsFloat   := Strtofloat(Edit2.Text);
-  QInsSvod.ParamByName('u').AsFloat   := QSelectSred.FieldByName('u').AsFloat;
+  QInsSvod.ParamByName('r').AsFloat      := Strtofloat(Edit2.Text);
+  QInsSvod.ParamByName('u').AsFloat := QSelectSred.FieldByName('u').AsFloat;
   QInsSvod.ParamByName('i').AsFloat   := QSelectSred.FieldByName('i').AsFloat;
   QInsSvod.ParamByName('p').AsFloat   := QSelectSred.FieldByName('p').AsFloat;
   QInsSvod.ParamByName('m').AsFloat   := QSelectSred.FieldByName('t').AsFloat;

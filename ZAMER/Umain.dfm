@@ -232,14 +232,13 @@ object FMain: TFMain
     end
     object BitBtn9: TBitBtn
       Left = 255
-      Top = 253
+      Top = 252
       Width = 125
       Height = 45
       Anchors = [akLeft, akBottom]
       Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100
       TabOrder = 2
       OnClick = BitBtn9Click
-      ExplicitTop = 205
     end
     object DateTimePicker1: TDateTimePicker
       Left = 65
