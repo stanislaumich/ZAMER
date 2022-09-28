@@ -2,7 +2,7 @@ object FMain: TFMain
   Left = 0
   Top = 0
   Caption = #1048#1057#1055#1067#1058#1040#1053#1048#1045' '#1044#1042#1048#1043#1040#1058#1045#1051#1071
-  ClientHeight = 521
+  ClientHeight = 573
   ClientWidth = 1003
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,21 +13,18 @@ object FMain: TFMain
   OldCreateOrder = False
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  DesignSize = (
-    1003
-    521)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 735
-    Top = 278
+    Left = 878
+    Top = 259
     Width = 6
     Height = 13
     Caption = '0'
     Visible = False
   end
   object Label2: TLabel
-    Left = 735
+    Left = 800
     Top = 259
     Width = 6
     Height = 13
@@ -35,44 +32,44 @@ object FMain: TFMain
     Visible = False
   end
   object Label3: TLabel
-    Left = 735
-    Top = 297
+    Left = 949
+    Top = 259
     Width = 6
     Height = 13
     Caption = '0'
     Visible = False
   end
   object Label7: TLabel
-    Left = 735
-    Top = 316
+    Left = 742
+    Top = 312
     Width = 44
     Height = 13
     Caption = #1054#1096#1080#1073#1086#1082':'
   end
   object Label8: TLabel
-    Left = 780
-    Top = 316
+    Left = 787
+    Top = 312
     Width = 6
     Height = 13
     Caption = '0'
   end
   object Label9: TLabel
-    Left = 736
-    Top = 336
+    Left = 743
+    Top = 332
     Width = 65
     Height = 13
     Caption = #1050#1054#1053#1053#1045#1050#1058#1054#1056' '
   end
   object Label33: TLabel
-    Left = 775
-    Top = 355
+    Left = 782
+    Top = 351
     Width = 52
     Height = 13
     Caption = #1048#1053#1058#1045#1056#1042#1040#1051
   end
   object Label34: TLabel
-    Left = 739
-    Top = 378
+    Left = 746
+    Top = 374
     Width = 91
     Height = 13
     Caption = #1058#1040#1049#1052#1040#1059#1058' '#1063#1058#1045#1053#1048#1071
@@ -81,7 +78,7 @@ object FMain: TFMain
     Left = 4
     Top = 0
     Width = 790
-    Height = 253
+    Height = 301
     Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -92,7 +89,7 @@ object FMain: TFMain
     TabOrder = 0
     DesignSize = (
       790
-      253)
+      301)
     object Label13: TLabel
       Left = 12
       Top = 28
@@ -192,8 +189,8 @@ object FMain: TFMain
       Caption = #1054#1089#1086#1073#1077#1085#1085#1086#1089#1090#1080' '#1080#1089#1087#1086#1083#1085#1077#1085#1080#1103':'
     end
     object Label26: TLabel
-      Left = 12
-      Top = 179
+      Left = 9
+      Top = 185
       Width = 77
       Height = 16
       Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077':'
@@ -204,35 +201,45 @@ object FMain: TFMain
       Font.Style = []
       ParentFont = False
     end
+    object Label36: TLabel
+      Left = 3
+      Top = 218
+      Width = 112
+      Height = 23
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100':'
+    end
     object BitBtn7: TBitBtn
       Left = 3
-      Top = 205
+      Top = 253
       Width = 125
       Height = 45
       Anchors = [akLeft, akBottom]
       Caption = #1053#1086#1074#1086#1077
       TabOrder = 0
       OnClick = BitBtn7Click
+      ExplicitTop = 205
     end
     object BitBtn8: TBitBtn
       Left = 129
-      Top = 205
+      Top = 253
       Width = 125
       Height = 45
       Anchors = [akLeft, akBottom]
       Caption = #1055#1088#1086#1076#1086#1083#1078#1080#1090#1100
       TabOrder = 1
       OnClick = BitBtn8Click
+      ExplicitTop = 205
     end
     object BitBtn9: TBitBtn
       Left = 255
-      Top = 205
+      Top = 253
       Width = 125
       Height = 45
       Anchors = [akLeft, akBottom]
       Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100
       TabOrder = 2
       OnClick = BitBtn9Click
+      ExplicitTop = 205
     end
     object DateTimePicker1: TDateTimePicker
       Left = 65
@@ -331,10 +338,10 @@ object FMain: TFMain
       Left = 92
       Top = 176
       Width = 288
-      Height = 24
+      Height = 31
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -19
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
@@ -349,6 +356,14 @@ object FMain: TFMain
       Text = '100'
       Visible = False
       OnChange = Edit13Change
+    end
+    object ComboBox5: TComboBox
+      Tag = 500
+      Left = 120
+      Top = 215
+      Width = 260
+      Height = 31
+      TabOrder = 17
     end
   end
   object GroupBox2: TGroupBox
@@ -452,11 +467,10 @@ object FMain: TFMain
     end
   end
   object GroupBox3: TGroupBox
-    Left = 8
-    Top = 256
+    Left = 4
+    Top = 301
     Width = 397
-    Height = 245
-    Anchors = [akLeft, akTop, akBottom]
+    Height = 248
     Caption = #1059#1087#1088#1072#1074#1083#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1077#1084
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -591,7 +605,7 @@ object FMain: TFMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 502
+    Top = 554
     Width = 1003
     Height = 19
     Panels = <
@@ -607,10 +621,11 @@ object FMain: TFMain
       item
         Width = 50
       end>
+    ExplicitTop = 502
   end
   object BitBtn13: TBitBtn
-    Left = 408
-    Top = 403
+    Left = 407
+    Top = 448
     Width = 321
     Height = 46
     Caption = #1040#1088#1093#1080#1074' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
@@ -681,8 +696,8 @@ object FMain: TFMain
     OnClick = BitBtn13Click
   end
   object GroupBox4: TGroupBox
-    Left = 408
-    Top = 256
+    Left = 407
+    Top = 301
     Width = 321
     Height = 141
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1072' ELSPEC'
@@ -800,8 +815,8 @@ object FMain: TFMain
     end
   end
   object BitBtn14: TBitBtn
-    Left = 408
-    Top = 452
+    Left = 407
+    Top = 494
     Width = 321
     Height = 47
     Caption = #1056#1077#1079#1077#1088#1074#1085#1072#1103' '#1082#1086#1087#1080#1103' '#1073#1072#1079#1099
@@ -815,24 +830,24 @@ object FMain: TFMain
     OnClick = BitBtn14Click
   end
   object Edit14: TEdit
-    Left = 833
-    Top = 352
+    Left = 840
+    Top = 348
     Width = 44
     Height = 21
     TabOrder = 7
     Text = '10'
   end
   object Edit15: TEdit
-    Left = 833
-    Top = 375
+    Left = 840
+    Top = 371
     Width = 44
     Height = 21
     TabOrder = 8
     Text = '10'
   end
   object Button3: TButton
-    Left = 820
-    Top = 321
+    Left = 827
+    Top = 317
     Width = 109
     Height = 25
     Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
@@ -840,8 +855,8 @@ object FMain: TFMain
     OnClick = Button3Click
   end
   object BitBtn15: TBitBtn
-    Left = 735
-    Top = 464
+    Left = 734
+    Top = 410
     Width = 77
     Height = 32
     Caption = #1044#1072#1090#1095#1080#1082#1080
@@ -849,10 +864,10 @@ object FMain: TFMain
     OnClick = BitBtn15Click
   end
   object BitBtn12: TBitBtn
-    Left = 925
-    Top = 471
-    Width = 75
-    Height = 25
+    Left = 734
+    Top = 448
+    Width = 77
+    Height = 32
     Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
     TabOrder = 11
     OnClick = BitBtn12Click
@@ -1103,12 +1118,12 @@ object FMain: TFMain
       '   POLUS, UNOM, UISP, '
       '   PNOM, HUMID, PRESSUR, '
       '   ENERGO, STENDN, STENDA, '
-      '   DOP1, READY, NOMER, ISPOLN) '
+      '   DOP1, READY, NOMER, ISPOLN, fio) '
       'VALUES (:DATA, :TIPDV, :NOMDV, '
       '   :POLUS, :UNOM, :UISP, '
       '   :PNOM, :HUMID, :PRESSUR, '
       '   :ENERGO, :STENDN, :STENDA, '
-      '   :DOP1, :READY, :NOMER, :ISPOLN )')
+      '   :DOP1, :READY, :NOMER, :ISPOLN, :fio )')
     Left = 856
     Top = 260
     ParamData = <
@@ -1175,6 +1190,10 @@ object FMain: TFMain
       item
         Name = 'ISPOLN'
         ParamType = ptInput
+      end
+      item
+        Name = 'FIO'
+        ParamType = ptInput
       end>
   end
   object Qtemp: TFDQuery
@@ -1214,7 +1233,8 @@ object FMain: TFMain
       '       DOP1    = :DOP1,'
       '       READY   = :READY,'
       '       NOMER   = :NOMER,'
-      '       ISPOLN  = :ISPOLN'
+      '       ISPOLN  = :ISPOLN,'
+      'fio = :fio'
       'WHERE  NOMER   = :NOMER')
     Left = 928
     Top = 376
@@ -1281,6 +1301,10 @@ object FMain: TFMain
       end
       item
         Name = 'ISPOLN'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FIO'
         ParamType = ptInput
       end>
   end

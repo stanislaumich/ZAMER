@@ -2,7 +2,7 @@ object FProdol: TFProdol
   Left = 0
   Top = 0
   Caption = #1042#1099#1073#1086#1088' '#1085#1077#1086#1082#1086#1085#1095#1077#1085#1085#1086#1075#1086' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
-  ClientHeight = 498
+  ClientHeight = 501
   ClientWidth = 1048
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,12 +15,26 @@ object FProdol: TFProdol
   OnActivate = FormActivate
   DesignSize = (
     1048
-    498)
+    501)
   PixelsPerInch = 96
   TextHeight = 23
+  object Label2: TLabel
+    Left = 450
+    Top = 458
+    Width = 10
+    Height = 23
+    Caption = '0'
+  end
+  object Label1: TLabel
+    Left = 280
+    Top = 458
+    Width = 164
+    Height = 23
+    Caption = #1053#1086#1084#1077#1088' '#1080'c'#1087#1099#1090#1072#1085#1080#1103':'
+  end
   object BitBtn1: TBitBtn
     Left = 774
-    Top = 455
+    Top = 458
     Width = 138
     Height = 41
     Anchors = [akRight, akBottom]
@@ -84,10 +98,11 @@ object FProdol: TFProdol
       65F36465F36465F36465F26464F26464F26160F29797F7FFFFFF}
     TabOrder = 0
     OnClick = BitBtn1Click
+    ExplicitTop = 455
   end
   object BitBtn2: TBitBtn
     Left = 918
-    Top = 455
+    Top = 458
     Width = 127
     Height = 41
     Anchors = [akRight, akBottom]
@@ -151,10 +166,11 @@ object FProdol: TFProdol
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 1
     OnClick = BitBtn2Click
+    ExplicitTop = 455
   end
   object BitBtn3: TBitBtn
     Left = 4
-    Top = 455
+    Top = 458
     Width = 237
     Height = 41
     Anchors = [akLeft, akBottom]
@@ -218,6 +234,7 @@ object FProdol: TFProdol
       FFFFFFFFFFFFFFFF2118EB2A23ED433EF0312BEE2219ECFFFFFF}
     TabOrder = 2
     OnClick = BitBtn3Click
+    ExplicitTop = 455
   end
   object GroupBox1: TGroupBox
     Left = 4
@@ -245,8 +262,8 @@ object FProdol: TFProdol
     end
   end
   object GroupBox2: TGroupBox
-    Left = 7
-    Top = 200
+    Left = 6
+    Top = 199
     Width = 790
     Height = 253
     Anchors = [akLeft, akTop, akRight]
@@ -351,8 +368,8 @@ object FProdol: TFProdol
       Caption = #1054#1089#1086#1073#1077#1085#1085#1086#1089#1090#1080' '#1080#1089#1087#1086#1083#1085#1077#1085#1080#1103':'
     end
     object Label26: TLabel
-      Left = 12
-      Top = 179
+      Left = 9
+      Top = 183
       Width = 77
       Height = 16
       Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077':'
@@ -363,19 +380,12 @@ object FProdol: TFProdol
       Font.Style = []
       ParentFont = False
     end
-    object Label1: TLabel
-      Left = 13
-      Top = 218
-      Width = 164
-      Height = 23
-      Caption = #1053#1086#1084#1077#1088' '#1080'c'#1087#1099#1090#1072#1085#1080#1103':'
-    end
-    object Label2: TLabel
-      Left = 183
+    object Label3: TLabel
+      Left = 8
       Top = 220
-      Width = 10
+      Width = 47
       Height = 23
-      Caption = '0'
+      Caption = #1060#1048#1054':'
     end
     object DateTimePicker1: TDateTimePicker
       Left = 65
@@ -472,14 +482,21 @@ object FProdol: TFProdol
     object Edit11: TEdit
       Left = 92
       Top = 176
-      Width = 288
-      Height = 24
+      Width = 298
+      Height = 33
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      TabOrder = 13
+    end
+    object Edit1: TEdit
+      Left = 61
+      Top = 215
+      Width = 329
+      Height = 31
       TabOrder = 12
     end
   end

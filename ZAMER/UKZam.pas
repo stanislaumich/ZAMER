@@ -52,6 +52,9 @@ type
     QTorque: TFDQuery;
     Label13: TLabel;
     Label14: TLabel;
+    Label15: TLabel;
+    Edit2: TEdit;
+    Label16: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -128,6 +131,8 @@ begin
   BitBtn6.Glyph := nil;
   BitBtn7.Glyph := nil;
   BitBtn1.Repaint;
+
+
 end;
 
 procedure TFKzam.BitBtn2Click(Sender: TObject);
@@ -291,7 +296,7 @@ begin
 
   QInsSvod.ParamByName('nomer').AsString := Nomer;
   QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label11.Caption);
-
+  QInsSvod.ParamByName('r').AsFloat   := Strtofloat(Edit2.Text);
   QInsSvod.ParamByName('u').AsFloat   := QSelectSred.FieldByName('u').AsFloat;
   QInsSvod.ParamByName('i').AsFloat   := QSelectSred.FieldByName('i').AsFloat;
   QInsSvod.ParamByName('p').AsFloat   := QSelectSred.FieldByName('p').AsFloat;

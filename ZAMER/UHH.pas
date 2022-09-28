@@ -83,7 +83,7 @@ var
   acount  : Integer;
   tipispyt: Integer;
 
-  pereU,pereI:Real;
+  pereU, pereI: real;
 
 implementation
 
@@ -110,7 +110,7 @@ begin
   ProgressBar1.min  := 0;
   ProgressBar1.Max  := Strtoint(Edit1.Text);
   ProgressBar1.Step := 1;
-  perei:=0;
+  pereI             := 0;
   Timer2.Enabled    := True;
   Timer1.Enabled    := True;
 end;
@@ -473,9 +473,9 @@ begin
     else
     begin
       BitBtn3.Enabled := True;
-      //ShowMessage('Шаг завершен c перекосом фаз по току в '+Floattostr(round(perei))+'% от среднего значения');
-      Label12.Caption:= Floattostr(round(perei));
-      Label6.Caption := StringGrid2.cells[0, StringGrid2.row];
+      // ShowMessage('Шаг завершен c перекосом фаз по току в '+Floattostr(round(perei))+'% от среднего значения');
+      Label12.Caption := floattostr(round(pereI));
+      Label6.Caption  := StringGrid2.cells[0, StringGrid2.row];
     end;
   end
   else
@@ -484,7 +484,7 @@ end;
 
 procedure TFhhod.Timer2Timer(Sender: TObject);
 var
-  i, i1,i2,i3: single;
+  i, i1, i2, i3: single;
 begin
   acount       := acount + 1;
   a[acount].u1 := SimpleRoundTo(Fmain.RU1.Value, -1);
@@ -498,12 +498,13 @@ begin
   a[acount].p3 := SimpleRoundTo(Fmain.RP3.Value, -2);
   a[acount].ps := SimpleRoundTo(Fmain.PSredQ.Value, -2);
   // перекос фаз
-  i:= (a[acount].i1+ a[acount].i2+ a[acount].i3)/3;
-  i1:= abs(100 - (a[acount].i1 / i)*100);
-  i2:= abs(100 - (a[acount].i2 / i)*100);
-  i3:= abs(100 - (a[acount].i3 / i)*100);
-  i:=max(max(i1,i2),i3);
-  if i>perei then perei:=i;
+  i  := (a[acount].i1 + a[acount].i2 + a[acount].i3) / 3;
+  i1 := abs(100 - (a[acount].i1 / i) * 100);
+  i2 := abs(100 - (a[acount].i2 / i) * 100);
+  i3 := abs(100 - (a[acount].i3 / i) * 100);
+  i  := Max(Max(i1, i2), i3);
+  if i > pereI then
+    pereI := i;
 end;
 
 procedure TFhhod.TimerUpdTimer(Sender: TObject);

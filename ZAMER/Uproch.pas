@@ -56,29 +56,25 @@ type
     RadioButton10: TRadioButton;
     RadioButton11: TRadioButton;
     RadioButton12: TRadioButton;
-    CheckBox4: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox1: TCheckBox;
     GroupBox8: TGroupBox;
     Label7: TLabel;
-    CheckBox5: TCheckBox;
     Label8: TLabel;
-    CheckBox6: TCheckBox;
-    RadioButton13: TRadioButton;
-    RadioButton14: TRadioButton;
-    RadioButton15: TRadioButton;
-    RadioButton16: TRadioButton;
-    RadioButton17: TRadioButton;
-    RadioButton18: TRadioButton;
     RadioButton19: TRadioButton;
     RadioButton20: TRadioButton;
     RadioButton21: TRadioButton;
     RadioButton22: TRadioButton;
-    RadioButton23: TRadioButton;
-    RadioButton24: TRadioButton;
     Label9: TLabel;
     Edit2: TEdit;
+    Panel4: TPanel;
+    RadioButton13: TRadioButton;
+    RadioButton14: TRadioButton;
+    RadioButton15: TRadioButton;
+    Panel5: TPanel;
+    RadioButton16: TRadioButton;
+    RadioButton17: TRadioButton;
+    RadioButton18: TRadioButton;
+    RadioButton23: TRadioButton;
+    RadioButton24: TRadioButton;
     procedure BitBtn1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
@@ -102,8 +98,8 @@ uses umain;
 
 procedure TFProch.BitBtn1Click(Sender: TObject);
 var
-  i, j, inq                    : integer;
-  cod, errx, erry, errx1, erry1: integer;
+  i, j, inq                    : Integer;
+  cod, errx, erry, errx1, erry1: Integer;
   s                            : string;
 begin
   QTemp.Close;
@@ -116,37 +112,53 @@ begin
     Exit;
   end;
 
-
-
   QInsProch.Close;
   QInsProch.PaRAMByName('nomer').Asstring  := Nomer;
   QInsProch.PaRAMByName('eprochu').AsFloat := strtofloat(Edit1.Text);
   QInsProch.PaRAMByName('massa').AsFloat   := strtofloat(Edit2.Text);
-  //----------------------------
-  If RadioButton1.Checked then QInsProch.PaRAMByName('eproch').AsInteger := 1;
-  If RadioButton2.Checked then QInsProch.PaRAMByName('eproch').AsInteger := 2;
-  If RadioButton3.Checked then QInsProch.PaRAMByName('eproch').AsInteger := 0;
-  //------------------------------
-  If RadioButton4.Checked then QInsProch.PaRAMByName('HIFREQ').AsInteger := 1;
-  If RadioButton5.Checked then QInsProch.PaRAMByName('HIFREQ').AsInteger := 2;
-  If RadioButton6.Checked then QInsProch.PaRAMByName('HIFREQ').AsInteger := 0;
-  //------------------------------
-  If RadioButton7.Checked then QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 1;
-  If RadioButton8.Checked then QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 2;
-  If RadioButton9.Checked then QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 0;
-  //------------------------------
-  If RadioButton10.Checked then QInsProch.PaRAMByName('RIZOL').AsInteger := 1;
-  If RadioButton11.Checked then QInsProch.PaRAMByName('RIZOL').AsInteger := 2;
-  If RadioButton12.Checked then QInsProch.PaRAMByName('RIZOL').AsInteger := 0;
-  //------------------------------
-  If RadioButton13.Checked then QInsProch.PaRAMByName('U074').AsInteger := 1;
-  If RadioButton14.Checked then QInsProch.PaRAMByName('U074').AsInteger := 2;
-  If RadioButton15.Checked then QInsProch.PaRAMByName('U074').AsInteger := 0;
-  //------------------------------
-  If RadioButton16.Checked then QInsProch.PaRAMByName('U11').AsInteger := 1;
-  If RadioButton17.Checked then QInsProch.PaRAMByName('U11').AsInteger := 2;
-  If RadioButton18.Checked then QInsProch.PaRAMByName('U11').AsInteger := 0;
-  //------------------------------
+  // ----------------------------
+  If RadioButton1.Checked then
+    QInsProch.PaRAMByName('eproch').AsInteger := 1;
+  If RadioButton2.Checked then
+    QInsProch.PaRAMByName('eproch').AsInteger := 2;
+  If RadioButton3.Checked then
+    QInsProch.PaRAMByName('eproch').AsInteger := 0;
+  // ------------------------------
+  If RadioButton4.Checked then
+    QInsProch.PaRAMByName('HIFREQ').AsInteger := 1;
+  If RadioButton5.Checked then
+    QInsProch.PaRAMByName('HIFREQ').AsInteger := 2;
+  If RadioButton6.Checked then
+    QInsProch.PaRAMByName('HIFREQ').AsInteger := 0;
+  // ------------------------------
+  If RadioButton7.Checked then
+    QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 1;
+  If RadioButton8.Checked then
+    QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 2;
+  If RadioButton9.Checked then
+    QInsProch.PaRAMByName('PEREGRUZ').AsInteger := 0;
+  // ------------------------------
+  If RadioButton10.Checked then
+    QInsProch.PaRAMByName('RIZOL').AsInteger := 1;
+  If RadioButton11.Checked then
+    QInsProch.PaRAMByName('RIZOL').AsInteger := 2;
+  If RadioButton12.Checked then
+    QInsProch.PaRAMByName('RIZOL').AsInteger := 0;
+  // ------------------------------
+  If RadioButton13.Checked then
+    QInsProch.PaRAMByName('U074').AsInteger := 1;
+  If RadioButton14.Checked then
+    QInsProch.PaRAMByName('U074').AsInteger := 2;
+  If RadioButton15.Checked then
+    QInsProch.PaRAMByName('U074').AsInteger := 0;
+  // ------------------------------
+  If RadioButton16.Checked then
+    QInsProch.PaRAMByName('U113').AsInteger := 1;
+  If RadioButton17.Checked then
+    QInsProch.PaRAMByName('U113').AsInteger := 2;
+  If RadioButton18.Checked then
+    QInsProch.PaRAMByName('U113').AsInteger := 0;
+  // ------------------------------
 
   QInsProch.ExecSQL;
   /// //////////////////////////////////
@@ -235,14 +247,34 @@ end;
 
 procedure TFProch.BitBtn3Click(Sender: TObject);
 var
-  i: integer;
+  i: Integer;
 begin
-  CheckBox1.checked       := false;
-  CheckBox2.checked       := false;
-  CheckBox3.checked       := false;
-  CheckBox4.checked       := false;
-  CheckBox5.checked       := false;
-  CheckBox6.checked       := false;
+  RadioButton1.Checked  := false;
+  RadioButton2.Checked  := false;
+  RadioButton3.Checked  := false;
+  RadioButton4.Checked  := false;
+  RadioButton5.Checked  := false;
+  RadioButton6.Checked  := false;
+  RadioButton7.Checked  := false;
+  RadioButton8.Checked  := false;
+  RadioButton9.Checked  := false;
+  RadioButton10.Checked := false;
+  RadioButton11.Checked := false;
+  RadioButton12.Checked := false;
+  RadioButton13.Checked := false;
+  RadioButton14.Checked := false;
+  RadioButton15.Checked := false;
+  RadioButton16.Checked := false;
+  RadioButton17.Checked := false;
+  RadioButton18.Checked := false;
+
+  RadioButton19.Checked := false;
+  RadioButton20.Checked := false;
+  RadioButton21.Checked := false;
+  RadioButton22.Checked := false;
+  RadioButton23.Checked := false;
+  RadioButton24.Checked := false;
+
   Edit1.Text              := '0';
   Edit2.Text              := '0';
   StringGrid2.cells[0, 0] := 'Точки';
@@ -284,7 +316,7 @@ end;
 
 procedure TFProch.FormCreate(Sender: TObject);
 var
-  i: integer;
+  i: Integer;
 begin
   StringGrid2.cells[0, 0] := 'Точки';
   StringGrid2.cells[0, 1] := 'Изм. 1';
@@ -326,30 +358,33 @@ end;
 procedure TFProch.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 begin
-if (ARow>0) then
- begin
-  if (ACol>0) and (ACol<7) then
-   begin
-    StringGrid1.Canvas.Brush.Color := $00990000;
-    StringGrid1.Canvas.FillRect(Rect);
-    StringGrid1.Canvas.font.Color:=clWhite;
-    StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
-   end;
-  if (ACol>6) and (ACol<13) then
-   begin
-    StringGrid1.Canvas.Brush.Color := $00009900;
-    StringGrid1.Canvas.FillRect(Rect);
-    StringGrid1.Canvas.font.Color:=clWhite;
-    StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
-   end;
-  if (ACol>12) and (ACol<19) then
-   begin
-    StringGrid1.Canvas.Brush.Color := $00000099;
-    StringGrid1.Canvas.FillRect(Rect);
-    StringGrid1.Canvas.font.Color:=clWhite;
-    StringGrid1.Canvas.TextOut(Rect.Left+1,Rect.Top+1,StringGrid1.cells[ACol, ARow]);
-   end;
- end;
+  if (ARow > 0) then
+  begin
+    if (ACol > 0) and (ACol < 7) then
+    begin
+      StringGrid1.Canvas.Brush.Color := $00990000;
+      StringGrid1.Canvas.FillRect(Rect);
+      StringGrid1.Canvas.Font.Color := clWhite;
+      StringGrid1.Canvas.TextOut(Rect.Left + 1, Rect.Top + 1,
+        StringGrid1.cells[ACol, ARow]);
+    end;
+    if (ACol > 6) and (ACol < 13) then
+    begin
+      StringGrid1.Canvas.Brush.Color := $00009900;
+      StringGrid1.Canvas.FillRect(Rect);
+      StringGrid1.Canvas.Font.Color := clWhite;
+      StringGrid1.Canvas.TextOut(Rect.Left + 1, Rect.Top + 1,
+        StringGrid1.cells[ACol, ARow]);
+    end;
+    if (ACol > 12) and (ACol < 19) then
+    begin
+      StringGrid1.Canvas.Brush.Color := $00000099;
+      StringGrid1.Canvas.FillRect(Rect);
+      StringGrid1.Canvas.Font.Color := clWhite;
+      StringGrid1.Canvas.TextOut(Rect.Left + 1, Rect.Top + 1,
+        StringGrid1.cells[ACol, ARow]);
+    end;
+  end;
 end;
 
 end.

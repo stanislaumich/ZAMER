@@ -3528,8 +3528,8 @@ object FKzam: TFKzam
   PixelsPerInch = 96
   TextHeight = 23
   object Label12: TLabel
-    Left = 4
-    Top = 500
+    Left = 8
+    Top = 470
     Width = 22
     Height = 23
     Caption = #8470
@@ -3544,30 +3544,30 @@ object FKzam: TFKzam
     object Label1: TLabel
       Left = 8
       Top = 32
-      Width = 118
+      Width = 141
       Height = 23
-      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077':'
+      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042':'
     end
     object Label2: TLabel
-      Left = 228
+      Left = 204
       Top = 32
-      Width = 37
+      Width = 60
       Height = 23
-      Caption = #1058#1086#1082':'
+      Caption = #1058#1086#1082', '#1040':'
     end
     object Label3: TLabel
-      Left = 352
+      Left = 324
       Top = 32
-      Width = 96
+      Width = 128
       Height = 23
-      Caption = #1052#1086#1097#1085#1086#1089#1090#1100':'
+      Caption = #1052#1086#1097#1085#1086#1089#1090#1100', '#1042#1090':'
     end
     object Label4: TLabel
-      Left = 528
+      Left = 512
       Top = 32
-      Width = 74
+      Width = 145
       Height = 23
-      Caption = #1052#1086#1084#1077#1085#1090':'
+      Caption = #1052#1086#1084#1077#1085#1090', '#1053'*'#1084'/'#1082#1075':'
     end
     object Label5: TLabel
       Left = 8
@@ -3584,28 +3584,28 @@ object FKzam: TFKzam
       Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077':'
     end
     object Label7: TLabel
-      Left = 132
+      Left = 152
       Top = 32
       Width = 10
       Height = 23
       Caption = '0'
     end
     object Label8: TLabel
-      Left = 271
+      Left = 270
       Top = 32
       Width = 10
       Height = 23
       Caption = '0'
     end
     object Label9: TLabel
-      Left = 454
+      Left = 458
       Top = 32
       Width = 10
       Height = 23
       Caption = '0'
     end
     object Label10: TLabel
-      Left = 608
+      Left = 658
       Top = 32
       Width = 10
       Height = 23
@@ -3650,6 +3650,20 @@ object FKzam: TFKzam
       Width = 10
       Height = 23
       Caption = '0'
+    end
+    object Label15: TLabel
+      Left = 12
+      Top = 220
+      Width = 26
+      Height = 23
+      Caption = 'R='
+    end
+    object Label16: TLabel
+      Left = 117
+      Top = 220
+      Width = 25
+      Height = 23
+      Caption = #1054#1084
     end
     object BitBtn8: TBitBtn
       Left = 220
@@ -3791,13 +3805,21 @@ object FKzam: TFKzam
       Left = 8
       Top = 28
       Width = 506
-      Height = 285
+      Height = 178
       Anchors = [akLeft, akTop, akRight]
       DefaultColWidth = 95
       FixedCols = 0
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 2
       OnClick = StringGrid1Click
+    end
+    object Edit2: TEdit
+      Left = 41
+      Top = 217
+      Width = 70
+      Height = 31
+      TabOrder = 3
+      Text = 'Edit2'
     end
   end
   object GroupBox3: TGroupBox
@@ -4183,10 +4205,10 @@ object FKzam: TFKzam
     SQL.Strings = (
       'INSERT INTO ZAMER.ZKZSVOD ('
       '   NOMER, UISP, U, '
-      '   I, P, M, '
+      '   I, P, M,R, '
       '   TMP) '
       'VALUES ( :NOMER, :UISP, :U, '
-      '   :I, :P, :M, '
+      '   :I, :P, :M,:R, '
       '   :TMP )')
     Left = 332
     Top = 335
@@ -4213,6 +4235,10 @@ object FKzam: TFKzam
       end
       item
         Name = 'M'
+        ParamType = ptInput
+      end
+      item
+        Name = 'R'
         ParamType = ptInput
       end
       item

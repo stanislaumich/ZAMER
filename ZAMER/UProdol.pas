@@ -48,12 +48,14 @@ type
     Edit11: TEdit;
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
-    Label1: TLabel;
-    Label2: TLabel;
     DataSource2: TDataSource;
     QCount: TFDQuery;
     GroupBox3: TGroupBox;
     DBGrid2: TDBGrid;
+    Label2: TLabel;
+    Label1: TLabel;
+    Label3: TLabel;
+    Edit1: TEdit;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -110,6 +112,7 @@ begin
   Label24.caption := Qselectneokon.fieldbyname('stenda').AsString;
   Edit11.text     := Qselectneokon.fieldbyname('dop1').AsString;
   Edit10.text     := Qselectneokon.fieldbyname('ispoln').AsString;
+  Edit1.text     := Qselectneokon.fieldbyname('fio').AsString;
 end;
 
 procedure TFProdol.FormActivate(Sender: TObject);

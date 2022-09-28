@@ -2,7 +2,7 @@ object FSettings: TFSettings
   Left = 0
   Top = 0
   Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
-  ClientHeight = 153
+  ClientHeight = 375
   ClientWidth = 557
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -203,6 +203,34 @@ object FSettings: TFSettings
     TabOrder = 2
     OnClick = BitBtn2Click
   end
+  object GroupBox2: TGroupBox
+    Left = 4
+    Top = 155
+    Width = 545
+    Height = 218
+    Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1080
+    TabOrder = 3
+    object DBGrid1: TDBGrid
+      Left = 8
+      Top = 26
+      Width = 534
+      Height = 189
+      DataSource = DataSource1
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -21
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'FIO'
+          Title.Caption = #1060#1048#1054
+          Visible = True
+        end>
+    end
+  end
   object qdel: TFDQuery
     Connection = FMain.FDOra
     SQL.Strings = (
@@ -237,5 +265,17 @@ object FSettings: TFSettings
         Name = 'NAME'
         ParamType = ptInput
       end>
+  end
+  object DataSource1: TDataSource
+    DataSet = FDTable1
+    Left = 352
+    Top = 187
+  end
+  object FDTable1: TFDTable
+    Active = True
+    Connection = FMain.FDOra
+    TableName = 'zsotr'
+    Left = 352
+    Top = 235
   end
 end
