@@ -56,8 +56,8 @@ type
     Edit2: TEdit;
     Label16: TLabel;
     ActionList1: TActionList;
-    KZStart: TAction;
-    KZStop: TAction;
+    Action1: TAction;
+    Action2: TAction;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -75,8 +75,8 @@ type
     procedure BitBtn12Click(Sender: TObject);
     procedure BitBtn11Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure KZStartExecute(Sender: TObject);
-    procedure KZStopExecute(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
+    procedure Action2Execute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -114,14 +114,14 @@ begin
     result := b;
 end;
 
-procedure TFKzam.KZStartExecute(Sender: TObject);
+procedure TFKzam.Action1Execute(Sender: TObject);
 begin
  BitBtn8.Click;
 end;
 
-procedure TFKzam.KZStopExecute(Sender: TObject);
+procedure TFKzam.Action2Execute(Sender: TObject);
 begin
-  BitBtn9.Click;
+ BitBtn9.Click;
 end;
 
 procedure TFKzam.BitBtn11Click(Sender: TObject);

@@ -3671,7 +3671,7 @@ object FKzam: TFKzam
       Width = 138
       Height = 38
       Anchors = [akRight, akBottom]
-      Caption = #1047#1072#1087#1080#1089#1100' F5'
+      Caption = #1057#1090#1072#1088#1090
       Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
@@ -3739,7 +3739,7 @@ object FKzam: TFKzam
       Width = 150
       Height = 38
       Anchors = [akRight, akBottom]
-      Caption = #1057#1090#1086#1087' F9'
+      Caption = #1057#1090#1086#1087
       Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
@@ -4256,15 +4256,15 @@ object FKzam: TFKzam
   object ActionList1: TActionList
     Left = 360
     Top = 191
-    object KZStart: TAction
-      Caption = 'KZStart'
+    object Action1: TAction
+      Caption = 'Action1'
       ShortCut = 116
-      OnExecute = KZStartExecute
+      OnExecute = Action1Execute
     end
-    object KZStop: TAction
-      Caption = 'KZStop'
+    object Action2: TAction
+      Caption = 'Action2'
       ShortCut = 120
-      OnExecute = KZStopExecute
+      OnExecute = Action2Execute
     end
   end
 end
