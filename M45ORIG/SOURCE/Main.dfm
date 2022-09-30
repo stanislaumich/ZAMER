@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = #1055#1088#1080#1084#1077#1088' '#1087#1088#1086#1075#1088#1072#1084#1084#1099' '#1076#1083#1103' '#1088#1072#1073#1086#1090#1099' '#1074' '#1087#1086#1090#1086#1082#1086#1074#1086#1084' '#1088#1077#1078#1080#1084#1077' (RAD Studio XE3)'
   ClientHeight = 455
-  ClientWidth = 746
+  ClientWidth = 745
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -75,8 +75,7 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 449
-    Height = 455
-    Align = alLeft
+    Height = 185
     TabOrder = 0
     object Panel2: TPanel
       Left = 1
@@ -85,6 +84,7 @@ object Form1: TForm1
       Height = 112
       Align = alTop
       TabOrder = 0
+      ExplicitTop = 4
       object Label3: TLabel
         Left = 31
         Top = 13
@@ -139,7 +139,7 @@ object Form1: TForm1
         AutoSize = False
         BevelKind = bkSoft
         BorderStyle = sbsSingle
-        Color = clNavy
+        Color = clWhite
         Font.Charset = RUSSIAN_CHARSET
         Font.Color = clLime
         Font.Height = -24
@@ -161,7 +161,7 @@ object Form1: TForm1
         AutoSize = False
         BevelKind = bkSoft
         BorderStyle = sbsSingle
-        Color = clNavy
+        Color = clWhite
         Font.Charset = RUSSIAN_CHARSET
         Font.Color = clLime
         Font.Height = -24
@@ -183,7 +183,7 @@ object Form1: TForm1
         AutoSize = False
         BevelKind = bkSoft
         BorderStyle = sbsSingle
-        Color = clNavy
+        Color = clWhite
         Font.Charset = RUSSIAN_CHARSET
         Font.Color = clLime
         Font.Height = -24
@@ -205,7 +205,7 @@ object Form1: TForm1
         AutoSize = False
         BevelKind = bkSoft
         BorderStyle = sbsSingle
-        Color = clNavy
+        Color = clWhite
         Font.Charset = RUSSIAN_CHARSET
         Font.Color = clLime
         Font.Height = -24
@@ -229,56 +229,46 @@ object Form1: TForm1
       Left = 1
       Top = 113
       Width = 447
-      Height = 341
-      Align = alClient
+      Height = 67
       ScrollBars = ssBoth
       TabOrder = 1
     end
   end
   object BConnect: TButton
-    Left = 464
-    Top = 238
-    Width = 121
+    Left = 1
+    Top = 191
+    Width = 110
     Height = 33
     Caption = 'Open'
     TabOrder = 1
     OnClick = BConnectClick
   end
   object BStart: TButton
-    Left = 615
-    Top = 238
-    Width = 121
+    Left = 117
+    Top = 191
+    Width = 104
     Height = 33
     Caption = 'Start'
     TabOrder = 2
     OnClick = BStartClick
   end
   object BStop: TButton
-    Left = 615
-    Top = 286
-    Width = 121
+    Left = 225
+    Top = 191
+    Width = 109
     Height = 33
     Caption = 'Stop'
     TabOrder = 3
     OnClick = BStopClick
   end
   object BDisconnect: TButton
-    Left = 464
-    Top = 286
-    Width = 121
+    Left = 340
+    Top = 191
+    Width = 109
     Height = 33
     Caption = 'Close'
     TabOrder = 4
     OnClick = BDisconnectClick
-  end
-  object BClear: TButton
-    Left = 464
-    Top = 334
-    Width = 121
-    Height = 33
-    Caption = 'BClear'
-    TabOrder = 5
-    OnClick = BClearClick
   end
   object CBDecoderType: TComboBox
     Left = 568
@@ -286,7 +276,7 @@ object Form1: TForm1
     Width = 171
     Height = 21
     ItemIndex = 0
-    TabOrder = 6
+    TabOrder = 5
     Text = #1044#1077#1082#1086#1076#1077#1088' '#1058'25 (USB)'
     OnChange = CBDecoderTypeChange
     Items.Strings = (
@@ -307,7 +297,7 @@ object Form1: TForm1
     Top = 40
     Width = 70
     Height = 21
-    TabOrder = 7
+    TabOrder = 6
     Text = '1'
   end
   object CBBaudRate: TComboBox
@@ -316,7 +306,7 @@ object Form1: TForm1
     Width = 83
     Height = 21
     ItemIndex = 0
-    TabOrder = 8
+    TabOrder = 7
     Text = '9600'
     Items.Strings = (
       '9600'
@@ -334,7 +324,7 @@ object Form1: TForm1
     Min = 1
     Max = 20
     Position = 1
-    TabOrder = 9
+    TabOrder = 8
     Thousands = False
   end
   object EUnitNumber: TEdit
@@ -343,7 +333,7 @@ object Form1: TForm1
     Width = 66
     Height = 21
     NumbersOnly = True
-    TabOrder = 10
+    TabOrder = 9
     Text = '1'
   end
   object UpDown3: TUpDown
@@ -355,7 +345,7 @@ object Form1: TForm1
     Min = 1
     Max = 99
     Position = 1
-    TabOrder = 11
+    TabOrder = 10
     Thousands = False
   end
   object EServerAddress: TEdit
@@ -363,7 +353,7 @@ object Form1: TForm1
     Top = 130
     Width = 121
     Height = 21
-    TabOrder = 12
+    TabOrder = 11
     Text = 'T37E01'
   end
   object EPortNumber: TEdit
@@ -373,7 +363,7 @@ object Form1: TForm1
     Height = 21
     HideSelection = False
     NumbersOnly = True
-    TabOrder = 13
+    TabOrder = 12
     Text = '4000'
   end
   object UpDown4: TUpDown
@@ -385,7 +375,7 @@ object Form1: TForm1
     Min = 1000
     Max = 9999
     Position = 4000
-    TabOrder = 14
+    TabOrder = 13
     Thousands = False
   end
   object EAveragingFactor: TEdit
@@ -393,8 +383,8 @@ object Form1: TForm1
     Top = 190
     Width = 69
     Height = 21
-    TabOrder = 15
-    Text = '1'
+    TabOrder = 14
+    Text = '15'
   end
   object UpDown5: TUpDown
     Left = 723
@@ -403,15 +393,48 @@ object Form1: TForm1
     Height = 21
     Associate = EAveragingFactor
     Min = 1
-    Position = 1
-    TabOrder = 16
+    Position = 15
+    TabOrder = 15
     Thousands = False
   end
   object ReflectionTimer: TTimer
     Enabled = False
-    Interval = 200
+    Interval = 50
     OnTimer = ReflectionTimerTimer
-    Left = 640
-    Top = 384
+    Left = 32
+    Top = 120
+  end
+  object TS: TTimer
+    Enabled = False
+    OnTimer = TSTimer
+    Left = 96
+    Top = 120
+  end
+  object TQ: TTimer
+    Interval = 100
+    OnTimer = TQTimer
+    Left = 148
+    Top = 120
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'DriverID=Ora'
+      'Database=XE'
+      'Password=zamer'
+      'User_Name=zamer')
+    Connected = True
+    LoginPrompt = False
+    Left = 212
+    Top = 120
+  end
+  object Query1: TFDQuery
+    Connection = FDConnection1
+    Left = 292
+    Top = 124
+  end
+  object Query2: TFDQuery
+    Connection = FDConnection1
+    Left = 364
+    Top = 120
   end
 end

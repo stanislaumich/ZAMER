@@ -9,6 +9,25 @@
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Dialogs.hpp>
+#include <Data.DB.hpp>
+#include <FireDAC.Comp.Client.hpp>
+#include <FireDAC.Comp.DataSet.hpp>
+#include <FireDAC.DApt.hpp>
+#include <FireDAC.DApt.Intf.hpp>
+#include <FireDAC.DatS.hpp>
+#include <FireDAC.Phys.hpp>
+#include <FireDAC.Phys.Intf.hpp>
+#include <FireDAC.Phys.Oracle.hpp>
+#include <FireDAC.Phys.OracleDef.hpp>
+#include <FireDAC.Stan.Async.hpp>
+#include <FireDAC.Stan.Def.hpp>
+#include <FireDAC.Stan.Error.hpp>
+#include <FireDAC.Stan.Intf.hpp>
+#include <FireDAC.Stan.Option.hpp>
+#include <FireDAC.Stan.Param.hpp>
+#include <FireDAC.Stan.Pool.hpp>
+#include <FireDAC.UI.Intf.hpp>
+#include <FireDAC.VCLUI.Wait.hpp>
 //---------------------------------------------------------------------------
 class TDSaver;
 //---------------------------------------------------------------------------
@@ -33,7 +52,6 @@ __published:	// IDE-managed Components
     TStaticText *STTemper;
     TEdit *EDatchikID;
 	TTimer *ReflectionTimer;
-  TButton *BClear;
   TComboBox *CBDecoderType;
   TLabel *LComPortNumber;
   TEdit *EComPortNumber;
@@ -52,14 +70,20 @@ __published:	// IDE-managed Components
   TEdit *EAveragingFactor;
   TUpDown *UpDown5;
   TLabel *Label1;
+	TTimer *TS;
+	TTimer *TQ;
+	TFDConnection *FDConnection1;
+	TFDQuery *Query1;
+	TFDQuery *Query2;
   void __fastcall BConnectClick(TObject *Sender);
   void __fastcall BStartClick(TObject *Sender);
   void __fastcall BStopClick(TObject *Sender);
   void __fastcall BDisconnectClick(TObject *Sender);
   void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
   void __fastcall ReflectionTimerTimer(TObject *Sender);
-  void __fastcall BClearClick(TObject *Sender);
   void __fastcall CBDecoderTypeChange(TObject *Sender);
+	void __fastcall TQTimer(TObject *Sender);
+	void __fastcall TSTimer(TObject *Sender);
   
 private:  // User declarations
   int ClientID;

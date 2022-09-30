@@ -27,7 +27,6 @@ object FProch: TFProch
     Top = 0
     Width = 825
     Height = 389
-    Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1103
     TabOrder = 0
     object GroupBox4: TGroupBox
       Left = 1
@@ -99,7 +98,7 @@ object FProch: TFProch
       Top = 91
       Width = 820
       Height = 62
-      Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1087#1088#1080' '#1087#1086#1074#1099#1096#1077#1085'. '#1095#1072#1089#1090#1086#1090#1077' '#1074#1088#1072#1097#1077#1085#1080#1103
+      Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1087#1088#1080' '#1087#1086#1074#1099#1096#1077#1085#1086#1081' '#1095#1072#1089#1090#1086#1090#1077' '#1074#1088#1072#1097#1077#1085#1080#1103
       TabOrder = 1
       object Label13: TLabel
         Left = 12
@@ -436,10 +435,13 @@ object FProch: TFProch
       Width = 625
       Height = 84
       Align = alBottom
+      Color = clWhite
       ColCount = 9
       RowCount = 3
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnDrawCell = StringGrid2DrawCell
+      ExplicitTop = 71
     end
     object Edit3: TEdit
       Left = 163

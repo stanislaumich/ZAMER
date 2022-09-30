@@ -290,14 +290,6 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender)
   
 }
 //--------------------- Очистить панель отображения
-void __fastcall TForm1::BClearClick(TObject *Sender)
-{
-  STOsnIzmVel->Caption = "";
-  STTemper->Caption = "";
-  STSkorost->Caption = "";
-  STMoschnost->Caption = "";
-}
-//---------------------------------------------------------------------------
 void __fastcall TForm1::CBDecoderTypeChange(TObject *Sender)
 {
   LComPortNumber->Enabled = false;
@@ -378,6 +370,114 @@ void __fastcall TForm1::CBDecoderTypeChange(TObject *Sender)
     EComPortNumber->Enabled = true;
     break;
   }
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::TQTimer(TObject *Sender)
+{
+	Application->ProcessMessages();
+	// ---внесение данных в базу---
+	try {
+		Query1->SQL->Clear();
+		Query1->SQL->Add("INSERT INTO zamertmp (torq,rot,power,pnom,nomer)values( ");
+		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", /*OsnIzm*/ myMoment + pT)) + ", ");
+		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", Skorost + pS)) + ", ");
+		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", Moshn)) +  ", ");
+		Query1->SQL->Add(QuotedStr(FormatFloat("0.000", pisp)) +  ", ");
+		Query1->SQL->Add(QuotedStr(nomer)+ ") ");
+		Query1->ExecSQL();
+	}
+	catch (...) {
+	}
+	Application->ProcessMessages();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TSTimer(TObject *Sender)
+{
+	//Label12->Caption = FormatFloat("0.00", Skorost + pS);
+	//Label13->Caption = FormatFloat("0.00", Moshn);
+	//Label11->Caption = FormatFloat("0.00", /*OsnIzm*/myMoment + pT);
+	// while (busy);
+	try {
+		Query2->SQL->Clear();
+		Query2->SQL->Add("update zamer set ");
+		Query2->SQL->Add("torq = " + QuotedStr(FormatFloat("0.000",
+			/*OsnIzm*/myMoment + pT)) + ", ");
+		Query2->SQL->Add("rot = " + QuotedStr(FormatFloat("0.000",
+			Skorost + pS)) + ", ");
+		Query2->SQL->Add("power = " + QuotedStr(FormatFloat("0.000",
+			Moshn)) + "");
+		Query2->ExecSQL();
+		Query2->SQL->Clear();
+		Query2->SQL->Add("select * from command ");
+		Query2->Open();
+	}
+	catch (...) {
+	}
+	String dop = 0;
+	String file = 0;
+
+
+	if (Query2->RecordCount > 0) {
+		dop = Query2->FieldByName("command")->AsString;
+		file = Query2->FieldByName("filename")->AsString;
+        pisp = StrToFloat(file);
+		nomer = Query2->FieldByName("nomer")->AsString;
+		Datchik = Query2->FieldByName("dat")->AsInteger;
+		Interval=Query2->FieldByName("interval")->AsInteger;
+		//////////////////////////////////
+		if (dop == "1") {
+			Datchik = Query2->FieldByName("dat")->AsInteger;
+			Query1->SQL->Clear();
+			Query1->SQL->Text = "truncate table zamertmp";
+			Query1->ExecSQL();
+			BConnect();
+			Memo1->Lines->Add("Запущена серия замеров");
+			Timer1->Interval = Interval;
+			Timer1->Enabled = true;
+			Query2->SQL->Clear();
+			Query2->SQL->Add("truncate table command");
+			Query2->ExecSQL();
+		}
+		//////////////////////////////////////////
+		else if (dop == "0") {
+			Timer1->Enabled = false;
+			MySleep(100);
+			try {
+				Query2->SQL->Clear();
+				Query2->SQL->Add("truncate table command");
+				Query2->ExecSQL();
+			}
+			catch (...) {
+			}
+
+			Memo1->Lines->Add("Остановлена серия замеров");
+		}
+		////////////////////////////////////////////////
+		else if (dop == "3") {
+			Timer1->Enabled = false;
+			try {
+				if (PDecoder != NULL) {
+					DecoderClose(PDecoder);
+					PDecoder = NULL;
+				}
+			}
+			catch (...) {
+			}
+			try {
+				Query2->SQL->Clear();
+				Query2->SQL->Add("truncate table command");
+				Query2->ExecSQL();
+			}
+			catch (...) {
+			}
+			Application->Terminate();
+		}
+	}
+	////////////////////////////////////////////////
+	Application->ProcessMessages();
 }
 //---------------------------------------------------------------------------
 
