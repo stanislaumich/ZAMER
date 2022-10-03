@@ -1279,7 +1279,7 @@ begin
     KRModbusClient1.Active           := false;
     KRModbusMaster1.Active           := false;
     KRModbusMaster1.Connector.Active := false;
-    PostMessage(FindWindow(nil, 'Сбор показаний датчика M45'), WM_QUIT, 0, 0);
+    PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
     savecombo;
     savegrids;
     WriteIni;

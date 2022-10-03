@@ -3,9 +3,6 @@
         <ProjectGuid>{6C4216F5-A9D3-4672-ABFA-5D096037749C}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="MODBUS_M45\M45Cpp.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="ZAMER\Zamer.dproj">
             <Dependencies/>
         </Projects>
@@ -20,15 +17,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="M45Cpp">
-        <MSBuild Projects="MODBUS_M45\M45Cpp.cbproj"/>
-    </Target>
-    <Target Name="M45Cpp:Clean">
-        <MSBuild Projects="MODBUS_M45\M45Cpp.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="M45Cpp:Make">
-        <MSBuild Projects="MODBUS_M45\M45Cpp.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="Zamer">
         <MSBuild Projects="ZAMER\Zamer.dproj"/>
     </Target>
@@ -48,13 +36,13 @@
         <MSBuild Projects="M45ORIG\SOURCE\T45.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="M45Cpp;Zamer;T45"/>
+        <CallTarget Targets="Zamer;T45"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="M45Cpp:Clean;Zamer:Clean;T45:Clean"/>
+        <CallTarget Targets="Zamer:Clean;T45:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="M45Cpp:Make;Zamer:Make;T45:Make"/>
+        <CallTarget Targets="Zamer:Make;T45:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
