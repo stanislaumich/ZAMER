@@ -153,6 +153,8 @@ type
         BitBtn12: TBitBtn;
         Label36: TLabel;
         ComboBox5: TComboBox;
+    Label37: TLabel;
+    Edit16: TEdit;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -217,6 +219,12 @@ var
     Nomer               : string;
     ReadM45             : Boolean;
 
+ CONST
+  RazU=-1;
+  RazP=-2;
+  RazI=-3;
+  RAZN=-1;
+  RazM=-2;
 implementation
 
 {$R *.dfm}
@@ -434,6 +442,7 @@ begin
             QInsertNewDvig.ParamByName('READY').AsInteger := 0;
             QInsertNewDvig.ParamByName('NOMER').Asstring  := Nomer;
             QInsertNewDvig.ParamByName('fio').Asstring    := ComboBox5.Text;
+            QInsertNewDvig.ParamByName('regim').Asstring    := Edit16.Text;
             QInsertNewDvig.ExecSQL;
             Label28.Caption := '';
             ShowMessage('Можно приступать к испытаниям двигателя');
@@ -489,8 +498,17 @@ begin
     FSoprot.StringGrid3.Cells[3, 1] := Qtemp.FieldByName('IZM1W1W2').Asstring;
     FSoprot.StringGrid3.Cells[3, 2] := Qtemp.FieldByName('IZM2W1W2').Asstring;
     FSoprot.StringGrid3.Cells[3, 3] := Qtemp.FieldByName('IZM3W1W2').Asstring;
-    FSoprot.Edit1.Text              := Qtemp.FieldByName('BOLT').Asstring;
+    //FSoprot.Edit1.Text              := Qtemp.FieldByName('BOLT').Asstring;
     case Qtemp.FieldByName('BOLT').AsInteger of
+        0:
+            FSoprot.radiobutton3.Checked := True;
+        1:
+            FSoprot.radiobutton1.Checked := True;
+        2:
+            FSoprot.radiobutton2.Checked := True;
+    end;
+
+    case Qtemp.FieldByName('ispyt13').AsInteger of
         0:
             FSoprot.radiobutton6.Checked := True;
         1:
@@ -826,6 +844,7 @@ begin
         Label24.Caption := Fprodol.Label24.Caption;
         Edit11.Text     := Fprodol.Edit11.Text;
         Edit10.Text     := Fprodol.Edit10.Text;
+        Edit16.Text     := Fprodol.Edit2.Text;
         ComboBox5.Text  := Fprodol.Edit1.Text;
         LoadIspyt(Nomer);
         enableispyt(True);
@@ -948,13 +967,13 @@ begin
         wrepl('rizolvk', FSoprot.Edit13.Text);
         wrepl('rizolob', FSoprot.Edit16.Text);
         wrepl('temper', FSoprot.Edit8.Text);
-        wrepl('bolt', FSoprot.Edit1.Text);
-        { if FSoprot.radiobutton4.Checked then
-          wrepl('mvit', 'ВЫДЕРЖАЛ');
-          if FSoprot.radiobutton5.Checked then
-          wrepl('mvit', 'НЕ ВЫДЕРЖАЛ');
-          if FSoprot.radiobutton6.Checked then
-          wrepl('mvit', 'НЕ ИСПЫТЫВАЛОСЬ'); }
+        //wrepl('bolt', FSoprot.Edit1.Text);
+         if FSoprot.radiobutton1.Checked then
+          wrepl('bolt', 'ВЫДЕРЖАЛ');
+          if FSoprot.radiobutton2.Checked then
+          wrepl('bolt', 'НЕ ВЫДЕРЖАЛ');
+          if FSoprot.radiobutton3.Checked then
+          wrepl('bolt', 'НЕ ИСПЫТЫВАЛОСЬ');
 
         if FSoprot.radiobutton4.Checked then
             wrepl('mvit', ans[2]);
@@ -1045,6 +1064,8 @@ begin
         wrepl('tipdv', ComboBox1.Text);
         wrepl('date', DateToStr(DateTimePicker1.Date));
         wrepl('fio', ComboBox5.Text);
+        wrepl('polus', ComboBox2.Text);
+        wrepl('regim', Edit16.Text);
         // сохранение документа
         FrepP.Label1.Caption := 'Сохранение документа';
         WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Nomer + '.docx');
@@ -1079,6 +1100,7 @@ begin
     QUpdDvig.ParamByName('STENDA').Asstring := Label24.Caption;
     QUpdDvig.ParamByName('DOP1').Asstring   := Edit11.Text;
     QUpdDvig.ParamByName('ISPOLN').Asstring := Edit10.Text;
+    QUpdDvig.ParamByName('regim').Asstring := Edit16.Text;
     QUpdDvig.ParamByName('READY').AsInteger := 1;
     QUpdDvig.ParamByName('NOMER').Asstring  := Nomer;
     QUpdDvig.ExecSQL;

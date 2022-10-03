@@ -77,7 +77,7 @@ object FMehan: TFMehan
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]
-      Caption = #1057#1090#1072#1088#1090
+      Caption = #1057#1090#1072#1088#1090' F4'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19
@@ -93,7 +93,7 @@ object FMehan: TFMehan
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]
-      Caption = #1057#1090#1086#1087
+      Caption = #1057#1090#1086#1087' F8'
       Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -178,7 +178,7 @@ object FMehan: TFMehan
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]
-      Caption = #1057#1090#1072#1088#1090
+      Caption = #1057#1090#1072#1088#1090' F5'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19
@@ -194,7 +194,7 @@ object FMehan: TFMehan
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]
-      Caption = #1057#1090#1086#1087
+      Caption = #1057#1090#1086#1087' F9'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19
@@ -629,5 +629,29 @@ object FMehan: TFMehan
     Connection = FMain.FDOra
     Left = 612
     Top = 308
+  end
+  object ActionList1: TActionList
+    Left = 668
+    Top = 308
+    object upstart: TAction
+      Caption = 'upstart'
+      ShortCut = 115
+      OnExecute = upstartExecute
+    end
+    object upstop: TAction
+      Caption = 'upstop'
+      ShortCut = 119
+      OnExecute = upstopExecute
+    end
+    object downstart: TAction
+      Caption = 'downstart'
+      ShortCut = 116
+      OnExecute = downstartExecute
+    end
+    object downstop: TAction
+      Caption = 'downstop'
+      ShortCut = 120
+      OnExecute = downstopExecute
+    end
   end
 end

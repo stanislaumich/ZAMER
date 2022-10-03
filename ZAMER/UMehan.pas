@@ -9,7 +9,7 @@ uses
   Vcl.ExtCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Math;
+  FireDAC.Comp.Client, Math, System.Actions, Vcl.ActnList;
 
 type
   TFMehan = class(TForm)
@@ -55,6 +55,11 @@ type
     Label9: TLabel;
     QInsSvod: TFDQuery;
     QGetMN: TFDQuery;
+    ActionList1: TActionList;
+    upstart: TAction;
+    upstop: TAction;
+    downstart: TAction;
+    downstop: TAction;
     procedure BitBtn1Click(Sender: TObject);
     procedure Button27Click(Sender: TObject);
     procedure Button32Click(Sender: TObject);
@@ -69,6 +74,10 @@ type
     procedure StringGrid8Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
+    procedure upstartExecute(Sender: TObject);
+    procedure upstopExecute(Sender: TObject);
+    procedure downstartExecute(Sender: TObject);
+    procedure downstopExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -132,6 +141,26 @@ begin
     + dectype + ', ' + FMAin.Edit12.Text + ')');
   QCommand.ExecSQL;
   QCommand.Close;
+end;
+
+procedure TFMehan.downstartExecute(Sender: TObject);
+begin
+ Button37.Click;
+end;
+
+procedure TFMehan.downstopExecute(Sender: TObject);
+begin
+       Button42.Click;
+end;
+
+procedure TFMehan.upstartExecute(Sender: TObject);
+begin
+ Button27.Click;
+end;
+
+procedure TFMehan.upstopExecute(Sender: TObject);
+begin
+    Button32.Click;
 end;
 
 procedure TFMehan.BitBtn1Click(Sender: TObject);

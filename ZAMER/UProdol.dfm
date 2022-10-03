@@ -19,18 +19,25 @@ object FProdol: TFProdol
   PixelsPerInch = 96
   TextHeight = 23
   object Label2: TLabel
-    Left = 450
+    Left = 417
     Top = 458
     Width = 10
     Height = 23
     Caption = '0'
   end
   object Label1: TLabel
-    Left = 280
+    Left = 247
     Top = 458
     Width = 164
     Height = 23
     Caption = #1053#1086#1084#1077#1088' '#1080'c'#1087#1099#1090#1072#1085#1080#1103':'
+  end
+  object Label4: TLabel
+    Left = 440
+    Top = 456
+    Width = 64
+    Height = 23
+    Caption = #1056#1077#1078#1080#1084':'
   end
   object BitBtn1: TBitBtn
     Left = 774
@@ -98,7 +105,6 @@ object FProdol: TFProdol
       65F36465F36465F36465F26464F26464F26160F29797F7FFFFFF}
     TabOrder = 0
     OnClick = BitBtn1Click
-    ExplicitTop = 455
   end
   object BitBtn2: TBitBtn
     Left = 918
@@ -166,7 +172,6 @@ object FProdol: TFProdol
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 1
     OnClick = BitBtn2Click
-    ExplicitTop = 455
   end
   object BitBtn3: TBitBtn
     Left = 4
@@ -234,7 +239,6 @@ object FProdol: TFProdol
       FFFFFFFFFFFFFFFF2118EB2A23ED433EF0312BEE2219ECFFFFFF}
     TabOrder = 2
     OnClick = BitBtn3Click
-    ExplicitTop = 455
   end
   object GroupBox1: TGroupBox
     Left = 4
@@ -483,7 +487,7 @@ object FProdol: TFProdol
       Left = 92
       Top = 176
       Width = 298
-      Height = 33
+      Height = 24
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -521,6 +525,13 @@ object FProdol: TFProdol
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
     end
+  end
+  object Edit2: TEdit
+    Left = 509
+    Top = 453
+    Width = 256
+    Height = 31
+    TabOrder = 6
   end
   object Qselectneokon: TFDQuery
     Connection = FMain.FDOra

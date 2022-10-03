@@ -56,6 +56,8 @@ type
     Label1: TLabel;
     Label3: TLabel;
     Edit1: TEdit;
+    Label4: TLabel;
+    Edit2: TEdit;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -113,6 +115,7 @@ begin
   Edit11.text     := Qselectneokon.fieldbyname('dop1').AsString;
   Edit10.text     := Qselectneokon.fieldbyname('ispoln').AsString;
   Edit1.text      := Qselectneokon.fieldbyname('fio').AsString;
+  Edit2.text      := Qselectneokon.fieldbyname('regim').AsString;
 end;
 
 procedure TFProdol.FormActivate(Sender: TObject);

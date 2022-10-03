@@ -3671,7 +3671,7 @@ object FKzam: TFKzam
       Width = 138
       Height = 38
       Anchors = [akRight, akBottom]
-      Caption = #1057#1090#1072#1088#1090
+      Caption = #1057#1090#1072#1088#1090' F5'
       Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
@@ -3739,7 +3739,7 @@ object FKzam: TFKzam
       Width = 150
       Height = 38
       Anchors = [akRight, akBottom]
-      Caption = #1057#1090#1086#1087
+      Caption = #1057#1090#1086#1087' F9'
       Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100

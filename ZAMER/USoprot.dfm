@@ -2,7 +2,7 @@ object FSoprot: TFSoprot
   Left = 0
   Top = 0
   Caption = #1057#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1077
-  ClientHeight = 649
+  ClientHeight = 676
   ClientWidth = 590
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,7 +15,7 @@ object FSoprot: TFSoprot
   OnCreate = FormCreate
   DesignSize = (
     590
-    649)
+    676)
   PixelsPerInch = 96
   TextHeight = 23
   object Label34: TLabel
@@ -83,17 +83,21 @@ object FSoprot: TFSoprot
   end
   object Label2: TLabel
     Left = 8
-    Top = 573
+    Top = 599
     Width = 222
     Height = 23
+    Anchors = [akLeft, akBottom]
     Caption = '* '#1086#1076#1085#1086#1092#1072#1079#1085#1099#1081' '#1076#1074#1080#1075#1072#1090#1077#1083#1100
+    ExplicitTop = 573
   end
   object Label3: TLabel
     Left = 273
-    Top = 573
+    Top = 599
     Width = 288
     Height = 23
+    Anchors = [akLeft, akBottom]
     Caption = '** '#1077#1089#1083#1080' I'#1093#1093'('#1087#1088#1080' 1,3 U'#1085') >I'#1085', 4'#1040#1057
+    ExplicitTop = 573
   end
   object Label4: TLabel
     Left = 8
@@ -105,9 +109,9 @@ object FSoprot: TFSoprot
   object Label5: TLabel
     Left = 8
     Top = 533
-    Width = 444
+    Width = 385
     Height = 23
-    Caption = #1095#1072#1089#1090#1100#1102' '#1076#1074#1080#1075#1072#1090#1077#1083#1103', I=25'#1040', U '#1085#1077' '#1073#1086#1083#1077#1077' 2,0 '#1042'., '#1052#1054#1084':'
+    Caption = #1095#1072#1089#1090#1100#1102' '#1076#1074#1080#1075#1072#1090#1077#1083#1103', I=25'#1040', U '#1085#1077' '#1073#1086#1083#1077#1077' 2,0 '#1042'.'
   end
   object Edit8: TEdit
     Left = 352
@@ -272,9 +276,10 @@ object FSoprot: TFSoprot
   end
   object BitBtn5: TBitBtn
     Left = 447
-    Top = 602
+    Top = 628
     Width = 139
     Height = 46
+    Anchors = [akLeft, akBottom]
     Caption = #1043#1086#1090#1086#1074#1086
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
@@ -335,12 +340,14 @@ object FSoprot: TFSoprot
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 5
     OnClick = BitBtn5Click
+    ExplicitTop = 602
   end
   object BitBtn1: TBitBtn
     Left = 5
-    Top = 602
+    Top = 628
     Width = 131
     Height = 46
+    Anchors = [akLeft, akBottom]
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
@@ -401,38 +408,77 @@ object FSoprot: TFSoprot
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 6
     OnClick = BitBtn1Click
+    ExplicitTop = 602
   end
-  object RadioButton4: TRadioButton
-    Left = 424
-    Top = 299
-    Width = 113
-    Height = 23
-    Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+  object RadioGroup1: TRadioGroup
+    Left = 8
+    Top = 560
+    Width = 573
+    Height = 33
     TabOrder = 7
-  end
-  object RadioButton5: TRadioButton
-    Left = 424
-    Top = 323
-    Width = 145
-    Height = 22
-    Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
-    TabOrder = 8
-  end
-  object RadioButton6: TRadioButton
-    Left = 424
-    Top = 345
-    Width = 161
-    Height = 24
-    Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
-    TabOrder = 9
   end
   object Edit1: TEdit
     Left = 458
     Top = 530
     Width = 107
     Height = 31
-    TabOrder = 10
+    TabOrder = 8
     Text = '0'
+  end
+  object RadioButton1: TRadioButton
+    Left = 18
+    Top = 568
+    Width = 151
+    Height = 17
+    Caption = #1057#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
+    TabOrder = 9
+  end
+  object RadioButton2: TRadioButton
+    Left = 209
+    Top = 568
+    Width = 171
+    Height = 17
+    Caption = #1053#1077' '#1089#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
+    TabOrder = 10
+  end
+  object RadioButton3: TRadioButton
+    Left = 424
+    Top = 568
+    Width = 153
+    Height = 17
+    Caption = #1053#1077' '#1080#1079#1084#1077#1088#1103#1083#1086#1089#1100
+    TabOrder = 11
+  end
+  object GroupBox1: TGroupBox
+    Left = 357
+    Top = 293
+    Width = 229
+    Height = 72
+    TabOrder = 12
+    object RadioButton4: TRadioButton
+      Left = 8
+      Top = 3
+      Width = 113
+      Height = 23
+      Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+      TabOrder = 0
+    end
+    object RadioButton5: TRadioButton
+      Left = 8
+      Top = 26
+      Width = 145
+      Height = 22
+      Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+      TabOrder = 1
+    end
+    object RadioButton6: TRadioButton
+      Left = 8
+      Top = 48
+      Width = 161
+      Height = 24
+      Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+      TabOrder = 2
+    end
   end
   object QSoprot: TFDQuery
     Connection = FMain.FDOra

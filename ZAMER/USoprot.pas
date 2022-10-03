@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, ustr;
+  FireDAC.Comp.Client, ustr, Vcl.ExtCtrls;
 
 type
   TFSoprot = class(TForm)
@@ -37,14 +37,19 @@ type
     Label1: TLabel;
     Label9: TLabel;
     Label10: TLabel;
-    RadioButton4: TRadioButton;
-    RadioButton5: TRadioButton;
-    RadioButton6: TRadioButton;
     Label2: TLabel;
     Label3: TLabel;
+    RadioGroup1: TRadioGroup;
     Label4: TLabel;
     Label5: TLabel;
     Edit1: TEdit;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    RadioButton3: TRadioButton;
+    GroupBox1: TGroupBox;
+    RadioButton4: TRadioButton;
+    RadioButton5: TRadioButton;
+    RadioButton6: TRadioButton;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -84,6 +89,12 @@ begin
     ShowMessage('Не указано испытание межвитковой изоляции');
     Exit
   end;
+  if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked) = false
+  then
+  begin
+    ShowMessage('Не указано испытание сопротивления между болтом');
+    Exit
+  end;
   Fmain.Qtemp.Close;
   Fmain.Qtemp.SQL.Clear;
   Fmain.Qtemp.SQL.add('delete from ZSOPROT where nomer=' +
@@ -100,7 +111,14 @@ begin
     QSoprot.ParamByName('IZOLED').Asstring   := ComboBox10.Text;
     QSoprot.ParamByName('IZOLKORP').AsFloat  := Strtofloat(Edit13.Text);
     QSoprot.ParamByName('IZOLOBMOT').AsFloat := Strtofloat(Edit16.Text);
-    QSoprot.ParamByName('BOLT').AsFloat      := Strtofloat(Edit1.Text);
+
+    if RadioButton1.Checked then
+      QSoprot.ParamByName('BOLT').AsInteger := 1;
+    if RadioButton2.Checked then
+      QSoprot.ParamByName('BOLT').AsInteger := 2;
+    if RadioButton3.Checked then
+      QSoprot.ParamByName('BOLT').AsInteger := 0;
+
     if RadioButton4.Checked then
       QSoprot.ParamByName('ISPYT13').AsInteger := 1;
     if RadioButton5.Checked then

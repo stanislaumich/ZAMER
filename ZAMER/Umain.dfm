@@ -189,11 +189,11 @@ object FMain: TFMain
       Caption = #1054#1089#1086#1073#1077#1085#1085#1086#1089#1090#1080' '#1080#1089#1087#1086#1083#1085#1077#1085#1080#1103':'
     end
     object Label26: TLabel
-      Left = 9
+      Left = 4
       Top = 185
-      Width = 77
+      Width = 102
       Height = 16
-      Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077':'
+      Caption = #1042#1085#1077#1096#1085#1080#1081' '#1086#1089#1084#1086#1090#1088':'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -208,6 +208,13 @@ object FMain: TFMain
       Height = 23
       Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100':'
     end
+    object Label37: TLabel
+      Left = 403
+      Top = 255
+      Width = 64
+      Height = 23
+      Caption = #1056#1077#1078#1080#1084':'
+    end
     object BitBtn7: TBitBtn
       Left = 3
       Top = 253
@@ -217,7 +224,6 @@ object FMain: TFMain
       Caption = #1053#1086#1074#1086#1077
       TabOrder = 0
       OnClick = BitBtn7Click
-      ExplicitTop = 205
     end
     object BitBtn8: TBitBtn
       Left = 129
@@ -228,7 +234,6 @@ object FMain: TFMain
       Caption = #1055#1088#1086#1076#1086#1083#1078#1080#1090#1100
       TabOrder = 1
       OnClick = BitBtn8Click
-      ExplicitTop = 205
     end
     object BitBtn9: TBitBtn
       Left = 255
@@ -334,9 +339,9 @@ object FMain: TFMain
       TabOrder = 14
     end
     object Edit11: TEdit
-      Left = 92
+      Left = 112
       Top = 176
-      Width = 288
+      Width = 268
       Height = 31
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -363,6 +368,13 @@ object FMain: TFMain
       Width = 260
       Height = 31
       TabOrder = 17
+    end
+    object Edit16: TEdit
+      Left = 480
+      Top = 252
+      Width = 307
+      Height = 31
+      TabOrder = 18
     end
   end
   object GroupBox2: TGroupBox
@@ -620,7 +632,6 @@ object FMain: TFMain
       item
         Width = 50
       end>
-    ExplicitTop = 502
   end
   object BitBtn13: TBitBtn
     Left = 407
@@ -1117,12 +1128,12 @@ object FMain: TFMain
       '   POLUS, UNOM, UISP, '
       '   PNOM, HUMID, PRESSUR, '
       '   ENERGO, STENDN, STENDA, '
-      '   DOP1, READY, NOMER, ISPOLN, fio) '
+      '   DOP1, READY, NOMER, ISPOLN, fio, regim) '
       'VALUES (:DATA, :TIPDV, :NOMDV, '
       '   :POLUS, :UNOM, :UISP, '
       '   :PNOM, :HUMID, :PRESSUR, '
       '   :ENERGO, :STENDN, :STENDA, '
-      '   :DOP1, :READY, :NOMER, :ISPOLN, :fio )')
+      '   :DOP1, :READY, :NOMER, :ISPOLN, :fio, :regim )')
     Left = 856
     Top = 260
     ParamData = <
@@ -1193,6 +1204,10 @@ object FMain: TFMain
       item
         Name = 'FIO'
         ParamType = ptInput
+      end
+      item
+        Name = 'REGIM'
+        ParamType = ptInput
       end>
   end
   object Qtemp: TFDQuery
@@ -1233,7 +1248,7 @@ object FMain: TFMain
       '       READY   = :READY,'
       '       NOMER   = :NOMER,'
       '       ISPOLN  = :ISPOLN,'
-      'fio = :fio'
+      'fio = :fio, regim=:regim'
       'WHERE  NOMER   = :NOMER')
     Left = 928
     Top = 376
@@ -1304,6 +1319,10 @@ object FMain: TFMain
       end
       item
         Name = 'FIO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'REGIM'
         ParamType = ptInput
       end>
   end

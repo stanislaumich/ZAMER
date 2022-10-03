@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = #1055#1088#1080#1084#1077#1088' '#1087#1088#1086#1075#1088#1072#1084#1084#1099' '#1076#1083#1103' '#1088#1072#1073#1086#1090#1099' '#1074' '#1087#1086#1090#1086#1082#1086#1074#1086#1084' '#1088#1077#1078#1080#1084#1077' (RAD Studio XE3)'
-  ClientHeight = 455
-  ClientWidth = 745
+  Caption = #1057#1073#1086#1088' '#1087#1086#1082#1072#1079#1072#1085#1080#1081' '#1058'45'
+  ClientHeight = 226
+  ClientWidth = 451
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +13,8 @@ object Form1: TForm1
   OldCreateOrder = False
   Position = poDesktopCenter
   OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object LComPortNumber: TLabel
@@ -84,7 +86,6 @@ object Form1: TForm1
       Height = 112
       Align = alTop
       TabOrder = 0
-      ExplicitTop = 4
       object Label3: TLabel
         Left = 31
         Top = 13
@@ -141,7 +142,7 @@ object Form1: TForm1
         BorderStyle = sbsSingle
         Color = clWhite
         Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clLime
+        Font.Color = clNavy
         Font.Height = -24
         Font.Name = 'Courier New'
         Font.Style = [fsBold]
@@ -163,7 +164,7 @@ object Form1: TForm1
         BorderStyle = sbsSingle
         Color = clWhite
         Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clLime
+        Font.Color = clRed
         Font.Height = -24
         Font.Name = 'Courier New'
         Font.Style = [fsBold]
@@ -185,7 +186,7 @@ object Form1: TForm1
         BorderStyle = sbsSingle
         Color = clWhite
         Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clLime
+        Font.Color = clGreen
         Font.Height = -24
         Font.Name = 'Courier New'
         Font.Style = [fsBold]
@@ -207,7 +208,7 @@ object Form1: TForm1
         BorderStyle = sbsSingle
         Color = clWhite
         Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clLime
+        Font.Color = clBlack
         Font.Height = -24
         Font.Name = 'Courier New'
         Font.Style = [fsBold]
@@ -412,7 +413,6 @@ object Form1: TForm1
   end
   object TQ: TTimer
     Interval = 100
-    OnTimer = TQTimer
     Left = 148
     Top = 120
   end
@@ -422,6 +422,8 @@ object Form1: TForm1
       'Database=XE'
       'Password=zamer'
       'User_Name=zamer')
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
     Connected = True
     LoginPrompt = False
     Left = 212
