@@ -579,7 +579,7 @@ object FMain: TFMain
     end
     object BitBtn4: TBitBtn
       Left = 3
-      Top = 117
+      Top = 116
       Width = 295
       Height = 30
       Caption = #1053#1072#1075#1088#1077#1074

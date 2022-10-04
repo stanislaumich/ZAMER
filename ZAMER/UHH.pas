@@ -9,7 +9,7 @@ uses
   Vcl.ExtCtrls, Vcl.ComCtrls, Math, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList;
 
 type
   TFhhod = class(TForm)
@@ -45,6 +45,8 @@ type
     BitBtn3: TBitBtn;
     Label11: TLabel;
     Label12: TLabel;
+    ActionList1: TActionList;
+    Action1: TAction;
     procedure RadioButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -62,6 +64,7 @@ type
     procedure TimerUpdTimer(Sender: TObject);
     procedure beep;
     procedure FormHide(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
 
   private
     { Private declarations }
@@ -90,6 +93,11 @@ implementation
 {$R *.dfm}
 
 uses Umain;
+
+procedure TFhhod.Action1Execute(Sender: TObject);
+begin
+  BitBtn1.Click;
+end;
 
 procedure TFhhod.beep;
 begin

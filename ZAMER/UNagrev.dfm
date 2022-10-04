@@ -2,7 +2,7 @@ object FNagrev: TFNagrev
   Left = 0
   Top = 0
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072#1075#1088#1077#1074#1072
-  ClientHeight = 504
+  ClientHeight = 559
   ClientWidth = 948
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,109 +14,195 @@ object FNagrev: TFNagrev
   Position = poScreenCenter
   DesignSize = (
     948
-    504)
+    559)
   PixelsPerInch = 96
   TextHeight = 23
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
     Width = 948
-    Height = 69
+    Height = 125
     Align = alTop
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1087#1088#1080#1073#1086#1088#1086#1074
     TabOrder = 0
     object Label1: TLabel
-      Left = 8
-      Top = 32
-      Width = 118
-      Height = 23
-      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077':'
+      Left = 12
+      Top = 28
+      Width = 199
+      Height = 29
+      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1042'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label2: TLabel
-      Left = 200
-      Top = 32
-      Width = 37
-      Height = 23
-      Caption = #1058#1086#1082':'
+      Left = 340
+      Top = 28
+      Width = 84
+      Height = 29
+      Caption = #1058#1086#1082' '#1040'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label3: TLabel
-      Left = 312
-      Top = 32
-      Width = 96
-      Height = 23
-      Caption = #1052#1086#1097#1085#1086#1089#1090#1100':'
+      Left = 576
+      Top = 28
+      Width = 182
+      Height = 29
+      Caption = #1052#1086#1097#1085#1086#1089#1090#1100' '#1042#1090'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label4: TLabel
-      Left = 480
-      Top = 32
-      Width = 74
-      Height = 23
-      Caption = #1052#1086#1084#1077#1085#1090':'
+      Left = 12
+      Top = 76
+      Width = 212
+      Height = 29
+      Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'/'#1082#1075'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label5: TLabel
-      Left = 636
-      Top = 32
-      Width = 76
-      Height = 23
-      Caption = #1063#1072#1089#1090#1086#1090#1072':'
+      Left = 328
+      Top = 76
+      Width = 172
+      Height = 29
+      Caption = #1054#1073#1086#1088#1086#1090'/'#1084#1080#1085'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label6: TLabel
-      Left = 785
-      Top = 32
-      Width = 86
-      Height = 23
+      Left = 625
+      Top = 76
+      Width = 123
+      Height = 29
       Caption = #1053#1072#1075#1088#1091#1079#1082#1072':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label7: TLabel
-      Left = 132
-      Top = 32
-      Width = 10
-      Height = 23
+      Left = 235
+      Top = 28
+      Width = 90
+      Height = 33
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label8: TLabel
-      Left = 243
-      Top = 32
-      Width = 10
-      Height = 23
+      Left = 439
+      Top = 28
+      Width = 94
+      Height = 33
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label9: TLabel
-      Left = 411
-      Top = 32
-      Width = 10
-      Height = 23
+      Left = 764
+      Top = 28
+      Width = 141
+      Height = 33
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label10: TLabel
-      Left = 560
-      Top = 32
-      Width = 10
-      Height = 23
+      Left = 230
+      Top = 76
+      Width = 82
+      Height = 33
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label11: TLabel
-      Left = 715
-      Top = 32
-      Width = 10
-      Height = 23
+      Left = 506
+      Top = 76
+      Width = 99
+      Height = 33
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label12: TLabel
-      Left = 877
-      Top = 32
-      Width = 10
-      Height = 23
+      Left = 754
+      Top = 76
+      Width = 151
+      Height = 33
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
   end
   object GroupBox2: TGroupBox
     Left = 808
-    Top = 151
+    Top = 206
     Width = 133
     Height = 350
+    Anchors = [akLeft, akBottom]
     Caption = #1044#1080#1072#1087'. '#1087#1086' '#1090#1086#1082#1091
     TabOrder = 1
+    ExplicitTop = 231
     object BitBtn3: TBitBtn
       Left = 21
       Top = 28
@@ -176,9 +262,9 @@ object FNagrev: TFNagrev
   end
   object GroupBox3: TGroupBox
     Left = 0
-    Top = 67
+    Top = 127
     Width = 948
-    Height = 78
+    Height = 75
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 2
@@ -192,9 +278,9 @@ object FNagrev: TFNagrev
     object Label14: TLabel
       Left = 238
       Top = 32
-      Width = 255
+      Width = 256
       Height = 23
-      Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103'. '#1074'.:'
+      Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103'. '#1042'.:'
     end
     object Label15: TLabel
       Left = 588
@@ -230,11 +316,13 @@ object FNagrev: TFNagrev
   end
   object GroupBox4: TGroupBox
     Left = 0
-    Top = 146
+    Top = 206
     Width = 802
     Height = 257
+    Anchors = [akLeft, akBottom]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
+    ExplicitTop = 231
     object Label16: TLabel
       Left = 8
       Top = 152
@@ -278,7 +366,7 @@ object FNagrev: TFNagrev
       Top = 148
       Width = 123
       Height = 41
-      Caption = #1057#1090#1072#1088#1090
+      Caption = #1057#1090#1072#1088#1090' F5'
       TabOrder = 1
     end
     object BitBtn2: TBitBtn
@@ -300,9 +388,10 @@ object FNagrev: TFNagrev
   end
   object BitBtn10: TBitBtn
     Left = 644
-    Top = 409
+    Top = 464
     Width = 158
     Height = 45
+    Anchors = [akLeft, akBottom]
     Caption = #1047#1072#1087#1080#1089#1072#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
@@ -362,12 +451,14 @@ object FNagrev: TFNagrev
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 4
+    ExplicitTop = 489
   end
   object BitBtn11: TBitBtn
     Left = 644
-    Top = 455
+    Top = 510
     Width = 158
     Height = 41
+    Anchors = [akLeft, akBottom]
     Caption = #1054#1090#1084#1077#1085#1072
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
@@ -427,12 +518,14 @@ object FNagrev: TFNagrev
       ED2118EBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFF2118EB2A23ED433EF0312BEE2219ECFFFFFF}
     TabOrder = 5
+    OnClick = BitBtn11Click
+    ExplicitTop = 535
   end
   object Timer1: TTimer
     Interval = 500
     OnTimer = Timer1Timer
-    Left = 488
-    Top = 412
+    Left = 484
+    Top = 416
   end
   object Timer2: TTimer
     Left = 528
@@ -442,5 +535,14 @@ object FNagrev: TFNagrev
     Connection = FMain.FDOra
     Left = 572
     Top = 420
+  end
+  object ActionList1: TActionList
+    Left = 520
+    Top = 476
+    object Action1: TAction
+      Caption = 'Action1'
+      ShortCut = 116
+      OnExecute = Action1Execute
+    end
   end
 end

@@ -9,7 +9,7 @@ uses
   Vcl.Grids, Vcl.ExtCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList;
 
 type
   TFNagrev = class(TForm)
@@ -55,7 +55,11 @@ type
     Timer1: TTimer;
     Timer2: TTimer;
     QgetMN: TFDQuery;
+    ActionList1: TActionList;
+    Action1: TAction;
     procedure Timer1Timer(Sender: TObject);
+    procedure BitBtn11Click(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -70,6 +74,16 @@ implementation
 {$R *.dfm}
 
 uses umain;
+
+procedure TFNagrev.Action1Execute(Sender: TObject);
+begin
+ BitBtn1.Click;
+end;
+
+procedure TFNagrev.BitBtn11Click(Sender: TObject);
+begin
+ FNagrev.Close;
+end;
 
 procedure TFNagrev.Timer1Timer(Sender: TObject);
 begin

@@ -219,7 +219,6 @@ object Fhhod: TFhhod
     Height = 33
     Anchors = [akLeft, akBottom]
     TabOrder = 5
-    ExplicitTop = 526
   end
   object CheckBox2: TCheckBox
     Left = 4
@@ -236,7 +235,7 @@ object Fhhod: TFhhod
     Width = 176
     Height = 53
     Anchors = [akLeft]
-    Caption = #1047#1072#1087#1091#1089#1090#1080#1090#1100' '#1096#1072#1075
+    Caption = #1064#1040#1043' F5'
     Enabled = False
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
@@ -609,5 +608,14 @@ object Fhhod: TFhhod
     OnTimer = TimerUpdTimer
     Left = 311
     Top = 257
+  end
+  object ActionList1: TActionList
+    Left = 216
+    Top = 420
+    object Action1: TAction
+      Caption = 'Action1'
+      ShortCut = 116
+      OnExecute = Action1Execute
+    end
   end
 end

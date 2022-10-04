@@ -9,7 +9,8 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.ExtCtrls, Vcl.ComCtrls, Math, ustr;
+  FireDAC.Comp.Client, Vcl.ExtCtrls, Vcl.ComCtrls, Math, ustr, System.Actions,
+  Vcl.ActnList;
 
 type
   TFRH = class(TForm)
@@ -60,6 +61,8 @@ type
     Label21: TLabel;
     Label22: TLabel;
     Label23: TLabel;
+    ActionList1: TActionList;
+    Action1: TAction;
     procedure Timer1Timer(Sender: TObject);
     // procedure Timer2Timer(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
@@ -79,6 +82,7 @@ type
       Rect: TRect; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
     // procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
@@ -147,8 +151,14 @@ begin
   Point := strReplace(s, ',', '.');
 end;
 
+procedure TFRH.Action1Execute(Sender: TObject);
+begin
+ BitBtn1.Click;
+end;
+
 procedure TFRH.BitBtn1Click(Sender: TObject);
 begin
+  BitBtn1.Enabled:=false;
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zrhall where nomer=' + Quotedstr(Nomer) +
@@ -560,6 +570,7 @@ begin
     StringGrid2.row       := StringGrid2.row + 1;
     if StringGrid2.cells[0, StringGrid2.row] = '' then
     begin
+      BitBtn1.Enabled := True;
       BitBtn2.Enabled := True;
       BitBtn3.Enabled := True;
       ShowMessage('Испытание завершено!')
@@ -567,7 +578,7 @@ begin
     else
     begin
       BitBtn3.Enabled := True;
-      //ShowMessage('Шаг завершен!');
+      BitBtn1.Enabled:=true;
       Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
     end;
   end
@@ -578,21 +589,21 @@ end;
 procedure TFRH.Timer2Timer(Sender: TObject);
 begin
   acount       := acount + 1;
-  a[acount].u1 := simpleroundto(FMain.RU1.Value, -1);
-  a[acount].u2 := simpleroundto(FMain.RU2.Value, -1);
-  a[acount].u3 := simpleroundto(FMain.RU3.Value, -1);
-  a[acount].i1 := simpleroundto(FMain.RI1.Value, -3);
-  a[acount].i2 := simpleroundto(FMain.RI2.Value, -3);
-  a[acount].i3 := simpleroundto(FMain.RI3.Value, -3);
-  a[acount].p1 := simpleroundto(FMain.RP1.Value, -2);
-  a[acount].p2 := simpleroundto(FMain.RP2.Value, -2);
-  a[acount].p3 := simpleroundto(FMain.RP3.Value, -2);
+  a[acount].u1 := simpleroundto(FMain.RU1.Value, RazU);
+  a[acount].u2 := simpleroundto(FMain.RU2.Value, RazU);
+  a[acount].u3 := simpleroundto(FMain.RU3.Value, RazU);
+  a[acount].i1 := simpleroundto(FMain.RI1.Value, RazI);
+  a[acount].i2 := simpleroundto(FMain.RI2.Value, RazI);
+  a[acount].i3 := simpleroundto(FMain.RI3.Value, RazI);
+  a[acount].p1 := simpleroundto(FMain.RP1.Value, RazP);
+  a[acount].p2 := simpleroundto(FMain.RP2.Value, RazP);
+  a[acount].p3 := simpleroundto(FMain.RP3.Value, RazP);
 end;
 
 procedure TFRH.Timer3Timer(Sender: TObject);
 begin
-  Label13.Caption := floattostr(simpleroundto(FMain.Usred.Value, -1));
-  Label15.Caption := floattostr(simpleroundto(FMain.Psred.Value, -2));
+  Label13.Caption := floattostr(simpleroundto(FMain.Usred.Value, RazU));
+  Label15.Caption := floattostr(simpleroundto(FMain.Psred.Value, RazP));
   // e2 e3         6 8
   if (ABS(StrToFloat(Label13.Caption) - StrToFloat(Label6.Caption)) >
     StrToFloat(Edit2.Text)) then

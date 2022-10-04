@@ -3,7 +3,7 @@ object FKzam: TFKzam
   Top = 0
   Caption = #1050#1086#1088#1086#1090#1082#1086#1077' '#1079#1072#1084#1099#1082#1072#1085#1080#1077
   ClientHeight = 525
-  ClientWidth = 724
+  ClientWidth = 767
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -3535,9 +3535,9 @@ object FKzam: TFKzam
     Caption = #8470
   end
   object GroupBox1: TGroupBox
-    Left = 4
+    Left = 3
     Top = 0
-    Width = 713
+    Width = 756
     Height = 105
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1086#1074
     TabOrder = 0
@@ -3563,7 +3563,7 @@ object FKzam: TFKzam
       Caption = #1052#1086#1097#1085#1086#1089#1090#1100', '#1042#1090':'
     end
     object Label4: TLabel
-      Left = 512
+      Left = 533
       Top = 32
       Width = 145
       Height = 23
@@ -3577,7 +3577,7 @@ object FKzam: TFKzam
       Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103':'
     end
     object Label6: TLabel
-      Left = 316
+      Left = 360
       Top = 68
       Width = 222
       Height = 23
@@ -3605,18 +3605,34 @@ object FKzam: TFKzam
       Caption = '0'
     end
     object Label10: TLabel
-      Left = 658
+      Left = 684
       Top = 32
       Width = 10
       Height = 23
       Caption = '0'
     end
     object Label11: TLabel
-      Left = 544
+      Left = 588
       Top = 68
-      Width = 10
+      Width = 45
       Height = 23
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '0'
+    end
+    object Label17: TLabel
+      Left = 643
+      Top = 68
+      Width = 51
+      Height = 23
+      Caption = #1042#1086#1083#1100#1090
+    end
+    object Label18: TLabel
+      Left = 295
+      Top = 68
+      Width = 51
+      Height = 23
+      Caption = #1042#1086#1083#1100#1090
     end
     object Edit1: TEdit
       Left = 241
@@ -3894,7 +3910,7 @@ object FKzam: TFKzam
     end
   end
   object BitBtn10: TBitBtn
-    Left = 224
+    Left = 266
     Top = 471
     Width = 138
     Height = 52
@@ -3959,7 +3975,7 @@ object FKzam: TFKzam
     TabOrder = 3
   end
   object BitBtn11: TBitBtn
-    Left = 368
+    Left = 410
     Top = 470
     Width = 150
     Height = 52
@@ -4025,7 +4041,7 @@ object FKzam: TFKzam
     OnClick = BitBtn11Click
   end
   object BitBtn12: TBitBtn
-    Left = 527
+    Left = 569
     Top = 470
     Width = 190
     Height = 53
@@ -4091,7 +4107,6 @@ object FKzam: TFKzam
     OnClick = BitBtn12Click
   end
   object Timer1: TTimer
-    Enabled = False
     Interval = 500
     OnTimer = Timer1Timer
     Left = 116

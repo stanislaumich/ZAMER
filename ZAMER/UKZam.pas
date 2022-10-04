@@ -58,6 +58,8 @@ type
     ActionList1: TActionList;
     Action1: TAction;
     Action2: TAction;
+    Label17: TLabel;
+    Label18: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -251,7 +253,7 @@ begin
     ' and uisp=' + StringGrid1.cells[0, StringGrid1.row]);
   QTemp.ExecSQL;
   CommandStart(1, Nomer, Label11.Caption);
-  Timer1.Enabled  := true;
+  //Timer1.Enabled  := true;
   Timer2.Enabled  := true;
   BitBtn9.Enabled := true;
   BitBtn8.Enabled := false;
@@ -262,7 +264,7 @@ var
   i            : Integer;
   acount1, ncnt: Integer;
 begin
-  Timer1.Enabled := false;
+  //Timer1.Enabled := false;
   Timer2.Enabled := false;
   // вносим данные в таблицу и обрабатываем их
   CommandStart(0, Nomer, Label11.Caption);

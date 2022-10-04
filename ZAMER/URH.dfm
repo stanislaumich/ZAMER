@@ -150,7 +150,7 @@ object FRH: TFRH
   object Label13: TLabel
     Left = 762
     Top = 12
-    Width = 87
+    Width = 119
     Height = 33
     AutoSize = False
     Caption = '0'
@@ -177,7 +177,7 @@ object FRH: TFRH
   object Label15: TLabel
     Left = 762
     Top = 42
-    Width = 87
+    Width = 119
     Height = 33
     AutoSize = False
     Caption = '0'
@@ -219,8 +219,8 @@ object FRH: TFRH
     Caption = #1042
   end
   object Label20: TLabel
-    Left = 856
-    Top = 12
+    Left = 908
+    Top = 8
     Width = 84
     Height = 33
     Caption = #1042#1086#1083#1100#1090
@@ -232,8 +232,8 @@ object FRH: TFRH
     ParentFont = False
   end
   object Label21: TLabel
-    Left = 856
-    Top = 42
+    Left = 908
+    Top = 39
     Width = 63
     Height = 33
     Caption = #1042#1072#1090#1090
@@ -364,7 +364,7 @@ object FRH: TFRH
       Top = 344
       Width = 169
       Height = 53
-      Caption = #1047#1072#1087#1091#1089#1090#1080#1090#1100' '#1096#1072#1075
+      Caption = #1064#1072#1075' F5'
       Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
@@ -773,9 +773,9 @@ object FRH: TFRH
       'from('
       'select'
       'NOMER, UISP,'
-      'round((sum(su12)+sum(su23)+sum(su31))/3,4) u,'
-      'round((sum(si1)+sum(si2)+sum(si3))/3,4) i,'
-      'round((sum(sp1)+sum(sp2)+sum(sp3))/3,4) p,'
+      'round((sum(su12)+sum(su23)+sum(su31))/3,1) u,'
+      'round((sum(si1)+sum(si2)+sum(si3))/3,3) i,'
+      'round((sum(sp1)+sum(sp2)+sum(sp3))/3,2) p,'
       'round(sum(mumax),4) umax,'
       'round(sum(mpmax),4) pmax,'
       't,r,pow'
@@ -831,5 +831,14 @@ object FRH: TFRH
     OnTimer = Timer3Timer
     Left = 347
     Top = 266
+  end
+  object ActionList1: TActionList
+    Left = 848
+    Top = 442
+    object Action1: TAction
+      Caption = 'Action1'
+      ShortCut = 116
+      OnExecute = Action1Execute
+    end
   end
 end
