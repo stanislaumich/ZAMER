@@ -38,8 +38,10 @@ object FRH: TFRH
   object Label3: TLabel
     Left = 319
     Top = 8
-    Width = 10
+    Width = 54
     Height = 23
+    Alignment = taRightJustify
+    AutoSize = False
     Caption = '0'
   end
   object Label4: TLabel
@@ -64,11 +66,13 @@ object FRH: TFRH
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 376
+    Left = 373
     Top = 525
-    Width = 17
+    Width = 88
     Height = 33
+    Alignment = taRightJustify
     Anchors = [akLeft, akBottom]
+    AutoSize = False
     Caption = '0'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -78,7 +82,7 @@ object FRH: TFRH
     ParentFont = False
   end
   object Label7: TLabel
-    Left = 454
+    Left = 621
     Top = 525
     Width = 155
     Height = 33
@@ -92,11 +96,13 @@ object FRH: TFRH
     ParentFont = False
   end
   object Label8: TLabel
-    Left = 618
+    Left = 785
     Top = 525
-    Width = 17
+    Width = 80
     Height = 33
+    Alignment = taRightJustify
     Anchors = [akLeft, akBottom]
+    AutoSize = False
     Caption = '0'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -106,17 +112,19 @@ object FRH: TFRH
     ParentFont = False
   end
   object Label9: TLabel
-    Left = 368
+    Left = 396
     Top = 8
     Width = 55
     Height = 23
     Caption = 'P'#1080#1089#1087'='
   end
   object Label10: TLabel
-    Left = 429
+    Left = 452
     Top = 8
-    Width = 10
+    Width = 49
     Height = 23
+    Alignment = taRightJustify
+    AutoSize = False
     Caption = '0'
   end
   object Label11: TLabel
@@ -142,8 +150,9 @@ object FRH: TFRH
   object Label13: TLabel
     Left = 762
     Top = 12
-    Width = 17
+    Width = 87
     Height = 33
+    AutoSize = False
     Caption = '0'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -168,9 +177,92 @@ object FRH: TFRH
   object Label15: TLabel
     Left = 762
     Top = 42
-    Width = 17
+    Width = 87
     Height = 33
+    AutoSize = False
     Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label16: TLabel
+    Left = 507
+    Top = 8
+    Width = 55
+    Height = 23
+    Caption = #1082#1042#1090' = '
+  end
+  object Label17: TLabel
+    Left = 568
+    Top = 8
+    Width = 64
+    Height = 23
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = '0'
+  end
+  object Label18: TLabel
+    Left = 638
+    Top = 8
+    Width = 20
+    Height = 23
+    Caption = #1042#1090
+  end
+  object Label19: TLabel
+    Left = 379
+    Top = 8
+    Width = 11
+    Height = 23
+    Caption = #1042
+  end
+  object Label20: TLabel
+    Left = 856
+    Top = 12
+    Width = 84
+    Height = 33
+    Caption = #1042#1086#1083#1100#1090
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label21: TLabel
+    Left = 856
+    Top = 42
+    Width = 63
+    Height = 33
+    Caption = #1042#1072#1090#1090
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label22: TLabel
+    Left = 464
+    Top = 525
+    Width = 84
+    Height = 33
+    Caption = #1042#1086#1083#1100#1090
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label23: TLabel
+    Left = 867
+    Top = 525
+    Width = 63
+    Height = 33
+    Caption = #1042#1072#1090#1090
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27

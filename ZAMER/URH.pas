@@ -52,6 +52,14 @@ type
     Label15: TLabel;
     Timer3: TTimer;
     CheckBox2: TCheckBox;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
     procedure Timer1Timer(Sender: TObject);
     // procedure Timer2Timer(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
@@ -193,6 +201,8 @@ var
 begin
   Label3.Caption            := FMain.Edit6.Text;
   Label10.Caption           := FMain.Edit7.Text;
+  Label17.Caption           := Floattostr(Strtofloat(FMain.Edit7.Text)*1000);
+
   for i                     := 1 to 8 do
     StringGrid1.cells[0, i] := inttostr(i);
   StringGrid1.cells[0, 0]   := '¹';
@@ -318,8 +328,8 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(simpleroundto(StrToFloat(Label10.Caption) / 100 *
-          Strtoint(StringGrid1.cells[1, i]), -2));
+          floattostr(simpleroundto(StrToFloat(Label10.Caption)*1000 / 100 *
+          Strtoint(StringGrid1.cells[1, i]), RazP));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
     StringGrid2.row                                := 1;
@@ -359,8 +369,8 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(simpleroundto(StrToFloat(Label10.Caption) / 100 *
-          Strtoint(StringGrid1.cells[2, i]), -2));
+          floattostr(simpleroundto(StrToFloat(Label10.Caption) *1000/ 100 *
+          Strtoint(StringGrid1.cells[2, i]), RazP));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
     StringGrid2.row                                := 1;
@@ -401,8 +411,8 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(simpleroundto(StrToFloat(Label10.Caption) / 100 *
-          Strtoint(StringGrid1.cells[3, i]), -2));
+          floattostr(simpleroundto(StrToFloat(Label10.Caption) *1000/ 100 *
+          Strtoint(StringGrid1.cells[3, i]), RazP));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
     StringGrid2.row                                := 1;
