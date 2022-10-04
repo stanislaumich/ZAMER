@@ -567,7 +567,7 @@ begin
     else
     begin
       BitBtn3.Enabled := True;
-      ShowMessage('Шаг завершен!');
+      //ShowMessage('Шаг завершен!');
       Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
     end;
   end
@@ -604,7 +604,6 @@ begin
     Label8.font.Color := clRed
   else
     Label8.font.Color := clGreen;
-
 end;
 
 end.
