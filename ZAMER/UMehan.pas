@@ -145,22 +145,22 @@ end;
 
 procedure TFMehan.downstartExecute(Sender: TObject);
 begin
- Button37.Click;
+  Button37.Click;
 end;
 
 procedure TFMehan.downstopExecute(Sender: TObject);
 begin
-       Button42.Click;
+  Button42.Click;
 end;
 
 procedure TFMehan.upstartExecute(Sender: TObject);
 begin
- Button27.Click;
+  Button27.Click;
 end;
 
 procedure TFMehan.upstopExecute(Sender: TObject);
 begin
-    Button32.Click;
+  Button32.Click;
 end;
 
 procedure TFMehan.BitBtn1Click(Sender: TObject);

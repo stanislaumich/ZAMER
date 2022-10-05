@@ -42,7 +42,6 @@ type
     RadioGroup1: TRadioGroup;
     Label4: TLabel;
     Label5: TLabel;
-    Edit1: TEdit;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     RadioButton3: TRadioButton;
@@ -168,8 +167,8 @@ procedure TFSoprot.Button50Click(Sender: TObject);
 var
   i, j: integer;
 begin
-  Edit8.Text                  := '0';
-  Edit1.Text                  := '0';
+  Edit8.Text := '0';
+  // Edit1.Text                  := '0';
   ComboBox7.Text              := '';
   ComboBox8.Text              := '';
   for i                       := 1 to 3 do

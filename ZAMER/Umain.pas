@@ -136,15 +136,6 @@ type
         Label1: TLabel;
         Label2: TLabel;
         Label3: TLabel;
-        Label7: TLabel;
-        Label8: TLabel;
-        Label9: TLabel;
-        Label33: TLabel;
-        Label34: TLabel;
-        Edit14: TEdit;
-        Edit15: TEdit;
-        Button3: TButton;
-        BitBtn15: TBitBtn;
         Label35: TLabel;
         QUpdDvig: TFDQuery;
         Qinserr: TFDQuery;
@@ -153,8 +144,18 @@ type
         BitBtn12: TBitBtn;
         Label36: TLabel;
         ComboBox5: TComboBox;
-    Label37: TLabel;
-    Edit16: TEdit;
+        Label37: TLabel;
+        Edit16: TEdit;
+        GroupBox5: TGroupBox;
+        BitBtn15: TBitBtn;
+        Edit15: TEdit;
+        Label34: TLabel;
+        Label33: TLabel;
+        Edit14: TEdit;
+        Button3: TButton;
+        Label7: TLabel;
+        Label8: TLabel;
+        CheckBox1: TCheckBox;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -199,6 +200,7 @@ type
         procedure LoadIspyt(Nomer: String);
         procedure BitBtn14Click(Sender: TObject);
         procedure BitBtn12Click(Sender: TObject);
+        procedure CheckBox1Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -219,12 +221,14 @@ var
     Nomer               : string;
     ReadM45             : Boolean;
 
- CONST
-  RazU=-1;
-  RazP=-2;
-  RazI=-3;
-  RAZN=-1;
-  RazM=-2;
+CONST
+    RazU = -1;
+    RazP = -2;
+    RazI = -3;
+    RAZN = -1;
+    RazM = -2;
+    RazR = -1;
+
 implementation
 
 {$R *.dfm}
@@ -442,7 +446,7 @@ begin
             QInsertNewDvig.ParamByName('READY').AsInteger := 0;
             QInsertNewDvig.ParamByName('NOMER').Asstring  := Nomer;
             QInsertNewDvig.ParamByName('fio').Asstring    := ComboBox5.Text;
-            QInsertNewDvig.ParamByName('regim').Asstring    := Edit16.Text;
+            QInsertNewDvig.ParamByName('regim').Asstring  := Edit16.Text;
             QInsertNewDvig.ExecSQL;
             Label28.Caption := '';
             ShowMessage('ÃÓÊÌÓ ÔËÒÚÛÔ‡Ú¸ Í ËÒÔ˚Ú‡ÌËˇÏ ‰‚Ë„‡ÚÂÎˇ');
@@ -498,7 +502,7 @@ begin
     FSoprot.StringGrid3.Cells[3, 1] := Qtemp.FieldByName('IZM1W1W2').Asstring;
     FSoprot.StringGrid3.Cells[3, 2] := Qtemp.FieldByName('IZM2W1W2').Asstring;
     FSoprot.StringGrid3.Cells[3, 3] := Qtemp.FieldByName('IZM3W1W2').Asstring;
-    //FSoprot.Edit1.Text              := Qtemp.FieldByName('BOLT').Asstring;
+    // FSoprot.Edit1.Text              := Qtemp.FieldByName('BOLT').Asstring;
     case Qtemp.FieldByName('BOLT').AsInteger of
         0:
             FSoprot.radiobutton3.Checked := True;
@@ -538,17 +542,17 @@ begin
         1:
             begin
                 Fhhod.Radiobutton1Click(Fhhod);
-                Fhhod.RadioButton1.Checked := True;
+                Fhhod.radiobutton1.Checked := True;
             end;
         2:
             begin
                 Fhhod.Radiobutton2Click(Fhhod);
-                Fhhod.RadioButton2.Checked := True;
+                Fhhod.radiobutton2.Checked := True;
             end;
         3:
             begin
                 Fhhod.Radiobutton3Click(Fhhod);
-                Fhhod.RadioButton3.Checked := True;
+                Fhhod.radiobutton3.Checked := True;
             end;
     end;
     tip                        := 1;
@@ -559,6 +563,7 @@ begin
         Fhhod.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred').Asstring;
         Fhhod.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
         Fhhod.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('dumax').Asstring;
+        Fhhod.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('r').Asstring;
         Qtemp.Next;
         tip := tip + 1;
     end;
@@ -585,17 +590,17 @@ begin
         1:
             begin
                 Frh.Radiobutton1Click(Frh);
-                Frh.RadioButton1.Checked := True;
+                Frh.radiobutton1.Checked := True;
             end;
         2:
             begin
                 Frh.Radiobutton2Click(Frh);
-                Frh.RadioButton2.Checked := True;
+                Frh.radiobutton2.Checked := True;
             end;
         3:
             begin
                 Frh.Radiobutton3Click(Frh);
-                Frh.RadioButton3.Checked := True;
+                Frh.radiobutton3.Checked := True;
             end;
     end;
     tip                      := 1;
@@ -749,11 +754,11 @@ begin
 
     case Qtemp.FieldByName('eproch').AsInteger of
         1:
-            Fproch.RadioButton1.Checked := True;
+            Fproch.radiobutton1.Checked := True;
         2:
-            Fproch.RadioButton2.Checked := True;
+            Fproch.radiobutton2.Checked := True;
         0:
-            Fproch.RadioButton3.Checked := True;
+            Fproch.radiobutton3.Checked := True;
     end;
     case Qtemp.FieldByName('hifreq').AsInteger of
         1:
@@ -967,13 +972,13 @@ begin
         wrepl('rizolvk', FSoprot.Edit13.Text);
         wrepl('rizolob', FSoprot.Edit16.Text);
         wrepl('temper', FSoprot.Edit8.Text);
-        //wrepl('bolt', FSoprot.Edit1.Text);
-         if FSoprot.radiobutton1.Checked then
-          wrepl('bolt', '¬€ƒ≈–∆¿À');
-          if FSoprot.radiobutton2.Checked then
-          wrepl('bolt', 'Õ≈ ¬€ƒ≈–∆¿À');
-          if FSoprot.radiobutton3.Checked then
-          wrepl('bolt', 'Õ≈ »—œ€“€¬¿ÀŒ—‹');
+        // wrepl('bolt', FSoprot.Edit1.Text);
+        if FSoprot.radiobutton1.Checked then
+            wrepl('bolt', '¬€ƒ≈–∆¿À');
+        if FSoprot.radiobutton2.Checked then
+            wrepl('bolt', 'Õ≈ ¬€ƒ≈–∆¿À');
+        if FSoprot.radiobutton3.Checked then
+            wrepl('bolt', 'Õ≈ »—œ€“€¬¿ÀŒ—‹');
 
         if FSoprot.radiobutton4.Checked then
             wrepl('mvit', ans[2]);
@@ -1013,11 +1018,11 @@ begin
         wrepl('vlag', Fproch.Edit4.Text);
         // „‡ÎÓ˜ÍË
 
-        if Fproch.RadioButton1.Checked then
+        if Fproch.radiobutton1.Checked then
             wrepl('epr', ans[1]);
-        if Fproch.RadioButton2.Checked then
+        if Fproch.radiobutton2.Checked then
             wrepl('epr', ans[2]);
-        if Fproch.RadioButton3.Checked then
+        if Fproch.radiobutton3.Checked then
             wrepl('epr', ans[0]);
         if Fproch.radiobutton4.Checked then
             wrepl('ipc', ans[1]);
@@ -1100,7 +1105,7 @@ begin
     QUpdDvig.ParamByName('STENDA').Asstring := Label24.Caption;
     QUpdDvig.ParamByName('DOP1').Asstring   := Edit11.Text;
     QUpdDvig.ParamByName('ISPOLN').Asstring := Edit10.Text;
-    QUpdDvig.ParamByName('regim').Asstring := Edit16.Text;
+    QUpdDvig.ParamByName('regim').Asstring  := Edit16.Text;
     QUpdDvig.ParamByName('READY').AsInteger := 1;
     QUpdDvig.ParamByName('NOMER').Asstring  := Nomer;
     QUpdDvig.ExecSQL;
@@ -1137,6 +1142,11 @@ begin
     KRTCPConnector1.Interval    := strtoint(Edit14.Text);
     KRTCPConnector1.ReadTimeout := strtoint(Edit15.Text);
     BitBtn10.Click;
+end;
+
+procedure TFMain.CheckBox1Click(Sender: TObject);
+begin
+    GroupBox5.Visible := CheckBox1.Checked;
 end;
 
 procedure TFMain.ComboBox4Change(Sender: TObject);

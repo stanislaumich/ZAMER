@@ -82,12 +82,12 @@ object FRH: TFRH
     ParentFont = False
   end
   object Label7: TLabel
-    Left = 621
+    Left = 640
     Top = 525
-    Width = 155
+    Width = 139
     Height = 33
     Anchors = [akLeft, akBottom]
-    Caption = #1052#1086#1097#1085#1086#1089#1090#1100':'
+    Caption = #1053#1072#1075#1088#1091#1079#1082#1072':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -623,8 +623,8 @@ object FRH: TFRH
       '   :P2, :P3, :TORQ, '
       '   :POWER, :ROT, :DUMAX, '
       '   :DPMAX, :PISP )')
-    Left = 427
-    Top = 205
+    Left = 419
+    Top = 217
     ParamData = <
       item
         Name = 'NOMER'
@@ -698,7 +698,7 @@ object FRH: TFRH
   object QTemp: TFDQuery
     Connection = FMain.FDOra
     Left = 475
-    Top = 205
+    Top = 213
   end
   object QInsSvod: TFDQuery
     Connection = FMain.FDOra
@@ -712,8 +712,8 @@ object FRH: TFRH
       '   :ISRED, :PSRED, :TIP, '
       '   :TORQ, :ROT, :POWER, '
       '   :DUMAX, :DPMAX, :PISP )')
-    Left = 523
-    Top = 205
+    Left = 539
+    Top = 213
     ParamData = <
       item
         Name = 'NOMER'
@@ -802,8 +802,8 @@ object FRH: TFRH
       '    group by nomer, uisp, PISP'
       '    )group by nomer, uisp, PISP,t,r,pow'
       '    ) group by nomer, uisp')
-    Left = 575
-    Top = 205
+    Left = 607
+    Top = 209
     ParamData = <
       item
         Name = 'NOMER'
@@ -822,8 +822,8 @@ object FRH: TFRH
     Connection = FMain.FDOra
     SQL.Strings = (
       'select * from command')
-    Left = 459
-    Top = 294
+    Left = 567
+    Top = 262
   end
   object Timer3: TTimer
     Enabled = False
@@ -833,8 +833,8 @@ object FRH: TFRH
     Top = 266
   end
   object ActionList1: TActionList
-    Left = 848
-    Top = 442
+    Left = 504
+    Top = 262
     object Action1: TAction
       Caption = 'Action1'
       ShortCut = 116

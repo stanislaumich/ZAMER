@@ -392,14 +392,14 @@ end;
 procedure TFProch.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 begin
- if ((ARow > 0)and (acol>0)) then
-    begin
-      StringGrid2.Canvas.Brush.Color := clHotLight;
-      StringGrid2.Canvas.FillRect(Rect);
-      StringGrid2.Canvas.Font.Color := clWhite;
-      StringGrid2.Canvas.TextOut(Rect.Left + 1, Rect.Top + 1,
-        StringGrid2.cells[ACol, ARow]);
-    end;
+  if ((ARow > 0) and (ACol > 0)) then
+  begin
+    StringGrid2.Canvas.Brush.Color := clHotLight;
+    StringGrid2.Canvas.FillRect(Rect);
+    StringGrid2.Canvas.Font.Color := clWhite;
+    StringGrid2.Canvas.TextOut(Rect.Left + 1, Rect.Top + 1,
+      StringGrid2.cells[ACol, ARow]);
+  end;
 end;
 
 end.

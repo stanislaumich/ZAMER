@@ -118,12 +118,12 @@ end;
 
 procedure TFKzam.Action1Execute(Sender: TObject);
 begin
- BitBtn8.Click;
+  BitBtn8.Click;
 end;
 
 procedure TFKzam.Action2Execute(Sender: TObject);
 begin
- BitBtn9.Click;
+  BitBtn9.Click;
 end;
 
 procedure TFKzam.BitBtn11Click(Sender: TObject);
@@ -253,7 +253,7 @@ begin
     ' and uisp=' + StringGrid1.cells[0, StringGrid1.row]);
   QTemp.ExecSQL;
   CommandStart(1, Nomer, Label11.Caption);
-  //Timer1.Enabled  := true;
+  // Timer1.Enabled  := true;
   Timer2.Enabled  := true;
   BitBtn9.Enabled := true;
   BitBtn8.Enabled := false;
@@ -264,7 +264,7 @@ var
   i            : Integer;
   acount1, ncnt: Integer;
 begin
-  //Timer1.Enabled := false;
+  // Timer1.Enabled := false;
   Timer2.Enabled := false;
   // вносим данные в таблицу и обрабатываем их
   CommandStart(0, Nomer, Label11.Caption);
@@ -292,14 +292,15 @@ begin
     QInsAll.ParamByName('P2').AsFloat     := a[i].p2;
     QInsAll.ParamByName('P3').AsFloat     := a[i].p3;
     QInsAll.ParamByName('torq').AsFloat   :=
-      SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -2);
+      SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM);
     QInsAll.ExecSQL;
     QTemp.Next;
   end;
 
   QSelectSred.Close;
   QSelectSred.ParamByName('nomer').AsString := Nomer;
-  QSelectSred.ParamByName('uisp').AsFloat   := Strtofloat(Label11.Caption);
+  QSelectSred.ParamByName('uisp').AsFloat   :=
+    SimpleRoundTo(Strtofloat(Label11.Caption), RazU);
   QSelectSred.Open;
 
   QInsSvod.Close;
@@ -312,23 +313,28 @@ begin
 
   QInsSvod.ParamByName('nomer').AsString := Nomer;
   QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label11.Caption);
-  QInsSvod.ParamByName('r').AsFloat      := Strtofloat(Edit2.Text);
-  QInsSvod.ParamByName('u').AsFloat := QSelectSred.FieldByName('u').AsFloat;
-  QInsSvod.ParamByName('i').AsFloat   := QSelectSred.FieldByName('i').AsFloat;
-  QInsSvod.ParamByName('p').AsFloat   := QSelectSred.FieldByName('p').AsFloat;
-  QInsSvod.ParamByName('m').AsFloat   := QSelectSred.FieldByName('t').AsFloat;
+  QInsSvod.ParamByName('r').AsFloat      :=
+    SimpleRoundTo(Strtofloat(Edit2.Text), RazR);
+  QInsSvod.ParamByName('u').AsFloat :=
+    SimpleRoundTo(QSelectSred.FieldByName('u').AsFloat, RazU);
+  QInsSvod.ParamByName('i').AsFloat :=
+    SimpleRoundTo(QSelectSred.FieldByName('i').AsFloat, RazI);
+  QInsSvod.ParamByName('p').AsFloat :=
+    SimpleRoundTo(QSelectSred.FieldByName('p').AsFloat, RazP);
+  QInsSvod.ParamByName('m').AsFloat :=
+    SimpleRoundTo(QSelectSred.FieldByName('t').AsFloat, RazM);
   QInsSvod.ParamByName('tmp').AsFloat := 0;
 
   QInsSvod.ExecSQL;
 
-  StringGrid1.cells[1, StringGrid1.row] := QSelectSred.FieldByName('u')
-    .AsString;
-  StringGrid1.cells[2, StringGrid1.row] := QSelectSred.FieldByName('i')
-    .AsString;
-  StringGrid1.cells[3, StringGrid1.row] := QSelectSred.FieldByName('p')
-    .AsString;
-  StringGrid1.cells[4, StringGrid1.row] := QSelectSred.FieldByName('t')
-    .AsString;
+  StringGrid1.cells[1, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('u').AsFloat, RazU));
+  StringGrid1.cells[2, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('i').AsFloat, RazI));
+  StringGrid1.cells[3, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('p').AsFloat, RazP));
+  StringGrid1.cells[4, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('t').AsFloat, RazM));
 
   /// //////////////////////////////////////////////////////////////////////////
   BitBtn9.Enabled := false;
@@ -338,8 +344,8 @@ end;
 procedure TFKzam.FormActivate(Sender: TObject);
 begin
   StringGrid1.cells[0, 1] :=
-    floattostr(round(Strtofloat(FMAin.Edit5.Text) / 3.8));
-  StringGrid1.cells[0, 2] := floattostr(round(Strtofloat(FMAin.Edit5.Text)));
+    FloatToStr(round(Strtofloat(FMAin.Edit5.Text) / 3.8));
+  StringGrid1.cells[0, 2] := FloatToStr(round(Strtofloat(FMAin.Edit5.Text)));
 end;
 
 procedure TFKzam.FormCreate(Sender: TObject);
@@ -368,7 +374,8 @@ begin
   Label9.Caption := FMAin.KrVarLabel3.Caption;
   QTorque.Close;
   QTorque.Open;
-  Label10.Caption := QTorque.FieldByName('torq').AsString;;
+  Label10.Caption :=
+    FloatToStr(ABS(SimpleRoundTo(QTorque.FieldByName('torq').AsFloat, RazM)));
 
 end;
 
@@ -383,15 +390,15 @@ begin
   end
   else
   begin
-    a[acount].u1 := SimpleRoundTo(FMAin.RU1.Value, -4);
-    a[acount].u2 := SimpleRoundTo(FMAin.RU2.Value, -4);
-    a[acount].u3 := SimpleRoundTo(FMAin.RU3.Value, -4);
-    a[acount].i1 := SimpleRoundTo(FMAin.RI1.Value, -4);
-    a[acount].i2 := SimpleRoundTo(FMAin.RI2.Value, -4);
-    a[acount].i3 := SimpleRoundTo(FMAin.RI3.Value, -4);
-    a[acount].p1 := SimpleRoundTo(FMAin.RP1.Value, -4);
-    a[acount].p2 := SimpleRoundTo(FMAin.RP2.Value, -4);
-    a[acount].p3 := SimpleRoundTo(FMAin.RP3.Value, -4);
+    a[acount].u1 := SimpleRoundTo(FMAin.RU1.Value, RazU);
+    a[acount].u2 := SimpleRoundTo(FMAin.RU2.Value, RazU);
+    a[acount].u3 := SimpleRoundTo(FMAin.RU3.Value, RazU);
+    a[acount].i1 := SimpleRoundTo(FMAin.RI1.Value, RazI);
+    a[acount].i2 := SimpleRoundTo(FMAin.RI2.Value, RazI);
+    a[acount].i3 := SimpleRoundTo(FMAin.RI3.Value, RazI);
+    a[acount].p1 := SimpleRoundTo(FMAin.RP1.Value, RazP);
+    a[acount].p2 := SimpleRoundTo(FMAin.RP2.Value, RazP);
+    a[acount].p3 := SimpleRoundTo(FMAin.RP3.Value, RazP);
     if acount mod 10 = 0 then
       Label14.Caption := inttostr(acount);
 

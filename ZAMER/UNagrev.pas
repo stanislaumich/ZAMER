@@ -77,12 +77,12 @@ uses umain;
 
 procedure TFNagrev.Action1Execute(Sender: TObject);
 begin
- BitBtn1.Click;
+  BitBtn1.Click;
 end;
 
 procedure TFNagrev.BitBtn11Click(Sender: TObject);
 begin
- FNagrev.Close;
+  FNagrev.Close;
 end;
 
 procedure TFNagrev.Timer1Timer(Sender: TObject);

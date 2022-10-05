@@ -340,7 +340,6 @@ object FSoprot: TFSoprot
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 5
     OnClick = BitBtn5Click
-    ExplicitTop = 602
   end
   object BitBtn1: TBitBtn
     Left = 5
@@ -408,7 +407,6 @@ object FSoprot: TFSoprot
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 6
     OnClick = BitBtn1Click
-    ExplicitTop = 602
   end
   object RadioGroup1: TRadioGroup
     Left = 8
@@ -417,21 +415,13 @@ object FSoprot: TFSoprot
     Height = 33
     TabOrder = 7
   end
-  object Edit1: TEdit
-    Left = 458
-    Top = 530
-    Width = 107
-    Height = 31
-    TabOrder = 8
-    Text = '0'
-  end
   object RadioButton1: TRadioButton
     Left = 18
     Top = 568
     Width = 151
     Height = 17
     Caption = #1057#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
-    TabOrder = 9
+    TabOrder = 8
   end
   object RadioButton2: TRadioButton
     Left = 209
@@ -439,7 +429,7 @@ object FSoprot: TFSoprot
     Width = 171
     Height = 17
     Caption = #1053#1077' '#1089#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
-    TabOrder = 10
+    TabOrder = 9
   end
   object RadioButton3: TRadioButton
     Left = 424
@@ -447,14 +437,14 @@ object FSoprot: TFSoprot
     Width = 153
     Height = 17
     Caption = #1053#1077' '#1080#1079#1084#1077#1088#1103#1083#1086#1089#1100
-    TabOrder = 11
+    TabOrder = 10
   end
   object GroupBox1: TGroupBox
     Left = 357
     Top = 293
     Width = 229
     Height = 72
-    TabOrder = 12
+    TabOrder = 11
     object RadioButton4: TRadioButton
       Left = 8
       Top = 3

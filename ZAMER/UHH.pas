@@ -124,7 +124,36 @@ begin
 end;
 
 procedure TFhhod.BitBtn2Click(Sender: TObject);
+var
+  i: Integer;
 begin
+  i := 1;
+  while StringGrid2.cells[0, i] <> '' do
+  begin
+    // тут считается среднее по показаниям только датчика
+    // напряжения, подвохов не ожидается
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.add('delete from zhhsvod where nomer=' + Quotedstr(Nomer) +
+      ' and uisp=' + StringGrid2.cells[0, i]);
+    QTemp.ExecSQL;
+
+    QInsSvod.ParamByName('nomer').Asstring := Nomer;
+    QInsSvod.ParamByName('uisp').AsFloat := StrtoFloat(StringGrid2.cells[0, i]);
+    QInsSvod.ParamByName('usred').AsFloat :=
+      StrtoFloat(StringGrid2.cells[1, i]);
+    QInsSvod.ParamByName('isred').AsFloat :=
+      StrtoFloat(StringGrid2.cells[2, i]);
+    QInsSvod.ParamByName('psred').AsFloat :=
+      StrtoFloat(StringGrid2.cells[3, i]);
+    QInsSvod.ParamByName('dumax').AsFloat :=
+      StrtoFloat(StringGrid2.cells[4, i]);
+    QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+    QInsSvod.ParamByName('R').AsFloat := StrtoFloat(StringGrid2.cells[5, i]);
+    QInsSvod.ExecSQL;
+    i := i + 1;
+  end;
+
   Fmain.Label29.font.Color := clGreen;
   Fmain.Label29.Caption    := 'ПРОЙДЕН';
   Fhhod.Close;
@@ -135,8 +164,10 @@ var
   i, j: Integer;
 begin
   for i                       := 1 to StringGrid2.colcount - 1 do
-    for j                     := 0 to StringGrid2.rowcount - 1 do
-      StringGrid2.cells[j, i] := '';
+    for j                     := 1 to StringGrid2.rowcount - 1 do
+      StringGrid2.cells[j, i] := '0';
+  for i                       := 1 to StringGrid2.colcount - 1 do
+    StringGrid2.cells[0, i]   := '';
   StringGrid2.rowcount        := 2;
   RadioButton1.Checked        := false;
   RadioButton2.Checked        := false;
@@ -169,6 +200,7 @@ begin
   StringGrid2.cells[2, 0]   := 'I сред';
   StringGrid2.cells[3, 0]   := 'P сред';
   StringGrid2.cells[4, 0]   := '▲Umax';
+  StringGrid2.cells[5, 0]   := 'R||';
   TimerUpd.Enabled          := True;
 end;
 
@@ -380,8 +412,8 @@ begin
     exit;
   if StringGrid2.cells[1, ARow] = '' then
     exit;
-  ok := (abs(Strtofloat(StringGrid2.cells[1, ARow]) -
-    Strtofloat(StringGrid2.cells[0, ARow])) < Strtofloat(Edit2.Text)) or
+  ok := (abs(StrtoFloat(StringGrid2.cells[1, ARow]) -
+    StrtoFloat(StringGrid2.cells[0, ARow])) < StrtoFloat(Edit2.Text)) or
     (StringGrid2.cells[4, ARow] = '');
   if (ACol = 4) and (not ok) then
   begin
@@ -408,7 +440,7 @@ begin
     for i := 1 to acount do
     begin
       QinsAll.ParamByName('NOMER').Asstring := Nomer;
-      QinsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label6.Caption);
+      QinsAll.ParamByName('UISP').AsFloat   := StrtoFloat(Label6.Caption);
       QinsAll.ParamByName('U12').AsFloat    := a[i].u1;
       QinsAll.ParamByName('U23').AsFloat    := a[i].u2;
       QinsAll.ParamByName('U31').AsFloat    := a[i].u3;
@@ -420,6 +452,7 @@ begin
       QinsAll.ParamByName('P3').AsFloat     := a[i].p3;
       QinsAll.ParamByName('Ps').AsFloat     := a[i].ps;
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
+
       QinsAll.ExecSQL;
     end;
     // по просьбе удалим записи где мы выходим за пределы диапазона
@@ -435,31 +468,36 @@ begin
 
     // тут считается среднее по показаниям только датчика
     // напряжения, подвохов не ожидается
+
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').Asstring := Nomer;
-    Qselectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
+    Qselectsred.ParamByName('uisp').AsFloat   := StrtoFloat(Label6.Caption);
     Qselectsred.Open;
-    QInsSvod.Close;
+    {
+      QInsSvod.Close;
 
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.add('delete from zhhsvod where nomer=' + Quotedstr(Nomer) +
+      QTemp.Close;
+      QTemp.SQL.Clear;
+      QTemp.SQL.add('delete from zhhsvod where nomer=' + Quotedstr(Nomer) +
       ' and uisp=' + Label6.Caption);
-    QTemp.ExecSQL;
-    QInsSvod.ParamByName('nomer').Asstring :=
+      QTemp.ExecSQL;
+      QInsSvod.ParamByName('nomer').Asstring :=
       Qselectsred.FieldByName('nomer').Asstring;
-    QInsSvod.ParamByName('uisp').AsFloat :=
+      QInsSvod.ParamByName('uisp').AsFloat :=
       Qselectsred.FieldByName('uisp').AsFloat;
-    QInsSvod.ParamByName('usred').AsFloat :=
+      QInsSvod.ParamByName('usred').AsFloat :=
       Qselectsred.FieldByName('u').AsFloat;
-    QInsSvod.ParamByName('isred').AsFloat :=
+      QInsSvod.ParamByName('isred').AsFloat :=
       Qselectsred.FieldByName('i').AsFloat;
-    QInsSvod.ParamByName('psred').AsFloat :=
+      QInsSvod.ParamByName('psred').AsFloat :=
       Qselectsred.FieldByName('ps').AsFloat;
-    QInsSvod.ParamByName('dumax').AsFloat :=
+      QInsSvod.ParamByName('dumax').AsFloat :=
       Qselectsred.FieldByName('umax').AsFloat;
-    QInsSvod.ParamByName('tip').Asinteger := tipispyt;;
-    QInsSvod.ExecSQL;
+      QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+      ;
+
+      QInsSvod.ExecSQL;
+    }
     StringGrid2.cells[1, StringGrid2.row] :=
       Qselectsred.FieldByName('u').Asstring;
     StringGrid2.cells[2, StringGrid2.row] :=
@@ -471,11 +509,13 @@ begin
     /// //////////////////////////////////////////////////////////////////////////
 
     ProgressBar1.Position := 0;
-    StringGrid2.row       := StringGrid2.row + 1;
+    if StringGrid2.row < StringGrid2.rowcount - 1 then
+      StringGrid2.row := StringGrid2.row + 1;
     if StringGrid2.cells[0, StringGrid2.row] = '' then
     begin
       BitBtn2.Enabled := True;
       BitBtn3.Enabled := True;
+      StringGrid2.row := StringGrid2.row - 1;
       ShowMessage('Испытание завершено!!')
     end
     else
@@ -518,8 +558,8 @@ end;
 procedure TFhhod.TimerUpdTimer(Sender: TObject);
 begin
   Label8.Caption := Fmain.KRVarLabel1.Caption;
-  if abs(Strtofloat(Label8.Caption) - Strtofloat(Label6.Caption)) <
-    Strtofloat(Edit2.Text) then
+  if abs(StrtoFloat(Label8.Caption) - StrtoFloat(Label6.Caption)) <
+    StrtoFloat(Edit2.Text) then
   begin
     Label6.font.Color := clGreen
   end

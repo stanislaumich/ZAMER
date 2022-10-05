@@ -2,8 +2,8 @@ object Fhhod: TFhhod
   Left = 0
   Top = 0
   Caption = #1061#1086#1083#1086#1089#1090#1086#1081' '#1093#1086#1076
-  ClientHeight = 597
-  ClientWidth = 758
+  ClientHeight = 543
+  ClientWidth = 853
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,8 @@ object Fhhod: TFhhod
   OnCreate = FormCreate
   OnHide = FormHide
   DesignSize = (
-    758
-    597)
+    853
+    543)
   PixelsPerInch = 96
   TextHeight = 23
   object Label1: TLabel
@@ -51,7 +51,7 @@ object Fhhod: TFhhod
   end
   object Label5: TLabel
     Left = 1
-    Top = 551
+    Top = 506
     Width = 421
     Height = 39
     Anchors = [akLeft]
@@ -62,11 +62,11 @@ object Fhhod: TFhhod
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitTop = 576
+    ExplicitTop = 558
   end
   object Label6: TLabel
     Left = 428
-    Top = 551
+    Top = 507
     Width = 20
     Height = 39
     Anchors = [akLeft]
@@ -77,11 +77,11 @@ object Fhhod: TFhhod
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitTop = 576
+    ExplicitTop = 559
   end
   object Label7: TLabel
     Left = 503
-    Top = 551
+    Top = 507
     Width = 156
     Height = 39
     Anchors = [akLeft]
@@ -92,10 +92,11 @@ object Fhhod: TFhhod
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 559
   end
   object Label8: TLabel
     Left = 661
-    Top = 551
+    Top = 507
     Width = 20
     Height = 39
     Anchors = [akLeft]
@@ -106,17 +107,18 @@ object Fhhod: TFhhod
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 559
   end
   object Label11: TLabel
     Left = 4
-    Top = 480
+    Top = 438
     Width = 149
     Height = 23
     Caption = #1055#1077#1088#1077#1082#1086#1089' '#1092#1072#1079', %:'
   end
   object Label12: TLabel
     Left = 159
-    Top = 480
+    Top = 438
     Width = 10
     Height = 23
     Caption = '0'
@@ -182,22 +184,23 @@ object Fhhod: TFhhod
   object GroupBox2: TGroupBox
     Left = 279
     Top = 37
-    Width = 478
-    Height = 420
+    Width = 566
+    Height = 368
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
     object StringGrid2: TStringGrid
-      Left = 4
-      Top = 29
-      Width = 469
+      Left = 3
+      Top = 28
+      Width = 558
       Height = 309
+      ColCount = 6
       DefaultColWidth = 90
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
       Font.Name = 'Tahoma'
       Font.Style = []
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goRowSelect, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       ParentFont = False
       TabOrder = 0
       OnClick = StringGrid2Click
@@ -214,15 +217,14 @@ object Fhhod: TFhhod
   end
   object ProgressBar1: TProgressBar
     Left = 1
-    Top = 512
-    Width = 756
+    Top = 467
+    Width = 844
     Height = 33
-    Anchors = [akLeft, akBottom]
     TabOrder = 5
   end
   object CheckBox2: TCheckBox
-    Left = 4
-    Top = 443
+    Left = 188
+    Top = 411
     Width = 180
     Height = 22
     Caption = #1059#1076#1072#1083#1103#1090#1100' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1079#1072' '#1076#1080#1072#1087#1072#1079#1086#1085#1086#1084
@@ -230,11 +232,10 @@ object Fhhod: TFhhod
     Visible = False
   end
   object BitBtn1: TBitBtn
-    Left = 279
-    Top = 457
+    Left = 371
+    Top = 411
     Width = 176
     Height = 53
-    Anchors = [akLeft]
     Caption = #1064#1040#1043' F5'
     Enabled = False
     Glyph.Data = {
@@ -298,11 +299,10 @@ object Fhhod: TFhhod
     OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
-    Left = 461
-    Top = 457
+    Left = 553
+    Top = 411
     Width = 149
     Height = 53
-    Anchors = [akLeft]
     Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100
     Enabled = False
     Glyph.Data = {
@@ -366,11 +366,10 @@ object Fhhod: TFhhod
     OnClick = BitBtn2Click
   end
   object BitBtn3: TBitBtn
-    Left = 616
-    Top = 457
+    Left = 708
+    Top = 411
     Width = 141
     Height = 54
-    Anchors = [akLeft]
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     Enabled = False
     Glyph.Data = {
@@ -525,10 +524,10 @@ object Fhhod: TFhhod
       'INSERT INTO ZAMER.ZHHSVOD ('
       '   NOMER, UISP, USRED, '
       '   ISRED, PSRED, TIP, '
-      '   DUMAX) '
+      '   DUMAX, R) '
       'VALUES ( :NOMER, :UISP, :USRED, '
       '   :ISRED, :PSRED, :TIP, '
-      '   :DUMAX )')
+      '   :DUMAX, :R )')
     Left = 523
     Top = 205
     ParamData = <
@@ -558,6 +557,10 @@ object Fhhod: TFhhod
       end
       item
         Name = 'DUMAX'
+        ParamType = ptInput
+      end
+      item
+        Name = 'R'
         ParamType = ptInput
       end>
   end

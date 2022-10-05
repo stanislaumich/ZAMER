@@ -1,4 +1,4 @@
-unit URH;
+ï»¿unit URH;
 
 interface
 
@@ -153,12 +153,12 @@ end;
 
 procedure TFRH.Action1Execute(Sender: TObject);
 begin
- BitBtn1.Click;
+  BitBtn1.Click;
 end;
 
 procedure TFRH.BitBtn1Click(Sender: TObject);
 begin
-  BitBtn1.Enabled:=false;
+  BitBtn1.Enabled := false;
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zrhall where nomer=' + Quotedstr(Nomer) +
@@ -178,7 +178,7 @@ end;
 procedure TFRH.BitBtn2Click(Sender: TObject);
 begin
   FMain.Label30.font.Color := clGreen;
-  FMain.Label30.Caption    := 'ÏÐÎÉÄÅÍ';
+  FMain.Label30.Caption    := 'ÐŸÐ ÐžÐ™Ð”Ð•Ð';
   FRH.Close;
 end;
 
@@ -209,24 +209,24 @@ procedure TFRH.FormActivate(Sender: TObject);
 var
   i: Integer;
 begin
-  Label3.Caption            := FMain.Edit6.Text;
-  Label10.Caption           := FMain.Edit7.Text;
-  Label17.Caption           := Floattostr(Strtofloat(FMain.Edit7.Text)*1000);
+  Label3.Caption  := FMain.Edit6.Text;
+  Label10.Caption := FMain.Edit7.Text;
+  Label17.Caption := Floattostr(Strtofloat(FMain.Edit7.Text) * 1000);
 
   for i                     := 1 to 8 do
     StringGrid1.cells[0, i] := inttostr(i);
-  StringGrid1.cells[0, 0]   := '¹';
-  StringGrid1.cells[1, 0]   := 'Âàð. 1';
-  StringGrid1.cells[2, 0]   := 'Âàð. 2';
-  StringGrid1.cells[3, 0]   := 'Âàð. 3';
-  StringGrid2.cells[0, 0]   := 'Íàãð.';
-  StringGrid2.cells[1, 0]   := 'U ñðåä';
-  StringGrid2.cells[2, 0]   := 'I ñðåä';
-  StringGrid2.cells[3, 0]   := 'P ñðåä';
-  StringGrid2.cells[4, 0]   := 'N ñðåä';
-  StringGrid2.cells[5, 0]   := 'M ñðåä';
-  StringGrid2.cells[6, 0]   := 'U îòêë';
-  StringGrid2.cells[7, 0]   := 'P îòêë';
+  StringGrid1.cells[0, 0]   := 'â„–';
+  StringGrid1.cells[1, 0]   := 'Ð’Ð°Ñ€. 1';
+  StringGrid1.cells[2, 0]   := 'Ð’Ð°Ñ€. 2';
+  StringGrid1.cells[3, 0]   := 'Ð’Ð°Ñ€. 3';
+  StringGrid2.cells[0, 0]   := 'ÐÐ°Ð³Ñ€.';
+  StringGrid2.cells[1, 0]   := 'U ÑÑ€ÐµÐ´';
+  StringGrid2.cells[2, 0]   := 'I ÑÑ€ÐµÐ´';
+  StringGrid2.cells[3, 0]   := 'P ÑÑ€ÐµÐ´';
+  StringGrid2.cells[4, 0]   := 'N ÑÑ€ÐµÐ´';
+  StringGrid2.cells[5, 0]   := 'M ÑÑ€ÐµÐ´';
+  StringGrid2.cells[6, 0]   := 'â–²Umax';
+  StringGrid2.cells[7, 0]   := 'â–²Pmax';
 end;
 
 procedure TFRH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -325,7 +325,7 @@ begin
       StringGrid2.cells[i, j] := '';
   if StringGrid1.cells[1, 1] = '' then
   begin
-    ShowMessage('Íåò äàííûõ äëÿ èñïûòàíèÿ');
+    ShowMessage('ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð´Ð»Ñ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ñ');
     exit;
   end;
 
@@ -338,7 +338,7 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(simpleroundto(StrToFloat(Label10.Caption)*1000 / 100 *
+          Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
           Strtoint(StringGrid1.cells[1, i]), RazP));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
@@ -352,7 +352,7 @@ begin
   end
   else
     ShowMessage
-      ('Íå óäàëîñü ïîëó÷èòü èñïûòàòåëüíîå íàïðÿæåíèå äâèãàòåëÿ èç óñòàíîâîê òåêóùåãî èñïûòàíèÿ');
+      ('ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð½Ð°Ð¿Ñ€ÑÐ¶ÐµÐ½Ð¸Ðµ Ð´Ð²Ð¸Ð³Ð°Ñ‚ÐµÐ»Ñ Ð¸Ð· ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¾Ðº Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ñ');
 end;
 
 procedure TFRH.RadioButton2Click(Sender: TObject);
@@ -366,7 +366,7 @@ begin
       StringGrid2.cells[i, j] := '';
   if StringGrid1.cells[1, 1] = '' then
   begin
-    ShowMessage('Íåò äàííûõ äëÿ èñïûòàíèÿ');
+    ShowMessage('ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð´Ð»Ñ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ñ');
     exit;
   end;
 
@@ -379,7 +379,7 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(simpleroundto(StrToFloat(Label10.Caption) *1000/ 100 *
+          Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
           Strtoint(StringGrid1.cells[2, i]), RazP));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
@@ -393,7 +393,7 @@ begin
   end
   else
     ShowMessage
-      ('Íå óäàëîñü ïîëó÷èòü èñïûòàòåëüíîå íàïðÿæåíèå äâèãàòåëÿ èç óñòàíîâîê òåêóùåãî èñïûòàíèÿ');
+      ('ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð½Ð°Ð¿Ñ€ÑÐ¶ÐµÐ½Ð¸Ðµ Ð´Ð²Ð¸Ð³Ð°Ñ‚ÐµÐ»Ñ Ð¸Ð· ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¾Ðº Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ñ');
 end;
 
 procedure TFRH.RadioButton3Click(Sender: TObject);
@@ -408,7 +408,7 @@ begin
 
   if StringGrid1.cells[1, 1] = '' then
   begin
-    ShowMessage('Íåò äàííûõ äëÿ èñïûòàíèÿ');
+    ShowMessage('ÐÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð´Ð»Ñ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ñ');
     exit;
   end;
 
@@ -421,7 +421,7 @@ begin
       begin
         StringGrid2.rowcount    := StringGrid2.rowcount + 1;
         StringGrid2.cells[0, i] :=
-          floattostr(simpleroundto(StrToFloat(Label10.Caption) *1000/ 100 *
+          Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
           Strtoint(StringGrid1.cells[3, i]), RazP));
       end;
     StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
@@ -435,7 +435,7 @@ begin
   end
   else
     ShowMessage
-      ('Íå óäàëîñü ïîëó÷èòü èñïûòàòåëüíîå íàïðÿæåíèå äâèãàòåëÿ èç óñòàíîâîê òåêóùåãî èñïûòàíèÿ');
+      ('ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð½Ð°Ð¿Ñ€ÑÐ¶ÐµÐ½Ð¸Ðµ Ð´Ð²Ð¸Ð³Ð°Ñ‚ÐµÐ»Ñ Ð¸Ð· ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¾Ðº Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ñ');
 end;
 
 procedure TFRH.StringGrid2Click(Sender: TObject);
@@ -444,9 +444,11 @@ begin
     StringGrid2.row := StringGrid2.row - 1;
 
   if StringGrid2.cells[0, StringGrid2.row] = '' then
-    ShowMessage('Âûáðàíî çàâåðøåíèå èñïûòàíèÿ')
+    ShowMessage('Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð¾ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ðµ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ñ')
   else
     Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
+
+  Label6.Caption:= Label3.Caption;
 end;
 
 procedure TFRH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -465,7 +467,7 @@ begin
     (StringGrid2.cells[4, ARow] = '');
     if (ACol = 4) and (not ok) then
     begin
-    // âûáèðàåì çåëåííûé öâåò è çàêðàøèâàåì ÷òî íàì íóæíî
+    // Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð·ÐµÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ñ†Ð²ÐµÑ‚ Ð¸ Ð·Ð°ÐºÑ€Ð°ÑˆÐ¸Ð²Ð°ÐµÐ¼ Ñ‡Ñ‚Ð¾ Ð½Ð°Ð¼ Ð½ÑƒÐ¶Ð½Ð¾
     StringGrid2.Canvas.Brush.Color := clYellow;
     StringGrid2.Canvas.FillRect(Rect);
     StringGrid2.Canvas.TextOut(Rect.Left, Rect.Top,
@@ -498,8 +500,8 @@ begin
     for i := 1 to ncnt do
     begin
       QinsAll.ParamByName('NOMER').Asstring := Nomer;
-      QinsAll.ParamByName('UISP').AsFloat   := StrToFloat(Label6.Caption);
-      QinsAll.ParamByName('PISP').AsFloat   := StrToFloat(Label8.Caption);
+      QinsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label6.Caption);
+      QinsAll.ParamByName('PISP').AsFloat   := Strtofloat(Label8.Caption);
       QinsAll.ParamByName('U12').AsFloat    := a[i].u1;
       QinsAll.ParamByName('U23').AsFloat    := a[i].u2;
       QinsAll.ParamByName('U31').AsFloat    := a[i].u3;
@@ -511,17 +513,19 @@ begin
       QinsAll.ParamByName('P3').AsFloat     := a[i].p3;
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
       QinsAll.ParamByName('DPMAX').AsFloat  := 0;
-      QinsAll.ParamByName('rot').AsFloat := QTemp.FieldByName('rot').AsFloat;
-      QinsAll.ParamByName('torq').AsFloat := QTemp.FieldByName('torq').AsFloat;
+      QinsAll.ParamByName('rot').AsFloat    :=
+        simpleroundto(QTemp.FieldByName('rot').AsFloat, RazN);
+      QinsAll.ParamByName('torq').AsFloat :=
+        simpleroundto(QTemp.FieldByName('torq').AsFloat, RazM);
       QinsAll.ParamByName('power').AsFloat :=
-        QTemp.FieldByName('power').AsFloat;
+        simpleroundto(QTemp.FieldByName('power').AsFloat, RazP);
       QinsAll.ExecSQL;
       QTemp.Next;
     end;
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').Asstring := Nomer;
-    Qselectsred.ParamByName('uisp').AsFloat   := StrToFloat(Label6.Caption);
-    Qselectsred.ParamByName('pisp').AsFloat   := StrToFloat(Label8.Caption);
+    Qselectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
+    Qselectsred.ParamByName('pisp').AsFloat   := Strtofloat(Label8.Caption);
     Qselectsred.Open;
     QInsSvod.Close;
     QTemp.Close;
@@ -531,40 +535,40 @@ begin
     QTemp.ExecSQL;
     QInsSvod.ParamByName('nomer').Asstring :=
       Qselectsred.FieldByName('nomer').Asstring;
-    QInsSvod.ParamByName('uisp').AsFloat := StrToFloat(Label6.Caption);
-    // Qselectsred.FieldByName('uisp').AsFloat;
-    QInsSvod.ParamByName('pisp').AsFloat  := StrToFloat(Label8.Caption);
+    QInsSvod.ParamByName('uisp').AsFloat := Strtofloat(Label6.Caption);
+    QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
     QInsSvod.ParamByName('usred').AsFloat :=
-      Qselectsred.FieldByName('u').AsFloat;
+      simpleroundto(Qselectsred.FieldByName('u').AsFloat,RazU);
     QInsSvod.ParamByName('isred').AsFloat :=
-      Qselectsred.FieldByName('i').AsFloat;
+      simpleroundto(Qselectsred.FieldByName('i').AsFloat,RazI);
     QInsSvod.ParamByName('psred').AsFloat :=
-      Qselectsred.FieldByName('p').AsFloat;
+      simpleroundto(Qselectsred.FieldByName('p').AsFloat,RazP);
     QInsSvod.ParamByName('dumax').AsFloat :=
-      Qselectsred.FieldByName('umax').AsFloat;
+      simpleroundto(Qselectsred.FieldByName('umax').AsFloat,RazU);
     QInsSvod.ParamByName('dpmax').AsFloat :=
-      Qselectsred.FieldByName('pmax').AsFloat;
+      simpleroundto(Qselectsred.FieldByName('pmax').AsFloat,RazP);
     QInsSvod.ParamByName('torq').AsFloat :=
-      Qselectsred.FieldByName('t').AsFloat;
-    QInsSvod.ParamByName('rot').AsFloat := Qselectsred.FieldByName('r').AsFloat;
+      simpleroundto(Qselectsred.FieldByName('t').AsFloat,RazM);
+    QInsSvod.ParamByName('rot').AsFloat := simpleroundto(Qselectsred.FieldByName('r').AsFloat,RazN);
     QInsSvod.ParamByName('power').AsFloat :=
-      Qselectsred.FieldByName('pow').AsFloat;
+      simpleroundto(Qselectsred.FieldByName('pow').AsFloat,RazP);
     QInsSvod.ParamByName('tip').Asinteger := tipispyt;
     QInsSvod.ExecSQL;
+
     StringGrid2.cells[1, StringGrid2.row] :=
-      Qselectsred.FieldByName('u').Asstring;
+      FloatToStr(simpleroundto(Qselectsred.FieldByName('u').AsFloat,RazU));
     StringGrid2.cells[2, StringGrid2.row] :=
-      Qselectsred.FieldByName('i').Asstring;
+      FloatToStr(simpleroundto(Qselectsred.FieldByName('i').AsFloat,RazI));
     StringGrid2.cells[3, StringGrid2.row] :=
-      Qselectsred.FieldByName('p').Asstring;
+      FloatToStr(simpleroundto(Qselectsred.FieldByName('p').AsFloat,RazP));
     StringGrid2.cells[4, StringGrid2.row] :=
-      Qselectsred.FieldByName('i').Asstring;
+      FloatToStr(simpleroundto(Qselectsred.FieldByName('i').AsFloat,RazI));
     StringGrid2.cells[5, StringGrid2.row] :=
-      Qselectsred.FieldByName('r').Asstring;
+      FloatToStr(simpleroundto(Qselectsred.FieldByName('r').AsFloat,RazN));
     StringGrid2.cells[6, StringGrid2.row] :=
-      Qselectsred.FieldByName('t').Asstring;
+      FloatToStr(simpleroundto(Qselectsred.FieldByName('t').AsFloat,RazM));
     StringGrid2.cells[7, StringGrid2.row] :=
-      Qselectsred.FieldByName('pmax').Asstring;
+     FloatToStr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat,RazP));
     /// //////////////////////////////////////////////////////////////////////////
     ProgressBar1.Position := 0;
     StringGrid2.row       := StringGrid2.row + 1;
@@ -573,13 +577,13 @@ begin
       BitBtn1.Enabled := True;
       BitBtn2.Enabled := True;
       BitBtn3.Enabled := True;
-      ShowMessage('Èñïûòàíèå çàâåðøåíî!')
+      ShowMessage('Ð˜ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ðµ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¾!')
     end
     else
     begin
       BitBtn3.Enabled := True;
-      BitBtn1.Enabled:=true;
-      Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
+      BitBtn1.Enabled := True;
+      Label8.Caption  := StringGrid2.cells[0, StringGrid2.row];
     end;
   end
   else
@@ -602,16 +606,16 @@ end;
 
 procedure TFRH.Timer3Timer(Sender: TObject);
 begin
-  Label13.Caption := floattostr(simpleroundto(FMain.Usred.Value, RazU));
-  Label15.Caption := floattostr(simpleroundto(FMain.Psred.Value, RazP));
+  Label13.Caption := Floattostr(simpleroundto(FMain.Usred.Value, RazU));
+  Label15.Caption := Floattostr(simpleroundto(FMain.Psred.Value, RazP));
   // e2 e3         6 8
-  if (ABS(StrToFloat(Label13.Caption) - StrToFloat(Label6.Caption)) >
-    StrToFloat(Edit2.Text)) then
+  if (ABS(Strtofloat(Label13.Caption) - Strtofloat(Label6.Caption)) >
+    Strtofloat(Edit2.Text)) then
     Label6.font.Color := clRed
   else
     Label6.font.Color := clGreen;
-  if (ABS(StrToFloat(Label15.Caption) - StrToFloat(Label8.Caption)) >
-    StrToFloat(Edit3.Text)) then
+  if (ABS(Strtofloat(Label15.Caption) - Strtofloat(Label8.Caption)) >
+    Strtofloat(Edit3.Text)) then
     Label8.font.Color := clRed
   else
     Label8.font.Color := clGreen;
