@@ -938,7 +938,10 @@ begin
         begin
             wrepl('p' + inttostr(i) + 'hh', Fhhod.Stringgrid2.Cells[3, i]);
         end;
-
+        for i := 1 to 10 do
+        begin
+            wrepl('R' + inttostr(i) + 'hh', Fhhod.Stringgrid2.Cells[5, i]);
+        end;
         // рабоча€ характеристика i p rot torq
         FrepP.Label1.Caption := '–абоча€ характеристика';
         for i                := 1 to 10 do
