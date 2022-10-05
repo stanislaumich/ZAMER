@@ -83,6 +83,8 @@ type
       Rect: TRect; State: TGridDrawState);
     procedure StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
+    procedure StringGrid2KeyPress(Sender: TObject; var Key: Char);
+    procedure StringGrid1KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -389,6 +391,12 @@ begin
   end;
 end;
 
+procedure TFProch.StringGrid1KeyPress(Sender: TObject; var Key: Char);
+begin
+ if (key=#13) and (StringGrid1.Col<Stringgrid1.Colcount-1)  then
+  stringgrid1.col:=Stringgrid1.col+1;
+end;
+
 procedure TFProch.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 begin
@@ -400,6 +408,12 @@ begin
     StringGrid2.Canvas.TextOut(Rect.Left + 1, Rect.Top + 1,
       StringGrid2.cells[ACol, ARow]);
   end;
+end;
+
+procedure TFProch.StringGrid2KeyPress(Sender: TObject; var Key: Char);
+begin
+ if (key=#13) and (StringGrid2.Col<Stringgrid2.Colcount-1)  then
+  stringgrid2.col:=Stringgrid2.col+1;
 end;
 
 end.

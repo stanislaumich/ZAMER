@@ -369,6 +369,7 @@ object FProch: TFProch
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       OnDrawCell = StringGrid1DrawCell
+      OnKeyPress = StringGrid1KeyPress
     end
     object Panel1: TPanel
       Left = 89
@@ -441,7 +442,7 @@ object FProch: TFProch
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       OnDrawCell = StringGrid2DrawCell
-      ExplicitTop = 71
+      OnKeyPress = StringGrid2KeyPress
     end
     object Edit3: TEdit
       Left = 163

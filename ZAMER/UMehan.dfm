@@ -120,7 +120,7 @@ object FMehan: TFMehan
     end
     object RadioButton13: TRadioButton
       Left = 420
-      Top = 93
+      Top = 89
       Width = 20
       Height = 17
       TabOrder = 5
@@ -269,44 +269,109 @@ object FMehan: TFMehan
     object Label2: TLabel
       Left = 12
       Top = 28
-      Width = 118
+      Width = 132
       Height = 23
       Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label3: TLabel
       Left = 56
       Top = 57
-      Width = 74
+      Width = 83
       Height = 23
       Caption = #1052#1086#1084#1077#1085#1090':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label4: TLabel
       Left = 284
       Top = 28
-      Width = 76
+      Width = 95
       Height = 23
-      Caption = #1063#1072#1089#1090#1086#1090#1072':'
+      Caption = #1054#1073'./'#1084#1080#1085'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label5: TLabel
-      Left = 144
+      Left = 150
       Top = 28
-      Width = 10
+      Width = 67
       Height = 23
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHotLight
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label6: TLabel
-      Left = 144
+      Left = 150
       Top = 57
-      Width = 10
+      Width = 67
       Height = 23
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHotLight
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label7: TLabel
-      Left = 372
+      Left = 385
       Top = 28
-      Width = 10
+      Width = 65
       Height = 23
+      AutoSize = False
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHotLight
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 223
+      Top = 28
+      Width = 19
+      Height = 23
+      Caption = #1042'.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 223
+      Top = 57
+      Width = 78
+      Height = 23
+      Caption = #1053'*'#1084'/'#1082#1075'.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
   end
   object BitBtn1: TBitBtn

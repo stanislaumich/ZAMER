@@ -448,7 +448,7 @@ begin
   else
     Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
 
-  Label6.Caption:= Label3.Caption;
+  Label6.Caption := Label3.Caption;
 end;
 
 procedure TFRH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -535,40 +535,41 @@ begin
     QTemp.ExecSQL;
     QInsSvod.ParamByName('nomer').Asstring :=
       Qselectsred.FieldByName('nomer').Asstring;
-    QInsSvod.ParamByName('uisp').AsFloat := Strtofloat(Label6.Caption);
+    QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
     QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
     QInsSvod.ParamByName('usred').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('u').AsFloat,RazU);
+      simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU);
     QInsSvod.ParamByName('isred').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('i').AsFloat,RazI);
+      simpleroundto(Qselectsred.FieldByName('i').AsFloat, RazI);
     QInsSvod.ParamByName('psred').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('p').AsFloat,RazP);
+      simpleroundto(Qselectsred.FieldByName('p').AsFloat, RazP);
     QInsSvod.ParamByName('dumax').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('umax').AsFloat,RazU);
+      simpleroundto(Qselectsred.FieldByName('umax').AsFloat, RazU);
     QInsSvod.ParamByName('dpmax').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('pmax').AsFloat,RazP);
+      simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP);
     QInsSvod.ParamByName('torq').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('t').AsFloat,RazM);
-    QInsSvod.ParamByName('rot').AsFloat := simpleroundto(Qselectsred.FieldByName('r').AsFloat,RazN);
+      simpleroundto(Qselectsred.FieldByName('t').AsFloat, RazM);
+    QInsSvod.ParamByName('rot').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN);
     QInsSvod.ParamByName('power').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('pow').AsFloat,RazP);
+      simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
     QInsSvod.ParamByName('tip').Asinteger := tipispyt;
     QInsSvod.ExecSQL;
 
     StringGrid2.cells[1, StringGrid2.row] :=
-      FloatToStr(simpleroundto(Qselectsred.FieldByName('u').AsFloat,RazU));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU));
     StringGrid2.cells[2, StringGrid2.row] :=
-      FloatToStr(simpleroundto(Qselectsred.FieldByName('i').AsFloat,RazI));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('i').AsFloat, RazI));
     StringGrid2.cells[3, StringGrid2.row] :=
-      FloatToStr(simpleroundto(Qselectsred.FieldByName('p').AsFloat,RazP));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('p').AsFloat, RazP));
     StringGrid2.cells[4, StringGrid2.row] :=
-      FloatToStr(simpleroundto(Qselectsred.FieldByName('i').AsFloat,RazI));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('i').AsFloat, RazI));
     StringGrid2.cells[5, StringGrid2.row] :=
-      FloatToStr(simpleroundto(Qselectsred.FieldByName('r').AsFloat,RazN));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN));
     StringGrid2.cells[6, StringGrid2.row] :=
-      FloatToStr(simpleroundto(Qselectsred.FieldByName('t').AsFloat,RazM));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('t').AsFloat, RazM));
     StringGrid2.cells[7, StringGrid2.row] :=
-     FloatToStr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat,RazP));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP));
     /// //////////////////////////////////////////////////////////////////////////
     ProgressBar1.Position := 0;
     StringGrid2.row       := StringGrid2.row + 1;

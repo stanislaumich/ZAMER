@@ -60,6 +60,8 @@ type
     upstop: TAction;
     downstart: TAction;
     downstop: TAction;
+    Label10: TLabel;
+    Label11: TLabel;
     procedure BitBtn1Click(Sender: TObject);
     procedure Button27Click(Sender: TObject);
     procedure Button32Click(Sender: TObject);
@@ -165,60 +167,118 @@ end;
 
 procedure TFMehan.BitBtn1Click(Sender: TObject);
 var
-  i: Integer;
+  i, j: Integer;
+  // r: single;
+  buttonSelected: Integer;
 begin
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add(' delete from zmehsvod where nomer=' + Quotedstr(nomer) +
-    ' and tip=1');
-  QTemp.ExecSQL;
-  for i := 1 to 5 do
-    if StringGrid7.Cells[1, i] <> '' then
-    begin
-      QInsSvod.Close;
-      QInsSvod.ParamByName('nomer').AsString := nomer;
-      QInsSvod.ParamByName('u').AsFloat := StrtoFloat(StringGrid7.Cells[1, i]);
-      QInsSvod.ParamByName('torq').AsFloat :=
-        StrtoFloat(StringGrid7.Cells[2, i]);
-      QInsSvod.ParamByName('rot').AsFloat :=
-        StrtoFloat(StringGrid7.Cells[3, i]);
-      QInsSvod.ParamByName('tip').AsInteger    := 1;
-      QInsSvod.ParamByName('numisp').AsInteger := i;
-      if i = StringGrid7.row then
-        QInsSvod.ParamByName('checked').AsInteger := 1
-      else
-        QInsSvod.ParamByName('checked').AsInteger := 0;
-      QInsSvod.ExecSQL;
-    end;
-  /// ///////
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add(' delete from zmehsvod where nomer=' + Quotedstr(nomer) +
-    ' and tip=2');
-  QTemp.ExecSQL;
-  for i := 1 to 5 do
-    if StringGrid8.Cells[1, i] <> '' then
-    begin
-      QInsSvod.Close;
-      QInsSvod.ParamByName('nomer').AsString := nomer;
-      QInsSvod.ParamByName('u').AsFloat := StrtoFloat(StringGrid8.Cells[1, i]);
-      QInsSvod.ParamByName('torq').AsFloat :=
-        StrtoFloat(StringGrid8.Cells[2, i]);
-      QInsSvod.ParamByName('rot').AsFloat :=
-        StrtoFloat(StringGrid8.Cells[3, i]);
-      QInsSvod.ParamByName('tip').AsInteger    := 2;
-      QInsSvod.ParamByName('numisp').AsInteger := i;
-      if i = StringGrid8.row then
-        QInsSvod.ParamByName('checked').AsInteger := 1
-      else
-        QInsSvod.ParamByName('checked').AsInteger := 0;
-      QInsSvod.ExecSQL;
-    end;
-  /// ///////
 
-  FMAin.Label32.Caption    := 'ПРОЙДЕН';
-  FMAin.Label32.Font.Color := clGreen;
-  FMehan.Close;
+  // find for max and min
+  buttonSelected := MessageDlg('Найти максимальные и минимальные моменты?',
+    mtConfirmation, mbYesNo, 0);
+  if buttonSelected = mrYes then
+  begin
+    // max
+    j     := 1;
+    for i := 1 to 5 do
+    begin
+      if StringGrid7.cells[2, i] <> '' then
+      begin
+        if strtofloat(StringGrid7.cells[2, i]) >
+          strtofloat(StringGrid7.cells[2, j]) then
+          j := i;
+      end;
+    end;
+   Stringgrid7.Row:=j;
+   case j of
+    1: RadioButton11.Checked:=true;
+    2: RadioButton12.Checked:=true;
+    3: RadioButton13.Checked:=true;
+    4: RadioButton14.Checked:=true;
+    5: RadioButton15.Checked:=true;
+   end;
+   // min
+   j     := 1;
+    for i := 1 to 5 do
+    begin
+      if StringGrid8.cells[2, i] <> '' then
+      begin
+        if strtofloat(StringGrid8.cells[2, i]) <
+          strtofloat(StringGrid8.cells[2, j]) then
+          j := i;
+      end;
+    end;
+   Stringgrid8.Row:=j;
+      case j of
+    1: RadioButton16.Checked:=true;
+    2: RadioButton17.Checked:=true;
+    3: RadioButton18.Checked:=true;
+    4: RadioButton19.Checked:=true;
+    5: RadioButton20.Checked:=true;
+   end;
+  end;
+
+
+  // ask me to save data and save
+  buttonSelected :=
+    MessageDlg('Правильно ли выделены максимальные и минимальные моменты?',
+    mtConfirmation, mbYesNo, 0);
+  if buttonSelected = mrYes then
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add(' delete from zmehsvod where nomer=' + Quotedstr(nomer) +
+      ' and tip=1');
+    QTemp.ExecSQL;
+    for i := 1 to 5 do
+      if StringGrid7.cells[1, i] <> '' then
+      begin
+        QInsSvod.Close;
+        QInsSvod.ParamByName('nomer').AsString := nomer;
+        QInsSvod.ParamByName('u').AsFloat      :=
+          strtofloat(StringGrid7.cells[1, i]);
+        QInsSvod.ParamByName('torq').AsFloat :=
+          strtofloat(StringGrid7.cells[2, i]);
+        QInsSvod.ParamByName('rot').AsFloat :=
+          strtofloat(StringGrid7.cells[3, i]);
+        QInsSvod.ParamByName('tip').AsInteger    := 1;
+        QInsSvod.ParamByName('numisp').AsInteger := i;
+        if i = StringGrid7.row then
+          QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        QInsSvod.ExecSQL;
+      end;
+    /// ///////
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add(' delete from zmehsvod where nomer=' + Quotedstr(nomer) +
+      ' and tip=2');
+    QTemp.ExecSQL;
+    for i := 1 to 5 do
+      if StringGrid8.cells[1, i] <> '' then
+      begin
+        QInsSvod.Close;
+        QInsSvod.ParamByName('nomer').AsString := nomer;
+        QInsSvod.ParamByName('u').AsFloat      :=
+          strtofloat(StringGrid8.cells[1, i]);
+        QInsSvod.ParamByName('torq').AsFloat :=
+          strtofloat(StringGrid8.cells[2, i]);
+        QInsSvod.ParamByName('rot').AsFloat :=
+          strtofloat(StringGrid8.cells[3, i]);
+        QInsSvod.ParamByName('tip').AsInteger    := 2;
+        QInsSvod.ParamByName('numisp').AsInteger := i;
+        if i = StringGrid8.row then
+          QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        QInsSvod.ExecSQL;
+      end;
+    /// ///////
+
+    FMAin.Label32.Caption    := 'ПРОЙДЕН';
+    FMAin.Label32.Font.Color := clGreen;
+    FMehan.Close;
+  end;
 end;
 
 procedure TFMehan.BitBtn2Click(Sender: TObject);
@@ -307,11 +367,11 @@ begin
     ' and tip=1) and nomer=' + Quotedstr(nomer) + ' and numisp=' + inttostr(row)
     + ' and tip=1');
   QTemp.Open;
-  StringGrid7.Cells[1, row] :=
+  StringGrid7.cells[1, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, -4));
-  StringGrid7.Cells[2, row] :=
+  StringGrid7.cells[2, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4));
-  StringGrid7.Cells[3, row] :=
+  StringGrid7.cells[3, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4));
   QTemp.Close;
   Button27.Enabled := true;
@@ -397,11 +457,11 @@ begin
     + ' and tip=2');
 
   QTemp.Open;
-  StringGrid8.Cells[1, row] :=
+  StringGrid8.cells[1, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, -4));
-  StringGrid8.Cells[2, row] :=
+  StringGrid8.cells[2, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4));
-  StringGrid8.Cells[3, row] :=
+  StringGrid8.cells[3, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4));
   QTemp.Close;
   Button37.Enabled := true;
@@ -415,25 +475,25 @@ end;
 
 procedure TFMehan.FormCreate(Sender: TObject);
 begin
-  StringGrid7.Cells[0, 0] := '';
-  StringGrid7.Cells[1, 0] := 'Uсред, В';
-  StringGrid7.Cells[2, 0] := 'M, Н/м';
-  StringGrid7.Cells[3, 0] := 'N, об/мин';
-  StringGrid7.Cells[0, 1] := 'Изм. 1';
-  StringGrid7.Cells[0, 2] := 'Изм. 2';
-  StringGrid7.Cells[0, 3] := 'Изм. 3';
-  StringGrid7.Cells[0, 4] := 'Изм. 4';
-  StringGrid7.Cells[0, 5] := 'Изм. 5';
+  StringGrid7.cells[0, 0] := '';
+  StringGrid7.cells[1, 0] := 'Uсред, В';
+  StringGrid7.cells[2, 0] := 'M, Н/м';
+  StringGrid7.cells[3, 0] := 'N, об/мин';
+  StringGrid7.cells[0, 1] := 'Изм. 1';
+  StringGrid7.cells[0, 2] := 'Изм. 2';
+  StringGrid7.cells[0, 3] := 'Изм. 3';
+  StringGrid7.cells[0, 4] := 'Изм. 4';
+  StringGrid7.cells[0, 5] := 'Изм. 5';
   row                     := 1;
-  StringGrid8.Cells[0, 0] := '';
-  StringGrid8.Cells[1, 0] := 'Uсред, В';
-  StringGrid8.Cells[2, 0] := 'M, Н/м';
-  StringGrid8.Cells[3, 0] := 'N, об/мин';
-  StringGrid8.Cells[0, 1] := 'Изм. 1';
-  StringGrid8.Cells[0, 2] := 'Изм. 2';
-  StringGrid8.Cells[0, 3] := 'Изм. 3';
-  StringGrid8.Cells[0, 4] := 'Изм. 4';
-  StringGrid8.Cells[0, 5] := 'Изм. 5';
+  StringGrid8.cells[0, 0] := '';
+  StringGrid8.cells[1, 0] := 'Uсред, В';
+  StringGrid8.cells[2, 0] := 'M, Н/м';
+  StringGrid8.cells[3, 0] := 'N, об/мин';
+  StringGrid8.cells[0, 1] := 'Изм. 1';
+  StringGrid8.cells[0, 2] := 'Изм. 2';
+  StringGrid8.cells[0, 3] := 'Изм. 3';
+  StringGrid8.cells[0, 4] := 'Изм. 4';
+  StringGrid8.cells[0, 5] := 'Изм. 5';
 end;
 
 procedure TFMehan.FormHide(Sender: TObject);
