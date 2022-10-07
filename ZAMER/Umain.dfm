@@ -483,14 +483,14 @@ object FMain: TFMain
     end
     object Label30: TLabel
       Left = 304
-      Top = 151
+      Top = 154
       Width = 103
       Height = 23
       AutoSize = False
     end
     object Label31: TLabel
       Left = 304
-      Top = 87
+      Top = 89
       Width = 103
       Height = 23
       AutoSize = False
@@ -514,6 +514,21 @@ object FMain: TFMain
       Width = 90
       Height = 23
       AutoSize = False
+    end
+    object Label9: TLabel
+      Left = 304
+      Top = 120
+      Width = 103
+      Height = 23
+      AutoSize = False
+      Color = clRed
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
     end
     object BitBtn1: TBitBtn
       Left = 3

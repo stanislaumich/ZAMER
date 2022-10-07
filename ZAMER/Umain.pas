@@ -156,6 +156,7 @@ type
         Label7: TLabel;
         Label8: TLabel;
         CheckBox1: TCheckBox;
+    Label9: TLabel;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -448,7 +449,14 @@ begin
             QInsertNewDvig.ParamByName('fio').Asstring    := ComboBox5.Text;
             QInsertNewDvig.ParamByName('regim').Asstring  := Edit16.Text;
             QInsertNewDvig.ExecSQL;
-            Label28.Caption := '';
+            Label28.Caption := 'X';
+            Label29.Caption := 'X';
+            Label31.Caption := 'X';
+            Label30.Caption := 'X';
+            Label32.Caption := 'X';
+            Label35.Caption := 'X';
+            Label9.Caption := 'X';
+
             ShowMessage('Можно приступать к испытаниям двигателя');
             enableispyt(True);
         Except
@@ -827,8 +835,18 @@ begin
 
     /// ////////////////////////////////////////////////////////////
     // загрузить нагрев
-
-end;
+    Qtemp.Open('select * from znagrevsvod where nomer=' + Quotedstr(Nomer));
+    if Qtemp.RecordCount = 0 then
+    begin
+        Label9.Caption    := 'X';
+        Label9.Font.Color := clRed;
+    end
+    else
+    begin
+        Label9.Caption    := 'ПРОЙДЕН';
+        Label9.Font.Color := clGreen;
+    end;
+ end;
 
 procedure TFMain.BitBtn8Click(Sender: TObject);
 var
