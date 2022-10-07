@@ -605,6 +605,9 @@ begin
     end;
     tip                      := 1;
     Frh.Stringgrid2.rowcount := Qtemp.RecordCount + 2;
+        Frh.Edit4.Text:=Qtemp.FieldByName('t1').Asstring;
+        Frh.Edit5.Text:=Qtemp.FieldByName('t2').Asstring;
+        Frh.Edit6.Text:=Qtemp.FieldByName('t3').Asstring;
     while not(Qtemp.eof) do
     begin
         Frh.Stringgrid2.Cells[0, tip] := Qtemp.FieldByName('pisp').Asstring;

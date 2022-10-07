@@ -32,7 +32,7 @@ type
     BitBtn3: TBitBtn;
     CheckBox1: TCheckBox;
     ProgressBar1: TProgressBar;
-    Timer1: TTimer;
+    Timer1000: TTimer;
     Timer2: TTimer;
     QinsAll: TFDQuery;
     QTemp: TFDQuery;
@@ -51,7 +51,7 @@ type
     Label13: TLabel;
     Label14: TLabel;
     Label15: TLabel;
-    Timer3: TTimer;
+    TimerUp: TTimer;
     CheckBox2: TCheckBox;
     Label16: TLabel;
     Label17: TLabel;
@@ -63,7 +63,13 @@ type
     Label23: TLabel;
     ActionList1: TActionList;
     Action1: TAction;
-    procedure Timer1Timer(Sender: TObject);
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    procedure Timer1000Timer(Sender: TObject);
     // procedure Timer2Timer(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
@@ -77,7 +83,7 @@ type
     procedure RadioButton3Click(Sender: TObject);
     procedure CommandStart(c: Integer; n: string; fn: string);
     procedure StringGrid2Click(Sender: TObject);
-    procedure Timer3Timer(Sender: TObject);
+    procedure TimerUpTimer(Sender: TObject);
     procedure StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
@@ -172,7 +178,7 @@ begin
   ProgressBar1.Step := 1;
   CommandStart(1, umain.Nomer, Label8.Caption);
   Timer2.Enabled := True;
-  Timer1.Enabled := True;
+  Timer1000.Enabled := True;
 end;
 
 procedure TFRH.BitBtn2Click(Sender: TObject);
@@ -306,12 +312,12 @@ end;
 
 procedure TFRH.FormHide(Sender: TObject);
 begin
-  Timer3.Enabled := false;
+  TimerUp.Enabled := false;
 end;
 
 procedure TFRH.FormShow(Sender: TObject);
 begin
-  Timer3.Enabled := True;
+  TimerUp.Enabled := True;
 end;
 
 procedure TFRH.RadioButton1Click(Sender: TObject);
@@ -476,7 +482,7 @@ begin
     end; }
 end;
 
-procedure TFRH.Timer1Timer(Sender: TObject);
+procedure TFRH.Timer1000Timer(Sender: TObject);
 var
   i            : Integer;
   acount1, ncnt: Integer;
@@ -484,7 +490,7 @@ begin
   curtime := curtime + 1;
   if curtime > maxtime then
   begin
-    Timer1.Enabled := false;
+    Timer1000.Enabled := false;
     Timer2.Enabled := false;
     CommandStart(0, Nomer, Label8.Caption);
     QTemp.Close;
@@ -554,6 +560,10 @@ begin
     QInsSvod.ParamByName('power').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
     QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+    QInsSvod.ParamByName('t1').AsFloat :=strtofloat(Edit4.Text);
+    QInsSvod.ParamByName('t2').AsFloat :=strtofloat(Edit5.Text);
+    QInsSvod.ParamByName('t3').AsFloat :=strtofloat(Edit6.Text);
+
     QInsSvod.ExecSQL;
 
     StringGrid2.cells[1, StringGrid2.row] :=
@@ -572,8 +582,8 @@ begin
       Floattostr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP));
     /// //////////////////////////////////////////////////////////////////////////
     ProgressBar1.Position := 0;
-    StringGrid2.row       := StringGrid2.row + 1;
-    if StringGrid2.cells[0, StringGrid2.row] = '' then
+
+    if StringGrid2.cells[0, StringGrid2.row+1] = '' then
     begin
       BitBtn1.Enabled := True;
       BitBtn2.Enabled := True;
@@ -582,6 +592,7 @@ begin
     end
     else
     begin
+      StringGrid2.row       := StringGrid2.row + 1;
       BitBtn3.Enabled := True;
       BitBtn1.Enabled := True;
       Label8.Caption  := StringGrid2.cells[0, StringGrid2.row];
@@ -605,7 +616,7 @@ begin
   a[acount].p3 := simpleroundto(FMain.RP3.Value, RazP);
 end;
 
-procedure TFRH.Timer3Timer(Sender: TObject);
+procedure TFRH.TimerUpTimer(Sender: TObject);
 begin
   Label13.Caption := Floattostr(simpleroundto(FMain.Usred.Value, RazU));
   Label15.Caption := Floattostr(simpleroundto(FMain.Psred.Value, RazP));

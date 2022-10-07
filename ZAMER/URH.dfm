@@ -2,7 +2,7 @@ object FRH: TFRH
   Left = 0
   Top = 0
   Caption = #1056#1072#1073#1086#1095#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
-  ClientHeight = 566
+  ClientHeight = 597
   ClientWidth = 1024
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object FRH: TFRH
   OnShow = FormShow
   DesignSize = (
     1024
-    566)
+    597)
   PixelsPerInch = 96
   TextHeight = 23
   object Label1: TLabel
@@ -53,7 +53,7 @@ object FRH: TFRH
   end
   object Label5: TLabel
     Left = 8
-    Top = 525
+    Top = 556
     Width = 355
     Height = 33
     Anchors = [akLeft, akBottom]
@@ -64,10 +64,11 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 525
   end
   object Label6: TLabel
     Left = 373
-    Top = 525
+    Top = 556
     Width = 88
     Height = 33
     Alignment = taRightJustify
@@ -80,10 +81,11 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 525
   end
   object Label7: TLabel
     Left = 640
-    Top = 525
+    Top = 556
     Width = 139
     Height = 33
     Anchors = [akLeft, akBottom]
@@ -94,10 +96,11 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 525
   end
   object Label8: TLabel
     Left = 785
-    Top = 525
+    Top = 556
     Width = 80
     Height = 33
     Alignment = taRightJustify
@@ -110,6 +113,7 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 525
   end
   object Label9: TLabel
     Left = 396
@@ -246,9 +250,10 @@ object FRH: TFRH
   end
   object Label22: TLabel
     Left = 464
-    Top = 525
+    Top = 556
     Width = 84
     Height = 33
+    Anchors = [akLeft, akBottom]
     Caption = #1042#1086#1083#1100#1090
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -256,12 +261,14 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 525
   end
   object Label23: TLabel
     Left = 867
-    Top = 525
+    Top = 556
     Width = 63
     Height = 33
+    Anchors = [akLeft, akBottom]
     Caption = #1042#1072#1090#1090
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -269,6 +276,28 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 525
+  end
+  object Label24: TLabel
+    Left = 9
+    Top = 75
+    Width = 58
+    Height = 23
+    Caption = 'T1, C='
+  end
+  object Label25: TLabel
+    Left = 147
+    Top = 75
+    Width = 58
+    Height = 23
+    Caption = 'T2, C='
+  end
+  object Label26: TLabel
+    Left = 290
+    Top = 75
+    Width = 58
+    Height = 23
+    Caption = 'T3, C='
   end
   object Edit1: TEdit
     Left = 188
@@ -288,10 +317,9 @@ object FRH: TFRH
   end
   object GroupBox1: TGroupBox
     Left = 4
-    Top = 78
+    Top = 109
     Width = 273
     Height = 368
-    Anchors = [akLeft, akBottom]
     Caption = #1042#1099#1073#1086#1088' '#1074#1072#1088#1080#1072#1085#1090#1072' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 2
     object StringGrid1: TStringGrid
@@ -331,18 +359,17 @@ object FRH: TFRH
   end
   object GroupBox2: TGroupBox
     Left = 280
-    Top = 78
+    Top = 109
     Width = 742
     Height = 400
-    Anchors = [akLeft, akRight, akBottom]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
     DesignSize = (
       742
       400)
     object StringGrid2: TStringGrid
-      Left = 4
-      Top = 29
+      Left = 3
+      Top = 28
       Width = 733
       Height = 309
       Anchors = [akLeft, akTop, akRight, akBottom]
@@ -563,20 +590,22 @@ object FRH: TFRH
   end
   object CheckBox1: TCheckBox
     Left = 4
-    Top = 449
+    Top = 480
     Width = 178
     Height = 29
     Anchors = [akLeft, akBottom]
     Caption = #1057#1086#1086#1073#1097#1072#1090#1100' '#1079#1074#1091#1082#1086#1084
     TabOrder = 4
+    ExplicitTop = 449
   end
   object ProgressBar1: TProgressBar
     Left = 4
-    Top = 481
+    Top = 512
     Width = 1017
     Height = 33
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 5
+    ExplicitTop = 481
   end
   object Edit3: TEdit
     Left = 641
@@ -587,18 +616,42 @@ object FRH: TFRH
     Text = '5'
   end
   object CheckBox2: TCheckBox
-    Left = 188
-    Top = 456
+    Left = 180
+    Top = 474
     Width = 97
     Height = 17
     Caption = #1059#1076#1072#1083#1103#1090#1100
     TabOrder = 7
   end
-  object Timer1: TTimer
+  object Edit4: TEdit
+    Left = 68
+    Top = 72
+    Width = 69
+    Height = 31
+    TabOrder = 8
+    Text = '0'
+  end
+  object Edit5: TEdit
+    Left = 207
+    Top = 72
+    Width = 70
+    Height = 31
+    TabOrder = 9
+    Text = '0'
+  end
+  object Edit6: TEdit
+    Left = 348
+    Top = 72
+    Width = 69
+    Height = 31
+    TabOrder = 10
+    Text = '0'
+  end
+  object Timer1000: TTimer
     Enabled = False
-    OnTimer = Timer1Timer
+    OnTimer = Timer1000Timer
     Left = 320
-    Top = 205
+    Top = 209
   end
   object Timer2: TTimer
     Enabled = False
@@ -623,8 +676,8 @@ object FRH: TFRH
       '   :P2, :P3, :TORQ, '
       '   :POWER, :ROT, :DUMAX, '
       '   :DPMAX, :PISP )')
-    Left = 419
-    Top = 217
+    Left = 700
+    Top = 269
     ParamData = <
       item
         Name = 'NOMER'
@@ -697,8 +750,8 @@ object FRH: TFRH
   end
   object QTemp: TFDQuery
     Connection = FMain.FDOra
-    Left = 475
-    Top = 213
+    Left = 768
+    Top = 273
   end
   object QInsSvod: TFDQuery
     Connection = FMain.FDOra
@@ -707,13 +760,13 @@ object FRH: TFRH
       '   NOMER, UISP, USRED, '
       '   ISRED, PSRED, TIP, '
       '   TORQ, ROT, POWER, '
-      '   DUMAX, DPMAX, PISP) '
+      '   DUMAX, DPMAX, PISP, T1, T2, T3) '
       'VALUES ( :NOMER, :UISP, :USRED, '
       '   :ISRED, :PSRED, :TIP, '
       '   :TORQ, :ROT, :POWER, '
-      '   :DUMAX, :DPMAX, :PISP )')
-    Left = 539
-    Top = 213
+      '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3 )')
+    Left = 852
+    Top = 265
     ParamData = <
       item
         Name = 'NOMER'
@@ -761,6 +814,18 @@ object FRH: TFRH
       end
       item
         Name = 'PISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T3'
         ParamType = ptInput
       end>
   end
@@ -825,16 +890,16 @@ object FRH: TFRH
     Left = 567
     Top = 262
   end
-  object Timer3: TTimer
+  object TimerUp: TTimer
     Enabled = False
     Interval = 500
-    OnTimer = Timer3Timer
+    OnTimer = TimerUpTimer
     Left = 347
     Top = 266
   end
   object ActionList1: TActionList
-    Left = 504
-    Top = 262
+    Left = 657
+    Top = 334
     object Action1: TAction
       Caption = 'Action1'
       ShortCut = 116

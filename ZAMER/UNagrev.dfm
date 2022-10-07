@@ -46,6 +46,27 @@ object FNagrev: TFNagrev
     Height = 23
     Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077
   end
+  object Label23: TLabel
+    Left = 293
+    Top = 467
+    Width = 58
+    Height = 23
+    Caption = 'T1, C='
+  end
+  object Label25: TLabel
+    Left = 429
+    Top = 467
+    Width = 58
+    Height = 23
+    Caption = 'T3, C='
+  end
+  object Label24: TLabel
+    Left = 293
+    Top = 497
+    Width = 58
+    Height = 23
+    Caption = 'T2, C='
+  end
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
@@ -663,6 +684,30 @@ object FNagrev: TFNagrev
       FFFFFFFFFFFFFFFF2118EB2A23ED433EF0312BEE2219ECFFFFFF}
     TabOrder = 5
     OnClick = BitBtn11Click
+  end
+  object Edit6: TEdit
+    Left = 357
+    Top = 464
+    Width = 61
+    Height = 31
+    TabOrder = 6
+    Text = 'Edit6'
+  end
+  object Edit7: TEdit
+    Left = 357
+    Top = 494
+    Width = 61
+    Height = 31
+    TabOrder = 7
+    Text = 'Edit7'
+  end
+  object Edit8: TEdit
+    Left = 487
+    Top = 464
+    Width = 61
+    Height = 31
+    TabOrder = 8
+    Text = 'Edit8'
   end
   object TimerUp500: TTimer
     Interval = 500

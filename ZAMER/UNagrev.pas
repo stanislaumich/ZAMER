@@ -65,6 +65,12 @@ type
     Edit5: TEdit;
     Timer1000: TTimer;
     QCommand: TFDQuery;
+    Label23: TLabel;
+    Edit6: TEdit;
+    Label25: TLabel;
+    Label24: TLabel;
+    Edit7: TEdit;
+    Edit8: TEdit;
     procedure TimerUp500Timer(Sender: TObject);
     procedure BitBtn11Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
