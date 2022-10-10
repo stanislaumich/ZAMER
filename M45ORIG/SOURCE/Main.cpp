@@ -329,6 +329,7 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	SostDat_CrSe->Leave();
 	// ................... Отображение значений
 	// ................... Формирование строки для отображения основной изм величины на панели
+	/*
 	STOsnIzmVel->Caption = AS.sprintf(FormatOtobrajenia, abs(Znachenie));
 	// ................... Формирование строки для отображения температуры
 	if (Temperature < -40) {
@@ -347,6 +348,7 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	// ................... Формирование строки для отображения мощности на панели
 	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Moshn));
 	Application->ProcessMessages();
+	*/
 	// -------------------------------------------------------
 	try {
 		Query2->SQL->Clear();
@@ -536,6 +538,7 @@ void __fastcall TForm1::CBDecoderTypeChange(TObject *Sender) {
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::TSTimer(TObject *Sender) {
+
 	try {
 		Query2->SQL->Clear();
 		Query2->SQL->Add("update zamer set ");
@@ -611,7 +614,7 @@ void __fastcall TForm1::TSTimer(TObject *Sender) {
 		}
 	}
 	////////////////////////////////////////////////
-	Application->ProcessMessages();
+
 }
 // ---------------------------------------------------------------------------
 
@@ -704,3 +707,27 @@ void __fastcall TForm1::FormCloseQuery(TObject *Sender, bool &CanClose) {
 	Ini->Free();
 }
 // ---------------------------------------------------------------------------
+void __fastcall TForm1::TQTimer(TObject *Sender)
+{
+AnsiString AS;
+ STOsnIzmVel->Caption = AS.sprintf(FormatOtobrajenia, abs(Znachenie));
+	// ................... Формирование строки для отображения температуры
+	if (Temperature < -40) {
+		STTemper->Caption = "";
+	}
+	else {
+		STTemper->Caption = AS.sprintf("%4.1f", Temperature);
+	}
+	// ................... Формирование строки для отображения скорости на панели
+	if (Skorost < 1000) {
+		STSkorost->Caption = AS.sprintf("%4.1f", abs(Skorost));
+	}
+	else {
+		STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
+	}
+	// ................... Формирование строки для отображения мощности на панели
+	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Moshn));
+	Application->ProcessMessages();
+}
+//---------------------------------------------------------------------------
+

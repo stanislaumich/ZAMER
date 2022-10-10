@@ -71,6 +71,7 @@ type
     Label24: TLabel;
     Edit7: TEdit;
     Edit8: TEdit;
+    QInsAll: TFDQuery;
     procedure TimerUp500Timer(Sender: TObject);
     procedure BitBtn11Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
@@ -172,6 +173,9 @@ begin
 end;
 
 procedure TFNagrev.Timer1000Timer(Sender: TObject);
+var
+  i            : Integer;
+  acount1, ncnt: Integer;
 begin
  If Timer1000.Tag=0 then
   begin
@@ -180,7 +184,54 @@ begin
    // остановить датчик 45
     CommandStart(0, umain.Nomer, Label8.Caption);
 
-
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select count(*) cnt from zamertmp');
+    acount1 := QTemp.FieldByName('cnt').Asinteger;
+    ncnt    := min(acount, acount1);
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select * from zamertmp');
+    {( :NOMER ,
+ :U1 ,
+ :U2 ,
+ :U3 ,
+ :I1 ,
+ :I2 ,
+ :I3,
+ :P ,
+ :M ,
+ :N ,
+ :DOP1,
+ :TIP ,
+ :NAGR  )}
+    QTemp.First;
+    for i := 1 to ncnt do
+    begin
+      QinsAll.ParamByName('NOMER').Asstring := Nomer;
+      QinsAll.ParamByName('U1').AsFloat    := a[i].u1;
+      QinsAll.ParamByName('U2').AsFloat    := a[i].u2;
+      QinsAll.ParamByName('U3').AsFloat    := a[i].u3;
+      QinsAll.ParamByName('I1').AsFloat     := a[i].i1;
+      QinsAll.ParamByName('I2').AsFloat     := a[i].i2;
+      QinsAll.ParamByName('I3').AsFloat     := a[i].i3;
+      QinsAll.ParamByName('P').AsFloat     := a[i].p;
+      QinsAll.ParamByName('M').AsFloat     := simpleroundto(QTemp.FieldByName('torq').AsFloat, RazM);
+      QinsAll.ParamByName('N').AsFloat     := simpleroundto(QTemp.FieldByName('rot').AsFloat, RazN);
+      QinsAll.ParamByName('DOP1').AsFloat  := 0;
+      QinsAll.ParamByName('Tip').AsFloat  := Stringgrid1.row;
+      QinsAll.ParamByName('nagr').AsFloat  := 0;
+      {
+      QinsAll.ParamByName('rot').AsFloat    :=
+        simpleroundto(QTemp.FieldByName('rot').AsFloat, RazN);
+      QinsAll.ParamByName('torq').AsFloat :=
+        simpleroundto(QTemp.FieldByName('torq').AsFloat, RazM);
+      QinsAll.ParamByName('power').AsFloat :=
+        simpleroundto(QTemp.FieldByName('power').AsFloat, RazP);
+        }
+      QinsAll.ExecSQL;
+      QTemp.Next;
+    end;
 
 
 

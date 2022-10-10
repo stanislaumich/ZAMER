@@ -86,6 +86,7 @@ __published: // IDE-managed Components
 	void __fastcall TSTimer(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
+	void __fastcall TQTimer(TObject *Sender);
 
 private: // User declarations
 	int ClientID;

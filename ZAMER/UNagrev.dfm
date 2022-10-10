@@ -19,50 +19,50 @@ object FNagrev: TFNagrev
   PixelsPerInch = 96
   TextHeight = 23
   object Label17: TLabel
-    Left = 12
-    Top = 494
-    Width = 182
+    Left = 64
+    Top = 497
+    Width = 189
     Height = 23
-    Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1075#1088#1091#1079#1082#1091
+    Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1075#1088#1091#1079#1082#1091':'
   end
   object Label19: TLabel
-    Left = 238
-    Top = 494
+    Left = 259
+    Top = 498
     Width = 10
     Height = 23
     Caption = '0'
   end
   object Label18: TLabel
-    Left = 238
-    Top = 462
+    Left = 259
+    Top = 469
     Width = 10
     Height = 23
     Caption = '0'
   end
   object Label16: TLabel
     Left = 8
-    Top = 462
-    Width = 215
+    Top = 469
+    Width = 245
     Height = 23
-    Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077
+    Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042':'
   end
   object Label23: TLabel
-    Left = 293
-    Top = 467
+    Left = 349
+    Top = 481
     Width = 58
     Height = 23
     Caption = 'T1, C='
   end
   object Label25: TLabel
-    Left = 429
-    Top = 467
+    Left = 485
+    Top = 481
     Width = 58
     Height = 23
     Caption = 'T3, C='
   end
   object Label24: TLabel
-    Left = 293
-    Top = 497
+    Left = 349
+    Top = 511
     Width = 58
     Height = 23
     Caption = 'T2, C='
@@ -393,7 +393,9 @@ object FNagrev: TFNagrev
       Height = 117
       Align = alTop
       ColCount = 9
+      FixedCols = 0
       RowCount = 4
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
     end
     object BitBtn1: TBitBtn
@@ -541,7 +543,7 @@ object FNagrev: TFNagrev
       Width = 80
       Height = 31
       TabOrder = 4
-      Text = 'Edit4'
+      Text = '0'
     end
     object Edit5: TEdit
       Left = 257
@@ -549,7 +551,7 @@ object FNagrev: TFNagrev
       Width = 80
       Height = 31
       TabOrder = 5
-      Text = 'Edit5'
+      Text = '0'
     end
   end
   object BitBtn10: TBitBtn
@@ -686,24 +688,24 @@ object FNagrev: TFNagrev
     OnClick = BitBtn11Click
   end
   object Edit6: TEdit
-    Left = 357
-    Top = 464
+    Left = 413
+    Top = 478
     Width = 61
     Height = 31
     TabOrder = 6
     Text = 'Edit6'
   end
   object Edit7: TEdit
-    Left = 357
-    Top = 494
+    Left = 413
+    Top = 508
     Width = 61
     Height = 31
     TabOrder = 7
     Text = 'Edit7'
   end
   object Edit8: TEdit
-    Left = 487
-    Top = 464
+    Left = 543
+    Top = 478
     Width = 61
     Height = 31
     TabOrder = 8
@@ -748,7 +750,84 @@ object FNagrev: TFNagrev
     Top = 80
   end
   object QCommand: TFDQuery
-    Left = 824
+    Left = 832
     Top = 84
+  end
+  object QInsAll: TFDQuery
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZNAGREVALL ('
+      '   NOMER, U1, U2, '
+      '   U3, I1, I2, '
+      '   I3, P, M, '
+      '   N, DOP1, TIP, '
+      '   NAGR) '
+      'VALUES ( :NOMER ,'
+      ' :U1 ,'
+      ' :U2 ,'
+      ' :U3 ,'
+      ' :I1 ,'
+      ' :I2 ,'
+      ' :I3,'
+      ' :P ,'
+      ' :M ,'
+      ' :N ,'
+      ' :DOP1,'
+      ' :TIP ,'
+      ' :NAGR  )')
+    Left = 740
+    Top = 108
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'M'
+        ParamType = ptInput
+      end
+      item
+        Name = 'N'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NAGR'
+        ParamType = ptInput
+      end>
   end
 end

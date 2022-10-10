@@ -412,7 +412,8 @@ object Form1: TForm1
     Top = 120
   end
   object TQ: TTimer
-    Interval = 100
+    Interval = 500
+    OnTimer = TQTimer
     Left = 148
     Top = 120
   end
