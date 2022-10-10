@@ -177,7 +177,7 @@ begin
   ProgressBar1.max  := Strtoint(Edit1.Text);
   ProgressBar1.Step := 1;
   CommandStart(1, umain.Nomer, Label8.Caption);
-  Timer2.Enabled := True;
+  Timer2.Enabled    := True;
   Timer1000.Enabled := True;
 end;
 
@@ -491,7 +491,7 @@ begin
   if curtime > maxtime then
   begin
     Timer1000.Enabled := false;
-    Timer2.Enabled := false;
+    Timer2.Enabled    := false;
     CommandStart(0, Nomer, Label8.Caption);
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -560,9 +560,9 @@ begin
     QInsSvod.ParamByName('power').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
     QInsSvod.ParamByName('tip').Asinteger := tipispyt;
-    QInsSvod.ParamByName('t1').AsFloat :=strtofloat(Edit4.Text);
-    QInsSvod.ParamByName('t2').AsFloat :=strtofloat(Edit5.Text);
-    QInsSvod.ParamByName('t3').AsFloat :=strtofloat(Edit6.Text);
+    QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
+    QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
+    QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
 
     QInsSvod.ExecSQL;
 
@@ -583,7 +583,7 @@ begin
     /// //////////////////////////////////////////////////////////////////////////
     ProgressBar1.Position := 0;
 
-    if StringGrid2.cells[0, StringGrid2.row+1] = '' then
+    if StringGrid2.cells[0, StringGrid2.row + 1] = '' then
     begin
       BitBtn1.Enabled := True;
       BitBtn2.Enabled := True;
@@ -592,7 +592,7 @@ begin
     end
     else
     begin
-      StringGrid2.row       := StringGrid2.row + 1;
+      StringGrid2.row := StringGrid2.row + 1;
       BitBtn3.Enabled := True;
       BitBtn1.Enabled := True;
       Label8.Caption  := StringGrid2.cells[0, StringGrid2.row];

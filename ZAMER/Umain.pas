@@ -156,7 +156,7 @@ type
         Label7: TLabel;
         Label8: TLabel;
         CheckBox1: TCheckBox;
-    Label9: TLabel;
+        Label9: TLabel;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -455,7 +455,7 @@ begin
             Label30.Caption := 'X';
             Label32.Caption := 'X';
             Label35.Caption := 'X';
-            Label9.Caption := 'X';
+            Label9.Caption  := 'X';
 
             ShowMessage('Можно приступать к испытаниям двигателя');
             enableispyt(True);
@@ -613,9 +613,9 @@ begin
     end;
     tip                      := 1;
     Frh.Stringgrid2.rowcount := Qtemp.RecordCount + 2;
-        Frh.Edit4.Text:=Qtemp.FieldByName('t1').Asstring;
-        Frh.Edit5.Text:=Qtemp.FieldByName('t2').Asstring;
-        Frh.Edit6.Text:=Qtemp.FieldByName('t3').Asstring;
+    Frh.Edit4.Text           := Qtemp.FieldByName('t1').Asstring;
+    Frh.Edit5.Text           := Qtemp.FieldByName('t2').Asstring;
+    Frh.Edit6.Text           := Qtemp.FieldByName('t3').Asstring;
     while not(Qtemp.eof) do
     begin
         Frh.Stringgrid2.Cells[0, tip] := Qtemp.FieldByName('pisp').Asstring;
@@ -846,7 +846,32 @@ begin
         Label9.Caption    := 'ПРОЙДЕН';
         Label9.Font.Color := clGreen;
     end;
- end;
+    {SELECT NOMER, U, I, P, N, M,  T1, R, TIP, DOP1, RKORP, ROBM, T2, T3, T}
+    QTemp.first;
+    FNagrev.Edit6.Text:=QTemp.fieldByName('t1').Asstring;
+    FNagrev.Edit7.Text:=QTemp.fieldByName('t2').Asstring;
+    FNagrev.Edit8.Text:=QTemp.fieldByName('t3').Asstring;
+    FNagrev.Edit4.Text:=QTemp.fieldByName('RKORP').Asstring;
+    FNagrev.Edit5.Text:=QTemp.fieldByName('ROBM').Asstring;
+    while not Qtemp.Eof do
+     begin
+      FNagrev.StringGrid1.cells[1, QTemp.fieldByName('tip').AsInteger] :=
+       QTemp.fieldByName('u').Asstring;
+      FNagrev.StringGrid1.cells[2, QTemp.fieldByName('tip').AsInteger] :=
+        QTemp.fieldByName('i').Asstring;
+      FNagrev.StringGrid1.cells[3, QTemp.fieldByName('tip').AsInteger] :=
+        QTemp.fieldByName('p').Asstring;
+      FNagrev.StringGrid1.cells[4, QTemp.fieldByName('tip').AsInteger] :=
+        QTemp.fieldByName('n').Asstring;
+      FNagrev.StringGrid1.cells[5, QTemp.fieldByName('tip').AsInteger] :=
+        QTemp.fieldByName('m').Asstring;
+      FNagrev.StringGrid1.cells[6, QTemp.fieldByName('tip').AsInteger] :=
+        QTemp.fieldByName('t').Asstring;
+      FNagrev.StringGrid1.cells[7, QTemp.fieldByName('tip').AsInteger] := '0';
+      QTemp.Next;
+     end;
+
+end;
 
 procedure TFMain.BitBtn8Click(Sender: TObject);
 var
@@ -1020,6 +1045,23 @@ begin
                 wrepl('Kz' + inttostr(i) + inttostr(j),
                   FKZam.StringGrid1.Cells[j, i]);
             end;
+        // Нагрев
+        FrepP.Label1.Caption := 'Нагрев';
+        wrepl('Nr1x', FNagrev.Edit4.Text);
+        wrepl('Nr2x', FNagrev.Edit5.Text);
+        wrepl('N11x', FNagrev.Stringgrid1.cells[2,1]);
+        wrepl('N21x', FNagrev.Stringgrid1.cells[2,2]);//i
+        wrepl('N12x', FNagrev.Stringgrid1.cells[3,1]);
+        wrepl('N22x', FNagrev.Stringgrid1.cells[3,2]);//p
+        wrepl('N13x', FNagrev.Stringgrid1.cells[4,1]);
+        wrepl('N23x', FNagrev.Stringgrid1.cells[4,2]);//n
+        wrepl('N14x', FNagrev.Stringgrid1.cells[5,1]);
+        wrepl('N24x', FNagrev.Stringgrid1.cells[5,2]); //m
+        wrepl('N15x', FNagrev.Stringgrid1.cells[6,1]);
+        wrepl('N25x', FNagrev.Stringgrid1.cells[6,2]);// t
+        wrepl('N16x', FNagrev.Stringgrid1.cells[7,1]);
+        wrepl('N26x', FNagrev.Stringgrid1.cells[7,2]);// r
+
         // прочие хар-ки
         FrepP.Label1.Caption := 'Прочие характеристики';
         for j                := 1 to 18 do

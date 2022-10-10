@@ -596,7 +596,6 @@ object FRH: TFRH
     Anchors = [akLeft, akBottom]
     Caption = #1057#1086#1086#1073#1097#1072#1090#1100' '#1079#1074#1091#1082#1086#1084
     TabOrder = 4
-    ExplicitTop = 449
   end
   object ProgressBar1: TProgressBar
     Left = 4
@@ -605,7 +604,6 @@ object FRH: TFRH
     Height = 33
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 5
-    ExplicitTop = 481
   end
   object Edit3: TEdit
     Left = 641

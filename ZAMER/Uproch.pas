@@ -393,8 +393,8 @@ end;
 
 procedure TFProch.StringGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
- if (key=#13) and (StringGrid1.Col<Stringgrid1.Colcount-1)  then
-  stringgrid1.col:=Stringgrid1.col+1;
+  if (Key = #13) and (StringGrid1.Col < StringGrid1.Colcount - 1) then
+    StringGrid1.Col := StringGrid1.Col + 1;
 end;
 
 procedure TFProch.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -412,8 +412,8 @@ end;
 
 procedure TFProch.StringGrid2KeyPress(Sender: TObject; var Key: Char);
 begin
- if (key=#13) and (StringGrid2.Col<Stringgrid2.Colcount-1)  then
-  stringgrid2.col:=Stringgrid2.col+1;
+  if (Key = #13) and (StringGrid2.Col < StringGrid2.Colcount - 1) then
+    StringGrid2.Col := StringGrid2.Col + 1;
 end;
 
 end.

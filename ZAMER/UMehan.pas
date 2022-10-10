@@ -188,16 +188,21 @@ begin
           j := i;
       end;
     end;
-   Stringgrid7.Row:=j;
-   case j of
-    1: RadioButton11.Checked:=true;
-    2: RadioButton12.Checked:=true;
-    3: RadioButton13.Checked:=true;
-    4: RadioButton14.Checked:=true;
-    5: RadioButton15.Checked:=true;
-   end;
-   // min
-   j     := 1;
+    StringGrid7.row := j;
+    case j of
+      1:
+        RadioButton11.Checked := true;
+      2:
+        RadioButton12.Checked := true;
+      3:
+        RadioButton13.Checked := true;
+      4:
+        RadioButton14.Checked := true;
+      5:
+        RadioButton15.Checked := true;
+    end;
+    // min
+    j     := 1;
     for i := 1 to 5 do
     begin
       if StringGrid8.cells[2, i] <> '' then
@@ -207,16 +212,20 @@ begin
           j := i;
       end;
     end;
-   Stringgrid8.Row:=j;
-      case j of
-    1: RadioButton16.Checked:=true;
-    2: RadioButton17.Checked:=true;
-    3: RadioButton18.Checked:=true;
-    4: RadioButton19.Checked:=true;
-    5: RadioButton20.Checked:=true;
-   end;
+    StringGrid8.row := j;
+    case j of
+      1:
+        RadioButton16.Checked := true;
+      2:
+        RadioButton17.Checked := true;
+      3:
+        RadioButton18.Checked := true;
+      4:
+        RadioButton19.Checked := true;
+      5:
+        RadioButton20.Checked := true;
+    end;
   end;
-
 
   // ask me to save data and save
   buttonSelected :=

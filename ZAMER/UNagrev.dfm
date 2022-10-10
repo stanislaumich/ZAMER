@@ -535,6 +535,7 @@ object FNagrev: TFNagrev
       Width = 798
       Height = 25
       Align = alBottom
+      Step = 1
       TabOrder = 3
     end
     object Edit4: TEdit
@@ -693,7 +694,7 @@ object FNagrev: TFNagrev
     Width = 61
     Height = 31
     TabOrder = 6
-    Text = 'Edit6'
+    Text = '0'
   end
   object Edit7: TEdit
     Left = 413
@@ -701,7 +702,7 @@ object FNagrev: TFNagrev
     Width = 61
     Height = 31
     TabOrder = 7
-    Text = 'Edit7'
+    Text = '0'
   end
   object Edit8: TEdit
     Left = 543
@@ -709,7 +710,7 @@ object FNagrev: TFNagrev
     Width = 61
     Height = 31
     TabOrder = 8
-    Text = 'Edit8'
+    Text = '0'
   end
   object TimerUp500: TTimer
     Interval = 500
@@ -750,10 +751,12 @@ object FNagrev: TFNagrev
     Top = 80
   end
   object QCommand: TFDQuery
+    Connection = FMain.FDOra
     Left = 832
     Top = 84
   end
   object QInsAll: TFDQuery
+    Connection = FMain.FDOra
     SQL.Strings = (
       'INSERT INTO ZAMER.ZNAGREVALL ('
       '   NOMER, U1, U2, '
@@ -827,6 +830,109 @@ object FNagrev: TFNagrev
       end
       item
         Name = 'NAGR'
+        ParamType = ptInput
+      end>
+  end
+  object QSelectSred: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'SELECT'
+      '    NOMER, '
+      '    avg(U1) su1, avg(U2) su2, avg(U3) su3,'
+      '    avg(I1) si1,avg(I2) si2, avg(I3) si3,'
+      
+        '    avg(P) sp,avg(M) sM, avg(N) sn --,    --0 mumax, 0 mpmax,avg' +
+        '(torq) t, avg(power) pow, avg(rot) r'
+      '    FROM ZAMER.ZNAGREVALL'
+      '    where nomer=:nomer and tip=:tip -- and pisp=:pisp '
+      '    group by nomer, tip')
+    Left = 660
+    Top = 112
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end>
+  end
+  object QInssvod: TFDQuery
+    Connection = FMain.FDOra
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZNAGREVSVOD ('
+      '   NOMER, U, I, '
+      '   P, N, M, '
+      '   T1, R, TIP, '
+      '   DOP1, RKORP, ROBM, '
+      '   T2, T3, T) '
+      'VALUES ( :NOMER, :U, :I, '
+      '   :P, :N, :M, '
+      '   :T1, :R, :TIP, '
+      '   :DOP1, :RKORP, :ROBM, '
+      '   :T2, :T3, :T )')
+    Left = 600
+    Top = 116
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'N'
+        ParamType = ptInput
+      end
+      item
+        Name = 'M'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'R'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'RKORP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ROBM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T'
         ParamType = ptInput
       end>
   end
