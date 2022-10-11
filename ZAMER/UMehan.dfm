@@ -574,6 +574,15 @@ object FMehan: TFMehan
       FFFFFFFFFFFFFFFF2118EB2A23ED433EF0312BEE2219ECFFFFFF}
     TabOrder = 6
   end
+  object Button1: TButton
+    Left = 583
+    Top = 177
+    Width = 75
+    Height = 25
+    Caption = #1043#1088#1072#1092#1080#1082
+    TabOrder = 7
+    OnClick = Button1Click
+  end
   object Timer1: TTimer
     Enabled = False
     Interval = 500

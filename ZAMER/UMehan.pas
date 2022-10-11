@@ -62,6 +62,7 @@ type
     downstop: TAction;
     Label10: TLabel;
     Label11: TLabel;
+    Button1: TButton;
     procedure BitBtn1Click(Sender: TObject);
     procedure Button27Click(Sender: TObject);
     procedure Button32Click(Sender: TObject);
@@ -80,6 +81,7 @@ type
     procedure upstopExecute(Sender: TObject);
     procedure downstartExecute(Sender: TObject);
     procedure downstopExecute(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,7 +99,7 @@ implementation
 
 {$R *.dfm}
 
-uses umain;
+uses umain, UGraph;
 
 var
 
@@ -296,6 +298,11 @@ begin // отмена
   FMAin.Label32.Caption    := 'X';
   FMAin.Label32.Font.Color := clRed;
   FMehan.Close;
+end;
+
+procedure TFMehan.Button1Click(Sender: TObject);
+begin
+ FGraph.ShowModal;
 end;
 
 procedure TFMehan.Button27Click(Sender: TObject);

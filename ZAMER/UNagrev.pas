@@ -170,7 +170,9 @@ begin
   StringGrid1.cells[5, 0]     := 'М сред Нм';
   StringGrid1.cells[6, 0]     := 'T, C';
   StringGrid1.cells[7, 0]     := 'R, Ом';
-  StringGrid1.cells[8, 0]     := 'НАГР';
+  StringGrid1.cells[8, 0]     := 'T1,C';
+  StringGrid1.cells[9, 0]     := 'T2,C';
+  StringGrid1.cells[10, 0]     := 'T3,C';
   StringGrid1.cells[0, 1]     := 'Без нагрузки';
   StringGrid1.cells[0, 2]     := 'С нагрузкой';
 

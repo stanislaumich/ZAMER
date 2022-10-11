@@ -52,6 +52,7 @@ object FNagrev: TFNagrev
     Width = 58
     Height = 23
     Caption = 'T1, C='
+    Visible = False
   end
   object Label25: TLabel
     Left = 485
@@ -59,6 +60,7 @@ object FNagrev: TFNagrev
     Width = 58
     Height = 23
     Caption = 'T3, C='
+    Visible = False
   end
   object Label24: TLabel
     Left = 349
@@ -66,6 +68,7 @@ object FNagrev: TFNagrev
     Width = 58
     Height = 23
     Caption = 'T2, C='
+    Visible = False
   end
   object GroupBox1: TGroupBox
     Left = 0
@@ -392,10 +395,10 @@ object FNagrev: TFNagrev
       Width = 798
       Height = 117
       Align = alTop
-      ColCount = 9
+      ColCount = 11
       FixedCols = 0
       RowCount = 4
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
     end
     object BitBtn1: TBitBtn
@@ -690,11 +693,12 @@ object FNagrev: TFNagrev
   end
   object Edit6: TEdit
     Left = 413
-    Top = 478
+    Top = 471
     Width = 61
     Height = 31
     TabOrder = 6
     Text = '0'
+    Visible = False
   end
   object Edit7: TEdit
     Left = 413
@@ -703,6 +707,7 @@ object FNagrev: TFNagrev
     Height = 31
     TabOrder = 7
     Text = '0'
+    Visible = False
   end
   object Edit8: TEdit
     Left = 543
@@ -711,6 +716,7 @@ object FNagrev: TFNagrev
     Height = 31
     TabOrder = 8
     Text = '0'
+    Visible = False
   end
   object TimerUp500: TTimer
     Interval = 500

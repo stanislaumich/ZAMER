@@ -145,7 +145,6 @@ type
         Label36: TLabel;
         ComboBox5: TComboBox;
         Label37: TLabel;
-        Edit16: TEdit;
         GroupBox5: TGroupBox;
         BitBtn15: TBitBtn;
         Edit15: TEdit;
@@ -157,6 +156,7 @@ type
         Label8: TLabel;
         CheckBox1: TCheckBox;
         Label9: TLabel;
+    ComboBox6: TComboBox;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -447,15 +447,15 @@ begin
             QInsertNewDvig.ParamByName('READY').AsInteger := 0;
             QInsertNewDvig.ParamByName('NOMER').Asstring  := Nomer;
             QInsertNewDvig.ParamByName('fio').Asstring    := ComboBox5.Text;
-            QInsertNewDvig.ParamByName('regim').Asstring  := Edit16.Text;
+            QInsertNewDvig.ParamByName('regim').Asstring  := ComboBox6.Text;
             QInsertNewDvig.ExecSQL;
-            Label28.Caption := 'X';
-            Label29.Caption := 'X';
-            Label31.Caption := 'X';
-            Label30.Caption := 'X';
-            Label32.Caption := 'X';
-            Label35.Caption := 'X';
-            Label9.Caption  := 'X';
+            Label28.Caption := 'X';Label28.Font.Color:=clRed;
+            Label29.Caption := 'X';Label29.Font.Color:=clRed;
+            Label31.Caption := 'X';Label31.Font.Color:=clRed;
+            Label30.Caption := 'X';Label30.Font.Color:=clRed;
+            Label32.Caption := 'X';Label32.Font.Color:=clRed;
+            Label35.Caption := 'X';Label35.Font.Color:=clRed;
+            Label9.Caption  := 'X';Label9.Font.Color:=clRed;
 
             ShowMessage('ћожно приступать к испытани€м двигател€');
             enableispyt(True);
@@ -895,7 +895,7 @@ begin
         Label24.Caption := Fprodol.Label24.Caption;
         Edit11.Text     := Fprodol.Edit11.Text;
         Edit10.Text     := Fprodol.Edit10.Text;
-        Edit16.Text     := Fprodol.Edit2.Text;
+        ComboBox6.Text     := Fprodol.Edit2.Text;
         ComboBox5.Text  := Fprodol.Edit1.Text;
         LoadIspyt(Nomer);
         enableispyt(True);
@@ -1136,7 +1136,7 @@ begin
         wrepl('date', DateToStr(DateTimePicker1.Date));
         wrepl('fio', ComboBox5.Text);
         wrepl('polus', ComboBox2.Text);
-        wrepl('regim', Edit16.Text);
+        wrepl('regim', ComboBox6.Text);
         // сохранение документа
         FrepP.Label1.Caption := '—охранение документа';
         WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Nomer + '.docx');
@@ -1171,7 +1171,7 @@ begin
     QUpdDvig.ParamByName('STENDA').Asstring := Label24.Caption;
     QUpdDvig.ParamByName('DOP1').Asstring   := Edit11.Text;
     QUpdDvig.ParamByName('ISPOLN').Asstring := Edit10.Text;
-    QUpdDvig.ParamByName('regim').Asstring  := Edit16.Text;
+    QUpdDvig.ParamByName('regim').Asstring  := ComboBox6.Text;
     QUpdDvig.ParamByName('READY').AsInteger := 1;
     QUpdDvig.ParamByName('NOMER').Asstring  := Nomer;
     QUpdDvig.ExecSQL;

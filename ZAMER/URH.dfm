@@ -2,7 +2,7 @@ object FRH: TFRH
   Left = 0
   Top = 0
   Caption = #1056#1072#1073#1086#1095#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
-  ClientHeight = 597
+  ClientHeight = 660
   ClientWidth = 1024
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object FRH: TFRH
   OnShow = FormShow
   DesignSize = (
     1024
-    597)
+    660)
   PixelsPerInch = 96
   TextHeight = 23
   object Label1: TLabel
@@ -53,7 +53,7 @@ object FRH: TFRH
   end
   object Label5: TLabel
     Left = 8
-    Top = 556
+    Top = 619
     Width = 355
     Height = 33
     Anchors = [akLeft, akBottom]
@@ -68,7 +68,7 @@ object FRH: TFRH
   end
   object Label6: TLabel
     Left = 373
-    Top = 556
+    Top = 619
     Width = 88
     Height = 33
     Alignment = taRightJustify
@@ -85,7 +85,7 @@ object FRH: TFRH
   end
   object Label7: TLabel
     Left = 640
-    Top = 556
+    Top = 619
     Width = 139
     Height = 33
     Anchors = [akLeft, akBottom]
@@ -100,7 +100,7 @@ object FRH: TFRH
   end
   object Label8: TLabel
     Left = 785
-    Top = 556
+    Top = 619
     Width = 80
     Height = 33
     Alignment = taRightJustify
@@ -134,9 +134,9 @@ object FRH: TFRH
   object Label11: TLabel
     Left = 383
     Top = 42
-    Width = 255
+    Width = 236
     Height = 23
-    Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1084#1086#1097#1085#1086#1089#1090#1080', '#1074#1072#1090#1090':'
+    Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1084#1086#1097#1085#1086#1089#1090#1080', %:'
   end
   object Label12: TLabel
     Left = 712
@@ -250,7 +250,7 @@ object FRH: TFRH
   end
   object Label22: TLabel
     Left = 464
-    Top = 556
+    Top = 619
     Width = 84
     Height = 33
     Anchors = [akLeft, akBottom]
@@ -265,7 +265,7 @@ object FRH: TFRH
   end
   object Label23: TLabel
     Left = 867
-    Top = 556
+    Top = 619
     Width = 63
     Height = 33
     Anchors = [akLeft, akBottom]
@@ -279,25 +279,47 @@ object FRH: TFRH
     ExplicitTop = 525
   end
   object Label24: TLabel
-    Left = 9
-    Top = 75
+    Left = 1
+    Top = 531
     Width = 58
     Height = 23
+    Anchors = [akLeft]
     Caption = 'T1, C='
+    ExplicitTop = 480
   end
   object Label25: TLabel
-    Left = 147
-    Top = 75
+    Left = 139
+    Top = 531
     Width = 58
     Height = 23
+    Anchors = [akLeft]
     Caption = 'T2, C='
+    ExplicitTop = 480
   end
   object Label26: TLabel
-    Left = 290
-    Top = 75
+    Left = 282
+    Top = 531
     Width = 58
     Height = 23
+    Anchors = [akLeft]
     Caption = 'T3, C='
+    ExplicitTop = 480
+  end
+  object Label27: TLabel
+    Left = 418
+    Top = 531
+    Width = 26
+    Height = 23
+    Anchors = [akLeft]
+    Caption = 'R='
+    ExplicitTop = 480
+  end
+  object Label28: TLabel
+    Left = 574
+    Top = 74
+    Width = 45
+    Height = 23
+    Caption = #1074#1072#1090#1090':'
   end
   object Edit1: TEdit
     Left = 188
@@ -316,12 +338,14 @@ object FRH: TFRH
     Text = '1'
   end
   object GroupBox1: TGroupBox
-    Left = 4
-    Top = 109
+    Left = 1
+    Top = 97
     Width = 273
     Height = 368
+    Anchors = [akLeft]
     Caption = #1042#1099#1073#1086#1088' '#1074#1072#1088#1080#1072#1085#1090#1072' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 2
+    ExplicitTop = 71
     object StringGrid1: TStringGrid
       Left = 4
       Top = 28
@@ -358,12 +382,14 @@ object FRH: TFRH
     end
   end
   object GroupBox2: TGroupBox
-    Left = 280
-    Top = 109
+    Left = 277
+    Top = 99
     Width = 742
     Height = 400
+    Anchors = [akLeft]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
+    ExplicitTop = 71
     DesignSize = (
       742
       400)
@@ -589,61 +615,89 @@ object FRH: TFRH
     end
   end
   object CheckBox1: TCheckBox
-    Left = 4
-    Top = 480
+    Left = 8
+    Top = 484
     Width = 178
     Height = 29
-    Anchors = [akLeft, akBottom]
+    Anchors = [akLeft]
     Caption = #1057#1086#1086#1073#1097#1072#1090#1100' '#1079#1074#1091#1082#1086#1084
     TabOrder = 4
+    ExplicitTop = 437
   end
   object ProgressBar1: TProgressBar
     Left = 4
-    Top = 512
+    Top = 568
     Width = 1017
     Height = 33
-    Anchors = [akLeft, akRight, akBottom]
+    Anchors = [akLeft]
     TabOrder = 5
+    ExplicitTop = 512
   end
   object Edit3: TEdit
-    Left = 641
-    Top = 39
-    Width = 48
+    Left = 643
+    Top = 71
+    Width = 53
     Height = 31
     TabOrder = 6
-    Text = '5'
+    Text = '0'
   end
   object CheckBox2: TCheckBox
-    Left = 180
-    Top = 474
+    Left = 919
+    Top = 527
     Width = 97
     Height = 17
+    Anchors = [akLeft]
     Caption = #1059#1076#1072#1083#1103#1090#1100
     TabOrder = 7
+    ExplicitTop = 477
   end
   object Edit4: TEdit
-    Left = 68
-    Top = 72
+    Left = 60
+    Top = 528
     Width = 69
     Height = 31
+    Anchors = [akLeft]
     TabOrder = 8
     Text = '0'
+    ExplicitTop = 477
   end
   object Edit5: TEdit
-    Left = 207
-    Top = 72
+    Left = 199
+    Top = 528
     Width = 70
     Height = 31
+    Anchors = [akLeft]
     TabOrder = 9
     Text = '0'
+    ExplicitTop = 477
   end
   object Edit6: TEdit
-    Left = 348
-    Top = 72
+    Left = 340
+    Top = 528
     Width = 69
     Height = 31
+    Anchors = [akLeft]
     TabOrder = 10
     Text = '0'
+    ExplicitTop = 477
+  end
+  object Edit7: TEdit
+    Left = 450
+    Top = 528
+    Width = 71
+    Height = 31
+    Anchors = [akLeft]
+    TabOrder = 11
+    Text = '0'
+    ExplicitTop = 477
+  end
+  object Edit8: TEdit
+    Left = 643
+    Top = 40
+    Width = 53
+    Height = 31
+    TabOrder = 12
+    Text = '5'
   end
   object Timer1000: TTimer
     Enabled = False
@@ -655,8 +709,8 @@ object FRH: TFRH
     Enabled = False
     Interval = 70
     OnTimer = Timer2Timer
-    Left = 371
-    Top = 205
+    Left = 379
+    Top = 213
   end
   object QinsAll: TFDQuery
     Connection = FMain.FDOra
@@ -838,7 +892,7 @@ object FRH: TFRH
       'NOMER, UISP,'
       'round((sum(su12)+sum(su23)+sum(su31))/3,1) u,'
       'round((sum(si1)+sum(si2)+sum(si3))/3,3) i,'
-      'round((sum(sp1)+sum(sp2)+sum(sp3))/3,2) p,'
+      'round((sum(sp1)+sum(sp2)+sum(sp3)),2) p,'
       'round(sum(mumax),4) umax,'
       'round(sum(mpmax),4) pmax,'
       't,r,pow'
@@ -889,7 +943,6 @@ object FRH: TFRH
     Top = 262
   end
   object TimerUp: TTimer
-    Enabled = False
     Interval = 500
     OnTimer = TimerUpTimer
     Left = 347

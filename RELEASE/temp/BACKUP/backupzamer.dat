@@ -1,7 +1,0 @@
-FILE="backupzamer.dmp"
-LOG="expbackupzamer.log"
-OWNER=('ZAMER')
-TRIGGERS=Y
-CONSTRAINTS=Y
-GRANTS=Y
-FEEDBACK=1000

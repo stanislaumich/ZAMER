@@ -197,7 +197,7 @@ object FProch: TFProch
       end
     end
     object GroupBox7: TGroupBox
-      Left = 1
+      Left = 2
       Top = 221
       Width = 820
       Height = 57
@@ -216,21 +216,21 @@ object FProch: TFProch
       object RadioButton10: TRadioButton
         Left = 73
         Top = 24
-        Width = 113
+        Width = 150
         Height = 25
-        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        Caption = #1057#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
         TabOrder = 0
       end
       object RadioButton11: TRadioButton
-        Left = 191
+        Left = 225
         Top = 24
-        Width = 138
+        Width = 168
         Height = 25
-        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        Caption = #1053#1077' '#1089#1086#1086#1090#1074#1077#1090#1089#1074#1091#1077#1090
         TabOrder = 1
       end
       object RadioButton12: TRadioButton
-        Left = 335
+        Left = 399
         Top = 24
         Width = 161
         Height = 25

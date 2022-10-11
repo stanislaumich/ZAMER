@@ -3565,9 +3565,9 @@ object FKzam: TFKzam
     object Label4: TLabel
       Left = 533
       Top = 32
-      Width = 145
+      Width = 121
       Height = 23
-      Caption = #1052#1086#1084#1077#1085#1090', '#1053'*'#1084'/'#1082#1075':'
+      Caption = #1052#1086#1084#1077#1085#1090', '#1053'*'#1084':'
     end
     object Label5: TLabel
       Left = 8
@@ -3605,7 +3605,7 @@ object FKzam: TFKzam
       Caption = '0'
     end
     object Label10: TLabel
-      Left = 684
+      Left = 660
       Top = 32
       Width = 10
       Height = 23
@@ -4197,9 +4197,8 @@ object FKzam: TFKzam
     Connection = FMain.FDOra
     SQL.Strings = (
       'select --*'
-      
-        'round(avg(u),4) u,round(avg(i),4) i, round(avg(p),4) p, round(av' +
-        'g(torq),4) t'
+      'round(avg(u),4) u,round(avg(i),4) i, '
+      'round(avg(p),4) p, round(avg(torq),4) t'
       'from zkzall'
       'where nomer=:nomer'
       ' and uisp=:uisp')

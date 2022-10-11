@@ -64,11 +64,15 @@ type
     ActionList1: TActionList;
     Action1: TAction;
     Label24: TLabel;
-    Label25: TLabel;
-    Label26: TLabel;
     Edit4: TEdit;
+    Label25: TLabel;
     Edit5: TEdit;
+    Label26: TLabel;
     Edit6: TEdit;
+    Label27: TLabel;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Label28: TLabel;
     procedure Timer1000Timer(Sender: TObject);
     // procedure Timer2Timer(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
@@ -265,7 +269,7 @@ begin
   FMain.QDelta.ExecSQL;
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
-    Quotedstr('prh') + ',' + Point(FRH.Edit3.Text) + ')');
+    Quotedstr('prh') + ',' + Point(FRH.Edit8.Text) + ')');
   FMain.QDelta.ExecSQL;
   QTemp.Close;
 
@@ -452,7 +456,10 @@ begin
   if StringGrid2.cells[0, StringGrid2.row] = '' then
     ShowMessage('Выбрано завершение испытания')
   else
+  begin
     Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
+    EDit3.Text:=floattostr(simpleroundto(strtofloat(StringGrid2.cells[0, StringGrid2.row])/100*strtofloat(Edit8.TExt),0));
+  end;
 
   Label6.Caption := Label3.Caption;
 end;
@@ -619,8 +626,13 @@ end;
 procedure TFRH.TimerUpTimer(Sender: TObject);
 begin
   Label13.Caption := Floattostr(simpleroundto(FMain.Usred.Value, RazU));
-  Label15.Caption := Floattostr(simpleroundto(FMain.Psred.Value, RazP));
+  //QTemp.Close;
+  //QTemp.sql.Clear;
+  //QTEMP
+  QTemp.Open('select * from zamer');
+  Label15.Caption := Floattostr(simpleroundto({FMain.Psred.Value}Qtemp.fieldbyName('power').AsFloat, RazP));
   // e2 e3         6 8
+
   if (ABS(Strtofloat(Label13.Caption) - Strtofloat(Label6.Caption)) >
     Strtofloat(Edit2.Text)) then
     Label6.font.Color := clRed

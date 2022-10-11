@@ -149,6 +149,7 @@ begin
     QInsSvod.ParamByName('dumax').AsFloat :=
       StrtoFloat(StringGrid2.cells[4, i]);
     QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+    if StringGrid2.cells[5, i]='' then StringGrid2.cells[5, i]:='0';
     QInsSvod.ParamByName('R').AsFloat := StrtoFloat(StringGrid2.cells[5, i]);
     QInsSvod.ExecSQL;
     i := i + 1;
@@ -424,6 +425,14 @@ begin
       StringGrid2.cells[ACol, ARow]);
     StringGrid2.Canvas.Brush.Color := clWhite;
   end;
+  if (ACol = 5)  Then
+   begin
+    StringGrid2.Canvas.Brush.Color := clTeal;
+    StringGrid2.Canvas.FillRect(Rect);
+    StringGrid2.Canvas.TextOut(Rect.Left, Rect.Top,
+      StringGrid2.cells[ACol, ARow]);
+    StringGrid2.Canvas.Brush.Color := clWhite;
+   end;
 end;
 
 procedure TFhhod.Timer1Timer(Sender: TObject);

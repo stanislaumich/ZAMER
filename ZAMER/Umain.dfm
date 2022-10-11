@@ -70,7 +70,7 @@ object FMain: TFMain
       Caption = #1058#1080#1087' '#1076#1074#1080#1075'.:'
     end
     object Label15: TLabel
-      Left = 464
+      Left = 519
       Top = 28
       Width = 115
       Height = 23
@@ -222,14 +222,15 @@ object FMain: TFMain
     object ComboBox1: TComboBox
       Left = 306
       Top = 25
-      Width = 145
+      Width = 207
       Height = 31
+      Hint = #1058#1080#1087' '#1044#1074#1080#1075#1072#1090#1077#1083#1103
       TabOrder = 4
     end
     object Edit4: TEdit
-      Left = 585
+      Left = 640
       Top = 25
-      Width = 198
+      Width = 143
       Height = 31
       TabOrder = 5
     end
@@ -238,6 +239,7 @@ object FMain: TFMain
       Top = 64
       Width = 62
       Height = 31
+      Hint = #1063#1080#1089#1083#1086' '#1087#1086#1083#1102#1089#1086#1074
       TabOrder = 6
     end
     object Edit5: TEdit
@@ -266,6 +268,7 @@ object FMain: TFMain
       Top = 65
       Width = 98
       Height = 31
+      Hint = #1069#1085#1077#1088#1075#1086#1101#1092#1092#1077#1082#1090#1080#1074#1085#1086#1089#1090#1100
       TabOrder = 10
       Items.Strings = (
         'IE1'
@@ -334,10 +337,11 @@ object FMain: TFMain
       Height = 31
       TabOrder = 17
     end
-    object Edit16: TEdit
-      Left = 480
+    object ComboBox6: TComboBox
+      Tag = 500
+      Left = 473
       Top = 252
-      Width = 307
+      Width = 314
       Height = 31
       TabOrder = 18
     end
@@ -470,7 +474,7 @@ object FMain: TFMain
     end
     object Label29: TLabel
       Left = 304
-      Top = 55
+      Top = 56
       Width = 103
       Height = 23
       AutoSize = False
