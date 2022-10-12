@@ -974,6 +974,15 @@ object FMain: TFMain
     TabOrder = 9
     OnClick = CheckBox1Click
   end
+  object Button4: TButton
+    Left = 768
+    Top = 444
+    Width = 75
+    Height = 25
+    Caption = 'GRAPH'
+    TabOrder = 10
+    OnClick = Button4Click
+  end
   object KRTCPConnector1: TKRTCPConnector
     OnConnectionStatus = KRTCPConnector1ConnectionStatus
     CountErrorsForReconnect = 10

@@ -157,6 +157,7 @@ type
         CheckBox1: TCheckBox;
         Label9: TLabel;
     ComboBox6: TComboBox;
+    Button4: TButton;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -202,6 +203,7 @@ type
         procedure BitBtn14Click(Sender: TObject);
         procedure BitBtn12Click(Sender: TObject);
         procedure CheckBox1Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -235,7 +237,7 @@ implementation
 {$R *.dfm}
 
 uses UHH, USoprot, UProdol, UKZam, UNagrev, URH, UMehan, UArc, UDatchik, Uproch,
-    UMH, USettings;
+    UMH, USettings, UGraph;
 
 procedure TFMain.enableispyt(p: Boolean);
 begin
@@ -1208,6 +1210,11 @@ begin
     KRTCPConnector1.Interval    := strtoint(Edit14.Text);
     KRTCPConnector1.ReadTimeout := strtoint(Edit15.Text);
     BitBtn10.Click;
+end;
+
+procedure TFMain.Button4Click(Sender: TObject);
+begin
+ FGRAPH.ShowModal;
 end;
 
 procedure TFMain.CheckBox1Click(Sender: TObject);

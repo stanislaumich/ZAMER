@@ -12,7 +12,6 @@ type
     UniConnection1: TUniConnection;
     QTemp: TUniQuery;
     Button1: TButton;
-    Memo1: TMemo;
     OracleUniProvider1: TOracleUniProvider;
     QUpdZamer: TUniQuery;
     TimerUPDZamer: TTimer;
@@ -44,10 +43,15 @@ type
     { Public declarations }
   end;
 
+  r=record
+     rot,torq,power:real;
+    end;
 var
   Ft45emulmain: TFt45emulmain;
   wr:boolean;
   nomer:string;
+  a:array[1..10000] of r;
+  acnt:integer;
 implementation
 
 {$R *.dfm}
@@ -69,11 +73,24 @@ begin
 end;
 
 procedure TFt45emulmain.Button3Click(Sender: TObject);
+var
+ i:integer;
 begin
   TimerUPDZamer.Enabled:=false;
+  for i:=1 to acnt-1 do
+   begin
+   qinszamertmp.close;
+   qinszamertmp.ParamByName('rot').AsFloat:=a[i].rot;
+   qinszamertmp.ParamByName('torq').AsFloat:=a[i].torq;
+   qinszamertmp.ParamByName('power').AsFloat:=a[i].power;
+   qinszamertmp.ParamByName('nomer').AsString:=nomer;
+   qinszamertmp.ParamByName('pnom').AsFloat:=0;
+   qinszamertmp.ExecSQL;
+   end;
 end;
 
 procedure TFt45emulmain.Timer1000Timer(Sender: TObject);
+var i:integer;
 begin
  QCommand.Close;
  QCommand.SQL.Clear;
@@ -93,6 +110,7 @@ begin
       QTemp.SQL.Add('truncate table zamertmp');
       QTemp.ExecSQL;
       wr:=true;
+      acnt:=1;
       QClearCommand.ExecSQL;
       Button2.Click;
      end;
@@ -112,20 +130,12 @@ begin
  qupdzamer.ParamByName('torq').AsFloat:=torq;
  qupdzamer.ParamByName('power').AsFloat:=power;
  qupdzamer.ExecSQL;
- {:TORQ ,
- :ROT ,
- :POWER ,
- :NOMER ,
- :PNOM  }
  if wr then
   begin
-   qinszamertmp.close;
-   qinszamertmp.ParamByName('rot').AsFloat:=rot;
-   qinszamertmp.ParamByName('torq').AsFloat:=torq;
-   qinszamertmp.ParamByName('power').AsFloat:=power;
-   qinszamertmp.ParamByName('nomer').AsString:=nomer;
-   qinszamertmp.ParamByName('pnom').AsFloat:=0;
-   qinszamertmp.ExecSQL;
+    a[acnt].rot:=rot;
+    a[acnt].torq:=torq;
+    a[acnt].power:=power;
+    acnt:=acnt+1;
   end;
 end;
 

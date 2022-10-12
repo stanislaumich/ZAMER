@@ -19,10 +19,12 @@ type
     Edit2: TEdit;
     Panel1: TPanel;
     Image1: TImage;
+    Button3: TButton;
     procedure Timer1Timer(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,7 +36,7 @@ var
 
  i:integer;
 implementation
-
+ uses umain;
 {$R *.dfm}
 
 procedure TFGraph.Button1Click(Sender: TObject);
@@ -42,6 +44,45 @@ begin
 i:=0;
 Image1.Canvas.Moveto(0,Image1.Canvas.ClipRect.Bottom);
 Timer1.Enabled:=true;
+end;
+
+procedure TFGraph.Button3Click(Sender: TObject);
+var
+ x0,y0,cx,cy,i:integer;
+begin
+
+ x0:=10;
+ y0:=700;
+ cx:=1;
+ cy:=10;
+ i:=0;
+
+ QTemp.Close;
+ //QTemp.SQL.Clear;
+ QTemp.Open('select * from zamertmp order by ID');
+ canvas.brush.Color:=clred;
+ Canvas.MoveTo(x0,y0);
+ While not QTemp.Eof do
+  begin
+   canvas.brush.Color:=clred;
+   canvas.lineto(x0+round(i/cx),y0-round(Qtemp.fieldbyname('torq').asfloat/cy));
+
+   QTemp.Next;
+   i:=i+1;
+  end;
+  i:=1;
+  canvas.brush.Color:=clGreen;
+ Canvas.MoveTo(x0,y0);
+ QTemp.First;
+ While not QTemp.Eof do
+  begin
+   canvas.brush.Color:=clred;
+   canvas.lineto(x0+round(i/cx),y0-round(Qtemp.fieldbyname('rot').asfloat/cy));
+
+   QTemp.Next;
+   i:=i+1;
+  end;
+ ShowMessage('done');
 end;
 
 procedure TFGraph.FormMouseDown(Sender: TObject; Button: TMouseButton;
