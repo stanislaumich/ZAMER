@@ -184,4 +184,61 @@ object Ft45emulmain: TFt45emulmain
     Left = 84
     Top = 56
   end
+  object Timer1000: TTimer
+    OnTimer = Timer1000Timer
+    Left = 296
+    Top = 52
+  end
+  object QCommand: TUniQuery
+    Connection = UniConnection1
+    Left = 288
+    Top = 108
+  end
+  object QClearCommand: TUniQuery
+    Connection = UniConnection1
+    SQL.Strings = (
+      'truncate table command')
+    Left = 288
+    Top = 160
+  end
+  object QInsZamerTmp: TUniQuery
+    Connection = UniConnection1
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZAMERTMP ('
+      '   TORQ, ROT, POWER, '
+      '   NOMER, PNOM) '
+      'VALUES ( :TORQ ,'
+      ' :ROT ,'
+      ' :POWER ,'
+      ' :NOMER ,'
+      ' :PNOM  );')
+    Left = 380
+    Top = 56
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'TORQ'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'ROT'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'POWER'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'NOMER'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'PNOM'
+        Value = nil
+      end>
+  end
 end
