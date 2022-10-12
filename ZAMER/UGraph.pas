@@ -17,6 +17,8 @@ type
     Timer1: TTimer;
     Edit1: TEdit;
     Edit2: TEdit;
+    Panel1: TPanel;
+    Image1: TImage;
     procedure Timer1Timer(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
@@ -38,7 +40,7 @@ implementation
 procedure TFGraph.Button1Click(Sender: TObject);
 begin
 i:=0;
-Canvas.Moveto(0,Canvas.ClipRect.Bottom);
+Image1.Canvas.Moveto(0,Image1.Canvas.ClipRect.Bottom);
 Timer1.Enabled:=true;
 end;
 
@@ -46,7 +48,7 @@ procedure TFGraph.FormMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
  Edit1.text:=inttostr(x);
- Edit2.TExt:=inttostr(Canvas.ClipRect.Bottom-y);
+ Edit2.TExt:=inttostr(Image1.Canvas.ClipRect.Bottom-y);
 end;
 
 procedure TFGraph.Timer1Timer(Sender: TObject);
@@ -55,7 +57,7 @@ begin
 i:=i+1;
 if i=500  then Timer1.Enabled:=false;
 
-Canvas.LineTo(i, Canvas.ClipRect.Bottom-i);
+Image1.Canvas.LineTo(i, Image1.Canvas.ClipRect.Bottom-i);
 end;
 
 end.

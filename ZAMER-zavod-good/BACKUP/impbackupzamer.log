@@ -1,0 +1,60 @@
+
+Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - Production
+
+Export file created by EXPORT:V11.02.00 via conventional path
+import done in CL8MSWIN1251 character set and AL16UTF16 NCHAR character set
+import server uses AL32UTF8 character set (possible charset conversion)
+. . importing table                      "COMMAND"
+                                                            0 rows imported
+. . importing table                          "INI"
+                                                            5 rows imported
+. . importing table                        "NOMER"
+                                                            1 rows imported
+. . importing table                        "STEND"
+                                                            5 rows imported
+. . importing table                      "VERSION"
+                                                            1 rows imported
+. . importing table                        "ZAMER"
+                                                            1 rows imported
+. . importing table                     "ZAMERTMP"
+                                                          256 rows imported
+. . importing table                       "ZDELTA"
+                                                            5 rows imported
+. . importing table                     "ZDVIGALL"
+                                                            4 rows imported
+. . importing table                         "ZERR"
+                                                           67 rows imported
+. . importing table                       "ZHHALL"
+......
+                                                         6621 rows imported
+. . importing table                      "ZHHSVOD"
+                                                           33 rows imported
+. . importing table                       "ZKZALL"
+                                                          331 rows imported
+. . importing table                      "ZKZSVOD"
+                                                            8 rows imported
+. . importing table                      "ZMEHALL"
+                                                          798 rows imported
+. . importing table                     "ZMEHSVOD"
+                                                           36 rows imported
+. . importing table                   "ZNAGREVALL"
+                                                          712 rows imported
+. . importing table                  "ZNAGREVSVOD"
+                                                            4 rows imported
+. . importing table                       "ZPROCH"
+                                                            4 rows imported
+. . importing table                       "ZRHALL"
+.
+                                                         1811 rows imported
+. . importing table                      "ZRHSVOD"
+                                                           15 rows imported
+. . importing table                      "ZSOPROT"
+                                                            4 rows imported
+. . importing table                        "ZSOTR"
+                                                            2 rows imported
+. . importing table                       "ZVIBRO"
+                                                          144 rows imported
+. . importing table                        "ZZVUK"
+                                                           64 rows imported
+About to enable constraints...
+Import terminated successfully without warnings.
