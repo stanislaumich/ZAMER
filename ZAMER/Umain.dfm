@@ -220,6 +220,7 @@ object FMain: TFMain
       TabOrder = 3
     end
     object ComboBox1: TComboBox
+      Tag = 500
       Left = 306
       Top = 25
       Width = 207

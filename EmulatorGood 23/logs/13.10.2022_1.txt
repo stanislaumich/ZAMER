@@ -1,0 +1,28 @@
+13.10.2022 12:13:28.80 - Запуск Modbus TCP/RTU Эмулятор
+13.10.2022 12:13:28.765 - TModbusTCPServer.Create
+13.10.2022 12:13:29.621 - TModbusTCPServer.Start
+13.10.2022 12:13:29.621 - TTCPAccept.Create IN, Port = 502
+13.10.2022 12:13:29.630 - TTCPAccept.Create OUT
+13.10.2022 12:13:29.630 - TTCPAccept.Execute IN
+13.10.2022 12:13:29.630 - TTCPAccept.InitSocket IN
+13.10.2022 12:13:29.638 - TTCPAccept.InitSocket - OUT
+13.10.2022 12:13:29.866 - TModbusTCPServer.ClientConnectEvent
+13.10.2022 12:13:29.871 - TModbusTCPServer.AddClient
+13.10.2022 12:13:29.871 - TModbusTCPClient.Start
+13.10.2022 12:13:29.871 - TTCPAccept.InitSocket IN
+13.10.2022 12:17:19.58 - TModbusTCPServer.OnClientDisconnect
+13.10.2022 14:51:53.112 - TModbusTCPServer.ClientConnectEvent
+13.10.2022 14:51:53.113 - TModbusTCPServer.RemoveClient
+13.10.2022 14:51:53.151 - TModbusTCPServer.AddClient
+13.10.2022 14:51:53.151 - TModbusTCPClient.Start
+13.10.2022 14:51:53.151 - TTCPAccept.InitSocket IN
+13.10.2022 15:00:57.447 - TModbusTCPServer.OnClientDisconnect
+13.10.2022 16:27:42.670 - TModbusTCPServer.Stop
+13.10.2022 16:27:42.670 - TTCPAccept.StopThread IN
+13.10.2022 16:27:42.670 - TTCPAccept.Execute OUT
+13.10.2022 16:27:42.670 - TTCPAccept.StopThread OUT
+13.10.2022 16:27:42.670 - TTCPAccept.Destroy IN
+13.10.2022 16:27:42.670 - TTCPAccept.Destroy OUT
+13.10.2022 16:27:44.390 - TModbusTCPServer.Stop
+13.10.2022 16:27:44.390 - TModbusTCPServer.Destroy
+13.10.2022 16:27:44.400 - Останов Modbus TCP/RTU Эмулятор

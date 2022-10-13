@@ -11,7 +11,6 @@ type
   TFt45emulmain = class(TForm)
     UniConnection1: TUniConnection;
     QTemp: TUniQuery;
-    Button1: TButton;
     OracleUniProvider1: TOracleUniProvider;
     QUpdZamer: TUniQuery;
     TimerUPDZamer: TTimer;
@@ -32,7 +31,6 @@ type
     QCommand: TUniQuery;
     QClearCommand: TUniQuery;
     QInsZamerTmp: TUniQuery;
-    procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure TimerUPDZamerTimer(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -55,16 +53,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TFt45emulmain.Button1Click(Sender: TObject);
-begin
- QTemp.Open;
- while not qtemp.eof do
-  begin
-   memo1.lines.add(QTemp.FieldByName('torq').Asstring);
-   Qtemp.next;
-  end;
-end;
 
 procedure TFt45emulmain.Button2Click(Sender: TObject);
 begin
@@ -96,6 +84,8 @@ begin
  QCommand.SQL.Clear;
  QCommand.SQL.Add('Select * from command');
  QCommand.Open();
+ if QCommand.RecordCount<>0 then
+  begin
  nomer:=QCommand.FieldByName('nomer').asstring;
  case QCommand.FieldByName('command').AsInteger of
   0: begin
@@ -114,7 +104,7 @@ begin
       QClearCommand.ExecSQL;
       Button2.Click;
      end;
-
+  end
  end;
 end;
 
@@ -122,6 +112,7 @@ procedure TFt45emulmain.TimerUPDZamerTimer(Sender: TObject);
 var
  torq, rot, power:single;
 begin
+randomize;
  torq:=simpleroundto(randomrange(strtoint(Edit1.text),strtoint(Edit2.text))+random,-3);
  rot:=simpleroundto(randomrange(strtoint(Edit3.text),strtoint(Edit4.text))+random,-3);
  power:=simpleroundto(randomrange(strtoint(Edit5.text),strtoint(Edit6.text))+random,-3);

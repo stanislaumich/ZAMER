@@ -28,6 +28,7 @@
 #include <FireDAC.Stan.Pool.hpp>
 #include <FireDAC.UI.Intf.hpp>
 #include <FireDAC.VCLUI.Wait.hpp>
+#include <Vcl.Buttons.hpp>
 // ---------------------------------------------------------------------------
 class TDSaver;
 
@@ -74,7 +75,12 @@ __published: // IDE-managed Components
 	TTimer *TQ;
 	TFDConnection *FDConnection1;
 	TFDQuery *Query1;
-	TFDQuery *Query2;
+	TFDQuery *QUpd;
+	TLabel *Label2;
+	TEdit *Edit1;
+	TBitBtn *BitBtn1;
+	TTimer *TimerCommand;
+	TFDQuery *QCommand;
 
 	void __fastcall BConnectClick(TObject *Sender);
 	void __fastcall BStartClick(TObject *Sender);
@@ -87,6 +93,8 @@ __published: // IDE-managed Components
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall TQTimer(TObject *Sender);
+	void __fastcall BitBtn1Click(TObject *Sender);
+	void __fastcall TimerCommandTimer(TObject *Sender);
 
 private: // User declarations
 	int ClientID;

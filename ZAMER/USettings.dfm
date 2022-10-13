@@ -272,7 +272,6 @@ object FSettings: TFSettings
     Top = 187
   end
   object FDTable1: TFDTable
-    Active = True
     Connection = FMain.FDOra
     TableName = 'zsotr'
     Left = 352

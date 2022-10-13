@@ -118,11 +118,11 @@ object FNagrev: TFNagrev
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 12
+      Left = 52
       Top = 76
-      Width = 212
+      Width = 172
       Height = 29
-      Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'/'#1082#1075'.:'
+      Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'.:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24

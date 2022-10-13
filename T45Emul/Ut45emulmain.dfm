@@ -41,22 +41,13 @@ object Ft45emulmain: TFt45emulmain
     Height = 13
     Caption = 'UPD Zamer'
   end
-  object Button1: TButton
-    Left = 8
-    Top = 8
-    Width = 75
-    Height = 25
-    Caption = 'Button1'
-    TabOrder = 0
-    OnClick = Button1Click
-  end
   object Button2: TButton
     Left = 16
     Top = 320
     Width = 75
     Height = 25
     Caption = 'Start'
-    TabOrder = 1
+    TabOrder = 0
     OnClick = Button2Click
   end
   object Edit1: TEdit
@@ -64,7 +55,7 @@ object Ft45emulmain: TFt45emulmain
     Top = 236
     Width = 45
     Height = 21
-    TabOrder = 2
+    TabOrder = 1
     Text = '250'
   end
   object Edit2: TEdit
@@ -72,7 +63,7 @@ object Ft45emulmain: TFt45emulmain
     Top = 236
     Width = 42
     Height = 21
-    TabOrder = 3
+    TabOrder = 2
     Text = '1000'
   end
   object Edit3: TEdit
@@ -80,7 +71,7 @@ object Ft45emulmain: TFt45emulmain
     Top = 260
     Width = 45
     Height = 21
-    TabOrder = 4
+    TabOrder = 3
     Text = '1800'
   end
   object Edit4: TEdit
@@ -88,7 +79,7 @@ object Ft45emulmain: TFt45emulmain
     Top = 260
     Width = 42
     Height = 21
-    TabOrder = 5
+    TabOrder = 4
     Text = '5000'
   end
   object Edit5: TEdit
@@ -96,7 +87,7 @@ object Ft45emulmain: TFt45emulmain
     Top = 284
     Width = 45
     Height = 21
-    TabOrder = 6
+    TabOrder = 5
     Text = '800'
   end
   object Edit6: TEdit
@@ -104,7 +95,7 @@ object Ft45emulmain: TFt45emulmain
     Top = 284
     Width = 42
     Height = 21
-    TabOrder = 7
+    TabOrder = 6
     Text = '1000'
   end
   object Button3: TButton
@@ -113,7 +104,7 @@ object Ft45emulmain: TFt45emulmain
     Width = 75
     Height = 25
     Caption = 'Stop'
-    TabOrder = 8
+    TabOrder = 7
     OnClick = Button3Click
   end
   object Edit7: TEdit
@@ -121,7 +112,7 @@ object Ft45emulmain: TFt45emulmain
     Top = 8
     Width = 37
     Height = 21
-    TabOrder = 9
+    TabOrder = 8
     Text = '50'
   end
   object UniConnection1: TUniConnection

@@ -9,11 +9,17 @@
 TForm1 *Form1;
 float Znachenie;
 float pisp;
+float corr=0;
 String nomer;
 int Datchik;
 int Interval;
 bool EN;
 String IniFileName;
+struct {float n;
+float m;
+float p;
+}c;
+
 // ---------------------------------------------------------------------------
 // Массив форматов для отображения основной измеряемой величины
 char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
@@ -33,7 +39,6 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	DecoderType = Ini->ReadInteger("DECODER", "Datchik", 4);
 	Ini->Free();
-
 	EstID = false;
 	EstIzm = false;
 	PDecoder = NULL;
@@ -42,9 +47,6 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	BDisconnect->Enabled = false;
 	// ................... для защиты общих данных
 	SostDat_CrSe = new TCriticalSection();
-
-	// CBDecoderType->ItemIndex = 0;
-	// CBDecoderTypeChange(this);
 	Temperature = 0;
 }
 
@@ -55,7 +57,6 @@ void __fastcall TForm1::BConnectClick(TObject *Sender) {
 	struct _ParamComPort ParamComPort;
 	/* */
 	// DecoderType = SIMULATOR_DECODER;
-
 	// DecoderType = USB_DECODER_T35;
 
 	PortBase = StrToInt(EPortNumber->Text);
@@ -67,7 +68,7 @@ void __fastcall TForm1::BConnectClick(TObject *Sender) {
 		(sizeof(struct _SpecialParametrs), 1);
 	PSpecialParametrs->AveragingFactor = StrToInt(EAveragingFactor->Text);
 	// Коэффициент усреднения данных
-	PSpecialParametrs->SpeedMeasurementPeriod = 1000;
+	PSpecialParametrs->SpeedMeasurementPeriod = 10;
 	// Период измерения частоты вращения
 	PSpecialParametrs->ComPortNumber = StrToInt(EComPortNumber->Text);
 	PSpecialParametrs->MODBUS_DeviceAddress = StrToInt(EUnitNumber->Text);
@@ -113,7 +114,6 @@ void __fastcall TForm1::BStartClick(TObject *Sender) {
 	BStart->Enabled = false;
 	BStop->Enabled = true;
 	BDisconnect->Enabled = true;
-
 	EstIzm = true; // На канале запущены измерения
 	KolIzmOto = 0;
 	ReflectionTimer->Enabled = true;
@@ -125,7 +125,6 @@ void __fastcall TForm1::BStopClick(TObject *Sender) {
 	BStart->Enabled = true;
 	BStop->Enabled = false;
 	BDisconnect->Enabled = true;
-
 	ReflectionTimer->Enabled = false;
 	EstIzm = false; // На канале остановлены измерения
 }
@@ -135,14 +134,12 @@ void __fastcall TForm1::BDisconnectClick(TObject *Sender) {
 	ReflectionTimer->Enabled = false;
 	EstIzm = false; // На канале остановлены измерения
 	EstID = false;
-
 	// ................... Закрытие декодера
 	if (PDecoder != NULL) {
 		DecoderClose(PDecoder);
 		PDecoder = NULL;
 	}
 	Memo1->Lines->Add("Декодер закрыт");
-
 	BConnect->Enabled = true;
 	BStart->Enabled = false;
 	BStop->Enabled = false;
@@ -159,31 +156,28 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action) {
 int __stdcall DataHandler(int DataType, void *PZapis, void *PContext) {
 	struct _DataFrame *PDataFrame;
 	TForm1 *PForm1 = (TForm1*)PContext;
-
-	// ................... Обработка принятых данных
 	switch (DataType) {
-	case DATA_TYPE_DATA: // Тип данных - данные измерений
-		// ................. Если не получен идентификатор датчика
+	case DATA_TYPE_DATA:
 		if (!PForm1->EstID)
 			return 0;
-		// ................. Если остановлены измерения
 		if (!PForm1->EstIzm)
 			return 0;
+		/////////////////////////////////////////////////////////
 		PDataFrame = (struct _DataFrame*)PZapis;
 		PForm1->SostDat_CrSe->Enter();
-		PForm1->SummaZn_Osn += PDataFrame->OsnIzmVel[0];
-		PForm1->KolIzmOto++;
-		PForm1->Temperature = PDataFrame->Temper;
-		PForm1->Skorost = PDataFrame->Skorost;
-		PForm1->Moshn = PDataFrame->Moschnost;
+			PForm1->SummaZn_Osn += PDataFrame->OsnIzmVel[0]+corr;
+			PForm1->KolIzmOto++;
+			PForm1->Temperature = PDataFrame->Temper;
+			PForm1->Skorost = PDataFrame->Skorost;
+			PForm1->Moshn = PDataFrame->Moschnost;
 		PForm1->SostDat_CrSe->Leave();
 		break;
-
+	   /*
 	case DATA_TYPE_MESSAGES: // Тип данных - сообщения декодера
 		struct _MessageFrame * PMessageFrame = (struct _MessageFrame*)PZapis;
 		PostMessage(Form1->Handle, WM_USER + 1,
 			PMessageFrame->MessageCode, NULL);
-		break;
+		break;  */
 	}
 	return 0;
 }
@@ -312,124 +306,26 @@ void __fastcall TForm1::UserMessage(TMessage& msg) {
 // --------------------- ОБРАБОТЧИК ТАЙМЕРА ДЛЯ ВЫСВЕТКИ ЗНАЧЕНИЙ НА ПАНЕЛЯХ ФОРМЫ
 void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	AnsiString AS;
-	// float AbsZnachenie;
-	// float Znachenie;
 	int i;
-
-	// ................... Если счетчик уср значений нулевой
 	if (KolIzmOto == 0)
 		return;
-	// ................... Ждать освобождения критической секции
 	SostDat_CrSe->Enter();
-	// ................... Вычислить среднее значение
-	Znachenie = SummaZn_Osn / (double)KolIzmOto; // среднее значение
-	SummaZn_Osn = 0;
-	KolIzmOto = 0;
-	// ................... Покинуть критическую секцию
+		Znachenie = SummaZn_Osn / (double)KolIzmOto; // среднее значение
+		SummaZn_Osn = 0;
+		KolIzmOto = 0;
 	SostDat_CrSe->Leave();
-	// ................... Отображение значений
-	// ................... Формирование строки для отображения основной изм величины на панели
-	/*
-	STOsnIzmVel->Caption = AS.sprintf(FormatOtobrajenia, abs(Znachenie));
-	// ................... Формирование строки для отображения температуры
-	if (Temperature < -40) {
-		STTemper->Caption = "";
-	}
-	else {
-		STTemper->Caption = AS.sprintf("%4.1f", Temperature);
-	}
-	// ................... Формирование строки для отображения скорости на панели
-	if (Skorost < 1000) {
-		STSkorost->Caption = AS.sprintf("%4.1f", abs(Skorost));
-	}
-	else {
-		STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
-	}
-	// ................... Формирование строки для отображения мощности на панели
-	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Moshn));
-	Application->ProcessMessages();
-	*/
-	// -------------------------------------------------------
-	try {
-		Query2->SQL->Clear();
-		Query2->SQL->Add("update zamer set ");
-		Query2->SQL->Add("torq = " + QuotedStr(FormatFloat("0.0",
-			abs(Znachenie))) + ", ");
-		Query2->SQL->Add("rot = " + QuotedStr(FormatFloat("0.0", abs(Skorost)))
-			+ ", ");
-		Query2->SQL->Add("power = " + QuotedStr(FormatFloat("0.00",
-			abs(Moshn))) + "");
-		Query2->ExecSQL();
-		Query2->SQL->Clear();
-		Query2->SQL->Add("select * from command ");
-		Query2->Open();
-	}
+	try {  //Form1->Moshn = Znachenie * abs(Skorost) / 9.546;
+		QUpd->ParamByName("torq")->AsFloat = abs(Znachenie);
+		QUpd->ParamByName("rot")->AsFloat = abs(Skorost);
+		QUpd->ParamByName("power")->AsFloat = abs(Moshn);
+		QUpd->ExecSQL();
+		}
 	catch (...) {
-	}
-	String dop = 0;
-	String file = 0;
-
-	if (Query2->RecordCount > 0) {
-		dop = Query2->FieldByName("command")->AsString;
-		file = Query2->FieldByName("filename")->AsString;
-		pisp = StrToFloat(file);
-		nomer = Query2->FieldByName("nomer")->AsString;
-		Datchik = Query2->FieldByName("dat")->AsInteger;
-		Interval = Query2->FieldByName("interval")->AsInteger;
-		//////////////////////////////////
-		if (dop == "1") {
-			Datchik = Query2->FieldByName("dat")->AsInteger;
-			Query1->SQL->Clear();
-			Query1->SQL->Text = "truncate table zamertmp";
-			Query1->ExecSQL();
-			// BConnect();
-			Memo1->Lines->Add("Запущена серия замеров");
-			TS->Interval = Interval;
-			TS->Enabled = true;
-			Query2->SQL->Clear();
-			Query2->SQL->Add("truncate table command");
-			Query2->ExecSQL();
-			EN = true;
-		}
-		//////////////////////////////////////////
-		else if (dop == "0") {
-			// TS->Enabled = false;
-			// MySleep(100);
-			try {
-				Query2->SQL->Clear();
-				Query2->SQL->Add("truncate table command");
-				Query2->ExecSQL();
-				EN = false;
-			}
-			catch (...) {
-			}
-
-			Memo1->Lines->Add("Остановлена серия замеров");
-		}
-		////////////////////////////////////////////////
-		else if (dop == "3") {
-			TS->Enabled = false;
-			try {
-				if (PDecoder != NULL) {
-					DecoderClose(PDecoder);
-					PDecoder = NULL;
 				}
-			}
-			catch (...) {
-			}
-			try {
-				Query2->SQL->Clear();
-				Query2->SQL->Add("truncate table command");
-				Query2->ExecSQL();
-			}
-			catch (...) {
-			}
-			Application->Terminate();
-		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
-
+	/*
 	Application->ProcessMessages();
 	if (EN) {
 		// ---внесение данных в базу---
@@ -453,7 +349,7 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	Application->ProcessMessages();
 
 }
-
+*/
 // --------------------- Очистить панель отображения
 void __fastcall TForm1::CBDecoderTypeChange(TObject *Sender) {
 	LComPortNumber->Enabled = false;
@@ -538,7 +434,7 @@ void __fastcall TForm1::CBDecoderTypeChange(TObject *Sender) {
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::TSTimer(TObject *Sender) {
-
+	/*
 	try {
 		Query2->SQL->Clear();
 		Query2->SQL->Add("update zamer set ");
@@ -614,7 +510,7 @@ void __fastcall TForm1::TSTimer(TObject *Sender) {
 		}
 	}
 	////////////////////////////////////////////////
-
+    */
 }
 // ---------------------------------------------------------------------------
 
@@ -626,13 +522,10 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 	struct _ParamComPort ParamComPort;
 	/* */
 	// DecoderType = SIMULATOR_DECODER;
-
 	// DecoderType = USB_DECODER_T35;
-
 	PortBase = StrToInt(EPortNumber->Text);
 	AS = EServerAddress->Text;
 	strcpy(ServerAddress, AS.c_str());
-
 	NKan = 1;
 	PSpecialParametrs = (struct _SpecialParametrs*)calloc
 		(sizeof(struct _SpecialParametrs), 1);
@@ -707,6 +600,7 @@ void __fastcall TForm1::FormCloseQuery(TObject *Sender, bool &CanClose) {
 	Ini->Free();
 }
 // ---------------------------------------------------------------------------
+
 void __fastcall TForm1::TQTimer(TObject *Sender)
 {
 AnsiString AS;
@@ -728,6 +622,84 @@ AnsiString AS;
 	// ................... Формирование строки для отображения мощности на панели
 	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Moshn));
 	Application->ProcessMessages();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::BitBtn1Click(TObject *Sender)
+{
+	AnsiString AS;
+	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
+			"\\settings.ini");
+	corr = 0-Znachenie;
+	Edit1->Text = AS.sprintf(FormatOtobrajenia, abs(corr));
+	Ini->WriteString("Danchik", "Corr", Edit1->Text );
+	Ini->Free();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TimerCommandTimer(TObject *Sender)
+{
+	String dop = 0;
+	String file = 0;
+	QCommand->SQL->Clear();
+	QCommand->SQL->Add("select * from command ");
+	QCommand->Open();
+	if (QCommand->RecordCount > 0)
+	{
+		dop = QCommand->FieldByName("command")->AsString;
+		file = QCommand->FieldByName("filename")->AsString;
+		pisp = StrToFloat(file);
+		nomer = QCommand->FieldByName("nomer")->AsString;
+		Datchik = QCommand->FieldByName("dat")->AsInteger;
+		Interval = QCommand->FieldByName("interval")->AsInteger;
+		//////////////////////////////////
+		if (dop == "1") {
+			//Datchik = QCommand->FieldByName("dat")->AsInteger;
+			Query1->SQL->Clear();
+			Query1->SQL->Text = "truncate table zamertmp";
+			Query1->ExecSQL();
+			//Memo1->Lines->Add("Запущена серия замеров");
+			TS->Interval = Interval;
+			TS->Enabled = true;
+			QCommand->SQL->Clear();
+			QCommand->SQL->Add("truncate table command");
+			QCommand->ExecSQL();
+			EN = true;
+		}
+		//////////////////////////////////////////
+		else if (dop == "0") {
+			try {
+				QCommand->SQL->Clear();
+				QCommand->SQL->Add("truncate table command");
+				QCommand->ExecSQL();
+				EN = false;
+				TS->Enabled = false;
+			}
+			catch (...) {
+			}
+			//Memo1->Lines->Add("Остановлена серия замеров");
+		}
+		////////////////////////////////////////////////
+		else if (dop == "3") {
+			TS->Enabled = false;
+			try {
+				if (PDecoder != NULL) {
+					DecoderClose(PDecoder);
+					PDecoder = NULL;
+				}
+			}
+			catch (...) {
+			}
+			try {
+				QCommand->SQL->Clear();
+				QCommand->SQL->Add("truncate table command");
+				QCommand->ExecSQL();
+			}
+			catch (...) {
+			}
+			Application->Terminate();
+		}
+	}
 }
 //---------------------------------------------------------------------------
 
