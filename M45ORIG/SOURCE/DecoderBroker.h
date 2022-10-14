@@ -78,55 +78,55 @@ bool EstDebug = false;
 
 // --------------------- Структура специальных параметров
 struct _SpecialParametrs {
-	DWORD FilterType; // Тип фильтра
-	float Popravka[MAX_SENSOR_NUMBER];
-	DWORD SpeedMeasurementPeriod; // Период измерения частоты вращения
-	unsigned short int AveragingFactor; // Коэффициент усреднения
-	bool VneshnDatchSkor; // Есть внешний датчик скорости
-	bool ServerMode; // Режим сервера
-	int OwnServerBasePortNumber; // Собственный базовый номер порта
-	struct _ParamComPort *PParamComPort;
-	char *ServerAddress;
-	int AnotherServerBasePortNumber;
-	UCHAR ServerChannelNumber;
-	UCHAR ComPortNumber;
-	UCHAR MODBUS_DeviceAddress;
+  DWORD FilterType; // Тип фильтра
+  float Popravka[MAX_SENSOR_NUMBER];
+  DWORD SpeedMeasurementPeriod; // Период измерения частоты вращения
+  unsigned short int AveragingFactor; // Коэффициент усреднения
+  bool VneshnDatchSkor; // Есть внешний датчик скорости
+  bool ServerMode; // Режим сервера
+  int OwnServerBasePortNumber; // Собственный базовый номер порта
+  struct _ParamComPort *PParamComPort;
+  char *ServerAddress;
+  int AnotherServerBasePortNumber;
+  UCHAR ServerChannelNumber;
+  UCHAR ComPortNumber;
+  UCHAR MODBUS_DeviceAddress;
 };
 #ifndef __DLL__
 
 // --------------------- Структура параметров Сом-порта
 struct _ParamComPort {
-	int BaudRate; // скорость передачи данных
-	char BiteSize; // число битов данных
-	char Parity; // схема контроля четности
-	char StopBits; // число стоповых бит
+  int BaudRate; // скорость передачи данных
+  char BiteSize; // число битов данных
+  char Parity; // схема контроля четности
+  char StopBits; // число стоповых бит
 };
 
 // --------------------- Структура служебного канала
 struct _SK {
-	unsigned char ID_Datchik[3];
-	UCHAR Temperature;
-	UCHAR Korrect;
-	unsigned short int K_Zub;
-	UCHAR MaxSkorVr;
-	UCHAR Date_Poverki[3];
-	UCHAR Slug_Inf[49];
+  unsigned char ID_Datchik[3];
+  UCHAR Temperature;
+  UCHAR Korrect;
+  unsigned short int K_Zub;
+  UCHAR MaxSkorVr;
+  UCHAR Date_Poverki[3];
+  UCHAR Slug_Inf[49];
 };
 
 // --------------------- Структура одной записи данных полученной от декодера
 struct _DataFrame {
-	double Vrema;
-	float OsnIzmVel[MAX_SENSOR_NUMBER];
-	float Temper; // Положение температуры в структуре важно!
-	float Skorost; // )
-	float Moschnost; // > Не передается, если датчик силы (некрутящийся)
-	char Azimut; // )
+  double Vrema;
+  float OsnIzmVel[MAX_SENSOR_NUMBER];
+  float Temper; // Положение температуры в структуре важно!
+  float Skorost; // )
+  float Moschnost; // > Не передается, если датчик силы (некрутящийся)
+  char Azimut; // )
 };
 
 // --------------------- Структура одной записи сообщений полученной от декодера
 struct _MessageFrame {
-	double Vrema;
-	char MessageCode; // Код сообщения
+  double Vrema;
+  char MessageCode; // Код сообщения
 };
 // --------------------- Формат буфера, возвращаемого командами Read
 #define KOLIZM_OUTPUT_STD 60  // Для Т26 и Т36
@@ -134,51 +134,51 @@ struct _MessageFrame {
 // #define KOLIZM_OUTPUT_STD 12  // Для Т35
 // #define KOLIZM_OUTPUT_STD 48  // Для Т37
 union _Otvet {
-	char KodSoob; // Ответ - код завершения
-	struct _SK Slug_Kanal; // Данные служебного канала
+  char KodSoob; // Ответ - код завершения
+  struct _SK Slug_Kanal; // Данные служебного канала
 
-	struct _MessageBuffer {
-		unsigned char KodSoob; // тип данных (код сообщения)
-		UINT64 TimeInt64;
-		char Messages[50];
-	} MessageBuffer;
+  struct _MessageBuffer {
+    unsigned char KodSoob; // тип данных (код сообщения)
+    UINT64 TimeInt64;
+    char Messages[50];
+  } MessageBuffer;
 
-	struct _GetCurrentTime { // Ответ на запрос тек времени декодера
-		unsigned long TimeLow; // время
-		unsigned long TimeHigh; // время
-	} GetCurrentTimeStruct;
+  struct _GetCurrentTime { // Ответ на запрос тек времени декодера
+    unsigned long TimeLow; // время
+    unsigned long TimeHigh; // время
+  } GetCurrentTimeStruct;
 
-	struct _RB2 { // Данные для команды READ_BASE2
-		unsigned char KodSoob; // тип данных (код ссобщения)
-		unsigned int TimeLow; // время (младшая часть)
-		unsigned int TimeHigh; // время (старшая часть)
-		float MasOsnIzmVel[KOLIZM_OUTPUT_STD];
-		// Массив значений осн изм величины
-		unsigned char Count; // Номер блока
-		unsigned char NQueue; // Номер очереди
-	} RB2;
+  struct _RB2 { // Данные для команды READ_BASE2
+    unsigned char KodSoob; // тип данных (код ссобщения)
+    unsigned int TimeLow; // время (младшая часть)
+    unsigned int TimeHigh; // время (старшая часть)
+    float MasOsnIzmVel[KOLIZM_OUTPUT_STD];
+    // Массив значений осн изм величины
+    unsigned char Count; // Номер блока
+    unsigned char NQueue; // Номер очереди
+  } RB2;
 
-	struct _Data { // Ответ на запрос данных
-		unsigned int TimeLow; // время
-		unsigned int TimeHigh; // время
+  struct _Data { // Ответ на запрос данных
+    unsigned int TimeLow; // время
+    unsigned int TimeHigh; // время
 
-		union _MeasuringData { // Данные измерений
-			float OsnIzmVel; // Данные для команды READ_BASE
-			float Temper; // Данные для команды READ_TEMPER
+    union _MeasuringData { // Данные измерений
+      float OsnIzmVel; // Данные для команды READ_BASE
+      float Temper; // Данные для команды READ_TEMPER
 
-			struct _RS { // Данные для команды READ_SPEED
-				float Skorost;
-				float Moschnost;
-			} RS;
+      struct _RS { // Данные для команды READ_SPEED
+        float Skorost;
+        float Moschnost;
+      } RS;
 
-			struct _RC { // Данные для команды READ_COMPLEX
-				float OsnIzmVel;
-				float Temper;
-				float Skorost;
-				float Moschnost;
-			} RC;
-		} MD;
-	} Data;
+      struct _RC { // Данные для команды READ_COMPLEX
+        float OsnIzmVel;
+        float Temper;
+        float Skorost;
+        float Moschnost;
+      } RC;
+    } MD;
+  } Data;
 };
 #endif
 // ---------------------------------------------------------------------------
@@ -192,30 +192,27 @@ union _Otvet {
 class TDecoder;
 // ---------------------------------------------------------------------------
 extern "C" {
-	DLL_EI void *DecoderCreate(int NKan, UCHAR DecoderType,
-		DATA_HANDLER DataHandler, void *PContext,
-		struct _SpecialParametrs *PSpecialParametrs);
+  DLL_EI void *DecoderCreate(int NKan, UCHAR DecoderType,
+      DATA_HANDLER DataHandler, void *PContext,
+      struct _SpecialParametrs *PSpecialParametrs);
 
-	DLL_EI int DecoderOpen(void *PDecoder, bool DataStream);
-	DLL_EI int DecoderClose(void *PDecoder);
-	DLL_EI int DecoderGetCurrentTime(void *PDecoder,
-		double *PDecoderCurrentTime);
-	DLL_EI int DecoderSetCurrentTime(void *PDecoder, double DecoderCurrentTime);
-	DLL_EI int DecoderSetParametrs(void *PDecoder,
-		unsigned short AveragingFactor, DWORD SpeedMeasurementPeriod,
-		float Popravka[MAX_SENSOR_NUMBER]);
-	DLL_EI int DecoderReadTranducerParametrs(void *PDecoder,
-		struct _SK *PTranducerParametrs, char *StrokaDatchikID);
-	DLL_EI int DecoderGetMessage(void *PDecoder, char *PBuffer,
-		DWORD *PrealSize);
-	DLL_EI int DecoderReadBase(void *PDecoder, char *OtvetServera,
-		DWORD *PBytesRead);
-	DLL_EI int DecoderReadSpeed(void *PDecoder, char *OtvetServera,
-		DWORD *PBytesRead);
-	DLL_EI int DecoderReadTemperature(void *PDecoder, char *OtvetServera,
-		DWORD *PBytesRead);
-	DLL_EI int DecoderReadComplex(void *PDecoder, char *OtvetServera,
-		DWORD *PBytesRead);
+  DLL_EI int DecoderOpen(void *PDecoder, bool DataStream);
+  DLL_EI int DecoderClose(void *PDecoder);
+  DLL_EI int DecoderGetCurrentTime(void *PDecoder, double *PDecoderCurrentTime);
+  DLL_EI int DecoderSetCurrentTime(void *PDecoder, double DecoderCurrentTime);
+  DLL_EI int DecoderSetParametrs(void *PDecoder, unsigned short AveragingFactor,
+      DWORD SpeedMeasurementPeriod, float Popravka[MAX_SENSOR_NUMBER]);
+  DLL_EI int DecoderReadTranducerParametrs(void *PDecoder,
+      struct _SK *PTranducerParametrs, char *StrokaDatchikID);
+  DLL_EI int DecoderGetMessage(void *PDecoder, char *PBuffer, DWORD *PrealSize);
+  DLL_EI int DecoderReadBase(void *PDecoder, char *OtvetServera,
+      DWORD *PBytesRead);
+  DLL_EI int DecoderReadSpeed(void *PDecoder, char *OtvetServera,
+      DWORD *PBytesRead);
+  DLL_EI int DecoderReadTemperature(void *PDecoder, char *OtvetServera,
+      DWORD *PBytesRead);
+  DLL_EI int DecoderReadComplex(void *PDecoder, char *OtvetServera,
+      DWORD *PBytesRead);
 }
 // ---------------------------------------------------------------------------
 #endif
