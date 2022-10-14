@@ -10,32 +10,26 @@ uses
 	FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
 	Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls,
 	VclTee.TeeGDIPlus, VclTee.TeEngine, VclTee.Series, VclTee.TeeProcs,
-	VclTee.Chart;
+	VclTee.Chart, Vcl.Buttons;
 
 type
 	TFGraph = class(TForm)
-		Button1: TButton;
-		Button2: TButton;
 		QTemp: TFDQuery;
-		Timer1: TTimer;
-		Edit1: TEdit;
-		Edit2: TEdit;
-		Button3: TButton;
 		Chart1: TChart;
 		Button4: TButton;
 		Series1: TFastLineSeries;
 		Series2: TFastLineSeries;
-		ScrollBar1: TScrollBar;
-		procedure Timer1Timer(Sender: TObject);
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    BitBtn1: TBitBtn;
 		procedure Button1Click(Sender: TObject);
-		procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
-		  Shift: TShiftState; X, Y: Integer);
 		procedure Button3Click(Sender: TObject);
 		procedure Button4Click(Sender: TObject);
 		procedure Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
 		  ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState;
 		  X, Y: Integer);
-		procedure ScrollBar1Change(Sender: TObject);
 	private
 		{ Private declarations }
 	public
@@ -110,7 +104,8 @@ begin
 	cy := 10;
 	i  := 0;
 	// step:=30;
-
+  Series1.Clear;
+  Series2.Clear;
 	QTemp.Close;
 	QTemp.Open('select * from zamertmp order by ID');
 	step := QTemp.RecordCount div 30;
@@ -129,33 +124,8 @@ end;
 procedure TFGraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
   ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-	Edit1.Text := Floattostr(Series.XValue[ValueIndex]);
-	Edit2.Text := Floattostr(Series.YValue[ValueIndex]);
-end;
-
-procedure TFGraph.FormMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-	// Edit1.text:=inttostr(x);
-	// Edit2.TExt:=inttostr(Image1.Canvas.ClipRect.Bottom-y);
-end;
-
-procedure TFGraph.ScrollBar1Change(Sender: TObject);
-begin
-	Chart1.ZoomPercent(ScrollBar1.Position);
-	// Chart1.LeftAxis.Minimum:= 0;
-	// Chart1.LeftAxis.Maximum:= 4000;
-	// Chart1.BottomAxis.PositionPercent:= 50;
-end;
-
-procedure TFGraph.Timer1Timer(Sender: TObject);
-
-begin
-	i := i + 1;
-	if i = 500 then
-		Timer1.Enabled := false;
-
-	// Image1.Canvas.LineTo(i, Image1.Canvas.ClipRect.Bottom-i);
+	Label2.Caption := Floattostr(Series.XValue[ValueIndex]);
+	Label4.Caption := Floattostr(Series.YValue[ValueIndex]);
 end;
 
 end.

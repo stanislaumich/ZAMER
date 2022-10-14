@@ -71,8 +71,6 @@ __published: // IDE-managed Components
 	TEdit *EAveragingFactor;
 	TUpDown *UpDown5;
 	TLabel *Label1;
-	TTimer *TS;
-	TTimer *TQ;
 	TFDConnection *FDConnection1;
 	TFDQuery *Query1;
 	TFDQuery *QUpd;
@@ -81,6 +79,8 @@ __published: // IDE-managed Components
 	TBitBtn *BitBtn1;
 	TTimer *TimerCommand;
 	TFDQuery *QCommand;
+	TBitBtn *BitBtn2;
+	TFDQuery *QIns;
 
 	void __fastcall BConnectClick(TObject *Sender);
 	void __fastcall BStartClick(TObject *Sender);
@@ -89,12 +89,11 @@ __published: // IDE-managed Components
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall ReflectionTimerTimer(TObject *Sender);
 	void __fastcall CBDecoderTypeChange(TObject *Sender);
-	void __fastcall TSTimer(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
-	void __fastcall TQTimer(TObject *Sender);
 	void __fastcall BitBtn1Click(TObject *Sender);
 	void __fastcall TimerCommandTimer(TObject *Sender);
+	void __fastcall BitBtn2Click(TObject *Sender);
 
 private: // User declarations
 	int ClientID;
