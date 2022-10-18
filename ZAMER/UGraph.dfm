@@ -48,10 +48,10 @@ object FGraph: TFGraph
   object Label3: TLabel
     Left = 296
     Top = 599
-    Width = 143
+    Width = 106
     Height = 29
     Anchors = [akLeft, akBottom]
-    Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1077':'
+    Caption = #1052#1086#1084#1077#1085#1090':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -24
@@ -60,12 +60,40 @@ object FGraph: TFGraph
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 445
+    Left = 408
     Top = 599
     Width = 15
     Height = 29
     Anchors = [akLeft, akBottom]
     Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 638
+    Top = 599
+    Width = 15
+    Height = 29
+    Anchors = [akLeft, akBottom]
+    Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 512
+    Top = 599
+    Width = 120
+    Height = 29
+    Anchors = [akLeft, akBottom]
+    Caption = #1054#1073#1086#1088#1086#1090#1099':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -24
@@ -123,7 +151,7 @@ object FGraph: TFGraph
     Width = 75
     Height = 31
     Anchors = [akLeft, akBottom]
-    Caption = 'Graph'
+    Caption = #1055#1086#1089#1090#1088#1086#1080#1090#1100
     TabOrder = 1
     OnClick = Button4Click
   end
@@ -198,6 +226,7 @@ object FGraph: TFGraph
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     ParentFont = False
     TabOrder = 2
+    OnClick = BitBtn1Click
   end
   object QTemp: TFDQuery
     Connection = FMain.FDOra

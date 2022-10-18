@@ -363,13 +363,13 @@ begin
     QInsall.ParamByName('nomer').AsString := nomer;
     QInsall.ParamByName('usred').AsFloat  :=
       SimpleRoundTo(amax[row, i].usred, -4);
-    QInsall.ParamByName('u12').AsFloat  := SimpleRoundTo(amax[row, i].u1, -4);
-    QInsall.ParamByName('u23').AsFloat  := SimpleRoundTo(amax[row, i].u2, -4);
-    QInsall.ParamByName('u31').AsFloat  := SimpleRoundTo(amax[row, i].u3, -4);
+    QInsall.ParamByName('u12').AsFloat  := SimpleRoundTo(amax[row, i].u1, RazU);
+    QInsall.ParamByName('u23').AsFloat  := SimpleRoundTo(amax[row, i].u2, RazU);
+    QInsall.ParamByName('u31').AsFloat  := SimpleRoundTo(amax[row, i].u3, RazU);
     QInsall.ParamByName('torq').AsFloat :=
-      SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4);
+      SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM);
     QInsall.ParamByName('rot').AsFloat :=
-      SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4);
+      SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, RazN);
     QInsall.ParamByName('tip').AsInteger    := 1;
     QInsall.ParamByName('numisp').AsInteger := row;
     QInsall.ExecSQL;
@@ -384,11 +384,11 @@ begin
     + ' and tip=1');
   QTemp.Open;
   StringGrid7.cells[1, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, -4));
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, RazU));
   StringGrid7.cells[2, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4));
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM));
   StringGrid7.cells[3, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4));
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, RazN));
   QTemp.Close;
   Button27.Enabled := true;
   Button32.Enabled := false;
@@ -452,9 +452,9 @@ begin
     QInsall.ParamByName('nomer').AsString := nomer;
     QInsall.ParamByName('usred').AsFloat  :=
       SimpleRoundTo(amax[row, i].usred, -4);
-    QInsall.ParamByName('u12').AsFloat  := SimpleRoundTo(amin[row, i].u1, -4);
-    QInsall.ParamByName('u23').AsFloat  := SimpleRoundTo(amin[row, i].u2, -4);
-    QInsall.ParamByName('u31').AsFloat  := SimpleRoundTo(amin[row, i].u3, -4);
+    QInsall.ParamByName('u12').AsFloat  := SimpleRoundTo(amin[row, i].u1, RazU);
+    QInsall.ParamByName('u23').AsFloat  := SimpleRoundTo(amin[row, i].u2, RazU);
+    QInsall.ParamByName('u31').AsFloat  := SimpleRoundTo(amin[row, i].u3, RazU);
     QInsall.ParamByName('torq').AsFloat :=
       SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4);
     QInsall.ParamByName('rot').AsFloat :=
@@ -474,14 +474,17 @@ begin
 
   QTemp.Open;
   StringGrid8.cells[1, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, -4));
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, RazU));
   StringGrid8.cells[2, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4));
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM));
   StringGrid8.cells[3, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4));
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, RazN));
   QTemp.Close;
   Button37.Enabled := true;
-  Button42.Enabled := false;;
+  Button42.Enabled := false;
+  FGraph.Button4.Click;
+  FGraph.ShowModal;
+
 end;
 
 procedure TFMehan.FormActivate(Sender: TObject);

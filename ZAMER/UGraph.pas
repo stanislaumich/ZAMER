@@ -24,12 +24,15 @@ type
     Label3: TLabel;
     Label4: TLabel;
     BitBtn1: TBitBtn;
+    Label5: TLabel;
+    Label6: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
       ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState;
       X, Y: Integer);
+    procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,14 +46,23 @@ var
 
 implementation
 
-uses umain;
+uses umain,umehan;
 {$R *.dfm}
+
+procedure TFGraph.BitBtn1Click(Sender: TObject);
+begin
+ //QTemp.Close;
+ //QTemp.SQL.Clear;
+ //QTemp.Open('select * from zamertmp where id='+Label2.Caption);
+ //fmehan.Stringgrid8.Cells[1,fmehan.Stringgrid8.row]:='380';
+ fmehan.Stringgrid8.Cells[2,fmehan.Stringgrid8.row]:=LAbel4.Caption;//QTemp.FieldByName('torq').Asstring;
+ fmehan.Stringgrid8.Cells[3,fmehan.Stringgrid8.row]:=LAbel5.Caption;//QTemp.FieldByName('rot').Asstring;
+ FGraph.Close;
+end;
 
 procedure TFGraph.Button1Click(Sender: TObject);
 begin
   i := 0;
-  // Image1.Canvas.Moveto(0,Image1.Canvas.ClipRect.Bottom);
-  // Timer1.Enabled:=true;
 end;
 
 procedure TFGraph.Button3Click(Sender: TObject);
@@ -65,7 +77,6 @@ begin
   i  := 0;
 
   QTemp.Close;
-  // QTemp.SQL.Clear;
   QTemp.Open('select * from zamertmp order by ID');
   canvas.brush.Color := clred;
   canvas.MoveTo(x0, y0);
@@ -106,26 +117,27 @@ begin
   // step:=30;
   Series1.Clear;
   Series2.Clear;
+  LAbel2.Caption:='0';
+  LAbel4.Caption:='0';
+  LAbel5.Caption:='0';
   QTemp.Close;
   QTemp.Open('select * from zamertmp order by ID');
   step := QTemp.RecordCount div 30;
   While not QTemp.Eof do
   begin
-    Series1.AddXY(i, round(QTemp.fieldbyname('torq').asfloat), '', clGreen);
-    Series2.AddXY(i, round(QTemp.fieldbyname('rot').asfloat), '', clred);
+    Series1.AddXY(i, QTemp.fieldbyname('torq').asfloat, '', clGreen);
+    Series2.AddXY(i, QTemp.fieldbyname('rot').asfloat, '', clred);
     QTemp.Next;
     i := i + step;
   end;
-
-  // ShowMessage('done');
-
 end;
 
 procedure TFGraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
   ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   Label2.Caption := Floattostr(Series.XValue[ValueIndex]);
-  Label4.Caption := Floattostr(Series.YValue[ValueIndex]);
+  Label4.Caption:= floattostr(Chart1.Series[0].YValue[ValueIndex]);
+  Label5.Caption:= floattostr(Chart1.Series[1].YValue[ValueIndex])
 end;
 
 end.
