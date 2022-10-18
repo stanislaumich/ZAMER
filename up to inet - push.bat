@@ -1,6 +1,6 @@
 set /p place=< s:\place.txt
 cd BACKUP
-call backupzamer.bat 
+call _backupzamer.bat 
 cd ..
 git add .
 git commit -m "AUTO FROM %place% %date% %time%"
