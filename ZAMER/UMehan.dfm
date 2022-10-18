@@ -581,6 +581,7 @@ object FMehan: TFMehan
     Height = 25
     Caption = #1043#1088#1072#1092#1080#1082
     TabOrder = 7
+    Visible = False
     OnClick = Button1Click
   end
   object Timer1: TTimer

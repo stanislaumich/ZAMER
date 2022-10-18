@@ -976,11 +976,11 @@ object FMain: TFMain
     OnClick = CheckBox1Click
   end
   object Button4: TButton
-    Left = 768
-    Top = 444
-    Width = 75
+    Left = 734
+    Top = 440
+    Width = 261
     Height = 25
-    Caption = 'GRAPH'
+    Caption = #1043#1088#1072#1092#1080#1082' '#1087#1086#1089#1083#1077#1076#1085#1077#1075#1086' '#1079#1072#1084#1077#1088#1072' '#1052'45'
     TabOrder = 10
     OnClick = Button4Click
   end

@@ -12,6 +12,8 @@ object FGraph: TFGraph
   Font.Style = []
   OldCreateOrder = False
   WindowState = wsMaximized
+  OnClose = FormClose
+  OnCreate = FormCreate
   DesignSize = (
     987
     638)
@@ -126,7 +128,7 @@ object FGraph: TFGraph
       Selected.Hover.Visible = True
       Title = #1052#1086#1084#1077#1085#1090
       LinePen.Color = 10708548
-      LinePen.Width = 4
+      LinePen.Width = 5
       TreatNulls = tnDontPaint
       XValues.Name = 'X'
       XValues.Order = loAscending
@@ -137,7 +139,7 @@ object FGraph: TFGraph
       Selected.Hover.Visible = True
       Title = #1054#1073#1086#1088#1086#1090#1099
       LinePen.Color = 3513587
-      LinePen.Width = 4
+      LinePen.Width = 5
       TreatNulls = tnDontPaint
       XValues.Name = 'X'
       XValues.Order = loAscending
@@ -156,12 +158,12 @@ object FGraph: TFGraph
     OnClick = Button4Click
   end
   object BitBtn1: TBitBtn
-    Left = 800
+    Left = 776
     Top = 593
-    Width = 187
+    Width = 211
     Height = 44
     Anchors = [akRight, akBottom]
-    Caption = #1055#1088#1080#1085#1103#1090#1100
+    Caption = 'F9 '#1047#1072#1087#1080#1089#1072#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -24
@@ -228,9 +230,27 @@ object FGraph: TFGraph
     TabOrder = 2
     OnClick = BitBtn1Click
   end
+  object Edit1: TEdit
+    Left = 721
+    Top = 599
+    Width = 49
+    Height = 21
+    Anchors = [akLeft, akBottom]
+    TabOrder = 3
+    Text = '6'
+  end
   object QTemp: TFDQuery
     Connection = FMain.FDOra
     Left = 876
     Top = 128
+  end
+  object ActionList1: TActionList
+    Left = 40
+    Top = 260
+    object Action1: TAction
+      Caption = 'Action1'
+      ShortCut = 120
+      OnExecute = Action1Execute
+    end
   end
 end

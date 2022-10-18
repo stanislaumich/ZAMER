@@ -363,9 +363,9 @@ begin
     QInsall.ParamByName('nomer').AsString := nomer;
     QInsall.ParamByName('usred').AsFloat  :=
       SimpleRoundTo(amax[row, i].usred, -4);
-    QInsall.ParamByName('u12').AsFloat  := SimpleRoundTo(amax[row, i].u1, RazU);
-    QInsall.ParamByName('u23').AsFloat  := SimpleRoundTo(amax[row, i].u2, RazU);
-    QInsall.ParamByName('u31').AsFloat  := SimpleRoundTo(amax[row, i].u3, RazU);
+    QInsall.ParamByName('u12').AsFloat := SimpleRoundTo(amax[row, i].u1, RazU);
+    QInsall.ParamByName('u23').AsFloat := SimpleRoundTo(amax[row, i].u2, RazU);
+    QInsall.ParamByName('u31').AsFloat := SimpleRoundTo(amax[row, i].u3, RazU);
     QInsall.ParamByName('torq').AsFloat :=
       SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM);
     QInsall.ParamByName('rot').AsFloat :=
@@ -452,9 +452,9 @@ begin
     QInsall.ParamByName('nomer').AsString := nomer;
     QInsall.ParamByName('usred').AsFloat  :=
       SimpleRoundTo(amax[row, i].usred, -4);
-    QInsall.ParamByName('u12').AsFloat  := SimpleRoundTo(amin[row, i].u1, RazU);
-    QInsall.ParamByName('u23').AsFloat  := SimpleRoundTo(amin[row, i].u2, RazU);
-    QInsall.ParamByName('u31').AsFloat  := SimpleRoundTo(amin[row, i].u3, RazU);
+    QInsall.ParamByName('u12').AsFloat := SimpleRoundTo(amin[row, i].u1, RazU);
+    QInsall.ParamByName('u23').AsFloat := SimpleRoundTo(amin[row, i].u2, RazU);
+    QInsall.ParamByName('u31').AsFloat := SimpleRoundTo(amin[row, i].u3, RazU);
     QInsall.ParamByName('torq').AsFloat :=
       SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4);
     QInsall.ParamByName('rot').AsFloat :=

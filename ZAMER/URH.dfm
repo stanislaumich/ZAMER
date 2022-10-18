@@ -345,7 +345,6 @@ object FRH: TFRH
     Anchors = [akLeft]
     Caption = #1042#1099#1073#1086#1088' '#1074#1072#1088#1080#1072#1085#1090#1072' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 2
-    ExplicitTop = 71
     object StringGrid1: TStringGrid
       Left = 4
       Top = 28
@@ -389,7 +388,6 @@ object FRH: TFRH
     Anchors = [akLeft]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
-    ExplicitTop = 71
     DesignSize = (
       742
       400)
@@ -622,7 +620,6 @@ object FRH: TFRH
     Anchors = [akLeft]
     Caption = #1057#1086#1086#1073#1097#1072#1090#1100' '#1079#1074#1091#1082#1086#1084
     TabOrder = 4
-    ExplicitTop = 437
   end
   object ProgressBar1: TProgressBar
     Left = 4
@@ -631,7 +628,6 @@ object FRH: TFRH
     Height = 33
     Anchors = [akLeft]
     TabOrder = 5
-    ExplicitTop = 512
   end
   object Edit3: TEdit
     Left = 643
@@ -649,7 +645,6 @@ object FRH: TFRH
     Anchors = [akLeft]
     Caption = #1059#1076#1072#1083#1103#1090#1100
     TabOrder = 7
-    ExplicitTop = 477
   end
   object Edit4: TEdit
     Left = 60
@@ -659,7 +654,6 @@ object FRH: TFRH
     Anchors = [akLeft]
     TabOrder = 8
     Text = '0'
-    ExplicitTop = 477
   end
   object Edit5: TEdit
     Left = 199
@@ -669,7 +663,6 @@ object FRH: TFRH
     Anchors = [akLeft]
     TabOrder = 9
     Text = '0'
-    ExplicitTop = 477
   end
   object Edit6: TEdit
     Left = 340
@@ -679,7 +672,6 @@ object FRH: TFRH
     Anchors = [akLeft]
     TabOrder = 10
     Text = '0'
-    ExplicitTop = 477
   end
   object Edit7: TEdit
     Left = 450
@@ -689,7 +681,6 @@ object FRH: TFRH
     Anchors = [akLeft]
     TabOrder = 11
     Text = '0'
-    ExplicitTop = 477
   end
   object Edit8: TEdit
     Left = 643

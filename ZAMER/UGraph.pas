@@ -10,7 +10,7 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls,
   VclTee.TeeGDIPlus, VclTee.TeEngine, VclTee.Series, VclTee.TeeProcs,
-  VclTee.Chart, Vcl.Buttons;
+  VclTee.Chart, Vcl.Buttons, System.Actions, Vcl.ActnList;
 
 type
   TFGraph = class(TForm)
@@ -26,6 +26,9 @@ type
     BitBtn1: TBitBtn;
     Label5: TLabel;
     Label6: TLabel;
+    ActionList1: TActionList;
+    Action1: TAction;
+    Edit1: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
@@ -33,6 +36,9 @@ type
       ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState;
       X, Y: Integer);
     procedure BitBtn1Click(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,18 +52,25 @@ var
 
 implementation
 
-uses umain,umehan;
+uses umain, umehan;
 {$R *.dfm}
+
+procedure TFGraph.Action1Execute(Sender: TObject);
+begin
+  BitBtn1.Click;
+end;
 
 procedure TFGraph.BitBtn1Click(Sender: TObject);
 begin
- //QTemp.Close;
- //QTemp.SQL.Clear;
- //QTemp.Open('select * from zamertmp where id='+Label2.Caption);
- //fmehan.Stringgrid8.Cells[1,fmehan.Stringgrid8.row]:='380';
- fmehan.Stringgrid8.Cells[2,fmehan.Stringgrid8.row]:=LAbel4.Caption;//QTemp.FieldByName('torq').Asstring;
- fmehan.Stringgrid8.Cells[3,fmehan.Stringgrid8.row]:=LAbel5.Caption;//QTemp.FieldByName('rot').Asstring;
- FGraph.Close;
+  // QTemp.Close;
+  // QTemp.SQL.Clear;
+  // QTemp.Open('select * from zamertmp where id='+Label2.Caption);
+  // fmehan.Stringgrid8.Cells[1,fmehan.Stringgrid8.row]:='380';
+  fmehan.Stringgrid8.Cells[2, fmehan.Stringgrid8.row] := Label4.Caption;
+  // QTemp.FieldByName('torq').Asstring;
+  fmehan.Stringgrid8.Cells[3, fmehan.Stringgrid8.row] := Label5.Caption;
+  // QTemp.FieldByName('rot').Asstring;
+  FGraph.Close;
 end;
 
 procedure TFGraph.Button1Click(Sender: TObject);
@@ -115,11 +128,13 @@ begin
   cy := 10;
   i  := 0;
   // step:=30;
+  Series1.LinePen.Width := Strtoint(Edit1.text);
+  Series2.LinePen.Width := Strtoint(Edit1.text);
   Series1.Clear;
   Series2.Clear;
-  LAbel2.Caption:='0';
-  LAbel4.Caption:='0';
-  LAbel5.Caption:='0';
+  Label2.Caption := '0';
+  Label4.Caption := '0';
+  Label5.Caption := '0';
   QTemp.Close;
   QTemp.Open('select * from zamertmp order by ID');
   step := QTemp.RecordCount div 30;
@@ -136,8 +151,30 @@ procedure TFGraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
   ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   Label2.Caption := Floattostr(Series.XValue[ValueIndex]);
-  Label4.Caption:= floattostr(Chart1.Series[0].YValue[ValueIndex]);
-  Label5.Caption:= floattostr(Chart1.Series[1].YValue[ValueIndex])
+  Label4.Caption := Floattostr(Chart1.Series[0].YValue[ValueIndex]);
+  Label5.Caption := Floattostr(Chart1.Series[1].YValue[ValueIndex])
+end;
+
+procedure TFGraph.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  QTemp.Close;
+  QTemp.sql.Clear;
+  QTemp.sql.Add('delete from ini where name=' + Quotedstr('graph'));
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.sql.Clear;
+  QTemp.sql.Add('insert into ini(name, value) values(' + Quotedstr('graph') +
+    ',' + Edit1.text + ')');
+  QTemp.ExecSQL;
+end;
+
+procedure TFGraph.FormCreate(Sender: TObject);
+begin
+  QTemp.Close;
+  QTemp.sql.Clear;
+  QTemp.sql.Add('select * from ini where name=' + Quotedstr('graph'));
+  QTemp.Open;
+  Edit1.text := QTemp.fieldbyname('value').Asstring;
 end;
 
 end.
