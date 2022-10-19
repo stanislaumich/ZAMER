@@ -272,8 +272,8 @@ begin
                 begin
                    QTemp.Close;
                    QTemp.SQL.Clear;
-                   QTemp.SQL.Add('insert into ini(name, value) values(');
-                   QTemp.SQL.Add(QuotedStr(TComboBox(Components[i]).name)+', '+TComboBox(Components[i]).Items[j]);
+                   QTemp.SQL.Add('insert into ini (name, value) values(');
+                   QTemp.SQL.Add(QuotedStr(TComboBox(Components[i]).name)+', '+QuotedStr(TComboBox(Components[i]).Items[j])+')');
                    QTemp.ExecSQL;
                 end;
               end;
@@ -1420,7 +1420,7 @@ begin
     KRModbusMaster1.Active           := false;
     KRModbusMaster1.Connector.Active := false;
     PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
-
+    {
     Qtemp.Close;
     Qtemp.sql.clear;
     Qtemp.sql.Add('delete from ini where name=' + Quotedstr('TIPDVIG'));
@@ -1434,7 +1434,7 @@ begin
           ) + ', 0)');
         Qtemp.ExecSQL;
     end;
-
+    }
     savecombo;
     savegrids;
     WriteIni;
