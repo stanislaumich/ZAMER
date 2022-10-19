@@ -208,38 +208,25 @@ begin
     exit;
 
   // вот тут надо будет повносить суммарно всю таблицу
-  for i := 0 to StringGrid2.RowCount - 2 do
+  for i := 1 to StringGrid2.RowCount - 2 do
   begin
-    {
-      QInsSvod.ParamByName('nomer').Asstring :=
-      Qselectsred.FieldByName('nomer').Asstring;
+      QInsSvod.ParamByName('nomer').Asstring := nomer;
       QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
       QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
-      QInsSvod.ParamByName('usred').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU);
-      QInsSvod.ParamByName('isred').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('i').AsFloat, RazI);
-      QInsSvod.ParamByName('psred').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('p').AsFloat, RazP);
-      QInsSvod.ParamByName('dumax').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('umax').AsFloat, RazU);
-      QInsSvod.ParamByName('dpmax').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP);
-      QInsSvod.ParamByName('torq').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('t').AsFloat, RazM);
-      QInsSvod.ParamByName('rot').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN);
-      QInsSvod.ParamByName('power').AsFloat :=
-      simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
-      QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+      QInsSvod.ParamByName('power').AsFloat := StrToFloat(Stringgrid2.cells[0,i]);
+      QInsSvod.ParamByName('usred').AsFloat := StrToFloat(Stringgrid2.cells[1,i]);
+      QInsSvod.ParamByName('isred').AsFloat := StrToFloat(Stringgrid2.cells[2,i]);
+      QInsSvod.ParamByName('psred').AsFloat := StrToFloat(Stringgrid2.cells[3,i]);
+      QInsSvod.ParamByName('rot').AsFloat := StrToFloat(Stringgrid2.cells[4,i]);
+      QInsSvod.ParamByName('torq').AsFloat :=StrToFloat(Stringgrid2.cells[5,i]);
+      QInsSvod.ParamByName('dumax').AsFloat := StrToFloat(Stringgrid2.cells[6,i]);
+      QInsSvod.ParamByName('dpmax').AsFloat :=StrToFloat(Stringgrid2.cells[7,i]);
+      QInsSvod.ParamByName('tip').Asinteger := i;
       QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
       QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
       QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
       QInsSvod.ExecSQL;
-    }
-
-    // завершено внесение всей таблицы в свод
-  end;
+  end; // завершено внесение всей таблицы в свод
   FMain.Label30.font.Color := clGreen;
   FMain.Label30.Caption    := 'ПРОЙДЕН';
   FRH.Close;
@@ -322,7 +309,7 @@ begin
   FMain.QDelta.ExecSQL;
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('insert into ini (name,value) values(' +
-    Quotedstr('rhtime') + ',' + FRH.Edit1.Text + ')');
+    Quotedstr('rhtime') + ',' + Quotedstr(FRH.Edit1.Text) + ')');
   FMain.QDelta.ExecSQL;
 
   FMain.QDelta.SQL.Clear;
@@ -365,6 +352,7 @@ var
   f   : textfile;
   s   : string;
 begin
+
   AssignFile(f, extractfilepath(paramstr(0)) + '\GridRH.TXT');
   ReSet(f);
   for i   := 1 to 10 do

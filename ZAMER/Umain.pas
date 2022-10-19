@@ -274,9 +274,7 @@ begin
                    QTemp.SQL.Clear;
                    QTemp.SQL.Add('insert into ini(name, value) values(');
                    QTemp.SQL.Add(QuotedStr(TComboBox(Components[i]).name)+', '+TComboBox(Components[i]).Items[j]);
-
                    QTemp.ExecSQL;
-
                 end;
               end;
 
@@ -324,7 +322,6 @@ for i := 0 to FMain.ComponentCount - 1 do
                  QTemp.Next;
                 end;
               end;
-
         end;
     end;
 
@@ -448,7 +445,7 @@ begin
     if buttonSelected = mrYes then
     begin
         ComboBox1.Items.Add(ComboBox1.Text);
-        ComboBox6.Items.Add(ComboBox1.Text);
+        ComboBox6.Items.Add(ComboBox6.Text);
         Qtemp.Open('select getnomer nomer from dual');
         Edit13.Text := Qtemp.FieldByName('nomer').Asstring;
         Nomer       := Edit13.Text;
