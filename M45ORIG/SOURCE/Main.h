@@ -81,6 +81,7 @@ __published: // IDE-managed Components
   TFDQuery *QCommand;
   TBitBtn *BitBtn2;
   TFDQuery *QIns;
+	TMemo *Memo2;
 
   void __fastcall BConnectClick(TObject *Sender);
   void __fastcall BStartClick(TObject *Sender);

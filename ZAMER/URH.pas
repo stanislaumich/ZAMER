@@ -114,6 +114,7 @@ var
   a       : array [1 .. 1000] of R;
   acount  : Integer;
   tipispyt: Integer;
+  ch:boolean;
 
 implementation
 
@@ -168,6 +169,14 @@ end;
 
 procedure TFRH.BitBtn1Click(Sender: TObject);
 begin
+ ch:=true;
+  if (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or
+    (Edit7.Text = '') then
+  begin
+    Showmessage('Проверьте температуру и сопротивление в нижней части окна');
+    exit;
+  end;
+
   BitBtn1.Enabled := false;
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -186,7 +195,51 @@ begin
 end;
 
 procedure TFRH.BitBtn2Click(Sender: TObject);
+var
+  buttonSelected: Integer;
+  i             : Integer;
 begin
+  // проверить температуру
+  buttonSelected :=
+    MessageDlg
+    ('Врно ли внесены значения температуры и сопротивления? Если выбрать НЕТ, то их можно скорректировать и потом опять сохранить',
+    mtConfirmation, mbYesNo, 0);
+  if buttonSelected = mrNo then
+    exit;
+
+  // вот тут надо будет повносить суммарно всю таблицу
+  for i := 0 to StringGrid2.RowCount - 2 do
+  begin
+    {
+      QInsSvod.ParamByName('nomer').Asstring :=
+      Qselectsred.FieldByName('nomer').Asstring;
+      QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
+      QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
+      QInsSvod.ParamByName('usred').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU);
+      QInsSvod.ParamByName('isred').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('i').AsFloat, RazI);
+      QInsSvod.ParamByName('psred').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('p').AsFloat, RazP);
+      QInsSvod.ParamByName('dumax').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('umax').AsFloat, RazU);
+      QInsSvod.ParamByName('dpmax').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP);
+      QInsSvod.ParamByName('torq').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('t').AsFloat, RazM);
+      QInsSvod.ParamByName('rot').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN);
+      QInsSvod.ParamByName('power').AsFloat :=
+      simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
+      QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+      QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
+      QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
+      QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
+      QInsSvod.ExecSQL;
+    }
+
+    // завершено внесение всей таблицы в свод
+  end;
   FMain.Label30.font.Color := clGreen;
   FMain.Label30.Caption    := 'ПРОЙДЕН';
   FRH.Close;
@@ -197,9 +250,9 @@ var
   i, j: Integer;
 begin
   for i                       := 0 to StringGrid2.colcount - 1 do
-    for j                     := 1 to StringGrid2.rowcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.cells[i, j] := '';
-  StringGrid2.rowcount        := 2;
+  StringGrid2.RowCount        := 2;
   RadioButton1.Checked        := false;
   RadioButton2.Checked        := false;
   RadioButton3.Checked        := false;
@@ -222,7 +275,7 @@ begin
   Label3.Caption  := FMain.Edit6.Text;
   Label10.Caption := FMain.Edit7.Text;
   Label17.Caption := Floattostr(Strtofloat(FMain.Edit7.Text) * 1000);
-
+  ch:=false;
   for i                     := 1 to 8 do
     StringGrid1.cells[0, i] := inttostr(i);
   StringGrid1.cells[0, 0]   := '№';
@@ -244,7 +297,16 @@ var
   i, j: Integer;
   f   : textfile;
 begin
-  AssignFile(f, extractfilepath(paramstr(0)) + '\GridRH.TXT');
+   if ch then
+    if MessageDlg('У вас есть несохраненная работа, она может быть утеряна, действительно закрыть окно?',mtConfirmation,[mbYes, mbNo],0) = mrYes then
+    begin
+
+     CanClose := True;
+    end
+    else
+    CanClose := False;
+
+    AssignFile(f, extractfilepath(paramstr(0)) + '\GridRH.TXT');
   ReWrite(f);
   for i   := 1 to 10 do
     for j := 1 to 3 do
@@ -254,6 +316,14 @@ begin
   CloseFile(f);
 
   // delta and del
+
+  FMain.QDelta.SQL.Clear;
+  FMain.QDelta.SQL.Add('delete from ini where name=' + Quotedstr('rhtime'));
+  FMain.QDelta.ExecSQL;
+  FMain.QDelta.SQL.Clear;
+  FMain.QDelta.SQL.Add('insert into ini (name,value) values(' +
+    Quotedstr('rhtime') + ',' + FRH.Edit1.Text + ')');
+  FMain.QDelta.ExecSQL;
 
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('urh'));
@@ -285,6 +355,7 @@ begin
     QTemp.SQL.Add('insert into ini (name,value) values(' +
       Quotedstr('rhdel') + ',0)');
   QTemp.ExecSQL;
+
 end;
 
 procedure TFRH.FormCreate(Sender: TObject);
@@ -303,7 +374,8 @@ begin
       StringGrid1.cells[j, i] := s;
     end;
   CloseFile(f);
-
+  FMain.QDelta.Open('select value from ini where name=' + Quotedstr('rhtime'));
+  FRH.Edit1.Text := FMain.QDelta.FieldByName('value').Asstring;
   FMain.QDelta.Open('select value from zdelta where name=' + Quotedstr('urh'));
   FRH.Edit2.Text := FMain.QDelta.FieldByName('value').Asstring;
   FMain.QDelta.Open('select value from zdelta where name=' + Quotedstr('prh'));
@@ -331,27 +403,27 @@ var
 
 begin
   for i                       := 0 to StringGrid2.colcount - 1 do
-    for j                     := 1 to StringGrid2.rowcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.cells[i, j] := '';
   if StringGrid1.cells[1, 1] = '' then
   begin
-    ShowMessage('Нет данных для испытания');
+    Showmessage('Нет данных для испытания');
     exit;
   end;
 
   val(Label3.Caption, currentpower, cod);
   if cod = 0 then
   begin
-    StringGrid2.rowcount := 2;
-    for i                := 1 to StringGrid1.rowcount - 1 do
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.cells[1, i] <> '' then
       begin
-        StringGrid2.rowcount    := StringGrid2.rowcount + 1;
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
         StringGrid2.cells[0, i] :=
           Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
           Strtoint(StringGrid1.cells[1, i]), RazP));
       end;
-    StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
+    StringGrid2.cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row                                := 1;
     tipispyt                                       := 1;
     Label6.Caption                                 := Label3.Caption;
@@ -361,7 +433,7 @@ begin
     BitBtn3.Enabled                                := True;
   end
   else
-    ShowMessage
+    Showmessage
       ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
@@ -372,27 +444,27 @@ var
 
 begin
   for i                       := 0 to StringGrid2.colcount - 1 do
-    for j                     := 1 to StringGrid2.rowcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.cells[i, j] := '';
   if StringGrid1.cells[1, 1] = '' then
   begin
-    ShowMessage('Нет данных для испытания');
+    Showmessage('Нет данных для испытания');
     exit;
   end;
 
   val(Label3.Caption, currentpower, cod);
   if cod = 0 then
   begin
-    StringGrid2.rowcount := 2;
-    for i                := 1 to StringGrid1.rowcount - 1 do
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.cells[2, i] <> '' then
       begin
-        StringGrid2.rowcount    := StringGrid2.rowcount + 1;
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
         StringGrid2.cells[0, i] :=
           Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
           Strtoint(StringGrid1.cells[2, i]), RazP));
       end;
-    StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
+    StringGrid2.cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row                                := 1;
     tipispyt                                       := 2;
     Label6.Caption                                 := Label3.Caption;
@@ -402,7 +474,7 @@ begin
     BitBtn3.Enabled                                := True;
   end
   else
-    ShowMessage
+    Showmessage
       ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
@@ -413,28 +485,28 @@ var
 
 begin
   for i                       := 0 to StringGrid2.colcount - 1 do
-    for j                     := 1 to StringGrid2.rowcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.cells[i, j] := '';
 
   if StringGrid1.cells[1, 1] = '' then
   begin
-    ShowMessage('Нет данных для испытания');
+    Showmessage('Нет данных для испытания');
     exit;
   end;
 
   val(Label3.Caption, currentpower, cod);
   if cod = 0 then
   begin
-    StringGrid2.rowcount := 2;
-    for i                := 1 to StringGrid1.rowcount - 1 do
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.cells[3, i] <> '' then
       begin
-        StringGrid2.rowcount    := StringGrid2.rowcount + 1;
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
         StringGrid2.cells[0, i] :=
           Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
           Strtoint(StringGrid1.cells[3, i]), RazP));
       end;
-    StringGrid2.cells[0, StringGrid2.rowcount - 1] := '';
+    StringGrid2.cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row                                := 1;
     tipispyt                                       := 3;
     Label6.Caption                                 := Label3.Caption;
@@ -444,17 +516,17 @@ begin
     BitBtn3.Enabled                                := True;
   end
   else
-    ShowMessage
+    Showmessage
       ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
 procedure TFRH.StringGrid2Click(Sender: TObject);
 begin
-  if StringGrid2.row = StringGrid2.rowcount - 1 then
+  if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
 
   if StringGrid2.cells[0, StringGrid2.row] = '' then
-    ShowMessage('Выбрано завершение испытания')
+    Showmessage('Выбрано завершение испытания')
   else
   begin
     Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
@@ -476,18 +548,6 @@ begin
     exit;
   if StringGrid2.cells[1, ARow] = '' then
     exit;
-  { ok := (abs(Strtofloat(StringGrid2.cells[1, ARow]) -
-    Strtofloat(StringGrid2.cells[0, ARow])) < Strtofloat(Edit2.Text)) or
-    (StringGrid2.cells[4, ARow] = '');
-    if (ACol = 4) and (not ok) then
-    begin
-    // выбираем зеленный цвет и закрашиваем что нам нужно
-    StringGrid2.Canvas.Brush.Color := clYellow;
-    StringGrid2.Canvas.FillRect(Rect);
-    StringGrid2.Canvas.TextOut(Rect.Left, Rect.Top,
-    StringGrid2.cells[ACol, ARow]);
-    StringGrid2.Canvas.Brush.Color := clWhite;
-    end; }
 end;
 
 procedure TFRH.Timer1000Timer(Sender: TObject);
@@ -547,33 +607,35 @@ begin
     QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(Nomer) +
       ' and uisp=' + Label6.Caption + ' and pisp=' + Point(Label8.Caption));
     QTemp.ExecSQL;
-    QInsSvod.ParamByName('nomer').Asstring :=
+
+    // потом надо будет перенести
+    { QInsSvod.ParamByName('nomer').Asstring :=
       Qselectsred.FieldByName('nomer').Asstring;
-    QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
-    QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
-    QInsSvod.ParamByName('usred').AsFloat :=
+      QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
+      QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
+      QInsSvod.ParamByName('usred').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU);
-    QInsSvod.ParamByName('isred').AsFloat :=
+      QInsSvod.ParamByName('isred').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('i').AsFloat, RazI);
-    QInsSvod.ParamByName('psred').AsFloat :=
+      QInsSvod.ParamByName('psred').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('p').AsFloat, RazP);
-    QInsSvod.ParamByName('dumax').AsFloat :=
+      QInsSvod.ParamByName('dumax').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('umax').AsFloat, RazU);
-    QInsSvod.ParamByName('dpmax').AsFloat :=
+      QInsSvod.ParamByName('dpmax').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP);
-    QInsSvod.ParamByName('torq').AsFloat :=
+      QInsSvod.ParamByName('torq').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('t').AsFloat, RazM);
-    QInsSvod.ParamByName('rot').AsFloat :=
+      QInsSvod.ParamByName('rot').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN);
-    QInsSvod.ParamByName('power').AsFloat :=
+      QInsSvod.ParamByName('power').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
-    QInsSvod.ParamByName('tip').Asinteger := tipispyt;
-    QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
-    QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
-    QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
-
-    QInsSvod.ExecSQL;
-
+      QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+      QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
+      QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
+      QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
+      QInsSvod.ExecSQL;
+    }
+    // ++++ вверх это вырезать
     StringGrid2.cells[1, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU));
     StringGrid2.cells[2, StringGrid2.row] :=
@@ -596,7 +658,7 @@ begin
       BitBtn1.Enabled := True;
       BitBtn2.Enabled := True;
       BitBtn3.Enabled := True;
-      ShowMessage('Испытание завершено!')
+      Showmessage('Испытание завершено!')
     end
     else
     begin

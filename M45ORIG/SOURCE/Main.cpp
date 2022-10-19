@@ -17,6 +17,8 @@ String nomer;
 int Datchik;
 int Interval;
 
+float Popravkam[6];
+
 bool EN = false;
 
 const int reflcnt = 10;
@@ -88,6 +90,12 @@ void __fastcall TForm1::BConnectClick(TObject *Sender) {
   ParamComPort.StopBits = 0;
   PSpecialParametrs->PParamComPort = &ParamComPort;
   PSpecialParametrs->ServerAddress = ServerAddress;
+  PSpecialParametrs->Popravka[0]=0;
+  PSpecialParametrs->Popravka[1]=0;
+  PSpecialParametrs->Popravka[2]=0;
+  PSpecialParametrs->Popravka[3]=0;
+  PSpecialParametrs->Popravka[4]=0;
+  PSpecialParametrs->Popravka[5]=0;
   // Адрес декодера в локальной сети
   PSpecialParametrs->AnotherServerBasePortNumber = PortBase;
   // Базовый адрес порта декодера
@@ -163,6 +171,7 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action) {
 
 // --------------------- ОБРАБОТЧИК ДАННЫХ, ПОСТУПАЮЩИХ ОТ ДЕКОДЕРА
 int __stdcall DataHandler(int DataType, void *PZapis, void *PContext) {
+
   struct _DataFrame *PDataFrame;
   TForm1 *PForm1 = (TForm1*)PContext;
   switch (DataType) {
@@ -174,12 +183,14 @@ int __stdcall DataHandler(int DataType, void *PZapis, void *PContext) {
     /////////////////////////////////////////////////////////
     PDataFrame = (struct _DataFrame*)PZapis;
     PForm1->SostDat_CrSe->Enter();
-    PForm1->SummaZn_Osn += PDataFrame->OsnIzmVel[0] + corr;
-    PForm1->KolIzmOto++;
-    PForm1->Temperature = PDataFrame->Temper;
-    PForm1->Skorost = PDataFrame->Skorost;
-    PForm1->Moshn = PDataFrame->Moschnost;
-    PForm1->SostDat_CrSe->Leave();
+
+	PForm1->SummaZn_Osn += PDataFrame->OsnIzmVel[0];// + corr;
+	PForm1->KolIzmOto++;
+	PForm1->Temperature = PDataFrame->Temper;
+	PForm1->Skorost = PDataFrame->Skorost;
+	PForm1->Moshn = PDataFrame->Moschnost;
+
+	PForm1->SostDat_CrSe->Leave();
     break;
 
   case DATA_TYPE_MESSAGES: // Тип данных - сообщения декодера
@@ -314,7 +325,45 @@ void __fastcall TForm1::UserMessage(TMessage& msg) {
 // --------------------- ОБРАБОТЧИК ТАЙМЕРА ДЛЯ ВЫСВЕТКИ ЗНАЧЕНИЙ НА ПАНЕЛЯХ ФОРМЫ
 void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
   AnsiString AS;
+  String s = "";
   int i;
+  //////////////////////////////////////////////////////////////////////////////////////////
+  if (KolIzmOto == 0)
+	return;
+  SostDat_CrSe->Enter();
+  Znachenie = SummaZn_Osn / (double)KolIzmOto +corr; // среднее значение
+
+  Form1->Moshn = abs(Znachenie) * abs(Skorost) / 9.546;//PDataFrame->Moschnost;
+
+  SummaZn_Osn = 0;
+  KolIzmOto = 0;
+  SostDat_CrSe->Leave();
+
+  try { // Form1->Moshn = Znachenie * abs(Skorost) / 9.546;
+    QUpd->ParamByName("torq")->AsFloat = abs(Znachenie);
+	QUpd->ParamByName("rot")->AsFloat = abs(Skorost);
+    QUpd->ParamByName("power")->AsFloat = abs(Moshn);
+    QUpd->ExecSQL();
+    // STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
+  }
+  catch (...) {
+  }
+
+  if (EN) {
+    try { // Form1->Moshn = Znachenie * abs(Skorost) / 9.546;
+      // ( :TORQ, :OT, :POWER,:NOMER, :PNOM )
+	  QIns->ParamByName("torq")->AsFloat = abs(Znachenie);
+      QIns->ParamByName("rot")->AsFloat = abs(Skorost);
+	  QIns->ParamByName("power")->AsFloat = abs(Moshn);
+	  QIns->ParamByName("nomer")->AsString = nomer;
+      QIns->ParamByName("pnom")->AsFloat = 0;
+      QIns->ExecSQL();
+      // STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
+    }
+    catch (...) {
+    }
+  }
+  // отображаем на экране
   refltime++;
   if (refltime == reflcnt) {
     SostDat_CrSe->Enter();
@@ -334,47 +383,16 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
       STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
     }
     // ................... Формирование строки для отображения мощности на панели
-    STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Moshn));
+	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Moshn));
     SostDat_CrSe->Leave();
     Application->ProcessMessages();
-    refltime = 0;
+	refltime = 0;
+	s = s + FloatToStr(abs(Znachenie))+";"+FloatToStr(corr)+";";
+	s = s + FloatToStr(abs(Skorost))+";";
+	s = s + FloatToStr(abs(Moshn))+";"+FloatToStr(abs(Znachenie) * abs(Skorost) / 9.546)+";";
+	//Form1->Memo2->Lines->Add(s);
+    Application->ProcessMessages();
   }
-  //////////////////////////////////////////////////////////////////////////////////////////
-
-  if (KolIzmOto == 0)
-    return;
-
-  SostDat_CrSe->Enter();
-  Znachenie = SummaZn_Osn / (double)KolIzmOto; // среднее значение
-  SummaZn_Osn = 0;
-  KolIzmOto = 0;
-  SostDat_CrSe->Leave();
-
-  try { // Form1->Moshn = Znachenie * abs(Skorost) / 9.546;
-    QUpd->ParamByName("torq")->AsFloat = abs(Znachenie);
-    QUpd->ParamByName("rot")->AsFloat = abs(Skorost);
-    QUpd->ParamByName("power")->AsFloat = abs(Moshn);
-    QUpd->ExecSQL();
-    // STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
-  }
-  catch (...) {
-  }
-
-  if (EN) {
-    try { // Form1->Moshn = Znachenie * abs(Skorost) / 9.546;
-      // ( :TORQ, :OT, :POWER,:NOMER, :PNOM )
-      QIns->ParamByName("torq")->AsFloat = abs(Znachenie);
-      QIns->ParamByName("rot")->AsFloat = abs(Skorost);
-      QIns->ParamByName("power")->AsFloat = abs(Moshn);
-      QIns->ParamByName("nomer")->AsString = nomer;
-      QIns->ParamByName("pnom")->AsFloat = 0;
-      QIns->ExecSQL();
-      // STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
-    }
-    catch (...) {
-    }
-  }
-
 }
 
 // --------------------- Очистить панель отображения
@@ -465,12 +483,15 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
   // BConnectClick(self);++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings.ini");
-  // TRect *r = new TRect;
-  // GetWindowRect(this->Handle, r);
-  // int l = r->Left;
-  // int t = r->Top;
-  // Ini->ReadString("Position", "Left", 10);
-  // Ini->ReadString("Position", "Top", 10);
+   //TRect *r = new TRect;
+   //GetWindowRect(this->Handle, r);
+   int l = 10;
+   int t = 10;
+   l = Ini->ReadInteger("Position", "Left", 10);
+   t = Ini->ReadInteger("Position", "Top", 10);
+   Form1->Left = l;
+   Form1->Top = t;
+   Form1->Repaint();
   /*
    Ini->WriteFloat("DECODER", "Torque", 0);
    Ini->WriteFloat("DECODER", "Speed", 0);
@@ -480,6 +501,13 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
   corr = Ini->ReadFloat("Datchik", "Corr", 0);
   Edit1->Text = Ini->ReadString("Datchik", "Corr", "0");
+  Popravkam[0] = Ini->ReadFloat("Datchik", "Popravka0", 0);
+  Popravkam[1] = Ini->ReadFloat("Datchik", "Popravka1", 0);
+  Popravkam[2] = Ini->ReadFloat("Datchik", "Popravka2", 0);
+  Popravkam[3] = Ini->ReadFloat("Datchik", "Popravka3", 0);
+  Popravkam[4] = Ini->ReadFloat("Datchik", "Popravka4", 0);
+  Popravkam[5] = Ini->ReadFloat("Datchik", "Popravka5", 0);
+
   Ini->Free();
 
   char ServerAddress[300];
@@ -507,6 +535,12 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
   ParamComPort.StopBits = 0;
   PSpecialParametrs->PParamComPort = &ParamComPort;
   PSpecialParametrs->ServerAddress = ServerAddress;
+  PSpecialParametrs->Popravka[0]=Popravkam[0];
+  PSpecialParametrs->Popravka[1]=Popravkam[1];
+  PSpecialParametrs->Popravka[2]=Popravkam[2];
+  PSpecialParametrs->Popravka[3]=Popravkam[3];
+  PSpecialParametrs->Popravka[4]=Popravkam[4];
+  PSpecialParametrs->Popravka[5]=Popravkam[5];
   // Адрес декодера в локальной сети
   PSpecialParametrs->AnotherServerBasePortNumber = PortBase;
   // Базовый адрес порта декодера
@@ -556,13 +590,15 @@ void __fastcall TForm1::FormCloseQuery(TObject *Sender, bool &CanClose) {
   int t = r->Top;
   Ini->WriteString("Position", "Left", IntToStr(l));
   Ini->WriteString("Position", "Top", IntToStr(t));
-
-  Ini->WriteFloat("DECODER", "Torque", 0);
-  Ini->WriteFloat("DECODER", "Speed", 0);
-  Ini->WriteInteger("DECODER", "Average", 0);
-
+  Ini->WriteFloat("Datchik", "Popravka0", Popravkam[0]);
+  Ini->WriteFloat("Datchik", "Popravka1", Popravkam[1]);
+  Ini->WriteFloat("Datchik", "Popravka2", Popravkam[2]);
+  Ini->WriteFloat("Datchik", "Popravka3", Popravkam[3]);
+  Ini->WriteFloat("Datchik", "Popravka4", Popravkam[4]);
+  Ini->WriteFloat("Datchik", "Popravka5", Popravkam[5]);
   Ini->WriteInteger("DECODER", "Datchik", DecoderType);
   Ini->Free();
+  Memo2->Lines->SaveToFile(ExtractFilePath(ParamStr(0))+"123.txt");
 }
 // ---------------------------------------------------------------------------
 
@@ -646,3 +682,4 @@ void __fastcall TForm1::BitBtn2Click(TObject *Sender) {
   Ini->Free();
 }
 // ---------------------------------------------------------------------------
+

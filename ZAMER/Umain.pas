@@ -256,16 +256,30 @@ end;
 
 procedure TFMain.savecombo;
 var
-    i: Integer;
+    i,j: Integer;
 begin
     for i := 0 to FMain.ComponentCount - 1 do
     begin
         if Components[i] is TComboBox then
         begin
             if TComboBox(Components[i]).Tag <> 500 then
-                TComboBox(Components[i]).Items.savetofile
-                  (Extractfilepath(paramstr(0)) + '\' + TComboBox(Components[i])
-                  .name + '.txt');
+              begin
+               QTemp.Close;
+               QTemp.SQL.Clear;
+               QTemp.SQL.Add('delete from ini where name='+Quotedstr(TComboBox(Components[i]).name));
+               QTemp.ExecSQL;
+               for j:=0 to TComboBox(Components[i]).Items.Count-1 do
+                begin
+                   QTemp.Close;
+                   QTemp.SQL.Clear;
+                   QTemp.SQL.Add('insert into ini(name, value) values(');
+                   QTemp.SQL.Add(QuotedStr(TComboBox(Components[i]).name)+', '+TComboBox(Components[i]).Items[j]);
+
+                   QTemp.ExecSQL;
+
+                end;
+              end;
+
         end;
     end;
 end;
@@ -296,16 +310,24 @@ procedure TFMain.restorecombo;
 var
     i: Integer;
 begin
-    for i := 0 to FMain.ComponentCount - 1 do
+for i := 0 to FMain.ComponentCount - 1 do
     begin
         if Components[i] is TComboBox then
         begin
             if TComboBox(Components[i]).Tag <> 500 then
-                TComboBox(Components[i]).Items.loadfromfile
-                  (Extractfilepath(paramstr(0)) + '\' + TComboBox(Components[i])
-                  .name + '.txt');
+              begin
+               QTemp.Close;
+               QTemp.Open('select distinct(value) v from ini where name='+QuotedStr(TComboBox(Components[i]).name));
+               while not QTemp.Eof do
+                begin
+                 TComboBox(Components[i]).Items.Add(QTemp.FieldByName('v').AsString);
+                 QTemp.Next;
+                end;
+              end;
+
         end;
     end;
+
     ComboBox4.Items.clear;
     Qtemp.Close;
     Qtemp.Open('select Name from stend');
@@ -425,6 +447,8 @@ begin
       mtConfirmation, mbYesNo, 0);
     if buttonSelected = mrYes then
     begin
+        ComboBox1.Items.Add(ComboBox1.Text);
+        ComboBox6.Items.Add(ComboBox1.Text);
         Qtemp.Open('select getnomer nomer from dual');
         Edit13.Text := Qtemp.FieldByName('nomer').Asstring;
         Nomer       := Edit13.Text;
@@ -490,7 +514,8 @@ end;
 
 procedure TFMain.LoadIspyt(Nomer: String);
 var
-    tip: Integer;
+    tip : Integer;
+    i, j: Integer;
 begin
     // загрузить сопротивление если есть
     Qtemp.Close;
@@ -591,6 +616,12 @@ begin
 
     /// ////////////////////////////////////////////////////////////
     // загрузить Рабочую характеристику если есть
+    // FRH.BitBtn3.Click;
+    for i                               := 0 to Frh.Stringgrid2.colcount - 1 do
+        for j                           := 1 to Frh.Stringgrid2.rowcount - 1 do
+            Frh.Stringgrid2.Cells[i, j] := '';
+    Frh.Stringgrid2.rowcount            := 2;
+
     Qtemp.Close;
     Qtemp.sql.clear;
     Qtemp.Open('select * from zrhsvod where nomer=' + Quotedstr(Nomer) +
@@ -600,6 +631,7 @@ begin
         Label30.Caption    := 'X';
         Label30.Font.Color := clRed;
     end
+
     else
     begin
         Label30.Caption    := 'ПРОЙДЕН';
