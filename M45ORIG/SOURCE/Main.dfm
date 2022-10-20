@@ -564,7 +564,6 @@ object Form1: TForm1
     Height = 356
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 16
-    ExplicitHeight = 275
   end
   object ReflectionTimer: TTimer
     Enabled = False

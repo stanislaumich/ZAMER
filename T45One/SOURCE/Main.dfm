@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Request-Answer mode example'
   ClientHeight = 471
-  ClientWidth = 759
+  ClientWidth = 744
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -70,6 +70,13 @@ object Form1: TForm1
     Height = 17
     AutoSize = False
     Caption = 'Protocol'
+  end
+  object Label1: TLabel
+    Left = 468
+    Top = 232
+    Width = 30
+    Height = 13
+    Caption = 'Period'
   end
   object EComPortNumber: TEdit
     Left = 617
@@ -280,7 +287,7 @@ object Form1: TForm1
   end
   object BConnect: TButton
     Left = 464
-    Top = 243
+    Top = 255
     Width = 121
     Height = 33
     Caption = 'Open'
@@ -446,5 +453,37 @@ object Form1: TForm1
     Items.Strings = (
       'Modbus TCP'
       'TILKOM protocol')
+  end
+  object Button1: TButton
+    Left = 464
+    Top = 326
+    Width = 121
+    Height = 37
+    Caption = 'Start/Stop'
+    TabOrder = 21
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 464
+    Top = 372
+    Width = 121
+    Height = 29
+    Caption = 'Save'
+    TabOrder = 22
+    OnClick = Button2Click
+  end
+  object Edit1: TEdit
+    Left = 504
+    Top = 228
+    Width = 53
+    Height = 21
+    TabOrder = 23
+    Text = '100'
+  end
+  object Timer1: TTimer
+    Enabled = False
+    OnTimer = Timer1Timer
+    Left = 568
+    Top = 40
   end
 end

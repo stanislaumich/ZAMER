@@ -23,7 +23,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
   BReadComplex->Enabled = false;
   BReadMessage->Enabled = false;
 
-  CBDecoderType->ItemIndex = 0;
+  CBDecoderType->ItemIndex = 7;
   CBDecoderTypeChange(this);
 }
 // --------------------- "Open" BUTTON
@@ -42,6 +42,9 @@ void __fastcall TForm1::BConnectClick(TObject *Sender)
   
   NKan=1;
 
+  //DecoderType =	SIMULATOR_DECODER;
+
+
   BConnect->Enabled = false;
   PSpecialParametrs = (struct _SpecialParametrs *) calloc (sizeof (struct _SpecialParametrs), 1);
   PSpecialParametrs->AveragingFactor = StrToInt (EAveragingFactor->Text); // Data Averaging Coefficient
@@ -59,7 +62,7 @@ void __fastcall TForm1::BConnectClick(TObject *Sender)
   PSpecialParametrs->EthernetProtocolType = CB_Protocol->ItemIndex;
   // ................... Creating a decoder
   PDecoder = (TDecoder *) DecoderCreate (NKan,
-                                         DecoderType,
+										 DecoderType,
                                          NULL,
                                          NULL,
                                          PSpecialParametrs);
@@ -478,4 +481,26 @@ void TForm1::Pause (unsigned int Timeout)
   delete PEvent2;
 }
 // ------------------------------------------------ ---------------------------
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+ Timer1->Interval = StrToInt(Edit1->Text);
+ Timer1->Enabled = !Timer1->Enabled;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+ Memo1->Lines->SaveToFile(ExtractFilePath(ParamStr(0))+"zamer.csv");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+ String s="";
+ BReadComplexClick(Sender);
+ s= STOsnIzmVel->Caption+";"+STSkorost->Caption+";"+STMoschnost->Caption+";";
+ Memo1->Lines->Add(s);
+}
+//---------------------------------------------------------------------------
 

@@ -11,6 +11,9 @@
 
 TForm1 *Form1;
 float Znachenie;
+float mySkorost;
+float mySkorostAll;
+int times;
 float pisp;
 float corr = 0;
 String nomer;
@@ -123,6 +126,9 @@ void __fastcall TForm1::BConnectClick(TObject *Sender) {
   BStart->Enabled = true;
   BStop->Enabled = false;
   BDisconnect->Enabled = true;
+  mySkorostAll = 0;
+  mySkorost = 0;
+  times = 0;
 }
 
 // --------------------- КНОПКА "СТАРТ ИЗМЕРЕНИЙ"
@@ -186,6 +192,8 @@ int __stdcall DataHandler(int DataType, void *PZapis, void *PContext) {
 
 	PForm1->SummaZn_Osn += PDataFrame->OsnIzmVel[0];// + corr;
 	PForm1->KolIzmOto++;
+	mySkorostAll+=PDataFrame->Skorost;
+	times+=1;
 	PForm1->Temperature = PDataFrame->Temper;
 	PForm1->Skorost = PDataFrame->Skorost;
 	PForm1->Moshn = PDataFrame->Moschnost;
@@ -332,6 +340,11 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	return;
   SostDat_CrSe->Enter();
   Znachenie = SummaZn_Osn / (double)KolIzmOto +corr; // среднее значение
+  if (times!=0){
+	mySkorost = mySkorostAll/times;
+	mySkorostAll=0;
+	times=0;
+   }
 
   Form1->Moshn = abs(Znachenie) * abs(Skorost) / 9.546;//PDataFrame->Moschnost;
 
@@ -377,13 +390,13 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
     }
     // ................... Формирование строки для отображения скорости на панели
     if (Skorost < 1000) {
-      STSkorost->Caption = AS.sprintf("%4.1f", abs(Skorost));
-    }
+	  STSkorost->Caption = AS.sprintf("%4.1f", abs(mySkorost));
+	}
     else {
-      STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
+      STSkorost->Caption = AS.sprintf("%4.0f", abs(mySkorost));
     }
     // ................... Формирование строки для отображения мощности на панели
-	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Moshn));
+	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Znachenie) * abs(mySkorost) / 9.546);
     SostDat_CrSe->Leave();
     Application->ProcessMessages();
 	refltime = 0;
@@ -605,7 +618,17 @@ void __fastcall TForm1::FormCloseQuery(TObject *Sender, bool &CanClose) {
 void __fastcall TForm1::BitBtn1Click(TObject *Sender) {
   AnsiString AS;
   TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings.ini");
-  corr = SimpleRoundTo((0 - Znachenie), -2);
+  BitBtn2Click(0);
+  AS = STOsnIzmVel->Caption;
+  for( int i = 1; i <= AS.Length(); i++ )
+  if( AS[i] == '.' )
+   AS[i] = ',';
+
+  //DecimalSeparator = '.';
+  corr = SimpleRoundTo((0 - StrToFloat(AS)), -2);
+  //DecimalSeparator = ',';
+  //corr = SimpleRoundTo((0 - Znachenie), -2);
+
   Edit1->Text = FloatToStr(corr);
   Ini->WriteString("Datchik", "Corr", Edit1->Text);
   Ini->Free();
