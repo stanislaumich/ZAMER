@@ -346,7 +346,7 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	times=0;
    }
 
-  Form1->Moshn = abs(Znachenie) * abs(Skorost) / 9.546;//PDataFrame->Moschnost;
+  Form1->Moshn = abs(Znachenie) * abs(Skorost) / 9.554;//PDataFrame->Moschnost;
 
   SummaZn_Osn = 0;
   KolIzmOto = 0;
