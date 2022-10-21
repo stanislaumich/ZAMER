@@ -344,30 +344,32 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
   String s = "";
   int i;
   //////////////////////////////////////////////////////////////////////////////////////////
-  if (KolIzmOto == 0)
-	return;
+  //if (KolIzmOto == 0)
+  //	return;
   SostDat_CrSe->Enter();
-  Znachenie = SummaZn_Osn / KolIzmOto+corr; // среднее значение
-   /*
+  //Znachenie = SummaZn_Osn / KolIzmOto+corr; // среднее значение
+
    if (KolIzmOto != 0)
    {
 	Znachenie = SummaZn_Osn / KolIzmOto;
 	SummaZn_Osn=0;
 	KolIzmOto=0;
    }
-   */
+
   if (times!=0){
 	mySkorost = (mySkorostAll)/times;
 	mySkorostAll=0;
 	times=0;
    }
 
+   Znachenie+=corr;
+
   //Form1->Moshn = abs(Znachenie) * abs(mySkorost) / koeff;//PDataFrame->Moschnost;
 	myMoshn=abs(Znachenie) * abs(Skorost) / koeff;
 
 
-  SummaZn_Osn = 0;
-  KolIzmOto = 0;
+  //SummaZn_Osn = 0;
+  //KolIzmOto = 0;
   SostDat_CrSe->Leave();
 
   try { // Form1->Moshn = Znachenie * abs(Skorost) / 9.546;
@@ -394,10 +396,12 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
     catch (...) {
     }
   }
+
+
   // отображаем на экране
   refltime++;
   if (refltime == reflcnt) {
-    SostDat_CrSe->Enter();
+	SostDat_CrSe->Enter();
     STOsnIzmVel->Caption = AS.sprintf(FormatOtobrajenia, abs(Znachenie));
     // ................... Формирование строки для отображения температуры
     if (Temperature < -40) {
@@ -414,8 +418,8 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
       STSkorost->Caption = AS.sprintf("%4.0f", abs(mySkorost));
     }
     // ................... Формирование строки для отображения мощности на панели
-	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, (abs(Znachenie)+corr) * abs(mySkorost) / koeff);
-    SostDat_CrSe->Leave();
+	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(myMoshn));
+	SostDat_CrSe->Leave();
     Application->ProcessMessages();
 	refltime = 0;
 	s = s + FloatToStr(abs(Znachenie))+";"+FloatToStr(corr)+";";
