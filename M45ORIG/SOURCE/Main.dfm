@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = #1057#1073#1086#1088' '#1087#1086#1082#1072#1079#1072#1085#1080#1081' '#1058'45'
-  ClientHeight = 592
-  ClientWidth = 450
+  ClientHeight = 343
+  ClientWidth = 452
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,8 +16,8 @@ object Form1: TForm1
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    450
-    592)
+    452
+    343)
   PixelsPerInch = 96
   TextHeight = 13
   object LComPortNumber: TLabel
@@ -384,6 +384,14 @@ object Form1: TForm1
         TabOrder = 7
         OnClick = BitBtn2Click
       end
+      object CheckBox1: TCheckBox
+        Left = 384
+        Top = 8
+        Width = 53
+        Height = 21
+        Caption = 'LOG'
+        TabOrder = 8
+      end
     end
     object Memo1: TMemo
       Left = 1
@@ -560,17 +568,20 @@ object Form1: TForm1
   object Memo2: TMemo
     Left = 4
     Top = 230
-    Width = 441
-    Height = 356
+    Width = 443
+    Height = 107
     Anchors = [akLeft, akTop, akRight, akBottom]
+    Lines.Strings = (
+      #1052#1086#1084#1077#1085#1090';'#1082#1086#1088#1088#1077#1082#1094#1080#1103';'#1089#1082#1086#1088#1086#1089#1090#1100';'#1052#1086#1097'. '#1087#1088#1080#1073#1086#1088#1072'; '#1052#1086#1097' '#1042#1099#1095#1080#1089#1083#1077#1085#1085#1072#1103';')
+    ScrollBars = ssVertical
     TabOrder = 16
   end
   object ReflectionTimer: TTimer
     Enabled = False
     Interval = 50
     OnTimer = ReflectionTimerTimer
-    Left = 28
-    Top = 280
+    Left = 64
+    Top = 300
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -587,8 +598,8 @@ object Form1: TForm1
   end
   object Query1: TFDQuery
     Connection = FDConnection1
-    Left = 108
-    Top = 284
+    Left = 140
+    Top = 300
   end
   object QUpd: TFDQuery
     Connection = FDConnection1
@@ -597,8 +608,8 @@ object Form1: TForm1
       'SET    TORQ  = :TORQ,'
       '       ROT   = :ROT,'
       '       POWER = :POWER')
-    Left = 184
-    Top = 228
+    Left = 188
+    Top = 276
     ParamData = <
       item
         Name = 'TORQ'
@@ -616,13 +627,13 @@ object Form1: TForm1
   object TimerCommand: TTimer
     Interval = 500
     OnTimer = TimerCommandTimer
-    Left = 29
-    Top = 229
+    Left = 65
+    Top = 249
   end
   object QCommand: TFDQuery
     Connection = FDConnection1
-    Left = 108
-    Top = 228
+    Left = 140
+    Top = 244
   end
   object QIns: TFDQuery
     Connection = FDConnection1
@@ -632,8 +643,8 @@ object Form1: TForm1
       '   NOMER, PNOM)'
       'VALUES ( :TORQ, :ROT, :POWER, '
       '   :NOMER, :PNOM )')
-    Left = 252
-    Top = 228
+    Left = 264
+    Top = 260
     ParamData = <
       item
         Name = 'TORQ'

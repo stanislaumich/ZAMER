@@ -20,6 +20,8 @@ String nomer;
 int Datchik;
 int Interval;
 
+float koeff=30/3.14159265358979323846;
+float myMoshn=0;
 float Popravkam[6];
 
 bool EN = false;
@@ -177,34 +179,40 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action) {
 
 // --------------------- ОБРАБОТЧИК ДАННЫХ, ПОСТУПАЮЩИХ ОТ ДЕКОДЕРА
 int __stdcall DataHandler(int DataType, void *PZapis, void *PContext) {
-
+  String s;
   struct _DataFrame *PDataFrame;
   TForm1 *PForm1 = (TForm1*)PContext;
   switch (DataType) {
   case DATA_TYPE_DATA:
-    if (!PForm1->EstID)
-      return 0;
-    if (!PForm1->EstIzm)
-      return 0;
+	if (!PForm1->EstID)
+	  return 0;
+	if (!PForm1->EstIzm)
+	  return 0;
     /////////////////////////////////////////////////////////
     PDataFrame = (struct _DataFrame*)PZapis;
-    PForm1->SostDat_CrSe->Enter();
+	PForm1->SostDat_CrSe->Enter();
 
 	PForm1->SummaZn_Osn += PDataFrame->OsnIzmVel[0];// + corr;
-	PForm1->KolIzmOto++;
-	mySkorostAll+=PDataFrame->Skorost;
+	PForm1->KolIzmOto+=1;
+	mySkorostAll+=(PDataFrame->Skorost-3);
 	times+=1;
+	 if (PForm1->CheckBox1->Checked) {
+	 //s=FloatToStr(PDataFrame->OsnIzmVel[0])+";"+FloatToStr(corr)+";"+FloatToStr(PDataFrame->OsnIzmVel[0]+corr)+";";
+	 //PForm1->Memo2->Lines->Add(s);
+     //Application->ProcessMessages();
+	 }
+
 	PForm1->Temperature = PDataFrame->Temper;
 	PForm1->Skorost = PDataFrame->Skorost;
 	PForm1->Moshn = PDataFrame->Moschnost;
-
+	//myMoshn =
 	PForm1->SostDat_CrSe->Leave();
-    break;
+	break;
 
   case DATA_TYPE_MESSAGES: // Тип данных - сообщения декодера
-    struct _MessageFrame * PMessageFrame = (struct _MessageFrame*)PZapis;
-    PostMessage(Form1->Handle, WM_USER + 1, PMessageFrame->MessageCode, NULL);
-    break;
+	struct _MessageFrame * PMessageFrame = (struct _MessageFrame*)PZapis;
+	PostMessage(Form1->Handle, WM_USER + 1, PMessageFrame->MessageCode, NULL);
+	break;
   }
   return 0;
 }
@@ -339,14 +347,24 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
   if (KolIzmOto == 0)
 	return;
   SostDat_CrSe->Enter();
-  Znachenie = SummaZn_Osn / (double)KolIzmOto +corr; // среднее значение
+  Znachenie = SummaZn_Osn / KolIzmOto+corr; // среднее значение
+   /*
+   if (KolIzmOto != 0)
+   {
+	Znachenie = SummaZn_Osn / KolIzmOto;
+	SummaZn_Osn=0;
+	KolIzmOto=0;
+   }
+   */
   if (times!=0){
-	mySkorost = mySkorostAll/times;
+	mySkorost = (mySkorostAll)/times;
 	mySkorostAll=0;
 	times=0;
    }
 
-  Form1->Moshn = abs(Znachenie) * abs(Skorost) / 9.554;//PDataFrame->Moschnost;
+  //Form1->Moshn = abs(Znachenie) * abs(mySkorost) / koeff;//PDataFrame->Moschnost;
+	myMoshn=abs(Znachenie) * abs(Skorost) / koeff;
+
 
   SummaZn_Osn = 0;
   KolIzmOto = 0;
@@ -355,7 +373,7 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
   try { // Form1->Moshn = Znachenie * abs(Skorost) / 9.546;
     QUpd->ParamByName("torq")->AsFloat = abs(Znachenie);
 	QUpd->ParamByName("rot")->AsFloat = abs(Skorost);
-    QUpd->ParamByName("power")->AsFloat = abs(Moshn);
+	QUpd->ParamByName("power")->AsFloat = abs(myMoshn);
     QUpd->ExecSQL();
     // STSkorost->Caption = AS.sprintf("%4.0f", abs(Skorost));
   }
@@ -367,7 +385,7 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
       // ( :TORQ, :OT, :POWER,:NOMER, :PNOM )
 	  QIns->ParamByName("torq")->AsFloat = abs(Znachenie);
       QIns->ParamByName("rot")->AsFloat = abs(Skorost);
-	  QIns->ParamByName("power")->AsFloat = abs(Moshn);
+	  QIns->ParamByName("power")->AsFloat = abs(myMoshn);
 	  QIns->ParamByName("nomer")->AsString = nomer;
       QIns->ParamByName("pnom")->AsFloat = 0;
       QIns->ExecSQL();
@@ -396,15 +414,15 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
       STSkorost->Caption = AS.sprintf("%4.0f", abs(mySkorost));
     }
     // ................... Формирование строки для отображения мощности на панели
-	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(Znachenie) * abs(mySkorost) / 9.546);
+	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, (abs(Znachenie)+corr) * abs(mySkorost) / koeff);
     SostDat_CrSe->Leave();
     Application->ProcessMessages();
 	refltime = 0;
 	s = s + FloatToStr(abs(Znachenie))+";"+FloatToStr(corr)+";";
 	s = s + FloatToStr(abs(Skorost))+";";
-	s = s + FloatToStr(abs(Moshn))+";"+FloatToStr(abs(Znachenie) * abs(Skorost) / 9.546)+";";
-	//Form1->Memo2->Lines->Add(s);
-    Application->ProcessMessages();
+	s = s + FloatToStr(abs(Moshn))+";"+FloatToStr(myMoshn)+";";
+	 if (CheckBox1->Checked) Form1->Memo2->Lines->Add(s);
+	Application->ProcessMessages();
   }
 }
 
@@ -611,7 +629,7 @@ void __fastcall TForm1::FormCloseQuery(TObject *Sender, bool &CanClose) {
   Ini->WriteFloat("Datchik", "Popravka5", Popravkam[5]);
   Ini->WriteInteger("DECODER", "Datchik", DecoderType);
   Ini->Free();
-  Memo2->Lines->SaveToFile(ExtractFilePath(ParamStr(0))+"123.txt");
+  Memo2->Lines->SaveToFile(ExtractFilePath(ParamStr(0))+"123.csv");
 }
 // ---------------------------------------------------------------------------
 
@@ -705,4 +723,5 @@ void __fastcall TForm1::BitBtn2Click(TObject *Sender) {
   Ini->Free();
 }
 // ---------------------------------------------------------------------------
+
 

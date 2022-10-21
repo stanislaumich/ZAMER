@@ -82,6 +82,7 @@ __published: // IDE-managed Components
   TBitBtn *BitBtn2;
   TFDQuery *QIns;
 	TMemo *Memo2;
+	TCheckBox *CheckBox1;
 
   void __fastcall BConnectClick(TObject *Sender);
   void __fastcall BStartClick(TObject *Sender);
