@@ -20,6 +20,8 @@ String nomer;
 int Datchik;
 int Interval;
 
+float zprev;
+
 float koeff=30/3.14159265358979323846;
 float myMoshn=0;
 float Popravkam[6];
@@ -28,7 +30,7 @@ bool EN = false;
 
 const int reflcnt = 10;
 int refltime = 0;
-float SpeedMeasurement = 100;
+float SpeedMeasurement = 1000;
 
 String IniFileName;
 struct {
@@ -95,12 +97,12 @@ void __fastcall TForm1::BConnectClick(TObject *Sender) {
   ParamComPort.StopBits = 0;
   PSpecialParametrs->PParamComPort = &ParamComPort;
   PSpecialParametrs->ServerAddress = ServerAddress;
-  PSpecialParametrs->Popravka[0]=0;
-  PSpecialParametrs->Popravka[1]=0;
-  PSpecialParametrs->Popravka[2]=0;
-  PSpecialParametrs->Popravka[3]=0;
-  PSpecialParametrs->Popravka[4]=0;
-  PSpecialParametrs->Popravka[5]=0;
+  PSpecialParametrs->Popravka[0]=Popravkam[0];
+  PSpecialParametrs->Popravka[1]=Popravkam[1];
+  PSpecialParametrs->Popravka[2]=Popravkam[2];
+  PSpecialParametrs->Popravka[3]=Popravkam[3];
+  PSpecialParametrs->Popravka[4]=Popravkam[4];
+  PSpecialParametrs->Popravka[5]=Popravkam[5];
   // Адрес декодера в локальной сети
   PSpecialParametrs->AnotherServerBasePortNumber = PortBase;
   // Базовый адрес порта декодера
@@ -191,14 +193,19 @@ int __stdcall DataHandler(int DataType, void *PZapis, void *PContext) {
     /////////////////////////////////////////////////////////
     PDataFrame = (struct _DataFrame*)PZapis;
 	PForm1->SostDat_CrSe->Enter();
-
-	PForm1->SummaZn_Osn += PDataFrame->OsnIzmVel[0];// + corr;
+	if(abs(PDataFrame->OsnIzmVel[0])/abs(PDataFrame->OsnIzmVel[0]-zprev+0.0000001)<5){
+	PForm1->SummaZn_Osn += SimpleRoundTo(PDataFrame->OsnIzmVel[0],-2) + corr;
 	PForm1->KolIzmOto+=1;
-	mySkorostAll+=(PDataFrame->Skorost-3);
+	}else{
+		 PForm1->SummaZn_Osn += zprev + corr;
+	PForm1->KolIzmOto+=1;}
+
+	zprev= SimpleRoundTo(PDataFrame->OsnIzmVel[0],-2);
+	mySkorostAll+=(PDataFrame->Skorost);
 	times+=1;
 	 if (PForm1->CheckBox1->Checked) {
 	 //s=FloatToStr(PDataFrame->OsnIzmVel[0])+";"+FloatToStr(corr)+";"+FloatToStr(PDataFrame->OsnIzmVel[0]+corr)+";";
-	 //PForm1->Memo2->Lines->Add(s);
+	 //PForm1->Memo2->Lines->Add(s);       -100000,296875
      //Application->ProcessMessages();
 	 }
 
@@ -341,35 +348,36 @@ void __fastcall TForm1::UserMessage(TMessage& msg) {
 // --------------------- ОБРАБОТЧИК ТАЙМЕРА ДЛЯ ВЫСВЕТКИ ЗНАЧЕНИЙ НА ПАНЕЛЯХ ФОРМЫ
 void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
   AnsiString AS;
+  AnsiString AS1;
   String s = "";
   int i;
   //////////////////////////////////////////////////////////////////////////////////////////
-  //if (KolIzmOto == 0)
-  //	return;
+  if (KolIzmOto == 0)
+	return;
   SostDat_CrSe->Enter();
   //Znachenie = SummaZn_Osn / KolIzmOto+corr; // среднее значение
 
-   if (KolIzmOto != 0)
-   {
+  // if (KolIzmOto != 0)
+  // {
 	Znachenie = SummaZn_Osn / KolIzmOto;
 	SummaZn_Osn=0;
 	KolIzmOto=0;
-   }
-
+  // }
+  //  */
   if (times!=0){
 	mySkorost = (mySkorostAll)/times;
 	mySkorostAll=0;
 	times=0;
    }
-
-   Znachenie+=corr;
+  //		SummaZn_Osn = 0;
+ // KolIzmOto = 0;
+   //Znachenie+=corr;
 
   //Form1->Moshn = abs(Znachenie) * abs(mySkorost) / koeff;//PDataFrame->Moschnost;
 	myMoshn=abs(Znachenie) * abs(Skorost) / koeff;
 
 
-  //SummaZn_Osn = 0;
-  //KolIzmOto = 0;
+
   SostDat_CrSe->Leave();
 
   try { // Form1->Moshn = Znachenie * abs(Skorost) / 9.546;
@@ -396,8 +404,10 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
     catch (...) {
     }
   }
-
-
+   AS=AS.sprintf("%4.0f", abs(mySkorost));
+   AS1=AS1.sprintf("%4.0f", abs(Znachenie));
+   //myMoshn= StrToFloat(AS1) * StrToFloat(AS) / koeff;
+   myMoshn= abs(Znachenie) * abs(mySkorost) / koeff;
   // отображаем на экране
   refltime++;
   if (refltime == reflcnt) {
@@ -415,8 +425,8 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	  STSkorost->Caption = AS.sprintf("%4.1f", abs(mySkorost));
 	}
     else {
-      STSkorost->Caption = AS.sprintf("%4.0f", abs(mySkorost));
-    }
+	  STSkorost->Caption = AS.sprintf("%4.0f", abs(mySkorost));
+	}
     // ................... Формирование строки для отображения мощности на панели
 	STMoschnost->Caption = AS.sprintf(FormatOtobrajenia, abs(myMoshn));
 	SostDat_CrSe->Leave();
@@ -641,13 +651,13 @@ void __fastcall TForm1::BitBtn1Click(TObject *Sender) {
   AnsiString AS;
   TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings.ini");
   BitBtn2Click(0);
-  AS = STOsnIzmVel->Caption;
-  for( int i = 1; i <= AS.Length(); i++ )
-  if( AS[i] == '.' )
-   AS[i] = ',';
+  //AS = STOsnIzmVel->Caption;
+  //for( int i = 1; i <= AS.Length(); i++ )
+  //if( AS[i] == '.' )
+  // AS[i] = ',';
 
   //DecimalSeparator = '.';
-  corr = SimpleRoundTo((0 - StrToFloat(AS)), -2);
+  corr = SimpleRoundTo((0 - Znachenie/*StrToFloat(AS)*/), -2);
   //DecimalSeparator = ',';
   //corr = SimpleRoundTo((0 - Znachenie), -2);
 

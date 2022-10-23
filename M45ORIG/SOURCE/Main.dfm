@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = #1057#1073#1086#1088' '#1087#1086#1082#1072#1079#1072#1085#1080#1081' '#1058'45'
   ClientHeight = 343
-  ClientWidth = 452
+  ClientWidth = 747
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,7 +16,7 @@ object Form1: TForm1
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    452
+    747
     343)
   PixelsPerInch = 96
   TextHeight = 13
@@ -552,7 +552,7 @@ object Form1: TForm1
     Width = 69
     Height = 21
     TabOrder = 14
-    Text = '10'
+    Text = '50'
   end
   object UpDown5: TUpDown
     Left = 723
@@ -561,24 +561,25 @@ object Form1: TForm1
     Height = 21
     Associate = EAveragingFactor
     Min = 1
-    Position = 10
+    Position = 50
     TabOrder = 15
     Thousands = False
   end
   object Memo2: TMemo
     Left = 4
     Top = 230
-    Width = 443
+    Width = 738
     Height = 107
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       #1052#1086#1084#1077#1085#1090';'#1082#1086#1088#1088#1077#1082#1094#1080#1103';'#1089#1082#1086#1088#1086#1089#1090#1100';'#1052#1086#1097'. '#1087#1088#1080#1073#1086#1088#1072'; '#1052#1086#1097' '#1042#1099#1095#1080#1089#1083#1077#1085#1085#1072#1103';')
     ScrollBars = ssVertical
     TabOrder = 16
+    ExplicitWidth = 443
   end
   object ReflectionTimer: TTimer
     Enabled = False
-    Interval = 50
+    Interval = 200
     OnTimer = ReflectionTimerTimer
     Left = 64
     Top = 300
@@ -625,7 +626,6 @@ object Form1: TForm1
       end>
   end
   object TimerCommand: TTimer
-    Interval = 500
     OnTimer = TimerCommandTimer
     Left = 65
     Top = 249
