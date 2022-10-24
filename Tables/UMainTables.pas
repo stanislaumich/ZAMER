@@ -37,12 +37,14 @@ type
     Button2: TButton;
     Button3: TButton;
     CheckBox1: TCheckBox;
+    SaveDialog1: TSaveDialog;
         procedure BitBtn1Click(Sender: TObject);
         procedure FormActivate(Sender: TObject);
         procedure ListBox1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
 
     private
         { Private declarations }
@@ -106,12 +108,38 @@ begin
         Table.Refresh;
 end;
 
+procedure TForm2.BitBtn2Click(Sender: TObject);
+var
+ s:string;
+ f:textfile;
+ i,j:integer;
+begin
+ If SaveDialog1.Execute() then
+  begin
+   s:='';
+   Assignfile(f,Savedialog1.Filename);
+   Rewrite(f);
+   for i:=0 to Table.FieldCount-1 do
+     s:=s+Table.Fields[i].FieldName+';';
+   Writeln(f,s);
+   Table.First;
+   While not Table.Eof do
+    begin
+    s:='';
+     For i:=0 to Table.FieldCount-1 do
+       s:=s+Table.Fields[i].AsString+';';
+     Writeln(f,s);
+     Table.Next;
+    end;
+   Closefile(f);
+  end;
+end;
+
 procedure TForm2.Button2Click(Sender: TObject);
 begin
  Button3.Click;
  Table.Filter:=ComboBox1.Text+'='+Edit1.Text;
  Table.Filtered:=true;
-
 end;
 
 procedure TForm2.Button3Click(Sender: TObject);

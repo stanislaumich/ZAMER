@@ -177,6 +177,7 @@ object Form2: TForm2
         Anchors = [akTop, akRight]
         Caption = #1069#1082#1089#1087#1086#1088#1090
         TabOrder = 0
+        OnClick = BitBtn2Click
       end
       object ComboBox1: TComboBox
         Left = 136
@@ -248,22 +249,26 @@ object Form2: TForm2
   end
   object UniDataSource1: TUniDataSource
     DataSet = Table
-    Left = 608
+    Left = 660
     Top = 204
   end
   object Table: TUniTable
     TableName = 'INI'
     Connection = UniC
-    Left = 684
+    Left = 596
     Top = 204
   end
   object Query1: TUniQuery
     Connection = UniC
-    Left = 752
-    Top = 200
+    Left = 756
+    Top = 208
   end
   object OracleUniProvider1: TOracleUniProvider
     Left = 448
     Top = 204
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 449
+    Top = 261
   end
 end
