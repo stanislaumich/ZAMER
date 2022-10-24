@@ -15,6 +15,9 @@
         <Projects Include="T45One\SOURCE\Zamer45.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Tables\TABLES.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="Zamer45:Make">
         <MSBuild Projects="T45One\SOURCE\Zamer45.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="TABLES">
+        <MSBuild Projects="Tables\TABLES.dproj"/>
+    </Target>
+    <Target Name="TABLES:Clean">
+        <MSBuild Projects="Tables\TABLES.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TABLES:Make">
+        <MSBuild Projects="Tables\TABLES.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Zamer;T45;T45Emul;Zamer45"/>
+        <CallTarget Targets="Zamer;T45;T45Emul;Zamer45;TABLES"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Zamer:Clean;T45:Clean;T45Emul:Clean;Zamer45:Clean"/>
+        <CallTarget Targets="Zamer:Clean;T45:Clean;T45Emul:Clean;Zamer45:Clean;TABLES:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Zamer:Make;T45:Make;T45Emul:Make;Zamer45:Make"/>
+        <CallTarget Targets="Zamer:Make;T45:Make;T45Emul:Make;Zamer45:Make;TABLES:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

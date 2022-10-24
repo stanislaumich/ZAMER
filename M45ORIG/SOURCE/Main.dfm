@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = #1057#1073#1086#1088' '#1087#1086#1082#1072#1079#1072#1085#1080#1081' '#1058'45'
-  ClientHeight = 343
-  ClientWidth = 747
+  ClientHeight = 270
+  ClientWidth = 450
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,8 +16,8 @@ object Form1: TForm1
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    747
-    343)
+    450
+    270)
   PixelsPerInch = 96
   TextHeight = 13
   object LComPortNumber: TLabel
@@ -568,14 +568,13 @@ object Form1: TForm1
   object Memo2: TMemo
     Left = 4
     Top = 230
-    Width = 738
-    Height = 107
+    Width = 441
+    Height = 34
     Anchors = [akLeft, akTop, akRight, akBottom]
-    Lines.Strings = (
-      #1052#1086#1084#1077#1085#1090';'#1082#1086#1088#1088#1077#1082#1094#1080#1103';'#1089#1082#1086#1088#1086#1089#1090#1100';'#1052#1086#1097'. '#1087#1088#1080#1073#1086#1088#1072'; '#1052#1086#1097' '#1042#1099#1095#1080#1089#1083#1077#1085#1085#1072#1103';')
     ScrollBars = ssVertical
     TabOrder = 16
-    ExplicitWidth = 443
+    ExplicitWidth = 738
+    ExplicitHeight = 107
   end
   object ReflectionTimer: TTimer
     Enabled = False
