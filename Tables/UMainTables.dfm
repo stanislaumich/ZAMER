@@ -21,45 +21,49 @@ object Form2: TForm2
     Height = 41
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = 552
-    ExplicitTop = 292
-    ExplicitWidth = 185
-    object Button1: TButton
-      Left = 248
-      Top = 10
-      Width = 75
-      Height = 25
-      Caption = 'Button1'
+    DesignSize = (
+      1025
+      41)
+    object CheckBox1: TCheckBox
+      Left = 920
+      Top = 13
+      Width = 97
+      Height = 17
+      Anchors = [akTop, akRight]
+      Caption = #1058#1086#1083#1100#1082#1086' '#1095#1090#1077#1085#1080#1077
+      Checked = True
+      State = cbChecked
       TabOrder = 0
-      OnClick = Button1Click
+      OnClick = CheckBox1Click
     end
   end
   object Panel2: TPanel
     Left = 0
     Top = 41
     Width = 241
-    Height = 507
+    Height = 531
     Align = alLeft
     TabOrder = 1
-    ExplicitHeight = 685
+    ExplicitHeight = 507
     object ListBox1: TListBox
       Left = 1
       Top = 1
       Width = 239
-      Height = 415
+      Height = 475
       Align = alClient
       ItemHeight = 13
       TabOrder = 0
       OnClick = ListBox1Click
-      ExplicitHeight = 540
+      ExplicitHeight = 415
     end
     object Panel6: TPanel
       Left = 1
-      Top = 416
+      Top = 476
       Width = 239
-      Height = 90
+      Height = 54
       Align = alBottom
       TabOrder = 1
+      ExplicitTop = 452
       object BitBtn1: TBitBtn
         Left = 196
         Top = 6
@@ -131,13 +135,10 @@ object Form2: TForm2
     Left = 241
     Top = 41
     Width = 784
-    Height = 507
+    Height = 531
     Align = alClient
     TabOrder = 2
-    ExplicitLeft = 360
-    ExplicitTop = 308
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitHeight = 507
     object Panel5: TPanel
       Left = 1
       Top = 1
@@ -145,37 +146,76 @@ object Form2: TForm2
       Height = 41
       Align = alTop
       TabOrder = 0
-      ExplicitLeft = 52
-      ExplicitTop = 48
-      ExplicitWidth = 185
+      DesignSize = (
+        782
+        41)
       object Label1: TLabel
         Left = 4
         Top = 4
         Width = 3
         Height = 13
       end
+      object Label2: TLabel
+        Left = 87
+        Top = 17
+        Width = 42
+        Height = 13
+        Caption = #1060#1080#1083#1100#1090#1088':'
+      end
+      object Label3: TLabel
+        Left = 288
+        Top = 17
+        Width = 8
+        Height = 13
+        Caption = '='
+      end
       object BitBtn2: TBitBtn
         Left = 700
         Top = 4
         Width = 75
         Height = 25
+        Anchors = [akTop, akRight]
         Caption = #1069#1082#1089#1087#1086#1088#1090
         TabOrder = 0
       end
       object ComboBox1: TComboBox
-        Left = 208
-        Top = 12
+        Left = 136
+        Top = 14
         Width = 145
         Height = 21
         TabOrder = 1
-        Text = 'ComboBox1'
+      end
+      object Edit1: TEdit
+        Left = 302
+        Top = 14
+        Width = 121
+        Height = 21
+        TabOrder = 2
+      end
+      object Button2: TButton
+        Left = 430
+        Top = 12
+        Width = 75
+        Height = 25
+        Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+        TabOrder = 3
+        OnClick = Button2Click
+      end
+      object Button3: TButton
+        Left = 511
+        Top = 12
+        Width = 75
+        Height = 25
+        Caption = #1057#1073#1088#1086#1089#1080#1090#1100
+        TabOrder = 4
+        OnClick = Button3Click
       end
     end
     object DBGrid1: TDBGrid
       Left = 1
       Top = 42
       Width = 782
-      Height = 464
+      Height = 488
       Align = alClient
       DataSource = UniDataSource1
       TabOrder = 1
@@ -188,18 +228,11 @@ object Form2: TForm2
   end
   object Panel4: TPanel
     Left = 0
-    Top = 548
+    Top = 572
     Width = 1025
-    Height = 41
+    Height = 17
     Align = alBottom
     TabOrder = 3
-    ExplicitLeft = 664
-    ExplicitTop = 656
-    ExplicitWidth = 185
-  end
-  object FDC: TFDConnection
-    Left = 640
-    Top = 4
   end
   object UniC: TUniConnection
     ProviderName = 'Oracle'
@@ -209,27 +242,28 @@ object Form2: TForm2
     Server = 'localhost'
     Connected = True
     LoginPrompt = False
-    Left = 720
-    Top = 4
+    Left = 532
+    Top = 204
     EncryptedPassword = '85FF9EFF92FF9AFF8DFF'
   end
   object UniDataSource1: TUniDataSource
     DataSet = Table
-    Left = 780
-    Top = 4
+    Left = 608
+    Top = 204
   end
   object Table: TUniTable
     TableName = 'INI'
     Connection = UniC
-    Left = 848
-    Top = 4
+    Left = 684
+    Top = 204
   end
   object Query1: TUniQuery
     Connection = UniC
-    Left = 900
-    Top = 4
+    Left = 752
+    Top = 200
   end
   object OracleUniProvider1: TOracleUniProvider
-    Left = 552
+    Left = 448
+    Top = 204
   end
 end

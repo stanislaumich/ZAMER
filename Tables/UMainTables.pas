@@ -19,13 +19,11 @@ type
         Panel3: TPanel;
         Panel4: TPanel;
         Panel5: TPanel;
-        FDC: TFDConnection;
         UniC: TUniConnection;
         UniDataSource1: TUniDataSource;
         Table: TUniTable;
         DBGrid1: TDBGrid;
         Query1: TUniQuery;
-        Button1: TButton;
         OracleUniProvider1: TOracleUniProvider;
         ListBox1: TListBox;
         Panel6: TPanel;
@@ -33,10 +31,18 @@ type
         BitBtn2: TBitBtn;
         Label1: TLabel;
     ComboBox1: TComboBox;
-        procedure Button1Click(Sender: TObject);
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit1: TEdit;
+    Button2: TButton;
+    Button3: TButton;
+    CheckBox1: TCheckBox;
         procedure BitBtn1Click(Sender: TObject);
         procedure FormActivate(Sender: TObject);
         procedure ListBox1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
 
     private
         { Private declarations }
@@ -100,9 +106,22 @@ begin
         Table.Refresh;
 end;
 
-procedure TForm2.Button1Click(Sender: TObject);
+procedure TForm2.Button2Click(Sender: TObject);
 begin
-    AutoSize(DBGrid1);
+ Button3.Click;
+ Table.Filter:=ComboBox1.Text+'='+Edit1.Text;
+ Table.Filtered:=true;
+
+end;
+
+procedure TForm2.Button3Click(Sender: TObject);
+begin
+ Table.Filtered:=false;
+end;
+
+procedure TForm2.CheckBox1Click(Sender: TObject);
+begin
+ TAble.ReadOnly:=CheckBox1.Checked;
 end;
 
 procedure TForm2.FormActivate(Sender: TObject);
@@ -116,7 +135,6 @@ begin
     Label1.Caption                       := ListBox1.Items[ListBox1.ItemIndex];
     Query1.ParamByName('vname').Asstring := ListBox1.Items[ListBox1.ItemIndex];
     Query1.Open;
-
     Table.TableName := Query1.FieldByName('name').Asstring;
     Table.Active    := true;
     Query1.Close;
@@ -124,7 +142,7 @@ begin
     Query1.SQL.Clear;
     Query1.SQL.Add
       ('select A.COLUMN_NAME,A.TABLE_NAME, COLUMN_ID from USER_TAB_COLUMNS A where TABLE_NAME = UPPER(:name) ORDER BY A.COLUMN_ID');
-    Query1.ParamByName('name').Asstring := Label1.Caption;
+    Query1.ParamByName('name').Asstring := Table.TableName;
     Query1.Open;
     ComboBox1.Items.Clear;
     ComboBox1.Text:='';
@@ -135,6 +153,9 @@ begin
       Query1.Next;
      end;
     Query1.Close;
+    Query1.SQL.Clear;
+    Query1.SQL.Add('select name from ztable where vname=:vname');
+    TAble.ReadOnly:=CheckBox1.Checked;
 end;
 
 end.
