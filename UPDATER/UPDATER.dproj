@@ -99,13 +99,14 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="UMAin.pas">
-            <Form>FMain</Form>
+            <Form>FMainUpdater</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UFile.pas">
             <Form>FFile</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\ZAMER\Ustr.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
