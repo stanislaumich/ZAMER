@@ -54,7 +54,6 @@ object Form2: TForm2
       ItemHeight = 13
       TabOrder = 0
       OnClick = ListBox1Click
-      ExplicitHeight = 415
     end
     object Panel6: TPanel
       Left = 1

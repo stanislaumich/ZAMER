@@ -30,21 +30,21 @@ type
         BitBtn1: TBitBtn;
         BitBtn2: TBitBtn;
         Label1: TLabel;
-    ComboBox1: TComboBox;
-    Label2: TLabel;
-    Label3: TLabel;
-    Edit1: TEdit;
-    Button2: TButton;
-    Button3: TButton;
-    CheckBox1: TCheckBox;
-    SaveDialog1: TSaveDialog;
+        ComboBox1: TComboBox;
+        Label2: TLabel;
+        Label3: TLabel;
+        Edit1: TEdit;
+        Button2: TButton;
+        Button3: TButton;
+        CheckBox1: TCheckBox;
+        SaveDialog1: TSaveDialog;
         procedure BitBtn1Click(Sender: TObject);
         procedure FormActivate(Sender: TObject);
         procedure ListBox1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+        procedure Button2Click(Sender: TObject);
+        procedure Button3Click(Sender: TObject);
+        procedure CheckBox1Click(Sender: TObject);
+        procedure BitBtn2Click(Sender: TObject);
 
     private
         { Private declarations }
@@ -110,46 +110,46 @@ end;
 
 procedure TForm2.BitBtn2Click(Sender: TObject);
 var
- s:string;
- f:textfile;
- i,j:integer;
+    s   : string;
+    f   : textfile;
+    i, j: integer;
 begin
- If SaveDialog1.Execute() then
-  begin
-   s:='';
-   Assignfile(f,Savedialog1.Filename);
-   Rewrite(f);
-   for i:=0 to Table.FieldCount-1 do
-     s:=s+Table.Fields[i].FieldName+';';
-   Writeln(f,s);
-   Table.First;
-   While not Table.Eof do
+    If SaveDialog1.Execute() then
     begin
-    s:='';
-     For i:=0 to Table.FieldCount-1 do
-       s:=s+Table.Fields[i].AsString+';';
-     Writeln(f,s);
-     Table.Next;
+        s := '';
+        Assignfile(f, SaveDialog1.Filename);
+        Rewrite(f);
+        for i := 0 to Table.FieldCount - 1 do
+            s := s + Table.Fields[i].FieldName + ';';
+        Writeln(f, s);
+        Table.First;
+        While not Table.EOF do
+        begin
+            s     := '';
+            For i := 0 to Table.FieldCount - 1 do
+                s := s + Table.Fields[i].Asstring + ';';
+            Writeln(f, s);
+            Table.Next;
+        end;
+        Closefile(f);
     end;
-   Closefile(f);
-  end;
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
 begin
- Button3.Click;
- Table.Filter:=ComboBox1.Text+'='+Edit1.Text;
- Table.Filtered:=true;
+    Button3.Click;
+    Table.Filter   := ComboBox1.Text + '=' + Edit1.Text;
+    Table.Filtered := true;
 end;
 
 procedure TForm2.Button3Click(Sender: TObject);
 begin
- Table.Filtered:=false;
+    Table.Filtered := false;
 end;
 
 procedure TForm2.CheckBox1Click(Sender: TObject);
 begin
- TAble.ReadOnly:=CheckBox1.Checked;
+    Table.ReadOnly := CheckBox1.Checked;
 end;
 
 procedure TForm2.FormActivate(Sender: TObject);
@@ -173,17 +173,17 @@ begin
     Query1.ParamByName('name').Asstring := Table.TableName;
     Query1.Open;
     ComboBox1.Items.Clear;
-    ComboBox1.Text:='';
-    Table.Filtered:=false;
-    While not Query1.Eof do
-     begin
-      ComboBox1.Items.Add(Query1.FieldByName('COLUMN_NAME').Asstring);
-      Query1.Next;
-     end;
+    ComboBox1.Text := '';
+    Table.Filtered := false;
+    While not Query1.EOF do
+    begin
+        ComboBox1.Items.Add(Query1.FieldByName('COLUMN_NAME').Asstring);
+        Query1.Next;
+    end;
     Query1.Close;
     Query1.SQL.Clear;
     Query1.SQL.Add('select name from ztable where vname=:vname');
-    TAble.ReadOnly:=CheckBox1.Checked;
+    Table.ReadOnly := CheckBox1.Checked;
 end;
 
 end.
