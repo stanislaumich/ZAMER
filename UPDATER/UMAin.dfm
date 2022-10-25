@@ -32,9 +32,6 @@ object FMainUpdater: TFMainUpdater
       Height = 324
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 5
-      ExplicitTop = 14
-      ExplicitWidth = 489
     end
   end
   object BitBtn1: TBitBtn
@@ -103,6 +100,7 @@ object FMainUpdater: TFMainUpdater
       FFFFFFFFFFFFFFFFFFFFF1D3ABE6AF62DE952CE1982BEDB95BE7A938E8A934F0
       BF60F6D899FFFDF9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 1
+    OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
     Left = 517
@@ -169,6 +167,7 @@ object FMainUpdater: TFMainUpdater
       C2DACBCEE4DCDED9CACCCFBABFECE5E7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 2
+    OnClick = BitBtn2Click
   end
   object BitBtn3: TBitBtn
     Left = 517
@@ -254,12 +253,12 @@ object FMainUpdater: TFMainUpdater
       DefaultColWidth = 150
       FixedCols = 0
       RowCount = 2
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goFixedRowDefAlign]
       TabOrder = 0
-      ExplicitWidth = 489
     end
   end
   object BitBtn4: TBitBtn
-    Left = 517
+    Left = 519
     Top = 360
     Width = 155
     Height = 45
@@ -342,5 +341,19 @@ object FMainUpdater: TFMainUpdater
       'select * from list')
     Left = 364
     Top = 128
+  end
+  object ActionList1: TActionList
+    Left = 352
+    Top = 196
+    object Action1: TAction
+      Caption = 'Action1'
+      ShortCut = 120
+      OnExecute = Action1Execute
+    end
+  end
+  object QTemp: TFDQuery
+    Connection = FDC
+    Left = 416
+    Top = 132
   end
 end

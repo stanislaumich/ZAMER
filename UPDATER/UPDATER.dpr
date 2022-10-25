@@ -1,5 +1,4 @@
 program UPDATER;
-
 uses
   Vcl.Forms,
   UMAin in 'UMAin.pas' {FMainUpdater},
@@ -7,7 +6,6 @@ uses
   Ustr in '..\ZAMER\Ustr.pas';
 
 {$R *.res}
-
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
