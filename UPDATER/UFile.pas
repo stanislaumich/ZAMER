@@ -19,7 +19,6 @@ type
     Button1: TButton;
     Label3: TLabel;
     Edit3: TEdit;
-    CheckBox1: TCheckBox;
     Label4: TLabel;
     Label5: TLabel;
     Edit4: TEdit;
@@ -161,6 +160,11 @@ begin
  QTEMP.SQL.Add('select * from list');
  QTemp.Open;
  SGRClear;
+   Stringgrid1.cells[0,0]:='Компонент';
+   Stringgrid1.cells[1,0]:='Ссылка';
+   Stringgrid1.cells[2,0]:='Локальный путь';
+   Stringgrid1.cells[3,0]:='Команда до';
+   Stringgrid1.cells[4,0]:='Команда после';
  i:=1;
  While not QTemp.Eof do
   begin

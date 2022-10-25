@@ -91,27 +91,19 @@ object FFile: TFFile
       Height = 21
       TabOrder = 3
     end
-    object CheckBox1: TCheckBox
-      Left = 9
-      Top = 92
-      Width = 196
-      Height = 17
-      Caption = #1057#1086#1093#1088#1072#1085#1103#1090#1100' '#1082#1086#1087#1080#1102' '#1089#1090#1072#1088#1086#1075#1086' '#1092#1072#1081#1083#1072
-      TabOrder = 4
-    end
     object Edit4: TEdit
       Left = 108
       Top = 109
       Width = 320
       Height = 21
-      TabOrder = 5
+      TabOrder = 4
     end
     object Edit5: TEdit
       Left = 108
       Top = 136
       Width = 320
       Height = 21
-      TabOrder = 6
+      TabOrder = 5
     end
     object Button2: TButton
       Left = 434
@@ -119,7 +111,7 @@ object FFile: TFFile
       Width = 75
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100
-      TabOrder = 7
+      TabOrder = 6
       OnClick = Button2Click
     end
     object Button3: TButton
@@ -128,7 +120,7 @@ object FFile: TFFile
       Width = 75
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100
-      TabOrder = 8
+      TabOrder = 7
       OnClick = Button3Click
     end
   end
@@ -280,12 +272,11 @@ object FFile: TFFile
       Width = 615
       Height = 225
       Align = alClient
-      DefaultColWidth = 150
+      DefaultColWidth = 180
       FixedCols = 0
       RowCount = 2
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
-      ExplicitLeft = 3
     end
   end
   object BitBtn3: TBitBtn
@@ -293,6 +284,7 @@ object FFile: TFFile
     Top = 136
     Width = 104
     Height = 37
+    Anchors = [akTop, akRight]
     Caption = #1059#1076#1072#1083#1080#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100

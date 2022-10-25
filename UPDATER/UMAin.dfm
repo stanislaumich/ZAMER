@@ -250,10 +250,10 @@ object FMainUpdater: TFMainUpdater
       Width = 506
       Height = 239
       Align = alClient
-      DefaultColWidth = 150
+      DefaultColWidth = 180
       FixedCols = 0
       RowCount = 2
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
     end
   end

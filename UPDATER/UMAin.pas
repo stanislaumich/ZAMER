@@ -114,6 +114,7 @@ begin
    else
   Log('Команды до обновления нет');
   pause(1000);
+  DeleteFile(Stringgrid1.cells[2,n]);
  if RenameFile(fin, Stringgrid1.cells[2,n]) then
   Log('Обновлено.')
  else
@@ -181,7 +182,11 @@ begin
  Log('');
  FDC.Params.Database:=Extractfilepath(paramstr(0))+''+dbname;
  FDC.connected:=true;
-
+   Stringgrid1.cells[0,0]:='Компонент';
+   Stringgrid1.cells[1,0]:='Ссылка';
+   Stringgrid1.cells[2,0]:='Локальный путь';
+   Stringgrid1.cells[3,0]:='Команда до';
+   Stringgrid1.cells[4,0]:='Команда после';
  QTemp.Close;
  QTemp.SQL.Clear;
  QTEMP.SQL.Add('CREATE TABLE IF NOT EXISTS list (id INTEGER, "before" VARCHAR (250),');
