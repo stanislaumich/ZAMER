@@ -1,63 +1,62 @@
 
-Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - Production
+Соединен с: Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
 
-Export file created by EXPORT:V11.02.00 via conventional path
-import done in CL8MSWIN1251 character set and AL16UTF16 NCHAR character set
-import server uses AL32UTF8 character set (possible charset conversion)
-. . importing table                    "AZAMERTMP"
-                                                          161 rows imported
-. . importing table                      "COMMAND"
-                                                            0 rows imported
-. . importing table                          "INI"
-                                                           12 rows imported
-. . importing table                        "NOMER"
-                                                            1 rows imported
-. . importing table                        "STEND"
-                                                            5 rows imported
-. . importing table                      "VERSION"
-                                                            1 rows imported
-. . importing table                        "ZAMER"
-                                                            1 rows imported
-. . importing table                     "ZAMERTMP"
-                                                          159 rows imported
-. . importing table                       "ZDELTA"
-                                                            5 rows imported
-. . importing table                     "ZDVIGALL"
-                                                            6 rows imported
-. . importing table                         "ZERR"
-                                                          109 rows imported
-. . importing table                       "ZHHALL"
+Экспоpт-файл создан EXPORT:V11.02.00 чеpез обычный маpшpут
+импорт выполнен в кодировке CL8MSWIN1251 и AL16UTF16 кодировке NCHAR
+импортирующий сервер использует кодировку AL32UTF8 (возможно перекодирование)
+. . импортируемая таблица                    "AZAMERTMP"
+импортировано                                                           161 строк
+. . импортируемая таблица                          "INI"
+импортировано                                                            15 строк
+. . импортируемая таблица                        "NOMER"
+импортировано                                                             1 строк
+. . импортируемая таблица                        "STEND"
+импортировано                                                             5 строк
+. . импортируемая таблица                      "VERSION"
+импортировано                                                             1 строк
+. . импортируемая таблица                        "ZAMER"
+импортировано                                                             1 строк
+. . импортируемая таблица                     "ZAMERTMP"
+импортировано                                                           136 строк
+. . импортируемая таблица                       "ZDELTA"
+импортировано                                                             5 строк
+. . импортируемая таблица                     "ZDVIGALL"
+импортировано                                                             5 строк
+. . импортируемая таблица                         "ZERR"
+импортировано                                                           121 строк
+. . импортируемая таблица                       "ZHHALL"
 ......
-                                                         6621 rows imported
-. . importing table                      "ZHHSVOD"
-                                                           33 rows imported
-. . importing table                       "ZKZALL"
-                                                          331 rows imported
-. . importing table                      "ZKZSVOD"
-                                                            8 rows imported
-. . importing table                      "ZMEHALL"
+импортировано                                                          6621 строк
+. . импортируемая таблица                      "ZHHSVOD"
+импортировано                                                            33 строк
+. . импортируемая таблица                       "ZKZALL"
+импортировано                                                           331 строк
+. . импортируемая таблица                      "ZKZSVOD"
+импортировано                                                             8 строк
+. . импортируемая таблица                      "ZMEHALL"
 ..
-                                                         2492 rows imported
-. . importing table                     "ZMEHSVOD"
-                                                           50 rows imported
-. . importing table                   "ZNAGREVALL"
-                                                          712 rows imported
-. . importing table                  "ZNAGREVSVOD"
-                                                            4 rows imported
-. . importing table                       "ZPROCH"
-                                                            4 rows imported
-. . importing table                       "ZRHALL"
+импортировано                                                          2441 строк
+. . импортируемая таблица                     "ZMEHSVOD"
+импортировано                                                            50 строк
+. . импортируемая таблица                   "ZNAGREVALL"
+импортировано                                                           712 строк
+. . импортируемая таблица                  "ZNAGREVSVOD"
+импортировано                                                             4 строк
+. . импортируемая таблица                       "ZPROCH"
+импортировано                                                             4 строк
+. . импортируемая таблица                       "ZRHALL"
 ....
-                                                         4897 rows imported
-. . importing table                      "ZRHSVOD"
-                                                           15 rows imported
-. . importing table                      "ZSOPROT"
-                                                            4 rows imported
-. . importing table                        "ZSOTR"
-                                                            2 rows imported
-. . importing table                       "ZVIBRO"
-                                                          144 rows imported
-. . importing table                        "ZZVUK"
-                                                           64 rows imported
-About to enable constraints...
-Import terminated successfully without warnings.
+импортировано                                                          4426 строк
+. . импортируемая таблица                      "ZRHSVOD"
+импортировано                                                            21 строк
+. . импортируемая таблица                      "ZSOPROT"
+импортировано                                                             4 строк
+. . импортируемая таблица                        "ZSOTR"
+импортировано                                                             2 строк
+. . импортируемая таблица                       "ZVIBRO"
+импортировано                                                           144 строк
+. . импортируемая таблица                        "ZZVUK"
+импортировано                                                            64 строк
+Готовится включение ограничений...
+Импорт завершен успешно без предупреждений.

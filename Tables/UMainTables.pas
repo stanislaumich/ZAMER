@@ -10,7 +10,9 @@ uses
     FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
     FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
     Data.DB, Uni, Vcl.Grids, Vcl.DBGrids, MemDS, DBAccess, FireDAC.Comp.Client,
-    Vcl.ExtCtrls, Vcl.StdCtrls, UniProvider, OracleUniProvider, Vcl.Buttons;
+    Vcl.ExtCtrls, Vcl.StdCtrls, UniProvider, OracleUniProvider, Vcl.Buttons,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, FireDAC.Comp.DataSet;
 
 type
     TForm2 = class(TForm)
@@ -19,12 +21,7 @@ type
         Panel3: TPanel;
         Panel4: TPanel;
         Panel5: TPanel;
-        UniC: TUniConnection;
-        UniDataSource1: TUniDataSource;
-        Table: TUniTable;
         DBGrid1: TDBGrid;
-        Query1: TUniQuery;
-        OracleUniProvider1: TOracleUniProvider;
         ListBox1: TListBox;
         Panel6: TPanel;
         BitBtn1: TBitBtn;
@@ -38,6 +35,10 @@ type
         Button3: TButton;
         CheckBox1: TCheckBox;
         SaveDialog1: TSaveDialog;
+    Query1: TFDQuery;
+    FDC: TFDConnection;
+    Table: TFDTable;
+    DataSource1: TDataSource;
         procedure BitBtn1Click(Sender: TObject);
         procedure FormActivate(Sender: TObject);
         procedure ListBox1Click(Sender: TObject);
@@ -149,7 +150,8 @@ end;
 
 procedure TForm2.CheckBox1Click(Sender: TObject);
 begin
-    Table.ReadOnly := CheckBox1.Checked;
+   if CheckBox1.Checked then dbgrid1.options := DBGrid1.Options - [dgEditing]
+   else dbgrid1.options := DBGrid1.Options + [dgEditing];
 end;
 
 procedure TForm2.FormActivate(Sender: TObject);
@@ -183,7 +185,7 @@ begin
     Query1.Close;
     Query1.SQL.Clear;
     Query1.SQL.Add('select name from ztable where vname=:vname');
-    Table.ReadOnly := CheckBox1.Checked;
+    //dbgrid1.options := DBGrid1.Options - [dgEditing];
 end;
 
 end.

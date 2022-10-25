@@ -44,7 +44,6 @@ object Form2: TForm2
     Height = 531
     Align = alLeft
     TabOrder = 1
-    ExplicitHeight = 507
     object ListBox1: TListBox
       Left = 1
       Top = 1
@@ -62,7 +61,6 @@ object Form2: TForm2
       Height = 54
       Align = alBottom
       TabOrder = 1
-      ExplicitTop = 452
       object BitBtn1: TBitBtn
         Left = 196
         Top = 6
@@ -137,7 +135,6 @@ object Form2: TForm2
     Height = 531
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 507
     object Panel5: TPanel
       Left = 1
       Top = 1
@@ -217,7 +214,8 @@ object Form2: TForm2
       Width = 782
       Height = 488
       Align = alClient
-      DataSource = UniDataSource1
+      DataSource = DataSource1
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -234,40 +232,35 @@ object Form2: TForm2
     Align = alBottom
     TabOrder = 3
   end
-  object UniC: TUniConnection
-    ProviderName = 'Oracle'
-    Port = 1521
-    Database = 'XE'
-    Username = 'zamer'
-    Server = 'localhost'
+  object SaveDialog1: TSaveDialog
+    Left = 485
+    Top = 177
+  end
+  object Query1: TFDQuery
+    Connection = FDC
+    Left = 745
+    Top = 141
+  end
+  object FDC: TFDConnection
+    Params.Strings = (
+      'DriverID=Ora'
+      'Database=XE'
+      'Password=zamer'
+      'User_Name=zamer')
     Connected = True
     LoginPrompt = False
-    Left = 532
-    Top = 204
-    EncryptedPassword = '85FF9EFF92FF9AFF8DFF'
+    Left = 617
+    Top = 145
   end
-  object UniDataSource1: TUniDataSource
+  object Table: TFDTable
+    Connection = FDC
+    TableName = 'ztable'
+    Left = 685
+    Top = 145
+  end
+  object DataSource1: TDataSource
     DataSet = Table
-    Left = 660
-    Top = 204
-  end
-  object Table: TUniTable
-    TableName = 'INI'
-    Connection = UniC
-    Left = 596
-    Top = 204
-  end
-  object Query1: TUniQuery
-    Connection = UniC
-    Left = 756
-    Top = 208
-  end
-  object OracleUniProvider1: TOracleUniProvider
-    Left = 448
-    Top = 204
-  end
-  object SaveDialog1: TSaveDialog
-    Left = 449
-    Top = 261
+    Left = 685
+    Top = 197
   end
 end

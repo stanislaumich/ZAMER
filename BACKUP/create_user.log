@@ -1,39 +1,39 @@
-Database closed.
-Database dismounted.
-ORACLE instance shut down.
-ORACLE instance started.
+Ѕаза данных закрыта.
+Ѕаза данных размонтирована.
+Ёкземпл€р ORACLE завершен.
+Ёкземпл€р ORACLE запущен.
 
 Total System Global Area 1071333376 bytes                                       
-Fixed Size                  1388352 bytes                                       
-Variable Size             696254656 bytes                                       
-Database Buffers          369098752 bytes                                       
-Redo Buffers                4591616 bytes                                       
-Database mounted.
-Database opened.
+Fixed Size                  1375792 bytes                                       
+Variable Size             570425808 bytes                                       
+Database Buffers          494927872 bytes                                       
+Redo Buffers                4603904 bytes                                       
+Ѕаза данных смонтирована.
+Ѕаза данных открыта.
 
-Database altered.
+Ѕаза данных изменена.
 
-Database closed.
-Database dismounted.
-ORACLE instance shut down.
-ORACLE instance started.
+Ѕаза данных закрыта.
+Ѕаза данных размонтирована.
+Ёкземпл€р ORACLE завершен.
+Ёкземпл€р ORACLE запущен.
 
 Total System Global Area 1071333376 bytes                                       
-Fixed Size                  1388352 bytes                                       
-Variable Size             696254656 bytes                                       
-Database Buffers          369098752 bytes                                       
-Redo Buffers                4591616 bytes                                       
-Database mounted.
-Database opened.
+Fixed Size                  1375792 bytes                                       
+Variable Size             570425808 bytes                                       
+Database Buffers          494927872 bytes                                       
+Redo Buffers                4603904 bytes                                       
+Ѕаза данных смонтирована.
+Ѕаза данных открыта.
 
-User dropped.
-
-
-User created.
+ѕользователь удален.
 
 
-Grant succeeded.
+ѕользователь создан.
 
 
-Grant succeeded.
+ѕривилегии предоставлены.
+
+
+ѕривилегии предоставлены.
 
