@@ -141,7 +141,7 @@ begin
   While not QTemp.Eof do
   begin
     Series1.AddXY(i, QTemp.fieldbyname('torq').asfloat, '', clGreen);
-    Series2.AddXY(i, QTemp.fieldbyname('rot').asfloat/10, '', clred);
+    Series2.AddXY(i, QTemp.fieldbyname('rot').asfloat / 10, '', clred);
     QTemp.Next;
     i := i + step;
   end;

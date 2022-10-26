@@ -114,7 +114,7 @@ var
   a       : array [1 .. 1000] of R;
   acount  : Integer;
   tipispyt: Integer;
-  ch:boolean;
+  ch      : Boolean;
 
 implementation
 
@@ -169,7 +169,7 @@ end;
 
 procedure TFRH.BitBtn1Click(Sender: TObject);
 begin
- ch:=true;
+  ch := true;
   if (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or
     (Edit7.Text = '') then
   begin
@@ -190,8 +190,8 @@ begin
   ProgressBar1.max  := Strtoint(Edit1.Text);
   ProgressBar1.Step := 1;
   CommandStart(1, umain.Nomer, Label8.Caption);
-  Timer2.Enabled    := True;
-  Timer1000.Enabled := True;
+  Timer2.Enabled    := true;
+  Timer1000.Enabled := true;
 end;
 
 procedure TFRH.BitBtn2Click(Sender: TObject);
@@ -210,22 +210,28 @@ begin
   // вот тут надо будет повносить суммарно всю таблицу
   for i := 1 to StringGrid2.RowCount - 2 do
   begin
-      QInsSvod.ParamByName('nomer').Asstring := nomer;
-      QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
-      QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
-      QInsSvod.ParamByName('power').AsFloat := StrToFloat(Stringgrid2.cells[0,i]);
-      QInsSvod.ParamByName('usred').AsFloat := StrToFloat(Stringgrid2.cells[1,i]);
-      QInsSvod.ParamByName('isred').AsFloat := StrToFloat(Stringgrid2.cells[2,i]);
-      QInsSvod.ParamByName('psred').AsFloat := StrToFloat(Stringgrid2.cells[3,i]);
-      QInsSvod.ParamByName('rot').AsFloat := StrToFloat(Stringgrid2.cells[4,i]);
-      QInsSvod.ParamByName('torq').AsFloat :=StrToFloat(Stringgrid2.cells[5,i]);
-      QInsSvod.ParamByName('dumax').AsFloat := StrToFloat(Stringgrid2.cells[6,i]);
-      QInsSvod.ParamByName('dpmax').AsFloat :=StrToFloat(Stringgrid2.cells[7,i]);
-      QInsSvod.ParamByName('tip').Asinteger := i;
-      QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
-      QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
-      QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
-      QInsSvod.ExecSQL;
+    QInsSvod.ParamByName('nomer').Asstring := Nomer;
+    QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
+    QInsSvod.ParamByName('pisp').AsFloat   := Strtofloat(Label8.Caption);
+    QInsSvod.ParamByName('power').AsFloat  :=
+      Strtofloat(StringGrid2.cells[0, i]);
+    QInsSvod.ParamByName('usred').AsFloat :=
+      Strtofloat(StringGrid2.cells[1, i]);
+    QInsSvod.ParamByName('isred').AsFloat :=
+      Strtofloat(StringGrid2.cells[2, i]);
+    QInsSvod.ParamByName('psred').AsFloat :=
+      Strtofloat(StringGrid2.cells[3, i]);
+    QInsSvod.ParamByName('rot').AsFloat := Strtofloat(StringGrid2.cells[4, i]);
+    QInsSvod.ParamByName('torq').AsFloat := Strtofloat(StringGrid2.cells[5, i]);
+    QInsSvod.ParamByName('dumax').AsFloat :=
+      Strtofloat(StringGrid2.cells[6, i]);
+    QInsSvod.ParamByName('dpmax').AsFloat :=
+      Strtofloat(StringGrid2.cells[7, i]);
+    QInsSvod.ParamByName('tip').Asinteger := i;
+    QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
+    QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
+    QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
+    QInsSvod.ExecSQL;
   end; // завершено внесение всей таблицы в свод
   FMain.Label30.font.Color := clGreen;
   FMain.Label30.Caption    := 'ПРОЙДЕН';
@@ -259,10 +265,10 @@ procedure TFRH.FormActivate(Sender: TObject);
 var
   i: Integer;
 begin
-  Label3.Caption  := FMain.Edit6.Text;
-  Label10.Caption := FMain.Edit7.Text;
-  Label17.Caption := Floattostr(Strtofloat(FMain.Edit7.Text) * 1000);
-  ch:=false;
+  Label3.Caption            := FMain.Edit6.Text;
+  Label10.Caption           := FMain.Edit7.Text;
+  Label17.Caption           := Floattostr(Strtofloat(FMain.Edit7.Text) * 1000);
+  ch                        := false;
   for i                     := 1 to 8 do
     StringGrid1.cells[0, i] := inttostr(i);
   StringGrid1.cells[0, 0]   := '№';
@@ -284,16 +290,18 @@ var
   i, j: Integer;
   f   : textfile;
 begin
-   if ch then
-    if MessageDlg('У вас есть несохраненная работа, она может быть утеряна, действительно закрыть окно?',mtConfirmation,[mbYes, mbNo],0) = mrYes then
+  if ch then
+    if MessageDlg
+      ('У вас есть несохраненная работа, она может быть утеряна, действительно закрыть окно?',
+      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
 
-     CanClose := True;
+      CanClose := true;
     end
     else
-    CanClose := False;
+      CanClose := false;
 
-    AssignFile(f, extractfilepath(paramstr(0)) + '\GridRH.TXT');
+  AssignFile(f, extractfilepath(paramstr(0)) + '\GridRH.TXT');
   ReWrite(f);
   for i   := 1 to 10 do
     for j := 1 to 3 do
@@ -381,7 +389,7 @@ end;
 
 procedure TFRH.FormShow(Sender: TObject);
 begin
-  TimerUp.Enabled := True;
+  TimerUp.Enabled := true;
 end;
 
 procedure TFRH.RadioButton1Click(Sender: TObject);
@@ -416,9 +424,9 @@ begin
     tipispyt                                       := 1;
     Label6.Caption                                 := Label3.Caption;
     Label8.Caption                                 := StringGrid2.cells[0, 1];
-    BitBtn1.Enabled                                := True;
-    BitBtn2.Enabled                                := True;
-    BitBtn3.Enabled                                := True;
+    BitBtn1.Enabled                                := true;
+    BitBtn2.Enabled                                := true;
+    BitBtn3.Enabled                                := true;
   end
   else
     Showmessage
@@ -457,9 +465,9 @@ begin
     tipispyt                                       := 2;
     Label6.Caption                                 := Label3.Caption;
     Label8.Caption                                 := StringGrid2.cells[0, 1];
-    BitBtn1.Enabled                                := True;
-    BitBtn2.Enabled                                := True;
-    BitBtn3.Enabled                                := True;
+    BitBtn1.Enabled                                := true;
+    BitBtn2.Enabled                                := true;
+    BitBtn3.Enabled                                := true;
   end
   else
     Showmessage
@@ -499,9 +507,9 @@ begin
     tipispyt                                       := 3;
     Label6.Caption                                 := Label3.Caption;
     Label8.Caption                                 := StringGrid2.cells[0, 1];
-    BitBtn1.Enabled                                := True;
-    BitBtn2.Enabled                                := True;
-    BitBtn3.Enabled                                := True;
+    BitBtn1.Enabled                                := true;
+    BitBtn2.Enabled                                := true;
+    BitBtn3.Enabled                                := true;
   end
   else
     Showmessage
@@ -643,16 +651,16 @@ begin
 
     if StringGrid2.cells[0, StringGrid2.row + 1] = '' then
     begin
-      BitBtn1.Enabled := True;
-      BitBtn2.Enabled := True;
-      BitBtn3.Enabled := True;
+      BitBtn1.Enabled := true;
+      BitBtn2.Enabled := true;
+      BitBtn3.Enabled := true;
       Showmessage('Испытание завершено!')
     end
     else
     begin
       StringGrid2.row := StringGrid2.row + 1;
-      BitBtn3.Enabled := True;
-      BitBtn1.Enabled := True;
+      BitBtn3.Enabled := true;
+      BitBtn1.Enabled := true;
       Label8.Caption  := StringGrid2.cells[0, StringGrid2.row];
     end;
   end
