@@ -9,7 +9,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                      "COMMAND"
                                                             0 rows imported
 . . importing table                          "INI"
-                                                           16 rows imported
+                                                           15 rows imported
 . . importing table                        "NOMER"
                                                             1 rows imported
 . . importing table                        "STEND"
@@ -19,22 +19,22 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                        "ZAMER"
                                                             1 rows imported
 . . importing table                     "ZAMERTMP"
-                                                          159 rows imported
+                                                            9 rows imported
 . . importing table                       "ZDELTA"
                                                             5 rows imported
 . . importing table                     "ZDVIGALL"
-                                                            6 rows imported
+                                                            7 rows imported
 . . importing table                         "ZERR"
-                                                          110 rows imported
+                                                          119 rows imported
 . . importing table                       "ZHHALL"
-......
-                                                         6621 rows imported
+.......
+                                                         7232 rows imported
 . . importing table                      "ZHHSVOD"
-                                                           33 rows imported
+                                                           36 rows imported
 . . importing table                       "ZKZALL"
-                                                          331 rows imported
+                                                          365 rows imported
 . . importing table                      "ZKZSVOD"
-                                                            8 rows imported
+                                                           10 rows imported
 . . importing table                      "ZMEHALL"
 ..
                                                          2492 rows imported
@@ -52,7 +52,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                      "ZRHSVOD"
                                                            15 rows imported
 . . importing table                      "ZSOPROT"
-                                                            4 rows imported
+                                                            5 rows imported
 . . importing table                        "ZSOTR"
                                                             2 rows imported
 . . importing table                       "ZTABLE"
