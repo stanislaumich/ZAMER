@@ -694,14 +694,14 @@ object FRH: TFRH
     Enabled = False
     OnTimer = Timer1000Timer
     Left = 320
-    Top = 209
+    Top = 285
   end
   object Timer2: TTimer
     Enabled = False
     Interval = 70
     OnTimer = Timer2Timer
-    Left = 379
-    Top = 213
+    Left = 319
+    Top = 325
   end
   object QinsAll: TFDQuery
     Connection = FMain.FDOra
@@ -936,8 +936,8 @@ object FRH: TFRH
   object TimerUp: TTimer
     Interval = 500
     OnTimer = TimerUpTimer
-    Left = 347
-    Top = 266
+    Left = 319
+    Top = 366
   end
   object ActionList1: TActionList
     Left = 657

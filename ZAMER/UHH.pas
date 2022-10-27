@@ -125,8 +125,27 @@ end;
 
 procedure TFhhod.BitBtn2Click(Sender: TObject);
 var
-  i: Integer;
+  i             : Integer;
+  b             : Boolean;
+  buttonSelected: Integer;
 begin
+
+  b     := false;
+  for i := 1 to StringGrid2.rowcount - 2 do
+  begin
+    if StringGrid2.cells[5, i] = '' then
+      b := True;
+    if StringGrid2.cells[5, i] = '0' then
+      b := True;
+  end;
+  if b then
+  begin
+    buttonSelected :=
+      MessageDlg('Есть нулевые сопротивления, продолжить запись?',
+      mtConfirmation, mbYesNo, 0);
+    if buttonSelected = mrNo then
+      exit;
+  end;
   i := 1;
   while StringGrid2.cells[0, i] <> '' do
   begin

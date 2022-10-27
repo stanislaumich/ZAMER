@@ -208,7 +208,7 @@ begin
     exit;
 
   // вот тут надо будет повносить суммарно всю таблицу
-  for i := 1 to StringGrid2.RowCount - 2 do
+  {for i := 1 to StringGrid2.RowCount - 2 do
   begin
     QInsSvod.ParamByName('nomer').Asstring := Nomer;
     QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
@@ -233,6 +233,7 @@ begin
     QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
     QInsSvod.ExecSQL;
   end; // завершено внесение всей таблицы в свод
+  }
   FMain.Label30.font.Color := clGreen;
   FMain.Label30.Caption    := 'ПРОЙДЕН';
   FRH.Close;
@@ -605,7 +606,7 @@ begin
     QTemp.ExecSQL;
 
     // потом надо будет перенести
-    { QInsSvod.ParamByName('nomer').Asstring :=
+      QInsSvod.ParamByName('nomer').Asstring :=
       Qselectsred.FieldByName('nomer').Asstring;
       QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
       QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
@@ -630,7 +631,7 @@ begin
       QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
       QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
       QInsSvod.ExecSQL;
-    }
+
     // ++++ вверх это вырезать
     StringGrid2.cells[1, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU));

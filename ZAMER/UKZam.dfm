@@ -3,7 +3,7 @@ object FKzam: TFKzam
   Top = 0
   Caption = #1050#1086#1088#1086#1090#1082#1086#1077' '#1079#1072#1084#1099#1082#1072#1085#1080#1077
   ClientHeight = 525
-  ClientWidth = 767
+  ClientWidth = 704
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -3537,7 +3537,7 @@ object FKzam: TFKzam
   object GroupBox1: TGroupBox
     Left = 3
     Top = 0
-    Width = 756
+    Width = 697
     Height = 105
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1086#1074
     TabOrder = 0
@@ -3825,7 +3825,7 @@ object FKzam: TFKzam
       Anchors = [akLeft, akTop, akRight]
       DefaultColWidth = 95
       FixedCols = 0
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goRowSelect, goFixedRowDefAlign]
       TabOrder = 2
       OnClick = StringGrid1Click
     end
@@ -3841,7 +3841,7 @@ object FKzam: TFKzam
   object GroupBox3: TGroupBox
     Left = 527
     Top = 111
-    Width = 190
+    Width = 173
     Height = 353
     Caption = #1044#1080#1072#1087#1072#1079#1086#1085' '#1087#1086' '#1090#1086#1082#1091
     TabOrder = 2
@@ -3910,8 +3910,8 @@ object FKzam: TFKzam
     end
   end
   object BitBtn10: TBitBtn
-    Left = 266
-    Top = 471
+    Left = 207
+    Top = 470
     Width = 138
     Height = 52
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
@@ -3975,8 +3975,8 @@ object FKzam: TFKzam
     TabOrder = 3
   end
   object BitBtn11: TBitBtn
-    Left = 410
-    Top = 470
+    Left = 351
+    Top = 469
     Width = 150
     Height = 52
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
@@ -4041,8 +4041,8 @@ object FKzam: TFKzam
     OnClick = BitBtn11Click
   end
   object BitBtn12: TBitBtn
-    Left = 569
-    Top = 470
+    Left = 510
+    Top = 469
     Width = 190
     Height = 53
     Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100

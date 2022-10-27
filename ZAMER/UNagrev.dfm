@@ -693,7 +693,7 @@ object FNagrev: TFNagrev
   end
   object Edit6: TEdit
     Left = 413
-    Top = 471
+    Top = 478
     Width = 61
     Height = 31
     TabOrder = 6

@@ -214,6 +214,7 @@ object Fhhod: TFhhod
     Height = 29
     Caption = #1057#1086#1086#1073#1097#1072#1090#1100' '#1079#1074#1091#1082#1086#1084
     TabOrder = 4
+    Visible = False
   end
   object ProgressBar1: TProgressBar
     Left = 1
@@ -303,7 +304,7 @@ object Fhhod: TFhhod
     Top = 411
     Width = 149
     Height = 53
-    Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100
+    Caption = #1047#1072#1087#1080#1089#1072#1090#1100
     Enabled = False
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100

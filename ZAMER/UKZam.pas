@@ -132,10 +132,31 @@ begin
 end;
 
 procedure TFKzam.BitBtn12Click(Sender: TObject);
+var
+  buttonSelected: Integer;
 begin
-  FMAin.Label31.Caption    := 'ПРОЙДЕН';
-  FMAin.Label31.Font.Color := clGreen;
-  FKzam.Close;
+  if Edit2.text = '0' then
+  begin
+    buttonSelected :=
+      MessageDlg('Сопротивление равно нулю, продолжить запись??',
+      mtConfirmation, mbYesNo, 0);
+    if buttonSelected = mrYes then
+    begin
+      FMAin.Label31.Caption    := 'ПРОЙДЕН';
+      FMAin.Label31.Font.Color := clGreen;
+      FKzam.Close;
+    end
+    else
+    begin
+
+    end;
+  end
+  else
+  begin
+    FMAin.Label31.Caption    := 'ПРОЙДЕН';
+    FMAin.Label31.Font.Color := clGreen;
+    FKzam.Close;
+  end;
 end;
 
 procedure TFKzam.BitBtn1Click(Sender: TObject);
@@ -148,7 +169,6 @@ begin
   BitBtn6.Glyph := nil;
   BitBtn7.Glyph := nil;
   BitBtn1.Repaint;
-
 end;
 
 procedure TFKzam.BitBtn2Click(Sender: TObject);
@@ -236,7 +256,7 @@ begin
     dectype := '4'; }
   dectype := '10';
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
-    + dectype + ', ' + FMAin.Edit12.Text + ')');
+    + dectype + ', ' + FMAin.Edit12.text + ')');
   QCommand.ExecSQL;
 end;
 
@@ -314,7 +334,7 @@ begin
   QInsSvod.ParamByName('nomer').AsString := Nomer;
   QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label11.Caption);
   QInsSvod.ParamByName('r').AsFloat      :=
-    SimpleRoundTo(Strtofloat(Edit2.Text), RazR);
+    SimpleRoundTo(Strtofloat(Edit2.text), RazR);
   QInsSvod.ParamByName('u').AsFloat :=
     SimpleRoundTo(QSelectSred.FieldByName('u').AsFloat, RazU);
   QInsSvod.ParamByName('i').AsFloat :=
@@ -344,8 +364,10 @@ end;
 procedure TFKzam.FormActivate(Sender: TObject);
 begin
   StringGrid1.cells[0, 1] :=
-    FloatToStr(round(Strtofloat(FMAin.Edit5.Text) / 3.8));
-  StringGrid1.cells[0, 2] := FloatToStr(round(Strtofloat(FMAin.Edit5.Text)));
+    FloatToStr(round(Strtofloat(FMAin.Edit5.text) / 3.8));
+  StringGrid1.cells[0, 2] := FloatToStr(round(Strtofloat(FMAin.Edit5.text)));
+  StringGrid1.row         := 1;
+  StringGrid1Click(self);
 end;
 
 procedure TFKzam.FormCreate(Sender: TObject);
