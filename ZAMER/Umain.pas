@@ -291,7 +291,6 @@ begin
     QDelta.Open('select value from zdelta where name=' + Quotedstr('uhh'));
     Fhhod.Edit2.Text := QDelta.FieldByName('value').Asstring;
     //
-
 end;
 
 procedure TFMain.savedelta;
@@ -662,9 +661,18 @@ begin
     end;
     tip                      := 1;
     Frh.Stringgrid2.rowcount := Qtemp.RecordCount + 2;
-    Frh.Edit4.Text           := Qtemp.FieldByName('t1').Asstring;
-    Frh.Edit5.Text           := Qtemp.FieldByName('t2').Asstring;
-    Frh.Edit6.Text           := Qtemp.FieldByName('t3').Asstring;
+    if Qtemp.FieldByName('t1').Asstring = '' then
+        Frh.Edit4.Text := '0'
+    else
+        Frh.Edit4.Text := Qtemp.FieldByName('t1').Asstring;
+    if Qtemp.FieldByName('t2').Asstring = '' then
+        Frh.Edit5.Text := '0'
+    else
+        Frh.Edit5.Text := Qtemp.FieldByName('t2').Asstring;
+    if Qtemp.FieldByName('t3').Asstring = '' then
+        Frh.Edit6.Text := '0'
+    else
+        Frh.Edit6.Text := Qtemp.FieldByName('t3').Asstring;
     while not(Qtemp.Eof) do
     begin
         Frh.Stringgrid2.Cells[0, tip] := Qtemp.FieldByName('pisp').Asstring;
@@ -809,8 +817,14 @@ begin
     Qtemp.Close;
     Qtemp.SQL.Clear;
     Qtemp.Open('select * from zproch where nomer=' + Quotedstr(Nomer));
-    Fproch.Edit1.Text := Qtemp.FieldByName('eprochu').Asstring;
-    Fproch.Edit2.Text := Qtemp.FieldByName('massa').Asstring;
+    if Qtemp.FieldByName('eprochu').Asstring = '' then
+        Fproch.Edit1.Text := '380'
+    else
+        Fproch.Edit1.Text := Qtemp.FieldByName('eprochu').Asstring;
+    if Qtemp.FieldByName('massa').Asstring = '' then
+        Fproch.Edit2.Text := '0'
+    else
+        Fproch.Edit2.Text := Qtemp.FieldByName('massa').Asstring;
 
     case Qtemp.FieldByName('eproch').AsInteger of
         1:
@@ -897,11 +911,30 @@ begin
     end;
     { SELECT NOMER, U, I, P, N, M,  T1, R, TIP, DOP1, RKORP, ROBM, T2, T3, T }
     Qtemp.first;
-    Fnagrev.Edit6.Text := Qtemp.FieldByName('t1').Asstring;
-    Fnagrev.Edit7.Text := Qtemp.FieldByName('t2').Asstring;
-    Fnagrev.Edit8.Text := Qtemp.FieldByName('t3').Asstring;
-    Fnagrev.Edit4.Text := Qtemp.FieldByName('RKORP').Asstring;
-    Fnagrev.Edit5.Text := Qtemp.FieldByName('ROBM').Asstring;
+    if Qtemp.FieldByName('t1').Asstring = '' then
+        Fnagrev.Edit6.Text := '0'
+    else
+        Fnagrev.Edit6.Text := Qtemp.FieldByName('t1').Asstring;
+
+    if Qtemp.FieldByName('t2').Asstring = '' then
+        Fnagrev.Edit7.Text := '0'
+    else
+        Fnagrev.Edit7.Text := Qtemp.FieldByName('t2').Asstring;
+
+    if Qtemp.FieldByName('t3').Asstring = '' then
+        Fnagrev.Edit8.Text := '0'
+    else
+        Fnagrev.Edit8.Text := Qtemp.FieldByName('t3').Asstring;
+
+    if Qtemp.FieldByName('RKORP').Asstring = '' then
+        Fnagrev.Edit4.Text := '0'
+    else
+        Fnagrev.Edit4.Text := Qtemp.FieldByName('RKORP').Asstring;
+
+    if Qtemp.FieldByName('ROBM').Asstring = '' then
+        Fnagrev.Edit5.Text := '0'
+    else
+        Fnagrev.Edit5.Text := Qtemp.FieldByName('ROBM').Asstring;
     while not Qtemp.Eof do
     begin
         Fnagrev.StringGrid1.Cells[1, Qtemp.FieldByName('tip').AsInteger] :=

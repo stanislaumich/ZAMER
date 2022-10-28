@@ -174,7 +174,10 @@ begin
   QTemp.sql.Clear;
   QTemp.sql.Add('select * from ini where name=' + Quotedstr('graph'));
   QTemp.Open;
-  Edit1.text := QTemp.fieldbyname('value').Asstring;
+  if QTemp.fieldbyname('value').Asstring = '' then
+    Edit1.text := '5'
+  else
+    Edit1.text := QTemp.fieldbyname('value').Asstring;
 end;
 
 end.

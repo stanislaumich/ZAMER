@@ -39,6 +39,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure StringGrid1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,9 +63,22 @@ begin
 end;
 
 
+procedure TFFile.StringGrid1Click(Sender: TObject);
+begin
+ Edit1.Text:=Stringgrid1.cells[0,Stringgrid1.row];
+ Edit2.Text:=Stringgrid1.cells[1,Stringgrid1.row];
+ Edit3.Text:=Stringgrid1.cells[2,Stringgrid1.row];
+ Edit4.Text:=Stringgrid1.cells[3,Stringgrid1.row];
+ Edit5.Text:=Stringgrid1.cells[4,Stringgrid1.row];
+end;
+
 procedure TFFile.BitBtn1Click(Sender: TObject);
 var i:integer;
 begin
+ QTemp.Close;
+ QTEmp.SQL.Clear;
+ QTEMP.SQL.Add('delete from list where nm='+Quotedstr(Edit1.Text));
+ QTemp.ExecSQL;
  QTemp.Close;
  QTEmp.SQL.Clear;
  QTEMP.SQL.Add('INSERT INTO list ( id, [before], url, path, [after], nm, dop) VALUES (');
@@ -94,6 +108,11 @@ begin
   end;
  Stringgrid1.RowCount:=Stringgrid1.RowCount-1;
  QTemp.Close;
+ Edit1.Text:='';
+ Edit2.Text:='';
+ Edit3.Text:='';
+ Edit4.Text:='';
+ Edit5.Text:='';
 end;
 
 procedure TFFile.BitBtn2Click(Sender: TObject);

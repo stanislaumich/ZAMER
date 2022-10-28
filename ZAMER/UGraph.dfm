@@ -235,7 +235,7 @@ object FGraph: TFGraph
     Top = 599
     Width = 49
     Height = 21
-    Anchors = [akLeft, akBottom]
+    Anchors = [akRight, akBottom]
     TabOrder = 3
     Text = '6'
   end

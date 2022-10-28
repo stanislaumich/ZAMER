@@ -208,31 +208,31 @@ begin
     exit;
 
   // вот тут надо будет повносить суммарно всю таблицу
-  {for i := 1 to StringGrid2.RowCount - 2 do
-  begin
+  { for i := 1 to StringGrid2.RowCount - 2 do
+    begin
     QInsSvod.ParamByName('nomer').Asstring := Nomer;
     QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
     QInsSvod.ParamByName('pisp').AsFloat   := Strtofloat(Label8.Caption);
     QInsSvod.ParamByName('power').AsFloat  :=
-      Strtofloat(StringGrid2.cells[0, i]);
+    Strtofloat(StringGrid2.cells[0, i]);
     QInsSvod.ParamByName('usred').AsFloat :=
-      Strtofloat(StringGrid2.cells[1, i]);
+    Strtofloat(StringGrid2.cells[1, i]);
     QInsSvod.ParamByName('isred').AsFloat :=
-      Strtofloat(StringGrid2.cells[2, i]);
+    Strtofloat(StringGrid2.cells[2, i]);
     QInsSvod.ParamByName('psred').AsFloat :=
-      Strtofloat(StringGrid2.cells[3, i]);
+    Strtofloat(StringGrid2.cells[3, i]);
     QInsSvod.ParamByName('rot').AsFloat := Strtofloat(StringGrid2.cells[4, i]);
     QInsSvod.ParamByName('torq').AsFloat := Strtofloat(StringGrid2.cells[5, i]);
     QInsSvod.ParamByName('dumax').AsFloat :=
-      Strtofloat(StringGrid2.cells[6, i]);
+    Strtofloat(StringGrid2.cells[6, i]);
     QInsSvod.ParamByName('dpmax').AsFloat :=
-      Strtofloat(StringGrid2.cells[7, i]);
+    Strtofloat(StringGrid2.cells[7, i]);
     QInsSvod.ParamByName('tip').Asinteger := i;
     QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
     QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
     QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
     QInsSvod.ExecSQL;
-  end; // завершено внесение всей таблицы в свод
+    end; // завершено внесение всей таблицы в свод
   }
   FMain.Label30.font.Color := clGreen;
   FMain.Label30.Caption    := 'ПРОЙДЕН';
@@ -606,31 +606,31 @@ begin
     QTemp.ExecSQL;
 
     // потом надо будет перенести
-      QInsSvod.ParamByName('nomer').Asstring :=
+    QInsSvod.ParamByName('nomer').Asstring :=
       Qselectsred.FieldByName('nomer').Asstring;
-      QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
-      QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
-      QInsSvod.ParamByName('usred').AsFloat :=
+    QInsSvod.ParamByName('uisp').AsFloat  := Strtofloat(Label6.Caption);
+    QInsSvod.ParamByName('pisp').AsFloat  := Strtofloat(Label8.Caption);
+    QInsSvod.ParamByName('usred').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU);
-      QInsSvod.ParamByName('isred').AsFloat :=
+    QInsSvod.ParamByName('isred').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('i').AsFloat, RazI);
-      QInsSvod.ParamByName('psred').AsFloat :=
+    QInsSvod.ParamByName('psred').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('p').AsFloat, RazP);
-      QInsSvod.ParamByName('dumax').AsFloat :=
+    QInsSvod.ParamByName('dumax').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('umax').AsFloat, RazU);
-      QInsSvod.ParamByName('dpmax').AsFloat :=
+    QInsSvod.ParamByName('dpmax').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP);
-      QInsSvod.ParamByName('torq').AsFloat :=
+    QInsSvod.ParamByName('torq').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('t').AsFloat, RazM);
-      QInsSvod.ParamByName('rot').AsFloat :=
+    QInsSvod.ParamByName('rot').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN);
-      QInsSvod.ParamByName('power').AsFloat :=
+    QInsSvod.ParamByName('power').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
-      QInsSvod.ParamByName('tip').Asinteger := tipispyt;
-      QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
-      QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
-      QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
-      QInsSvod.ExecSQL;
+    QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+    QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
+    QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
+    QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
+    QInsSvod.ExecSQL;
 
     // ++++ вверх это вырезать
     StringGrid2.cells[1, StringGrid2.row] :=

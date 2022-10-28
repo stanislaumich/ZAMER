@@ -84,6 +84,7 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1000Timer(Sender: TObject);
     procedure CommandStart(c: Integer; n: string; fn: string);
+    procedure BitBtn10Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -128,6 +129,11 @@ end;
 procedure TFNagrev.Action1Execute(Sender: TObject);
 begin
   BitBtn1.Click;
+end;
+
+procedure TFNagrev.BitBtn10Click(Sender: TObject);
+begin
+  FNagrev.Close;
 end;
 
 procedure TFNagrev.BitBtn11Click(Sender: TObject);

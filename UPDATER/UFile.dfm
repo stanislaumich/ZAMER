@@ -277,6 +277,7 @@ object FFile: TFFile
       RowCount = 2
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
+      OnClick = StringGrid1Click
     end
   end
   object BitBtn3: TBitBtn

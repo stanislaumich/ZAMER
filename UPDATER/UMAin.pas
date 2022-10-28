@@ -33,6 +33,7 @@ type
     procedure Action1Execute(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure StringGrid1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -133,6 +134,11 @@ begin
  Log('Секция завершена');
  Log('');
 end;
+procedure TFMainUpdater.StringGrid1Click(Sender: TObject);
+begin
+
+end;
+
 //----------------------------------------------------------------
 function TFMainUpdater.MakeAll(fini:string):boolean;
 var
