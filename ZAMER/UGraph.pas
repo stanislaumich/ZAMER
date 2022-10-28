@@ -127,7 +127,7 @@ begin
   cx := 1;
   cy := 10;
   i  := 0;
-  // step:=30;
+  step:=1;
   Series1.LinePen.Width := Strtoint(Edit1.text);
   Series2.LinePen.Width := Strtoint(Edit1.text);
   Series1.Clear;
@@ -137,7 +137,7 @@ begin
   Label5.Caption := '0';
   QTemp.Close;
   QTemp.Open('select * from zamertmp order by ID');
-  step := QTemp.RecordCount div 30;
+  //step := QTemp.RecordCount div 30;
   While not QTemp.Eof do
   begin
     Series1.AddXY(i, QTemp.fieldbyname('torq').asfloat, '', clGreen);

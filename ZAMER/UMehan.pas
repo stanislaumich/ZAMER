@@ -447,6 +447,7 @@ begin
   QTemp.Open('select * from zamertmp order by rowid');
   QTemp.First;
   QInsall.Close;
+  showmessage(inttostr(t));
   for i := 1 to t do
   begin
     QInsall.ParamByName('nomer').AsString := nomer;
@@ -536,7 +537,6 @@ begin
   QGetMN.Open('select * from zamer');
   Label6.Caption := QGetMN.FieldByName('torq').AsString;
   Label7.Caption := QGetMN.FieldByName('rot').AsString;
-
 end;
 
 procedure TFMehan.Timer2Timer(Sender: TObject);
