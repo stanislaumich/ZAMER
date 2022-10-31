@@ -22,7 +22,7 @@ EXP-00091: Exporting questionable statistics.
                                                             0 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                            INI
-                                                           17 rows exported
+                                                           18 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                          NOMER
                                                             1 rows exported
@@ -49,7 +49,7 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                           ZERR
-                                                          130 rows exported
+                                                          133 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZHHALL
 .......

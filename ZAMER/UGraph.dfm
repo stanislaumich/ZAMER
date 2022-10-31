@@ -146,6 +146,18 @@ object FGraph: TFGraph
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
+    object Series3: TPointSeries
+      Legend.Text = #1052#1040#1056#1050#1045#1056
+      LegendTitle = #1052#1040#1056#1050#1045#1056
+      ClickableLine = False
+      Pointer.Emboss.Color = clRed
+      Pointer.InflateMargins = True
+      Pointer.Style = psRectangle
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Y'
+      YValues.Order = loNone
+    end
   end
   object Button4: TButton
     Left = 0

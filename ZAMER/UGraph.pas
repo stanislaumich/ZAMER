@@ -29,6 +29,7 @@ type
     ActionList1: TActionList;
     Action1: TAction;
     Edit1: TEdit;
+    Series3: TPointSeries;
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
@@ -48,8 +49,8 @@ type
 var
   FGraph: TFGraph;
 
-  i: Integer;
-
+  i,cnt: Integer;
+  tsred:integer;
 implementation
 
 uses umain, umehan;
@@ -121,6 +122,7 @@ end;
 procedure TFGraph.Button4Click(Sender: TObject);
 var
   x0, y0, cx, cy, i, step: Integer;
+  tmin,tmax:integer;
 begin
   x0 := 10;
   y0 := 700;
@@ -128,6 +130,7 @@ begin
   cy := 10;
   i  := 0;
   step:=1;
+  cnt:=0;
   Series1.LinePen.Width := Strtoint(Edit1.text);
   Series2.LinePen.Width := Strtoint(Edit1.text);
   Series1.Clear;
@@ -138,13 +141,24 @@ begin
   QTemp.Close;
   QTemp.Open('select * from zamertmp order by ID');
   //step := QTemp.RecordCount div 30;
+  //t:= round(QTemp.fieldbyname('rot').asfloat / 10);
+  tmax:= round(QTemp.fieldbyname('torq').asfloat );
+  tmin:= round(QTemp.fieldbyname('torq').asfloat );
   While not QTemp.Eof do
   begin
     Series1.AddXY(i, QTemp.fieldbyname('torq').asfloat, '', clGreen);
     Series2.AddXY(i, QTemp.fieldbyname('rot').asfloat / 10, '', clred);
+    //Series3.AddXY(i, t, '', clred);
+    if tmax< QTemp.fieldbyname('torq').asfloat then tmax:= round(QTemp.fieldbyname('torq').asfloat );
+    if tmin> QTemp.fieldbyname('torq').asfloat then tmin:= round(QTemp.fieldbyname('torq').asfloat );
     QTemp.Next;
     i := i + step;
+    cnt:=cnt+1;
   end;
+  tsred:=((tmax+tmin) div 2);
+  for i:=0 to cnt-1 do
+   Series3.AddXY(i, tsred, '', clred);
+
 end;
 
 procedure TFGraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;

@@ -447,7 +447,7 @@ begin
   QTemp.Open('select * from zamertmp order by rowid');
   QTemp.First;
   QInsall.Close;
-  showmessage(inttostr(t));
+  //showmessage(inttostr(t));
   for i := 1 to t do
   begin
     QInsall.ParamByName('nomer').AsString := nomer;
