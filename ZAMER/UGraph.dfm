@@ -76,7 +76,7 @@ object FGraph: TFGraph
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 638
+    Left = 615
     Top = 599
     Width = 15
     Height = 29
@@ -90,7 +90,7 @@ object FGraph: TFGraph
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 512
+    Left = 489
     Top = 599
     Width = 120
     Height = 29
@@ -108,13 +108,15 @@ object FGraph: TFGraph
     Top = 586
     Width = 49
     Height = 13
+    Anchors = [akRight, akBottom]
     Caption = #1058#1086#1083#1097#1080#1085#1072':'
   end
   object Label8: TLabel
-    Left = 676
-    Top = 612
+    Left = 677
+    Top = 610
     Width = 49
     Height = 13
+    Anchors = [akRight, akBottom]
     Caption = #1052#1072#1089#1096#1090#1072#1073':'
   end
   object Chart1: TChart
@@ -264,6 +266,26 @@ object FGraph: TFGraph
     Anchors = [akRight, akBottom]
     TabOrder = 3
     Text = '6'
+  end
+  object UpDown1: TUpDown
+    Left = 765
+    Top = 607
+    Width = 16
+    Height = 21
+    Anchors = [akRight, akBottom]
+    Associate = Edit2
+    Position = 10
+    TabOrder = 4
+    OnClick = UpDown1Click
+  end
+  object Edit2: TEdit
+    Left = 732
+    Top = 607
+    Width = 33
+    Height = 21
+    Anchors = [akRight, akBottom]
+    TabOrder = 5
+    Text = '10'
   end
   object QTemp: TFDQuery
     Connection = FMain.FDOra

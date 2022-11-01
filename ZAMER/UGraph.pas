@@ -10,7 +10,7 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls,
   VclTee.TeeGDIPlus, VclTee.TeEngine, VclTee.Series, VclTee.TeeProcs,
-  VclTee.Chart, Vcl.Buttons, System.Actions, Vcl.ActnList;
+  VclTee.Chart, Vcl.Buttons, System.Actions, Vcl.ActnList, Vcl.ComCtrls, MAth;
 
 type
   TFGraph = class(TForm)
@@ -32,6 +32,8 @@ type
     Series3: TPointSeries;
     Label7: TLabel;
     Label8: TLabel;
+    UpDown1: TUpDown;
+    Edit2: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
@@ -42,6 +44,7 @@ type
     procedure Action1Execute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure UpDown1Click(Sender: TObject; Button: TUDBtnType);
   private
     { Private declarations }
   public
@@ -53,6 +56,8 @@ var
 
   i,cnt: Integer;
   tsred:integer;
+  mas:integer;
+
 implementation
 
 uses umain, umehan;
@@ -65,14 +70,8 @@ end;
 
 procedure TFGraph.BitBtn1Click(Sender: TObject);
 begin
-  // QTemp.Close;
-  // QTemp.SQL.Clear;
-  // QTemp.Open('select * from zamertmp where id='+Label2.Caption);
-  // fmehan.Stringgrid8.Cells[1,fmehan.Stringgrid8.row]:='380';
   fmehan.Stringgrid8.Cells[2, fmehan.Stringgrid8.row] := Label4.Caption;
-  // QTemp.FieldByName('torq').Asstring;
   fmehan.Stringgrid8.Cells[3, fmehan.Stringgrid8.row] := Label5.Caption;
-  // QTemp.FieldByName('rot').Asstring;
   FGraph.Close;
 end;
 
@@ -114,7 +113,6 @@ begin
     canvas.brush.Color := clred;
     canvas.lineto(x0 + round(i / cx),
       y0 - round(QTemp.fieldbyname('rot').asfloat / cy));
-
     QTemp.Next;
     i := i + 1;
   end;
@@ -137,6 +135,7 @@ begin
   Series2.LinePen.Width := Strtoint(Edit1.text);
   Series1.Clear;
   Series2.Clear;
+  Series3.Clear;
   Label2.Caption := '0';
   Label4.Caption := '0';
   Label5.Caption := '0';
@@ -147,7 +146,7 @@ begin
   While not QTemp.Eof do
   begin
     Series1.AddXY(i, QTemp.fieldbyname('torq').asfloat, '', clGreen);
-    Series2.AddXY(i, QTemp.fieldbyname('rot').asfloat / 10, '', clred);
+    Series2.AddXY(i, QTemp.fieldbyname('rot').asfloat / mas, '', clred);
     if tmax< QTemp.fieldbyname('torq').asfloat then tmax:= round(QTemp.fieldbyname('torq').asfloat );
     if tmin> QTemp.fieldbyname('torq').asfloat then
     begin
@@ -165,11 +164,10 @@ begin
     Series3.AddXY(i, tsred, '', clgreen);
     Label2.Caption := Floattostr(i);
     Label4.Caption := Floattostr(Chart1.Series[0].YValue[i]);
-    Label5.Caption := Floattostr(Chart1.Series[1].YValue[i])
+    Label5.Caption := Floattostr(Simpleroundto(Chart1.Series[1].YValue[i],-2))
    end
      else
    Series3.AddXY(i, tsred, '', clred);
-
 end;
 
 procedure TFGraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
@@ -177,7 +175,7 @@ procedure TFGraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
 begin
   Label2.Caption := Floattostr(Series.XValue[ValueIndex]);
   Label4.Caption := Floattostr(Chart1.Series[0].YValue[ValueIndex]);
-  Label5.Caption := Floattostr(Chart1.Series[1].YValue[ValueIndex])
+  Label5.Caption := Floattostr(Simpleroundto(Chart1.Series[1].YValue[ValueIndex],-2))
 end;
 
 procedure TFGraph.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -203,6 +201,13 @@ begin
     Edit1.text := '5'
   else
     Edit1.text := QTemp.fieldbyname('value').Asstring;
+  mas:=strtoint(edit2.Text);
+end;
+
+procedure TFGraph.UpDown1Click(Sender: TObject; Button: TUDBtnType);
+begin
+ mas:=strtoint(edit2.Text);
+ Button4.Click();
 end;
 
 end.
