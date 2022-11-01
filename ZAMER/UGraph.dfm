@@ -103,11 +103,25 @@ object FGraph: TFGraph
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object Label7: TLabel
+    Left = 697
+    Top = 586
+    Width = 49
+    Height = 13
+    Caption = #1058#1086#1083#1097#1080#1085#1072':'
+  end
+  object Label8: TLabel
+    Left = 676
+    Top = 612
+    Width = 49
+    Height = 13
+    Caption = #1052#1072#1089#1096#1090#1072#1073':'
+  end
   object Chart1: TChart
     Left = 0
     Top = 0
     Width = 987
-    Height = 593
+    Height = 577
     Legend.Alignment = laLeft
     Title.Font.Height = -41
     Title.Text.Strings = (
@@ -170,9 +184,9 @@ object FGraph: TFGraph
     OnClick = Button4Click
   end
   object BitBtn1: TBitBtn
-    Left = 776
+    Left = 788
     Top = 593
-    Width = 211
+    Width = 199
     Height = 44
     Anchors = [akRight, akBottom]
     Caption = 'F9 '#1047#1072#1087#1080#1089#1072#1090#1100
@@ -243,9 +257,9 @@ object FGraph: TFGraph
     OnClick = BitBtn1Click
   end
   object Edit1: TEdit
-    Left = 721
-    Top = 599
-    Width = 49
+    Left = 752
+    Top = 583
+    Width = 30
     Height = 21
     Anchors = [akRight, akBottom]
     TabOrder = 3
