@@ -207,33 +207,6 @@ begin
   if buttonSelected = mrNo then
     exit;
 
-  // вот тут надо будет повносить суммарно всю таблицу
-  { for i := 1 to StringGrid2.RowCount - 2 do
-    begin
-    QInsSvod.ParamByName('nomer').Asstring := Nomer;
-    QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
-    QInsSvod.ParamByName('pisp').AsFloat   := Strtofloat(Label8.Caption);
-    QInsSvod.ParamByName('power').AsFloat  :=
-    Strtofloat(StringGrid2.cells[0, i]);
-    QInsSvod.ParamByName('usred').AsFloat :=
-    Strtofloat(StringGrid2.cells[1, i]);
-    QInsSvod.ParamByName('isred').AsFloat :=
-    Strtofloat(StringGrid2.cells[2, i]);
-    QInsSvod.ParamByName('psred').AsFloat :=
-    Strtofloat(StringGrid2.cells[3, i]);
-    QInsSvod.ParamByName('rot').AsFloat := Strtofloat(StringGrid2.cells[4, i]);
-    QInsSvod.ParamByName('torq').AsFloat := Strtofloat(StringGrid2.cells[5, i]);
-    QInsSvod.ParamByName('dumax').AsFloat :=
-    Strtofloat(StringGrid2.cells[6, i]);
-    QInsSvod.ParamByName('dpmax').AsFloat :=
-    Strtofloat(StringGrid2.cells[7, i]);
-    QInsSvod.ParamByName('tip').Asinteger := i;
-    QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
-    QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
-    QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
-    QInsSvod.ExecSQL;
-    end; // завершено внесение всей таблицы в свод
-  }
   FMain.Label30.font.Color := clGreen;
   FMain.Label30.Caption    := 'ПРОЙДЕН';
   FRH.Close;
@@ -312,23 +285,32 @@ begin
   CloseFile(f);
 
   // delta and del
-
+  {
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('delete from ini where name=' + Quotedstr('rhtime'));
   FMain.QDelta.ExecSQL;
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('insert into ini (name,value) values(' +
     Quotedstr('rhtime') + ',' + Quotedstr(FRH.Edit1.Text) + ')');
+  FMain.QDelta.ExecSQL;}
+
+  FMain.QDelta.SQL.Clear;
+  FMain.QDelta.SQL.Add('update ini set value='+Quotedstr(FRH.Edit1.Text)+' where name=' +Quotedstr('rhtime'));
   FMain.QDelta.ExecSQL;
 
+  {
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('urh'));
   FMain.QDelta.ExecSQL;
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
     Quotedstr('urh') + ',' + FRH.Edit2.Text + ')');
-  FMain.QDelta.ExecSQL;
+  FMain.QDelta.ExecSQL;}
 
+  FMain.QDelta.SQL.Clear;
+  FMain.QDelta.SQL.Add('update ini set value='+Quotedstr(FRH.Edit2.Text)+' where name=' +Quotedstr('urh'));
+  FMain.QDelta.ExecSQL;
+  {
   QTemp.Close;
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('prh'));
@@ -337,8 +319,13 @@ begin
   FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
     Quotedstr('prh') + ',' + Point(FRH.Edit8.Text) + ')');
   FMain.QDelta.ExecSQL;
-  QTemp.Close;
+  QTemp.Close;}
 
+  FMain.QDelta.SQL.Clear;
+  FMain.QDelta.SQL.Add('update ini set value='+Quotedstr(Point(FRH.Edit8.Text))+' where name=' +Quotedstr('prh'));
+  FMain.QDelta.ExecSQL;
+
+  {
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from ini where name=' + Quotedstr('rhdel'));
   QTemp.ExecSQL;
@@ -351,6 +338,8 @@ begin
     QTemp.SQL.Add('insert into ini (name,value) values(' +
       Quotedstr('rhdel') + ',0)');
   QTemp.ExecSQL;
+  }
+
 
 end;
 
@@ -632,6 +621,7 @@ begin
     QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
     QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
     QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
+    QInsSvod.ParamByName('r').AsFloat    := Strtofloat(Edit7.Text);
     QInsSvod.ExecSQL;
 
     // ++++ вверх это вырезать

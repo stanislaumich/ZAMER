@@ -645,6 +645,7 @@ object FRH: TFRH
     Anchors = [akLeft]
     Caption = #1059#1076#1072#1083#1103#1090#1100
     TabOrder = 7
+    Visible = False
   end
   object Edit4: TEdit
     Left = 60
@@ -803,11 +804,11 @@ object FRH: TFRH
       '   NOMER, UISP, USRED, '
       '   ISRED, PSRED, TIP, '
       '   TORQ, ROT, POWER, '
-      '   DUMAX, DPMAX, PISP, T1, T2, T3) '
+      '   DUMAX, DPMAX, PISP, T1, T2, T3,r) '
       'VALUES ( :NOMER, :UISP, :USRED, '
       '   :ISRED, :PSRED, :TIP, '
       '   :TORQ, :ROT, :POWER, '
-      '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3 )')
+      '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3,:r )')
     Left = 852
     Top = 265
     ParamData = <
@@ -869,6 +870,10 @@ object FRH: TFRH
       end
       item
         Name = 'T3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'R'
         ParamType = ptInput
       end>
   end
