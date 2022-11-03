@@ -371,6 +371,7 @@ begin
       StringGrid1.cells[j, i] := s;
     end;
   CloseFile(f);
+
   FMain.QDelta.Open('select value from ini where name=' + Quotedstr('rhtime'));
   FRH.Edit1.Text := FMain.QDelta.FieldByName('value').Asstring;
   FMain.QDelta.Open('select value from zdelta where name=' + Quotedstr('urh'));
@@ -381,6 +382,7 @@ begin
   QTemp.SQL.Clear;
   QTemp.Open('select value from ini where name=' + Quotedstr('rhdel'));
   CheckBox2.Checked := QTemp.FieldByName('value').Asinteger = 1;
+
 end;
 
 procedure TFRH.FormHide(Sender: TObject);

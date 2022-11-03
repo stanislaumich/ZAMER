@@ -85,6 +85,7 @@ type
     procedure Timer1000Timer(Sender: TObject);
     procedure CommandStart(c: Integer; n: string; fn: string);
     procedure BitBtn10Click(Sender: TObject);
+    procedure StringGrid1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -192,6 +193,21 @@ begin
   FMain.QDelta.Open('select value from zdelta where name=' + Quotedstr('pnag'));
   FNagrev.Edit3.Text := FMain.QDelta.FieldByName('value').Asstring;
   QTemp.Close;
+
+end;
+
+procedure TFNagrev.StringGrid1Click(Sender: TObject);
+begin
+ if Stringgrid1.row=1 then
+  begin
+   Label18.Caption:=FMain.EDit6.Text;
+   Label19.Caption:='0';
+  end
+ else
+  begin
+   Label18.Caption:=FMain.EDit6.Text;
+   Label19.Caption:=Floattostr(1000*Strtofloat(FMain.Edit7.Text));
+  end;
 
 end;
 

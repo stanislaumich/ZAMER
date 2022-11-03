@@ -19,11 +19,11 @@ object FNagrev: TFNagrev
   PixelsPerInch = 96
   TextHeight = 23
   object Label17: TLabel
-    Left = 64
-    Top = 497
-    Width = 189
+    Left = 32
+    Top = 498
+    Width = 221
     Height = 23
-    Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1075#1088#1091#1079#1082#1091':'
+    Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1075#1088#1091#1079#1082#1091', '#1042#1090':'
   end
   object Label19: TLabel
     Left = 259
@@ -400,6 +400,7 @@ object FNagrev: TFNagrev
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnClick = StringGrid1Click
     end
     object BitBtn1: TBitBtn
       Left = 644
