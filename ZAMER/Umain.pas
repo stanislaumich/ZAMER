@@ -673,6 +673,11 @@ begin
         Frh.Edit6.Text := '0'
     else
         Frh.Edit6.Text := Qtemp.FieldByName('t3').Asstring;
+    if Qtemp.FieldByName('r').Asstring = '' then
+        Frh.Edit7.Text := '0'
+    else
+        Frh.Edit7.Text := Qtemp.FieldByName('r').Asstring;
+
     while not(Qtemp.Eof) do
     begin
         Frh.Stringgrid2.Cells[0, tip] := Qtemp.FieldByName('pisp').Asstring;
