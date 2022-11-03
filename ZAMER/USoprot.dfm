@@ -172,6 +172,7 @@ object FSoprot: TFSoprot
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnKeyPress = StringGrid3KeyPress
     end
     object ComboBox9: TComboBox
       Left = 244

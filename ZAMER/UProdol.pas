@@ -116,12 +116,14 @@ begin
   Edit10.text     := Qselectneokon.fieldbyname('ispoln').AsString;
   Edit1.text      := Qselectneokon.fieldbyname('fio').AsString;
   Edit2.text      := Qselectneokon.fieldbyname('regim').AsString;
+  Datetimepicker1.Date:=Strtodate(Qselectneokon.fieldbyname('data').AsString);
 end;
 
 procedure TFProdol.FormActivate(Sender: TObject);
 begin
   nomer             := '0';
   fmain.edit13.text := '0';
+  Datetimepicker1.Date:=date;
 end;
 
 end.

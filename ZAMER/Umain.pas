@@ -254,6 +254,16 @@ begin
     BitBtn11.Enabled := p;
 end;
 
+function Point(s: string): string;
+begin
+  Point := strReplace(s, ',', '.');
+end;
+
+function Comma(s: string): string;
+begin
+  Comma := strReplace(s, '.', ',');
+end;
+
 procedure TFMain.savecombo;
 var
     i, j: Integer;
@@ -467,7 +477,7 @@ begin
             QInsertNewDvig.ParamByName('UISP').AsInteger :=
               strtoint(Edit6.Text);
             QInsertNewDvig.ParamByName('PNOM').AsFloat :=
-              strtofloat(Edit7.Text);
+              strtofloat(Comma(Edit7.Text));
             QInsertNewDvig.ParamByName('HUMID').AsFloat :=
               strtofloat(Edit8.Text);
             QInsertNewDvig.ParamByName('PRESSUR').AsFloat :=
@@ -539,7 +549,9 @@ begin
     FSoprot.ComboBox7.Text          := Qtemp.FieldByName('PHAS').Asstring;
     FSoprot.ComboBox8.Text          := Qtemp.FieldByName('SOED').Asstring;
     FSoprot.ComboBox9.Text          := Qtemp.FieldByName('SOPRED').Asstring;
+    if FSoprot.ComboBox9.Text='' then FSoprot.ComboBox9.TExt:='Îì';
     FSoprot.ComboBox10.Text         := Qtemp.FieldByName('IZOLED').Asstring;
+    if FSoprot.ComboBox10.Text='' then FSoprot.ComboBox10.Text:='ÌÎì';
     FSoprot.Edit13.Text             := Qtemp.FieldByName('IZOLKORP').Asstring;
     FSoprot.Edit16.Text             := Qtemp.FieldByName('IZOLOBMOT').Asstring;
     FSoprot.StringGrid3.Cells[1, 1] := Qtemp.FieldByName('IZM1U1U2').Asstring;

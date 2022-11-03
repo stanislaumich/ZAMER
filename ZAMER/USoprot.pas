@@ -53,6 +53,7 @@ type
     procedure BitBtn5Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button50Click(Sender: TObject);
+    procedure StringGrid3KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -194,6 +195,9 @@ begin
   StringGrid3.cells[2, 0] := 'V1-V2(V-W)/âñï.*';
   StringGrid3.cells[3, 0] := 'W1-W2(W-U)';
 
+  ComboBox9.TExt:='Îì';
+  ComboBox10.Text:='ÌÎì';
+
   for i   := 1 to 3 do
     for j := 1 to 3 do
     begin
@@ -201,6 +205,14 @@ begin
       StringGrid3.ColWidths[i] := 160;
     end;
 
+end;
+
+procedure TFSoprot.StringGrid3KeyPress(Sender: TObject; var Key: Char);
+begin
+ if key=#13 then
+  if (Stringgrid3.Row=3) and (Stringgrid3.cells[Stringgrid3.Col,3]<>'')  then
+   if Stringgrid3.Col<3 then
+     Stringgrid3.Selection := TGridRect(Rect(Stringgrid3.Col+1, 1, Stringgrid3.Col+1, 1));
 end;
 
 end.
