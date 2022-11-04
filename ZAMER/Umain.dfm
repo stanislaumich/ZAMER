@@ -202,7 +202,7 @@ object FMain: TFMain
     end
     object BitBtn9: TBitBtn
       Left = 255
-      Top = 252
+      Top = 253
       Width = 125
       Height = 45
       Anchors = [akLeft, akBottom]

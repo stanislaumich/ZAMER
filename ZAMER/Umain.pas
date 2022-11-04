@@ -39,7 +39,7 @@ uses
     FireDAC.Stan.Async,
     FireDAC.Phys, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
     FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, FireDAC.Stan.Param,
-    FireDAC.DatS, ShellApi, ComObj, URepProgress,
+    FireDAC.DatS, ShellApi, ComObj, URepProgress, Math,
     FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Vcl.ExtCtrls;
 
 type
@@ -253,6 +253,17 @@ begin
     BitBtn6.Enabled  := p;
     BitBtn11.Enabled := p;
 end;
+
+function NVLToZero(s:string):string;
+ begin
+  if s='' then NVLToZero:='0' else NVLToZero:=s;
+ end;
+
+function NVLToEmp(s:string):string;
+ begin
+  if s='0' then NVLToEmp:='' else NVLToEmp:=s;
+ end;
+
 
 function Point(s: string): string;
 begin
@@ -1161,15 +1172,19 @@ begin
         wrepl('N16x', Fnagrev.StringGrid1.Cells[7, 1]);
         wrepl('N26x', Fnagrev.StringGrid1.Cells[7, 2]); // r
 
+        wrepl('N36x', Edit7.Text); // r RH
+
+        wrepl('N35x',Floattostr(simpleroundto((Strtofloat(FRH.Edit4.TExt) + Strtofloat(FRH.Edit5.TExt) + Strtofloat(FRH.Edit6.TExt))/3,-1)));
+
         // прочие хар-ки
         FrepP.Label1.Caption := 'ѕрочие характеристики';
         for j                := 1 to 18 do
         begin
-            wrepl('Pr' + inttostr(j + 100), Fproch.StringGrid1.Cells[j, 1]);
+            wrepl('Pr' + inttostr(j + 100), NVLToEmp(Fproch.StringGrid1.Cells[j, 1]));
         end;
         for j := 1 to 18 do
         begin
-            wrepl('Pz' + inttostr(j + 100), Fproch.StringGrid1.Cells[j, 2]);
+            wrepl('Pz' + inttostr(j + 100), NVLToEmp(Fproch.StringGrid1.Cells[j, 2]));
         end;
         for i     := 1 to 2 do
             for j := 1 to 8 do
@@ -1177,7 +1192,7 @@ begin
                 wrepl('Wh' + inttostr(i) + '-' + inttostr(j),
                   Fproch.Stringgrid2.Cells[j, i]);
             end;
-        wrepl('rrmass', Fproch.Edit2.Text);
+        wrepl('rrmass', NVLToEmp(Fproch.Edit2.Text));
         wrepl('tmpr', Fproch.Edit3.Text);
         wrepl('davl', Fproch.Edit5.Text);
         wrepl('vlag', Fproch.Edit4.Text);
