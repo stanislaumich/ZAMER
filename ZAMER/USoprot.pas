@@ -68,6 +68,16 @@ implementation
 uses umain;
 {$R *.dfm}
 
+function myfloat(s:string):double;
+ var
+  v:integer;
+  f:double;
+ begin
+  val(s,f,v);
+  if v=0 then
+   myfloat:=f else myfloat:=0;
+ end;
+
 procedure TFSoprot.BitBtn1Click(Sender: TObject);
 begin
   Edit8.Text      := '';
@@ -87,13 +97,13 @@ begin
   then
   begin
     ShowMessage('Не указано испытание межвитковой изоляции');
-    Exit
+    //Exit
   end;
   if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked) = false
   then
   begin
     ShowMessage('Не указано испытание сопротивления между болтом');
-    Exit
+    //Exit
   end;
   Fmain.Qtemp.Close;
   Fmain.Qtemp.SQL.Clear;
@@ -104,13 +114,13 @@ begin
   try
     QSoprot.ParamByName('NOMER').Asstring := Label1.Caption;
     QSoprot.ParamByName('TEMPER').AsFloat :=
-      Strtofloat(strreplace(Edit8.Text, '.', ','));
+      myfloat(strreplace(Edit8.Text, '.', ','));
     QSoprot.ParamByName('PHAS').Asstring     := ComboBox7.Text;
     QSoprot.ParamByName('SOED').Asstring     := ComboBox8.Text;
     QSoprot.ParamByName('SOPRED').Asstring   := ComboBox9.Text;
     QSoprot.ParamByName('IZOLED').Asstring   := ComboBox10.Text;
-    QSoprot.ParamByName('IZOLKORP').AsFloat  := Strtofloat(Edit13.Text);
-    QSoprot.ParamByName('IZOLOBMOT').AsFloat := Strtofloat(Edit16.Text);
+    QSoprot.ParamByName('IZOLKORP').AsFloat  := myfloat(Edit13.Text);
+    QSoprot.ParamByName('IZOLOBMOT').AsFloat := myfloat(Edit16.Text);
 
     if RadioButton1.Checked then
       QSoprot.ParamByName('BOLT').AsInteger := 1;
@@ -132,23 +142,23 @@ begin
           StringGrid3.cells[i, j] := '0';
 
     QSoprot.ParamByName('IZM1U1U2').AsFloat :=
-      Strtofloat(StringGrid3.cells[1, 1]);
+      myfloat(StringGrid3.cells[1, 1]);
     QSoprot.ParamByName('IZM2U1U2').AsFloat :=
-      Strtofloat(StringGrid3.cells[1, 2]);
+      myfloat(StringGrid3.cells[1, 2]);
     QSoprot.ParamByName('IZM3U1U2').AsFloat :=
-      Strtofloat(StringGrid3.cells[1, 3]);
+      myfloat(StringGrid3.cells[1, 3]);
     QSoprot.ParamByName('IZM1V1V2').AsFloat :=
-      Strtofloat(StringGrid3.cells[2, 1]);
+      myfloat(StringGrid3.cells[2, 1]);
     QSoprot.ParamByName('IZM2V1V2').AsFloat :=
-      Strtofloat(StringGrid3.cells[2, 2]);
+      myfloat(StringGrid3.cells[2, 2]);
     QSoprot.ParamByName('IZM3V1V2').AsFloat :=
-      Strtofloat(StringGrid3.cells[2, 3]);
+      myfloat(StringGrid3.cells[2, 3]);
     QSoprot.ParamByName('IZM1W1W2').AsFloat :=
-      Strtofloat(StringGrid3.cells[3, 1]);
+      myfloat(StringGrid3.cells[3, 1]);
     QSoprot.ParamByName('IZM2W1W2').AsFloat :=
-      Strtofloat(StringGrid3.cells[3, 2]);
+      myfloat(StringGrid3.cells[3, 2]);
     QSoprot.ParamByName('IZM3W1W2').AsFloat :=
-      Strtofloat(StringGrid3.cells[3, 3]);
+      myfloat(StringGrid3.cells[3, 3]);
   except
     on E: Exception do
     begin

@@ -122,6 +122,16 @@ uses umain;
 
 {$R *.dfm}
 
+function myfloat(s:string):double;
+ var
+  v:integer;
+  f:double;
+ begin
+  val(s,f,v);
+  if v=0 then
+   myfloat:=f else myfloat:=0;
+ end;
+
 function min(a: Integer; b: Integer): Integer;
 begin
   if a < b then
@@ -519,7 +529,7 @@ begin
   begin
     Label8.Caption := StringGrid2.cells[0, StringGrid2.row];
     Edit3.Text     := Floattostr(simpleroundto(Strtofloat(StringGrid2.cells[0,
-      StringGrid2.row]) / 100 * Strtofloat(Edit8.Text), 0));
+      StringGrid2.row]) / 100 * myfloat(Edit8.Text), 0));
   end;
 
   Label6.Caption := Label3.Caption;
@@ -675,6 +685,8 @@ begin
   a[acount].p3 := simpleroundto(FMain.RP3.Value, RazP);
 end;
 
+
+
 procedure TFRH.TimerUpTimer(Sender: TObject);
 begin
   Label13.Caption := Floattostr(simpleroundto(FMain.Usred.Value, RazU));
@@ -683,17 +695,16 @@ begin
   // QTEMP
   QTemp.Open('select * from zamer');
   Label15.Caption :=
-    Floattostr(simpleroundto( { FMain.Psred.Value } QTemp.FieldByName('power')
+    Floattostr(simpleroundto( QTemp.FieldByName('power')
     .AsFloat, RazP));
-  // e2 e3         6 8
 
   if (ABS(Strtofloat(Label13.Caption) - Strtofloat(Label6.Caption)) >
-    Strtofloat(Edit2.Text)) then
+    myfloat(Edit2.Text)) then
     Label6.font.Color := clRed
   else
     Label6.font.Color := clGreen;
   if (ABS(Strtofloat(Label15.Caption) - Strtofloat(Label8.Caption)) >
-    Strtofloat(Edit3.Text)) then
+    myfloat(Edit3.Text)) then
     Label8.font.Color := clRed
   else
     Label8.font.Color := clGreen;

@@ -144,7 +144,7 @@ object FSoprot: TFSoprot
       #1054#1076#1085#1086#1092#1072#1079#1085#1099#1081)
   end
   object GroupBox3: TGroupBox
-    Left = 5
+    Left = 8
     Top = 104
     Width = 581
     Height = 189
