@@ -22,7 +22,7 @@ EXP-00091: Exporting questionable statistics.
                                                             0 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                            INI
-                                                           27 rows exported
+                                                           20 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                          NOMER
                                                             1 rows exported
@@ -38,18 +38,18 @@ EXP-00091: Exporting questionable statistics.
                                                             1 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                       ZAMERTMP
-                                                           79 rows exported
+                                                           24 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZDELTA
                                                             5 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                       ZDVIGALL
-                                                            9 rows exported
+                                                            8 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                           ZERR
-                                                          160 rows exported
+                                                          144 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZHHALL
 .......
@@ -61,11 +61,11 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZKZALL
-                                                          365 rows exported
+                                                          388 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZKZSVOD
-                                                           10 rows exported
+                                                           11 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZMEHALL
