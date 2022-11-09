@@ -39,7 +39,6 @@ type
     Label7: TLabel;
     Label8: TLabel;
     TimerUpd: TTimer;
-    CheckBox2: TCheckBox;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
@@ -254,13 +253,14 @@ begin
   QTemp.ExecSQL;
   QTemp.Close;
   QTemp.SQL.Clear;
-  if CheckBox2.Checked then
+  {if CheckBox2.Checked then
     QTemp.SQL.add('insert into ini (name,value) values(' +
       Quotedstr('hhdel') + ',1)')
   else
     QTemp.SQL.add('insert into ini (name,value) values(' +
       Quotedstr('hhdel') + ',0)');
   QTemp.ExecSQL;
+  }
 end;
 
 procedure TFhhod.FormCreate(Sender: TObject);
@@ -284,7 +284,7 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.Open('select value from ini where name=' + Quotedstr('hhdel'));
-  CheckBox2.Checked := QTemp.FieldByName('value').Asinteger = 1;
+  //CheckBox2.Checked := QTemp.FieldByName('value').Asinteger = 1;
 end;
 
 procedure TFhhod.FormHide(Sender: TObject);
@@ -458,6 +458,7 @@ end;
 procedure TFhhod.Timer1Timer(Sender: TObject);
 var
   i: Integer;
+  errcnt,goodcnt:integer;
 begin
 
   curtime := curtime + 1;
@@ -486,14 +487,25 @@ begin
     end;
     // по просьбе удалим записи где мы выходим за пределы диапазона
     // там dumax> edit2.text
-    If CheckBox2.Checked then
-    begin
+    //If CheckBox2.Checked then
+    //begin
       QTemp.Close;
       QTemp.SQL.Clear;
-      QTemp.SQL.add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
+      QTemp.SQL.add('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
         ' and uisp=' + Label6.Caption + ' and dumax>' + Edit2.Text);
-      QTemp.ExecSQL;
-    end;
+      QTemp.Open;
+      errcnt:=QTemp.FieldByName('r').Asinteger;
+      //QTemp.SQL.add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
+      //  ' and uisp=' + Label6.Caption + ' and dumax>' + Edit2.Text);
+      //QTemp.ExecSQL;
+    //end;
+      QTemp.Close;
+      QTemp.SQL.Clear;
+      QTemp.SQL.add('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
+        ' and uisp=' + Label6.Caption + ' and dumax<=' + Edit2.Text);
+      QTemp.Open;
+      goodcnt:=QTemp.FieldByName('r').Asinteger;
+
 
     // тут считается среднее по показаниям только датчика
     // напряжения, подвохов не ожидается
@@ -501,6 +513,7 @@ begin
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').Asstring := Nomer;
     Qselectsred.ParamByName('uisp').AsFloat   := StrtoFloat(Label6.Caption);
+    Qselectsred.ParamByName('delta').AsFloat   := StrtoFloat(Edit2.Text);
     Qselectsred.Open;
     {
       QInsSvod.Close;
@@ -535,6 +548,9 @@ begin
       Qselectsred.FieldByName('ps').Asstring;
     StringGrid2.cells[4, StringGrid2.row] :=
       Qselectsred.FieldByName('umax').Asstring;
+
+    StringGrid2.cells[6, StringGrid2.row] :=
+      inttostr(goodcnt)+'/'+ inttostr(errcnt);
     /// //////////////////////////////////////////////////////////////////////////
 
     ProgressBar1.Position := 0;

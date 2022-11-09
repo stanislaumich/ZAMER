@@ -189,11 +189,11 @@ object Fhhod: TFhhod
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
     object StringGrid2: TStringGrid
-      Left = 3
+      Left = 4
       Top = 28
       Width = 558
       Height = 309
-      ColCount = 6
+      ColCount = 7
       DefaultColWidth = 90
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -222,15 +222,6 @@ object Fhhod: TFhhod
     Width = 844
     Height = 33
     TabOrder = 5
-  end
-  object CheckBox2: TCheckBox
-    Left = 188
-    Top = 411
-    Width = 180
-    Height = 22
-    Caption = #1059#1076#1072#1083#1103#1090#1100' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1079#1072' '#1076#1080#1072#1087#1072#1079#1086#1085#1086#1084
-    TabOrder = 6
-    Visible = False
   end
   object BitBtn1: TBitBtn
     Left = 371
@@ -296,7 +287,7 @@ object Fhhod: TFhhod
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 7
+    TabOrder = 6
     OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
@@ -363,7 +354,7 @@ object Fhhod: TFhhod
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCFECD53DB35441B55983CE91FF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 8
+    TabOrder = 7
     OnClick = BitBtn2Click
   end
   object BitBtn3: TBitBtn
@@ -430,7 +421,7 @@ object Fhhod: TFhhod
       A3C2FBA3C2FBA8C9FB676FF8342EF4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFB5B3FC4E49F6140BF31C13F31C12F31C12F31C12F31C
       12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
-    TabOrder = 9
+    TabOrder = 8
     OnClick = BitBtn3Click
   end
   object Timer1: TTimer
@@ -582,7 +573,7 @@ object Fhhod: TFhhod
       'avg(I1) si1,avg(I2) si2, avg(I3) si3,'
       'avg(ps) sp,0 mumax'
       'FROM ZAMER.ZHHALL'
-      'where nomer=:nomer and uisp=:uisp'
+      'where nomer=:nomer and uisp=:uisp and dumax<=:delta'
       'group by nomer, uisp'
       'union all'
       'SELECT nomer,  UISP,'
@@ -590,7 +581,7 @@ object Fhhod: TFhhod
       '0 si1, 0 si2, 0 si3,'
       '0 sp, max(dumax) mumax'
       'FROM ZAMER.ZHHALL'
-      'where nomer=:nomer and uisp=:uisp'
+      'where nomer=:nomer and uisp=:uisp and dumax<=:delta'
       'group by nomer, uisp'
       ')'
       'group by nomer, uisp')
@@ -600,9 +591,14 @@ object Fhhod: TFhhod
       item
         Name = 'NOMER'
         ParamType = ptInput
+        Value = Null
       end
       item
         Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DELTA'
         ParamType = ptInput
       end>
   end
