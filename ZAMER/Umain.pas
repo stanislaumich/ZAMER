@@ -645,6 +645,7 @@ begin
         Fhhod.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
         Fhhod.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('dumax').Asstring;
         Fhhod.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('r').Asstring;
+        Fhhod.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('otklon').Asstring;
         Qtemp.Next;
         tip := tip + 1;
     end;

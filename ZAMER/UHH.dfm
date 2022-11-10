@@ -2,7 +2,7 @@ object Fhhod: TFhhod
   Left = 0
   Top = 0
   Caption = #1061#1086#1083#1086#1089#1090#1086#1081' '#1093#1086#1076
-  ClientHeight = 543
+  ClientHeight = 539
   ClientWidth = 1022
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object Fhhod: TFhhod
   OnHide = FormHide
   DesignSize = (
     1022
-    543)
+    539)
   PixelsPerInch = 96
   TextHeight = 23
   object Label1: TLabel
@@ -36,22 +36,34 @@ object Fhhod: TFhhod
     Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103', '#1074#1086#1083#1100#1090':'
   end
   object Label3: TLabel
-    Left = 695
+    Left = 721
     Top = 8
-    Width = 30
-    Height = 23
+    Width = 45
+    Height = 29
     Caption = '380'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object Label4: TLabel
     Left = 632
     Top = 8
-    Width = 57
-    Height = 23
+    Width = 83
+    Height = 29
     Caption = 'U'#1080#1089#1087'='
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object Label5: TLabel
     Left = 1
-    Top = 506
+    Top = 502
     Width = 421
     Height = 39
     Anchors = [akLeft]
@@ -66,7 +78,7 @@ object Fhhod: TFhhod
   end
   object Label6: TLabel
     Left = 428
-    Top = 507
+    Top = 503
     Width = 20
     Height = 39
     Anchors = [akLeft]
@@ -81,7 +93,7 @@ object Fhhod: TFhhod
   end
   object Label7: TLabel
     Left = 503
-    Top = 507
+    Top = 503
     Width = 156
     Height = 39
     Anchors = [akLeft]
@@ -96,7 +108,7 @@ object Fhhod: TFhhod
   end
   object Label8: TLabel
     Left = 661
-    Top = 507
+    Top = 503
     Width = 20
     Height = 39
     Anchors = [akLeft]
@@ -123,6 +135,19 @@ object Fhhod: TFhhod
     Height = 23
     Caption = '0'
   end
+  object Label9: TLabel
+    Left = 772
+    Top = 8
+    Width = 74
+    Height = 29
+    Caption = #1042#1086#1083#1100#1090
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object Edit1: TEdit
     Left = 188
     Top = 5
@@ -134,7 +159,7 @@ object Fhhod: TFhhod
   object Edit2: TEdit
     Left = 546
     Top = 5
-    Width = 74
+    Width = 51
     Height = 31
     TabOrder = 1
     Text = '1'
@@ -173,7 +198,7 @@ object Fhhod: TFhhod
       OnClick = RadioButton2Click
     end
     object RadioButton3: TRadioButton
-      Left = 224
+      Left = 221
       Top = 343
       Width = 20
       Height = 17
@@ -534,10 +559,10 @@ object Fhhod: TFhhod
       'INSERT INTO ZAMER.ZHHSVOD ('
       '   NOMER, UISP, USRED, '
       '   ISRED, PSRED, TIP, '
-      '   DUMAX, R) '
+      '   DUMAX, R, otklon) '
       'VALUES ( :NOMER, :UISP, :USRED, '
       '   :ISRED, :PSRED, :TIP, '
-      '   :DUMAX, :R )')
+      '   :DUMAX, :R, :otklon )')
     Left = 523
     Top = 205
     ParamData = <
@@ -571,6 +596,10 @@ object Fhhod: TFhhod
       end
       item
         Name = 'R'
+        ParamType = ptInput
+      end
+      item
+        Name = 'OTKLON'
         ParamType = ptInput
       end>
   end
@@ -628,8 +657,8 @@ object Fhhod: TFhhod
     Top = 257
   end
   object ActionList1: TActionList
-    Left = 216
-    Top = 420
+    Left = 636
+    Top = 204
     object Action1: TAction
       Caption = 'Action1'
       ShortCut = 116

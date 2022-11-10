@@ -46,6 +46,7 @@ type
     Label12: TLabel;
     ActionList1: TActionList;
     Action1: TAction;
+    Label9: TLabel;
     procedure RadioButton1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -69,7 +70,6 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure autogrid(var StringGrid1: TStringGrid);
     procedure savew;
     procedure restw;
   end;
@@ -96,29 +96,47 @@ implementation
 
 uses Umain;
 
+function NVLToZero(s: string): string;
+begin
+    if s = '' then
+        NVLToZero := '0'
+    else
+        NVLToZero := s;
+end;
+
+function NVLToEmp(s: string): string;
+begin
+    if s = '0' then
+        NVLToEmp := ''
+    else
+        NVLToEmp := s;
+end;
+
 procedure TFhhod.savew;
 var
   i: Integer;
 begin
-  {QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('delete from grids where form=' + Quotedstr('HH'));
-  QTemp.ExecSQL;
+  { QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('delete from grids where form=' + Quotedstr('HH'));
+    QTemp.ExecSQL;
+    for i := 0 to StringGrid2.colcount - 1 do
+    begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('insert into grids (name, wdth, form,num) values(' +
+    Quotedstr('stringgrid2') + ', ' + inttostr(StringGrid2.ColWidths[i]) +
+    ', ' + Quotedstr('HH') + ', ' + inttostr(i) + ')');
+    QTemp.ExecSQL;
+    end;
+  }
   for i := 0 to StringGrid2.colcount - 1 do
   begin
     QTemp.Close;
     QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into grids (name, wdth, form,num) values(' +
-      Quotedstr('stringgrid2') + ', ' + inttostr(StringGrid2.ColWidths[i]) +
-      ', ' + Quotedstr('HH') + ', ' + inttostr(i) + ')');
-    QTemp.ExecSQL;
-  end;
-  }
- for i := 0 to StringGrid2.colcount - 1 do
-  begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('update grids set wdth= '+inttostr(StringGrid2.ColWidths[i])+' where name='+Quotedstr('stringgrid2') +' and form='+Quotedstr('HH') +' and num='  +inttostr(i) );
+    QTemp.SQL.Add('update grids set wdth= ' + inttostr(StringGrid2.ColWidths[i])
+      + ' where name=' + Quotedstr('stringgrid2') + ' and form=' +
+      Quotedstr('HH') + ' and num=' + inttostr(i));
     QTemp.ExecSQL;
   end;
 end;
@@ -139,46 +157,6 @@ begin
       QTemp.fieldbyname('wdth').Asinteger;
     QTemp.Next;
   end;
-end;
-
-procedure TFhhod.autogrid(var StringGrid1: TStringGrid);
-var
-  x, y, w : Integer;
-  s       : string;
-  MaxWidth: Integer;
-begin
-  with StringGrid1 do
-    // ClientHeight := DefaultRowHeight * RowCount + 5;
-    with StringGrid1 do
-    begin
-      for x := 0 to colcount - 1 do
-      begin
-        MaxWidth := 0;
-        for y    := 0 to RowCount - 1 do
-        begin
-          w := Canvas.TextWidth(Cells[x, y]);
-          if w > MaxWidth then
-            MaxWidth := w;
-        end;
-        ColWidths[x] := MaxWidth + 5;
-      end;
-    end;
-end;
-
-procedure AutoSizeGridColumn(Grid: TStringGrid; column: Integer);
-var
-  i   : Integer;
-  temp: Integer;
-  max : Integer;
-begin
-  max   := 0;
-  for i := 0 to (Grid.RowCount - 1) do
-  begin
-    temp := Grid.Canvas.TextWidth(Grid.Cells[column, i]);
-    if temp > max then
-      max := temp;
-  end;
-  Grid.ColWidths[column] := max + { Grid.GridLineWidth + } 3;
 end;
 
 function myfloat(s: string): double;
@@ -257,19 +235,20 @@ begin
     QTemp.ExecSQL;
 
     QInsSvod.ParamByName('nomer').Asstring := Nomer;
-    QInsSvod.ParamByName('uisp').AsFloat := StrtoFloat(StringGrid2.Cells[0, i]);
+    QInsSvod.ParamByName('uisp').AsFloat := StrtoFloat(NvlToZero(StringGrid2.Cells[0, i]));
     QInsSvod.ParamByName('usred').AsFloat :=
-      StrtoFloat(StringGrid2.Cells[1, i]);
+      StrtoFloat(NvlToZero(StringGrid2.Cells[1, i]));
     QInsSvod.ParamByName('isred').AsFloat :=
-      StrtoFloat(StringGrid2.Cells[2, i]);
+      StrtoFloat(NvlToZero(StringGrid2.Cells[2, i]));
     QInsSvod.ParamByName('psred').AsFloat :=
-      StrtoFloat(StringGrid2.Cells[3, i]);
+      StrtoFloat(NvlToZero(StringGrid2.Cells[3, i]));
     QInsSvod.ParamByName('dumax').AsFloat :=
-      StrtoFloat(StringGrid2.Cells[4, i]);
+      StrtoFloat(NvlToZero(StringGrid2.Cells[4, i]));
     QInsSvod.ParamByName('tip').Asinteger := tipispyt;
     if StringGrid2.Cells[5, i] = '' then
       StringGrid2.Cells[5, i]         := '0';
-    QInsSvod.ParamByName('R').AsFloat := StrtoFloat(StringGrid2.Cells[5, i]);
+    QInsSvod.ParamByName('R').AsFloat := StrtoFloat(NvlToZero(StringGrid2.Cells[5, i]));
+    QInsSvod.ParamByName('otklon').AsString := StringGrid2.Cells[6, i];
     QInsSvod.ExecSQL;
     i := i + 1;
   end;
@@ -323,8 +302,6 @@ begin
   StringGrid2.Cells[5, 0]   := 'R';
   StringGrid2.Cells[6, 0]   := 'Отклонений';
   TimerUpd.Enabled          := True;
-  // AutoSizeGridColumn(StringGrid2,0);
-
 end;
 
 procedure TFhhod.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -714,7 +691,6 @@ begin
   end
   else
     ProgressBar1.Stepit;
-  // autogrid( StringGrid2);
 end;
 
 procedure TFhhod.Timer2Timer(Sender: TObject);
