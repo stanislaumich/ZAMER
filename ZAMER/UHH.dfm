@@ -3,7 +3,7 @@ object Fhhod: TFhhod
   Top = 0
   Caption = #1061#1086#1083#1086#1089#1090#1086#1081' '#1093#1086#1076
   ClientHeight = 543
-  ClientWidth = 1038
+  ClientWidth = 1022
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object Fhhod: TFhhod
   OnCreate = FormCreate
   OnHide = FormHide
   DesignSize = (
-    1038
+    1022
     543)
   PixelsPerInch = 96
   TextHeight = 23
@@ -186,13 +186,18 @@ object Fhhod: TFhhod
     Top = 37
     Width = 738
     Height = 368
+    Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
+    DesignSize = (
+      738
+      368)
     object StringGrid2: TStringGrid
       Left = 3
       Top = 28
       Width = 732
       Height = 309
+      Anchors = [akLeft, akTop, akRight]
       ColCount = 7
       DefaultColWidth = 100
       Font.Charset = DEFAULT_CHARSET
@@ -219,8 +224,9 @@ object Fhhod: TFhhod
   object ProgressBar1: TProgressBar
     Left = 1
     Top = 467
-    Width = 956
+    Width = 1020
     Height = 33
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 5
   end
   object BitBtn1: TBitBtn
@@ -448,7 +454,7 @@ object Fhhod: TFhhod
       'VALUES ( :NOMER, :UISP, :U12, '
       '   :U23, :U31, :I1, '
       '   :I2, :I3, :P1, '
-      '   :P2, :P3, :DUMAX,:ps, :fu, :fi. :fp )')
+      '   :P2, :P3, :DUMAX,:ps, :fu, :fi, :fp )')
     Left = 427
     Top = 205
     ParamData = <
@@ -506,6 +512,10 @@ object Fhhod: TFhhod
       end
       item
         Name = 'FU'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FI'
         ParamType = ptInput
       end
       item

@@ -641,7 +641,7 @@ begin
         Qtemp.Next;
         tip := tip + 1;
     end;
-
+    //Fhhod.autogrid( Fhhod.StringGrid2);
     /// ////////////////////////////////////////////////////////////
     // загрузить Рабочую характеристику если есть
     // FRH.BitBtn3.Click;
@@ -1535,11 +1535,12 @@ begin
     BitBtn10.Click();
     ReadM45 := false;
     enableispyt(false);
-    try
+    {try
     PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
     except
      on e:exception do e:=nil;
     end;
+    }
     ShellExecute(Handle, 'open', PWideChar(M45Exe), nil, nil, SW_SHOWNORMAL);
     // типы двигателей из базы
     Qtemp.Close;

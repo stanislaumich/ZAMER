@@ -69,6 +69,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure autogrid(var stringgrid1:tstringgrid);
   end;
 
   R = record
@@ -92,6 +93,47 @@ implementation
 {$R *.dfm}
 
 uses Umain;
+
+
+procedure TFhhod.autogrid(var stringgrid1:tstringgrid);
+var
+  x, y, w: integer;
+  s: string;
+  MaxWidth: integer;
+begin
+  with StringGrid1 do
+    //ClientHeight := DefaultRowHeight * RowCount + 5;
+    with StringGrid1 do
+    begin
+      for x := 0 to ColCount - 1 do
+      begin
+        MaxWidth := 0;
+        for y := 0 to RowCount - 1 do
+        begin
+          w := Canvas.TextWidth(Cells[x,y]);
+          if w > MaxWidth then
+            MaxWidth := w;
+        end;
+        ColWidths[x] := MaxWidth + 5;
+      end;
+    end;
+end;
+
+procedure AutoSizeGridColumn(Grid: TStringGrid; column: integer);
+var
+ i: integer;
+ temp: integer;
+ max: integer;
+begin
+ max := 0;
+ for i := 0 to (Grid.RowCount - 1) do
+  begin
+  temp := Grid.Canvas.TextWidth(grid.cells[column, i]);
+  if temp > max then max := temp;
+  end;
+ Grid.ColWidths[column] := Max + {Grid.GridLineWidth +} 3;
+end;
+
 
 function myfloat(s:string):double;
  var
@@ -233,6 +275,8 @@ begin
   StringGrid2.cells[5, 0]   := 'R';
   StringGrid2.cells[6, 0]   := 'Отклонений';
   TimerUpd.Enabled          := True;
+  //AutoSizeGridColumn(StringGrid2,0);
+
 end;
 
 procedure TFhhod.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -619,6 +663,7 @@ group by nomer, uisp
   end
   else
     ProgressBar1.Stepit;
+  //autogrid( StringGrid2);
 end;
 
 procedure TFhhod.Timer2Timer(Sender: TObject);
