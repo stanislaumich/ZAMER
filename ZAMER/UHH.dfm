@@ -3,7 +3,7 @@ object Fhhod: TFhhod
   Top = 0
   Caption = #1061#1086#1083#1086#1089#1090#1086#1081' '#1093#1086#1076
   ClientHeight = 543
-  ClientWidth = 961
+  ClientWidth = 1038
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object Fhhod: TFhhod
   OnCreate = FormCreate
   OnHide = FormHide
   DesignSize = (
-    961
+    1038
     543)
   PixelsPerInch = 96
   TextHeight = 23
@@ -184,17 +184,17 @@ object Fhhod: TFhhod
   object GroupBox2: TGroupBox
     Left = 279
     Top = 37
-    Width = 678
+    Width = 738
     Height = 368
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
     object StringGrid2: TStringGrid
-      Left = 4
+      Left = 3
       Top = 28
-      Width = 665
+      Width = 732
       Height = 309
       ColCount = 7
-      DefaultColWidth = 90
+      DefaultColWidth = 100
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
@@ -444,11 +444,11 @@ object Fhhod: TFhhod
       '   NOMER, UISP, U12, '
       '   U23, U31, I1, '
       '   I2, I3, P1, '
-      '   P2, P3, DUMAX, ps, fu, fi) '
+      '   P2, P3, DUMAX, ps, fu, fi, fp) '
       'VALUES ( :NOMER, :UISP, :U12, '
       '   :U23, :U31, :I1, '
       '   :I2, :I3, :P1, '
-      '   :P2, :P3, :DUMAX,:ps, :fu, :fi )')
+      '   :P2, :P3, :DUMAX,:ps, :fu, :fi. :fp )')
     Left = 427
     Top = 205
     ParamData = <
@@ -509,7 +509,7 @@ object Fhhod: TFhhod
         ParamType = ptInput
       end
       item
-        Name = 'FI'
+        Name = 'FP'
         ParamType = ptInput
       end>
   end

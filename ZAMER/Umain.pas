@@ -1524,6 +1524,7 @@ begin
     SettPAth := Extractfilepath(paramstr(0)) + 'SETTINGS\';
     CreateDirEx(SettPAth);
     DateTimePicker1.Date := Date;
+
     Qtemp.SQL.Add('update version set maintotal=maintotal+1');
     Qtemp.ExecSQL;
     Qtemp.SQL.Clear;
@@ -1534,6 +1535,11 @@ begin
     BitBtn10.Click();
     ReadM45 := false;
     enableispyt(false);
+    try
+    PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
+    except
+     on e:exception do e:=nil;
+    end;
     ShellExecute(Handle, 'open', PWideChar(M45Exe), nil, nil, SW_SHOWNORMAL);
     // типы двигателей из базы
     Qtemp.Close;

@@ -72,7 +72,7 @@ type
   end;
 
   R = record
-    u1, u2, u3, i1, i2, i3, p1, p2, p3, ps, u, i: real;
+    u1, u2, u3, i1, i2, i3, p1, p2, p3, ps, u, i, p: real;
   end;
 
 var
@@ -230,8 +230,8 @@ begin
   StringGrid2.cells[2, 0]   := 'I сред';
   StringGrid2.cells[3, 0]   := 'P сред';
   StringGrid2.cells[4, 0]   := '▲Umax';
-  StringGrid2.cells[5, 0]   := 'R||';
-  StringGrid2.cells[6, 0]   := 'Ошибок';
+  StringGrid2.cells[5, 0]   := 'R';
+  StringGrid2.cells[6, 0]   := 'Отклонений';
   TimerUpd.Enabled          := True;
 end;
 
@@ -499,6 +499,7 @@ begin
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
       QinsAll.ParamByName('FU').AsFloat     := a[i].u;
       QinsAll.ParamByName('FI').AsFloat     := a[i].i;
+      QinsAll.ParamByName('FP').AsFloat     := a[i].ps;
       QinsAll.ExecSQL;
     end;
     // по просьбе удалим записи где мы выходим за пределы диапазона
@@ -595,7 +596,7 @@ group by nomer, uisp
 
     StringGrid2.cells[6, StringGrid2.row] :=
       //inttostr(goodcnt)+'/'+ inttostr(errcnt);
-      Floattostr(simpleroundto(errcnt/(goodcnt+errcnt)*100,0))+'%';
+      Floattostr(simpleroundto(errcnt/(goodcnt+errcnt)*100,0))+'% ('+Inttostr(goodcnt+errcnt)+')';
     /// //////////////////////////////////////////////////////////////////////////
 
     ProgressBar1.Position := 0;
@@ -637,6 +638,7 @@ begin
   a[acount].ps := SimpleRoundTo(Fmain.PSredQ.Value, -2);
   a[acount].u := SimpleRoundTo(Fmain.UMom.Value, -1);
   a[acount].i := SimpleRoundTo(Fmain.IMom.Value, -3);
+  a[acount].p := SimpleRoundTo(Fmain.PSredQ.Value, -2);
   // перекос фаз
   i  := (a[acount].i1 + a[acount].i2 + a[acount].i3) / 3;
   i1 := abs(100 - (a[acount].i1 / i) * 100);
