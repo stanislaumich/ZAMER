@@ -122,15 +122,17 @@ uses umain;
 
 {$R *.dfm}
 
-function myfloat(s:string):double;
- var
-  v:integer;
-  f:double;
- begin
-  val(s,f,v);
-  if v=0 then
-   myfloat:=f else myfloat:=0;
- end;
+function myfloat(s: string): double;
+var
+  v: Integer;
+  f: double;
+begin
+  val(s, f, v);
+  if v = 0 then
+    myfloat := f
+  else
+    myfloat := 0;
+end;
 
 function min(a: Integer; b: Integer): Integer;
 begin
@@ -296,60 +298,62 @@ begin
 
   // delta and del
   {
-  FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('delete from ini where name=' + Quotedstr('rhtime'));
-  FMain.QDelta.ExecSQL;
-  FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('insert into ini (name,value) values(' +
+    FMain.QDelta.SQL.Clear;
+    FMain.QDelta.SQL.Add('delete from ini where name=' + Quotedstr('rhtime'));
+    FMain.QDelta.ExecSQL;
+    FMain.QDelta.SQL.Clear;
+    FMain.QDelta.SQL.Add('insert into ini (name,value) values(' +
     Quotedstr('rhtime') + ',' + Quotedstr(FRH.Edit1.Text) + ')');
-  FMain.QDelta.ExecSQL;}
+    FMain.QDelta.ExecSQL; }
 
   FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('update ini set value='+Quotedstr(FRH.Edit1.Text)+' where name=' +Quotedstr('rhtime'));
+  FMain.QDelta.SQL.Add('update ini set value=' + Quotedstr(FRH.Edit1.Text) +
+    ' where name=' + Quotedstr('rhtime'));
   FMain.QDelta.ExecSQL;
 
   {
-  FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('urh'));
-  FMain.QDelta.ExecSQL;
-  FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
+    FMain.QDelta.SQL.Clear;
+    FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('urh'));
+    FMain.QDelta.ExecSQL;
+    FMain.QDelta.SQL.Clear;
+    FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
     Quotedstr('urh') + ',' + FRH.Edit2.Text + ')');
-  FMain.QDelta.ExecSQL;}
+    FMain.QDelta.ExecSQL; }
 
   FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('update ini set value='+Quotedstr(FRH.Edit2.Text)+' where name=' +Quotedstr('urh'));
+  FMain.QDelta.SQL.Add('update ini set value=' + Quotedstr(FRH.Edit2.Text) +
+    ' where name=' + Quotedstr('urh'));
   FMain.QDelta.ExecSQL;
   {
-  QTemp.Close;
-  FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('prh'));
-  FMain.QDelta.ExecSQL;
-  FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
+    QTemp.Close;
+    FMain.QDelta.SQL.Clear;
+    FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('prh'));
+    FMain.QDelta.ExecSQL;
+    FMain.QDelta.SQL.Clear;
+    FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
     Quotedstr('prh') + ',' + Point(FRH.Edit8.Text) + ')');
-  FMain.QDelta.ExecSQL;
-  QTemp.Close;}
+    FMain.QDelta.ExecSQL;
+    QTemp.Close; }
 
   FMain.QDelta.SQL.Clear;
-  FMain.QDelta.SQL.Add('update ini set value='+Quotedstr(Point(FRH.Edit8.Text))+' where name=' +Quotedstr('prh'));
+  FMain.QDelta.SQL.Add('update ini set value=' + Quotedstr(Point(FRH.Edit8.Text)
+    ) + ' where name=' + Quotedstr('prh'));
   FMain.QDelta.ExecSQL;
 
   {
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('delete from ini where name=' + Quotedstr('rhdel'));
-  QTemp.ExecSQL;
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  if CheckBox2.Checked then
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('delete from ini where name=' + Quotedstr('rhdel'));
+    QTemp.ExecSQL;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    if CheckBox2.Checked then
     QTemp.SQL.Add('insert into ini (name,value) values(' +
-      Quotedstr('rhdel') + ',1)')
-  else
+    Quotedstr('rhdel') + ',1)')
+    else
     QTemp.SQL.Add('insert into ini (name,value) values(' +
-      Quotedstr('rhdel') + ',0)');
-  QTemp.ExecSQL;
+    Quotedstr('rhdel') + ',0)');
+    QTemp.ExecSQL;
   }
-
 
 end;
 
@@ -631,7 +635,7 @@ begin
     QInsSvod.ParamByName('t1').AsFloat    := Strtofloat(Edit4.Text);
     QInsSvod.ParamByName('t2').AsFloat    := Strtofloat(Edit5.Text);
     QInsSvod.ParamByName('t3').AsFloat    := Strtofloat(Edit6.Text);
-    QInsSvod.ParamByName('r').AsFloat    := Strtofloat(Edit7.Text);
+    QInsSvod.ParamByName('r').AsFloat     := Strtofloat(Edit7.Text);
     QInsSvod.ExecSQL;
 
     // ++++ вверх это вырезать
@@ -685,8 +689,6 @@ begin
   a[acount].p3 := simpleroundto(FMain.RP3.Value, RazP);
 end;
 
-
-
 procedure TFRH.TimerUpTimer(Sender: TObject);
 begin
   Label13.Caption := Floattostr(simpleroundto(FMain.Usred.Value, RazU));
@@ -694,8 +696,7 @@ begin
   // QTemp.sql.Clear;
   // QTEMP
   QTemp.Open('select * from zamer');
-  Label15.Caption :=
-    Floattostr(simpleroundto( QTemp.FieldByName('power')
+  Label15.Caption := Floattostr(simpleroundto(QTemp.FieldByName('power')
     .AsFloat, RazP));
 
   if (ABS(Strtofloat(Label13.Caption) - Strtofloat(Label6.Caption)) >

@@ -198,15 +198,15 @@ end;
 
 procedure TFNagrev.StringGrid1Click(Sender: TObject);
 begin
- if Stringgrid1.row=1 then
+  if StringGrid1.Row = 1 then
   begin
-   Label18.Caption:=FMain.EDit6.Text;
-   Label19.Caption:='0';
+    Label18.Caption := FMain.Edit6.Text;
+    Label19.Caption := '0';
   end
- else
+  else
   begin
-   Label18.Caption:=FMain.EDit6.Text;
-   Label19.Caption:=Floattostr(1000*Strtofloat(FMain.Edit7.Text));
+    Label18.Caption := FMain.Edit6.Text;
+    Label19.Caption := Floattostr(1000 * Strtofloat(FMain.Edit7.Text));
   end;
 
 end;
@@ -305,21 +305,21 @@ begin
     QInssvod.ExecSQL;
 
     StringGrid1.cells[1, StringGrid1.Row] :=
-      floattostr(simpleroundto((QSelectSred.FieldByName('su1').AsFloat +
+      Floattostr(simpleroundto((QSelectSred.FieldByName('su1').AsFloat +
       QSelectSred.FieldByName('su2').AsFloat + QSelectSred.FieldByName('su3')
       .AsFloat) / 3, RazU));
     StringGrid1.cells[2, StringGrid1.Row] :=
-      floattostr(simpleroundto((QSelectSred.FieldByName('si1').AsFloat +
+      Floattostr(simpleroundto((QSelectSred.FieldByName('si1').AsFloat +
       QSelectSred.FieldByName('si2').AsFloat + QSelectSred.FieldByName('si3')
       .AsFloat) / 3, RazI));
     StringGrid1.cells[3, StringGrid1.Row] :=
-      floattostr(simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP));
+      Floattostr(simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP));
     StringGrid1.cells[4, StringGrid1.Row] :=
-      floattostr(simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN));
+      Floattostr(simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN));
     StringGrid1.cells[5, StringGrid1.Row] :=
-      floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
+      Floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
     StringGrid1.cells[6, StringGrid1.Row] :=
-      floattostr(simpleroundto((Strtofloat(Edit6.Text) + Strtofloat(Edit7.Text)
+      Floattostr(simpleroundto((Strtofloat(Edit6.Text) + Strtofloat(Edit7.Text)
       + Strtofloat(Edit8.Text)) / 3, -1));
     StringGrid1.cells[7, StringGrid1.Row] := '0';
 

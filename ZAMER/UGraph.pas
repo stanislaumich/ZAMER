@@ -54,9 +54,9 @@ type
 var
   FGraph: TFGraph;
 
-  i,cnt: Integer;
-  tsred:integer;
-  mas:integer;
+  i, cnt: Integer;
+  tsred : Integer;
+  mas   : Integer;
 
 implementation
 
@@ -122,15 +122,15 @@ end;
 procedure TFGraph.Button4Click(Sender: TObject);
 var
   x0, y0, cx, cy, i, step: Integer;
-  tmin,tmax, imin:integer;
+  tmin, tmax, imin       : Integer;
 begin
-  x0 := 10;
-  y0 := 700;
-  cx := 1;
-  cy := 10;
-  i  := 0;
-  step:=1;
-  cnt:=0;
+  x0                    := 10;
+  y0                    := 700;
+  cx                    := 1;
+  cy                    := 10;
+  i                     := 0;
+  step                  := 1;
+  cnt                   := 0;
   Series1.LinePen.Width := Strtoint(Edit1.text);
   Series2.LinePen.Width := Strtoint(Edit1.text);
   Series1.Clear;
@@ -141,33 +141,35 @@ begin
   Label5.Caption := '0';
   QTemp.Close;
   QTemp.Open('select * from zamertmp order by ID');
-  tmax:= round(QTemp.fieldbyname('torq').asfloat );
-  tmin:= round(QTemp.fieldbyname('torq').asfloat );
+  tmax := round(QTemp.fieldbyname('torq').asfloat);
+  tmin := round(QTemp.fieldbyname('torq').asfloat);
   While not QTemp.Eof do
   begin
     Series1.AddXY(i, QTemp.fieldbyname('torq').asfloat, '', clGreen);
     Series2.AddXY(i, QTemp.fieldbyname('rot').asfloat / mas, '', clred);
-    if tmax< QTemp.fieldbyname('torq').asfloat then tmax:= round(QTemp.fieldbyname('torq').asfloat );
-    if tmin> QTemp.fieldbyname('torq').asfloat then
+    if tmax < QTemp.fieldbyname('torq').asfloat then
+      tmax := round(QTemp.fieldbyname('torq').asfloat);
+    if tmin > QTemp.fieldbyname('torq').asfloat then
     begin
-     tmin:= round(QTemp.fieldbyname('torq').asfloat );
-     imin:=i;
+      tmin := round(QTemp.fieldbyname('torq').asfloat);
+      imin := i;
     end;
     QTemp.Next;
-    i := i + step;
-    cnt:=cnt+1;
+    i   := i + step;
+    cnt := cnt + 1;
   end;
-  tsred:=((tmax+tmin) div 2);
-  for i:=0 to cnt-1 do
-  if  i=imin then
-   begin
-    Series3.AddXY(i, tsred, '', clgreen);
-    Label2.Caption := Floattostr(i);
-    Label4.Caption := Floattostr(Chart1.Series[0].YValue[i]);
-    Label5.Caption := Floattostr(Simpleroundto(Chart1.Series[1].YValue[i],-2))
-   end
-     else
-   Series3.AddXY(i, tsred, '', clred);
+  tsred := ((tmax + tmin) div 2);
+  for i := 0 to cnt - 1 do
+    if i = imin then
+    begin
+      Series3.AddXY(i, tsred, '', clGreen);
+      Label2.Caption := Floattostr(i);
+      Label4.Caption := Floattostr(Chart1.Series[0].YValue[i]);
+      Label5.Caption :=
+        Floattostr(Simpleroundto(Chart1.Series[1].YValue[i], -2))
+    end
+    else
+      Series3.AddXY(i, tsred, '', clred);
 end;
 
 procedure TFGraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
@@ -175,7 +177,8 @@ procedure TFGraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
 begin
   Label2.Caption := Floattostr(Series.XValue[ValueIndex]);
   Label4.Caption := Floattostr(Chart1.Series[0].YValue[ValueIndex]);
-  Label5.Caption := Floattostr(Simpleroundto(Chart1.Series[1].YValue[ValueIndex],-2))
+  Label5.Caption :=
+    Floattostr(Simpleroundto(Chart1.Series[1].YValue[ValueIndex], -2))
 end;
 
 procedure TFGraph.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -201,13 +204,13 @@ begin
     Edit1.text := '5'
   else
     Edit1.text := QTemp.fieldbyname('value').Asstring;
-  mas:=strtoint(edit2.Text);
+  mas          := Strtoint(Edit2.text);
 end;
 
 procedure TFGraph.UpDown1Click(Sender: TObject; Button: TUDBtnType);
 begin
- mas:=strtoint(edit2.Text);
- Button4.Click();
+  mas := Strtoint(Edit2.text);
+  Button4.Click();
 end;
 
 end.

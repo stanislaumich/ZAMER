@@ -68,15 +68,17 @@ implementation
 uses umain;
 {$R *.dfm}
 
-function myfloat(s:string):double;
- var
-  v:integer;
-  f:double;
- begin
-  val(s,f,v);
-  if v=0 then
-   myfloat:=f else myfloat:=0;
- end;
+function myfloat(s: string): double;
+var
+  v: integer;
+  f: double;
+begin
+  val(s, f, v);
+  if v = 0 then
+    myfloat := f
+  else
+    myfloat := 0;
+end;
 
 procedure TFSoprot.BitBtn1Click(Sender: TObject);
 begin
@@ -97,13 +99,13 @@ begin
   then
   begin
     ShowMessage('Не указано испытание межвитковой изоляции');
-    //Exit
+    // Exit
   end;
   if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked) = false
   then
   begin
     ShowMessage('Не указано испытание сопротивления между болтом');
-    //Exit
+    // Exit
   end;
   Fmain.Qtemp.Close;
   Fmain.Qtemp.SQL.Clear;
@@ -141,24 +143,15 @@ begin
         if StringGrid3.cells[i, j] = '' then
           StringGrid3.cells[i, j] := '0';
 
-    QSoprot.ParamByName('IZM1U1U2').AsFloat :=
-      myfloat(StringGrid3.cells[1, 1]);
-    QSoprot.ParamByName('IZM2U1U2').AsFloat :=
-      myfloat(StringGrid3.cells[1, 2]);
-    QSoprot.ParamByName('IZM3U1U2').AsFloat :=
-      myfloat(StringGrid3.cells[1, 3]);
-    QSoprot.ParamByName('IZM1V1V2').AsFloat :=
-      myfloat(StringGrid3.cells[2, 1]);
-    QSoprot.ParamByName('IZM2V1V2').AsFloat :=
-      myfloat(StringGrid3.cells[2, 2]);
-    QSoprot.ParamByName('IZM3V1V2').AsFloat :=
-      myfloat(StringGrid3.cells[2, 3]);
-    QSoprot.ParamByName('IZM1W1W2').AsFloat :=
-      myfloat(StringGrid3.cells[3, 1]);
-    QSoprot.ParamByName('IZM2W1W2').AsFloat :=
-      myfloat(StringGrid3.cells[3, 2]);
-    QSoprot.ParamByName('IZM3W1W2').AsFloat :=
-      myfloat(StringGrid3.cells[3, 3]);
+    QSoprot.ParamByName('IZM1U1U2').AsFloat := myfloat(StringGrid3.cells[1, 1]);
+    QSoprot.ParamByName('IZM2U1U2').AsFloat := myfloat(StringGrid3.cells[1, 2]);
+    QSoprot.ParamByName('IZM3U1U2').AsFloat := myfloat(StringGrid3.cells[1, 3]);
+    QSoprot.ParamByName('IZM1V1V2').AsFloat := myfloat(StringGrid3.cells[2, 1]);
+    QSoprot.ParamByName('IZM2V1V2').AsFloat := myfloat(StringGrid3.cells[2, 2]);
+    QSoprot.ParamByName('IZM3V1V2').AsFloat := myfloat(StringGrid3.cells[2, 3]);
+    QSoprot.ParamByName('IZM1W1W2').AsFloat := myfloat(StringGrid3.cells[3, 1]);
+    QSoprot.ParamByName('IZM2W1W2').AsFloat := myfloat(StringGrid3.cells[3, 2]);
+    QSoprot.ParamByName('IZM3W1W2').AsFloat := myfloat(StringGrid3.cells[3, 3]);
   except
     on E: Exception do
     begin
@@ -205,8 +198,8 @@ begin
   StringGrid3.cells[2, 0] := 'V1-V2(V-W)/всп.*';
   StringGrid3.cells[3, 0] := 'W1-W2(W-U)';
 
-  ComboBox9.TExt:='Ом';
-  ComboBox10.Text:='МОм';
+  ComboBox9.Text  := 'Ом';
+  ComboBox10.Text := 'МОм';
 
   for i   := 1 to 3 do
     for j := 1 to 3 do
@@ -219,10 +212,12 @@ end;
 
 procedure TFSoprot.StringGrid3KeyPress(Sender: TObject; var Key: Char);
 begin
- if key=#13 then
-  if (Stringgrid3.Row=3) and (Stringgrid3.cells[Stringgrid3.Col,3]<>'')  then
-   if Stringgrid3.Col<3 then
-     Stringgrid3.Selection := TGridRect(Rect(Stringgrid3.Col+1, 1, Stringgrid3.Col+1, 1));
+  if Key = #13 then
+    if (StringGrid3.Row = 3) and (StringGrid3.cells[StringGrid3.Col, 3] <> '')
+    then
+      if StringGrid3.Col < 3 then
+        StringGrid3.Selection :=
+          TGridRect(Rect(StringGrid3.Col + 1, 1, StringGrid3.Col + 1, 1));
 end;
 
 end.

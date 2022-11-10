@@ -162,8 +162,8 @@ type
         Label9: TLabel;
         ComboBox6: TComboBox;
         Button4: TButton;
-    umom: TKRMBRegister;
-    IMom: TKRMBRegister;
+        umom: TKRMBRegister;
+        IMom: TKRMBRegister;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);
@@ -256,25 +256,30 @@ begin
     BitBtn11.Enabled := p;
 end;
 
-function NVLToZero(s:string):string;
- begin
-  if s='' then NVLToZero:='0' else NVLToZero:=s;
- end;
+function NVLToZero(s: string): string;
+begin
+    if s = '' then
+        NVLToZero := '0'
+    else
+        NVLToZero := s;
+end;
 
-function NVLToEmp(s:string):string;
- begin
-  if s='0' then NVLToEmp:='' else NVLToEmp:=s;
- end;
-
+function NVLToEmp(s: string): string;
+begin
+    if s = '0' then
+        NVLToEmp := ''
+    else
+        NVLToEmp := s;
+end;
 
 function Point(s: string): string;
 begin
-  Point := strReplace(s, ',', '.');
+    Point := strReplace(s, ',', '.');
 end;
 
 function Comma(s: string): string;
 begin
-  Comma := strReplace(s, '.', ',');
+    Comma := strReplace(s, '.', ',');
 end;
 
 procedure TFMain.savecombo;
@@ -558,13 +563,15 @@ begin
         Label28.Font.Color := clGreen;
     end;
     // Label1.Caption := nomer;
-    FSoprot.Edit8.Text              := Qtemp.FieldByName('TEMPER').Asstring;
-    FSoprot.ComboBox7.Text          := Qtemp.FieldByName('PHAS').Asstring;
-    FSoprot.ComboBox8.Text          := Qtemp.FieldByName('SOED').Asstring;
-    FSoprot.ComboBox9.Text          := Qtemp.FieldByName('SOPRED').Asstring;
-    if FSoprot.ComboBox9.Text='' then FSoprot.ComboBox9.TExt:='Ом';
-    FSoprot.ComboBox10.Text         := Qtemp.FieldByName('IZOLED').Asstring;
-    if FSoprot.ComboBox10.Text='' then FSoprot.ComboBox10.Text:='МОм';
+    FSoprot.Edit8.Text     := Qtemp.FieldByName('TEMPER').Asstring;
+    FSoprot.ComboBox7.Text := Qtemp.FieldByName('PHAS').Asstring;
+    FSoprot.ComboBox8.Text := Qtemp.FieldByName('SOED').Asstring;
+    FSoprot.ComboBox9.Text := Qtemp.FieldByName('SOPRED').Asstring;
+    if FSoprot.ComboBox9.Text = '' then
+        FSoprot.ComboBox9.Text := 'Ом';
+    FSoprot.ComboBox10.Text    := Qtemp.FieldByName('IZOLED').Asstring;
+    if FSoprot.ComboBox10.Text = '' then
+        FSoprot.ComboBox10.Text     := 'МОм';
     FSoprot.Edit13.Text             := Qtemp.FieldByName('IZOLKORP').Asstring;
     FSoprot.Edit16.Text             := Qtemp.FieldByName('IZOLOBMOT').Asstring;
     FSoprot.StringGrid3.Cells[1, 1] := Qtemp.FieldByName('IZM1U1U2').Asstring;
@@ -641,7 +648,7 @@ begin
         Qtemp.Next;
         tip := tip + 1;
     end;
-    //Fhhod.autogrid( Fhhod.StringGrid2);
+    // Fhhod.autogrid( Fhhod.StringGrid2);
     /// ////////////////////////////////////////////////////////////
     // загрузить Рабочую характеристику если есть
     // FRH.BitBtn3.Click;
@@ -1176,17 +1183,20 @@ begin
 
         wrepl('N36x', Edit7.Text); // r RH
 
-        wrepl('N35x',Floattostr(simpleroundto((Strtofloat(FRH.Edit4.TExt) + Strtofloat(FRH.Edit5.TExt) + Strtofloat(FRH.Edit6.TExt))/3,-1)));
+        wrepl('N35x', Floattostr(simpleroundto((strtofloat(Frh.Edit4.Text) +
+          strtofloat(Frh.Edit5.Text) + strtofloat(Frh.Edit6.Text)) / 3, -1)));
 
         // прочие хар-ки
         FrepP.Label1.Caption := 'Прочие характеристики';
         for j                := 1 to 18 do
         begin
-            wrepl('Pr' + inttostr(j + 100), NVLToEmp(Fproch.StringGrid1.Cells[j, 1]));
+            wrepl('Pr' + inttostr(j + 100),
+              NVLToEmp(Fproch.StringGrid1.Cells[j, 1]));
         end;
         for j := 1 to 18 do
         begin
-            wrepl('Pz' + inttostr(j + 100), NVLToEmp(Fproch.StringGrid1.Cells[j, 2]));
+            wrepl('Pz' + inttostr(j + 100),
+              NVLToEmp(Fproch.StringGrid1.Cells[j, 2]));
         end;
         for i     := 1 to 2 do
             for j := 1 to 8 do
@@ -1536,11 +1546,11 @@ begin
     BitBtn10.Click();
     ReadM45 := false;
     enableispyt(false);
-    {try
-    PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
-    except
-     on e:exception do e:=nil;
-    end;
+    { try
+      PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
+      except
+      on e:exception do e:=nil;
+      end;
     }
     ShellExecute(Handle, 'open', PWideChar(M45Exe), nil, nil, SW_SHOWNORMAL);
     // типы двигателей из базы
