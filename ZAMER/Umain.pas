@@ -162,6 +162,8 @@ type
         Label9: TLabel;
         ComboBox6: TComboBox;
         Button4: TButton;
+    umom: TKRMBRegister;
+    IMom: TKRMBRegister;
         procedure BitBtn10Click(Sender: TObject);
         procedure KRTCPConnector1ConnectionStatus(Sender: TObject;
           AStat: TKRConnectorStat; AReconnectTime: Cardinal);

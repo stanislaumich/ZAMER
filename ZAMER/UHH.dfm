@@ -3,7 +3,7 @@ object Fhhod: TFhhod
   Top = 0
   Caption = #1061#1086#1083#1086#1089#1090#1086#1081' '#1093#1086#1076
   ClientHeight = 543
-  ClientWidth = 853
+  ClientWidth = 961
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object Fhhod: TFhhod
   OnCreate = FormCreate
   OnHide = FormHide
   DesignSize = (
-    853
+    961
     543)
   PixelsPerInch = 96
   TextHeight = 23
@@ -184,14 +184,14 @@ object Fhhod: TFhhod
   object GroupBox2: TGroupBox
     Left = 279
     Top = 37
-    Width = 566
+    Width = 678
     Height = 368
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 3
     object StringGrid2: TStringGrid
       Left = 4
       Top = 28
-      Width = 558
+      Width = 665
       Height = 309
       ColCount = 7
       DefaultColWidth = 90
@@ -219,7 +219,7 @@ object Fhhod: TFhhod
   object ProgressBar1: TProgressBar
     Left = 1
     Top = 467
-    Width = 844
+    Width = 956
     Height = 33
     TabOrder = 5
   end
@@ -444,11 +444,11 @@ object Fhhod: TFhhod
       '   NOMER, UISP, U12, '
       '   U23, U31, I1, '
       '   I2, I3, P1, '
-      '   P2, P3, DUMAX, ps) '
+      '   P2, P3, DUMAX, ps, fu, fi) '
       'VALUES ( :NOMER, :UISP, :U12, '
       '   :U23, :U31, :I1, '
       '   :I2, :I3, :P1, '
-      '   :P2, :P3, :DUMAX,:ps )')
+      '   :P2, :P3, :DUMAX,:ps, :fu, :fi )')
     Left = 427
     Top = 205
     ParamData = <
@@ -502,6 +502,14 @@ object Fhhod: TFhhod
       end
       item
         Name = 'PS'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FU'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FI'
         ParamType = ptInput
       end>
   end
@@ -561,24 +569,24 @@ object Fhhod: TFhhod
     SQL.Strings = (
       'select'
       'NOMER, UISP,'
-      'round((sum(su12)+sum(su23)+sum(su31))/3,1) u,'
-      'round((sum(si1)+sum(si2)+sum(si3))/3,3) i,'
+      'round(sum(afu),1) u,'
+      'round(sum(afi),1) i,'
       'round(sum(sp),2) ps,'
       'round(sum(mumax),4) umax'
       'from'
       '('
       'SELECT'
       'NOMER, UISP,'
-      'avg(U12) su12, avg(U23) su23, avg(U31) su31,'
-      'avg(I1) si1,avg(I2) si2, avg(I3) si3,'
+      'avg(fu) afu,'
+      'avg(fi) afi,'
       'avg(ps) sp,0 mumax'
       'FROM ZAMER.ZHHALL'
       'where nomer=:nomer and uisp=:uisp and dumax<=:delta'
       'group by nomer, uisp'
       'union all'
       'SELECT nomer,  UISP,'
-      '0 su12, 0 su23, 0 su31,'
-      '0 si1, 0 si2, 0 si3,'
+      '0 afu,'
+      '0 afi,'
       '0 sp, max(dumax) mumax'
       'FROM ZAMER.ZHHALL'
       'where nomer=:nomer and uisp=:uisp and dumax<=:delta'

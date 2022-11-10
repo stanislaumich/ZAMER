@@ -72,7 +72,7 @@ type
   end;
 
   R = record
-    u1, u2, u3, i1, i2, i3, p1, p2, p3, ps: real;
+    u1, u2, u3, i1, i2, i3, p1, p2, p3, ps, u, i: real;
   end;
 
 var
@@ -92,6 +92,16 @@ implementation
 {$R *.dfm}
 
 uses Umain;
+
+function myfloat(s:string):double;
+ var
+  v:integer;
+  f:double;
+ begin
+  val(s,f,v);
+  if v=0 then
+   myfloat:=f else myfloat:=0;
+ end;
 
 procedure TFhhod.Action1Execute(Sender: TObject);
 begin
@@ -221,6 +231,7 @@ begin
   StringGrid2.cells[3, 0]   := 'P сред';
   StringGrid2.cells[4, 0]   := '▲Umax';
   StringGrid2.cells[5, 0]   := 'R||';
+  StringGrid2.cells[6, 0]   := 'Ошибок';
   TimerUpd.Enabled          := True;
 end;
 
@@ -239,7 +250,7 @@ begin
   CloseFile(f);
 
   // delta and del
-
+  {
   Fmain.QDelta.SQL.Clear;
   Fmain.QDelta.SQL.add('delete from zdelta where name=' + Quotedstr('uhh'));
   Fmain.QDelta.ExecSQL;
@@ -247,13 +258,17 @@ begin
   Fmain.QDelta.SQL.add('insert into zdelta (name,value) values(' +
     Quotedstr('uhh') + ',' + Fhhod.Edit2.Text + ')');
   Fmain.QDelta.ExecSQL;
+  }
+  Fmain.QDelta.SQL.Clear;
+  Fmain.QDelta.SQL.add('update zdelta set value='+Fhhod.Edit2.Text+' where name=' + Quotedstr('uhh'));
+  Fmain.QDelta.ExecSQL;
   QTemp.Close;
-  QTemp.SQL.Clear;
+  {QTemp.SQL.Clear;
   QTemp.SQL.add('delete from ini where name=' + Quotedstr('hhdel'));
   QTemp.ExecSQL;
   QTemp.Close;
   QTemp.SQL.Clear;
-  {if CheckBox2.Checked then
+  if CheckBox2.Checked then
     QTemp.SQL.add('insert into ini (name,value) values(' +
       Quotedstr('hhdel') + ',1)')
   else
@@ -434,7 +449,7 @@ begin
   if StringGrid2.cells[1, ARow] = '' then
     exit;
   ok := (abs(StrtoFloat(StringGrid2.cells[1, ARow]) -
-    StrtoFloat(StringGrid2.cells[0, ARow])) < StrtoFloat(Edit2.Text)) or
+    StrtoFloat(StringGrid2.cells[0, ARow])) < myFloat(Edit2.Text)) or
     (StringGrid2.cells[4, ARow] = '');
   if (ACol = 4) and (not ok) then
   begin
@@ -482,7 +497,8 @@ begin
       QinsAll.ParamByName('P3').AsFloat     := a[i].p3;
       QinsAll.ParamByName('Ps').AsFloat     := a[i].ps;
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
-
+      QinsAll.ParamByName('FU').AsFloat     := a[i].u;
+      QinsAll.ParamByName('FI').AsFloat     := a[i].i;
       QinsAll.ExecSQL;
     end;
     // по просьбе удалим записи где мы выходим за пределы диапазона
@@ -509,11 +525,39 @@ begin
 
     // тут считается среднее по показаниям только датчика
     // напряжения, подвохов не ожидается
+    {
+    select
+NOMER, UISP,--round((sum(su12)+sum(su23)+sum(su31))/3,1) u,
+round(afu,1) u,
+round((sum(si1)+sum(si2)+sum(si3))/3,3) i,
+round(sum(sp),2) ps,
+round(sum(mumax),4) umax
+from
+(
+SELECT
+NOMER, UISP,--avg(U12) su12, avg(U23) su23, avg(U31) su31,
+avg(fu) afu,
+avg(I1) si1,avg(I2) si2, avg(I3) si3,
+avg(ps) sp,0 mumax
+FROM ZAMER.ZHHALL
+where nomer=:nomer and uisp=:uisp and dumax<=:delta
+group by nomer, uisp
+union all
+SELECT nomer,  UISP,--0 su12, 0 su23, 0 su31,
+0 afu,
+0 si1, 0 si2, 0 si3,
+0 sp, max(dumax) mumax
+FROM ZAMER.ZHHALL
+where nomer=:nomer and uisp=:uisp and dumax<=:delta
+group by nomer, uisp
+)
+group by nomer, uisp
 
+    }
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').Asstring := Nomer;
     Qselectsred.ParamByName('uisp').AsFloat   := StrtoFloat(Label6.Caption);
-    Qselectsred.ParamByName('delta').AsFloat   := StrtoFloat(Edit2.Text);
+    Qselectsred.ParamByName('delta').AsFloat   := myFloat(Edit2.Text);
     Qselectsred.Open;
     {
       QInsSvod.Close;
@@ -550,7 +594,8 @@ begin
       Qselectsred.FieldByName('umax').Asstring;
 
     StringGrid2.cells[6, StringGrid2.row] :=
-      inttostr(goodcnt)+'/'+ inttostr(errcnt);
+      //inttostr(goodcnt)+'/'+ inttostr(errcnt);
+      Floattostr(simpleroundto(errcnt/(goodcnt+errcnt)*100,0))+'%';
     /// //////////////////////////////////////////////////////////////////////////
 
     ProgressBar1.Position := 0;
@@ -590,6 +635,8 @@ begin
   a[acount].p2 := SimpleRoundTo(Fmain.RP2.Value, -2);
   a[acount].p3 := SimpleRoundTo(Fmain.RP3.Value, -2);
   a[acount].ps := SimpleRoundTo(Fmain.PSredQ.Value, -2);
+  a[acount].u := SimpleRoundTo(Fmain.UMom.Value, -1);
+  a[acount].i := SimpleRoundTo(Fmain.IMom.Value, -3);
   // перекос фаз
   i  := (a[acount].i1 + a[acount].i2 + a[acount].i3) / 3;
   i1 := abs(100 - (a[acount].i1 / i) * 100);
@@ -604,7 +651,7 @@ procedure TFhhod.TimerUpdTimer(Sender: TObject);
 begin
   Label8.Caption := Fmain.KRVarLabel1.Caption;
   if abs(StrtoFloat(Label8.Caption) - StrtoFloat(Label6.Caption)) <
-    StrtoFloat(Edit2.Text) then
+    myFloat(Edit2.Text) then
   begin
     Label6.font.Color := clGreen
   end

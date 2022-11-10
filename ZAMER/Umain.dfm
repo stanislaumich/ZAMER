@@ -1152,6 +1152,26 @@ object FMain: TFMain
       HighDWordFirst = True
       Interval = 100
     end
+    object umom: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3529
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object IMom: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3531
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
   end
   object KRTimer1: TKRTimer
     OnTimer = KRTimer1Timer
