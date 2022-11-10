@@ -1511,6 +1511,7 @@ begin
     }
     savecombo;
     savegrids;
+    Fhhod.savew;
     WriteIni;
 end;
 
@@ -1554,6 +1555,7 @@ begin
         Qtemp.Next;
     end;
     // loaddelta;
+
 end;
 
 procedure TFMain.IsredError(Sender: TObject; Variable: TKRVariable);

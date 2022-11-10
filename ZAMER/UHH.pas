@@ -70,6 +70,8 @@ type
   public
     { Public declarations }
     procedure autogrid(var stringgrid1:tstringgrid);
+    procedure savew;
+    procedure restw;
   end;
 
   R = record
@@ -93,6 +95,44 @@ implementation
 {$R *.dfm}
 
 uses Umain;
+
+
+procedure TFhhod.savew;
+ var
+  i:integer;
+ begin
+  QTemp.Close;
+  Qtemp.SQL.Clear;
+  QTemp.sql.Add('delete from grids where form='+Quotedstr('HH'));
+  Qtemp.ExecSQL;
+  for i:=0 to stringgrid2.colcount-1 do
+   begin
+    QTemp.Close;
+  Qtemp.SQL.Clear;
+  QTemp.sql.Add('insert into grids (name, wdth, form,num) values('+Quotedstr('stringgrid2')+', '+inttostr(stringgrid2.ColWidths[i])+', '+Quotedstr('HH')+', '+inttostr(i)+')');
+  Qtemp.ExecSQL;
+   end;
+ end;
+
+procedure TFhhod.restw;
+ var
+  i:integer;
+ begin
+  {QTemp.Close;
+  Qtemp.SQL.Clear;
+  QTemp.sql.Add('delete from grids where form='+Quotedstr('HH'));
+  Qtemp.ExecSQL;}
+   QTemp.Close;
+  Qtemp.SQL.Clear;
+  QTemp.sql.Add('select * from grids where name='+Quotedstr('stringgrid2')+' and form='+Quotedstr('HH'));
+  Qtemp.Open;
+
+  while not(QTemp.Eof ) do
+   begin
+    stringgrid2.ColWidths[qtemp.fieldbyname('num').Asinteger]:=qtemp.fieldbyname('wdth').Asinteger ;
+    Qtemp.Next;
+   end;
+ end;
 
 
 procedure TFhhod.autogrid(var stringgrid1:tstringgrid);
@@ -343,7 +383,7 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.Open('select value from ini where name=' + Quotedstr('hhdel'));
-  //CheckBox2.Checked := QTemp.FieldByName('value').Asinteger = 1;
+  Fhhod.restw;
 end;
 
 procedure TFhhod.FormHide(Sender: TObject);
