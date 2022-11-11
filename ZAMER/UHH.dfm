@@ -123,17 +123,29 @@ object Fhhod: TFhhod
   end
   object Label11: TLabel
     Left = 4
-    Top = 438
-    Width = 149
-    Height = 23
+    Top = 425
+    Width = 237
+    Height = 33
     Caption = #1055#1077#1088#1077#1082#1086#1089' '#1092#1072#1079', %:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object Label12: TLabel
-    Left = 159
-    Top = 438
-    Width = 10
-    Height = 23
+    Left = 256
+    Top = 425
+    Width = 17
+    Height = 33
     Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object Label9: TLabel
     Left = 772
@@ -237,28 +249,20 @@ object Fhhod: TFhhod
       OnDrawCell = StringGrid2DrawCell
     end
   end
-  object CheckBox1: TCheckBox
-    Left = 4
-    Top = 408
-    Width = 178
-    Height = 29
-    Caption = #1057#1086#1086#1073#1097#1072#1090#1100' '#1079#1074#1091#1082#1086#1084
-    TabOrder = 4
-    Visible = False
-  end
   object ProgressBar1: TProgressBar
     Left = 1
     Top = 467
     Width = 1020
     Height = 33
     Anchors = [akLeft, akTop, akRight]
-    TabOrder = 5
+    TabOrder = 4
   end
   object BitBtn1: TBitBtn
-    Left = 371
+    Left = 536
     Top = 411
     Width = 176
     Height = 53
+    Anchors = [akTop, akRight]
     Caption = #1064#1040#1043' F5'
     Enabled = False
     Glyph.Data = {
@@ -318,14 +322,15 @@ object Fhhod: TFhhod
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 6
+    TabOrder = 5
     OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
-    Left = 553
+    Left = 718
     Top = 411
     Width = 149
     Height = 53
+    Anchors = [akTop, akRight]
     Caption = #1047#1072#1087#1080#1089#1072#1090#1100
     Enabled = False
     Glyph.Data = {
@@ -385,14 +390,15 @@ object Fhhod: TFhhod
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCFECD53DB35441B55983CE91FF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 7
+    TabOrder = 6
     OnClick = BitBtn2Click
   end
   object BitBtn3: TBitBtn
-    Left = 708
+    Left = 873
     Top = 411
     Width = 141
     Height = 54
+    Anchors = [akTop, akRight]
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     Enabled = False
     Glyph.Data = {
@@ -452,7 +458,7 @@ object Fhhod: TFhhod
       A3C2FBA3C2FBA8C9FB676FF8342EF4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFB5B3FC4E49F6140BF31C13F31C12F31C12F31C12F31C
       12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
-    TabOrder = 8
+    TabOrder = 7
     OnClick = BitBtn3Click
   end
   object Timer1: TTimer

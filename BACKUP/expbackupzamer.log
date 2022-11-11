@@ -51,11 +51,11 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                           ZERR
-                                                          183 rows exported
+                                                          185 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZHHALL
 ........
-                                                         8426 rows exported
+                                                         8423 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZHHSVOD

@@ -24,7 +24,6 @@ type
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     RadioButton3: TRadioButton;
-    CheckBox1: TCheckBox;
     Label3: TLabel;
     Label4: TLabel;
     ProgressBar1: TProgressBar;
@@ -90,6 +89,7 @@ var
 
   pereU, pereI: real;
 
+  canwrite:boolean;
 implementation
 
 {$R *.dfm}
@@ -172,6 +172,7 @@ begin
   pereI             := 0;
   Timer2.Enabled    := True;
   Timer1.Enabled    := True;
+  canwrite:=false;
 end;
 
 procedure TFhhod.BitBtn2Click(Sender: TObject);
@@ -230,6 +231,7 @@ begin
   Fmain.Label29.font.Color := clGreen;
   Fmain.Label29.Caption    := 'ПРОЙДЕН';
   Fhhod.Close;
+  canwrite:=true;
 end;
 
 procedure TFhhod.BitBtn3Click(Sender: TObject);
@@ -282,6 +284,7 @@ procedure TFhhod.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   i, j: Integer;
   f   : textfile;
+  buttonSelected :integer;
 begin
   AssignFile(f, extractfilepath(paramstr(0)) + '\GridHH.TXT');
   ReWrite(f);
@@ -320,6 +323,14 @@ begin
     Quotedstr('hhdel') + ',0)');
     QTemp.ExecSQL;
   }
+  if not canwrite then
+   begin
+       buttonSelected :=
+      MessageDlg('Есть несохраненные данные, всё равно закрыть?',
+      mtConfirmation, mbYesNo, 0);
+     canclose:=buttonSelected = mrYes;
+   end;
+
 end;
 
 procedure TFhhod.FormCreate(Sender: TObject);
@@ -344,6 +355,7 @@ begin
   QTemp.SQL.Clear;
   QTemp.Open('select value from ini where name=' + Quotedstr('hhdel'));
   Fhhod.restw;
+  canwrite:=true;
 end;
 
 procedure TFhhod.FormHide(Sender: TObject);
@@ -706,8 +718,8 @@ begin
   else
   begin
     Label6.font.Color := clRed;
-    if CheckBox1.Checked then
-      beep;
+    //if CheckBox1.Checked then
+    //  beep;
   end;
 end;
 
