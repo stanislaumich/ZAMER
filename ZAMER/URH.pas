@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Vcl.ExtCtrls, Vcl.ComCtrls, Math, ustr, System.Actions,
-  Vcl.ActnList;
+  Vcl.ActnList, uadd;
 
 type
   TFRH = class(TForm)
@@ -101,7 +101,7 @@ type
   end;
 
   R = record
-    u1, u2, u3, i1, i2, i3, p1, p2, p3, rot, torq, power: real;
+    u1, u2, u3, i1, i2, i3, p1, p2, p3, rot, torq, power, u, i, p: real;
   end;
 
 var
@@ -122,34 +122,6 @@ uses umain;
 
 {$R *.dfm}
 
-function myfloat(s: string): double;
-var
-  v: Integer;
-  f: double;
-begin
-  val(s, f, v);
-  if v = 0 then
-    myfloat := f
-  else
-    myfloat := 0;
-end;
-
-function min(a: Integer; b: Integer): Integer;
-begin
-  if a < b then
-    result := a
-  else
-    result := b;
-end;
-
-function max(a: Integer; b: Integer): Integer;
-begin
-  if a > b then
-    result := a
-  else
-    result := b;
-end;
-
 procedure TFRH.CommandStart(c: Integer; n: string; fn: string);
 var
   s      : string;
@@ -167,11 +139,6 @@ begin
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
     + dectype + ', ' + FMain.Edit12.Text + ')');
   QCommand.ExecSQL;
-end;
-
-function Point(s: string): string;
-begin
-  Point := strReplace(s, ',', '.');
 end;
 
 procedure TFRH.Action1Execute(Sender: TObject);

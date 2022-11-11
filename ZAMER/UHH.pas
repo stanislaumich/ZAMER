@@ -9,7 +9,7 @@ uses
   Vcl.ExtCtrls, Vcl.ComCtrls, Math, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList, UAdd;
 
 type
   TFhhod = class(TForm)
@@ -96,21 +96,7 @@ implementation
 
 uses Umain;
 
-function NVLToZero(s: string): string;
-begin
-    if s = '' then
-        NVLToZero := '0'
-    else
-        NVLToZero := s;
-end;
 
-function NVLToEmp(s: string): string;
-begin
-    if s = '0' then
-        NVLToEmp := ''
-    else
-        NVLToEmp := s;
-end;
 
 procedure TFhhod.savew;
 var
@@ -157,18 +143,6 @@ begin
       QTemp.fieldbyname('wdth').Asinteger;
     QTemp.Next;
   end;
-end;
-
-function myfloat(s: string): double;
-var
-  v: Integer;
-  f: double;
-begin
-  val(s, f, v);
-  if v = 0 then
-    myfloat := f
-  else
-    myfloat := 0;
 end;
 
 procedure TFhhod.Action1Execute(Sender: TObject);

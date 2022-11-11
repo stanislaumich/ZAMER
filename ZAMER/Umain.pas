@@ -40,7 +40,7 @@ uses
     FireDAC.Phys, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
     FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, FireDAC.Stan.Param,
     FireDAC.DatS, ShellApi, ComObj, URepProgress, Math,
-    FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Vcl.ExtCtrls;
+    FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, Vcl.ExtCtrls, UAdd;
 
 type
     TFMain = class(TForm)
@@ -256,31 +256,6 @@ begin
     BitBtn11.Enabled := p;
 end;
 
-function NVLToZero(s: string): string;
-begin
-    if s = '' then
-        NVLToZero := '0'
-    else
-        NVLToZero := s;
-end;
-
-function NVLToEmp(s: string): string;
-begin
-    if s = '0' then
-        NVLToEmp := ''
-    else
-        NVLToEmp := s;
-end;
-
-function Point(s: string): string;
-begin
-    Point := strReplace(s, ',', '.');
-end;
-
-function Comma(s: string): string;
-begin
-    Comma := strReplace(s, '.', ',');
-end;
 
 procedure TFMain.savecombo;
 var
