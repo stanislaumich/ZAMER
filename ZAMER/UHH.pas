@@ -9,7 +9,7 @@ uses
   Vcl.ExtCtrls, Vcl.ComCtrls, Math, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList, UAdd;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList, UAdd,SYStem.UITypes;
 
 type
   TFhhod = class(TForm)
@@ -128,8 +128,6 @@ begin
 end;
 
 procedure TFhhod.restw;
-var
-  i: Integer;
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
