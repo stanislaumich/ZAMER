@@ -160,7 +160,7 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zrhall where nomer=' + Quotedstr(Nomer) +
-    ' and uisp=' + Label3.Caption + ' and pisp=' + Point(Label10.Caption));
+    ' and uisp=' + Label3.Caption + ' and pisp=' + Stringgrid2.cells[0,stringgrid2.row]);
   QTemp.ExecSQL;
   acount            := 0;
   curtime           := 0;
@@ -185,7 +185,7 @@ begin
     mtConfirmation, mbYesNo, 0);
   if buttonSelected = mrNo then
     exit;
-
+  ch:=false;
   FMain.Label30.font.Color := clGreen;
   FMain.Label30.Caption    := 'ПРОЙДЕН';
   FRH.Close;
@@ -269,64 +269,21 @@ begin
   CloseFile(f);
 
   // delta and del
-  {
-    FMain.QDelta.SQL.Clear;
-    FMain.QDelta.SQL.Add('delete from ini where name=' + Quotedstr('rhtime'));
-    FMain.QDelta.ExecSQL;
-    FMain.QDelta.SQL.Clear;
-    FMain.QDelta.SQL.Add('insert into ini (name,value) values(' +
-    Quotedstr('rhtime') + ',' + Quotedstr(FRH.Edit1.Text) + ')');
-    FMain.QDelta.ExecSQL; }
 
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('update ini set value=' + Quotedstr(FRH.Edit1.Text) +
     ' where name=' + Quotedstr('rhtime'));
   FMain.QDelta.ExecSQL;
 
-  {
-    FMain.QDelta.SQL.Clear;
-    FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('urh'));
-    FMain.QDelta.ExecSQL;
-    FMain.QDelta.SQL.Clear;
-    FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
-    Quotedstr('urh') + ',' + FRH.Edit2.Text + ')');
-    FMain.QDelta.ExecSQL; }
-
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('update ini set value=' + Quotedstr(FRH.Edit2.Text) +
     ' where name=' + Quotedstr('urh'));
   FMain.QDelta.ExecSQL;
-  {
-    QTemp.Close;
-    FMain.QDelta.SQL.Clear;
-    FMain.QDelta.SQL.Add('delete from zdelta where name=' + Quotedstr('prh'));
-    FMain.QDelta.ExecSQL;
-    FMain.QDelta.SQL.Clear;
-    FMain.QDelta.SQL.Add('insert into zdelta (name,value) values(' +
-    Quotedstr('prh') + ',' + Point(FRH.Edit8.Text) + ')');
-    FMain.QDelta.ExecSQL;
-    QTemp.Close; }
 
   FMain.QDelta.SQL.Clear;
   FMain.QDelta.SQL.Add('update ini set value=' + Quotedstr(Point(FRH.Edit8.Text)
     ) + ' where name=' + Quotedstr('prh'));
   FMain.QDelta.ExecSQL;
-
-  {
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('delete from ini where name=' + Quotedstr('rhdel'));
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    if CheckBox2.Checked then
-    QTemp.SQL.Add('insert into ini (name,value) values(' +
-    Quotedstr('rhdel') + ',1)')
-    else
-    QTemp.SQL.Add('insert into ini (name,value) values(' +
-    Quotedstr('rhdel') + ',0)');
-    QTemp.ExecSQL;
-  }
-
 end;
 
 procedure TFRH.FormCreate(Sender: TObject);
@@ -567,6 +524,9 @@ begin
         simpleroundto(QTemp.FieldByName('torq').AsFloat, RazM);
       QinsAll.ParamByName('power').AsFloat :=
         simpleroundto(QTemp.FieldByName('power').AsFloat, RazP);
+      QinsAll.ParamByName('U').AsFloat    := a[i].u;
+      QinsAll.ParamByName('I').AsFloat     := a[i].i;
+      QinsAll.ParamByName('P').AsFloat     := a[i].p;
       QinsAll.ExecSQL;
       QTemp.Next;
     end;
@@ -612,10 +572,6 @@ begin
 
     // ++++ вверх это вырезать
     {
-      StringGrid1.cells[0, 0]   := '№';
-  StringGrid1.cells[1, 0]   := 'Вар. 1';
-  StringGrid1.cells[2, 0]   := 'Вар. 2';
-  StringGrid1.cells[3, 0]   := 'Вар. 3';
   StringGrid2.cells[0, 0]   := 'Нагр.';
   StringGrid2.cells[1, 0]   := 'U сред';
   StringGrid2.cells[2, 0]   := 'I сред';
@@ -633,11 +589,11 @@ begin
     StringGrid2.cells[3, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('p').AsFloat, RazP));
     StringGrid2.cells[4, StringGrid2.row] :=
-      Floattostr(simpleroundto(Qselectsred.FieldByName('i').AsFloat, RazI));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazI));
     StringGrid2.cells[5, StringGrid2.row] :=
-      Floattostr(simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('t').AsFloat, RazN));
     StringGrid2.cells[6, StringGrid2.row] :=
-      Floattostr(simpleroundto(Qselectsred.FieldByName('t').AsFloat, RazM));
+      Floattostr(simpleroundto(Qselectsred.FieldByName('umax').AsFloat, RazM));
     StringGrid2.cells[7, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP));
     /// //////////////////////////////////////////////////////////////////////////
@@ -674,6 +630,11 @@ begin
   a[acount].p1 := simpleroundto(FMain.RP1.Value, RazP);
   a[acount].p2 := simpleroundto(FMain.RP2.Value, RazP);
   a[acount].p3 := simpleroundto(FMain.RP3.Value, RazP);
+
+  a[acount].u  := simpleroundto(Fmain.UMom.Value, RazU);
+  a[acount].i  := simpleroundto(Fmain.IMom.Value, RazI);
+  a[acount].p  := simpleroundto(Fmain.PSredQ.Value, RazP);
+
 end;
 
 procedure TFRH.TimerUpTimer(Sender: TObject);

@@ -686,19 +686,20 @@ var
   i, i1, i2, i3: single;
 begin
   acount       := acount + 1;
-  a[acount].u1 := simpleroundto(Fmain.RU1.Value, -1);
-  a[acount].u2 := simpleroundto(Fmain.RU2.Value, -1);
-  a[acount].u3 := simpleroundto(Fmain.RU3.Value, -1);
-  a[acount].i1 := simpleroundto(Fmain.RI1.Value, -3);
-  a[acount].i2 := simpleroundto(Fmain.RI2.Value, -3);
-  a[acount].i3 := simpleroundto(Fmain.RI3.Value, -3);
-  a[acount].p1 := simpleroundto(Fmain.RP1.Value, -2);
-  a[acount].p2 := simpleroundto(Fmain.RP2.Value, -2);
-  a[acount].p3 := simpleroundto(Fmain.RP3.Value, -2);
-  a[acount].ps := simpleroundto(Fmain.PSredQ.Value, -2);
-  a[acount].u  := simpleroundto(Fmain.UMom.Value, -1);
-  a[acount].i  := simpleroundto(Fmain.IMom.Value, -3);
-  a[acount].p  := simpleroundto(Fmain.PSredQ.Value, -2);
+  a[acount].u1 := simpleroundto(Fmain.RU1.Value, RazU);
+  a[acount].u2 := simpleroundto(Fmain.RU2.Value, RazU);
+  a[acount].u3 := simpleroundto(Fmain.RU3.Value, RazU);
+  a[acount].i1 := simpleroundto(Fmain.RI1.Value, RazI);
+  a[acount].i2 := simpleroundto(Fmain.RI2.Value, RazI);
+  a[acount].i3 := simpleroundto(Fmain.RI3.Value, RazI);
+  a[acount].p1 := simpleroundto(Fmain.RP1.Value, RazP);
+  a[acount].p2 := simpleroundto(Fmain.RP2.Value, RazP);
+  a[acount].p3 := simpleroundto(Fmain.RP3.Value, RazP);
+  a[acount].ps := simpleroundto(Fmain.PSredQ.Value, RazP);
+  a[acount].u  := simpleroundto(Fmain.UMom.Value, RazU);
+  a[acount].i  := simpleroundto(Fmain.IMom.Value, RazI);
+  a[acount].p:=a[acount].ps;
+
   // перекос фаз
   i  := (a[acount].i1 + a[acount].i2 + a[acount].i3) / 3;
   i1 := abs(100 - (a[acount].i1 / i) * 100);

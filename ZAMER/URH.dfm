@@ -713,13 +713,13 @@ object FRH: TFRH
       '   I2, I3, P1, '
       '   P2, P3, TORQ, '
       '   POWER, ROT, DUMAX, '
-      '   DPMAX, PISP) '
+      '   DPMAX, PISP, u, i, p) '
       'VALUES (    :NOMER, :UISP, :U12, '
       '   :U23, :U31, :I1, '
       '   :I2, :I3, :P1, '
       '   :P2, :P3, :TORQ, '
       '   :POWER, :ROT, :DUMAX, '
-      '   :DPMAX, :PISP )')
+      '   :DPMAX, :PISP, :u, :i, :p )')
     Left = 700
     Top = 269
     ParamData = <
@@ -789,6 +789,18 @@ object FRH: TFRH
       end
       item
         Name = 'PISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
         ParamType = ptInput
       end>
   end
