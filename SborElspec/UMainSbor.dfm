@@ -12,6 +12,7 @@ object Form1: TForm1
   Font.Style = []
   OldCreateOrder = False
   OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -72,6 +73,27 @@ object Form1: TForm1
       Height = 33
       Caption = '0'
     end
+    object Label10: TLabel
+      Left = 8
+      Top = 136
+      Width = 106
+      Height = 33
+      Caption = 'Label10'
+    end
+    object Label11: TLabel
+      Left = 8
+      Top = 176
+      Width = 106
+      Height = 33
+      Caption = 'Label11'
+    end
+    object Label12: TLabel
+      Left = 8
+      Top = 208
+      Width = 106
+      Height = 33
+      Caption = 'Label12'
+    end
     object GroupBox3: TGroupBox
       Left = 3
       Top = 100
@@ -79,6 +101,20 @@ object Form1: TForm1
       Height = 9
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
+    end
+    object CheckBox1: TCheckBox
+      Left = 8
+      Top = 112
+      Width = 137
+      Height = 21
+      Caption = #1055#1086' '#1092#1072#1079#1072#1084
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
     end
   end
   object GroupBox2: TGroupBox
@@ -196,5 +232,86 @@ object Form1: TForm1
     OnTimer = TUpdateFormTimer
     Left = 276
     Top = 124
+  end
+  object FDC: TFDConnection
+    Params.Strings = (
+      'DriverID=Ora'
+      'Database=XE'
+      'User_Name=zamer'
+      'Password=zamer')
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    Connected = True
+    LoginPrompt = False
+    Left = 176
+    Top = 224
+  end
+  object QTemp: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZELSPEC ('
+      '   ID, U, I, P, U1, U2,U3, I1, I2, I3, DOP, p1, p2, p3) '
+      
+        'VALUES ( :ID ,:U ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP,:p1,:p2,' +
+        ':p3)')
+    Left = 224
+    Top = 224
+    ParamData = <
+      item
+        Name = 'ID'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P3'
+        ParamType = ptInput
+      end>
   end
 end

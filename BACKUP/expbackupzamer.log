@@ -50,6 +50,9 @@ EXP-00091: Exporting questionable statistics.
                                                            10 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
+. . exporting table                        ZELSPEC
+                                                           25 rows exported
+EXP-00091: Exporting questionable statistics.
 . . exporting table                           ZERR
                                                           196 rows exported
 EXP-00091: Exporting questionable statistics.
