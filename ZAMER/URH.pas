@@ -530,6 +530,44 @@ begin
       QinsAll.ExecSQL;
       QTemp.Next;
     end;
+    {
+     select
+nomer, uisp, sum(u) u, sum(i) i,sum(p) p, sum(umax) umax,
+sum(pmax) pmax, sum(t) t,sum(r) r, sum (pow) pow
+from(
+select
+NOMER, UISP,
+round((sum(su12)+sum(su23)+sum(su31))/3,1) u,
+round((sum(si1)+sum(si2)+sum(si3))/3,3) i,
+round((sum(sp1)+sum(sp2)+sum(sp3)),2) p,
+round(sum(mumax),4) umax,
+round(sum(mpmax),4) pmax,
+t,r,pow
+from
+(
+SELECT
+    NOMER, UISP,PISP,
+    avg(U12) su12, avg(U23) su23, avg(U31) su31,
+    avg(I1) si1,avg(I2) si2, avg(I3) si3,
+    avg(P1) sp1,avg(P2) sp2, avg(P3) sp3,
+    0 mumax, 0 mpmax,avg(torq) t, avg(power) pow, avg(rot) r
+    FROM ZAMER.ZRHALL
+    where nomer=:nomer and uisp=:uisp and pisp=:pisp
+    group by nomer, uisp, PISP
+    union all
+    SELECT
+    nomer,  UISP,PISP,
+    0 su12, 0 su23, 0 su31,
+    0 si1, 0 si2, 0 si3,
+    0 sp1, 0 sp2, 0 sp3,
+    max(dumax) mumax, max(dpmax) mpmax, 0 t, 0 pow, 0 r
+    FROM ZAMER.ZRHALL
+    where nomer=:nomer and uisp=:uisp and pisp=:pisp
+    group by nomer, uisp, PISP
+    )group by nomer, uisp, PISP,t,r,pow
+    ) group by nomer, uisp
+
+    }
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').Asstring := Nomer;
     Qselectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label6.Caption);
