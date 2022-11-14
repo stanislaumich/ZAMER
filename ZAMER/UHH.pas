@@ -234,8 +234,12 @@ end;
 
 procedure TFhhod.BitBtn3Click(Sender: TObject);
 var
-  i, j: Integer;
+  i, j, buttonSelected: Integer;
 begin
+buttonSelected :=
+      MessageDlg('Действительно очистить все замеры?',
+      mtConfirmation, mbYesNo, 0);
+if buttonSelected=mrNo then exit;
   for i                       := 1 to StringGrid2.colcount - 1 do
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[j, i] := '0';
