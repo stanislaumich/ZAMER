@@ -18,6 +18,9 @@
         <Projects Include="UPDATER\UPDATER.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="SborElspec\SborELSPEC.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +74,23 @@
     <Target Name="UPDATER:Make">
         <MSBuild Projects="UPDATER\UPDATER.dproj" Targets="Make"/>
     </Target>
+    <Target Name="SborELSPEC">
+        <MSBuild Projects="SborElspec\SborELSPEC.dproj"/>
+    </Target>
+    <Target Name="SborELSPEC:Clean">
+        <MSBuild Projects="SborElspec\SborELSPEC.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SborELSPEC:Make">
+        <MSBuild Projects="SborElspec\SborELSPEC.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Zamer;T45;Zamer45;TABLES;UPDATER"/>
+        <CallTarget Targets="Zamer;T45;Zamer45;TABLES;UPDATER;SborELSPEC"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Zamer:Clean;T45:Clean;Zamer45:Clean;TABLES:Clean;UPDATER:Clean"/>
+        <CallTarget Targets="Zamer:Clean;T45:Clean;Zamer45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Zamer:Make;T45:Make;Zamer45:Make;TABLES:Make;UPDATER:Make"/>
+        <CallTarget Targets="Zamer:Make;T45:Make;Zamer45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
