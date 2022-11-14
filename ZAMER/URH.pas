@@ -193,8 +193,13 @@ end;
 
 procedure TFRH.BitBtn3Click(Sender: TObject);
 var
-  i, j: Integer;
+  i, j, buttonSelected: Integer;
 begin
+ buttonSelected :=
+      MessageDlg('Действительно очистить все замеры?',
+      mtConfirmation, mbYesNo, 0);
+if buttonSelected=mrNo then exit;
+
   for i                       := 0 to StringGrid2.colcount - 1 do
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.cells[i, j] := '';
@@ -606,6 +611,21 @@ begin
     QInsSvod.ExecSQL;
 
     // ++++ вверх это вырезать
+    {
+      StringGrid1.cells[0, 0]   := '№';
+  StringGrid1.cells[1, 0]   := 'Вар. 1';
+  StringGrid1.cells[2, 0]   := 'Вар. 2';
+  StringGrid1.cells[3, 0]   := 'Вар. 3';
+  StringGrid2.cells[0, 0]   := 'Нагр.';
+  StringGrid2.cells[1, 0]   := 'U сред';
+  StringGrid2.cells[2, 0]   := 'I сред';
+  StringGrid2.cells[3, 0]   := 'P сред';
+  StringGrid2.cells[4, 0]   := 'N сред';
+  StringGrid2.cells[5, 0]   := 'M сред';
+  StringGrid2.cells[6, 0]   := '▲Umax';
+  StringGrid2.cells[7, 0]   := '▲Pmax';
+  }
+
     StringGrid2.cells[1, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU));
     StringGrid2.cells[2, StringGrid2.row] :=
