@@ -2,11 +2,11 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = #1057#1073#1086#1088' ELSPEC'
-  ClientHeight = 332
+  ClientHeight = 534
   ClientWidth = 334
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  Font.Color = clBlue
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
@@ -20,7 +20,7 @@ object Form1: TForm1
     Left = 4
     Top = 4
     Width = 153
-    Height = 325
+    Height = 529
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -30,13 +30,19 @@ object Form1: TForm1
     TabOrder = 0
     DesignSize = (
       153
-      325)
+      529)
     object Label1: TLabel
       Left = 8
       Top = 3
       Width = 42
       Height = 33
       Caption = 'U='
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label2: TLabel
       Left = 15
@@ -44,6 +50,12 @@ object Form1: TForm1
       Width = 35
       Height = 33
       Caption = 'I='
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label3: TLabel
       Left = 10
@@ -51,6 +63,12 @@ object Form1: TForm1
       Width = 40
       Height = 33
       Caption = 'P='
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label4: TLabel
       Left = 56
@@ -58,6 +76,12 @@ object Form1: TForm1
       Width = 17
       Height = 33
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label5: TLabel
       Left = 56
@@ -65,6 +89,12 @@ object Form1: TForm1
       Width = 17
       Height = 33
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label6: TLabel
       Left = 56
@@ -72,27 +102,183 @@ object Form1: TForm1
       Width = 17
       Height = 33
       Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label10: TLabel
-      Left = 8
-      Top = 136
-      Width = 106
+      Left = 3
+      Top = 155
+      Width = 147
       Height = 33
-      Caption = 'Label10'
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label11: TLabel
-      Left = 8
-      Top = 176
-      Width = 106
+      Left = 3
+      Top = 187
+      Width = 147
       Height = 33
-      Caption = 'Label11'
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label12: TLabel
-      Left = 8
-      Top = 208
-      Width = 106
+      Left = 3
+      Top = 218
+      Width = 147
       Height = 33
-      Caption = 'Label12'
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 3
+      Top = 128
+      Width = 147
+      Height = 33
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'U'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label14: TLabel
+      Left = 3
+      Top = 257
+      Width = 147
+      Height = 33
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'I'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label15: TLabel
+      Left = 3
+      Top = 288
+      Width = 147
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label16: TLabel
+      Left = 3
+      Top = 320
+      Width = 147
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label17: TLabel
+      Left = 3
+      Top = 352
+      Width = 147
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object P: TLabel
+      Left = 3
+      Top = 391
+      Width = 147
+      Height = 33
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'P'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label18: TLabel
+      Left = 3
+      Top = 424
+      Width = 147
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label19: TLabel
+      Left = 3
+      Top = 456
+      Width = 147
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label20: TLabel
+      Left = 3
+      Top = 488
+      Width = 147
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object GroupBox3: TGroupBox
       Left = 3
@@ -115,6 +301,20 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
+    end
+    object GroupBox4: TGroupBox
+      Left = 3
+      Top = 252
+      Width = 147
+      Height = 9
+      TabOrder = 2
+    end
+    object GroupBox5: TGroupBox
+      Left = 3
+      Top = 384
+      Width = 147
+      Height = 9
+      TabOrder = 3
     end
   end
   object GroupBox2: TGroupBox
@@ -226,6 +426,96 @@ object Form1: TForm1
       HighDWordFirst = True
       Interval = 50
     end
+    object U1: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3511
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object U2: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3513
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object U3: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3515
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object I1: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3521
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object I2: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3523
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object I3: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3525
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object P1: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3427
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object P2: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3429
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object P3: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3431
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
   end
   object TUpdateForm: TTimer
     Interval = 100
@@ -313,5 +603,15 @@ object Form1: TForm1
         Name = 'P3'
         ParamType = ptInput
       end>
+  end
+  object QComm: TFDQuery
+    Connection = FDC
+    Left = 280
+    Top = 228
+  end
+  object TComm: TTimer
+    OnTimer = TCommTimer
+    Left = 180
+    Top = 276
   end
 end

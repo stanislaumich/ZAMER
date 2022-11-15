@@ -9,9 +9,6 @@
         <Projects Include="M45ORIG\SOURCE\T45.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="T45One\SOURCE\Zamer45.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="Tables\TABLES.dproj">
             <Dependencies/>
         </Projects>
@@ -47,15 +44,6 @@
     <Target Name="T45:Make">
         <MSBuild Projects="M45ORIG\SOURCE\T45.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="Zamer45">
-        <MSBuild Projects="T45One\SOURCE\Zamer45.cbproj"/>
-    </Target>
-    <Target Name="Zamer45:Clean">
-        <MSBuild Projects="T45One\SOURCE\Zamer45.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Zamer45:Make">
-        <MSBuild Projects="T45One\SOURCE\Zamer45.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="TABLES">
         <MSBuild Projects="Tables\TABLES.dproj"/>
     </Target>
@@ -84,13 +72,13 @@
         <MSBuild Projects="SborElspec\SborELSPEC.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Zamer;T45;Zamer45;TABLES;UPDATER;SborELSPEC"/>
+        <CallTarget Targets="Zamer;T45;TABLES;UPDATER;SborELSPEC"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Zamer:Clean;T45:Clean;Zamer45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean"/>
+        <CallTarget Targets="Zamer:Clean;T45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Zamer:Make;T45:Make;Zamer45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make"/>
+        <CallTarget Targets="Zamer:Make;T45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

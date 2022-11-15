@@ -671,17 +671,18 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
   String dop = 0;
   String file = 0;
   QCommand->SQL->Clear();
-  QCommand->SQL->Add("select * from command");
+  QCommand->SQL->Add("select * from command where command='0' or command='1'");
   QCommand->Open();
   if (QCommand->RecordCount > 0) {
     dop = QCommand->FieldByName("command")->AsString;
+
+    //////////////////////////////////
+	if (dop == "1") {
     file = QCommand->FieldByName("filename")->AsString;
     pisp = StrToFloat(file);
     nomer = QCommand->FieldByName("nomer")->AsString;
     Datchik = QCommand->FieldByName("dat")->AsInteger;
     Interval = QCommand->FieldByName("interval")->AsInteger;
-    //////////////////////////////////
-    if (dop == "1") {
       Query1->SQL->Clear();
       Query1->SQL->Text = "truncate table zamertmp";
       Query1->ExecSQL();
