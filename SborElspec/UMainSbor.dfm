@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 0
-  Top = 0
+  Left = 10
+  Top = 10
   Caption = #1057#1073#1086#1088' ELSPEC'
-  ClientHeight = 534
-  ClientWidth = 334
+  ClientHeight = 695
+  ClientWidth = 175
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlue
@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -19,7 +20,7 @@ object Form1: TForm1
   object GroupBox1: TGroupBox
     Left = 4
     Top = 4
-    Width = 153
+    Width = 169
     Height = 529
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -29,7 +30,7 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
     DesignSize = (
-      153
+      169
       529)
     object Label1: TLabel
       Left = 8
@@ -283,10 +284,11 @@ object Form1: TForm1
     object GroupBox3: TGroupBox
       Left = 3
       Top = 100
-      Width = 147
+      Width = 163
       Height = 9
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
+      ExplicitWidth = 147
     end
     object CheckBox1: TCheckBox
       Left = 8
@@ -301,6 +303,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
+      OnClick = CheckBox1Click
     end
     object GroupBox4: TGroupBox
       Left = 3
@@ -318,8 +321,8 @@ object Form1: TForm1
     end
   end
   object GroupBox2: TGroupBox
-    Left = 160
-    Top = 4
+    Left = 4
+    Top = 539
     Width = 169
     Height = 117
     TabOrder = 1
@@ -369,9 +372,9 @@ object Form1: TForm1
       Text = '159'
     end
     object Button1: TButton
-      Left = 41
+      Left = 3
       Top = 82
-      Width = 121
+      Width = 159
       Height = 25
       Caption = #1058#1045#1057#1058
       TabOrder = 3
@@ -379,8 +382,8 @@ object Form1: TForm1
     end
   end
   object GroupBox6: TGroupBox
-    Left = 160
-    Top = 124
+    Left = 4
+    Top = 659
     Width = 169
     Height = 33
     TabOrder = 2
@@ -396,21 +399,21 @@ object Form1: TForm1
   object KRTCPConnector1: TKRTCPConnector
     IP = '127.0.0.1'
     ConnectTimeout = 300
-    Left = 172
-    Top = 168
+    Left = 108
+    Top = 32
   end
   object KRModbusMaster1: TKRModbusMaster
     Connector = KRTCPConnector1
     CheckID = False
-    Left = 216
-    Top = 168
+    Left = 120
+    Top = 124
   end
   object KRModbusClient1: TKRModbusClient
     Modbus = KRModbusMaster1
     Addres = 159
     BatchUpdates = <>
-    Left = 260
-    Top = 168
+    Left = 104
+    Top = 176
     object USred: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
@@ -535,8 +538,8 @@ object Form1: TForm1
   object TUpdateForm: TTimer
     Interval = 100
     OnTimer = TUpdateFormTimer
-    Left = 172
-    Top = 216
+    Left = 100
+    Top = 236
   end
   object FDC: TFDConnection
     Params.Strings = (
@@ -548,8 +551,8 @@ object Form1: TForm1
     ResourceOptions.SilentMode = True
     Connected = True
     LoginPrompt = False
-    Left = 172
-    Top = 264
+    Left = 96
+    Top = 336
   end
   object QTemp: TFDQuery
     Connection = FDC
@@ -559,8 +562,8 @@ object Form1: TForm1
       
         'VALUES ( :ID ,:U ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP,:p1,:p2,' +
         ':p3)')
-    Left = 216
-    Top = 264
+    Left = 100
+    Top = 432
     ParamData = <
       item
         Name = 'ID'
@@ -621,17 +624,17 @@ object Form1: TForm1
   end
   object QComm: TFDQuery
     Connection = FDC
-    Left = 264
-    Top = 264
+    Left = 96
+    Top = 484
   end
   object TComm: TTimer
     OnTimer = TCommTimer
-    Left = 220
-    Top = 216
+    Left = 96
+    Top = 284
   end
   object QT: TFDQuery
     Connection = FDC
-    Left = 176
-    Top = 316
+    Left = 104
+    Top = 384
   end
 end

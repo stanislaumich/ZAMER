@@ -70,13 +70,14 @@ type
         TComm: TTimer;
         GroupBox6: TGroupBox;
         CheckBox2: TCheckBox;
-    QT: TFDQuery;
+        QT: TFDQuery;
         procedure TUpdateFormTimer(Sender: TObject);
         procedure Button1Click(Sender: TObject);
         procedure FormCreate(Sender: TObject);
         procedure FormClose(Sender: TObject; var Action: TCloseAction);
         procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
         procedure TCommTimer(Sender: TObject);
+        procedure CheckBox1Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -115,6 +116,7 @@ begin
         i.WriteInteger('POSITION', 'LEFT', t);
         t := Form1.Top;
         i.WriteInteger('POSITION', 'TOP', t);
+        i.WriteBool('PHASES', 'ON', CheckBox1.Checked);
         i.free;
     except
         on e: exception do
@@ -128,14 +130,13 @@ var
 begin
     i := tinifile.Create(extractfilepath(paramstr(0)) + 'SELSPEC.INI');
     Edit1.Text := i.ReadString('ELSPEC', 'IP', '127.0.0.1');
-    Edit2.Text := i.ReadString('ELSPEC', 'PORT', '502');
-    Edit3.Text := i.ReadString('ELSPEC', 'ID', '159');
-
-    Form1.Left := i.ReadInteger('POSITION', 'LEFT', 10);
-    Form1.Top  := i.ReadInteger('POSITION', 'TOP', 10);
+    Edit2.Text        := i.ReadString('ELSPEC', 'PORT', '502');
+    Edit3.Text        := i.ReadString('ELSPEC', 'ID', '159');
+    CheckBox1.Checked := i.ReadBool('PHASES', 'ON', false);
+    Form1.Left        := i.ReadInteger('POSITION', 'LEFT', 10);
+    Form1.Top         := i.ReadInteger('POSITION', 'TOP', 10);
     Form1.Repaint;
     i.free;
-
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -143,29 +144,33 @@ begin
     KRTCPConnector1.IP     := Edit1.Text;
     KRTCPConnector1.Port   := StrtoInt(Edit2.Text);
     KRModbusClient1.Addres := StrtoInt(Edit3.Text);
-
-    // ----------------------------
     Activated := false;
-    // KRTimer1.Enabled                             := false;
     KRModbusClient1.Active := false;
     KRModbusMaster1.Active := false;
     KRTCPConnector1.Active := false;
     KRTCPConnector1.IP     := Edit1.Text;
-    { KRTCPConnector1.Port                         := strtoint(Edit2.Text);
-      KRModbusClient1.Addres                       := strtoint(Edit3.Text);
-      KRTCPConnector1.Interval                     := strtoint(Edit14.Text);
-      KRTCPConnector1.ReadTimeout                  := strtoint(Edit15.Text);
-    }
     KRTCPConnector1.Active := True;
-    // KRModbusMaster1.Connector.OnConnectionStatus :=
-    // KRTCPConnector1ConnectionStatus;
     KRModbusMaster1.Connector.Active := True;
     KRModbusMaster1.Active           := True;
     KRModbusClient1.Active           := True;
-    // KRTimer1.Enabled                 := True;
     Activated := True;
-    // --------------------------------
+end;
 
+procedure TForm1.CheckBox1Click(Sender: TObject);
+begin
+    if CheckBox1.Checked then
+    else
+    begin
+        Label10.Caption := '0';
+        Label11.Caption := '0';
+        Label12.Caption := '0';
+        Label15.Caption := '0';
+        Label16.Caption := '0';
+        Label17.Caption := '0';
+        Label18.Caption := '0';
+        Label19.Caption := '0';
+        Label20.Caption := '0';
+    end;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -175,7 +180,6 @@ end;
 
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-
     TUpdateForm.Enabled := false;
 end;
 
@@ -183,7 +187,6 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
     restoreini;
     prevstat := false;
-
     Button1.Click;
 end;
 
@@ -199,11 +202,6 @@ begin
         QT.SQL.Clear;
         QT.SQL.Add('truncate table zelspec');
         QT.ExecSQL();
-        //QTemp.SQL.Clear;
-        //QTemp.SQL.Add
-        //  ('INSERT INTO ZAMER.ZELSPEC (    ID, U, I, P, U1, U2,U3, I1, I2, I3, DOP, p1, p2, p3)');
-        //QTemp.SQL.Add
-        //  (  ' VALUES ( :ID ,:U ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP,:p1,:p2,:p3)');
         QT.Close;
         QT.SQL.Clear;
         QT.SQL.Add
@@ -220,7 +218,6 @@ begin
           ('delete from command where command =''10'' or command=''11''');
         QT.ExecSQL;
     end;
-
     QComm.Close;
 end;
 
@@ -269,10 +266,6 @@ begin
     begin
         if KRTCPConnector1.Stat = cstConnected then
         begin
-            // StatusBar1.Panels[1].Text := 'янедхмем';
-            // StatusBar1.Panels[2].Text := KRTCPConnector1.IP + ':' +
-            // inttostr(KRTCPConnector1.Port) + '@' +
-            // inttostr(KRModbusClient1.Addres);
             Edit1.Color      := clGreen;
             Edit1.Font.Color := clWhite;
             Edit2.Color      := clGreen;
@@ -283,10 +276,6 @@ begin
         end
         else
         begin
-            // StatusBar1.Panels[1].Text := 'мер янедхмемхъ';
-            // StatusBar1.Panels[2].Text := KRTCPConnector1.IP + ':' +
-            // inttostr(KRTCPConnector1.Port) + '@' +
-            // inttostr(KRModbusClient1.Addres);
             Edit1.Color      := clRed;
             Edit1.Font.Color := clWhite;
             Edit2.Color      := clRed;
