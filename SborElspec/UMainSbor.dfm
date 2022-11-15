@@ -378,24 +378,39 @@ object Form1: TForm1
       OnClick = Button1Click
     end
   end
+  object GroupBox6: TGroupBox
+    Left = 160
+    Top = 124
+    Width = 169
+    Height = 33
+    TabOrder = 2
+    object CheckBox2: TCheckBox
+      Left = 8
+      Top = 8
+      Width = 129
+      Height = 17
+      Caption = #1042#1077#1089#1090#1080' '#1079#1072#1087#1080#1089#1100' '#1074' '#1073#1072#1079#1091
+      TabOrder = 0
+    end
+  end
   object KRTCPConnector1: TKRTCPConnector
     IP = '127.0.0.1'
     ConnectTimeout = 300
-    Left = 192
-    Top = 124
+    Left = 172
+    Top = 168
   end
   object KRModbusMaster1: TKRModbusMaster
     Connector = KRTCPConnector1
     CheckID = False
-    Left = 192
-    Top = 172
+    Left = 216
+    Top = 168
   end
   object KRModbusClient1: TKRModbusClient
     Modbus = KRModbusMaster1
     Addres = 159
     BatchUpdates = <>
-    Left = 276
-    Top = 172
+    Left = 260
+    Top = 168
     object USred: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
@@ -520,8 +535,8 @@ object Form1: TForm1
   object TUpdateForm: TTimer
     Interval = 100
     OnTimer = TUpdateFormTimer
-    Left = 276
-    Top = 124
+    Left = 172
+    Top = 216
   end
   object FDC: TFDConnection
     Params.Strings = (
@@ -533,8 +548,8 @@ object Form1: TForm1
     ResourceOptions.SilentMode = True
     Connected = True
     LoginPrompt = False
-    Left = 176
-    Top = 224
+    Left = 172
+    Top = 264
   end
   object QTemp: TFDQuery
     Connection = FDC
@@ -544,8 +559,8 @@ object Form1: TForm1
       
         'VALUES ( :ID ,:U ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP,:p1,:p2,' +
         ':p3)')
-    Left = 224
-    Top = 224
+    Left = 216
+    Top = 264
     ParamData = <
       item
         Name = 'ID'
@@ -606,12 +621,17 @@ object Form1: TForm1
   end
   object QComm: TFDQuery
     Connection = FDC
-    Left = 280
-    Top = 228
+    Left = 264
+    Top = 264
   end
   object TComm: TTimer
     OnTimer = TCommTimer
-    Left = 180
-    Top = 276
+    Left = 220
+    Top = 216
+  end
+  object QT: TFDQuery
+    Connection = FDC
+    Left = 176
+    Top = 316
   end
 end

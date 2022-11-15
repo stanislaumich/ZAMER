@@ -66,14 +66,17 @@ type
         P1: TKRMBRegister;
         P2: TKRMBRegister;
         P3: TKRMBRegister;
-    QComm: TFDQuery;
-    TComm: TTimer;
+        QComm: TFDQuery;
+        TComm: TTimer;
+        GroupBox6: TGroupBox;
+        CheckBox2: TCheckBox;
+    QT: TFDQuery;
         procedure TUpdateFormTimer(Sender: TObject);
         procedure Button1Click(Sender: TObject);
         procedure FormCreate(Sender: TObject);
         procedure FormClose(Sender: TObject; var Action: TCloseAction);
         procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure TCommTimer(Sender: TObject);
+        procedure TCommTimer(Sender: TObject);
     private
         { Private declarations }
     public
@@ -186,27 +189,39 @@ end;
 
 procedure TForm1.TCommTimer(Sender: TObject);
 begin
- QComm.SQL.Clear;
- QComm.SQL.Add('select * from command where command =''10'' or command=''11''');
- QComm.Open;
- if QComm.FieldByName('command').Asstring='11' then // start
-  begin
+    QComm.SQL.Clear;
+    QComm.SQL.Add
+      ('select * from command where command =''10'' or command=''11''');
+    QComm.Open;
+    if QComm.FieldByName('command').Asstring = '11' then // start
+    begin
+        QT.Close;
+        QT.SQL.Clear;
+        QT.SQL.Add('truncate table zelspec');
+        QT.ExecSQL();
+        //QTemp.SQL.Clear;
+        //QTemp.SQL.Add
+        //  ('INSERT INTO ZAMER.ZELSPEC (    ID, U, I, P, U1, U2,U3, I1, I2, I3, DOP, p1, p2, p3)');
+        //QTemp.SQL.Add
+        //  (  ' VALUES ( :ID ,:U ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP,:p1,:p2,:p3)');
+        QT.Close;
+        QT.SQL.Clear;
+        QT.SQL.Add
+          ('delete from command where command =''10'' or command=''11''');
+        QT.ExecSQL;
+        CheckBox2.Checked := True;
+    end;
+    if QComm.FieldByName('command').Asstring = '10' then // stop
+    begin
+        CheckBox2.Checked := false;
+        QT.Close;
+        QT.SQL.Clear;
+        QT.SQL.Add
+          ('delete from command where command =''10'' or command=''11''');
+        QT.ExecSQL;
+    end;
 
-   QComm.Close;
-   QComm.SQL.Clear;
-   QComm.SQL.Add('delete from command where command =''10'' or command=''11''');
-   QComm.ExecSQL;
-  end;
- if QComm.FieldByName('command').Asstring='10' then// stop
-  begin
-
-   QComm.Close;
-   QComm.SQL.Clear;
-   QComm.SQL.Add('delete from command where command =''10'' or command=''11''');
-   QComm.ExecSQL;
-  end;
-
-  QComm.Close;
+    QComm.Close;
 end;
 
 procedure TForm1.TUpdateFormTimer(Sender: TObject);
@@ -228,26 +243,28 @@ begin
         Label19.Caption := Floattostr(Simpleroundto(P2.Value, RazP));
         Label20.Caption := Floattostr(Simpleroundto(P3.Value, RazP));
     end;
-    QTemp.ParamByName('u').AsFloat := Simpleroundto(USred.Value, RazU);
-    QTemp.ParamByName('i').AsFloat := Simpleroundto(USred.Value, RazI);
-    QTemp.ParamByName('p').AsFloat := Simpleroundto(USred.Value, RazP);
+    if CheckBox2.Checked then
+    begin
+        QTemp.ParamByName('u').AsFloat := Simpleroundto(USred.Value, RazU);
+        QTemp.ParamByName('i').AsFloat := Simpleroundto(USred.Value, RazI);
+        QTemp.ParamByName('p').AsFloat := Simpleroundto(USred.Value, RazP);
 
-    QTemp.ParamByName('u1').AsFloat := Simpleroundto(U1.Value, RazU);
-    QTemp.ParamByName('u2').AsFloat := Simpleroundto(U2.Value, RazU);
-    QTemp.ParamByName('u3').AsFloat := Simpleroundto(U3.Value, RazU);
+        QTemp.ParamByName('u1').AsFloat := Simpleroundto(U1.Value, RazU);
+        QTemp.ParamByName('u2').AsFloat := Simpleroundto(U2.Value, RazU);
+        QTemp.ParamByName('u3').AsFloat := Simpleroundto(U3.Value, RazU);
 
-    QTemp.ParamByName('i1').AsFloat := Simpleroundto(I1.Value, RazI);
-    QTemp.ParamByName('i2').AsFloat := Simpleroundto(I2.Value, RazI);
-    QTemp.ParamByName('i3').AsFloat := Simpleroundto(I3.Value, RazI);
+        QTemp.ParamByName('i1').AsFloat := Simpleroundto(I1.Value, RazI);
+        QTemp.ParamByName('i2').AsFloat := Simpleroundto(I2.Value, RazI);
+        QTemp.ParamByName('i3').AsFloat := Simpleroundto(I3.Value, RazI);
 
-    QTemp.ParamByName('p1').AsFloat := Simpleroundto(P1.Value, RazP);
-    QTemp.ParamByName('p2').AsFloat := Simpleroundto(P2.Value, RazP);
-    QTemp.ParamByName('p3').AsFloat := Simpleroundto(P3.Value, RazP);
+        QTemp.ParamByName('p1').AsFloat := Simpleroundto(P1.Value, RazP);
+        QTemp.ParamByName('p2').AsFloat := Simpleroundto(P2.Value, RazP);
+        QTemp.ParamByName('p3').AsFloat := Simpleroundto(P3.Value, RazP);
 
-    QTemp.ParamByName('id').AsFloat   := 0;
-    QTemp.ParamByName('dop').AsString := '';
-    QTemp.ExecSQL;
-
+        QTemp.ParamByName('id').AsFloat   := 0;
+        QTemp.ParamByName('dop').Asstring := '';
+        QTemp.ExecSQL;
+    end;
     if KRTCPConnector1.Stat = cstConnected <> prevstat then
     begin
         if KRTCPConnector1.Stat = cstConnected then
