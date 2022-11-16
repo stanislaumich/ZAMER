@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, inifiles, math, uadd, ustr,
-  Vcl.Buttons;
+  Vcl.Buttons, Vcl.ComCtrls;
 
 type
   TFZamerV2 = class(TForm)
@@ -25,6 +25,41 @@ type
     BPI: TButton;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
+    Timer1: TTimer;
+    DateTimePicker1: TDateTimePicker;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    ComboBox1: TComboBox;
+    Edit1: TEdit;
+    ComboBox2: TComboBox;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    ComboBox3: TComboBox;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    ComboBox4: TComboBox;
+    ComboBox5: TComboBox;
+    Label19: TLabel;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    ComboBox6: TComboBox;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BitBtn1Click(Sender: TObject);

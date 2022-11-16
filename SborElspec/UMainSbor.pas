@@ -71,6 +71,15 @@ type
         GroupBox6: TGroupBox;
         CheckBox2: TCheckBox;
         QT: TFDQuery;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
         procedure TUpdateFormTimer(Sender: TObject);
         procedure Button1Click(Sender: TObject);
         procedure FormCreate(Sender: TObject);
@@ -78,6 +87,15 @@ type
         procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
         procedure TCommTimer(Sender: TObject);
         procedure CheckBox1Click(Sender: TObject);
+    procedure GroupBox1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure GroupBox3MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure GroupBox4MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure GroupBox5Click(Sender: TObject);
+    procedure GroupBox5MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     private
         { Private declarations }
     public
@@ -190,6 +208,40 @@ begin
     Button1.Click;
 end;
 
+procedure TForm1.GroupBox1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+ReleaseCapture;
+Perform(WM_SysCommand,$F012,0);
+end;
+
+procedure TForm1.GroupBox3MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+ReleaseCapture;
+Perform(WM_SysCommand,$F012,0);
+end;
+
+procedure TForm1.GroupBox4MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+ReleaseCapture;
+Perform(WM_SysCommand,$F012,0);
+end;
+
+procedure TForm1.GroupBox5Click(Sender: TObject);
+begin
+ReleaseCapture;
+Perform(WM_SysCommand,$F012,0);
+end;
+
+procedure TForm1.GroupBox5MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+ReleaseCapture;
+Perform(WM_SysCommand,$F012,0);
+end;
+
 procedure TForm1.TCommTimer(Sender: TObject);
 begin
     QComm.SQL.Clear;
@@ -223,22 +275,35 @@ end;
 
 procedure TForm1.TUpdateFormTimer(Sender: TObject);
 begin
-    Label4.Caption := Floattostr(Simpleroundto(USred.Value, RazU));
-    Label5.Caption := Floattostr(Simpleroundto(ISred.Value, RazI));
-    Label6.Caption := Floattostr(Simpleroundto(PSred.Value, RazP));
+    Label4.Caption:=FormatFloat('0.0', Simpleroundto(USred.Value, RazU));
+    Label5.Caption:=FormatFloat('0.00', Simpleroundto(ISred.Value, RazI));
+    Label6.Caption := FormatFloat('0.0', Simpleroundto(PSred.Value, RazP));
     if CheckBox1.Checked then
     begin
-        Label10.Caption := Floattostr(Simpleroundto(U1.Value, RazU));
-        Label11.Caption := Floattostr(Simpleroundto(U2.Value, RazU));
-        Label12.Caption := Floattostr(Simpleroundto(U3.Value, RazU));
+        //Label10.Caption := Floattostr(Simpleroundto(U1.Value, RazU));
+        //Label11.Caption := Floattostr(Simpleroundto(U2.Value, RazU));
+        //Label12.Caption := Floattostr(Simpleroundto(U3.Value, RazU));
 
-        Label15.Caption := Floattostr(Simpleroundto(I1.Value, RazI));
-        Label16.Caption := Floattostr(Simpleroundto(I2.Value, RazI));
-        Label17.Caption := Floattostr(Simpleroundto(I3.Value, RazI));
+        Label10.Caption := FormatFloat('0.0', Simpleroundto(U1.Value, RazU));
+        Label11.Caption := FormatFloat('0.0', Simpleroundto(U2.Value, RazU));
+        Label12.Caption := FormatFloat('0.0', Simpleroundto(U3.Value, RazU));
 
-        Label18.Caption := Floattostr(Simpleroundto(P1.Value, RazP));
-        Label19.Caption := Floattostr(Simpleroundto(P2.Value, RazP));
-        Label20.Caption := Floattostr(Simpleroundto(P3.Value, RazP));
+
+        //Label15.Caption := Floattostr(Simpleroundto(I1.Value, RazI));
+        //Label16.Caption := Floattostr(Simpleroundto(I2.Value, RazI));
+        //Label17.Caption := Floattostr(Simpleroundto(I3.Value, RazI));
+
+        Label15.Caption := FormatFloat('0.00', Simpleroundto(I1.Value, RazI));
+        Label16.Caption := FormatFloat('0.00', Simpleroundto(I2.Value, RazI));
+        Label17.Caption := FormatFloat('0.00', Simpleroundto(I3.Value, RazI));
+
+        //Label18.Caption := Floattostr(Simpleroundto(P1.Value, RazP));
+        //Label19.Caption := Floattostr(Simpleroundto(P2.Value, RazP));
+        //Label20.Caption := Floattostr(Simpleroundto(P3.Value, RazP));
+
+        Label18.Caption := FormatFloat('0.0', Simpleroundto(P1.Value, RazP));
+        Label19.Caption := FormatFloat('0.0', Simpleroundto(P2.Value, RazP));
+        Label20.Caption := FormatFloat('0.0', Simpleroundto(P3.Value, RazP));
     end;
     if CheckBox2.Checked then
     begin

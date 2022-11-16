@@ -56,7 +56,7 @@ EXP-00091: Exporting questionable statistics.
 . . exporting table                     ZELSPECTMP
                                                             1 rows exported
 . . exporting table                           ZERR
-                                                          199 rows exported
+                                                          200 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZHHALL
 .........

@@ -1,9 +1,10 @@
 object Form1: TForm1
   Left = 10
   Top = 10
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = #1057#1073#1086#1088' ELSPEC'
   ClientHeight = 695
-  ClientWidth = 175
+  ClientWidth = 162
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlue
@@ -15,13 +16,17 @@ object Form1: TForm1
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  DesignSize = (
+    162
+    695)
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
-    Left = 4
-    Top = 4
-    Width = 169
+    Left = 2
+    Top = 3
+    Width = 156
     Height = 529
+    Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -29,15 +34,17 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
+    OnMouseDown = GroupBox1MouseDown
+    ExplicitWidth = 169
     DesignSize = (
-      169
+      156
       529)
     object Label1: TLabel
       Left = 8
       Top = 3
-      Width = 42
+      Width = 20
       Height = 33
-      Caption = 'U='
+      Caption = 'U'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -27
@@ -46,11 +53,11 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 15
+      Left = 8
       Top = 36
-      Width = 35
+      Width = 13
       Height = 33
-      Caption = 'I='
+      Caption = 'I'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clRed
       Font.Height = -27
@@ -59,11 +66,11 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 10
+      Left = 8
       Top = 67
-      Width = 40
+      Width = 18
       Height = 33
-      Caption = 'P='
+      Caption = 'P'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clGreen
       Font.Height = -27
@@ -111,9 +118,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label10: TLabel
-      Left = 3
+      Left = 40
       Top = 155
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -125,9 +132,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 3
+      Left = 40
       Top = 187
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -139,9 +146,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label12: TLabel
-      Left = 3
+      Left = 40
       Top = 218
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -183,9 +190,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label15: TLabel
-      Left = 3
+      Left = 40
       Top = 288
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -197,9 +204,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label16: TLabel
-      Left = 3
+      Left = 40
       Top = 320
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -211,9 +218,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label17: TLabel
-      Left = 3
+      Left = 40
       Top = 352
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -240,9 +247,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label18: TLabel
-      Left = 3
+      Left = 40
       Top = 424
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -254,9 +261,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label19: TLabel
-      Left = 3
+      Left = 40
       Top = 456
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -268,9 +275,9 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label20: TLabel
-      Left = 3
+      Left = 40
       Top = 488
-      Width = 147
+      Width = 110
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -281,14 +288,81 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Label21: TLabel
+      Left = 3
+      Top = 155
+      Width = 18
+      Height = 33
+      Caption = 'A'
+    end
+    object Label22: TLabel
+      Left = 3
+      Top = 187
+      Width = 19
+      Height = 33
+      Caption = 'B'
+    end
+    object Label23: TLabel
+      Left = 4
+      Top = 218
+      Width = 18
+      Height = 33
+      Caption = 'C'
+    end
+    object Label24: TLabel
+      Left = 3
+      Top = 288
+      Width = 18
+      Height = 33
+      Caption = 'A'
+    end
+    object Label25: TLabel
+      Left = 3
+      Top = 320
+      Width = 19
+      Height = 33
+      Caption = 'B'
+    end
+    object Label26: TLabel
+      Left = 3
+      Top = 351
+      Width = 18
+      Height = 33
+      Caption = 'C'
+    end
+    object Label27: TLabel
+      Left = 3
+      Top = 456
+      Width = 19
+      Height = 33
+      Caption = 'B'
+    end
+    object Label28: TLabel
+      Left = 3
+      Top = 487
+      Width = 18
+      Height = 33
+      Caption = 'C'
+    end
+    object Label29: TLabel
+      Left = 3
+      Top = 424
+      Width = 18
+      Height = 33
+      Caption = 'A'
+    end
     object GroupBox3: TGroupBox
       Left = 3
       Top = 100
-      Width = 163
+      Width = 150
       Height = 9
       Anchors = [akLeft, akTop, akRight]
+      Color = clActiveCaption
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 0
-      ExplicitWidth = 147
+      OnMouseDown = GroupBox3MouseDown
+      ExplicitWidth = 163
     end
     object CheckBox1: TCheckBox
       Left = 8
@@ -308,24 +382,42 @@ object Form1: TForm1
     object GroupBox4: TGroupBox
       Left = 3
       Top = 252
-      Width = 147
+      Width = 150
       Height = 9
+      Anchors = [akLeft, akTop, akRight]
+      Color = clActiveCaption
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 2
+      OnMouseDown = GroupBox4MouseDown
+      ExplicitWidth = 163
     end
     object GroupBox5: TGroupBox
       Left = 3
       Top = 384
-      Width = 147
+      Width = 150
       Height = 9
+      Anchors = [akLeft, akTop, akRight]
+      Color = clActiveCaption
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 3
+      OnClick = GroupBox5Click
+      OnMouseDown = GroupBox5MouseDown
+      ExplicitWidth = 163
     end
   end
   object GroupBox2: TGroupBox
     Left = 4
     Top = 539
-    Width = 169
+    Width = 156
     Height = 117
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 1
+    ExplicitWidth = 169
+    DesignSize = (
+      156
+      117)
     object Label7: TLabel
       Left = 3
       Top = 6
@@ -350,43 +442,53 @@ object Form1: TForm1
     object Edit1: TEdit
       Left = 41
       Top = 3
-      Width = 121
+      Width = 108
       Height = 21
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       Text = '127.0.0.1'
+      ExplicitWidth = 121
     end
     object Edit2: TEdit
       Left = 41
       Top = 30
-      Width = 121
+      Width = 108
       Height = 21
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
       Text = '502'
+      ExplicitWidth = 121
     end
     object Edit3: TEdit
       Left = 41
       Top = 58
-      Width = 121
+      Width = 108
       Height = 21
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
       Text = '159'
+      ExplicitWidth = 121
     end
     object Button1: TButton
       Left = 3
       Top = 82
-      Width = 159
+      Width = 146
       Height = 25
+      Anchors = [akLeft, akTop, akRight]
       Caption = #1058#1045#1057#1058
       TabOrder = 3
       OnClick = Button1Click
+      ExplicitWidth = 159
     end
   end
   object GroupBox6: TGroupBox
     Left = 4
     Top = 659
-    Width = 169
+    Width = 156
     Height = 33
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 2
+    ExplicitWidth = 169
     object CheckBox2: TCheckBox
       Left = 8
       Top = 8
