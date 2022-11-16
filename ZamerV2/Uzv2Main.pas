@@ -70,12 +70,17 @@ type
         BitBtn5: TBitBtn;
         FDC: TFDConnection;
         QTemp: TFDQuery;
+    QAttestat: TFDQuery;
+    BitBtn1: TBitBtn;
         procedure FormCreate(Sender: TObject);
         procedure FormClose(Sender: TObject; var Action: TCloseAction);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
         procedure BitBtn5Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
+    procedure ComboStendChange(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -94,6 +99,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses UARC;
 
 procedure TFZamerV2.savecombo;
 var
@@ -137,6 +144,7 @@ begin
             if TComboBox(Components[i]).Tag <> 500 then
             begin
                 TComboBox(Components[i]).Items.Clear;
+                TComboBox(Components[i]).Text:='';
                 QTemp.Close;
                 QTemp.Open('select distinct(value) v from zini where name=' +
                   Quotedstr(TComboBox(Components[i]).name));
@@ -148,9 +156,11 @@ begin
                 end;
             end;
         end;
+        If Components[i] is TEdit then TEdit(Components[i]).Text:='';
     end;
 
     ComboStend.Items.Clear;
+    ComboStend.Text:='';
     QTemp.Close;
     QTemp.Open('select Name from zstend');
     while not QTemp.Eof do
@@ -159,6 +169,7 @@ begin
         QTemp.Next;
     end;
     ComboSotrud.Items.Clear;
+    ComboSotrud.Text:='';
     QTemp.Close;
     QTemp.Open('select fio from zsotr order by id');
     while not QTemp.Eof do
@@ -223,6 +234,19 @@ function TFZamerV2.checkcreatenew:boolean;
   checkcreatenew:=true;
  end;
 
+procedure TFZamerV2.ComboStendChange(Sender: TObject);
+begin
+    QAttestat.ParamByName('name').Asstring := ComboStend.Text;
+    QAttestat.Open;
+    Label19.Caption := QAttestat.FieldByName('attest').Asstring;
+    QAttestat.Close;
+end;
+
+procedure TFZamerV2.BitBtn1Click(Sender: TObject);
+begin
+ ExitBtn.Click;
+end;
+
 procedure TFZamerV2.BitBtn3Click(Sender: TObject);
 begin
  if checkcreatenew then
@@ -233,6 +257,11 @@ begin
   end
   else
    ShowMessage('Проверьте поля, не все необходимые поля заполнены');
+end;
+
+procedure TFZamerV2.BitBtn4Click(Sender: TObject);
+begin
+ Farc.ShowModal;
 end;
 
 procedure TFZamerV2.BitBtn5Click(Sender: TObject);
