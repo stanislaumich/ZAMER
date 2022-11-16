@@ -3,8 +3,8 @@ object Form1: TForm1
   Top = 10
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = #1057#1073#1086#1088' ELSPEC'
-  ClientHeight = 695
-  ClientWidth = 162
+  ClientHeight = 319
+  ClientWidth = 163
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlue
@@ -17,16 +17,16 @@ object Form1: TForm1
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    162
-    695)
+    163
+    319)
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
     Left = 2
     Top = 3
-    Width = 156
-    Height = 529
-    Anchors = [akLeft, akTop, akRight]
+    Width = 157
+    Height = 133
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -35,10 +35,10 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
     OnMouseDown = GroupBox1MouseDown
-    ExplicitWidth = 169
+    ExplicitHeight = 522
     DesignSize = (
-      156
-      529)
+      157
+      133)
     object Label1: TLabel
       Left = 8
       Top = 3
@@ -59,7 +59,7 @@ object Form1: TForm1
       Height = 33
       Caption = 'I'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clRed
+      Font.Color = clFuchsia
       Font.Height = -27
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
@@ -98,7 +98,7 @@ object Form1: TForm1
       Height = 33
       Caption = '0'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clRed
+      Font.Color = clFuchsia
       Font.Height = -27
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
@@ -183,7 +183,7 @@ object Form1: TForm1
       AutoSize = False
       Caption = 'I'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clRed
+      Font.Color = clFuchsia
       Font.Height = -27
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
@@ -197,7 +197,7 @@ object Form1: TForm1
       AutoSize = False
       Caption = '0'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clRed
+      Font.Color = clFuchsia
       Font.Height = -27
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
@@ -211,7 +211,7 @@ object Form1: TForm1
       AutoSize = False
       Caption = '0'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clRed
+      Font.Color = clFuchsia
       Font.Height = -27
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
@@ -225,7 +225,7 @@ object Form1: TForm1
       AutoSize = False
       Caption = '0'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clRed
+      Font.Color = clFuchsia
       Font.Height = -27
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
@@ -354,7 +354,7 @@ object Form1: TForm1
     object GroupBox3: TGroupBox
       Left = 3
       Top = 100
-      Width = 150
+      Width = 151
       Height = 9
       Anchors = [akLeft, akTop, akRight]
       Color = clActiveCaption
@@ -362,6 +362,8 @@ object Form1: TForm1
       ParentColor = False
       TabOrder = 0
       OnMouseDown = GroupBox3MouseDown
+      OnMouseEnter = GroupBox3MouseEnter
+      OnMouseLeave = GroupBox3MouseLeave
       ExplicitWidth = 163
     end
     object CheckBox1: TCheckBox
@@ -382,7 +384,7 @@ object Form1: TForm1
     object GroupBox4: TGroupBox
       Left = 3
       Top = 252
-      Width = 150
+      Width = 151
       Height = 9
       Anchors = [akLeft, akTop, akRight]
       Color = clActiveCaption
@@ -395,7 +397,7 @@ object Form1: TForm1
     object GroupBox5: TGroupBox
       Left = 3
       Top = 384
-      Width = 150
+      Width = 151
       Height = 9
       Anchors = [akLeft, akTop, akRight]
       Color = clActiveCaption
@@ -409,14 +411,15 @@ object Form1: TForm1
   end
   object GroupBox2: TGroupBox
     Left = 4
-    Top = 539
-    Width = 156
+    Top = 163
+    Width = 157
     Height = 117
-    Anchors = [akLeft, akTop, akRight]
+    Anchors = [akLeft, akRight, akBottom]
     TabOrder = 1
+    ExplicitTop = 539
     ExplicitWidth = 169
     DesignSize = (
-      156
+      157
       117)
     object Label7: TLabel
       Left = 3
@@ -442,7 +445,7 @@ object Form1: TForm1
     object Edit1: TEdit
       Left = 41
       Top = 3
-      Width = 108
+      Width = 109
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
@@ -452,7 +455,7 @@ object Form1: TForm1
     object Edit2: TEdit
       Left = 41
       Top = 30
-      Width = 108
+      Width = 109
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
@@ -462,7 +465,7 @@ object Form1: TForm1
     object Edit3: TEdit
       Left = 41
       Top = 58
-      Width = 108
+      Width = 109
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
@@ -472,7 +475,7 @@ object Form1: TForm1
     object Button1: TButton
       Left = 3
       Top = 82
-      Width = 146
+      Width = 147
       Height = 25
       Anchors = [akLeft, akTop, akRight]
       Caption = #1058#1045#1057#1058
@@ -483,11 +486,12 @@ object Form1: TForm1
   end
   object GroupBox6: TGroupBox
     Left = 4
-    Top = 659
-    Width = 156
+    Top = 283
+    Width = 157
     Height = 33
-    Anchors = [akLeft, akTop, akRight]
+    Anchors = [akLeft, akRight, akBottom]
     TabOrder = 2
+    ExplicitTop = 659
     ExplicitWidth = 169
     object CheckBox2: TCheckBox
       Left = 8
@@ -497,6 +501,17 @@ object Form1: TForm1
       Caption = #1042#1077#1089#1090#1080' '#1079#1072#1087#1080#1089#1100' '#1074' '#1073#1072#1079#1091
       TabOrder = 0
     end
+  end
+  object CheckBox3: TCheckBox
+    Left = 30
+    Top = 143
+    Width = 93
+    Height = 17
+    Anchors = [akLeft, akBottom]
+    Caption = #1041#1086#1083#1100#1096#1086#1077' '#1086#1082#1085#1086
+    TabOrder = 3
+    OnClick = CheckBox3Click
+    ExplicitTop = 351
   end
   object KRTCPConnector1: TKRTCPConnector
     IP = '127.0.0.1'

@@ -80,6 +80,7 @@ type
     Label27: TLabel;
     Label28: TLabel;
     Label29: TLabel;
+    CheckBox3: TCheckBox;
         procedure TUpdateFormTimer(Sender: TObject);
         procedure Button1Click(Sender: TObject);
         procedure FormCreate(Sender: TObject);
@@ -96,6 +97,9 @@ type
     procedure GroupBox5Click(Sender: TObject);
     procedure GroupBox5MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure GroupBox3MouseEnter(Sender: TObject);
+    procedure GroupBox3MouseLeave(Sender: TObject);
+    procedure CheckBox3Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -115,10 +119,12 @@ Const
 
 var
     prevstat: Boolean;
-
+    FBigLeft, FBigTop : integer;
 implementation
 
 {$R *.dfm}
+
+uses UBig;
 
 procedure TForm1.saveini;
 var
@@ -134,6 +140,11 @@ begin
         i.WriteInteger('POSITION', 'LEFT', t);
         t := Form1.Top;
         i.WriteInteger('POSITION', 'TOP', t);
+        t := FBig.Left;
+        i.WriteInteger('BIG', 'LEFT', t);
+        t := FBig.Top;
+        i.WriteInteger('BIG', 'TOP', t);
+
         i.WriteBool('PHASES', 'ON', CheckBox1.Checked);
         i.free;
     except
@@ -153,6 +164,8 @@ begin
     CheckBox1.Checked := i.ReadBool('PHASES', 'ON', false);
     Form1.Left        := i.ReadInteger('POSITION', 'LEFT', 10);
     Form1.Top         := i.ReadInteger('POSITION', 'TOP', 10);
+    FBigLeft        := i.ReadInteger('BIG', 'LEFT', 10);
+    FBigTop         := i.ReadInteger('BIG', 'TOP', 10);
     Form1.Repaint;
     i.free;
 end;
@@ -177,8 +190,14 @@ end;
 procedure TForm1.CheckBox1Click(Sender: TObject);
 begin
     if CheckBox1.Checked then
+     begin
+      Form1.height:=740;
+      GroupBox1.Height:=524;
+     end
     else
     begin
+        Form1.height:=353;
+        GroupBox1.Height:=134;
         Label10.Caption := '0';
         Label11.Caption := '0';
         Label12.Caption := '0';
@@ -189,6 +208,15 @@ begin
         Label19.Caption := '0';
         Label20.Caption := '0';
     end;
+end;
+
+procedure TForm1.CheckBox3Click(Sender: TObject);
+begin
+ FBig.Left:= FBigLeft;
+  FBig.Top:= FBigTop;
+ if CheckBox3.Checked then
+  FBig.Show
+  else fbig.hide;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -215,11 +243,25 @@ ReleaseCapture;
 Perform(WM_SysCommand,$F012,0);
 end;
 
+
+
+procedure TForm1.GroupBox3MouseLeave(Sender: TObject);
+begin
+  Cursor:=crDefault;
+end;
+
+
+
 procedure TForm1.GroupBox3MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
 ReleaseCapture;
 Perform(WM_SysCommand,$F012,0);
+end;
+
+procedure TForm1.GroupBox3MouseEnter(Sender: TObject);
+ begin
+ Cursor:=crSizeAll;
 end;
 
 procedure TForm1.GroupBox4MouseDown(Sender: TObject; Button: TMouseButton;
@@ -278,6 +320,12 @@ begin
     Label4.Caption:=FormatFloat('0.0', Simpleroundto(USred.Value, RazU));
     Label5.Caption:=FormatFloat('0.00', Simpleroundto(ISred.Value, RazI));
     Label6.Caption := FormatFloat('0.0', Simpleroundto(PSred.Value, RazP));
+    if CheckBox3.Checked then
+     begin
+      FBig.Label4.Caption:= Label4.Caption;
+      FBig.Label5.Caption:= Label5.Caption;
+      FBig.Label6.Caption:= Label6.Caption;
+     end;
     if CheckBox1.Checked then
     begin
         //Label10.Caption := Floattostr(Simpleroundto(U1.Value, RazU));

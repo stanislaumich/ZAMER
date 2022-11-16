@@ -104,6 +104,10 @@
         </DCCReference>
         <DCCReference Include="..\ZAMER\Ustr.pas"/>
         <DCCReference Include="..\ZAMER\Uadd.pas"/>
+        <DCCReference Include="UBig.pas">
+            <Form>FBig</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -126,6 +130,12 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Win32\Release\SborELSPEC.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>SborELSPEC.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\SborELSPEC.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>SborELSPEC.exe</RemoteName>
