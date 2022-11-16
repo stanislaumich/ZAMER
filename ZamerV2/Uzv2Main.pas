@@ -50,21 +50,21 @@ type
         Label16: TLabel;
         Label17: TLabel;
         Label18: TLabel;
-        ComboBox1: TComboBox;
-        Edit1: TEdit;
-        ComboBox2: TComboBox;
-        Edit2: TEdit;
-        Edit3: TEdit;
-        Edit4: TEdit;
-        ComboBox3: TComboBox;
-        Edit5: TEdit;
-        Edit6: TEdit;
-        ComboBox4: TComboBox;
-        ComboBox5: TComboBox;
+    ComboTipDvig: TComboBox;
+    EditNumDvig: TEdit;
+    ComboPolus: TComboBox;
+    EditPowNom: TEdit;
+    EditUNom: TEdit;
+    EditUIsp: TEdit;
+    ComboEnergo: TComboBox;
+    EditHumi: TEdit;
+    EditPress: TEdit;
+    ComboRegim: TComboBox;
+    ComboStend: TComboBox;
         Label19: TLabel;
-        Edit7: TEdit;
+    EditOsob: TEdit;
         Edit8: TEdit;
-        ComboBox6: TComboBox;
+    ComboSotrud: TComboBox;
         BitBtn3: TBitBtn;
         BitBtn4: TBitBtn;
         BitBtn5: TBitBtn;
@@ -75,6 +75,7 @@ type
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
         procedure BitBtn5Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -82,6 +83,7 @@ type
         procedure restoreini;
         procedure restorecombo;
         procedure savecombo;
+        function checkcreatenew:boolean;
     end;
 
 var
@@ -148,20 +150,20 @@ begin
         end;
     end;
 
-    ComboBox5.Items.Clear;
+    ComboStend.Items.Clear;
     QTemp.Close;
     QTemp.Open('select Name from zstend');
     while not QTemp.Eof do
     begin
-        ComboBox5.Items.Add(QTemp.FieldByName('name').Asstring);
+        ComboStend.Items.Add(QTemp.FieldByName('name').Asstring);
         QTemp.Next;
     end;
-    ComboBox6.Items.Clear;
+    ComboSotrud.Items.Clear;
     QTemp.Close;
     QTemp.Open('select fio from zsotr order by id');
     while not QTemp.Eof do
     begin
-        ComboBox6.Items.Add(QTemp.FieldByName('fio').Asstring);
+        ComboSotrud.Items.Add(QTemp.FieldByName('fio').Asstring);
         QTemp.Next;
     end;
 
@@ -203,6 +205,34 @@ end;
 procedure TFZamerV2.HideBtnClick(Sender: TObject);
 begin
     Application.Minimize;
+end;
+
+function TFZamerV2.checkcreatenew:boolean;
+ var
+  s:string;
+ begin
+  checkcreatenew:=false;
+   if ComboTipDvig.Text='' then exit;
+   if ComboPolus.Text='' then exit;
+   if ComboEnergo.Text='' then exit;
+   if ComboRegim.Text='' then exit;
+   if ComboStend.Text='' then exit;
+   if ComboSotrud.Text='' then exit;
+
+
+  checkcreatenew:=true;
+ end;
+
+procedure TFZamerV2.BitBtn3Click(Sender: TObject);
+begin
+ if checkcreatenew then
+  begin
+   ComboTipDvig.Items.Add(ComboTipDvig.Text);
+
+
+  end
+  else
+   ShowMessage('Проверьте поля, не все необходимые поля заполнены');
 end;
 
 procedure TFZamerV2.BitBtn5Click(Sender: TObject);

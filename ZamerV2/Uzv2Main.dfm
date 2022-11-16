@@ -474,6 +474,12 @@ object FZamerV2: TFZamerV2
         Anchors = [akLeft, akTop, akRight]
         AutoSize = False
         Caption = #1057#1090#1077#1085#1076' '#1085#1077' '#1074#1099#1073#1088#1072#1085
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object DateTimePicker1: TDateTimePicker
         Left = 59
@@ -484,107 +490,108 @@ object FZamerV2: TFZamerV2
         Time = 0.363948067126330000
         TabOrder = 0
       end
-      object ComboBox1: TComboBox
+      object ComboTipDvig: TComboBox
         Left = 89
         Top = 52
         Width = 252
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
-        Text = 'ComboBox1'
+        Text = 'ComboTipDvig'
       end
-      object Edit1: TEdit
+      object EditNumDvig: TEdit
         Left = 108
         Top = 82
         Width = 233
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 2
-        Text = 'Edit1'
+        Text = 'EditNumDvig'
       end
-      object ComboBox2: TComboBox
+      object ComboPolus: TComboBox
         Left = 127
         Top = 112
         Width = 214
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 3
-        Text = 'ComboBox2'
+        Text = 'ComboPolus'
       end
-      object Edit2: TEdit
+      object EditPowNom: TEdit
         Left = 174
         Top = 142
         Width = 167
         Height = 27
         TabOrder = 4
-        Text = 'Edit2'
+        Text = 'EditPowNom'
       end
-      object Edit3: TEdit
+      object EditUNom: TEdit
         Left = 174
         Top = 172
         Width = 167
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 5
-        Text = 'Edit3'
+        Text = 'EditUNom'
       end
-      object Edit4: TEdit
+      object EditUIsp: TEdit
         Left = 174
         Top = 202
         Width = 167
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 6
-        Text = 'Edit4'
+        Text = 'EditUIsp'
       end
-      object ComboBox3: TComboBox
+      object ComboEnergo: TComboBox
         Left = 174
         Top = 232
         Width = 167
         Height = 27
         TabOrder = 7
-        Text = 'ComboBox3'
+        Text = 'ComboEnergo'
       end
-      object Edit5: TEdit
+      object EditHumi: TEdit
         Left = 174
         Top = 263
         Width = 167
         Height = 27
         TabOrder = 8
-        Text = 'Edit5'
+        Text = 'EditHumi'
       end
-      object Edit6: TEdit
-        Left = 174
-        Top = 294
+      object EditPress: TEdit
+        Left = 175
+        Top = 292
         Width = 167
         Height = 27
         TabOrder = 9
-        Text = 'Edit6'
+        Text = 'EditPress'
       end
-      object ComboBox4: TComboBox
+      object ComboRegim: TComboBox
         Left = 66
         Top = 325
         Width = 275
         Height = 27
         TabOrder = 10
-        Text = 'ComboBox4'
+        Text = 'ComboRegim'
       end
-      object ComboBox5: TComboBox
+      object ComboStend: TComboBox
+        Tag = 500
         Left = 66
         Top = 356
         Width = 275
         Height = 27
         TabOrder = 11
-        Text = 'ComboBox5'
+        Text = 'ComboStend'
       end
-      object Edit7: TEdit
+      object EditOsob: TEdit
         Left = 3
         Top = 435
         Width = 338
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 12
-        Text = 'Edit7'
+        Text = 'EditOsob'
       end
       object Edit8: TEdit
         Left = 3
@@ -595,19 +602,20 @@ object FZamerV2: TFZamerV2
         TabOrder = 13
         Text = 'Edit8'
       end
-      object ComboBox6: TComboBox
+      object ComboSotrud: TComboBox
+        Tag = 500
         Left = 102
         Top = 540
         Width = 239
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 14
-        Text = 'ComboBox6'
+        Text = 'ComboSotrud'
       end
       object BitBtn3: TBitBtn
-        Left = 6
+        Left = 3
         Top = 572
-        Width = 162
+        Width = 168
         Height = 30
         Caption = #1053#1086#1074#1086#1077
         Font.Charset = DEFAULT_CHARSET
@@ -674,11 +682,12 @@ object FZamerV2: TFZamerV2
           9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         ParentFont = False
         TabOrder = 15
+        OnClick = BitBtn3Click
       end
       object BitBtn4: TBitBtn
-        Left = 180
+        Left = 174
         Top = 572
-        Width = 162
+        Width = 168
         Height = 30
         Caption = #1040#1088#1093#1080#1074
         Font.Charset = DEFAULT_CHARSET
