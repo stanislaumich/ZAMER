@@ -24,7 +24,7 @@ EXP-00091: Exporting questionable statistics.
 . . exporting table                          GRIDS
                                                             7 rows exported
 . . exporting table                            INI
-                                                           23 rows exported
+                                                            9 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                          NOMER
                                                             1 rows exported
@@ -67,6 +67,8 @@ EXP-00091: Exporting questionable statistics.
                                                            45 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
+. . exporting table                           ZINI
+                                                           28 rows exported
 . . exporting table                         ZKZALL
                                                           388 rows exported
 EXP-00091: Exporting questionable statistics.
@@ -109,6 +111,8 @@ EXP-00091: Exporting questionable statistics.
 . . exporting table                          ZSOTR
                                                             2 rows exported
 EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZSTEND
+                                                            5 rows exported
 . . exporting table                         ZTABLE
                                                            17 rows exported
 EXP-00091: Exporting questionable statistics.

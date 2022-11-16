@@ -1,7 +1,6 @@
 unit Uadd;
 
-
-interface //------------------------------------------------------------------
+interface // ------------------------------------------------------------------
 
 function myfloat(s: string): double;
 function min(a: Integer; b: Integer): Integer;
@@ -12,9 +11,9 @@ function Comma(s: string): string;
 function NVLToZero(s: string): string;
 function NVLToEmp(s: string): string;
 
-implementation //--------------------------------------------------------------
-  uses ustr;
+implementation // --------------------------------------------------------------
 
+uses ustr;
 
 function myfloat(s: string): double;
 var
@@ -37,7 +36,7 @@ begin
 end;
 
 function maxI(a: Integer; b: Integer): Integer;
- begin
+begin
   if a > b then
     result := a
   else
@@ -45,7 +44,7 @@ function maxI(a: Integer; b: Integer): Integer;
 end;
 
 function maxF(a: single; b: single): single;
- begin
+begin
   if a > b then
     result := a
   else
@@ -58,25 +57,25 @@ begin
 end;
 
 function Comma(s: string): string;
-//  Comma := strReplace(s, '.', ',');
+// Comma := strReplace(s, '.', ',');
 begin
-    Comma := strReplace(s, '.', ',');
+  Comma := strReplace(s, '.', ',');
 end;
 
 function NVLToZero(s: string): string;
 begin
-    if s = '' then
-        NVLToZero := '0'
-    else
-        NVLToZero := s;
+  if s = '' then
+    NVLToZero := '0'
+  else
+    NVLToZero := s;
 end;
 
 function NVLToEmp(s: string): string;
 begin
-    if s = '0' then
-        NVLToEmp := ''
-    else
-        NVLToEmp := s;
+  if s = '0' then
+    NVLToEmp := ''
+  else
+    NVLToEmp := s;
 end;
 
 end.

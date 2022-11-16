@@ -4,7 +4,7 @@
         <ProjectVersion>19.2</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -107,6 +107,9 @@
         <DCCReference Include="UHH.pas">
             <Form>FormHH</Form>
             <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="USett.pas">
+            <Form>FZamerV2</Form>
         </DCCReference>
         <DCCReference Include="UARC.pas">
             <Form>FARC</Form>
