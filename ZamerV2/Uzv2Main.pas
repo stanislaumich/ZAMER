@@ -33,7 +33,7 @@ type
         BPI: TButton;
         ExitBtn: TBitBtn;
         HideBtn: TBitBtn;
-        Timer1: TTimer;
+    Timer1000: TTimer;
         DateTimePicker1: TDateTimePicker;
         Label3: TLabel;
         Label4: TLabel;
@@ -81,6 +81,7 @@ type
     procedure ComboStendChange(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
+    procedure Timer1000Timer(Sender: TObject);
     private
         { Private declarations }
     public
@@ -196,6 +197,11 @@ begin
         on e: exception do
             e := NIL;
     end;
+end;
+
+procedure TFZamerV2.Timer1000Timer(Sender: TObject);
+begin
+ Label2.Caption:=TimeToStr(time);
 end;
 
 procedure TFZamerV2.ExitBtnClick(Sender: TObject);

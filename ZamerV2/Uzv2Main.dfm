@@ -890,7 +890,8 @@ object FZamerV2: TFZamerV2
       end
     end
   end
-  object Timer1: TTimer
+  object Timer1000: TTimer
+    OnTimer = Timer1000Timer
     Left = 10
     Top = 312
   end
