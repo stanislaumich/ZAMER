@@ -30,7 +30,7 @@ var
   FSett: TFSett;
 
 implementation
- Uses uzv2Main;
+ //Uses uzv2Main;
 {$R *.dfm}
 
 end.
