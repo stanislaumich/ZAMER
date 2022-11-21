@@ -74,6 +74,13 @@ type
     CombUisp: TComboBox;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    Image6: TImage;
+    Image7: TImage;
         procedure FormCreate(Sender: TObject);
         procedure FormClose(Sender: TObject; var Action: TCloseAction);
         procedure ExitBtnClick(Sender: TObject);
@@ -85,6 +92,7 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1000Timer(Sender: TObject);
     procedure BHHClick(Sender: TObject);
+    procedure BSoprotClick(Sender: TObject);
     private
         { Private declarations }
     public
@@ -94,6 +102,7 @@ type
         procedure savecombo;
         function checkcreatenew:boolean;
         procedure comboaddtext(c:tcombobox);
+        procedure ImgSet(i:timage; v:boolean);
     end;
 
 var
@@ -106,6 +115,14 @@ implementation
 {$R *.dfm}
 
 uses UARC, UHH;
+
+procedure TFZamerV2.ImgSet(i:timage; v:boolean);
+ var
+  s:string;
+ begin
+  if v then i.picture.LoadFromFile(extractfilepath(paramstr(0))+'yes.bmp')
+  else i.picture.LoadFromFile(extractfilepath(paramstr(0))+'erase.bmp')
+ end;
 
 procedure TFZamerV2.comboaddtext(c:tcombobox);
  var
@@ -291,6 +308,11 @@ end;
 procedure TFZamerV2.BitBtn5Click(Sender: TObject);
 begin
     FSett.ShowModal;
+end;
+
+procedure TFZamerV2.BSoprotClick(Sender: TObject);
+begin
+ ImgSet(image1,true);
 end;
 
 procedure TFZamerV2.FormClose(Sender: TObject; var Action: TCloseAction);

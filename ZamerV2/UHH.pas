@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Math, Uadd;
+  FireDAC.Comp.Client, Math, Uadd, Vcl.Buttons;
 
 type
   TFormHH = class(TForm)
@@ -32,6 +32,7 @@ type
     TimUp: TTimer;
     QUp: TFDQuery;
     QTemp: TFDQuery;
+    BitBtn1: TBitBtn;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
