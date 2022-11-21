@@ -5,7 +5,7 @@ object FZamerV2: TFZamerV2
   BorderStyle = bsToolWindow
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1103' '#1076#1074#1080#1075#1072#1090#1077#1083#1103
   ClientHeight = 932
-  ClientWidth = 351
+  ClientWidth = 350
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,12 +20,13 @@ object FZamerV2: TFZamerV2
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 351
+    Width = 350
     Height = 33
     Align = alTop
     TabOrder = 0
+    ExplicitWidth = 827
     DesignSize = (
-      351
+      350
       33)
     object Label1: TLabel
       Left = 8
@@ -54,7 +55,7 @@ object FZamerV2: TFZamerV2
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 219
+      Left = 238
       Top = 8
       Width = 72
       Height = 19
@@ -66,12 +67,14 @@ object FZamerV2: TFZamerV2
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      ExplicitLeft = 239
     end
     object BitBtn1: TBitBtn
-      Left = 317
+      Left = 316
       Top = 1
       Width = 31
       Height = 29
+      Anchors = [akTop, akRight]
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000000000000000000000000000000000000FFFFFF6763CF
@@ -131,15 +134,17 @@ object FZamerV2: TFZamerV2
         65F36465F36465F36465F26464F26464F26160F29797F7FFFFFF}
       TabOrder = 0
       OnClick = BitBtn1Click
+      ExplicitLeft = 317
     end
   end
   object Panel2: TPanel
     Left = 0
     Top = 896
-    Width = 351
+    Width = 350
     Height = 36
     Align = alBottom
     TabOrder = 1
+    ExplicitWidth = 827
     object ExitBtn: TBitBtn
       Left = 182
       Top = 4
@@ -332,6 +337,7 @@ object FZamerV2: TFZamerV2
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 1
+        OnClick = BHHClick
       end
       object BKz: TButton
         Left = 3
@@ -454,33 +460,12 @@ object FZamerV2: TFZamerV2
         Height = 19
         Caption = #1063#1080#1089#1083#1086' '#1087#1086#1083#1102#1089#1086#1074':'
       end
-      object Label7: TLabel
-        Left = 3
-        Top = 145
-        Width = 166
-        Height = 19
-        Caption = #1052#1086#1078#1085#1086#1089#1090#1100' '#1085#1086#1084#1080#1085'. '#1082#1042#1090':'
-      end
       object Label8: TLabel
         Left = 24
         Top = 235
         Width = 145
         Height = 19
         Caption = #1069#1085#1077#1088#1075#1086#1101#1092#1092#1077#1082#1090#1080#1074#1085'.:'
-      end
-      object Label9: TLabel
-        Left = 21
-        Top = 175
-        Width = 148
-        Height = 19
-        Caption = #1053#1072#1087#1088#1103#1078'. '#1085#1086#1084#1080#1085'., '#1042'.:'
-      end
-      object Label10: TLabel
-        Left = 6
-        Top = 205
-        Width = 163
-        Height = 19
-        Caption = #1053#1072#1087#1088#1103#1078#1077#1085'. '#1080#1089#1087#1099#1090'., '#1042'.:'
       end
       object Label11: TLabel
         Left = 58
@@ -546,6 +531,34 @@ object FZamerV2: TFZamerV2
         Font.Style = [fsBold]
         ParentFont = False
       end
+      object Label14: TLabel
+        Left = 180
+        Top = 142
+        Width = 70
+        Height = 19
+        Caption = #1053#1086#1084#1080#1085#1072#1083'.'
+      end
+      object Label20: TLabel
+        Left = 267
+        Top = 142
+        Width = 67
+        Height = 19
+        Caption = #1048#1089#1087#1099#1090#1072#1090'.'
+      end
+      object Label9: TLabel
+        Left = 48
+        Top = 168
+        Width = 121
+        Height = 19
+        Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
+      end
+      object Label7: TLabel
+        Left = 49
+        Top = 199
+        Width = 116
+        Height = 19
+        Caption = #1052#1086#1097#1085#1086#1089#1090#1100', '#1082#1042#1090':'
+      end
       object DateTimePicker1: TDateTimePicker
         Left = 59
         Top = 22
@@ -582,38 +595,12 @@ object FZamerV2: TFZamerV2
         TabOrder = 3
         Text = 'ComboPolus'
       end
-      object EditPowNom: TEdit
-        Left = 174
-        Top = 142
-        Width = 167
-        Height = 27
-        TabOrder = 4
-        Text = 'EditPowNom'
-      end
-      object EditUNom: TEdit
-        Left = 174
-        Top = 172
-        Width = 167
-        Height = 27
-        Anchors = [akLeft, akTop, akRight]
-        TabOrder = 5
-        Text = 'EditUNom'
-      end
-      object EditUIsp: TEdit
-        Left = 174
-        Top = 202
-        Width = 167
-        Height = 27
-        Anchors = [akLeft, akTop, akRight]
-        TabOrder = 6
-        Text = 'EditUIsp'
-      end
       object ComboEnergo: TComboBox
         Left = 174
         Top = 232
         Width = 167
         Height = 27
-        TabOrder = 7
+        TabOrder = 4
         Text = 'ComboEnergo'
       end
       object EditHumi: TEdit
@@ -621,7 +608,7 @@ object FZamerV2: TFZamerV2
         Top = 263
         Width = 167
         Height = 27
-        TabOrder = 8
+        TabOrder = 5
         Text = 'EditHumi'
       end
       object EditPress: TEdit
@@ -629,7 +616,7 @@ object FZamerV2: TFZamerV2
         Top = 292
         Width = 167
         Height = 27
-        TabOrder = 9
+        TabOrder = 6
         Text = 'EditPress'
       end
       object ComboRegim: TComboBox
@@ -637,7 +624,7 @@ object FZamerV2: TFZamerV2
         Top = 325
         Width = 275
         Height = 27
-        TabOrder = 10
+        TabOrder = 7
         Text = 'ComboRegim'
       end
       object ComboStend: TComboBox
@@ -646,7 +633,7 @@ object FZamerV2: TFZamerV2
         Top = 356
         Width = 275
         Height = 27
-        TabOrder = 11
+        TabOrder = 8
         Text = 'ComboStend'
         OnChange = ComboStendChange
       end
@@ -656,7 +643,7 @@ object FZamerV2: TFZamerV2
         Width = 338
         Height = 27
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 12
+        TabOrder = 9
         Text = 'EditOsob'
       end
       object Edit8: TEdit
@@ -665,7 +652,7 @@ object FZamerV2: TFZamerV2
         Width = 338
         Height = 27
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 13
+        TabOrder = 10
         Text = 'Edit8'
       end
       object ComboSotrud: TComboBox
@@ -675,7 +662,7 @@ object FZamerV2: TFZamerV2
         Width = 239
         Height = 27
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 14
+        TabOrder = 11
         Text = 'ComboSotrud'
       end
       object BitBtn3: TBitBtn
@@ -747,7 +734,7 @@ object FZamerV2: TFZamerV2
           FFFFFFFFFFFFFFFFFFFF249E3C2CBB5331C15731C15731C15731C1572CBB5324
           9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 12
         OnClick = BitBtn3Click
       end
       object BitBtn4: TBitBtn
@@ -819,7 +806,7 @@ object FZamerV2: TFZamerV2
           3EDBAD6DD7A768D6A768D6A668D6A669D6A669D6A669D6A767D6A767D6A767D6
           A768D6A768D7A669CF9956EEDBC8FFFFFFFFFFFFFFFFFFFFFFFF}
         ParentFont = False
-        TabOrder = 16
+        TabOrder = 13
         OnClick = BitBtn4Click
       end
       object BitBtn5: TBitBtn
@@ -885,8 +872,40 @@ object FZamerV2: TFZamerV2
           FBF4E5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFF3DB9FF3DDA2F2DCA1F2DBA0F2DBA1F1D598FF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-        TabOrder = 17
+        TabOrder = 14
         OnClick = BitBtn5Click
+      end
+      object CombUnom: TComboBox
+        Left = 175
+        Top = 165
+        Width = 78
+        Height = 27
+        TabOrder = 15
+        Text = '0'
+      end
+      object CombUisp: TComboBox
+        Left = 263
+        Top = 165
+        Width = 79
+        Height = 27
+        TabOrder = 16
+        Text = '0'
+      end
+      object ComboBox1: TComboBox
+        Left = 176
+        Top = 196
+        Width = 77
+        Height = 27
+        TabOrder = 17
+        Text = '0'
+      end
+      object ComboBox2: TComboBox
+        Left = 263
+        Top = 196
+        Width = 79
+        Height = 27
+        TabOrder = 18
+        Text = '0'
       end
     end
   end

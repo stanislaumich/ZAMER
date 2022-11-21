@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, ustr, Vcl.ExtCtrls;
+  FireDAC.Comp.Client, ustr, Vcl.ExtCtrls, uadd;
 
 type
   TFSoprot = class(TForm)
@@ -67,7 +67,7 @@ implementation
 
 uses umain;
 {$R *.dfm}
-
+{
 function myfloat(s: string): double;
 var
   v: integer;
@@ -79,7 +79,7 @@ begin
   else
     myfloat := 0;
 end;
-
+}
 procedure TFSoprot.BitBtn1Click(Sender: TObject);
 begin
   Edit8.Text      := '';

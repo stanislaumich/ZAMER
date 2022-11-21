@@ -35,7 +35,6 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
     OnMouseDown = GroupBox1MouseDown
-    ExplicitHeight = 522
     DesignSize = (
       157
       133)
@@ -364,7 +363,6 @@ object Form1: TForm1
       OnMouseDown = GroupBox3MouseDown
       OnMouseEnter = GroupBox3MouseEnter
       OnMouseLeave = GroupBox3MouseLeave
-      ExplicitWidth = 163
     end
     object CheckBox1: TCheckBox
       Left = 8
@@ -392,7 +390,6 @@ object Form1: TForm1
       ParentColor = False
       TabOrder = 2
       OnMouseDown = GroupBox4MouseDown
-      ExplicitWidth = 163
     end
     object GroupBox5: TGroupBox
       Left = 3
@@ -406,7 +403,6 @@ object Form1: TForm1
       TabOrder = 3
       OnClick = GroupBox5Click
       OnMouseDown = GroupBox5MouseDown
-      ExplicitWidth = 163
     end
   end
   object GroupBox2: TGroupBox
@@ -416,8 +412,6 @@ object Form1: TForm1
     Height = 117
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 1
-    ExplicitTop = 539
-    ExplicitWidth = 169
     DesignSize = (
       157
       117)
@@ -450,7 +444,6 @@ object Form1: TForm1
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       Text = '127.0.0.1'
-      ExplicitWidth = 121
     end
     object Edit2: TEdit
       Left = 41
@@ -460,7 +453,6 @@ object Form1: TForm1
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
       Text = '502'
-      ExplicitWidth = 121
     end
     object Edit3: TEdit
       Left = 41
@@ -470,7 +462,6 @@ object Form1: TForm1
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
       Text = '159'
-      ExplicitWidth = 121
     end
     object Button1: TButton
       Left = 3
@@ -481,7 +472,6 @@ object Form1: TForm1
       Caption = #1058#1045#1057#1058
       TabOrder = 3
       OnClick = Button1Click
-      ExplicitWidth = 159
     end
   end
   object GroupBox6: TGroupBox
@@ -491,8 +481,6 @@ object Form1: TForm1
     Height = 33
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 2
-    ExplicitTop = 659
-    ExplicitWidth = 169
     object CheckBox2: TCheckBox
       Left = 8
       Top = 8
@@ -511,7 +499,6 @@ object Form1: TForm1
     Caption = #1041#1086#1083#1100#1096#1086#1077' '#1086#1082#1085#1086
     TabOrder = 3
     OnClick = CheckBox3Click
-    ExplicitTop = 351
   end
   object KRTCPConnector1: TKRTCPConnector
     IP = '127.0.0.1'
@@ -746,12 +733,87 @@ object Form1: TForm1
   end
   object TComm: TTimer
     OnTimer = TCommTimer
-    Left = 96
-    Top = 284
+    Left = 76
+    Top = 4
   end
   object QT: TFDQuery
     Connection = FDC
     Left = 104
     Top = 384
+  end
+  object QtmpUpd: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      'UPDATE ZAMER.ZELSPECTMP'
+      'SET    ID  = 0,'
+      '       U   = :U,'
+      '       I   = :I,'
+      '       P   = :P,'
+      '       U1  = :U1,'
+      '       U2  = :U2,'
+      '       U3  = :U3,'
+      '       I1  = :I1,'
+      '       I2  = :I2,'
+      '       I3  = :I3,'
+      '       DOP = :DOP,'
+      '       P1  = :P1,'
+      '       P2  = :P2,'
+      '       P3  = :P3,'
+      '       KPD = 0')
+    Left = 82
+    Top = 91
+    ParamData = <
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P3'
+        ParamType = ptInput
+      end>
   end
 end

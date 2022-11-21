@@ -1,7 +1,21 @@
 unit Uadd;
 
 interface // ------------------------------------------------------------------
+ CONST
+    RazU = -1;
+    RazP = -2;
+    RazI = -3;
+    RAZN = -1;
+    RazM = -2;
+    RazR = -1;
+    tRazU = '0.0';
+    tRazP = '0.00';
+    tRazI = '0.000';
+    tRAZN = '0.0';
+    tRazM = '0.00';
+    tRazR = '0.0';
 
+function myformat(s:string; f:double ):string;
 function myfloat(s: string): double;
 function min(a: Integer; b: Integer): Integer;
 function maxI(a: Integer; b: Integer): Integer;
@@ -13,7 +27,12 @@ function NVLToEmp(s: string): string;
 
 implementation // --------------------------------------------------------------
 
-uses ustr;
+uses System.SysUtils,ustr;
+
+function myformat(s:string; f:double ):string;
+ begin
+   myformat:=FormatFloat(s,f);
+ end;
 
 function myfloat(s: string): double;
 var

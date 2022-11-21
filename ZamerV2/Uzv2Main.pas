@@ -39,10 +39,7 @@ type
         Label4: TLabel;
         Label5: TLabel;
         Label6: TLabel;
-        Label7: TLabel;
         Label8: TLabel;
-        Label9: TLabel;
-        Label10: TLabel;
         Label11: TLabel;
         Label12: TLabel;
         Label13: TLabel;
@@ -53,9 +50,6 @@ type
     ComboTipDvig: TComboBox;
     EditNumDvig: TEdit;
     ComboPolus: TComboBox;
-    EditPowNom: TEdit;
-    EditUNom: TEdit;
-    EditUIsp: TEdit;
     ComboEnergo: TComboBox;
     EditHumi: TEdit;
     EditPress: TEdit;
@@ -72,6 +66,14 @@ type
         QTemp: TFDQuery;
     QAttestat: TFDQuery;
     BitBtn1: TBitBtn;
+    Label14: TLabel;
+    Label20: TLabel;
+    Label9: TLabel;
+    Label7: TLabel;
+    CombUnom: TComboBox;
+    CombUisp: TComboBox;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
         procedure FormCreate(Sender: TObject);
         procedure FormClose(Sender: TObject; var Action: TCloseAction);
         procedure ExitBtnClick(Sender: TObject);
@@ -82,6 +84,7 @@ type
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1000Timer(Sender: TObject);
+    procedure BHHClick(Sender: TObject);
     private
         { Private declarations }
     public
@@ -90,6 +93,7 @@ type
         procedure restorecombo;
         procedure savecombo;
         function checkcreatenew:boolean;
+        procedure comboaddtext(c:tcombobox);
     end;
 
 var
@@ -101,7 +105,14 @@ implementation
 
 {$R *.dfm}
 
-uses UARC;
+uses UARC, UHH;
+
+procedure TFZamerV2.comboaddtext(c:tcombobox);
+ var
+  s:string;
+ begin
+
+ end;
 
 procedure TFZamerV2.savecombo;
 var
@@ -246,6 +257,13 @@ begin
     QAttestat.Open;
     Label19.Caption := QAttestat.FieldByName('attest').Asstring;
     QAttestat.Close;
+end;
+
+procedure TFZamerV2.BHHClick(Sender: TObject);
+begin
+ FormHH.Label7.Caption:=CombUisp.Text;
+ FormHH.Label8.Caption:=CombUisp.Text;
+ Formhh.Show;
 end;
 
 procedure TFZamerV2.BitBtn1Click(Sender: TObject);

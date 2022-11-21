@@ -81,6 +81,7 @@ type
     Label28: TLabel;
     Label29: TLabel;
     CheckBox3: TCheckBox;
+    QtmpUpd: TFDQuery;
         procedure TUpdateFormTimer(Sender: TObject);
         procedure Button1Click(Sender: TObject);
         procedure FormCreate(Sender: TObject);
@@ -328,31 +329,55 @@ begin
      end;
     if CheckBox1.Checked then
     begin
-        //Label10.Caption := Floattostr(Simpleroundto(U1.Value, RazU));
-        //Label11.Caption := Floattostr(Simpleroundto(U2.Value, RazU));
-        //Label12.Caption := Floattostr(Simpleroundto(U3.Value, RazU));
-
         Label10.Caption := FormatFloat('0.0', Simpleroundto(U1.Value, RazU));
         Label11.Caption := FormatFloat('0.0', Simpleroundto(U2.Value, RazU));
         Label12.Caption := FormatFloat('0.0', Simpleroundto(U3.Value, RazU));
-
-
-        //Label15.Caption := Floattostr(Simpleroundto(I1.Value, RazI));
-        //Label16.Caption := Floattostr(Simpleroundto(I2.Value, RazI));
-        //Label17.Caption := Floattostr(Simpleroundto(I3.Value, RazI));
 
         Label15.Caption := FormatFloat('0.00', Simpleroundto(I1.Value, RazI));
         Label16.Caption := FormatFloat('0.00', Simpleroundto(I2.Value, RazI));
         Label17.Caption := FormatFloat('0.00', Simpleroundto(I3.Value, RazI));
 
-        //Label18.Caption := Floattostr(Simpleroundto(P1.Value, RazP));
-        //Label19.Caption := Floattostr(Simpleroundto(P2.Value, RazP));
-        //Label20.Caption := Floattostr(Simpleroundto(P3.Value, RazP));
-
         Label18.Caption := FormatFloat('0.0', Simpleroundto(P1.Value, RazP));
         Label19.Caption := FormatFloat('0.0', Simpleroundto(P2.Value, RazP));
         Label20.Caption := FormatFloat('0.0', Simpleroundto(P3.Value, RazP));
     end;
+
+    {SET    ID  = 0,
+       U   = :U,
+       I   = :I,
+       P   = :P,
+       U1  = :U1,
+       U2  = :U2,
+       U3  = :U3,
+       I1  = :I1,
+       I2  = :I2,
+       I3  = :I3,
+       DOP = :DOP,
+       P1  = :P1,
+       P2  = :P2,
+       P3  = :P3,
+       TS  = :TS,
+       KPD = 0}
+        QTmpUpd.ParamByName('u').AsFloat := Simpleroundto(USred.Value, RazU);
+        QTmpUpd.ParamByName('i').AsFloat := Simpleroundto(USred.Value, RazI);
+        QTmpUpd.ParamByName('p').AsFloat := Simpleroundto(USred.Value, RazP);
+
+        QTmpUpd.ParamByName('u1').AsFloat := Simpleroundto(U1.Value, RazU);
+        QTmpUpd.ParamByName('u2').AsFloat := Simpleroundto(U2.Value, RazU);
+        QTmpUpd.ParamByName('u3').AsFloat := Simpleroundto(U3.Value, RazU);
+
+        QTmpUpd.ParamByName('i1').AsFloat := Simpleroundto(I1.Value, RazI);
+        QTmpUpd.ParamByName('i2').AsFloat := Simpleroundto(I2.Value, RazI);
+        QTmpUpd.ParamByName('i3').AsFloat := Simpleroundto(I3.Value, RazI);
+
+        QTmpUpd.ParamByName('p1').AsFloat := Simpleroundto(P1.Value, RazP);
+        QTmpUpd.ParamByName('p2').AsFloat := Simpleroundto(P2.Value, RazP);
+        QTmpUpd.ParamByName('p3').AsFloat := Simpleroundto(P3.Value, RazP);
+
+        //QTmpUpd.ParamByName('id').AsFloat   := 0;
+        QTmpUpd.ParamByName('dop').Asstring := '';
+        QTmpUpd.ExecSQL;
+
     if CheckBox2.Checked then
     begin
         QTemp.ParamByName('u').AsFloat := Simpleroundto(USred.Value, RazU);
