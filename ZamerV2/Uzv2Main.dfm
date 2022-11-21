@@ -1347,7 +1347,7 @@ object FZamerV2: TFZamerV2
         TabOrder = 16
         Text = '0'
       end
-      object ComboBox1: TComboBox
+      object ComboPNom: TComboBox
         Left = 176
         Top = 196
         Width = 77
@@ -1355,7 +1355,7 @@ object FZamerV2: TFZamerV2
         TabOrder = 17
         Text = '0'
       end
-      object ComboBox2: TComboBox
+      object ComboPIsp: TComboBox
         Left = 263
         Top = 196
         Width = 79

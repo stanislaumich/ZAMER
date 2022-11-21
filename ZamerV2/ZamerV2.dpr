@@ -2,11 +2,11 @@ program ZamerV2;
 
 uses
   Vcl.Forms,
-  Uzv2Main in 'Uzv2Main.pas' {FZamerV2},
+  Uzv2Main in 'Uzv2Main.pas' {FZamerV2} ,
   Ustr in '..\ZAMER\Ustr.pas',
-  UHH in 'UHH.pas' {FormHH},
-  USett in 'USett.pas' {FZamerV2},
-  UARC in 'UARC.pas' {FARC},
+  UHH in 'UHH.pas' {FormHH} ,
+  USett in 'USett.pas' {FZamerV2} ,
+  UARC in 'UARC.pas' {FARC} ,
   Uadd in '..\ZAMER\Uadd.pas';
 
 {$R *.res}

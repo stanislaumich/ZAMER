@@ -27,6 +27,7 @@ var
   FARC: TFARC;
 
 implementation
+
 Uses Uzv2Main;
 {$R *.dfm}
 
@@ -64,10 +65,9 @@ begin
   end; { with }
 end; { setgridcolumnwidths }
 
-
 procedure TFARC.FormActivate(Sender: TObject);
 begin
- setgridcolumnwidths(gridspis);
+  setgridcolumnwidths(GridSpis);
 end;
 
 end.
