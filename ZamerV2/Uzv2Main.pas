@@ -122,7 +122,7 @@ var
   s: string;
 begin
   if v then
-    i.picture.LoadFromFile(extractfilepath(paramstr(0)) + 'yes.bmp')
+    i.picture.LoadFromFile(extractfilepath(paramstr(0)) + 'apply.bmp')
   else
     i.picture.LoadFromFile(extractfilepath(paramstr(0)) + 'erase.bmp')
 end;
