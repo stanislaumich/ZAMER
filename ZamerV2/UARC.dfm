@@ -29,6 +29,13 @@ object FARC: TFARC
     DesignSize = (
       1005
       469)
+    object Label1: TLabel
+      Left = 884
+      Top = 108
+      Width = 6
+      Height = 13
+      Caption = '0'
+    end
     object GridSpis: TDBGrid
       Left = 2
       Top = 15
@@ -189,6 +196,7 @@ object FARC: TFARC
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 1
+      OnClick = BitBtn1Click
       ExplicitLeft = 840
     end
     object BitBtn2: TBitBtn

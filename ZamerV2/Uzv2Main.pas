@@ -20,7 +20,7 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Label1: TLabel;
-    NOMER: TLabel;
+    LNOMER: TLabel;
     GroupBox2: TGroupBox;
     GroupBox1: TGroupBox;
     Label2: TLabel;
@@ -104,11 +104,12 @@ type
     function checkcreatenew: boolean;
     procedure comboaddtext;
     procedure ImgSet(i: TImage; v: boolean);
+    procedure LoadIspyt(nomer:string);
   end;
 
 var
   FZamerV2: TFZamerV2;
-
+  NOMER:String;
   cancloseapp: boolean;
 
 implementation
@@ -316,9 +317,20 @@ begin
     ShowMessage('Проверьте поля, не все необходимые поля заполнены');
 end;
 
+procedure TFZamerV2.LoadIspyt(nomer:string);
+ var
+  s:string;
+ begin
+
+
+ end;
+
 procedure TFZamerV2.BitBtn4Click(Sender: TObject);
 begin
   Farc.ShowModal;
+  LNomer.Caption:=Farc.Label1.Caption;
+  Nomer:=Lnomer.Caption;
+  LoadIspyt(Nomer);
 end;
 
 procedure TFZamerV2.BitBtn5Click(Sender: TObject);

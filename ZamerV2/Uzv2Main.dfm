@@ -40,7 +40,7 @@ object FZamerV2: TFZamerV2
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object NOMER: TLabel
+    object LNOMER: TLabel
       Left = 169
       Top = 8
       Width = 10
