@@ -2,7 +2,7 @@ object FormHH: TFormHH
   Left = 0
   Top = 0
   Caption = #1061#1086#1083#1086#1089#1090#1086#1081' '#1093#1086#1076
-  ClientHeight = 722
+  ClientHeight = 635
   ClientWidth = 1043
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,11 +14,14 @@ object FormHH: TFormHH
   OnActivate = FormActivate
   OnHide = FormHide
   OnShow = FormShow
+  DesignSize = (
+    1043
+    635)
   PixelsPerInch = 96
   TextHeight = 25
   object Label6: TLabel
-    Left = 197
-    Top = 666
+    Left = 3
+    Top = 599
     Width = 237
     Height = 33
     Alignment = taRightJustify
@@ -31,11 +34,11 @@ object FormHH: TFormHH
     ParentFont = False
   end
   object Label10: TLabel
-    Left = 440
-    Top = 666
-    Width = 106
+    Left = 246
+    Top = 599
+    Width = 17
     Height = 33
-    Caption = 'Label10'
+    Caption = '0'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -51,9 +54,9 @@ object FormHH: TFormHH
     Align = alTop
     TabOrder = 0
     object Label1: TLabel
-      Left = 624
+      Left = 712
       Top = 10
-      Width = 279
+      Width = 191
       Height = 25
       Alignment = taRightJustify
       Caption = #1042#1088#1077#1084#1103' '#1079#1072#1087#1080#1089#1080', '#1089#1077#1082'.:'
@@ -218,9 +221,9 @@ object FormHH: TFormHH
     object Label12: TLabel
       Left = 41
       Top = 2
-      Width = 71
+      Width = 11
       Height = 25
-      Caption = 'Label12'
+      Caption = '0'
     end
     object Label5: TLabel
       Left = 164
@@ -250,23 +253,189 @@ object FormHH: TFormHH
       ParentFont = False
     end
   end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 115
+    Width = 561
+    Height = 101
+    TabOrder = 2
+    object Label13: TLabel
+      Left = 13
+      Top = 27
+      Width = 340
+      Height = 25
+      Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1084#1077#1078#1074#1080#1090#1082#1086#1074#1086#1081' '#1080#1079#1086#1083#1103#1094#1080#1080
+    end
+    object Label14: TLabel
+      Left = 13
+      Top = 56
+      Width = 243
+      Height = 25
+      Caption = #1087#1088#1080' U=1,3U'#1085',3 (1**) '#1084#1080#1085
+    end
+    object GroupBox2: TGroupBox
+      Left = 362
+      Top = 21
+      Width = 191
+      Height = 76
+      TabOrder = 0
+      object RadioButton4: TRadioButton
+        Left = 8
+        Top = 3
+        Width = 177
+        Height = 23
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 0
+      end
+      object RadioButton5: TRadioButton
+        Left = 8
+        Top = 26
+        Width = 177
+        Height = 22
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 1
+      end
+      object RadioButton6: TRadioButton
+        Left = 8
+        Top = 48
+        Width = 177
+        Height = 24
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 2
+      end
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 0
+    Top = 217
+    Width = 273
+    Height = 368
+    Caption = #1042#1099#1073#1086#1088' '#1074#1072#1088#1080#1072#1085#1090#1072' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    object StringGrid1: TStringGrid
+      Left = 3
+      Top = 28
+      Width = 266
+      Height = 309
+      ColCount = 4
+      RowCount = 12
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
+      TabOrder = 0
+    end
+    object RadioButton1: TRadioButton
+      Left = 95
+      Top = 343
+      Width = 13
+      Height = 17
+      TabOrder = 1
+    end
+    object RadioButton2: TRadioButton
+      Left = 159
+      Top = 343
+      Width = 21
+      Height = 17
+      TabOrder = 2
+    end
+    object RadioButton3: TRadioButton
+      Left = 221
+      Top = 343
+      Width = 20
+      Height = 17
+      TabOrder = 3
+    end
+  end
+  object GroupBox4: TGroupBox
+    Left = 275
+    Top = 217
+    Width = 768
+    Height = 368
+    Anchors = [akLeft, akTop, akRight]
+    Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    DesignSize = (
+      768
+      368)
+    object StringGrid2: TStringGrid
+      Left = 3
+      Top = 28
+      Width = 762
+      Height = 309
+      Anchors = [akLeft, akTop, akRight]
+      ColCount = 7
+      DefaultColWidth = 100
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
+      ParentFont = False
+      TabOrder = 0
+      ExplicitWidth = 732
+    end
+  end
+  object BitStart: TBitBtn
+    Left = 724
+    Top = 591
+    Width = 149
+    Height = 41
+    Caption = #1057#1090#1072#1088#1090' F5'
+    TabOrder = 5
+  end
+  object BitSave: TBitBtn
+    Left = 879
+    Top = 591
+    Width = 161
+    Height = 41
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+    TabOrder = 6
+  end
+  object BitClear: TBitBtn
+    Left = 567
+    Top = 177
+    Width = 165
+    Height = 39
+    Caption = #1054#1095#1080#1089#1090#1080#1090#1100
+    TabOrder = 7
+  end
   object TimUp: TTimer
     Enabled = False
     Interval = 500
     OnTimer = TimUpTimer
-    Left = 872
-    Top = 169
+    Left = 308
+    Top = 341
   end
   object QUp: TFDQuery
     Connection = FZamerV2.FDC
     SQL.Strings = (
       '')
-    Left = 640
-    Top = 33
+    Left = 368
+    Top = 385
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 676
-    Top = 33
+    Left = 428
+    Top = 385
+  end
+  object ActionList1: TActionList
+    Left = 304
+    Top = 388
+    object Action1: TAction
+      Caption = 'Start'
+      ShortCut = 116
+      OnExecute = Action1Execute
+    end
   end
 end

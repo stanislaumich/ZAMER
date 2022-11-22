@@ -49,7 +49,7 @@ type
     Label18: TLabel;
     ComboTipDvig: TComboBox;
     EditNumDvig: TEdit;
-    ComboPolus: TComboBox;
+    ComboPolusIsp: TComboBox;
     ComboEnergo: TComboBox;
     EditHumi: TEdit;
     EditPress: TEdit;
@@ -81,6 +81,7 @@ type
     Image5: TImage;
     Image6: TImage;
     Image7: TImage;
+    ComboPolusNom: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ExitBtnClick(Sender: TObject);
@@ -266,7 +267,9 @@ begin
   checkcreatenew := false;
   if ComboTipDvig.Text = '' then
     exit;
-  if ComboPolus.Text = '' then
+  if ComboPolusNom.Text = '' then
+    exit;
+  if ComboPolusIsp.Text = '' then
     exit;
   if ComboEnergo.Text = '' then
     exit;

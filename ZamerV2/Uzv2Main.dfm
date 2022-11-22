@@ -24,7 +24,6 @@ object FZamerV2: TFZamerV2
     Height = 33
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 827
     DesignSize = (
       350
       33)
@@ -134,7 +133,6 @@ object FZamerV2: TFZamerV2
         65F36465F36465F36465F26464F26464F26160F29797F7FFFFFF}
       TabOrder = 0
       OnClick = BitBtn1Click
-      ExplicitLeft = 317
     end
   end
   object Panel2: TPanel
@@ -144,7 +142,6 @@ object FZamerV2: TFZamerV2
     Height = 36
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 827
     object ExitBtn: TBitBtn
       Left = 182
       Top = 4
@@ -910,8 +907,8 @@ object FZamerV2: TFZamerV2
         Caption = #1053#1086#1084#1077#1088' '#1076#1074#1080#1075'.:'
       end
       object Label6: TLabel
-        Left = 3
-        Top = 115
+        Left = 47
+        Top = 202
         Width = 118
         Height = 19
         Caption = #1063#1080#1089#1083#1086' '#1087#1086#1083#1102#1089#1086#1074':'
@@ -977,6 +974,7 @@ object FZamerV2: TFZamerV2
         Top = 390
         Width = 335
         Height = 19
+        Alignment = taRightJustify
         Anchors = [akLeft, akTop, akRight]
         AutoSize = False
         Caption = #1057#1090#1077#1085#1076' '#1085#1077' '#1074#1099#1073#1088#1072#1085
@@ -989,28 +987,28 @@ object FZamerV2: TFZamerV2
       end
       object Label14: TLabel
         Left = 180
-        Top = 142
+        Top = 114
         Width = 70
         Height = 19
         Caption = #1053#1086#1084#1080#1085#1072#1083'.'
       end
       object Label20: TLabel
         Left = 267
-        Top = 142
+        Top = 114
         Width = 67
         Height = 19
         Caption = #1048#1089#1087#1099#1090#1072#1090'.'
       end
       object Label9: TLabel
         Left = 48
-        Top = 168
+        Top = 140
         Width = 121
         Height = 19
         Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
       end
       object Label7: TLabel
         Left = 49
-        Top = 199
+        Top = 171
         Width = 116
         Height = 19
         Caption = #1052#1086#1097#1085#1086#1089#1090#1100', '#1082#1042#1090':'
@@ -1042,34 +1040,34 @@ object FZamerV2: TFZamerV2
         TabOrder = 2
         Text = 'EditNumDvig'
       end
-      object ComboPolus: TComboBox
-        Left = 127
-        Top = 112
-        Width = 214
+      object ComboPolusIsp: TComboBox
+        Left = 263
+        Top = 199
+        Width = 79
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 3
-        Text = 'ComboPolus'
+        Text = '0'
       end
       object ComboEnergo: TComboBox
-        Left = 174
+        Left = 175
         Top = 232
-        Width = 167
+        Width = 166
         Height = 27
         TabOrder = 4
         Text = 'ComboEnergo'
       end
       object EditHumi: TEdit
-        Left = 174
+        Left = 175
         Top = 263
-        Width = 167
+        Width = 166
         Height = 27
         TabOrder = 5
         Text = 'EditHumi'
       end
       object EditPress: TEdit
         Left = 175
-        Top = 292
+        Top = 294
         Width = 167
         Height = 27
         TabOrder = 6
@@ -1333,7 +1331,7 @@ object FZamerV2: TFZamerV2
       end
       object CombUnom: TComboBox
         Left = 175
-        Top = 165
+        Top = 137
         Width = 78
         Height = 27
         TabOrder = 15
@@ -1341,26 +1339,34 @@ object FZamerV2: TFZamerV2
       end
       object CombUisp: TComboBox
         Left = 263
-        Top = 165
+        Top = 137
         Width = 79
         Height = 27
         TabOrder = 16
         Text = '0'
       end
       object ComboPNom: TComboBox
-        Left = 176
-        Top = 196
-        Width = 77
+        Left = 175
+        Top = 168
+        Width = 78
         Height = 27
         TabOrder = 17
         Text = '0'
       end
       object ComboPIsp: TComboBox
         Left = 263
-        Top = 196
+        Top = 168
         Width = 79
         Height = 27
         TabOrder = 18
+        Text = '0'
+      end
+      object ComboPolusNom: TComboBox
+        Left = 175
+        Top = 199
+        Width = 78
+        Height = 27
+        TabOrder = 19
         Text = '0'
       end
     end

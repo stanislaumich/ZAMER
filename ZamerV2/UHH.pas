@@ -9,7 +9,8 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Math, Uadd, Vcl.Buttons;
+  FireDAC.Comp.Client, Math, Uadd, Vcl.Buttons, Vcl.Grids, System.Actions,
+  Vcl.ActnList;
 
 type
   TFormHH = class(TForm)
@@ -33,10 +34,30 @@ type
     QUp: TFDQuery;
     QTemp: TFDQuery;
     BitBtn1: TBitBtn;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    RadioButton4: TRadioButton;
+    RadioButton5: TRadioButton;
+    RadioButton6: TRadioButton;
+    Label13: TLabel;
+    Label14: TLabel;
+    GroupBox3: TGroupBox;
+    StringGrid1: TStringGrid;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    RadioButton3: TRadioButton;
+    GroupBox4: TGroupBox;
+    StringGrid2: TStringGrid;
+    BitStart: TBitBtn;
+    BitSave: TBitBtn;
+    BitClear: TBitBtn;
+    ActionList1: TActionList;
+    Action1: TAction;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -51,6 +72,11 @@ implementation
 uses Uzv2Main;
 
 {$R *.dfm}
+
+procedure TFormHH.Action1Execute(Sender: TObject);
+begin
+ BitStart.Click;
+end;
 
 procedure TFormHH.FormActivate(Sender: TObject);
 begin
