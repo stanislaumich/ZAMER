@@ -334,6 +334,7 @@ object FormHH: TFormHH
       Width = 13
       Height = 17
       TabOrder = 1
+      OnClick = RadioButton1Click
     end
     object RadioButton2: TRadioButton
       Left = 159
@@ -341,6 +342,7 @@ object FormHH: TFormHH
       Width = 21
       Height = 17
       TabOrder = 2
+      OnClick = RadioButton2Click
     end
     object RadioButton3: TRadioButton
       Left = 221
@@ -348,6 +350,7 @@ object FormHH: TFormHH
       Width = 20
       Height = 17
       TabOrder = 3
+      OnClick = RadioButton3Click
     end
   end
   object GroupBox4: TGroupBox
@@ -383,7 +386,6 @@ object FormHH: TFormHH
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 732
     end
   end
   object BitStart: TBitBtn

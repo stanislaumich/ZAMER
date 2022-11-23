@@ -1119,7 +1119,7 @@ object FZamerV2: TFZamerV2
         TabOrder = 11
         Text = 'ComboSotrud'
       end
-      object BitBtn3: TBitBtn
+      object BitStartIsp: TBitBtn
         Left = 3
         Top = 572
         Width = 168
@@ -1189,9 +1189,9 @@ object FZamerV2: TFZamerV2
           9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         ParentFont = False
         TabOrder = 12
-        OnClick = BitBtn3Click
+        OnClick = BitStartIspClick
       end
-      object BitBtn4: TBitBtn
+      object BitArc: TBitBtn
         Left = 174
         Top = 572
         Width = 168
@@ -1261,7 +1261,7 @@ object FZamerV2: TFZamerV2
           A768D6A768D7A669CF9956EEDBC8FFFFFFFFFFFFFFFFFFFFFFFF}
         ParentFont = False
         TabOrder = 13
-        OnClick = BitBtn4Click
+        OnClick = BitArcClick
       end
       object BitBtn5: TBitBtn
         Left = 204

@@ -25,7 +25,6 @@ object FARC: TFARC
     Anchors = [akLeft, akTop, akRight, akBottom]
     Caption = #1057#1087#1080#1089#1086#1082' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 0
-    ExplicitHeight = 449
     DesignSize = (
       1005
       469)
@@ -131,7 +130,7 @@ object FARC: TFARC
           Visible = True
         end>
     end
-    object BitBtn1: TBitBtn
+    object BitSelect: TBitBtn
       Left = 879
       Top = 16
       Width = 120
@@ -195,11 +194,11 @@ object FARC: TFARC
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      ModalResult = 1
       TabOrder = 1
-      OnClick = BitBtn1Click
-      ExplicitLeft = 840
+      OnClick = BitSelectClick
     end
-    object BitBtn2: TBitBtn
+    object BitReport: TBitBtn
       Left = 879
       Top = 62
       Width = 120
@@ -263,10 +262,10 @@ object FARC: TFARC
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0AE8CC1AC
         8BBFA987BEA886BFA986BFA988C0AA89C0AB8BBEA27BBEA47EB59D6FA78D5C9A
         723AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      ModalResult = 6
       TabOrder = 2
-      ExplicitLeft = 840
     end
-    object BitBtn3: TBitBtn
+    object BitDelete: TBitBtn
       Left = 879
       Top = 427
       Width = 120
@@ -331,8 +330,6 @@ object FARC: TFARC
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 3
-      ExplicitLeft = 840
-      ExplicitTop = 407
     end
   end
   object TableSpis: TFDTable

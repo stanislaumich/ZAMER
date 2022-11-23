@@ -17,12 +17,12 @@ type
     TableSpis: TFDTable;
     DSSpis: TDataSource;
     GridSpis: TDBGrid;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
+    BitSelect: TBitBtn;
+    BitReport: TBitBtn;
+    BitDelete: TBitBtn;
     Label1: TLabel;
     procedure FormActivate(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
+    procedure BitSelectClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,17 +71,17 @@ begin
   end; { with }
 end; { setgridcolumnwidths }
 
-procedure TFARC.BitBtn1Click(Sender: TObject);
+procedure TFARC.BitSelectClick(Sender: TObject);
 begin
- Label1.Caption:=Gridspis.Datasource.dataset.FieldByName('NOMER').Asstring;
- Farc.Close;
+  Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
+  //FARC.Close;
 end;
 
 procedure TFARC.FormActivate(Sender: TObject);
 begin
   setgridcolumnwidths(GridSpis);
-  Gridspis.Datasource.dataset.First;
-  Label1.Caption:=Gridspis.Datasource.dataset.FieldByName('NOMER').Asstring;
+  GridSpis.datasource.DataSet.first;
+  Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
 end;
 
 end.

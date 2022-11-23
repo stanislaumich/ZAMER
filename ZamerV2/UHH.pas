@@ -58,6 +58,9 @@ type
     procedure TimUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
+    procedure RadioButton1Click(Sender: TObject);
+    procedure RadioButton2Click(Sender: TObject);
+    procedure RadioButton3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -75,7 +78,7 @@ uses Uzv2Main;
 
 procedure TFormHH.Action1Execute(Sender: TObject);
 begin
- BitStart.Click;
+  BitStart.Click;
 end;
 
 procedure TFormHH.FormActivate(Sender: TObject);
@@ -98,6 +101,27 @@ end;
 procedure TFormHH.FormShow(Sender: TObject);
 begin
   TimUp.Enabled := True;
+end;
+
+procedure TFormHH.RadioButton1Click(Sender: TObject);
+var
+ s:string;
+begin
+
+end;
+
+procedure TFormHH.RadioButton2Click(Sender: TObject);
+var
+ s:string;
+begin
+
+end;
+
+procedure TFormHH.RadioButton3Click(Sender: TObject);
+var
+ s:string;
+begin
+
 end;
 
 procedure TFormHH.TimUpTimer(Sender: TObject);
