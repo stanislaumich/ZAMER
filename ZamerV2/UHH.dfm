@@ -2,7 +2,7 @@ object FormHH: TFormHH
   Left = 0
   Top = 0
   Caption = #1061#1086#1083#1086#1089#1090#1086#1081' '#1093#1086#1076
-  ClientHeight = 635
+  ClientHeight = 662
   ClientWidth = 1043
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,12 +16,12 @@ object FormHH: TFormHH
   OnShow = FormShow
   DesignSize = (
     1043
-    635)
+    662)
   PixelsPerInch = 96
   TextHeight = 25
   object Label6: TLabel
     Left = 3
-    Top = 599
+    Top = 621
     Width = 237
     Height = 33
     Alignment = taRightJustify
@@ -35,7 +35,7 @@ object FormHH: TFormHH
   end
   object Label10: TLabel
     Left = 246
-    Top = 599
+    Top = 621
     Width = 17
     Height = 33
     Caption = '0'
@@ -309,7 +309,7 @@ object FormHH: TFormHH
     Left = 0
     Top = 217
     Width = 273
-    Height = 368
+    Height = 392
     Caption = #1042#1099#1073#1086#1088' '#1074#1072#1088#1080#1072#1085#1090#1072' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -322,31 +322,31 @@ object FormHH: TFormHH
       Left = 3
       Top = 28
       Width = 266
-      Height = 309
+      Height = 338
       ColCount = 4
       RowCount = 12
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
     end
     object RadioButton1: TRadioButton
-      Left = 95
-      Top = 343
+      Left = 94
+      Top = 372
       Width = 13
       Height = 17
       TabOrder = 1
       OnClick = RadioButton1Click
     end
     object RadioButton2: TRadioButton
-      Left = 159
-      Top = 343
+      Left = 158
+      Top = 372
       Width = 21
       Height = 17
       TabOrder = 2
       OnClick = RadioButton2Click
     end
     object RadioButton3: TRadioButton
-      Left = 221
-      Top = 343
+      Left = 220
+      Top = 372
       Width = 20
       Height = 17
       TabOrder = 3
@@ -390,7 +390,7 @@ object FormHH: TFormHH
   end
   object BitStart: TBitBtn
     Left = 724
-    Top = 591
+    Top = 620
     Width = 149
     Height = 41
     Caption = #1057#1090#1072#1088#1090' F5'
@@ -398,7 +398,7 @@ object FormHH: TFormHH
   end
   object BitSave: TBitBtn
     Left = 879
-    Top = 591
+    Top = 620
     Width = 161
     Height = 41
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100

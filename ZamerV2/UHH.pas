@@ -65,6 +65,8 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure loadgrids;
+    procedure savegrids;
   end;
 
 var
@@ -76,6 +78,43 @@ uses Uzv2Main;
 
 {$R *.dfm}
 
+procedure TFormHH.loadgrids;
+var
+ i,j,k:integer;
+begin
+ {SELECT
+NAME, FORM, IROW,
+   ICOL, VAL
+FROM ZAMER.ZGRIDS;
+}
+QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='+Quotedstr(FormHH.Name)+' and name='+Quotedstr('StringGrid1'));
+k:=13;
+StringGrid1.RowCount:=k;
+for i:=0 to k-1 do
+ for j:=0 to 3 do
+  StringGrid1.Cells[j,i]:='';
+While not QTemp.Eof do
+ begin
+  StringGrid1.Cells[QTemp.FieldByName('icol').Asinteger,QTemp.FieldByName('irow').Asinteger]:=QTemp.FieldByName('val').AsString;
+  QTemp.Next;
+ end;
+
+end;
+
+
+procedure TFormHH.savegrids;
+var
+ i,j:integer;
+begin
+ {SELECT
+NAME, FORM, IROW,
+   ICOL, VAL
+FROM ZAMER.ZGRIDS;}
+//QTEmp.Close;
+//QTemp.SQL.Clear;
+//QTemp.SQl.Add('delete from')
+
+end;
 procedure TFormHH.Action1Execute(Sender: TObject);
 begin
   BitStart.Click;
@@ -85,6 +124,7 @@ procedure TFormHH.FormActivate(Sender: TObject);
 begin
   QTemp.Open('select * from zdelta where name=' + Quotedstr('uhh'));
   Edit2.Text := QTemp.Fieldbyname('value').Asstring;
+  loadgrids;
 end;
 
 procedure TFormHH.FormHide(Sender: TObject);
@@ -96,6 +136,7 @@ begin
   QTemp.SQL.Add('update zdelta set value= ' + Quotedstr(Edit2.Text) +
     ' where name=' + Quotedstr('uhh'));
   QTemp.ExecSQL;
+  savegrids;
 end;
 
 procedure TFormHH.FormShow(Sender: TObject);
