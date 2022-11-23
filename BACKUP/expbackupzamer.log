@@ -56,10 +56,10 @@ EXP-00091: Exporting questionable statistics.
 . . exporting table                     ZELSPECTMP
                                                             1 rows exported
 . . exporting table                           ZERR
-                                                          202 rows exported
+                                                          203 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZGRIDS
-                                                           35 rows exported
+                                                           42 rows exported
 . . exporting table                         ZHHALL
 .........
                                                          9638 rows exported

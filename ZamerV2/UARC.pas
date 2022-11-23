@@ -74,7 +74,7 @@ end; { setgridcolumnwidths }
 procedure TFARC.BitSelectClick(Sender: TObject);
 begin
   Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
-  //FARC.Close;
+  // FARC.Close;
 end;
 
 procedure TFARC.FormActivate(Sender: TObject);

@@ -72,9 +72,9 @@ type
   end;
 
 var
-  FormHH: TFormHH;
-  currentvolt:single;
-  tipispyt :integer;
+  FormHH     : TFormHH;
+  currentvolt: single;
+  tipispyt   : integer;
 
 implementation
 
@@ -84,36 +84,52 @@ uses Uzv2Main;
 
 procedure TFormHH.loadgrids;
 var
- i,j,k:integer;
+  i, j, k: integer;
 begin
-QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='+Quotedstr(FormHH.Name)+' and name='+Quotedstr('StringGrid1'));
-k:=13;
-StringGrid1.RowCount:=k;
-for i:=0 to k-1 do
- for j:=0 to 3 do
-  StringGrid1.Cells[j,i]:='';
-While not QTemp.Eof do
- begin
-  StringGrid1.Cells[QTemp.FieldByName('icol').Asinteger,QTemp.FieldByName('irow').Asinteger]:=QTemp.FieldByName('val').AsString;
-  QTemp.Next;
- end;
+  QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
+    + Quotedstr(FormHH.Name) + ' and name=' + Quotedstr('StringGrid1'));
+  k                           := 13;
+  StringGrid1.RowCount        := k;
+  for i                       := 0 to k - 1 do
+    for j                     := 0 to 3 do
+      StringGrid1.Cells[j, i] := '';
+  While not QTemp.Eof do
+  begin
+    StringGrid1.Cells[QTemp.FieldByName('icol').Asinteger,
+      QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
+    QTemp.Next;
+  end;
 
+  QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
+    + Quotedstr(FormHH.Name) + ' and name=' + Quotedstr('StringGrid2'));
+  {k                           := 13;
+  StringGrid2.RowCount        := k;
+  for i                       := 0 to k - 1 do
+    for j                     := 0 to 3 do
+      StringGrid2.Cells[j, i] := '';
+      }
+  While not QTemp.Eof do
+  begin
+    StringGrid2.Cells[QTemp.FieldByName('icol').Asinteger,
+      QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
+    QTemp.Next;
+  end;
 end;
-
 
 procedure TFormHH.savegrids;
 var
- i,j:integer;
+  i, j: integer;
 begin
- {SELECT
-NAME, FORM, IROW,
-   ICOL, VAL
-FROM ZAMER.ZGRIDS;}
-//QTEmp.Close;
-//QTemp.SQL.Clear;
-//QTemp.SQl.Add('delete from')
+  { SELECT
+    NAME, FORM, IROW,
+    ICOL, VAL
+    FROM ZAMER.ZGRIDS; }
+  // QTEmp.Close;
+  // QTemp.SQL.Clear;
+  // QTemp.SQl.Add('delete from')
 
 end;
+
 procedure TFormHH.Action1Execute(Sender: TObject);
 begin
   BitStart.Click;
@@ -122,7 +138,7 @@ end;
 procedure TFormHH.FormActivate(Sender: TObject);
 begin
   QTemp.Open('select * from zdelta where name=' + Quotedstr('uhh'));
-  Edit2.Text := QTemp.Fieldbyname('value').Asstring;
+  Edit2.Text := QTemp.FieldByName('value').AsString;
   loadgrids;
 end;
 
@@ -145,13 +161,13 @@ end;
 
 procedure TFormHH.RadioButton1Click(Sender: TObject);
 var
-  i, j: Integer;
-  cod : Integer;
+  i, j: integer;
+  cod : integer;
 
 begin
-  for i                       := 1 to StringGrid2.colcount - 1 do
-    for j                     := 0 to StringGrid2.RowCount - 1 do
-      StringGrid2.Cells[j, i] := '';
+  for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
+      StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
   if StringGrid1.Cells[1, 1] = '' then
   begin
@@ -175,7 +191,7 @@ begin
     StringGrid2.row                                := 1;
     tipispyt                                       := 1;
     // установите напряжение
-    Label8.Caption                                 := StringGrid2.Cells[0, 1];
+    Label8.Caption := StringGrid2.Cells[0, 1];
   end
   else
     ShowMessage
@@ -184,13 +200,13 @@ end;
 
 procedure TFormHH.RadioButton2Click(Sender: TObject);
 var
-  i, j: Integer;
-  cod : Integer;
+  i, j: integer;
+  cod : integer;
 
 begin
-  for i                       := 1 to StringGrid2.colcount - 1 do
-    for j                     := 0 to StringGrid2.RowCount - 1 do
-      StringGrid2.Cells[j, i] := '';
+  for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
+      StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
   if StringGrid1.Cells[2, 1] = '' then
   begin
@@ -214,7 +230,7 @@ begin
     StringGrid2.row                                := 1;
     tipispyt                                       := 1;
     // установите напряжение
-    Label8.Caption                                 := StringGrid2.Cells[0, 1];
+    Label8.Caption := StringGrid2.Cells[0, 1];
   end
   else
     ShowMessage
@@ -223,13 +239,13 @@ end;
 
 procedure TFormHH.RadioButton3Click(Sender: TObject);
 var
-  i, j: Integer;
-  cod : Integer;
+  i, j: integer;
+  cod : integer;
 
 begin
-  for i                       := 1 to StringGrid2.colcount - 1 do
-    for j                     := 0 to StringGrid2.RowCount - 1 do
-      StringGrid2.Cells[j, i] := '';
+  for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
+      StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
   if StringGrid1.Cells[3, 1] = '' then
   begin
@@ -253,7 +269,7 @@ begin
     StringGrid2.row                                := 1;
     tipispyt                                       := 1;
     // установите напряжение
-    Label8.Caption                                 := StringGrid2.Cells[0, 1];
+    Label8.Caption := StringGrid2.Cells[0, 1];
   end
   else
     ShowMessage
@@ -263,7 +279,7 @@ end;
 procedure TFormHH.TimUpTimer(Sender: TObject);
 begin
   QUp.Open('select U from zelspectmp');
-  if abs(QUp.Fieldbyname('U').Asfloat - myfloat(Label8.Caption)) <
+  if abs(QUp.FieldByName('U').Asfloat - myfloat(Label8.Caption)) <
     myfloat(nvltozero(Edit2.Text)) then
   begin
     Label4.Font.Color := clGreen;
@@ -274,7 +290,7 @@ begin
     Label4.Font.Color := clRed;
     Label9.Font.Color := clRed;
   end;
-  Label9.Caption := myformat(tRazU, QUp.Fieldbyname('U').Asfloat);
+  Label9.Caption := myformat(tRazU, QUp.FieldByName('U').Asfloat);
 end;
 
 end.

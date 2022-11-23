@@ -47,20 +47,20 @@ type
         Label16: TLabel;
         Label17: TLabel;
         Label18: TLabel;
-    CombTipDvig: TComboBox;
+        CombTipDvig: TComboBox;
         EditNumDvig: TEdit;
-    CombPolIsp: TComboBox;
-    CombEnergo: TComboBox;
+        CombPolIsp: TComboBox;
+        CombEnergo: TComboBox;
         EditHumi: TEdit;
         EditPress: TEdit;
-    CombRegim: TComboBox;
-    CombStend: TComboBox;
+        CombRegim: TComboBox;
+        CombStend: TComboBox;
         Label19: TLabel;
         EditOsob: TEdit;
-    EditOsmotr: TEdit;
-    CombSotrud: TComboBox;
-    BitStartIsp: TBitBtn;
-    BitArc: TBitBtn;
+        EditOsmotr: TEdit;
+        CombSotrud: TComboBox;
+        BitStartIsp: TBitBtn;
+        BitArc: TBitBtn;
         BitBtn5: TBitBtn;
         FDC: TFDConnection;
         QTemp: TFDQuery;
@@ -72,8 +72,8 @@ type
         Label7: TLabel;
         CombUnom: TComboBox;
         CombUisp: TComboBox;
-    CombPNom: TComboBox;
-    CombPIsp: TComboBox;
+        CombPNom: TComboBox;
+        CombPIsp: TComboBox;
         Image1: TImage;
         Image2: TImage;
         Image3: TImage;
@@ -81,7 +81,7 @@ type
         Image5: TImage;
         Image6: TImage;
         Image7: TImage;
-    CombPolNom: TComboBox;
+        CombPolNom: TComboBox;
         procedure FormCreate(Sender: TObject);
         procedure FormClose(Sender: TObject; var Action: TCloseAction);
         procedure ExitBtnClick(Sender: TObject);
@@ -105,15 +105,13 @@ type
         procedure comboaddtext;
         procedure ImgSet(i: TImage; v: boolean);
         procedure LoadIspyt(nomer: string);
-        procedure enableispyt(f:boolean);
+        procedure enableispyt(f: boolean);
     end;
 
 var
     FZamerV2   : TFZamerV2;
     nomer      : String;
     cancloseapp: boolean;
-
-
 
 implementation
 
@@ -299,8 +297,8 @@ end;
 
 procedure TFZamerV2.BHHClick(Sender: TObject);
 begin
-    FormHH.Label7.Caption := CombUisp.Text;
-    FormHH.Label12.Caption := Nomer;
+    FormHH.Label7.Caption  := CombUisp.Text;
+    FormHH.Label12.Caption := nomer;
     FormHH.Show;
 end;
 
@@ -320,103 +318,106 @@ begin
         ShowMessage('Проверьте поля, не все необходимые поля заполнены');
 end;
 
-procedure TFZamerV2.enableispyt(f:boolean);
- begin
-   BSoprot.Enabled:=f;
- end;
+procedure TFZamerV2.enableispyt(f: boolean);
+begin
+    BSoprot.Enabled := f;
+end;
 
 procedure TFZamerV2.LoadIspyt(nomer: string);
 var
-    s: string;
-    tip:integer;
+    s  : string;
+    tip: integer;
 begin
- // двигатель целиком
+    // двигатель целиком
     QTemp.Close;
     QTemp.SQL.Clear;
-    QTemp.SQL.Add('select * from zdvigall where nomer='+Quotedstr(nomer));
+    QTemp.SQL.Add('select * from zdvigall where nomer=' + Quotedstr(nomer));
     QTemp.Open;
-        Datetimepicker1.DateTime:= Strtodate(QTemp.FieldByName('DATA').AsString);
-        CombTipDvig.Text  := QTemp.FieldByName('tipdv').AsString;
-        EditNumDvig.Text      := QTemp.FieldByName('nomdv').AsString;
-        Combunom.Text  := QTemp.FieldByName('unom').AsString;
-        Combuisp.Text  := QTemp.FieldByName('uisp').AsString;
-        Combpnom.Text  := QTemp.FieldByName('pnom').AsString;
-        Combpisp.Text  := QTemp.FieldByName('pisp').AsString;
-        Combpolnom.Text  := QTemp.FieldByName('polnom').AsString;
-        Combpolisp.Text  := QTemp.FieldByName('polisp').AsString;
-        CombEnergo.Text  := QTemp.FieldByName('energo').AsString;
-        EditHumi.Text    := QTemp.FieldByName('humid').AsString;
-        EditPress.Text   := QTemp.FieldByName('pressur').AsString;
-        CombRegim.Text  := QTemp.FieldByName('regim').AsString;
-        CombStend.Text  := QTemp.FieldByName('stendn').AsString;
-        Label19.Caption := QTemp.FieldByName('stenda').AsString;
-        EditOsob.Text    := QTemp.FieldByName('ispoln').AsString;
-        EditOsmotr.Text    := QTemp.FieldByName('dop1').AsString;
-        CombSotrud.Text  := QTemp.FieldByName('fio').AsString;
-        enableispyt(True);
-
- /// ////////////////////////////////////////////////////////////
+    DateTimePicker1.DateTime := Strtodate(QTemp.FieldByName('DATA').Asstring);
+    CombTipDvig.Text         := QTemp.FieldByName('tipdv').Asstring;
+    EditNumDvig.Text         := QTemp.FieldByName('nomdv').Asstring;
+    CombUnom.Text            := QTemp.FieldByName('unom').Asstring;
+    CombUisp.Text            := QTemp.FieldByName('uisp').Asstring;
+    CombPNom.Text            := QTemp.FieldByName('pnom').Asstring;
+    CombPIsp.Text            := QTemp.FieldByName('pisp').Asstring;
+    CombPolNom.Text          := QTemp.FieldByName('polnom').Asstring;
+    CombPolIsp.Text          := QTemp.FieldByName('polisp').Asstring;
+    CombEnergo.Text          := QTemp.FieldByName('energo').Asstring;
+    EditHumi.Text            := QTemp.FieldByName('humid').Asstring;
+    EditPress.Text           := QTemp.FieldByName('pressur').Asstring;
+    CombRegim.Text           := QTemp.FieldByName('regim').Asstring;
+    CombStend.Text           := QTemp.FieldByName('stendn').Asstring;
+    Label19.Caption          := QTemp.FieldByName('stenda').Asstring;
+    EditOsob.Text            := QTemp.FieldByName('ispoln').Asstring;
+    EditOsmotr.Text          := QTemp.FieldByName('dop1').Asstring;
+    CombSotrud.Text          := QTemp.FieldByName('fio').Asstring;
+    enableispyt(true);
+    /// ////////////////////////////////////////////////////////////
     // загрузить Холостой ход если есть
-    Qtemp.Close;
-    Qtemp.SQL.Clear;
-    Qtemp.Open('select * from zhhsvod where nomer=' + Quotedstr(Nomer) +
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select * from zhhsvod where nomer=' + Quotedstr(nomer) +
       ' order by uisp desc');
-    ImgSet(Image2,Qtemp.RecordCount <> 0);
+    ImgSet(Image2, QTemp.RecordCount <> 0);
 
-    tip := Qtemp.FieldByName('tip').AsInteger;
+    tip := QTemp.FieldByName('tip').AsInteger;
     case tip of
         1:
             begin
-                formhh.Radiobutton1Click(formhh);
-                formhh.radiobutton1.Checked := True;
+                FormHH.Radiobutton1Click(FormHH);
+                FormHH.radiobutton1.Checked := true;
             end;
         2:
             begin
-                formhh.Radiobutton2Click(formhh);
-                formhh.radiobutton2.Checked := True;
+                FormHH.Radiobutton2Click(FormHH);
+                FormHH.radiobutton2.Checked := true;
             end;
         3:
             begin
-                formhh.Radiobutton3Click(formhh);
-                formhh.radiobutton3.Checked := True;
+                FormHH.Radiobutton3Click(FormHH);
+                FormHH.radiobutton3.Checked := true;
             end;
     end;
-    tip                        := 1;
-    formhh.Stringgrid2.rowcount := Qtemp.RecordCount + 2;
-    while not(Qtemp.Eof) do
+    tip                         := 1;
+    FormHH.Stringgrid2.rowcount := QTemp.RecordCount + 2;
+    while not(QTemp.Eof) do
     begin
-        formhh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;
-        formhh.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred').Asstring;
-        formhh.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
-        formhh.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('dumax').Asstring;
-        formhh.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('r').Asstring;
-        formhh.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('otklon').Asstring;
-        Qtemp.Next;
+        FormHH.Stringgrid2.Cells[1, tip] := QTemp.FieldByName('usred').Asstring;
+        FormHH.Stringgrid2.Cells[2, tip] := QTemp.FieldByName('isred').Asstring;
+        FormHH.Stringgrid2.Cells[3, tip] := QTemp.FieldByName('psred').Asstring;
+        FormHH.Stringgrid2.Cells[4, tip] := QTemp.FieldByName('dumax').Asstring;
+        FormHH.Stringgrid2.Cells[5, tip] := QTemp.FieldByName('r').Asstring;
+        FormHH.Stringgrid2.Cells[6, tip] := QTemp.FieldByName('otklon')
+          .Asstring;
+        QTemp.Next;
         tip := tip + 1;
     end;
-    case Qtemp.FieldByName('vizol').AsInteger of
-    0: Formhh.RadioButton6.Checked:=true;
-    1: Formhh.RadioButton4.Checked:=true;
-    2: Formhh.RadioButton5.Checked:=true;
+    case QTemp.FieldByName('vizol').AsInteger of
+        0:
+            FormHH.RadioButton6.Checked := true;
+        1:
+            FormHH.RadioButton4.Checked := true;
+        2:
+            FormHH.RadioButton5.Checked := true;
     end;
- ///////////////////////////////////////////////////////////////////////////////
+    /// ////////////////////////////////////////////////////////////////////////////
 end;
 
 procedure TFZamerV2.BitArcClick(Sender: TObject);
 var
- i:integer;
+    i: integer;
 begin
-    i:= Farc.ShowModal;
+    i := Farc.ShowModal;
     if i = mrOk then
     begin
         LNOMER.Caption := Farc.Label1.Caption;
-        Nomer          := LNOMER.Caption;
+        nomer          := LNOMER.Caption;
         LoadIspyt(nomer);
     end;
     if i = mrYes then
     begin
         LNOMER.Caption := Farc.Label1.Caption;
-        Nomer          := LNOMER.Caption;
+        nomer          := LNOMER.Caption;
         LoadIspyt(nomer);
     end;
 
@@ -440,7 +441,7 @@ end;
 
 procedure TFZamerV2.FormCreate(Sender: TObject);
 begin
-    QTEmp.SQL.Clear;
+    QTemp.SQL.Clear;
     QTemp.SQL.Add('Update version set maintotal=maintotal+1');
     QTemp.ExecSQL;
     cancloseapp := true;
