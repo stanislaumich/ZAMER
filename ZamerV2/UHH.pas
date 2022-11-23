@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Math, Uadd, Vcl.Buttons, Vcl.Grids, System.Actions,
-  Vcl.ActnList;
+  Vcl.ActnList, Vcl.ComCtrls;
 
 type
   TFormHH = class(TForm)
@@ -53,6 +53,8 @@ type
     BitClear: TBitBtn;
     ActionList1: TActionList;
     Action1: TAction;
+    ProgressBar1: TProgressBar;
+    TimWork1000: TTimer;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -71,6 +73,8 @@ type
 
 var
   FormHH: TFormHH;
+  currentvolt:single;
+  tipispyt :integer;
 
 implementation
 
@@ -82,11 +86,6 @@ procedure TFormHH.loadgrids;
 var
  i,j,k:integer;
 begin
- {SELECT
-NAME, FORM, IROW,
-   ICOL, VAL
-FROM ZAMER.ZGRIDS;
-}
 QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='+Quotedstr(FormHH.Name)+' and name='+Quotedstr('StringGrid1'));
 k:=13;
 StringGrid1.RowCount:=k;
@@ -146,23 +145,119 @@ end;
 
 procedure TFormHH.RadioButton1Click(Sender: TObject);
 var
- s:string;
-begin
+  i, j: Integer;
+  cod : Integer;
 
+begin
+  for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.RowCount - 1 do
+      StringGrid2.Cells[j, i] := '';
+  StringGrid2.RowCount        := 2;
+  if StringGrid1.Cells[1, 1] = '' then
+  begin
+    ShowMessage('Нет данных для испытания');
+    exit;
+  end;
+
+  val(FZamerv2.CombUisp.Text, currentvolt, cod);
+  if cod = 0 then
+  begin
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
+      if StringGrid1.Cells[1, i] <> '' then
+      begin
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
+        StringGrid2.Cells[0, i] :=
+          floattostr(round(currentvolt / 100 *
+          Strtoint(StringGrid1.Cells[1, i])));
+      end;
+    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    StringGrid2.row                                := 1;
+    tipispyt                                       := 1;
+    // установите напряжение
+    Label8.Caption                                 := StringGrid2.Cells[0, 1];
+  end
+  else
+    ShowMessage
+      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
 procedure TFormHH.RadioButton2Click(Sender: TObject);
 var
- s:string;
-begin
+  i, j: Integer;
+  cod : Integer;
 
+begin
+  for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.RowCount - 1 do
+      StringGrid2.Cells[j, i] := '';
+  StringGrid2.RowCount        := 2;
+  if StringGrid1.Cells[2, 1] = '' then
+  begin
+    ShowMessage('Нет данных для испытания');
+    exit;
+  end;
+
+  val(FZamerv2.CombUisp.Text, currentvolt, cod);
+  if cod = 0 then
+  begin
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
+      if StringGrid1.Cells[2, i] <> '' then
+      begin
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
+        StringGrid2.Cells[0, i] :=
+          floattostr(round(currentvolt / 100 *
+          Strtoint(StringGrid1.Cells[2, i])));
+      end;
+    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    StringGrid2.row                                := 1;
+    tipispyt                                       := 1;
+    // установите напряжение
+    Label8.Caption                                 := StringGrid2.Cells[0, 1];
+  end
+  else
+    ShowMessage
+      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
 procedure TFormHH.RadioButton3Click(Sender: TObject);
 var
- s:string;
-begin
+  i, j: Integer;
+  cod : Integer;
 
+begin
+  for i                       := 1 to StringGrid2.colcount - 1 do
+    for j                     := 0 to StringGrid2.RowCount - 1 do
+      StringGrid2.Cells[j, i] := '';
+  StringGrid2.RowCount        := 2;
+  if StringGrid1.Cells[3, 1] = '' then
+  begin
+    ShowMessage('Нет данных для испытания');
+    exit;
+  end;
+
+  val(FZamerv2.CombUisp.Text, currentvolt, cod);
+  if cod = 0 then
+  begin
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
+      if StringGrid1.Cells[3, i] <> '' then
+      begin
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
+        StringGrid2.Cells[0, i] :=
+          floattostr(round(currentvolt / 100 *
+          Strtoint(StringGrid1.Cells[3, i])));
+      end;
+    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    StringGrid2.row                                := 1;
+    tipispyt                                       := 1;
+    // установите напряжение
+    Label8.Caption                                 := StringGrid2.Cells[0, 1];
+  end
+  else
+    ShowMessage
+      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
 procedure TFormHH.TimUpTimer(Sender: TObject);

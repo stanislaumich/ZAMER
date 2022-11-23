@@ -357,7 +357,7 @@ object FormHH: TFormHH
     Left = 275
     Top = 217
     Width = 768
-    Height = 368
+    Height = 392
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
@@ -369,12 +369,12 @@ object FormHH: TFormHH
     TabOrder = 4
     DesignSize = (
       768
-      368)
+      392)
     object StringGrid2: TStringGrid
       Left = 3
       Top = 28
       Width = 762
-      Height = 309
+      Height = 337
       Anchors = [akLeft, akTop, akRight]
       ColCount = 7
       DefaultColWidth = 100
@@ -386,6 +386,14 @@ object FormHH: TFormHH
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       ParentFont = False
       TabOrder = 0
+    end
+    object ProgressBar1: TProgressBar
+      Left = 3
+      Top = 368
+      Width = 762
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 1
     end
   end
   object BitStart: TBitBtn
@@ -424,12 +432,12 @@ object FormHH: TFormHH
     SQL.Strings = (
       '')
     Left = 368
-    Top = 385
+    Top = 389
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 428
-    Top = 385
+    Left = 424
+    Top = 389
   end
   object ActionList1: TActionList
     Left = 304
@@ -439,5 +447,10 @@ object FormHH: TFormHH
       ShortCut = 116
       OnExecute = Action1Execute
     end
+  end
+  object TimWork1000: TTimer
+    Enabled = False
+    Left = 371
+    Top = 341
   end
 end

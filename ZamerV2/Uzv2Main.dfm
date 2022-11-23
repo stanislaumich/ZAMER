@@ -1022,14 +1022,14 @@ object FZamerV2: TFZamerV2
         Time = 0.363948067126330000
         TabOrder = 0
       end
-      object ComboTipDvig: TComboBox
+      object CombTipDvig: TComboBox
         Left = 89
         Top = 52
         Width = 252
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
-        Text = 'ComboTipDvig'
+        Text = 'CombTipDvig'
       end
       object EditNumDvig: TEdit
         Left = 108
@@ -1040,7 +1040,7 @@ object FZamerV2: TFZamerV2
         TabOrder = 2
         Text = 'EditNumDvig'
       end
-      object ComboPolusIsp: TComboBox
+      object CombPolIsp: TComboBox
         Left = 263
         Top = 199
         Width = 79
@@ -1049,13 +1049,13 @@ object FZamerV2: TFZamerV2
         TabOrder = 3
         Text = '0'
       end
-      object ComboEnergo: TComboBox
+      object CombEnergo: TComboBox
         Left = 175
         Top = 232
         Width = 166
         Height = 27
         TabOrder = 4
-        Text = 'ComboEnergo'
+        Text = 'CombEnergo'
       end
       object EditHumi: TEdit
         Left = 175
@@ -1073,23 +1073,23 @@ object FZamerV2: TFZamerV2
         TabOrder = 6
         Text = 'EditPress'
       end
-      object ComboRegim: TComboBox
+      object CombRegim: TComboBox
         Left = 66
         Top = 325
         Width = 275
         Height = 27
         TabOrder = 7
-        Text = 'ComboRegim'
+        Text = 'CombRegim'
       end
-      object ComboStend: TComboBox
+      object CombStend: TComboBox
         Tag = 500
-        Left = 66
-        Top = 356
+        Left = 67
+        Top = 357
         Width = 275
         Height = 27
         TabOrder = 8
-        Text = 'ComboStend'
-        OnChange = ComboStendChange
+        Text = 'CombStend'
+        OnChange = CombStendChange
       end
       object EditOsob: TEdit
         Left = 3
@@ -1100,16 +1100,16 @@ object FZamerV2: TFZamerV2
         TabOrder = 9
         Text = 'EditOsob'
       end
-      object Edit8: TEdit
+      object EditOsmotr: TEdit
         Left = 3
         Top = 486
         Width = 338
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 10
-        Text = 'Edit8'
+        Text = 'EditOsmotr'
       end
-      object ComboSotrud: TComboBox
+      object CombSotrud: TComboBox
         Tag = 500
         Left = 102
         Top = 540
@@ -1117,7 +1117,7 @@ object FZamerV2: TFZamerV2
         Height = 27
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 11
-        Text = 'ComboSotrud'
+        Text = 'CombSotrud'
       end
       object BitStartIsp: TBitBtn
         Left = 3
@@ -1345,7 +1345,7 @@ object FZamerV2: TFZamerV2
         TabOrder = 16
         Text = '0'
       end
-      object ComboPNom: TComboBox
+      object CombPNom: TComboBox
         Left = 175
         Top = 168
         Width = 78
@@ -1353,7 +1353,7 @@ object FZamerV2: TFZamerV2
         TabOrder = 17
         Text = '0'
       end
-      object ComboPIsp: TComboBox
+      object CombPIsp: TComboBox
         Left = 263
         Top = 168
         Width = 79
@@ -1361,7 +1361,7 @@ object FZamerV2: TFZamerV2
         TabOrder = 18
         Text = '0'
       end
-      object ComboPolusNom: TComboBox
+      object CombPolNom: TComboBox
         Left = 175
         Top = 199
         Width = 78
