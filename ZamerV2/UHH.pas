@@ -55,6 +55,8 @@ type
     Action1: TAction;
     ProgressBar1: TProgressBar;
     TimWork1000: TTimer;
+    QInsAll: TFDQuery;
+    QSelectSred: TFDQuery;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -363,25 +365,51 @@ begin
   begin
    TimWork1000.Enabled := false;
    Command(false);
-    {
-    QinsAll.ParamByName('NOMER').Asstring := Nomer;
-      QinsAll.ParamByName('UISP').AsFloat   := StrtoFloat(Label6.Caption);
-      QinsAll.ParamByName('U12').AsFloat    := a[i].u1;
-      QinsAll.ParamByName('U23').AsFloat    := a[i].u2;
-      QinsAll.ParamByName('U31').AsFloat    := a[i].u3;
-      QinsAll.ParamByName('I1').AsFloat     := a[i].i1;
-      QinsAll.ParamByName('I2').AsFloat     := a[i].i2;
-      QinsAll.ParamByName('I3').AsFloat     := a[i].i3;
-      QinsAll.ParamByName('P1').AsFloat     := a[i].p1;
-      QinsAll.ParamByName('P2').AsFloat     := a[i].p2;
-      QinsAll.ParamByName('P3').AsFloat     := a[i].p3;
-      QinsAll.ParamByName('Ps').AsFloat     := a[i].ps;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select * from zelspec');
+    While not Qtemp.Eof do
+     begin
+      QinsAll.ParamByName('NOMER').Asstring := Nomer;
+      QinsAll.ParamByName('UISP').AsFloat   := StrtoFloat(Label8.Caption);
+      QinsAll.ParamByName('U12').AsFloat    := QTemp.FieldByName('u1').AsFloat;
+      QinsAll.ParamByName('U23').AsFloat    := QTemp.FieldByName('u2').AsFloat;
+      QinsAll.ParamByName('U31').AsFloat    := QTemp.FieldByName('u3').AsFloat;
+      QinsAll.ParamByName('I1').AsFloat     := QTemp.FieldByName('i1').AsFloat;
+      QinsAll.ParamByName('I2').AsFloat     := QTemp.FieldByName('i2').AsFloat;
+      QinsAll.ParamByName('I3').AsFloat     := QTemp.FieldByName('i3').AsFloat;
+      QinsAll.ParamByName('P1').AsFloat     := QTemp.FieldByName('p1').AsFloat;
+      QinsAll.ParamByName('P2').AsFloat     := QTemp.FieldByName('p2').AsFloat;
+      QinsAll.ParamByName('P3').AsFloat     := QTemp.FieldByName('p3').AsFloat;
+      QinsAll.ParamByName('Ps').AsFloat     := (QTemp.FieldByName('p1').AsFloat+
+      QTemp.FieldByName('p2').AsFloat+
+      QTemp.FieldByName('p3').AsFloat);
       QinsAll.ParamByName('DUMAX').AsFloat  := 0;
-      QinsAll.ParamByName('FU').AsFloat     := a[i].u;
-      QinsAll.ParamByName('FI').AsFloat     := a[i].i;
-      QinsAll.ParamByName('FP').AsFloat     := a[i].ps;
+      QinsAll.ParamByName('FU').AsFloat     := QTemp.FieldByName('u').AsFloat;
+      QinsAll.ParamByName('FI').AsFloat     := QTemp.FieldByName('i').AsFloat;
+      QinsAll.ParamByName('FP').AsFloat     := QTemp.FieldByName('p').AsFloat;
       QinsAll.ExecSQL;
-      }
+     QTemp.Next;
+     end;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('select count(*) r from zhhall where nomer=' +
+      Quotedstr(Nomer) + ' and uisp=' + Label6.Caption + ' and dumax>' +
+      Edit2.Text);
+    QTemp.Open;
+    errcnt := QTemp.fieldbyname('r').Asinteger;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('select count(*) r from zhhall where nomer=' +
+      Quotedstr(Nomer) + ' and uisp=' + Label6.Caption + ' and dumax<=' +
+      Edit2.Text);
+    QTemp.Open;
+    goodcnt := QTemp.fieldbyname('r').Asinteger;
+    Qselectsred.Close;
+    Qselectsred.ParamByName('nomer').Asstring := Nomer;
+    Qselectsred.ParamByName('uisp').AsFloat   := StrtoFloat(Label6.Caption);
+    Qselectsred.ParamByName('delta').AsFloat  := myfloat(Edit2.Text);
+    Qselectsred.Open;
 
   end;
 

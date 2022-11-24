@@ -457,4 +457,33 @@ object FormHH: TFormHH
     Left = 371
     Top = 341
   end
+  object QInsAll: TFDQuery
+    Left = 547
+    Top = 349
+  end
+  object QSelectSred: TFDQuery
+    SQL.Strings = (
+      'select '
+      'avg(fu), avg(fi), avg(fp)'
+      'from zhhall'
+      'where'
+      'nomer=:nomer'
+      'and uisp=:uisp'
+      'and dumax<=:delta')
+    Left = 507
+    Top = 409
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DELTA'
+        ParamType = ptInput
+      end>
+  end
 end
