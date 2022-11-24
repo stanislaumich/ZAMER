@@ -3,8 +3,8 @@ object Form1: TForm1
   Top = 10
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = #1057#1073#1086#1088' ELSPEC'
-  ClientHeight = 319
-  ClientWidth = 163
+  ClientHeight = 320
+  ClientWidth = 164
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlue
@@ -17,15 +17,15 @@ object Form1: TForm1
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    163
-    319)
+    164
+    320)
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
     Left = 2
     Top = 3
-    Width = 157
-    Height = 133
+    Width = 158
+    Height = 134
     Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -35,9 +35,11 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
     OnMouseDown = GroupBox1MouseDown
+    ExplicitWidth = 157
+    ExplicitHeight = 133
     DesignSize = (
-      157
-      133)
+      158
+      134)
     object Label1: TLabel
       Left = 8
       Top = 3
@@ -353,7 +355,7 @@ object Form1: TForm1
     object GroupBox3: TGroupBox
       Left = 3
       Top = 100
-      Width = 151
+      Width = 152
       Height = 9
       Anchors = [akLeft, akTop, akRight]
       Color = clActiveCaption
@@ -363,6 +365,7 @@ object Form1: TForm1
       OnMouseDown = GroupBox3MouseDown
       OnMouseEnter = GroupBox3MouseEnter
       OnMouseLeave = GroupBox3MouseLeave
+      ExplicitWidth = 151
     end
     object CheckBox1: TCheckBox
       Left = 8
@@ -382,7 +385,7 @@ object Form1: TForm1
     object GroupBox4: TGroupBox
       Left = 3
       Top = 252
-      Width = 151
+      Width = 152
       Height = 9
       Anchors = [akLeft, akTop, akRight]
       Color = clActiveCaption
@@ -390,11 +393,12 @@ object Form1: TForm1
       ParentColor = False
       TabOrder = 2
       OnMouseDown = GroupBox4MouseDown
+      ExplicitWidth = 151
     end
     object GroupBox5: TGroupBox
       Left = 3
       Top = 384
-      Width = 151
+      Width = 152
       Height = 9
       Anchors = [akLeft, akTop, akRight]
       Color = clActiveCaption
@@ -403,17 +407,20 @@ object Form1: TForm1
       TabOrder = 3
       OnClick = GroupBox5Click
       OnMouseDown = GroupBox5MouseDown
+      ExplicitWidth = 151
     end
   end
   object GroupBox2: TGroupBox
     Left = 4
-    Top = 163
-    Width = 157
+    Top = 164
+    Width = 158
     Height = 117
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 1
+    ExplicitTop = 163
+    ExplicitWidth = 157
     DesignSize = (
-      157
+      158
       117)
     object Label7: TLabel
       Left = 3
@@ -439,48 +446,54 @@ object Form1: TForm1
     object Edit1: TEdit
       Left = 41
       Top = 3
-      Width = 109
+      Width = 110
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       Text = '127.0.0.1'
+      ExplicitWidth = 109
     end
     object Edit2: TEdit
       Left = 41
       Top = 30
-      Width = 109
+      Width = 110
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
       Text = '502'
+      ExplicitWidth = 109
     end
     object Edit3: TEdit
       Left = 41
       Top = 58
-      Width = 109
+      Width = 110
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
       Text = '159'
+      ExplicitWidth = 109
     end
     object Button1: TButton
       Left = 3
       Top = 82
-      Width = 147
+      Width = 148
       Height = 25
       Anchors = [akLeft, akTop, akRight]
       Caption = #1058#1045#1057#1058
       TabOrder = 3
       OnClick = Button1Click
+      ExplicitWidth = 147
     end
   end
   object GroupBox6: TGroupBox
     Left = 4
-    Top = 283
-    Width = 157
+    Top = 284
+    Width = 158
     Height = 33
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 2
+    ExplicitTop = 283
+    ExplicitWidth = 157
     object CheckBox2: TCheckBox
       Left = 8
       Top = 8
@@ -492,13 +505,14 @@ object Form1: TForm1
   end
   object CheckBox3: TCheckBox
     Left = 30
-    Top = 143
+    Top = 144
     Width = 93
     Height = 17
     Anchors = [akLeft, akBottom]
     Caption = #1041#1086#1083#1100#1096#1086#1077' '#1086#1082#1085#1086
     TabOrder = 3
     OnClick = CheckBox3Click
+    ExplicitTop = 143
   end
   object KRTCPConnector1: TKRTCPConnector
     IP = '127.0.0.1'
@@ -655,8 +669,8 @@ object Form1: TForm1
     ResourceOptions.SilentMode = True
     Connected = True
     LoginPrompt = False
-    Left = 96
-    Top = 336
+    Left = 12
+    Top = 12
   end
   object QTemp: TFDQuery
     Connection = FDC
@@ -664,10 +678,10 @@ object Form1: TForm1
       'INSERT INTO ZAMER.ZELSPEC ('
       '   ID, U, I, P, U1, U2,U3, I1, I2, I3, DOP, p1, p2, p3) '
       
-        'VALUES ( :ID ,:U ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP,:p1,:p2,' +
+        'VALUES ( :ID ,:u ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP,:p1,:p2,' +
         ':p3)')
-    Left = 100
-    Top = 432
+    Left = 20
+    Top = 68
     ParamData = <
       item
         Name = 'ID'
@@ -728,8 +742,8 @@ object Form1: TForm1
   end
   object QComm: TFDQuery
     Connection = FDC
-    Left = 96
-    Top = 484
+    Left = 24
+    Top = 124
   end
   object TComm: TTimer
     OnTimer = TCommTimer
@@ -738,8 +752,8 @@ object Form1: TForm1
   end
   object QT: TFDQuery
     Connection = FDC
-    Left = 104
-    Top = 384
+    Left = 44
+    Top = 12
   end
   object QtmpUpd: TFDQuery
     Connection = FDC

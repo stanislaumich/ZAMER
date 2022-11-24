@@ -13,7 +13,7 @@ object FZamerV2: TFZamerV2
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -1403,6 +1403,112 @@ object FZamerV2: TFZamerV2
     ParamData = <
       item
         Name = 'NAME'
+        ParamType = ptInput
+      end>
+  end
+  object Qinsdvig: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZDVIGALL ('
+      '   DATA, TIPDV, NOMDV,'
+      '   POLUS, UNOM, UISP,'
+      '   PNOM, HUMID, PRESSUR,'
+      '   ENERGO, STENDN, STENDA,'
+      '   DOP1, READY, NOMER,'
+      '   ISPOLN, FIO, REGIM,'
+      '   PISP, POLNOM, POLISP)'
+      'VALUES ( :DATA, :TIPDV, :NOMDV,'
+      '   :POLUS, :UNOM, :UISP,'
+      '   :PNOM, :HUMID, :PRESSUR,'
+      '   :ENERGO, :STENDN, :STENDA,'
+      '   :DOP1, :READY, :NOMER,'
+      '   :ISPOLN, :FIO, :REGIM,'
+      '   :PISP, :POLNOM, :POLISP )')
+    Left = 18
+    Top = 176
+    ParamData = <
+      item
+        Name = 'DATA'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIPDV'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NOMDV'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POLUS'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UNOM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PNOM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'HUMID'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PRESSUR'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ENERGO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'STENDN'
+        ParamType = ptInput
+      end
+      item
+        Name = 'STENDA'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'READY'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ISPOLN'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FIO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'REGIM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POLNOM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POLISP'
         ParamType = ptInput
       end>
   end

@@ -46,32 +46,42 @@ var
   FSett: TFSett;
 
 implementation
- Uses uzv2Main;
+
+Uses uzv2Main;
 {$R *.dfm}
 
 procedure TFSett.BitBtn1Click(Sender: TObject);
 begin
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit1.Text + '"') +
+    ' where name=' + Quotedstr('UIPPath'));
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit2.Text + '"') +
+    ' where name=' + Quotedstr('MNTPath'));
+  QTemp.ExecSQL;
 
- FSett.Close;
+  FSett.Close;
 end;
 
 procedure TFSett.BitBtn2Click(Sender: TObject);
 begin
 
-
- FSett.Close;
+  FSett.Close;
 end;
 
 procedure TFSett.Button1Click(Sender: TObject);
 begin
- If OpenDialog1.Execute then
-  Edit1.Text:=OpenDialog1.Filename;
+  If OpenDialog1.Execute then
+    Edit1.Text := OpenDialog1.Filename;
 end;
 
 procedure TFSett.Button2Click(Sender: TObject);
 begin
   If OpenDialog1.Execute then
-  Edit2.Text:=OpenDialog1.Filename;
+    Edit2.Text := OpenDialog1.Filename;
 end;
 
 end.

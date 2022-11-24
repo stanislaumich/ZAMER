@@ -11,7 +11,7 @@ uses
     FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
     FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.Oracle,
     FireDAC.Phys.OracleDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
-    FireDAC.DatS,
+    FireDAC.DatS, ShellApi,
     FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
     FireDAC.Comp.Client;
 
@@ -82,8 +82,8 @@ type
         Image6: TImage;
         Image7: TImage;
         CombPolNom: TComboBox;
+        Qinsdvig: TFDQuery;
         procedure FormCreate(Sender: TObject);
-        procedure FormClose(Sender: TObject; var Action: TCloseAction);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
         procedure BitBtn5Click(Sender: TObject);
@@ -94,6 +94,7 @@ type
         procedure Timer1000Timer(Sender: TObject);
         procedure BHHClick(Sender: TObject);
         procedure BSoprotClick(Sender: TObject);
+        procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     private
         { Private declarations }
     public
@@ -101,17 +102,17 @@ type
         procedure restoreini;
         procedure restorecombo;
         procedure savecombo;
-        function checkcreatenew: boolean;
+        function checkcreatenew: Boolean;
         procedure comboaddtext;
-        procedure ImgSet(i: TImage; v: boolean);
+        procedure ImgSet(i: TImage; v: Boolean);
         procedure LoadIspyt(nomer: string);
-        procedure enableispyt(f: boolean);
+        procedure enableispyt(f: Boolean);
     end;
 
 var
     FZamerV2   : TFZamerV2;
     nomer      : String;
-    cancloseapp: boolean;
+    cancloseapp: Boolean;
 
 implementation
 
@@ -119,7 +120,7 @@ implementation
 
 uses UARC, UHH;
 
-procedure TFZamerV2.ImgSet(i: TImage; v: boolean);
+procedure TFZamerV2.ImgSet(i: TImage; v: Boolean);
 var
     s: string;
 begin
@@ -137,7 +138,9 @@ begin
     begin
         if Components[i] is TComboBox then
         begin
-            TComboBox(Components[i]).Items.Add(TComboBox(Components[i]).Text);
+            if trim(TComboBox(Components[i]).Text) <> '' then
+                TComboBox(Components[i])
+                  .Items.Add(TComboBox(Components[i]).Text);
         end;
     end;
 end;
@@ -264,26 +267,27 @@ begin
     Application.Minimize;
 end;
 
-function TFZamerV2.checkcreatenew: boolean;
+function TFZamerV2.checkcreatenew: Boolean;
 var
     s: string;
 begin
-    checkcreatenew := false;
-    if CombTipDvig.Text = '' then
-        exit;
-    if CombPolNom.Text = '' then
-        exit;
-    if CombPolIsp.Text = '' then
-        exit;
-    if CombEnergo.Text = '' then
-        exit;
-    if CombRegim.Text = '' then
-        exit;
-    if CombStend.Text = '' then
-        exit;
-    if CombSotrud.Text = '' then
-        exit;
-
+    {
+      checkcreatenew := false;
+      if CombTipDvig.Text = '' then
+      exit;
+      if CombPolNom.Text = '' then
+      exit;
+      if CombPolIsp.Text = '' then
+      exit;
+      if CombEnergo.Text = '' then
+      exit;
+      if CombRegim.Text = '' then
+      exit;
+      if CombStend.Text = '' then
+      exit;
+      if CombSotrud.Text = '' then
+      exit;
+    }
     checkcreatenew := true;
 end;
 
@@ -297,7 +301,7 @@ end;
 
 procedure TFZamerV2.BHHClick(Sender: TObject);
 begin
-    //enableispyt(false);
+    // enableispyt(false);
     FormHH.Label7.Caption  := CombUisp.Text;
     FormHH.Label12.Caption := nomer;
     FormHH.ShowModal;
@@ -309,17 +313,72 @@ begin
 end;
 
 procedure TFZamerV2.BitStartIspClick(Sender: TObject);
+var
+    buttonSelected: integer;
 begin
-    //if checkcreatenew then
+    buttonSelected :=
+      MessageDlg('Все ли поля условий испытания заполнены верно?',
+      mtConfirmation, mbYesNo, 0);
+    if buttonSelected = mrYes then
     begin
+        if checkcreatenew then
+        begin
+            { INSERT INTO ZAMER.ZDVIGALL (
+              DATA, TIPDV, NOMDV,
+              POLUS, UNOM, UISP,
+              PNOM, HUMID, PRESSUR,
+              ENERGO, STENDN, STENDA,
+              DOP1, READY, NOMER,
+              ISPOLN, FIO, REGIM,
+              PISP, POLNOM, POLISP)
+              VALUES ( DATA, TIPDV, NOMDV,
+              POLUS, UNOM, UISP,
+              PNOM, HUMID, PRESSUR,
+              ENERGO, STENDN, STENDA,
+              DOP1, READY, NOMER,
+              ISPOLN, FIO, REGIM,
+              PISP, POLNOM, POLISP ) }
+            QTemp.Open('select getnomer nomer from dual');
+            LNOMER.Caption := QTemp.FieldByName('nomer').Asstring;
+            nomer          := LNOMER.Caption;
 
-        comboaddtext;
-    end
-    //else
-    //    ShowMessage('Проверьте поля, не все необходимые поля заполнены');
+            Qinsdvig.Close;
+            Qinsdvig.ParamByName('DATA').Asstring :=
+              DateToStr(DateTimePicker1.Date);
+            Qinsdvig.ParamByName('TIPDV').Asstring := CombTipDvig.Text;
+            Qinsdvig.ParamByName('NOMDV').Asstring := EditNumDvig.Text;
+            Qinsdvig.ParamByName('POLUS').Asstring := '';
+            Qinsdvig.ParamByName('UNOM').AsInteger := strtoint(CombUnom.Text);
+            Qinsdvig.ParamByName('UISP').AsInteger := strtoint(CombUisp.Text);
+            Qinsdvig.ParamByName('PNOM').AsFloat   :=
+              strtofloat(Comma(CombPNom.Text));
+            Qinsdvig.ParamByName('PISP').AsFloat :=
+              strtofloat(Comma(CombPIsp.Text));
+            Qinsdvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
+            Qinsdvig.ParamByName('PRESSUR').AsFloat :=
+              strtofloat(EditPress.Text);
+            Qinsdvig.ParamByName('ENERGO').Asstring := CombEnergo.Text;
+            Qinsdvig.ParamByName('STENDN').Asstring := CombStend.Text;
+            Qinsdvig.ParamByName('STENDA').Asstring := Label19.Caption;
+            Qinsdvig.ParamByName('DOP1').Asstring   := EditOsmotr.Text;
+            Qinsdvig.ParamByName('ISPOLN').Asstring := EditOsob.Text;
+            Qinsdvig.ParamByName('READY').AsInteger := 0;
+            Qinsdvig.ParamByName('NOMER').Asstring  := nomer;
+            Qinsdvig.ParamByName('fio').Asstring    := CombSotrud.Text;
+            Qinsdvig.ParamByName('regim').Asstring  := CombRegim.Text;
+            Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;;
+            Qinsdvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;;
+            Qinsdvig.ExecSQL;
+
+            comboaddtext;
+            ShowMessage('Можно приступать к испытаниям');
+            enableispyt(true);
+        end;
+    end;
+
 end;
 
-procedure TFZamerV2.enableispyt(f: boolean);
+procedure TFZamerV2.enableispyt(f: Boolean);
 begin
     BSoprot.Enabled := f;
 end;
@@ -356,12 +415,11 @@ begin
     /// ////////////////////////////////////////////////////////////
     // загрузить Холостой ход если есть
     QTemp.Close;
-    QTemp.SQL.Clear;
     QTemp.Open('select * from zhhsvod where nomer=' + Quotedstr(nomer) +
       ' order by uisp desc');
     ImgSet(Image2, QTemp.RecordCount <> 0);
-
     tip := QTemp.FieldByName('tip').AsInteger;
+    // tip:=3;
     case tip of
         1:
             begin
@@ -379,6 +437,7 @@ begin
                 FormHH.radiobutton3.Checked := true;
             end;
     end;
+
     tip                         := 1;
     FormHH.Stringgrid2.rowcount := QTemp.RecordCount + 2;
     while not(QTemp.Eof) do
@@ -401,6 +460,7 @@ begin
         2:
             FormHH.RadioButton5.Checked := true;
     end;
+
     /// ////////////////////////////////////////////////////////////////////////////
 end;
 
@@ -434,14 +494,26 @@ begin
     ImgSet(Image1, true);
 end;
 
-procedure TFZamerV2.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFZamerV2.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-    // saveini;
-    // savecombo;
+    QTemp.Open('select value from zini where name=' +
+      Quotedstr('ElspecFormHeader'));
+    PostMessage(FindWindow(nil, PWideChar(QTemp.FieldByName('value').Asstring)),
+      WM_QUIT, 0, 0);
+
+    PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
 end;
 
 procedure TFZamerV2.FormCreate(Sender: TObject);
 begin
+
+    QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
+    ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
+      nil, nil, SW_SHOWNORMAL);
+    QTemp.Open('select value from zini where name=' + Quotedstr('MNTPath'));
+    ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
+      nil, nil, SW_SHOWNORMAL);
+
     QTemp.SQL.Clear;
     QTemp.SQL.Add('Update version set maintotal=maintotal+1');
     QTemp.ExecSQL;

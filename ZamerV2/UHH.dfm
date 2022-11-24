@@ -12,6 +12,7 @@ object FormHH: TFormHH
   Font.Style = []
   OldCreateOrder = False
   OnActivate = FormActivate
+  OnCreate = FormCreate
   OnHide = FormHide
   OnShow = FormShow
   DesignSize = (
@@ -129,7 +130,7 @@ object FormHH: TFormHH
       Width = 121
       Height = 33
       TabOrder = 0
-      Text = '1'
+      Text = '15'
     end
     object Edit2: TEdit
       Left = 909
@@ -297,7 +298,7 @@ object FormHH: TFormHH
       end
       object RadioButton6: TRadioButton
         Left = 8
-        Top = 48
+        Top = 49
         Width = 177
         Height = 24
         Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
@@ -380,12 +381,13 @@ object FormHH: TFormHH
       DefaultColWidth = 100
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -21
+      Font.Height = -19
       Font.Name = 'Tahoma'
       Font.Style = []
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       ParentFont = False
       TabOrder = 0
+      OnClick = StringGrid2Click
     end
     object ProgressBar1: TProgressBar
       Left = 3
@@ -403,6 +405,7 @@ object FormHH: TFormHH
     Height = 41
     Caption = #1057#1090#1072#1088#1090' F5'
     TabOrder = 5
+    OnClick = BitStartClick
   end
   object BitSave: TBitBtn
     Left = 879
@@ -450,6 +453,7 @@ object FormHH: TFormHH
   end
   object TimWork1000: TTimer
     Enabled = False
+    OnTimer = TimWork1000Timer
     Left = 371
     Top = 341
   end
