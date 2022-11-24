@@ -297,9 +297,10 @@ end;
 
 procedure TFZamerV2.BHHClick(Sender: TObject);
 begin
+    //enableispyt(false);
     FormHH.Label7.Caption  := CombUisp.Text;
     FormHH.Label12.Caption := nomer;
-    FormHH.Show;
+    FormHH.ShowModal;
 end;
 
 procedure TFZamerV2.BitBtn1Click(Sender: TObject);
@@ -309,13 +310,13 @@ end;
 
 procedure TFZamerV2.BitStartIspClick(Sender: TObject);
 begin
-    if checkcreatenew then
+    //if checkcreatenew then
     begin
 
         comboaddtext;
     end
-    else
-        ShowMessage('Проверьте поля, не все необходимые поля заполнены');
+    //else
+    //    ShowMessage('Проверьте поля, не все необходимые поля заполнены');
 end;
 
 procedure TFZamerV2.enableispyt(f: boolean);

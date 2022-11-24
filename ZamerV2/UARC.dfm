@@ -332,17 +332,21 @@ object FARC: TFARC
       TabOrder = 3
     end
   end
-  object TableSpis: TFDTable
-    Active = True
-    IndexFieldNames = 'NOMER'
-    Connection = FZamerV2.FDC
-    TableName = 'ZDvigAll'
-    Left = 32
-    Top = 52
-  end
   object DSSpis: TDataSource
-    DataSet = TableSpis
+    DataSet = QuerySpis
     Left = 72
     Top = 52
+  end
+  object QuerySpis: TFDQuery
+    Active = True
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'select * from zdvigall order by nomer desc')
+    Left = 36
+    Top = 52
+  end
+  object QTemp: TFDQuery
+    Left = 60
+    Top = 96
   end
 end

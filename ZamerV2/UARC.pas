@@ -14,13 +14,14 @@ uses
 type
   TFARC = class(TForm)
     GB1: TGroupBox;
-    TableSpis: TFDTable;
     DSSpis: TDataSource;
     GridSpis: TDBGrid;
     BitSelect: TBitBtn;
     BitReport: TBitBtn;
     BitDelete: TBitBtn;
     Label1: TLabel;
+    QuerySpis: TFDQuery;
+    QTemp: TFDQuery;
     procedure FormActivate(Sender: TObject);
     procedure BitSelectClick(Sender: TObject);
   private
