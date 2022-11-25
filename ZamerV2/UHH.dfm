@@ -12,6 +12,7 @@ object FormHH: TFormHH
   Font.Style = []
   OldCreateOrder = False
   OnActivate = FormActivate
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnHide = FormHide
   OnShow = FormShow
@@ -46,6 +47,23 @@ object FormHH: TFormHH
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+  end
+  object Label15: TLabel
+    Left = 567
+    Top = 115
+    Width = 369
+    Height = 38
+    Anchors = [akLeft, akTop, akRight]
+    Caption = 
+      #1055#1088#1080' '#1079#1072#1087#1086#1083#1085#1077#1085#1080#1080' '#1090#1072#1073#1083#1080#1094#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1074#1099#1093#1086#1076#1103#1097#1080#1077' '#1079#1072' '#1087#1088#1077#1076#1077#1083#1099' '#1076 +
+      #1080#1072#1087#1072#1079#1086#1085#1072' '#1086#1090#1073#1088#1072#1089#1099#1074#1072#1102#1090#1089#1103
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    WordWrap = True
   end
   object Panel1: TPanel
     Left = 0
@@ -414,6 +432,7 @@ object FormHH: TFormHH
     Height = 41
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
     TabOrder = 6
+    OnClick = BitSaveClick
   end
   object BitClear: TBitBtn
     Left = 567
@@ -422,6 +441,7 @@ object FormHH: TFormHH
     Height = 39
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     TabOrder = 7
+    OnClick = BitClearClick
   end
   object TimUp: TTimer
     Enabled = False
@@ -458,20 +478,98 @@ object FormHH: TFormHH
     Top = 341
   end
   object QInsAll: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZHHALL ('
+      
+        '   NOMER, UISP, U12, U23, U31, I1, I2, I3, P1, P2, P3, DUMAX, ps' +
+        ', fu, fi, fp) '
+      'VALUES ( :NOMER, :UISP, :U12, '
+      
+        '   :U23, :U31, :I1, :I2, :I3, :P1, :P2, :P3, :DUMAX,:ps, :fu, :f' +
+        'i, :fp )')
     Left = 547
     Top = 349
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U12'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U23'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U31'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DUMAX'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PS'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FU'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FI'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FP'
+        ParamType = ptInput
+      end>
   end
-  object QSelectSred: TFDQuery
+  object Qsred: TFDQuery
+    Connection = FZamerV2.FDC
     SQL.Strings = (
       'select '
-      'avg(fu), avg(fi), avg(fp)'
+      
+        'round(avg(fu),1) u, round(avg(fi),2) i, round(avg(fp),1) p, max(' +
+        'dumax) m'
       'from zhhall'
       'where'
       'nomer=:nomer'
       'and uisp=:uisp'
       'and dumax<=:delta')
-    Left = 507
-    Top = 409
+    Left = 483
+    Top = 397
     ParamData = <
       item
         Name = 'NOMER'

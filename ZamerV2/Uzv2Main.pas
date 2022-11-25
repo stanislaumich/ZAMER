@@ -161,6 +161,7 @@ begin
                   Quotedstr(TComboBox(Components[i]).name));
                 QTemp.ExecSQL;
                 for j := 0 to TComboBox(Components[i]).Items.Count - 1 do
+                if TComboBox(Components[i]).Items[j]<>'' then
                 begin
                     QTemp.Close;
                     QTemp.SQL.Clear;
@@ -271,6 +272,7 @@ function TFZamerV2.checkcreatenew: Boolean;
 var
     s: string;
 begin
+ checkcreatenew := true;
     {
       checkcreatenew := false;
       if CombTipDvig.Text = '' then
@@ -288,7 +290,13 @@ begin
       if CombSotrud.Text = '' then
       exit;
     }
-    checkcreatenew := true;
+    if CombUIsp.Text = '' then
+     begin
+      ShowMessage('Абсолютно невозможно проводить испытания без указания испытательного напряжения');
+      checkcreatenew := false;
+      exit;
+     end;
+
 end;
 
 procedure TFZamerV2.CombStendChange(Sender: TObject);
@@ -323,31 +331,15 @@ begin
     begin
         if checkcreatenew then
         begin
-            { INSERT INTO ZAMER.ZDVIGALL (
-              DATA, TIPDV, NOMDV,
-              POLUS, UNOM, UISP,
-              PNOM, HUMID, PRESSUR,
-              ENERGO, STENDN, STENDA,
-              DOP1, READY, NOMER,
-              ISPOLN, FIO, REGIM,
-              PISP, POLNOM, POLISP)
-              VALUES ( DATA, TIPDV, NOMDV,
-              POLUS, UNOM, UISP,
-              PNOM, HUMID, PRESSUR,
-              ENERGO, STENDN, STENDA,
-              DOP1, READY, NOMER,
-              ISPOLN, FIO, REGIM,
-              PISP, POLNOM, POLISP ) }
             QTemp.Open('select getnomer nomer from dual');
             LNOMER.Caption := QTemp.FieldByName('nomer').Asstring;
             nomer          := LNOMER.Caption;
-
             Qinsdvig.Close;
             Qinsdvig.ParamByName('DATA').Asstring :=
               DateToStr(DateTimePicker1.Date);
             Qinsdvig.ParamByName('TIPDV').Asstring := CombTipDvig.Text;
             Qinsdvig.ParamByName('NOMDV').Asstring := EditNumDvig.Text;
-            Qinsdvig.ParamByName('POLUS').Asstring := '';
+            Qinsdvig.ParamByName('POLUS').Asstring := CombPolIsp.Text;
             Qinsdvig.ParamByName('UNOM').AsInteger := strtoint(CombUnom.Text);
             Qinsdvig.ParamByName('UISP').AsInteger := strtoint(CombUisp.Text);
             Qinsdvig.ParamByName('PNOM').AsFloat   :=
@@ -366,10 +358,9 @@ begin
             Qinsdvig.ParamByName('NOMER').Asstring  := nomer;
             Qinsdvig.ParamByName('fio').Asstring    := CombSotrud.Text;
             Qinsdvig.ParamByName('regim').Asstring  := CombRegim.Text;
-            Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;;
-            Qinsdvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;;
+            Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
+            Qinsdvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
             Qinsdvig.ExecSQL;
-
             comboaddtext;
             ShowMessage('Можно приступать к испытаниям');
             enableispyt(true);
@@ -506,6 +497,14 @@ end;
 
 procedure TFZamerV2.FormCreate(Sender: TObject);
 begin
+    {QTemp.Open('select value from zini where name=' +
+      Quotedstr('ElspecFormHeader'));
+    PostMessage(FindWindow(nil, PWideChar(QTemp.FieldByName('value').Asstring)),
+      WM_QUIT, 0, 0);
+
+    PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
+    }
+
 
     QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
     ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),

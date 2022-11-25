@@ -56,7 +56,8 @@ type
     ProgressBar1: TProgressBar;
     TimWork1000: TTimer;
     QInsAll: TFDQuery;
-    QSelectSred: TFDQuery;
+    Label15: TLabel;
+    Qsred: TFDQuery;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -69,6 +70,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BitStartClick(Sender: TObject);
     procedure TimWork1000Timer(Sender: TObject);
+    procedure BitClearClick(Sender: TObject);
+    procedure BitSaveClick(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
   public
@@ -83,7 +87,7 @@ var
   currentvolt: single;
   tipispyt   : integer;
   times      : integer;
-
+  enableclose:boolean;
 implementation
 
 uses Uzv2Main;
@@ -164,6 +168,64 @@ begin
   BitStart.Click;
 end;
 
+procedure TFormHH.BitClearClick(Sender: TObject);
+var
+ i,j:integer;
+ buttonSelected : Integer;
+begin
+ buttonSelected := MessageDlg('Действительно очистить результаты?',mtConfirmation,
+                              [mbYes,mbNo], 0);
+ if buttonSelected = mrYes    then
+ begin
+ QTemp.Close;
+ QTemp.SQL.Clear;
+ QTemp.SQL.Add('delete from zhhsvod where nomer='+Quotedstr(nomer));
+ QTemp.ExecSQL;
+ for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
+      StringGrid2.Cells[i, j] := '';
+  StringGrid2.RowCount        := 2;
+  RadioButton1.Checked:=false;
+  RadioButton2.Checked:=false;
+  RadioButton3.Checked:=false;
+  RadioButton4.Checked:=false;
+  RadioButton5.Checked:=false;
+  RadioButton6.Checked:=false;
+ end;
+end;
+
+procedure TFormHH.BitSaveClick(Sender: TObject);
+var
+ i:integer;
+begin
+ for i:=1 to stringgrid2.rowcount-2 do
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTEmp.SQL.Add('delete from zhhsvod where nomer='+Quotedstr(nomer)+' and uisp='+StringGrid2.Cells[0, i]);
+    QTemp.ExecSQL;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTEmp.SQL.Add('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL)');
+    QTEmp.SQL.Add(' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL)');
+    QTemp.ParamByName('nomer').Asstring:=nomer;
+    QTemp.ParamByName('uisp').Asstring:=StringGrid2.Cells[0, i];
+    QTemp.ParamByName('usred').Asstring:=NVLToZero(StringGrid2.Cells[1, i]);
+    QTemp.ParamByName('isred').Asstring:=NVLToZero(StringGrid2.Cells[2, i]);
+    QTemp.ParamByName('psred').Asstring:=NVLToZero(StringGrid2.Cells[3, i]);
+    QTemp.ParamByName('tip').AsInteger:=tipispyt;
+    QTemp.ParamByName('dumax').Asstring:=NVLToZero(StringGrid2.Cells[4, i]);
+    QTemp.ParamByName('r').Asstring:=NVLToZero(StringGrid2.Cells[5, i]);
+    QTemp.ParamByName('otklon').Asstring:=NVLToZero(StringGrid2.Cells[6, i]);
+    QTemp.ParamByName('vizol').AsInteger:=0;
+    if RadioButton4.Checked then QTemp.ParamByName('vizol').AsInteger:=1;
+    if RadioButton5.Checked then QTemp.ParamByName('vizol').AsInteger:=2;
+    QTemp.ExecSQL;
+  end;
+ enableclose:=true;
+ FormHH.Close;
+end;
+
 procedure TFormHH.BitStartClick(Sender: TObject);
 begin
   times := Strtoint(Edit1.Text);
@@ -172,24 +234,37 @@ begin
   QTemp.SQL.Add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
     ' and uisp=' + Label8.Caption);
   QTemp.ExecSQL;
-  //QTemp.Close;
-  //QTemp.SQL.Clear;
-  //QTemp.SQL.Add('truncate table zelspec');
-  //QTemp.ExecSQL;
   ProgressBar1.min  := 0;
   ProgressBar1.max  := times;
   ProgressBar1.Step := 1;
   Command(true);
-
+  enableclose:=false;
   TimWork1000.Enabled := true;
 end;
 
 procedure TFormHH.FormActivate(Sender: TObject);
 begin
+  enableclose:=true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('uhh'));
   Edit2.Text := QTemp.FieldByName('value').AsString;
   QTemp.Open('select * from zini where name=' + Quotedstr('hhtime'));
   Edit1.Text := QTemp.FieldByName('value').AsString;
+end;
+
+procedure TFormHH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+var
+  buttonSelected : Integer;
+begin
+ if enableclose then canclose:=true
+ else begin
+  buttonSelected := MessageDlg('У вас есть несохраненные данные, сохранить их?',mtConfirmation,
+                              [mbYes,mbNo,mbCancel], 0);
+ if buttonSelected = mrYes    then begin BitSave.Click; canclose:=true; end;
+ if buttonSelected = mrNo    then canclose:=true;
+ if buttonSelected = mrCancel then canclose:=false;
+
+ end;
+
 end;
 
 procedure TFormHH.FormCreate(Sender: TObject);
@@ -391,26 +466,33 @@ begin
       QinsAll.ExecSQL;
      QTemp.Next;
      end;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('select count(*) r from zhhall where nomer=' +
-      Quotedstr(Nomer) + ' and uisp=' + Label6.Caption + ' and dumax>' +
+    QTemp.Open('select count(*) r from zhhall where nomer=' +
+      Quotedstr(Nomer) + ' and uisp=' + Label8.Caption + ' and dumax>' +
       Edit2.Text);
-    QTemp.Open;
     errcnt := QTemp.fieldbyname('r').Asinteger;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('select count(*) r from zhhall where nomer=' +
-      Quotedstr(Nomer) + ' and uisp=' + Label6.Caption + ' and dumax<=' +
+    QTemp.Open('select count(*) r from zhhall where nomer=' +
+      Quotedstr(Nomer) + ' and uisp=' + Label8.Caption + ' and dumax<=' +
       Edit2.Text);
-    QTemp.Open;
-    goodcnt := QTemp.fieldbyname('r').Asinteger;
-    Qselectsred.Close;
-    Qselectsred.ParamByName('nomer').Asstring := Nomer;
-    Qselectsred.ParamByName('uisp').AsFloat   := StrtoFloat(Label6.Caption);
-    Qselectsred.ParamByName('delta').AsFloat  := myfloat(Edit2.Text);
-    Qselectsred.Open;
 
+    goodcnt := QTemp.fieldbyname('r').Asinteger;
+    Qsred.Close;
+    QSred.Unprepare;
+    Qsred.ParamByName('nomer').Asstring := Nomer;
+    Qsred.ParamByName('uisp').AsFloat   := StrtoFloat(Label8.Caption);
+    Qsred.ParamByName('delta').AsFloat  := myfloat(Edit2.Text);
+    Qsred.Open;
+    StringGrid2.Cells[1, StringGrid2.row] := floattostr(Qsred.fieldbyname('u').AsFloat);
+    StringGrid2.Cells[2, StringGrid2.row] := floattostr(Qsred.fieldbyname('i').AsFloat);
+    StringGrid2.Cells[3, StringGrid2.row] := floattostr(Qsred.fieldbyname('p').AsFloat);
+    StringGrid2.Cells[4, StringGrid2.row] := Qsred.fieldbyname('m').Asstring;
+    StringGrid2.Cells[5, StringGrid2.row] :='0';
+    StringGrid2.Cells[6, StringGrid2.row] :=
+      floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
+      inttostr(goodcnt + errcnt) + ')';
+
+
+   if Stringgrid2.Row<Stringgrid2.rowcount-2 then
+   Stringgrid2.Row:=Stringgrid2.Row+1;
   end;
 
 end;

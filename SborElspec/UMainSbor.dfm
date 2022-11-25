@@ -35,8 +35,6 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
     OnMouseDown = GroupBox1MouseDown
-    ExplicitWidth = 157
-    ExplicitHeight = 133
     DesignSize = (
       158
       134)
@@ -365,7 +363,6 @@ object Form1: TForm1
       OnMouseDown = GroupBox3MouseDown
       OnMouseEnter = GroupBox3MouseEnter
       OnMouseLeave = GroupBox3MouseLeave
-      ExplicitWidth = 151
     end
     object CheckBox1: TCheckBox
       Left = 8
@@ -393,7 +390,6 @@ object Form1: TForm1
       ParentColor = False
       TabOrder = 2
       OnMouseDown = GroupBox4MouseDown
-      ExplicitWidth = 151
     end
     object GroupBox5: TGroupBox
       Left = 3
@@ -407,7 +403,6 @@ object Form1: TForm1
       TabOrder = 3
       OnClick = GroupBox5Click
       OnMouseDown = GroupBox5MouseDown
-      ExplicitWidth = 151
     end
   end
   object GroupBox2: TGroupBox
@@ -417,8 +412,6 @@ object Form1: TForm1
     Height = 117
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 1
-    ExplicitTop = 163
-    ExplicitWidth = 157
     DesignSize = (
       158
       117)
@@ -451,7 +444,6 @@ object Form1: TForm1
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       Text = '127.0.0.1'
-      ExplicitWidth = 109
     end
     object Edit2: TEdit
       Left = 41
@@ -461,7 +453,6 @@ object Form1: TForm1
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
       Text = '502'
-      ExplicitWidth = 109
     end
     object Edit3: TEdit
       Left = 41
@@ -471,7 +462,6 @@ object Form1: TForm1
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
       Text = '159'
-      ExplicitWidth = 109
     end
     object Button1: TButton
       Left = 3
@@ -482,7 +472,6 @@ object Form1: TForm1
       Caption = #1058#1045#1057#1058
       TabOrder = 3
       OnClick = Button1Click
-      ExplicitWidth = 147
     end
   end
   object GroupBox6: TGroupBox
@@ -492,8 +481,6 @@ object Form1: TForm1
     Height = 33
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 2
-    ExplicitTop = 283
-    ExplicitWidth = 157
     object CheckBox2: TCheckBox
       Left = 8
       Top = 8
@@ -512,7 +499,6 @@ object Form1: TForm1
     Caption = #1041#1086#1083#1100#1096#1086#1077' '#1086#1082#1085#1086
     TabOrder = 3
     OnClick = CheckBox3Click
-    ExplicitTop = 143
   end
   object KRTCPConnector1: TKRTCPConnector
     IP = '127.0.0.1'

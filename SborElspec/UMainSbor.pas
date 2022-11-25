@@ -343,22 +343,6 @@ begin
     Label20.Caption := FormatFloat('0.0', Simpleroundto(P3.Value, RazP));
   end;
 
-  { SET    ID  = 0,
-    U   = :U,
-    I   = :I,
-    P   = :P,
-    U1  = :U1,
-    U2  = :U2,
-    U3  = :U3,
-    I1  = :I1,
-    I2  = :I2,
-    I3  = :I3,
-    DOP = :DOP,
-    P1  = :P1,
-    P2  = :P2,
-    P3  = :P3,
-    TS  = :TS,
-    KPD = 0 }
   QtmpUpd.ParamByName('u').AsFloat := Simpleroundto(USred.Value, RazU);
   QtmpUpd.ParamByName('i').AsFloat := Simpleroundto(USred.Value, RazI);
   QtmpUpd.ParamByName('p').AsFloat := Simpleroundto(USred.Value, RazP);
@@ -375,7 +359,6 @@ begin
   QtmpUpd.ParamByName('p2').AsFloat := Simpleroundto(P2.Value, RazP);
   QtmpUpd.ParamByName('p3').AsFloat := Simpleroundto(P3.Value, RazP);
 
-  // QTmpUpd.ParamByName('id').AsFloat   := 0;
   QtmpUpd.ParamByName('dop').Asstring := '';
   QtmpUpd.ExecSQL;
 
@@ -387,8 +370,8 @@ begin
       ('INSERT INTO ZAMER.ZELSPEC (ID, U, I, P, U1, U2,U3, I1, I2, I3, DOP, p1, p2, p3) VALUES '+
       '( :ID ,:u ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP,:p1,:p2,:p3)');
     QTemp.ParamByName('u').AsFloat := Simpleroundto(USred.Value, RazU);
-    QTemp.ParamByName('i').AsFloat := Simpleroundto(USred.Value, RazI);
-    QTemp.ParamByName('p').AsFloat := Simpleroundto(USred.Value, RazP);
+    QTemp.ParamByName('i').AsFloat := Simpleroundto(ISred.Value, RazI);
+    QTemp.ParamByName('p').AsFloat := Simpleroundto(PSred.Value, RazP);
 
     QTemp.ParamByName('u1').AsFloat := Simpleroundto(U1.Value, RazU);
     QTemp.ParamByName('u2').AsFloat := Simpleroundto(U2.Value, RazU);

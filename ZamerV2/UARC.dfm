@@ -34,6 +34,7 @@ object FARC: TFARC
       Width = 6
       Height = 13
       Caption = '0'
+      Visible = False
     end
     object GridSpis: TDBGrid
       Left = 2
