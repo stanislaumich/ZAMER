@@ -234,6 +234,8 @@ end;
 
 procedure TFormHH.BitStartClick(Sender: TObject);
 begin
+  if (radioButton1.Checked and radioButton2.Checked and radioButton3.Checked) then
+   begin
   times := Strtoint(Edit1.Text);
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -247,6 +249,9 @@ begin
   command(true);
   enableclose         := false;
   TimWork1000.Enabled := true;
+   end
+   else
+    ShowMessage('Ќе выбран ни один вариант испытани€ в левой таблице!!');
 end;
 
 procedure TFormHH.FormActivate(Sender: TObject);
