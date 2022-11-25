@@ -83,6 +83,8 @@ type
         Image7: TImage;
         CombPolNom: TComboBox;
         Qinsdvig: TFDQuery;
+    EditTemp: TEdit;
+    Label10: TLabel;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
@@ -360,6 +362,7 @@ begin
             Qinsdvig.ParamByName('regim').Asstring  := CombRegim.Text;
             Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
             Qinsdvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
+            Qinsdvig.ParamByName('TEMP').Asstring := EditTemp.Text;
             Qinsdvig.ExecSQL;
             comboaddtext;
             ShowMessage('Можно приступать к испытаниям');
@@ -402,6 +405,7 @@ begin
     EditOsob.Text            := QTemp.FieldByName('ispoln').Asstring;
     EditOsmotr.Text          := QTemp.FieldByName('dop1').Asstring;
     CombSotrud.Text          := QTemp.FieldByName('fio').Asstring;
+    EditTemp.Text            := QTemp.FieldByName('temp').Asstring;
     enableispyt(true);
     /// ////////////////////////////////////////////////////////////
     // загрузить Холостой ход если есть

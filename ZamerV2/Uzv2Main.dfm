@@ -908,56 +908,56 @@ object FZamerV2: TFZamerV2
       end
       object Label6: TLabel
         Left = 47
-        Top = 202
+        Top = 198
         Width = 118
         Height = 19
         Caption = #1063#1080#1089#1083#1086' '#1087#1086#1083#1102#1089#1086#1074':'
       end
       object Label8: TLabel
         Left = 24
-        Top = 235
+        Top = 231
         Width = 145
         Height = 19
         Caption = #1069#1085#1077#1088#1075#1086#1101#1092#1092#1077#1082#1090#1080#1074#1085'.:'
       end
       object Label11: TLabel
         Left = 58
-        Top = 266
+        Top = 262
         Width = 111
         Height = 19
         Caption = #1042#1083#1072#1078#1085#1086#1089#1090#1100', %:'
       end
       object Label12: TLabel
         Left = 51
-        Top = 297
+        Top = 293
         Width = 118
         Height = 19
         Caption = #1044#1072#1074#1083#1077#1085#1080#1077', '#1082#1055#1072'.:'
       end
       object Label13: TLabel
-        Left = 6
-        Top = 359
+        Left = 7
+        Top = 383
         Width = 50
         Height = 19
         Caption = #1057#1090#1077#1085#1076':'
       end
       object Label15: TLabel
-        Left = 4
-        Top = 467
+        Left = 5
+        Top = 491
         Width = 128
         Height = 19
         Caption = #1042#1085#1077#1096#1085#1080#1081' '#1086#1089#1084#1086#1090#1088':'
       end
       object Label16: TLabel
-        Left = 4
-        Top = 415
+        Left = 5
+        Top = 439
         Width = 193
         Height = 19
         Caption = #1054#1089#1086#1073#1077#1085#1085#1086#1089#1090#1080' '#1080#1089#1087#1086#1083#1085#1077#1085#1080#1103':'
       end
       object Label17: TLabel
-        Left = 6
-        Top = 328
+        Left = 7
+        Top = 352
         Width = 54
         Height = 19
         Caption = #1056#1077#1078#1080#1084':'
@@ -970,8 +970,8 @@ object FZamerV2: TFZamerV2
         Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100':'
       end
       object Label19: TLabel
-        Left = 7
-        Top = 390
+        Left = 8
+        Top = 414
         Width = 335
         Height = 19
         Alignment = taRightJustify
@@ -987,31 +987,38 @@ object FZamerV2: TFZamerV2
       end
       object Label14: TLabel
         Left = 180
-        Top = 114
+        Top = 110
         Width = 70
         Height = 19
         Caption = #1053#1086#1084#1080#1085#1072#1083'.'
       end
       object Label20: TLabel
         Left = 267
-        Top = 114
+        Top = 110
         Width = 67
         Height = 19
         Caption = #1048#1089#1087#1099#1090#1072#1090'.'
       end
       object Label9: TLabel
         Left = 48
-        Top = 140
+        Top = 136
         Width = 121
         Height = 19
         Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
       end
       object Label7: TLabel
         Left = 49
-        Top = 171
+        Top = 167
         Width = 116
         Height = 19
         Caption = #1052#1086#1097#1085#1086#1089#1090#1100', '#1082#1042#1090':'
+      end
+      object Label10: TLabel
+        Left = 48
+        Top = 323
+        Width = 121
+        Height = 19
+        Caption = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072', '#1057':'
       end
       object DateTimePicker1: TDateTimePicker
         Left = 59
@@ -1042,7 +1049,7 @@ object FZamerV2: TFZamerV2
       end
       object CombPolIsp: TComboBox
         Left = 263
-        Top = 199
+        Top = 195
         Width = 79
         Height = 27
         Anchors = [akLeft, akTop, akRight]
@@ -1051,31 +1058,31 @@ object FZamerV2: TFZamerV2
       end
       object CombEnergo: TComboBox
         Left = 175
-        Top = 232
-        Width = 166
+        Top = 228
+        Width = 167
         Height = 27
         TabOrder = 4
         Text = 'CombEnergo'
       end
       object EditHumi: TEdit
         Left = 175
-        Top = 263
-        Width = 166
+        Top = 259
+        Width = 167
         Height = 27
         TabOrder = 5
         Text = 'EditHumi'
       end
       object EditPress: TEdit
         Left = 175
-        Top = 294
+        Top = 290
         Width = 167
         Height = 27
         TabOrder = 6
         Text = 'EditPress'
       end
       object CombRegim: TComboBox
-        Left = 66
-        Top = 325
+        Left = 67
+        Top = 349
         Width = 275
         Height = 27
         TabOrder = 7
@@ -1083,8 +1090,8 @@ object FZamerV2: TFZamerV2
       end
       object CombStend: TComboBox
         Tag = 500
-        Left = 67
-        Top = 357
+        Left = 68
+        Top = 381
         Width = 275
         Height = 27
         TabOrder = 8
@@ -1092,8 +1099,8 @@ object FZamerV2: TFZamerV2
         OnChange = CombStendChange
       end
       object EditOsob: TEdit
-        Left = 3
-        Top = 435
+        Left = 4
+        Top = 459
         Width = 338
         Height = 27
         Anchors = [akLeft, akTop, akRight]
@@ -1101,8 +1108,8 @@ object FZamerV2: TFZamerV2
         Text = 'EditOsob'
       end
       object EditOsmotr: TEdit
-        Left = 3
-        Top = 486
+        Left = 4
+        Top = 510
         Width = 338
         Height = 27
         Anchors = [akLeft, akTop, akRight]
@@ -1331,7 +1338,7 @@ object FZamerV2: TFZamerV2
       end
       object CombUnom: TComboBox
         Left = 175
-        Top = 137
+        Top = 133
         Width = 78
         Height = 27
         TabOrder = 15
@@ -1339,7 +1346,7 @@ object FZamerV2: TFZamerV2
       end
       object CombUisp: TComboBox
         Left = 263
-        Top = 137
+        Top = 133
         Width = 79
         Height = 27
         TabOrder = 16
@@ -1347,7 +1354,7 @@ object FZamerV2: TFZamerV2
       end
       object CombPNom: TComboBox
         Left = 175
-        Top = 168
+        Top = 164
         Width = 78
         Height = 27
         TabOrder = 17
@@ -1355,7 +1362,7 @@ object FZamerV2: TFZamerV2
       end
       object CombPIsp: TComboBox
         Left = 263
-        Top = 168
+        Top = 164
         Width = 79
         Height = 27
         TabOrder = 18
@@ -1363,11 +1370,19 @@ object FZamerV2: TFZamerV2
       end
       object CombPolNom: TComboBox
         Left = 175
-        Top = 199
+        Top = 195
         Width = 78
         Height = 27
         TabOrder = 19
         Text = '0'
+      end
+      object EditTemp: TEdit
+        Left = 175
+        Top = 320
+        Width = 167
+        Height = 27
+        TabOrder = 20
+        Text = 'EditTemp'
       end
     end
   end
@@ -1416,14 +1431,14 @@ object FZamerV2: TFZamerV2
       '   ENERGO, STENDN, STENDA,'
       '   DOP1, READY, NOMER,'
       '   ISPOLN, FIO, REGIM,'
-      '   PISP, POLNOM, POLISP)'
+      '   PISP, POLNOM, POLISP, TEMP)'
       'VALUES ( :DATA, :TIPDV, :NOMDV,'
       '   :POLUS, :UNOM, :UISP,'
       '   :PNOM, :HUMID, :PRESSUR,'
       '   :ENERGO, :STENDN, :STENDA,'
       '   :DOP1, :READY, :NOMER,'
       '   :ISPOLN, :FIO, :REGIM,'
-      '   :PISP, :POLNOM, :POLISP )')
+      '   :PISP, :POLNOM, :POLISP, :TEMP)')
     Left = 18
     Top = 176
     ParamData = <
@@ -1509,6 +1524,10 @@ object FZamerV2: TFZamerV2
       end
       item
         Name = 'POLISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TEMP'
         ParamType = ptInput
       end>
   end

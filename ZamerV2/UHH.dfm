@@ -435,8 +435,8 @@ object FormHH: TFormHH
     OnClick = BitSaveClick
   end
   object BitClear: TBitBtn
-    Left = 567
-    Top = 177
+    Left = 553
+    Top = 621
     Width = 165
     Height = 39
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
