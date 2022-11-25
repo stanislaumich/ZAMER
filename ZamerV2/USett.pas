@@ -32,10 +32,20 @@ type
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     QTemp: TFDQuery;
+    GroupBox4: TGroupBox;
+    Label3: TLabel;
+    CombCom: TComboBox;
+    Label4: TLabel;
+    Edit3: TEdit;
+    Label5: TLabel;
+    Label6: TLabel;
+    Edit4: TEdit;
+    Edit5: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,10 +67,35 @@ begin
   QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit1.Text + '"') +
     ' where name=' + Quotedstr('UIPPath'));
   QTemp.ExecSQL;
+
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit2.Text + '"') +
     ' where name=' + Quotedstr('MNTPath'));
+  QTemp.ExecSQL;
+
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit4.Text + '"') +
+    ' where name=' + Quotedstr('StepBig'));
+  QTemp.ExecSQL;
+
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit5.Text + '"') +
+    ' where name=' + Quotedstr('StepSmall'));
+  QTemp.ExecSQL;
+
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit3.Text + '"') +
+    ' where name=' + Quotedstr('StepU'));
+  QTemp.ExecSQL;
+
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + CombCom.Text + '"') +
+    ' where name=' + Quotedstr('ComPortU'));
   QTemp.ExecSQL;
 
   FSett.Close;
@@ -82,6 +117,24 @@ procedure TFSett.Button2Click(Sender: TObject);
 begin
   If OpenDialog1.Execute then
     Edit2.Text := OpenDialog1.Filename;
+end;
+
+procedure TFSett.FormCreate(Sender: TObject);
+begin
+  //QTemp.Close;
+  //QTemp.SQL.Clear;
+  QTemp.Open('Select value from zini where name=' + Quotedstr('UIPPath'));
+  Edit1.Text:=Qtemp.FieldByName('value').Asstring;
+  QTemp.Open('Select value from zini where name=' + Quotedstr('MNTPath'));
+  Edit2.Text:=Qtemp.FieldByName('value').Asstring;
+  QTemp.Open('Select value from zini where name=' + Quotedstr('StepU'));
+  Edit3.Text:=Qtemp.FieldByName('value').Asstring;
+  QTemp.Open('Select value from zini where name=' + Quotedstr('StepBig'));
+  Edit4.Text:=Qtemp.FieldByName('value').Asstring;
+  QTemp.Open('Select value from zini where name=' + Quotedstr('StepSmall'));
+  Edit5.Text:=Qtemp.FieldByName('value').Asstring;
+  QTemp.Open('Select value from zini where name=' + Quotedstr('ComPortU'));
+  CombCom.Text:=Qtemp.FieldByName('value').Asstring;
 end;
 
 end.

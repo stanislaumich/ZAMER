@@ -3,7 +3,7 @@ object FSett: TFSett
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
-  ClientHeight = 222
+  ClientHeight = 272
   ClientWidth = 883
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,9 +13,10 @@ object FSett: TFSett
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   DesignSize = (
     883
-    222)
+    272)
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -115,8 +116,6 @@ object FSett: TFSett
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
-      Text = 'Edit1'
-      ExplicitWidth = 485
     end
     object Edit2: TEdit
       Left = 128
@@ -125,8 +124,6 @@ object FSett: TFSett
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
-      Text = 'Edit2'
-      ExplicitWidth = 485
     end
     object Button1: TButton
       Left = 632
@@ -137,7 +134,6 @@ object FSett: TFSett
       Caption = #1042#1099#1073#1088#1072#1090#1100
       TabOrder = 2
       OnClick = Button1Click
-      ExplicitLeft = 619
     end
     object Button2: TButton
       Left = 632
@@ -148,7 +144,6 @@ object FSett: TFSett
       Caption = #1042#1099#1073#1088#1072#1090#1100
       TabOrder = 3
       OnClick = Button2Click
-      ExplicitLeft = 619
     end
   end
   object BitBtn1: TBitBtn
@@ -220,7 +215,7 @@ object FSett: TFSett
   end
   object BitBtn2: TBitBtn
     Left = 719
-    Top = 174
+    Top = 224
     Width = 162
     Height = 47
     Anchors = [akRight, akBottom]
@@ -284,8 +279,78 @@ object FSett: TFSett
       79FE5079FE5079FF5179FE5077FD4D75FC4A70FC6E8CFDFFFFFF}
     TabOrder = 4
     OnClick = BitBtn2Click
+    ExplicitTop = 174
+  end
+  object GroupBox4: TGroupBox
+    Left = 3
+    Top = 225
+    Width = 710
+    Height = 44
+    Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '#1091#1087#1088#1072#1074#1083#1077#1085#1080#1103' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077#1084
+    TabOrder = 5
+    object Label3: TLabel
+      Left = 12
+      Top = 20
+      Width = 29
+      Height = 13
+      Caption = #1055#1086#1088#1090':'
+    end
+    object Label4: TLabel
+      Left = 140
+      Top = 20
+      Width = 162
+      Height = 13
+      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1082#1088#1091#1087#1085#1086#1075#1086' '#1096#1072#1075#1072', '#1074'.:'
+    end
+    object Label5: TLabel
+      Left = 352
+      Top = 20
+      Width = 93
+      Height = 13
+      Caption = #1050#1088#1091#1087#1085#1099#1081' '#1096#1072#1075', '#1084#1089'.:'
+    end
+    object Label6: TLabel
+      Left = 510
+      Top = 20
+      Width = 86
+      Height = 13
+      Caption = #1052#1077#1083#1082#1080#1081' '#1096#1072#1075', '#1084#1089'.:'
+    end
+    object CombCom: TComboBox
+      Left = 48
+      Top = 16
+      Width = 81
+      Height = 21
+      TabOrder = 0
+      Text = 'CombCom'
+    end
+    object Edit3: TEdit
+      Left = 305
+      Top = 16
+      Width = 36
+      Height = 21
+      TabOrder = 1
+      Text = 'Edit3'
+    end
+    object Edit4: TEdit
+      Left = 451
+      Top = 16
+      Width = 53
+      Height = 21
+      TabOrder = 2
+      Text = 'Edit4'
+    end
+    object Edit5: TEdit
+      Left = 602
+      Top = 16
+      Width = 59
+      Height = 21
+      TabOrder = 3
+      Text = 'Edit5'
+    end
   end
   object TabSotrud: TFDTable
+    Active = True
     Connection = FZamerV2.FDC
     TableName = 'zsotr'
     Left = 44
@@ -302,6 +367,7 @@ object FSett: TFSett
     Top = 56
   end
   object TablStend: TFDTable
+    Active = True
     IndexFieldNames = 'NAME'
     Connection = FZamerV2.FDC
     TableName = 'Zstend'
@@ -314,7 +380,7 @@ object FSett: TFSett
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 752
+    Left = 648
     Top = 84
   end
 end

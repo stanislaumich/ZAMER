@@ -504,8 +504,6 @@ begin
 
     PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
     }
-
-
     QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
     ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
       nil, nil, SW_SHOWNORMAL);
