@@ -83,8 +83,8 @@ type
         Image7: TImage;
         CombPolNom: TComboBox;
         Qinsdvig: TFDQuery;
-    EditTemp: TEdit;
-    Label10: TLabel;
+        EditTemp: TEdit;
+        Label10: TLabel;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
@@ -163,16 +163,16 @@ begin
                   Quotedstr(TComboBox(Components[i]).name));
                 QTemp.ExecSQL;
                 for j := 0 to TComboBox(Components[i]).Items.Count - 1 do
-                if TComboBox(Components[i]).Items[j]<>'' then
-                begin
-                    QTemp.Close;
-                    QTemp.SQL.Clear;
-                    QTemp.SQL.Add('insert into zini (name, value) values(');
-                    QTemp.SQL.Add(Quotedstr(TComboBox(Components[i]).name) +
-                      ', ' + Quotedstr(TComboBox(Components[i])
-                      .Items[j]) + ')');
-                    QTemp.ExecSQL;
-                end;
+                    if TComboBox(Components[i]).Items[j] <> '' then
+                    begin
+                        QTemp.Close;
+                        QTemp.SQL.Clear;
+                        QTemp.SQL.Add('insert into zini (name, value) values(');
+                        QTemp.SQL.Add(Quotedstr(TComboBox(Components[i]).name) +
+                          ', ' + Quotedstr(TComboBox(Components[i])
+                          .Items[j]) + ')');
+                        QTemp.ExecSQL;
+                    end;
             end;
 
         end;
@@ -274,7 +274,7 @@ function TFZamerV2.checkcreatenew: Boolean;
 var
     s: string;
 begin
- checkcreatenew := true;
+    checkcreatenew := true;
     {
       checkcreatenew := false;
       if CombTipDvig.Text = '' then
@@ -292,12 +292,13 @@ begin
       if CombSotrud.Text = '' then
       exit;
     }
-    if CombUIsp.Text = '' then
-     begin
-      ShowMessage('Абсолютно невозможно проводить испытания без указания испытательного напряжения');
-      checkcreatenew := false;
-      exit;
-     end;
+    if CombUisp.Text = '' then
+    begin
+        ShowMessage
+          ('Абсолютно невозможно проводить испытания без указания испытательного напряжения');
+        checkcreatenew := false;
+        exit;
+    end;
 
 end;
 
@@ -362,7 +363,7 @@ begin
             Qinsdvig.ParamByName('regim').Asstring  := CombRegim.Text;
             Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
             Qinsdvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
-            Qinsdvig.ParamByName('TEMP').Asstring := EditTemp.Text;
+            Qinsdvig.ParamByName('TEMP').Asstring   := EditTemp.Text;
             Qinsdvig.ExecSQL;
             comboaddtext;
             ShowMessage('Можно приступать к испытаниям');
@@ -501,12 +502,12 @@ end;
 
 procedure TFZamerV2.FormCreate(Sender: TObject);
 begin
-    {QTemp.Open('select value from zini where name=' +
+    { QTemp.Open('select value from zini where name=' +
       Quotedstr('ElspecFormHeader'));
-    PostMessage(FindWindow(nil, PWideChar(QTemp.FieldByName('value').Asstring)),
+      PostMessage(FindWindow(nil, PWideChar(QTemp.FieldByName('value').Asstring)),
       WM_QUIT, 0, 0);
 
-    PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
+      PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
     }
     QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
     ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),

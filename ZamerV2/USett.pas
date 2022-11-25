@@ -121,20 +121,20 @@ end;
 
 procedure TFSett.FormCreate(Sender: TObject);
 begin
-  //QTemp.Close;
-  //QTemp.SQL.Clear;
+  // QTemp.Close;
+  // QTemp.SQL.Clear;
   QTemp.Open('Select value from zini where name=' + Quotedstr('UIPPath'));
-  Edit1.Text:=Qtemp.FieldByName('value').Asstring;
+  Edit1.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('MNTPath'));
-  Edit2.Text:=Qtemp.FieldByName('value').Asstring;
+  Edit2.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('StepU'));
-  Edit3.Text:=Qtemp.FieldByName('value').Asstring;
+  Edit3.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('StepBig'));
-  Edit4.Text:=Qtemp.FieldByName('value').Asstring;
+  Edit4.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('StepSmall'));
-  Edit5.Text:=Qtemp.FieldByName('value').Asstring;
+  Edit5.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('ComPortU'));
-  CombCom.Text:=Qtemp.FieldByName('value').Asstring;
+  CombCom.Text := QTemp.FieldByName('value').Asstring;
 end;
 
 end.
