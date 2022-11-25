@@ -22,12 +22,12 @@ object FormHH: TFormHH
   PixelsPerInch = 96
   TextHeight = 25
   object Label6: TLabel
-    Left = 3
+    Left = 8
     Top = 621
-    Width = 237
+    Width = 395
     Height = 33
     Alignment = taRightJustify
-    Caption = #1055#1077#1088#1077#1082#1086#1089' '#1092#1072#1079', %:'
+    Caption = #1055#1077#1088#1077#1082#1086#1089' '#1092#1072#1079' '#1087#1086' '#1090#1086#1082#1091' (I), %:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -36,7 +36,7 @@ object FormHH: TFormHH
     ParentFont = False
   end
   object Label10: TLabel
-    Left = 246
+    Left = 409
     Top = 621
     Width = 17
     Height = 33
@@ -81,20 +81,20 @@ object FormHH: TFormHH
       Caption = #1042#1088#1077#1084#1103' '#1079#1072#1087#1080#1089#1080', '#1089#1077#1082'.:'
     end
     object Label2: TLabel
-      Left = 624
+      Left = 622
       Top = 44
-      Width = 279
+      Width = 281
       Height = 25
       Alignment = taRightJustify
-      Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103', '#1074'.'#30':'
+      Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103', '#1042'.'#30':'
     end
     object Label3: TLabel
-      Left = 7
+      Left = 4
       Top = 0
-      Width = 395
+      Width = 398
       Height = 33
       Alignment = taRightJustify
-      Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1074'.:'
+      Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -27
@@ -103,12 +103,12 @@ object FormHH: TFormHH
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 46
+      Left = 43
       Top = 38
-      Width = 356
+      Width = 359
       Height = 33
       Alignment = taRightJustify
-      Caption = #1058#1077#1082#1091#1097#1077#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1074'.:'
+      Caption = #1058#1077#1082#1091#1097#1077#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -27
@@ -245,12 +245,12 @@ object FormHH: TFormHH
       Caption = '0'
     end
     object Label5: TLabel
-      Left = 164
+      Left = 162
       Top = 2
-      Width = 313
+      Width = 315
       Height = 25
       Alignment = taRightJustify
-      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1086#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1074'.:'
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1086#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -21

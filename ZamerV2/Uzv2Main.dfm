@@ -1090,8 +1090,8 @@ object FZamerV2: TFZamerV2
       end
       object CombStend: TComboBox
         Tag = 500
-        Left = 68
-        Top = 381
+        Left = 67
+        Top = 380
         Width = 275
         Height = 27
         TabOrder = 8
