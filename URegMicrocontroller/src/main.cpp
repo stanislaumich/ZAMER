@@ -28,9 +28,11 @@ int Udes;
 int Ucur;
 
 void upon(){
+ digitalWrite(pindown,HIGH); 
  digitalWrite(pinup,LOW);
 }
 void downon(){
+ digitalWrite(pinup,HIGH); 
  digitalWrite(pindown,LOW);
 }
 void upoff(){
@@ -56,29 +58,22 @@ void setup() {
   upoff();
   pinMode(pindown,OUTPUT);
   downoff();
+  Serial.print(1);
 }
 
 void loop() {
 
 if (Serial.available() > 0) {
     Serial.readBytes(dataArray, len);
-      Serial.println(" ");
-      for (byte i = 0; i < len; i++) {
-      Serial.print(dataArray[i], HEX);
-      Serial.print(".");
-      }
-      Serial.println(" ");
-       
     }
-  for (byte i = 0; i < len; i++) dataArray[i]-=48;
 
   switch (dataArray[0]) {
-  case 0: break;
-  case 1: break;
-  case 2: break;
-  case 3: downoff(); upoff();break;
-  case 4: downon();break;
-  case 5: upon();break;
+  case 0: Serial.print(dataArray[0]); break;
+  case 1: Serial.print(dataArray[0]); break;
+  case 2: Serial.print(dataArray[0]); break;
+  case 3: Serial.print(dataArray[0]); downoff(); upoff();break;
+  case 4: Serial.print(dataArray[0]); downon();break;
+  case 5: Serial.print(dataArray[0]); upon();break;
   }
 
 }

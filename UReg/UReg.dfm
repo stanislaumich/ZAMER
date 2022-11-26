@@ -3,7 +3,7 @@ object FormReg: TFormReg
   Top = 0
   Caption = 'FRegMain'
   ClientHeight = 500
-  ClientWidth = 635
+  ClientWidth = 816
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,8 +11,10 @@ object FormReg: TFormReg
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   DesignSize = (
-    635
+    816
     500)
   PixelsPerInch = 96
   TextHeight = 13
@@ -60,9 +62,9 @@ object FormReg: TFormReg
   object Label8: TLabel
     Left = 439
     Top = 100
-    Width = 92
+    Width = 51
     Height = 39
-    Caption = 'Label8'
+    Caption = '381'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -32
@@ -86,7 +88,7 @@ object FormReg: TFormReg
   object Memo1: TMemo
     Left = 4
     Top = 146
-    Width = 629
+    Width = 810
     Height = 351
     Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
@@ -94,11 +96,10 @@ object FormReg: TFormReg
     Font.Height = -27
     Font.Name = 'Tahoma'
     Font.Style = []
-    Lines.Strings = (
-      'Memo1')
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 0
+    ExplicitWidth = 629
   end
   object ComboBox1: TComboBox
     Left = 43
@@ -114,7 +115,7 @@ object FormReg: TFormReg
     Width = 42
     Height = 21
     TabOrder = 2
-    Text = 'Edit1'
+    Text = '12'
   end
   object Edit2: TEdit
     Left = 106
@@ -122,7 +123,7 @@ object FormReg: TFormReg
     Width = 49
     Height = 21
     TabOrder = 3
-    Text = 'Edit2'
+    Text = '2000'
   end
   object Edit3: TEdit
     Left = 258
@@ -130,7 +131,7 @@ object FormReg: TFormReg
     Width = 43
     Height = 21
     TabOrder = 4
-    Text = 'Edit3'
+    Text = '300'
   end
   object Edit4: TEdit
     Left = 439
@@ -144,7 +145,7 @@ object FormReg: TFormReg
     Font.Style = []
     ParentFont = False
     TabOrder = 5
-    Text = 'Edit4'
+    Text = '352'
   end
   object BitBtn1: TBitBtn
     Left = 408
@@ -216,5 +217,71 @@ object FormReg: TFormReg
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     ParentFont = False
     TabOrder = 6
+  end
+  object Button1: TButton
+    Left = 568
+    Top = 56
+    Width = 65
+    Height = 25
+    Caption = 'open port'
+    TabOrder = 7
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 552
+    Top = 106
+    Width = 75
+    Height = 25
+    Caption = 'Send 3'
+    TabOrder = 8
+    OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 633
+    Top = 106
+    Width = 75
+    Height = 25
+    Caption = 'Send 4'
+    TabOrder = 9
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 714
+    Top = 106
+    Width = 75
+    Height = 25
+    Caption = 'Send 5'
+    TabOrder = 10
+    OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 639
+    Top = 56
+    Width = 75
+    Height = 25
+    Caption = 'close port'
+    TabOrder = 11
+    OnClick = Button5Click
+  end
+  object Button6: TButton
+    Left = 720
+    Top = 60
+    Width = 75
+    Height = 25
+    Caption = 'Clear memo'
+    TabOrder = 12
+    OnClick = Button6Click
+  end
+  object CM: TKRCOMPortConnector
+    OnRecv = CMRecv
+    OnRecvAsync = CMRecvAsync
+    Port = 'COM5'
+    Parity = 0
+    StopBits = 0
+    BaudRate = 9600
+    DataBits = 8
+    FlowControl = 0
+    Left = 320
+    Top = 8
   end
 end
