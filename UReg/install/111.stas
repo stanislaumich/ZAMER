@@ -1,0 +1,14 @@
+Yes comport411c works fine on Delphi Berlin 10.1.
+
+    In your Delphi Berlin 10.1, Library Path, add these 2 Paths :
+    ...\ComPort\comport411\DCU
+    ...\ComPort\comport411\Source
+
+    Open : CPortLibDXE.dproj
+    On your Project Manager, click Right on CPortLibDXE.Bpl --> Compile and Build it.
+
+    Open : DsgnCPortDXE.dpk
+    On your Project Manager, click Right on DsgnCPortDXE.Bpl --> Compile and Build and Install it.
+
+it will install the components.
+Best Regards.

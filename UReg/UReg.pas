@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, KRConnector,
-  KRCOMPortConnector,KRTypes;
+  KRCOMPortConnector,KRTypes, CPort, CPortCtl;
 
 type
   TFormReg = class(TForm)
@@ -23,25 +23,25 @@ type
     Label9: TLabel;
     Edit4: TEdit;
     BitBtn1: TBitBtn;
-    CM: TKRCOMPortConnector;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
-
-    procedure Button1Click(Sender: TObject);
+    Com: TComPort;
+    ComLed1: TComLed;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure CMRecv(Sender: TObject; APack: PByte; ALength: Integer);
     procedure CMRecvAsync(Sender: TObject; APack: PByte; ALength: Integer);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
     procedure preparepacket;
     procedure Button6Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure ComRxChar(Sender: TObject; Count: Integer);
   private
     { Private declarations }
   public
@@ -52,7 +52,7 @@ type
 
 var
   FormReg: TFormReg;
-
+  ComStr:string;
 
 const
  plen = 20;// длина пакета
@@ -81,29 +81,22 @@ procedure TFormReg.preparepacket;
 
 procedure TFormReg.Mycallback(AError: integer; APack: pByte; ALength: integer;
   AData: Pointer);
-var
- i:integer;
+
 begin
- for i:=0 to ALength -1 do
-  begin
-   Memo1.Lines.Add(inttostr(APack[i]));
-  end;
- memo1.Lines.add('------------------');
- //Dispose(APack);
+
+
+end;
+
+procedure TFormReg.Button1Click(Sender: TObject);
+begin
+ Com.Open;
 end;
 
 procedure TFormReg.Button2Click(Sender: TObject);
 begin
   buf[0]:=3;
   preparepacket;
- CM.Send(
-    buf, // Указатель на буфер
-    plen, // Длина запроса
-    Mycallback, // Метод обратной связи
-    nil, // Указатель на дополнительные данные
-    false, // Нужно получить ответ
-    plen // Длина ответа
-  );
+  Com.Write(buf,plen)
 end;
 
 
@@ -111,33 +104,19 @@ procedure TFormReg.Button3Click(Sender: TObject);
  begin
   buf[0]:=4;
   preparepacket;
- CM.Send(
-    buf, // Указатель на буфер
-    plen, // Длина запроса
-    Mycallback, // Метод обратной связи
-    nil, // Указатель на дополнительные данные
-    false, // Нужно получить ответ
-    plen // Длина ответа
-  );
+  Com.Write(buf,plen)
 end;
 
 procedure TFormReg.Button4Click(Sender: TObject);
 begin
   buf[0]:=5;
   preparepacket;
- CM.Send(
-    buf, // Указатель на буфер
-    plen, // Длина запроса
-    Mycallback, // Метод обратной связи
-    nil, // Указатель на дополнительные данные
-    false, // Нужно получить ответ
-    plen // Длина ответа
-  );
+  Com.Write(buf,plen)
 end;
 
 procedure TFormReg.Button5Click(Sender: TObject);
 begin
-  CM.Active:=false;
+ Com.Close;
 end;
 
 procedure TFormReg.Button6Click(Sender: TObject);
@@ -145,40 +124,42 @@ begin
  Memo1.Lines.Clear;
 end;
 
-procedure TFormReg.CMRecv(Sender: TObject; APack: PByte; ALength: Integer);
-var
- i:integer;
-begin
-{ for i:=0 to ALength -1 do
-  begin
-   Memo1.Lines.Add(inttostr(APack[i]));
-  end;}
-end;
-
 procedure TFormReg.CMRecvAsync(Sender: TObject; APack: PByte; ALength: Integer);
 var
  i:integer;
 begin
- {for i:=0 to ALength -1 do
+ for i:=0 to ALength -1 do
   begin
    Memo1.Lines.Add(inttostr(APack[i]));
-  end;}
+  end;
 end;
 
-procedure TFormReg.Button1Click(Sender: TObject);
+procedure TFormReg.ComRxChar(Sender: TObject; Count: Integer);
+var
+ i:integer;
+ res:string;
 begin
- CM.Active:=true;
+ Com.ReadStr(res, Count);
+ comstr:='';
+ for i:=1 to length(res) do
+  begin
+    comstr:=comstr+ ' ' +inttostr(byte(res[i]));
+  end;
+ memo1.lines.add(comstr);
+ memo1.lines.add(' ');
+ comstr:='';
 end;
 
 procedure TFormReg.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
- CM.Active:=false;
+
  freemem(buf);
 end;
 
 procedure TFormReg.FormCreate(Sender: TObject);
 begin
  getmem(buf,plen);
+
 end;
 
 end.

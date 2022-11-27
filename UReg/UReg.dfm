@@ -85,11 +85,20 @@ object FormReg: TFormReg
     Font.Style = []
     ParentFont = False
   end
+  object ComLed1: TComLed
+    Left = 647
+    Top = 56
+    Width = 25
+    Height = 25
+    ComPort = Com
+    LedSignal = lsConn
+    Kind = lkRedLight
+  end
   object Memo1: TMemo
     Left = 4
-    Top = 146
-    Width = 810
-    Height = 351
+    Top = 137
+    Width = 809
+    Height = 360
     Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -99,7 +108,6 @@ object FormReg: TFormReg
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 0
-    ExplicitWidth = 629
   end
   object ComboBox1: TComboBox
     Left = 43
@@ -219,9 +227,9 @@ object FormReg: TFormReg
     TabOrder = 6
   end
   object Button1: TButton
-    Left = 568
+    Left = 566
     Top = 56
-    Width = 65
+    Width = 75
     Height = 25
     Caption = 'open port'
     TabOrder = 7
@@ -255,8 +263,8 @@ object FormReg: TFormReg
     OnClick = Button4Click
   end
   object Button5: TButton
-    Left = 639
-    Top = 56
+    Left = 566
+    Top = 80
     Width = 75
     Height = 25
     Caption = 'close port'
@@ -264,24 +272,31 @@ object FormReg: TFormReg
     OnClick = Button5Click
   end
   object Button6: TButton
-    Left = 720
-    Top = 60
+    Left = 714
+    Top = 3
     Width = 75
     Height = 25
     Caption = 'Clear memo'
     TabOrder = 12
     OnClick = Button6Click
   end
-  object CM: TKRCOMPortConnector
-    OnRecv = CMRecv
-    OnRecvAsync = CMRecvAsync
+  object Com: TComPort
+    BaudRate = br9600
     Port = 'COM5'
-    Parity = 0
-    StopBits = 0
-    BaudRate = 9600
-    DataBits = 8
-    FlowControl = 0
-    Left = 320
-    Top = 8
+    Parity.Bits = prNone
+    StopBits = sbOneStopBit
+    DataBits = dbEight
+    Events = [evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR, evError, evRLSD, evRx80Full]
+    FlowControl.OutCTSFlow = False
+    FlowControl.OutDSRFlow = False
+    FlowControl.ControlDTR = dtrDisable
+    FlowControl.ControlRTS = rtsDisable
+    FlowControl.XonXoffOut = False
+    FlowControl.XonXoffIn = False
+    StoredProps = [spBasic]
+    TriggersOnRxChar = True
+    OnRxChar = ComRxChar
+    Left = 640
+    Top = 4
   end
 end
