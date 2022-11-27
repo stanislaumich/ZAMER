@@ -84,15 +84,15 @@ if (Serial.available() > 0) {
     }
 
   switch (dataArray[0]) {
-  case 0:  sendpacket();break;
-  case 1:  sendpacket();break;
-  case 2:  sendpacket();break;
-  case 3:  downoff(); upoff();sendpacket();break;
-  case 4:  downon();sendpacket();break;
-  case 5:  upon();sendpacket();break;
+  case 48:  sendpacket();break;
+  case 49:  sendpacket();break;
+  case 50:  sendpacket();break;
+  case 51:  downoff(); upoff();sendpacket();break;
+  case 52:  downon();sendpacket();break;
+  case 53:  upon();sendpacket();break;
 
   }
-  
+  dataArray[0]=255;
   //for(int i=0;i<19;i++){
   // dataArray[i]=0;
   //}
