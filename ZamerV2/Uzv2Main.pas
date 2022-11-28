@@ -456,6 +456,41 @@ begin
         2:
             FormHH.RadioButton5.Checked := true;
     end;
+    // загрузить сопротивление если есть
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zsoprot where nomer=' + Quotedstr(Nomer));
+    FZamerV2.ImgSet(FZamerV2.Image1, Qtemp.RecordCount <> 0);
+
+    FSopr.Edit8.Text     := Qtemp.FieldByName('TEMPER').Asstring;
+    FSopr.ComboBox7.Text := Qtemp.FieldByName('PHAS').Asstring;
+    FSopr.ComboBox8.Text := Qtemp.FieldByName('SOED').Asstring;
+    FSopr.ComboBox9.Text := Qtemp.FieldByName('SOPRED').Asstring;
+    if FSopr.ComboBox9.Text = '' then
+        FSopr.ComboBox9.Text := 'ќм';
+    FSopr.ComboBox10.Text    := Qtemp.FieldByName('IZOLED').Asstring;
+    if FSopr.ComboBox10.Text = '' then
+        FSopr.ComboBox10.Text     := 'ћќм';
+    FSopr.Edit13.Text             := Qtemp.FieldByName('IZOLKORP').Asstring;
+    FSopr.Edit16.Text             := Qtemp.FieldByName('IZOLOBMOT').Asstring;
+    FSopr.StringGrid3.Cells[1, 1] := Qtemp.FieldByName('IZM1U1U2').Asstring;
+    FSopr.StringGrid3.Cells[1, 2] := Qtemp.FieldByName('IZM2U1U2').Asstring;
+    FSopr.StringGrid3.Cells[1, 3] := Qtemp.FieldByName('IZM3U1U2').Asstring;
+    FSopr.StringGrid3.Cells[2, 1] := Qtemp.FieldByName('IZM1V1V2').Asstring;
+    FSopr.StringGrid3.Cells[2, 2] := Qtemp.FieldByName('IZM2V1V2').Asstring;
+    FSopr.StringGrid3.Cells[2, 3] := Qtemp.FieldByName('IZM3V1V2').Asstring;
+    FSopr.StringGrid3.Cells[3, 1] := Qtemp.FieldByName('IZM1W1W2').Asstring;
+    FSopr.StringGrid3.Cells[3, 2] := Qtemp.FieldByName('IZM2W1W2').Asstring;
+    FSopr.StringGrid3.Cells[3, 3] := Qtemp.FieldByName('IZM3W1W2').Asstring;
+    case Qtemp.FieldByName('BOLT').AsInteger of
+        0:
+            FSopr.radiobutton3.Checked := True;
+        1:
+            FSopr.radiobutton1.Checked := True;
+        2:
+            FSopr.radiobutton2.Checked := True;
+    end;
+
 
     /// ////////////////////////////////////////////////////////////////////////////
 end;

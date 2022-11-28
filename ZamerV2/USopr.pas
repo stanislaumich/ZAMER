@@ -87,7 +87,7 @@ begin
   Qtemp.ExecSQL;
   QSoprot.Close;
   try
-    QSoprot.ParamByName('NOMER').Asstring := Label1.Caption;
+    QSoprot.ParamByName('NOMER').Asstring := Label6.Caption;
     QSoprot.ParamByName('TEMPER').AsFloat :=
       myfloat(strreplace(Edit8.Text, '.', ','));
     QSoprot.ParamByName('PHAS').Asstring     := ComboBox7.Text;
