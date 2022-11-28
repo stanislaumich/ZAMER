@@ -2,8 +2,8 @@ object FormReg: TFormReg
   Left = 0
   Top = 0
   Caption = 'FRegMain'
-  ClientHeight = 500
-  ClientWidth = 816
+  ClientHeight = 489
+  ClientWidth = 858
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,8 +14,8 @@ object FormReg: TFormReg
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    816
-    500)
+    858
+    489)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -85,11 +85,20 @@ object FormReg: TFormReg
     Font.Style = []
     ParentFont = False
   end
+  object ComLed1: TComLed
+    Left = 652
+    Top = 56
+    Width = 25
+    Height = 25
+    ComPort = Com
+    LedSignal = lsConn
+    Kind = lkGreenLight
+  end
   object Memo1: TMemo
     Left = 4
     Top = 137
-    Width = 809
-    Height = 360
+    Width = 851
+    Height = 349
     Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -99,6 +108,8 @@ object FormReg: TFormReg
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 0
+    ExplicitWidth = 809
+    ExplicitHeight = 360
   end
   object ComboBox1: TComboBox
     Left = 43
@@ -227,29 +238,32 @@ object FormReg: TFormReg
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 552
-    Top = 106
+    Left = 704
+    Top = 46
     Width = 75
     Height = 25
     Caption = 'Send 3'
+    Enabled = False
     TabOrder = 8
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 633
-    Top = 106
+    Left = 704
+    Top = 75
     Width = 75
     Height = 25
     Caption = 'Send 4'
+    Enabled = False
     TabOrder = 9
     OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 714
-    Top = 106
+    Left = 704
+    Top = 101
     Width = 75
     Height = 25
     Caption = 'Send 5'
+    Enabled = False
     TabOrder = 10
     OnClick = Button4Click
   end
@@ -263,12 +277,30 @@ object FormReg: TFormReg
     OnClick = Button5Click
   end
   object Button6: TButton
-    Left = 714
-    Top = 3
+    Left = 704
+    Top = 8
     Width = 75
     Height = 25
     Caption = 'Clear memo'
     TabOrder = 12
     OnClick = Button6Click
+  end
+  object Com: TComPort
+    BaudRate = br9600
+    Port = 'COM5'
+    Parity.Bits = prNone
+    StopBits = sbOneStopBit
+    DataBits = dbEight
+    Events = [evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR, evError, evRLSD, evRx80Full]
+    FlowControl.OutCTSFlow = False
+    FlowControl.OutDSRFlow = False
+    FlowControl.ControlDTR = dtrDisable
+    FlowControl.ControlRTS = rtsDisable
+    FlowControl.XonXoffOut = False
+    FlowControl.XonXoffIn = False
+    StoredProps = [spBasic]
+    TriggersOnRxChar = True
+    Left = 652
+    Top = 8
   end
 end

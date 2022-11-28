@@ -34,7 +34,6 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure CMRecvAsync(Sender: TObject; APack: PByte; ALength: Integer);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure preparepacket;
@@ -90,11 +89,14 @@ end;
 procedure TFormReg.Button1Click(Sender: TObject);
 begin
  Com.Open;
+ Button2.Enabled:=true;
+ Button3.Enabled:=true;
+ Button4.Enabled:=true;
 end;
 
 procedure TFormReg.Button2Click(Sender: TObject);
 begin
-  buf[0]:=3;
+  buf[0]:=51;
   preparepacket;
   Com.Write(buf,plen)
 end;
@@ -102,14 +104,14 @@ end;
 
 procedure TFormReg.Button3Click(Sender: TObject);
  begin
-  buf[0]:=4;
+  buf[0]:=52;
   preparepacket;
   Com.Write(buf,plen)
 end;
 
 procedure TFormReg.Button4Click(Sender: TObject);
 begin
-  buf[0]:=5;
+  buf[0]:=53;
   preparepacket;
   Com.Write(buf,plen)
 end;
@@ -122,16 +124,6 @@ end;
 procedure TFormReg.Button6Click(Sender: TObject);
 begin
  Memo1.Lines.Clear;
-end;
-
-procedure TFormReg.CMRecvAsync(Sender: TObject; APack: PByte; ALength: Integer);
-var
- i:integer;
-begin
- for i:=0 to ALength -1 do
-  begin
-   Memo1.Lines.Add(inttostr(APack[i]));
-  end;
 end;
 
 procedure TFormReg.ComRxChar(Sender: TObject; Count: Integer);

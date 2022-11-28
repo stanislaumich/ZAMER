@@ -37,20 +37,20 @@ int Ucur;
 void upon(){
  digitalWrite(pindown,HIGH); 
  digitalWrite(pinup,LOW);
- dataArray[12] = 1;
+ dataArray[12] = 49;
 }
 void downon(){
  digitalWrite(pinup,HIGH); 
  digitalWrite(pindown,LOW);
- dataArray[11] = 1;
+ dataArray[11] = 49;
 }
 void upoff(){
  digitalWrite(pinup,HIGH);
- dataArray[12] = 0;
+ dataArray[12] = 48;
 }
 void downoff(){
  digitalWrite(pindown,HIGH);
- dataArray[11] = 0;
+ dataArray[11] = 48;
 }
 
 void upstep(){
