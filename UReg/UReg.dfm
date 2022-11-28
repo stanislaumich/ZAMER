@@ -85,15 +85,6 @@ object FormReg: TFormReg
     Font.Style = []
     ParentFont = False
   end
-  object ComLed1: TComLed
-    Left = 647
-    Top = 56
-    Width = 25
-    Height = 25
-    ComPort = Com
-    LedSignal = lsConn
-    Kind = lkRedLight
-  end
   object Memo1: TMemo
     Left = 4
     Top = 137
@@ -279,24 +270,5 @@ object FormReg: TFormReg
     Caption = 'Clear memo'
     TabOrder = 12
     OnClick = Button6Click
-  end
-  object Com: TComPort
-    BaudRate = br9600
-    Port = 'COM5'
-    Parity.Bits = prNone
-    StopBits = sbOneStopBit
-    DataBits = dbEight
-    Events = [evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR, evError, evRLSD, evRx80Full]
-    FlowControl.OutCTSFlow = False
-    FlowControl.OutDSRFlow = False
-    FlowControl.ControlDTR = dtrDisable
-    FlowControl.ControlRTS = rtsDisable
-    FlowControl.XonXoffOut = False
-    FlowControl.XonXoffIn = False
-    StoredProps = [spBasic]
-    TriggersOnRxChar = True
-    OnRxChar = ComRxChar
-    Left = 640
-    Top = 4
   end
 end

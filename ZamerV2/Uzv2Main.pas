@@ -120,7 +120,7 @@ implementation
 
 {$R *.dfm}
 
-uses UARC, UHH;
+uses UARC, UHH, USopr;
 
 procedure TFZamerV2.ImgSet(i: TImage; v: Boolean);
 var
@@ -487,7 +487,9 @@ end;
 
 procedure TFZamerV2.BSoprotClick(Sender: TObject);
 begin
-    ImgSet(Image1, true);
+ FSopr.Label6.Caption:=Nomer;
+ FSopr.ShowModal;
+//    ImgSet(Image1, true);
 end;
 
 procedure TFZamerV2.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
