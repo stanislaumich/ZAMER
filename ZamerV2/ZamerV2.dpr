@@ -8,7 +8,8 @@ uses
   USett in 'USett.pas' {FZamerV2},
   UARC in 'UARC.pas' {FARC},
   Uadd in '..\ZAMER\Uadd.pas',
-  USopr in 'USopr.pas' {FSopr};
+  USopr in 'USopr.pas' {FSopr},
+  UKZ in 'UKZ.pas' {FKZ};
 
 {$R *.res}
 
@@ -20,6 +21,7 @@ begin
   Application.CreateForm(TFSett, FSett);
   Application.CreateForm(TFARC, FARC);
   Application.CreateForm(TFSopr, FSopr);
+  Application.CreateForm(TFKZ, FKZ);
   Application.Run;
 
 end.

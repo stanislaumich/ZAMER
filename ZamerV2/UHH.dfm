@@ -93,7 +93,6 @@ object FormHH: TFormHH
       Top = 0
       Width = 398
       Height = 33
-      Alignment = taRightJustify
       Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue

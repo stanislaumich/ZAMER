@@ -119,6 +119,10 @@
             <Form>FSopr</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UKZ.pas">
+            <Form>FKZ</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

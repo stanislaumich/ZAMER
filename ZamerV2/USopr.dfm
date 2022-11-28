@@ -11,6 +11,7 @@ object FSopr: TFSopr
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnCreate = FormCreate
   DesignSize = (
     591
@@ -101,7 +102,7 @@ object FSopr: TFSopr
     object Label6: TLabel
       Left = 36
       Top = 2
-      Width = 9
+      Width = 10
       Height = 23
       Caption = '0'
     end
@@ -341,7 +342,6 @@ object FSopr: TFSopr
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 7
     OnClick = BitBtn1Click
-    ExplicitTop = 764
   end
   object BitBtn5: TBitBtn
     Left = 446
@@ -409,7 +409,6 @@ object FSopr: TFSopr
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 8
     OnClick = BitBtn5Click
-    ExplicitTop = 764
   end
   object RadioButton1: TRadioButton
     Left = 14
