@@ -44,11 +44,15 @@ type
     Action1: TAction;
     Action2: TAction;
     TimerUp: TTimer;
+    QUp: TFDQuery;
+    BitBtn1: TBitBtn;
     procedure BitBtn8Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure BitBtn9Click(Sender: TObject);
     procedure Action2Execute(Sender: TObject);
     procedure TimerUpTimer(Sender: TObject);
+    procedure FormHide(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,15 +93,25 @@ begin
 
 end;
 
+procedure TFKZ.FormActivate(Sender: TObject);
+begin
+ TimerUp.Enabled:=true;
+end;
+
+procedure TFKZ.FormHide(Sender: TObject);
+begin
+ TimerUp.Enabled:=false;
+end;
+
 procedure TFKZ.TimerUpTimer(Sender: TObject);
 begin
-  //Label7.Caption := FMAin.KrVarLabel1.Caption;
-  //Label8.Caption := FMAin.KrVarLabel2.Caption;
-  //Label9.Caption := FMAin.KrVarLabel3.Caption;
-  //QTorque.Close;
-  //QTorque.Open;
-  //Label10.Caption :=
-  /  FloatToStr(ABS(SimpleRoundTo(QTorque.FieldByName('torq').AsFloat, RazM)));
+ QUp.Close;
+ QUp.Open();
+  Label11.Caption := QUp.FieldByName('P').Asstring;
+  Label10.Caption := QUp.FieldByName('I').Asstring;
+  Label9.Caption := QUp.FieldByName('U').Asstring;
+  Label12.Caption:= QUp.FieldByName('M').Asstring;
+
 end;
 
 end.
