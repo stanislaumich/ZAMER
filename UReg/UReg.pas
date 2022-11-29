@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, KRConnector,
-  KRCOMPortConnector,KRTypes, CPort, CPortCtl;
+  KRCOMPortConnector,KRTypes, CPortCtl, CPort;
 
 type
   TFormReg = class(TForm)
@@ -29,8 +29,8 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
-    Com: TComPort;
     ComLed1: TComLed;
+    Com: TComPort;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -95,25 +95,25 @@ begin
 end;
 
 procedure TFormReg.Button2Click(Sender: TObject);
+var
+ i:integer;
 begin
-  buf[0]:=51;
-  preparepacket;
-  Com.Write(buf,plen)
+  Com.WriteStr('3');
 end;
 
 
 procedure TFormReg.Button3Click(Sender: TObject);
  begin
-  buf[0]:=52;
+
   preparepacket;
-  Com.Write(buf,plen)
+  Com.WriteStr('7'+#10);
 end;
 
 procedure TFormReg.Button4Click(Sender: TObject);
 begin
-  buf[0]:=53;
+
   preparepacket;
-  Com.Write(buf,plen)
+  Com.WriteStr('8'+#20);
 end;
 
 procedure TFormReg.Button5Click(Sender: TObject);

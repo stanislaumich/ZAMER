@@ -108,8 +108,6 @@ object FormReg: TFormReg
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 0
-    ExplicitWidth = 809
-    ExplicitHeight = 360
   end
   object ComboBox1: TComboBox
     Left = 43
@@ -286,8 +284,8 @@ object FormReg: TFormReg
     OnClick = Button6Click
   end
   object Com: TComPort
-    BaudRate = br9600
-    Port = 'COM5'
+    BaudRate = br115200
+    Port = 'COM7'
     Parity.Bits = prNone
     StopBits = sbOneStopBit
     DataBits = dbEight
@@ -300,6 +298,7 @@ object FormReg: TFormReg
     FlowControl.XonXoffIn = False
     StoredProps = [spBasic]
     TriggersOnRxChar = True
+    OnRxChar = ComRxChar
     Left = 652
     Top = 8
   end
