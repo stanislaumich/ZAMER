@@ -73,6 +73,7 @@ type
     procedure BitClearClick(Sender: TObject);
     procedure BitSaveClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -91,7 +92,7 @@ var
 
 implementation
 
-uses Uzv2Main;
+uses Uzv2Main, UAuto;
 
 {$R *.dfm}
 
@@ -169,6 +170,11 @@ begin
   BitStart.Click;
 end;
 
+procedure TFormHH.BitBtn1Click(Sender: TObject);
+begin
+  FAuto.ShowModal;
+end;
+
 procedure TFormHH.BitClearClick(Sender: TObject);
 var
   i, j          : integer;
@@ -234,23 +240,24 @@ end;
 
 procedure TFormHH.BitStartClick(Sender: TObject);
 begin
-  if (radioButton1.Checked and radioButton2.Checked and radioButton3.Checked) then
-   begin
-  times := Strtoint(Edit1.Text);
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
-    ' and uisp=' + Label8.Caption);
-  QTemp.ExecSQL;
-  ProgressBar1.min      := 0;
-  ProgressBar1.max      := times;
-  ProgressBar1.Step     := 1;
-  ProgressBar1.Position := 0;
-  command(true);
-  enableclose         := false;
-  TimWork1000.Enabled := true;
-   end
-   else
+  if (RadioButton1.Checked and RadioButton2.Checked and RadioButton3.Checked)
+  then
+  begin
+    times := Strtoint(Edit1.Text);
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
+      ' and uisp=' + Label8.Caption);
+    QTemp.ExecSQL;
+    ProgressBar1.min      := 0;
+    ProgressBar1.max      := times;
+    ProgressBar1.Step     := 1;
+    ProgressBar1.Position := 0;
+    command(true);
+    enableclose         := false;
+    TimWork1000.Enabled := true;
+  end
+  else
     ShowMessage('Ќе выбран ни один вариант испытани€ в левой таблице!!');
 end;
 

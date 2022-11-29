@@ -97,7 +97,7 @@ type
         procedure BHHClick(Sender: TObject);
         procedure BSoprotClick(Sender: TObject);
         procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure BKzClick(Sender: TObject);
+        procedure BKzClick(Sender: TObject);
     private
         { Private declarations }
     public
@@ -377,7 +377,7 @@ end;
 procedure TFZamerV2.BKzClick(Sender: TObject);
 begin
 
- FKZ.ShowModal;
+    FKZ.ShowModal;
 end;
 
 procedure TFZamerV2.enableispyt(f: Boolean);
@@ -464,40 +464,39 @@ begin
             FormHH.RadioButton5.Checked := true;
     end;
     // загрузить сопротивление если есть
-    Qtemp.Close;
-    Qtemp.SQL.Clear;
-    Qtemp.Open('select * from zsoprot where nomer=' + Quotedstr(Nomer));
-    FZamerV2.ImgSet(FZamerV2.Image1, Qtemp.RecordCount <> 0);
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select * from zsoprot where nomer=' + Quotedstr(nomer));
+    FZamerV2.ImgSet(FZamerV2.Image1, QTemp.RecordCount <> 0);
 
-    FSopr.Edit8.Text     := Qtemp.FieldByName('TEMPER').Asstring;
-    FSopr.ComboBox7.Text := Qtemp.FieldByName('PHAS').Asstring;
-    FSopr.ComboBox8.Text := Qtemp.FieldByName('SOED').Asstring;
-    FSopr.ComboBox9.Text := Qtemp.FieldByName('SOPRED').Asstring;
+    FSopr.Edit8.Text     := QTemp.FieldByName('TEMPER').Asstring;
+    FSopr.ComboBox7.Text := QTemp.FieldByName('PHAS').Asstring;
+    FSopr.ComboBox8.Text := QTemp.FieldByName('SOED').Asstring;
+    FSopr.ComboBox9.Text := QTemp.FieldByName('SOPRED').Asstring;
     if FSopr.ComboBox9.Text = '' then
         FSopr.ComboBox9.Text := 'ќм';
-    FSopr.ComboBox10.Text    := Qtemp.FieldByName('IZOLED').Asstring;
+    FSopr.ComboBox10.Text    := QTemp.FieldByName('IZOLED').Asstring;
     if FSopr.ComboBox10.Text = '' then
         FSopr.ComboBox10.Text     := 'ћќм';
-    FSopr.Edit13.Text             := Qtemp.FieldByName('IZOLKORP').Asstring;
-    FSopr.Edit16.Text             := Qtemp.FieldByName('IZOLOBMOT').Asstring;
-    FSopr.StringGrid3.Cells[1, 1] := Qtemp.FieldByName('IZM1U1U2').Asstring;
-    FSopr.StringGrid3.Cells[1, 2] := Qtemp.FieldByName('IZM2U1U2').Asstring;
-    FSopr.StringGrid3.Cells[1, 3] := Qtemp.FieldByName('IZM3U1U2').Asstring;
-    FSopr.StringGrid3.Cells[2, 1] := Qtemp.FieldByName('IZM1V1V2').Asstring;
-    FSopr.StringGrid3.Cells[2, 2] := Qtemp.FieldByName('IZM2V1V2').Asstring;
-    FSopr.StringGrid3.Cells[2, 3] := Qtemp.FieldByName('IZM3V1V2').Asstring;
-    FSopr.StringGrid3.Cells[3, 1] := Qtemp.FieldByName('IZM1W1W2').Asstring;
-    FSopr.StringGrid3.Cells[3, 2] := Qtemp.FieldByName('IZM2W1W2').Asstring;
-    FSopr.StringGrid3.Cells[3, 3] := Qtemp.FieldByName('IZM3W1W2').Asstring;
-    case Qtemp.FieldByName('BOLT').AsInteger of
+    FSopr.Edit13.Text             := QTemp.FieldByName('IZOLKORP').Asstring;
+    FSopr.Edit16.Text             := QTemp.FieldByName('IZOLOBMOT').Asstring;
+    FSopr.StringGrid3.Cells[1, 1] := QTemp.FieldByName('IZM1U1U2').Asstring;
+    FSopr.StringGrid3.Cells[1, 2] := QTemp.FieldByName('IZM2U1U2').Asstring;
+    FSopr.StringGrid3.Cells[1, 3] := QTemp.FieldByName('IZM3U1U2').Asstring;
+    FSopr.StringGrid3.Cells[2, 1] := QTemp.FieldByName('IZM1V1V2').Asstring;
+    FSopr.StringGrid3.Cells[2, 2] := QTemp.FieldByName('IZM2V1V2').Asstring;
+    FSopr.StringGrid3.Cells[2, 3] := QTemp.FieldByName('IZM3V1V2').Asstring;
+    FSopr.StringGrid3.Cells[3, 1] := QTemp.FieldByName('IZM1W1W2').Asstring;
+    FSopr.StringGrid3.Cells[3, 2] := QTemp.FieldByName('IZM2W1W2').Asstring;
+    FSopr.StringGrid3.Cells[3, 3] := QTemp.FieldByName('IZM3W1W2').Asstring;
+    case QTemp.FieldByName('BOLT').AsInteger of
         0:
-            FSopr.radiobutton3.Checked := True;
+            FSopr.radiobutton3.Checked := true;
         1:
-            FSopr.radiobutton1.Checked := True;
+            FSopr.radiobutton1.Checked := true;
         2:
-            FSopr.radiobutton2.Checked := True;
+            FSopr.radiobutton2.Checked := true;
     end;
-
 
     /// ////////////////////////////////////////////////////////////////////////////
 end;
@@ -529,9 +528,9 @@ end;
 
 procedure TFZamerV2.BSoprotClick(Sender: TObject);
 begin
- FSopr.Label6.Caption:=Nomer;
- FSopr.ShowModal;
-//    ImgSet(Image1, true);
+    FSopr.Label6.Caption := nomer;
+    FSopr.ShowModal;
+    // ImgSet(Image1, true);
 end;
 
 procedure TFZamerV2.FormCloseQuery(Sender: TObject; var CanClose: Boolean);

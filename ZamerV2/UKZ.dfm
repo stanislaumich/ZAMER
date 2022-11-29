@@ -13,6 +13,8 @@ object FKZ: TFKZ
   OldCreateOrder = False
   Position = poScreenCenter
   OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
   OnHide = FormHide
   DesignSize = (
     520
@@ -75,7 +77,7 @@ object FKZ: TFKZ
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 208
+      Left = 215
       Top = 99
       Width = 190
       Height = 29
@@ -257,6 +259,7 @@ object FKZ: TFKZ
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE7
         E6FE716FF95157F76370F85D65F84444F5FFFFFFFFFFFFFFFFFF}
       TabOrder = 1
+      OnClick = BitBtn1Click
     end
   end
   object GroupBox2: TGroupBox
@@ -445,8 +448,9 @@ object FKZ: TFKZ
       Anchors = [akLeft, akTop, akRight]
       DefaultColWidth = 95
       FixedCols = 0
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goRowSelect, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goThumbTracking, goFixedRowDefAlign]
       TabOrder = 2
+      OnClick = StringGrid1Click
     end
     object Edit2: TEdit
       Left = 41
@@ -590,6 +594,7 @@ object FKZ: TFKZ
     TabOrder = 4
   end
   object QTemp: TFDQuery
+    Connection = FZamerV2.FDC
     Left = 112
     Top = 380
   end

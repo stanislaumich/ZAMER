@@ -3,7 +3,8 @@ unit USopr;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
   Vcl.Grids, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
@@ -62,8 +63,8 @@ var
 implementation
 
 {$R *.dfm}
- Uses Uzv2Main;
 
+Uses Uzv2Main;
 
 procedure TFSopr.BitBtn1Click(Sender: TObject);
 begin
@@ -80,11 +81,10 @@ procedure TFSopr.BitBtn5Click(Sender: TObject);
 var
   i, j: integer;
 begin
-  Qtemp.Close;
-  Qtemp.SQL.Clear;
-  Qtemp.SQL.add('delete from ZSOPROT where nomer=' +
-    Quotedstr(Label6.Caption));
-  Qtemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.add('delete from ZSOPROT where nomer=' + Quotedstr(Label6.Caption));
+  QTemp.ExecSQL;
   QSoprot.Close;
   try
     QSoprot.ParamByName('NOMER').Asstring := Label6.Caption;
@@ -97,8 +97,8 @@ begin
     QSoprot.ParamByName('IZOLKORP').AsFloat  := myfloat(Edit13.Text);
     QSoprot.ParamByName('IZOLOBMOT').AsFloat := myfloat(Edit16.Text);
 
-    QSoprot.ParamByName('ISPYT13').AsInteger:=0;
-    QSoprot.ParamByName('BOLT').AsInteger := 0;
+    QSoprot.ParamByName('ISPYT13').AsInteger := 0;
+    QSoprot.ParamByName('BOLT').AsInteger    := 0;
     if RadioButton1.Checked then
       QSoprot.ParamByName('BOLT').AsInteger := 1;
     if RadioButton2.Checked then
@@ -137,7 +137,7 @@ procedure TFSopr.Button50Click(Sender: TObject);
 var
   i, j: integer;
 begin
-  Edit8.Text := '0';
+  Edit8.Text                  := '0';
   ComboBox7.Text              := '';
   ComboBox8.Text              := '';
   for i                       := 1 to 3 do
@@ -157,10 +157,10 @@ begin
   StringGrid3.cells[1, 0] := 'U1-U2(U-V)/ãë.*';
   StringGrid3.cells[2, 0] := 'V1-V2(V-W)/âñï.*';
   StringGrid3.cells[3, 0] := 'W1-W2(W-U)';
-  ComboBox9.Text  := 'Îì';
-  ComboBox10.Text := 'ÌÎì';
-  for i   := 1 to 3 do
-    for j := 1 to 3 do
+  ComboBox9.Text          := 'Îì';
+  ComboBox10.Text         := 'ÌÎì';
+  for i                   := 1 to 3 do
+    for j                 := 1 to 3 do
     begin
       StringGrid3.cells[i, j]  := '0';
       StringGrid3.ColWidths[i] := 160;
