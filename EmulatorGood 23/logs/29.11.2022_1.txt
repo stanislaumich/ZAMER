@@ -29,3 +29,66 @@
 29.11.2022 10:16:04.462 - TModbusTCPClient.Start
 29.11.2022 10:16:04.462 - TTCPAccept.InitSocket IN
 29.11.2022 10:16:37.867 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 10:21:54.212 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 10:21:54.212 - TModbusTCPServer.RemoveClient
+29.11.2022 10:21:54.294 - TModbusTCPServer.AddClient
+29.11.2022 10:21:54.294 - TModbusTCPClient.Start
+29.11.2022 10:21:54.294 - TTCPAccept.InitSocket IN
+29.11.2022 10:22:07.551 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:01:09.524 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:01:09.524 - TModbusTCPServer.RemoveClient
+29.11.2022 11:01:09.571 - TModbusTCPServer.AddClient
+29.11.2022 11:01:09.571 - TModbusTCPClient.Start
+29.11.2022 11:01:09.571 - TTCPAccept.InitSocket IN
+29.11.2022 11:01:32.1 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:04:09.743 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:04:09.743 - TModbusTCPServer.RemoveClient
+29.11.2022 11:04:09.812 - TModbusTCPServer.AddClient
+29.11.2022 11:04:09.812 - TModbusTCPClient.Start
+29.11.2022 11:04:09.812 - TTCPAccept.InitSocket IN
+29.11.2022 11:04:34.408 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:04:46.866 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:04:46.866 - TModbusTCPServer.RemoveClient
+29.11.2022 11:04:46.927 - TModbusTCPServer.AddClient
+29.11.2022 11:04:46.927 - TModbusTCPClient.Start
+29.11.2022 11:04:46.927 - TTCPAccept.InitSocket IN
+29.11.2022 11:05:36.102 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:16:28.751 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:16:28.751 - TModbusTCPServer.RemoveClient
+29.11.2022 11:16:38.131 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:16:53.857 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:16:53.857 - TModbusTCPServer.RemoveClient
+29.11.2022 11:16:54.125 - TModbusTCPServer.AddClient
+29.11.2022 11:16:54.125 - TModbusTCPClient.Start
+29.11.2022 11:16:54.125 - TTCPAccept.InitSocket IN
+29.11.2022 11:17:02.931 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:23:22.784 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:23:22.784 - TModbusTCPServer.RemoveClient
+29.11.2022 11:23:22.853 - TModbusTCPServer.AddClient
+29.11.2022 11:23:22.853 - TModbusTCPClient.Start
+29.11.2022 11:23:22.853 - TTCPAccept.InitSocket IN
+29.11.2022 11:24:29.359 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:26:36.680 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:26:36.680 - TModbusTCPServer.RemoveClient
+29.11.2022 11:26:36.698 - TModbusTCPServer.AddClient
+29.11.2022 11:26:36.698 - TModbusTCPClient.Start
+29.11.2022 11:26:36.698 - TTCPAccept.InitSocket IN
+29.11.2022 11:26:53.450 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:27:13.556 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:27:13.556 - TModbusTCPServer.RemoveClient
+29.11.2022 11:27:13.626 - TModbusTCPServer.AddClient
+29.11.2022 11:27:13.626 - TModbusTCPClient.Start
+29.11.2022 11:27:13.626 - TTCPAccept.InitSocket IN
+29.11.2022 11:27:21.108 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:27:48.541 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:27:48.541 - TModbusTCPServer.RemoveClient
+29.11.2022 11:27:48.588 - TModbusTCPServer.AddClient
+29.11.2022 11:27:48.588 - TModbusTCPClient.Start
+29.11.2022 11:27:48.588 - TTCPAccept.InitSocket IN
+29.11.2022 11:28:06.503 - TModbusTCPServer.OnClientDisconnect
+29.11.2022 11:28:56.834 - TModbusTCPServer.ClientConnectEvent
+29.11.2022 11:28:56.834 - TModbusTCPServer.RemoveClient
+29.11.2022 11:28:56.945 - TModbusTCPServer.AddClient
+29.11.2022 11:28:56.945 - TModbusTCPClient.Start
+29.11.2022 11:28:56.945 - TTCPAccept.InitSocket IN
+29.11.2022 11:29:16.709 - TModbusTCPServer.OnClientDisconnect

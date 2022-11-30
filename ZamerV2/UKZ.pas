@@ -61,18 +61,48 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure command(b: Boolean);
   end;
 
 var
   FKZ        : TFKZ;
-  enableclose: boolean;
+  enableclose: Boolean;
 
 implementation
 
 {$R *.dfm}
 
 Uses uzv2Main, UAuto;
+
+procedure TFKZ.command(b: Boolean);
+begin
+  if b then
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('insert into command (nomer, command) values(' +
+      Quotedstr(Nomer) + ' , 1)');
+    QTemp.ExecSQL;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('insert into command (nomer, command) values(' +
+      Quotedstr(Nomer) + ' , 11)');
+    QTemp.ExecSQL;
+  end
+  else
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('insert into command (nomer, command) values(' +
+      Quotedstr(Nomer) + ' , 0)');
+    QTemp.ExecSQL;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('insert into command (nomer, command) values(' +
+      Quotedstr(Nomer) + ' , 10)');
+    QTemp.ExecSQL;
+  end;
+end;
 
 procedure TFKZ.Action1Execute(Sender: TObject);
 begin
@@ -89,18 +119,64 @@ begin
   Fauto.ShowModal;
 end;
 
+// start f5
 procedure TFKZ.BitBtn8Click(Sender: TObject);
-var
-  s: string;
-begin
 
+begin
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zamertmp');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
+    ' and uisp=' + StringGrid1.cells[0, StringGrid1.row]);
+  QTemp.ExecSQL;
+  command(true);
+  StringGrid1.Enabled := false;
+  BitBtn9.Enabled     := true;
+  BitBtn8.Enabled     := false;
 end;
 
+// end f9
 procedure TFKZ.BitBtn9Click(Sender: TObject);
+type
+  rec = record
+    u, i, p, u1, u2, u3, i1, i2, i3, p1, p2, p3, torq: single;
+  end;
 var
-  s: string;
+  a  : array [1 .. 1000] of rec;
+  i  : integer;
+  max: integer;
 begin
+  command(false);
 
+  for i := 1 to 1000 do
+    with a[i] do
+    begin
+      u    := 0;
+      i    := 0;
+      p    := 0;
+      torq := 0;
+      u1   := 0;
+      u2   := 0;
+      u3   := 0;
+      i1   := 0;
+      i2   := 0;
+      i3   := 0;
+      p1   := 0;
+      p2   := 0;
+      p3   := 0;
+    end;
+  /// //////////////////////////////////////////////////////////////////////////
+
+
+
+
+  /// //////////////////////////////////////////////////////////////////////////
+  BitBtn9.Enabled     := false;
+  BitBtn8.Enabled     := false;
+  StringGrid1.Enabled := true;
 end;
 
 procedure TFKZ.FormActivate(Sender: TObject);
