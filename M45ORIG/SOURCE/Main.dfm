@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = #1057#1073#1086#1088' '#1087#1086#1082#1072#1079#1072#1085#1080#1081' '#1058'45'
-  ClientHeight = 270
+  ClientHeight = 229
   ClientWidth = 450
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object Form1: TForm1
   OnCreate = FormCreate
   DesignSize = (
     450
-    270)
+    229)
   PixelsPerInch = 96
   TextHeight = 13
   object LComPortNumber: TLabel
@@ -569,12 +569,11 @@ object Form1: TForm1
     Left = 4
     Top = 230
     Width = 441
-    Height = 34
+    Height = 0
     Anchors = [akLeft, akTop, akRight, akBottom]
     ScrollBars = ssVertical
     TabOrder = 16
-    ExplicitWidth = 738
-    ExplicitHeight = 107
+    ExplicitHeight = 34
   end
   object ReflectionTimer: TTimer
     Enabled = False

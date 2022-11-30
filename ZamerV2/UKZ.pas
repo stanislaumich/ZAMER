@@ -67,7 +67,8 @@ type
 var
   FKZ        : TFKZ;
   enableclose: Boolean;
-
+  interval:integer;
+  fname:string;
 implementation
 
 {$R *.dfm}
@@ -76,12 +77,15 @@ Uses uzv2Main, UAuto;
 
 procedure TFKZ.command(b: Boolean);
 begin
+ interval:=50;
+ fname:='1600';
   if b then
   begin
     QTemp.Close;
     QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(Nomer) + ' , 1)');
+
+    QTemp.SQL.Add('insert into command (nomer, filename,command, dat,interval) values(' +
+      Quotedstr(Nomer) + ' ,'+fname+', 1, '+'4'+','+inttostr(interval)+')');
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -93,8 +97,8 @@ begin
   begin
     QTemp.Close;
     QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(Nomer) + ' , 0)');
+    QTemp.SQL.Add('insert into command (nomer, filename,command, dat,interval) values(' +
+      Quotedstr(Nomer) + ' ,'+fname+', 0, '+'4'+','+inttostr(interval)+')');
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;

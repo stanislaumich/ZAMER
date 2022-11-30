@@ -204,15 +204,11 @@ int __stdcall DataHandler(int DataType, void *PZapis, void *PContext) {
 	mySkorostAll+=(PDataFrame->Skorost);
 	times+=1;
 	 if (PForm1->CheckBox1->Checked) {
-	 //s=FloatToStr(PDataFrame->OsnIzmVel[0])+";"+FloatToStr(corr)+";"+FloatToStr(PDataFrame->OsnIzmVel[0]+corr)+";";
-	 //PForm1->Memo2->Lines->Add(s);       -100000,296875
-     //Application->ProcessMessages();
 	 }
 
 	PForm1->Temperature = PDataFrame->Temper;
 	PForm1->Skorost = PDataFrame->Skorost;
 	PForm1->Moshn = PDataFrame->Moschnost;
-	//myMoshn =
 	PForm1->SostDat_CrSe->Leave();
 	break;
 
@@ -369,11 +365,7 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	mySkorostAll=0;
 	times=0;
    }
-  //		SummaZn_Osn = 0;
- // KolIzmOto = 0;
-   //Znachenie+=corr;
 
-  //Form1->Moshn = abs(Znachenie) * abs(mySkorost) / koeff;//PDataFrame->Moschnost;
 	myMoshn=abs(Znachenie) * abs(Skorost) / koeff;
 
 
@@ -414,12 +406,14 @@ void __fastcall TForm1::ReflectionTimerTimer(TObject *Sender) {
 	SostDat_CrSe->Enter();
     STOsnIzmVel->Caption = AS.sprintf(FormatOtobrajenia, abs(Znachenie));
     // ................... Формирование строки для отображения температуры
-    if (Temperature < -40) {
+
+	if (Temperature < -40) {
       STTemper->Caption = "-";
     }
     else {
       STTemper->Caption = AS.sprintf("%4.1f", Temperature);
-    }
+	}
+
     // ................... Формирование строки для отображения скорости на панели
     if (Skorost < 1000) {
 	  STSkorost->Caption = AS.sprintf("%4.1f", abs(mySkorost));
@@ -528,8 +522,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
   // BConnectClick(self);++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings.ini");
-   //TRect *r = new TRect;
-   //GetWindowRect(this->Handle, r);
+   TRect *r = new TRect;
+   GetWindowRect(this->Handle, r);
    int l = 10;
    int t = 10;
    l = Ini->ReadInteger("Position", "Left", 10);
@@ -537,11 +531,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
    Form1->Left = l;
    Form1->Top = t;
    Form1->Repaint();
-  /*
-   Ini->WriteFloat("DECODER", "Torque", 0);
-   Ini->WriteFloat("DECODER", "Speed", 0);
-   Ini->WriteInteger("DECODER", "Average", 0);
-   */
+
   DecoderType = Ini->ReadInteger("DECODER", "Datchik", 10);
 
   corr = Ini->ReadFloat("Datchik", "Corr", 0);

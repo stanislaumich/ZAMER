@@ -4,7 +4,7 @@
         <ProjectVersion>19.2</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -98,6 +98,29 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="Uzv2Main.pas">
+            <Form>FZamerV2</Form>
+        </DCCReference>
+        <DCCReference Include="..\ZAMER\Ustr.pas"/>
+        <DCCReference Include="UHH.pas">
+            <Form>FormHH</Form>
+        </DCCReference>
+        <DCCReference Include="USett.pas">
+            <Form>FZamerV2</Form>
+        </DCCReference>
+        <DCCReference Include="UARC.pas">
+            <Form>FARC</Form>
+        </DCCReference>
+        <DCCReference Include="..\ZAMER\Uadd.pas"/>
+        <DCCReference Include="USopr.pas">
+            <Form>FSopr</Form>
+        </DCCReference>
+        <DCCReference Include="UKZ.pas">
+            <Form>FKZ</Form>
+        </DCCReference>
+        <DCCReference Include="UAuto.pas">
+            <Form>FAuto</Form>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
