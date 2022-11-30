@@ -101,7 +101,7 @@ object FSopr: TFSopr
     object Label6: TLabel
       Left = 36
       Top = 2
-      Width = 9
+      Width = 10
       Height = 23
       Caption = '0'
     end
@@ -267,13 +267,6 @@ object FSopr: TFSopr
       Text = '500'
     end
   end
-  object RadioGroup1: TRadioGroup
-    Left = 8
-    Top = 526
-    Width = 573
-    Height = 33
-    TabOrder = 6
-  end
   object BitBtn1: TBitBtn
     Left = 4
     Top = 592
@@ -338,8 +331,7 @@ object FSopr: TFSopr
       FFFFFFE3E2F9A3A1E87675DA7674D88282D8FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 7
-    ExplicitTop = 764
+    TabOrder = 6
   end
   object BitBtn5: TBitBtn
     Left = 446
@@ -405,7 +397,138 @@ object FSopr: TFSopr
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    TabOrder = 7
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 8
+    Top = 528
+    Width = 573
+    Height = 33
     TabOrder = 8
-    ExplicitTop = 764
+  end
+  object RadioButton1: TRadioButton
+    Left = 14
+    Top = 536
+    Width = 151
+    Height = 17
+    Caption = #1057#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
+    TabOrder = 9
+  end
+  object RadioButton2: TRadioButton
+    Left = 205
+    Top = 536
+    Width = 171
+    Height = 17
+    Caption = #1053#1077' '#1089#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
+    TabOrder = 10
+  end
+  object RadioButton3: TRadioButton
+    Left = 420
+    Top = 536
+    Width = 153
+    Height = 17
+    Caption = #1053#1077' '#1080#1079#1084#1077#1088#1103#1083#1086#1089#1100
+    TabOrder = 11
+  end
+  object QTemp: TFDQuery
+    Left = 464
+    Top = 76
+  end
+  object QSoprot: TFDQuery
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZSOPROT ('
+      '   NOMER, TEMPER, PHAS, '
+      '   SOED, SOPRED, IZOLED, '
+      '   IZOLKORP, IZOLOBMOT, IZM1U1U2, '
+      '   IZM2U1U2, IZM3U1U2, IZM1V1V2, '
+      '   IZM2V1V2, IZM3V1V2, IZM1W1W2, '
+      '   IZM2W1W2, IZM3W1W2, ISPYT13, '
+      '   BOLT) '
+      'VALUES ( :NOMER, :TEMPER, :PHAS, '
+      '   :SOED, :SOPRED, :IZOLED, '
+      '   :IZOLKORP, :IZOLOBMOT, :IZM1U1U2, '
+      '   :IZM2U1U2, :IZM3U1U2, :IZM1V1V2, '
+      '   :IZM2V1V2, :IZM3V1V2, :IZM1W1W2, '
+      '   :IZM2W1W2, :IZM3W1W2, :ISPYT13, '
+      '   :BOLT )')
+    Left = 520
+    Top = 44
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TEMPER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PHAS'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SOED'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SOPRED'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZOLED'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZOLKORP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZOLOBMOT'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM1U1U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM2U1U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM3U1U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM1V1V2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM2V1V2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM3V1V2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM1W1W2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM2W1W2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'IZM3W1W2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ISPYT13'
+        ParamType = ptInput
+      end
+      item
+        Name = 'BOLT'
+        ParamType = ptInput
+      end>
   end
 end

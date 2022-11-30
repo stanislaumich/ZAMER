@@ -149,12 +149,13 @@ type
     u, i, p, u1, u2, u3, i1, i2, i3, p1, p2, p3, torq: single;
   end;
 var
-  a  : array [1 .. 1000] of rec;
+  //a  : array [1 .. 1000] of rec;
   i  : integer;
   max: integer;
+  el, m45, ncnt:integer;
 begin
   command(false);
-
+  {
   for i := 1 to 1000 do
     with a[i] do
     begin
@@ -171,10 +172,13 @@ begin
       p1   := 0;
       p2   := 0;
       p3   := 0;
-    end;
+    end;}
   /// //////////////////////////////////////////////////////////////////////////
-
-
+  QTemp.Open('select count(*) cnt from zamertmp');
+  m45:=QTemp.Fieldbyname('cnt').Asinteger;
+  QTemp.Open('select count(*) cnt from zelspec');
+  el:=QTemp.Fieldbyname('cnt').Asinteger;
+  ncnt    := min(m45, el);
 
 
   /// //////////////////////////////////////////////////////////////////////////

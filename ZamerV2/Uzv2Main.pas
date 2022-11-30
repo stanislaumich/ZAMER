@@ -422,7 +422,6 @@ begin
       ' order by uisp desc');
     ImgSet(Image2, QTemp.RecordCount <> 0);
     tip := QTemp.FieldByName('tip').AsInteger;
-    // tip:=3;
     case tip of
         1:
             begin
@@ -463,6 +462,7 @@ begin
         2:
             FormHH.RadioButton5.Checked := true;
     end;
+
     // загрузить сопротивление если есть
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -478,6 +478,7 @@ begin
     FSopr.ComboBox10.Text    := QTemp.FieldByName('IZOLED').Asstring;
     if FSopr.ComboBox10.Text = '' then
         FSopr.ComboBox10.Text     := 'ћќм';
+
     FSopr.Edit13.Text             := QTemp.FieldByName('IZOLKORP').Asstring;
     FSopr.Edit16.Text             := QTemp.FieldByName('IZOLOBMOT').Asstring;
     FSopr.StringGrid3.Cells[1, 1] := QTemp.FieldByName('IZM1U1U2').Asstring;

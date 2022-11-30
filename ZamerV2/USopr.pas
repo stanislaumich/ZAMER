@@ -34,13 +34,13 @@ type
     Edit16: TEdit;
     Label4: TLabel;
     Label5: TLabel;
-    RadioGroup1: TRadioGroup;
     Label2: TLabel;
     Label3: TLabel;
     BitBtn1: TBitBtn;
     BitBtn5: TBitBtn;
     Label1: TLabel;
     Label6: TLabel;
+    RadioGroup1: TRadioGroup;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     RadioButton3: TRadioButton;

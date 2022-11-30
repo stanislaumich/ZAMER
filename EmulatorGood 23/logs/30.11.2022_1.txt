@@ -1,1 +1,13 @@
 30.11.2022 10:17:29.698 - Запуск Modbus TCP/RTU Эмулятор
+30.11.2022 10:17:30.743 - TModbusTCPServer.Create
+30.11.2022 10:17:31.483 - TModbusTCPServer.Start
+30.11.2022 10:17:31.483 - TTCPAccept.Create IN, Port = 502
+30.11.2022 10:17:31.498 - TTCPAccept.Create OUT
+30.11.2022 10:17:31.503 - TTCPAccept.Execute IN
+30.11.2022 10:17:31.503 - TTCPAccept.InitSocket IN
+30.11.2022 10:17:31.503 - TTCPAccept.InitSocket - OUT
+30.11.2022 10:17:31.998 - TModbusTCPServer.ClientConnectEvent
+30.11.2022 10:17:32.12 - TModbusTCPServer.AddClient
+30.11.2022 10:17:32.12 - TModbusTCPClient.Start
+30.11.2022 10:17:32.12 - TTCPAccept.InitSocket IN
+30.11.2022 10:17:54.344 - TModbusTCPServer.OnClientDisconnect
