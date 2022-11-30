@@ -18,10 +18,10 @@
         <Projects Include="SborElspec\SborELSPEC.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="ZamerV2\ZamerV2.dproj">
+        <Projects Include="UReg\RegU.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="UReg\RegU.dproj">
+        <Projects Include="ZamerV2\ZamerV2.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -77,15 +77,6 @@
     <Target Name="SborELSPEC:Make">
         <MSBuild Projects="SborElspec\SborELSPEC.dproj" Targets="Make"/>
     </Target>
-    <Target Name="ZamerV2">
-        <MSBuild Projects="ZamerV2\ZamerV2.dproj"/>
-    </Target>
-    <Target Name="ZamerV2:Clean">
-        <MSBuild Projects="ZamerV2\ZamerV2.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ZamerV2:Make">
-        <MSBuild Projects="ZamerV2\ZamerV2.dproj" Targets="Make"/>
-    </Target>
     <Target Name="RegU">
         <MSBuild Projects="UReg\RegU.dproj"/>
     </Target>
@@ -95,14 +86,23 @@
     <Target Name="RegU:Make">
         <MSBuild Projects="UReg\RegU.dproj" Targets="Make"/>
     </Target>
+    <Target Name="ZamerV2">
+        <MSBuild Projects="ZamerV2\ZamerV2.dproj"/>
+    </Target>
+    <Target Name="ZamerV2:Clean">
+        <MSBuild Projects="ZamerV2\ZamerV2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ZamerV2:Make">
+        <MSBuild Projects="ZamerV2\ZamerV2.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Zamer;T45;TABLES;UPDATER;SborELSPEC;ZamerV2;RegU"/>
+        <CallTarget Targets="Zamer;T45;TABLES;UPDATER;SborELSPEC;RegU;ZamerV2"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Zamer:Clean;T45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean;ZamerV2:Clean;RegU:Clean"/>
+        <CallTarget Targets="Zamer:Clean;T45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean;RegU:Clean;ZamerV2:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Zamer:Make;T45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make;ZamerV2:Make;RegU:Make"/>
+        <CallTarget Targets="Zamer:Make;T45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make;RegU:Make;ZamerV2:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
