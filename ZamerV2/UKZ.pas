@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.Grids, Vcl.Buttons, System.Actions, Vcl.ActnList, uadd;
+  Vcl.Grids, Vcl.Buttons, System.Actions, Vcl.ActnList, uadd, math;
 
 type
   TFKZ = class(TForm)
@@ -47,6 +47,10 @@ type
     TimerUp: TTimer;
     QUp: TFDQuery;
     BitBtn1: TBitBtn;
+    Qe: TFDQuery;
+    Qm: TFDQuery;
+    QInsAll: TFDQuery;
+    QSelectsred: TFDQuery;
     procedure BitBtn8Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure BitBtn9Click(Sender: TObject);
@@ -144,43 +148,61 @@ end;
 
 // end f9
 procedure TFKZ.BitBtn9Click(Sender: TObject);
-type
-  rec = record
-    u, i, p, u1, u2, u3, i1, i2, i3, p1, p2, p3, torq: single;
-  end;
+//type
+//  rec = record
+//    u, i, p, u1, u2, u3, i1, i2, i3, p1, p2, p3, torq: single;
+//  end;
 var
   //a  : array [1 .. 1000] of rec;
   i  : integer;
   max: integer;
   el, m45, ncnt:integer;
+  e:boolean;
 begin
   command(false);
-  {
-  for i := 1 to 1000 do
-    with a[i] do
-    begin
-      u    := 0;
-      i    := 0;
-      p    := 0;
-      torq := 0;
-      u1   := 0;
-      u2   := 0;
-      u3   := 0;
-      i1   := 0;
-      i2   := 0;
-      i3   := 0;
-      p1   := 0;
-      p2   := 0;
-      p3   := 0;
-    end;}
+
   /// //////////////////////////////////////////////////////////////////////////
-  QTemp.Open('select count(*) cnt from zamertmp');
-  m45:=QTemp.Fieldbyname('cnt').Asinteger;
-  QTemp.Open('select count(*) cnt from zelspec');
-  el:=QTemp.Fieldbyname('cnt').Asinteger;
-  ncnt    := min(m45, el);
+  //QTemp.Open('select count(*) cnt from zamertmp');
+  //m45:=QTemp.Fieldbyname('cnt').Asinteger;
+  //QTemp.Open('select count(*) cnt from zelspec');
+  //el:=QTemp.Fieldbyname('cnt').Asinteger;
+  //ncnt    := min(m45, el);
+  Qm.Close;
+  Qe.Close;
+  Qm.Open;
+  Qe.Open;
+  e:=true;
+  while e do
+   begin
+   {:NOMER, :UISP, :U12,
+   :U23, :U31, :I1,
+   :I2, :I3, :P1,
+   :P2, :P3, :TORQ
+   }
+    QInsAll.ParamByName('NOMER').AsString := Nomer;
+    QInsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label13.Caption);
+    QInsAll.ParamByName('U12').AsFloat    := SimpleRoundTo(Qe.Fieldbyname('u1').Asfloat,RazU);
+    QInsAll.ParamByName('U23').AsFloat    := SimpleRoundTo(Qe.Fieldbyname('u2').Asfloat,RazU);
+    QInsAll.ParamByName('U31').AsFloat    := SimpleRoundTo(Qe.Fieldbyname('u3').Asfloat,RazU);
+    QInsAll.ParamByName('I1').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('i1').Asfloat,RazI);
+    QInsAll.ParamByName('I2').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('i2').Asfloat,RazI);
+    QInsAll.ParamByName('I3').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('i3').Asfloat,RazI);
+    QInsAll.ParamByName('P1').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('p1').Asfloat,RazP);
+    QInsAll.ParamByName('P2').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('p1').Asfloat,RazP);
+    QInsAll.ParamByName('P3').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('p1').Asfloat,RazP);
+    QInsAll.ParamByName('torq').AsFloat   := SimpleRoundTo(Qm.FieldByName('torq').AsFloat, RazM);
+    QInsAll.ExecSQL;
+
+    qm.next;
+    qe.next;
+    e:=not qe.eof and not qm.eof;
+   end;
+
+  QTemp.Close;
 
 
+  Qm.Close;
+  Qe.Close;
   /// //////////////////////////////////////////////////////////////////////////
   BitBtn9.Enabled     := false;
   BitBtn8.Enabled     := false;

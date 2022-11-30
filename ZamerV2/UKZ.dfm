@@ -595,8 +595,8 @@ object FKZ: TFKZ
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 112
-    Top = 380
+    Left = 452
+    Top = 84
   end
   object ActionList1: TActionList
     Left = 36
@@ -631,5 +631,104 @@ object FKZ: TFKZ
       ')')
     Left = 464
     Top = 148
+  end
+  object Qe: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'select * from zelspec')
+    Left = 484
+    Top = 32
+  end
+  object Qm: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'select * from zamertmp')
+    Left = 436
+    Top = 36
+  end
+  object QInsAll: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZKZALL ('
+      '   NOMER, UISP, U12,'
+      '   U23, U31, I1,'
+      '   I2, I3, P1,'
+      '   P2, P3, TORQ)'
+      'VALUES ( :NOMER, :UISP, :U12,'
+      '   :U23, :U31, :I1,'
+      '   :I2, :I3, :P1,'
+      '   :P2, :P3, :TORQ )')
+    Left = 400
+    Top = 204
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U12'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U23'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U31'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TORQ'
+        ParamType = ptInput
+      end>
+  end
+  object QSelectsred: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'select '
+      'round(avg(u),1) u,round(avg(i),4) i, '
+      'round(avg(p),4) p, round(avg(torq),4) t'
+      'from zkzall'
+      'where nomer=:nomer'
+      ' and uisp=:uisp')
+    Left = 344
+    Top = 204
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end>
   end
 end
