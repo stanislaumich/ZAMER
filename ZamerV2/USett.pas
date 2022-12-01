@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, Vcl.Grids, Vcl.DBGrids, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.Buttons;
+  Vcl.Buttons, ShellAPI;
 
 type
   TFSett = class(TForm)
@@ -41,11 +41,15 @@ type
     Label6: TLabel;
     Edit4: TEdit;
     Edit5: TEdit;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,37 +68,37 @@ procedure TFSett.BitBtn1Click(Sender: TObject);
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit1.Text + '"') +
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit1.Text) +
     ' where name=' + Quotedstr('UIPPath'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit2.Text + '"') +
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit2.Text) +
     ' where name=' + Quotedstr('MNTPath'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit4.Text + '"') +
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit4.Text) +
     ' where name=' + Quotedstr('StepBig'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit5.Text + '"') +
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit5.Text) +
     ' where name=' + Quotedstr('StepSmall'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + Edit3.Text + '"') +
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit3.Text) +
     ' where name=' + Quotedstr('StepU'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('Update zini set value=' + Quotedstr('"' + CombCom.Text + '"') +
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr(CombCom.Text) +
     ' where name=' + Quotedstr('ComPortU'));
   QTemp.ExecSQL;
 
@@ -107,16 +111,28 @@ begin
   FSett.Close;
 end;
 
+procedure TFSett.BitBtn3Click(Sender: TObject);
+begin
+ ShellExecute(Handle, 'open', PWideChar(Edit1.text),
+      nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TFSett.BitBtn4Click(Sender: TObject);
+begin
+  ShellExecute(Handle, 'open', PWideChar(Edit2.text),
+      nil, nil, SW_SHOWNORMAL);
+end;
+
 procedure TFSett.Button1Click(Sender: TObject);
 begin
   If OpenDialog1.Execute then
-    Edit1.Text := OpenDialog1.Filename;
+    Edit1.Text := '"'+OpenDialog1.Filename+'"';
 end;
 
 procedure TFSett.Button2Click(Sender: TObject);
 begin
   If OpenDialog1.Execute then
-    Edit2.Text := OpenDialog1.Filename;
+    Edit2.Text := '"'+OpenDialog1.Filename+'"';
 end;
 
 procedure TFSett.FormCreate(Sender: TObject);

@@ -376,7 +376,7 @@ end;
 
 procedure TFZamerV2.BKzClick(Sender: TObject);
 begin
-
+    FKZ.Label2.Caption := nomer;
     FKZ.ShowModal;
 end;
 

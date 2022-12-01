@@ -731,4 +731,50 @@ object FKZ: TFKZ
         ParamType = ptInput
       end>
   end
+  object QInsSvod: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZKZSVOD ('
+      '   NOMER, UISP, U, '
+      '   I, P, M,R, '
+      '   TMP) '
+      'VALUES ( :NOMER, :UISP, :U, '
+      '   :I, :P, :M,:R, '
+      '   :TMP )')
+    Left = 460
+    Top = 204
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'M'
+        ParamType = ptInput
+      end
+      item
+        Name = 'R'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TMP'
+        ParamType = ptInput
+      end>
+  end
 end

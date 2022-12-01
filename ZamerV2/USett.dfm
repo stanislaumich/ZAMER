@@ -112,7 +112,7 @@ object FSett: TFSett
     object Edit1: TEdit
       Left = 128
       Top = 14
-      Width = 501
+      Width = 473
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
@@ -120,30 +120,58 @@ object FSett: TFSett
     object Edit2: TEdit
       Left = 128
       Top = 41
-      Width = 501
+      Width = 473
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
     end
     object Button1: TButton
-      Left = 632
+      Left = 603
       Top = 12
       Width = 75
       Height = 25
       Anchors = [akTop, akRight]
       Caption = #1042#1099#1073#1088#1072#1090#1100
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 2
       OnClick = Button1Click
     end
     object Button2: TButton
-      Left = 632
+      Left = 603
       Top = 39
       Width = 75
       Height = 25
       Anchors = [akTop, akRight]
       Caption = #1042#1099#1073#1088#1072#1090#1100
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 3
       OnClick = Button2Click
+    end
+    object BitBtn3: TBitBtn
+      Left = 682
+      Top = 12
+      Width = 25
+      Height = 25
+      Hint = #1055#1088#1086#1074#1077#1088#1080#1090#1100' '#1087#1091#1090#1100
+      Caption = '?'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 4
+      OnClick = BitBtn3Click
+    end
+    object BitBtn4: TBitBtn
+      Left = 682
+      Top = 39
+      Width = 25
+      Height = 25
+      Hint = #1055#1088#1086#1074#1077#1088#1080#1090#1100' '#1087#1091#1090#1100
+      Caption = '?'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 5
+      OnClick = BitBtn4Click
     end
   end
   object BitBtn1: TBitBtn
@@ -279,7 +307,6 @@ object FSett: TFSett
       79FE5079FE5079FF5179FE5077FD4D75FC4A70FC6E8CFDFFFFFF}
     TabOrder = 4
     OnClick = BitBtn2Click
-    ExplicitTop = 174
   end
   object GroupBox4: TGroupBox
     Left = 3

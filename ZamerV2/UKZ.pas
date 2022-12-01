@@ -51,6 +51,7 @@ type
     Qm: TFDQuery;
     QInsAll: TFDQuery;
     QSelectsred: TFDQuery;
+    QInsSvod: TFDQuery;
     procedure BitBtn8Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure BitBtn9Click(Sender: TObject);
@@ -131,6 +132,11 @@ end;
 procedure TFKZ.BitBtn8Click(Sender: TObject);
 
 begin
+  if edit2.text='0' then
+   begin
+    Showmessage('Не указано сопротивление!');
+    exit;
+   end;
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('truncate table zamertmp');
@@ -161,12 +167,11 @@ var
 begin
   command(false);
 
-  /// //////////////////////////////////////////////////////////////////////////
-  //QTemp.Open('select count(*) cnt from zamertmp');
-  //m45:=QTemp.Fieldbyname('cnt').Asinteger;
-  //QTemp.Open('select count(*) cnt from zelspec');
-  //el:=QTemp.Fieldbyname('cnt').Asinteger;
-  //ncnt    := min(m45, el);
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
+    ' and uisp=' + StringGrid1.cells[0, StringGrid1.row]);
+  QTemp.ExecSQL;
   Qm.Close;
   Qe.Close;
   Qm.Open;
@@ -174,11 +179,6 @@ begin
   e:=true;
   while e do
    begin
-   {:NOMER, :UISP, :U12,
-   :U23, :U31, :I1,
-   :I2, :I3, :P1,
-   :P2, :P3, :TORQ
-   }
     QInsAll.ParamByName('NOMER').AsString := Nomer;
     QInsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label13.Caption);
     QInsAll.ParamByName('U12').AsFloat    := SimpleRoundTo(Qe.Fieldbyname('u1').Asfloat,RazU);
@@ -199,6 +199,41 @@ begin
    end;
 
   QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('delete from zkzsvod where nomer=' + Quotedstr(Nomer) +
+    ' and uisp=' + Label13.Caption);
+  QTemp.ExecSQL;
+
+  QSelectSred.Close;
+  QSelectSred.ParamByName('nomer').AsString := Nomer;
+  QSelectSred.ParamByName('uisp').AsFloat   := Strtofloat(Label13.Caption);
+  QSelectSred.Open;
+
+
+  StringGrid1.cells[1, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('u').AsFloat, RazU));
+  StringGrid1.cells[2, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('i').AsFloat, RazI));
+  StringGrid1.cells[3, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('p').AsFloat, RazP));
+  StringGrid1.cells[4, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('t').AsFloat, RazM));
+
+  QInsSvod.ParamByName('nomer').AsString := Nomer;
+  QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label13.Caption);
+  QInsSvod.ParamByName('r').AsFloat      :=
+    SimpleRoundTo(Strtofloat(Edit2.text), RazR);
+  QInsSvod.ParamByName('u').AsFloat :=
+    SimpleRoundTo(QSelectSred.FieldByName('u').AsFloat, RazU);
+  QInsSvod.ParamByName('i').AsFloat :=
+    SimpleRoundTo(QSelectSred.FieldByName('i').AsFloat, RazI);
+  QInsSvod.ParamByName('p').AsFloat :=
+    SimpleRoundTo(QSelectSred.FieldByName('p').AsFloat, RazP);
+  QInsSvod.ParamByName('m').AsFloat :=
+    SimpleRoundTo(QSelectSred.FieldByName('t').AsFloat, RazM);
+  QInsSvod.ParamByName('tmp').AsFloat := 0;
+  QInsSvod.ExecSQL;
+
 
 
   Qm.Close;
@@ -214,7 +249,7 @@ begin
   enableclose := true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('ukz'));
   Edit1.Text := QTemp.FieldByName('value').AsString;
-
+  nomer:=LAbel2.Caption;
   TimerUp.Enabled := true;
 end;
 
