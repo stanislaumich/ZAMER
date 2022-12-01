@@ -63,6 +63,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid1Click(Sender: TObject);
+    procedure BitBtn12Click(Sender: TObject);
+    procedure BitBtn10Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -121,6 +123,20 @@ end;
 procedure TFKZ.Action2Execute(Sender: TObject);
 begin
   BitBtn9Click(FKZ);
+end;
+
+procedure TFKZ.BitBtn10Click(Sender: TObject);
+ var
+  i,j:integer;
+begin
+ for i:=1 to Stringgrid1.ColCount-1 do
+  for j:=1 to stringgrid1.RowCount-1 do
+   Stringgrid1.Cells[i,j]:='';
+end;
+
+procedure TFKZ.BitBtn12Click(Sender: TObject);
+begin
+ FKZ.Close;
 end;
 
 procedure TFKZ.BitBtn1Click(Sender: TObject);

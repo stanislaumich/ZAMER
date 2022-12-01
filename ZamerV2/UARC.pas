@@ -24,6 +24,7 @@ type
     QTemp: TFDQuery;
     procedure FormActivate(Sender: TObject);
     procedure BitSelectClick(Sender: TObject);
+    procedure GridSpisDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -83,6 +84,12 @@ begin
   setgridcolumnwidths(GridSpis);
   GridSpis.datasource.DataSet.first;
   Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
+end;
+
+procedure TFARC.GridSpisDblClick(Sender: TObject);
+begin
+Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
+BitSelect.Click;
 end;
 
 end.

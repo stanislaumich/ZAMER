@@ -57,6 +57,7 @@ object FARC: TFARC
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnDblClick = GridSpisDblClick
       Columns = <
         item
           Expanded = False

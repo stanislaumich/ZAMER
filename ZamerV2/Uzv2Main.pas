@@ -498,6 +498,34 @@ begin
         2:
             FSopr.radiobutton2.Checked := true;
     end;
+    /// ////////////////////////////////////////////////////////////
+    // загрузить  ороткое замыкание если есть
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zkzsvod where nomer=' + Quotedstr(Nomer) +
+      ' order by uisp desc');
+    FZamerV2.ImgSet(FZamerV2.Image3, QTemp.RecordCount <> 0);
+
+    FKZ.StringGrid1.row      := 1;
+    FKZ.StringGrid1.rowcount := 10;
+    while not(Qtemp.Eof) do
+    begin
+        FKZ.StringGrid1.Cells[0, FKZ.StringGrid1.row] :=
+          Qtemp.FieldByName('uisp').Asstring;
+        FKZ.StringGrid1.Cells[1, FKZ.StringGrid1.row] :=
+          Qtemp.FieldByName('u').Asstring;
+        FKZ.StringGrid1.Cells[2, FKZ.StringGrid1.row] :=
+          Qtemp.FieldByName('i').Asstring;
+        FKZ.StringGrid1.Cells[3, FKZ.StringGrid1.row] :=
+          Qtemp.FieldByName('p').Asstring;
+        FKZ.StringGrid1.Cells[4, FKZ.StringGrid1.row] :=
+          Qtemp.FieldByName('m').Asstring;
+        FKZ.StringGrid1.row := FKZ.StringGrid1.row + 1;
+        FKZ.Edit2.Text      := Qtemp.FieldByName('r').Asstring;
+        Qtemp.Next;
+    end;
+
+
 
     /// ////////////////////////////////////////////////////////////////////////////
 end;
