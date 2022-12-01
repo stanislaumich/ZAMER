@@ -477,7 +477,7 @@ begin
         FSopr.ComboBox9.Text := 'ќм';
     FSopr.ComboBox10.Text    := QTemp.FieldByName('IZOLED').Asstring;
     if FSopr.ComboBox10.Text = '' then
-        FSopr.ComboBox10.Text     := 'ћќм';
+        FSopr.ComboBox10.Text := 'ћќм';
 
     FSopr.Edit13.Text             := QTemp.FieldByName('IZOLKORP').Asstring;
     FSopr.Edit16.Text             := QTemp.FieldByName('IZOLOBMOT').Asstring;
@@ -500,32 +500,30 @@ begin
     end;
     /// ////////////////////////////////////////////////////////////
     // загрузить  ороткое замыкание если есть
-    Qtemp.Close;
-    Qtemp.SQL.Clear;
-    Qtemp.Open('select * from zkzsvod where nomer=' + Quotedstr(Nomer) +
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select * from zkzsvod where nomer=' + Quotedstr(nomer) +
       ' order by uisp desc');
     FZamerV2.ImgSet(FZamerV2.Image3, QTemp.RecordCount <> 0);
 
     FKZ.StringGrid1.row      := 1;
     FKZ.StringGrid1.rowcount := 10;
-    while not(Qtemp.Eof) do
+    while not(QTemp.Eof) do
     begin
         FKZ.StringGrid1.Cells[0, FKZ.StringGrid1.row] :=
-          Qtemp.FieldByName('uisp').Asstring;
+          QTemp.FieldByName('uisp').Asstring;
         FKZ.StringGrid1.Cells[1, FKZ.StringGrid1.row] :=
-          Qtemp.FieldByName('u').Asstring;
+          QTemp.FieldByName('u').Asstring;
         FKZ.StringGrid1.Cells[2, FKZ.StringGrid1.row] :=
-          Qtemp.FieldByName('i').Asstring;
+          QTemp.FieldByName('i').Asstring;
         FKZ.StringGrid1.Cells[3, FKZ.StringGrid1.row] :=
-          Qtemp.FieldByName('p').Asstring;
+          QTemp.FieldByName('p').Asstring;
         FKZ.StringGrid1.Cells[4, FKZ.StringGrid1.row] :=
-          Qtemp.FieldByName('m').Asstring;
+          QTemp.FieldByName('m').Asstring;
         FKZ.StringGrid1.row := FKZ.StringGrid1.row + 1;
-        FKZ.Edit2.Text      := Qtemp.FieldByName('r').Asstring;
-        Qtemp.Next;
+        FKZ.Edit2.Text      := QTemp.FieldByName('r').Asstring;
+        QTemp.Next;
     end;
-
-
 
     /// ////////////////////////////////////////////////////////////////////////////
 end;

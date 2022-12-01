@@ -88,8 +88,8 @@ end;
 
 procedure TFARC.GridSpisDblClick(Sender: TObject);
 begin
-Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
-BitSelect.Click;
+  Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
+  BitSelect.Click;
 end;
 
 end.

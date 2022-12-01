@@ -458,7 +458,6 @@ object FKZ: TFKZ
       Width = 70
       Height = 31
       TabOrder = 3
-      Text = '0'
     end
   end
   object BitBtn10: TBitBtn
@@ -534,7 +533,7 @@ object FKZ: TFKZ
     Width = 151
     Height = 53
     Anchors = [akRight, akBottom]
-    Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
       180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF

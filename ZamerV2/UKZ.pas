@@ -74,8 +74,9 @@ type
 var
   FKZ        : TFKZ;
   enableclose: Boolean;
-  interval:integer;
-  fname:string;
+  interval   : integer;
+  fname      : string;
+
 implementation
 
 {$R *.dfm}
@@ -84,15 +85,17 @@ Uses uzv2Main, UAuto;
 
 procedure TFKZ.command(b: Boolean);
 begin
- interval:=50;
- fname:='1600';
+  interval := 50;
+  fname    := '1600';
   if b then
   begin
     QTemp.Close;
     QTemp.SQL.Clear;
 
-    QTemp.SQL.Add('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(Nomer) + ' ,'+fname+', 1, '+'4'+','+inttostr(interval)+')');
+    QTemp.SQL.Add
+      ('insert into command (nomer, filename,command, dat,interval) values(' +
+      Quotedstr(Nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
+      inttostr(interval) + ')');
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -104,8 +107,10 @@ begin
   begin
     QTemp.Close;
     QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(Nomer) + ' ,'+fname+', 0, '+'4'+','+inttostr(interval)+')');
+    QTemp.SQL.Add
+      ('insert into command (nomer, filename,command, dat,interval) values(' +
+      Quotedstr(Nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
+      inttostr(interval) + ')');
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -126,17 +131,17 @@ begin
 end;
 
 procedure TFKZ.BitBtn10Click(Sender: TObject);
- var
-  i,j:integer;
+var
+  i, j: integer;
 begin
- for i:=1 to Stringgrid1.ColCount-1 do
-  for j:=1 to stringgrid1.RowCount-1 do
-   Stringgrid1.Cells[i,j]:='';
+  for i                       := 1 to StringGrid1.ColCount - 1 do
+    for j                     := 1 to StringGrid1.RowCount - 1 do
+      StringGrid1.Cells[i, j] := '';
 end;
 
 procedure TFKZ.BitBtn12Click(Sender: TObject);
 begin
- FKZ.Close;
+  FKZ.Close;
 end;
 
 procedure TFKZ.BitBtn1Click(Sender: TObject);
@@ -148,11 +153,11 @@ end;
 procedure TFKZ.BitBtn8Click(Sender: TObject);
 
 begin
-  if edit2.text='0' then
-   begin
+  if Edit2.text = '' then
+  begin
     Showmessage('Не указано сопротивление!');
     exit;
-   end;
+  end;
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('truncate table zamertmp');
@@ -160,7 +165,7 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
-    ' and uisp=' + StringGrid1.cells[0, StringGrid1.row]);
+    ' and uisp=' + StringGrid1.Cells[0, StringGrid1.row]);
   QTemp.ExecSQL;
   command(true);
   StringGrid1.Enabled := false;
@@ -170,49 +175,59 @@ end;
 
 // end f9
 procedure TFKZ.BitBtn9Click(Sender: TObject);
-//type
-//  rec = record
-//    u, i, p, u1, u2, u3, i1, i2, i3, p1, p2, p3, torq: single;
-//  end;
+// type
+// rec = record
+// u, i, p, u1, u2, u3, i1, i2, i3, p1, p2, p3, torq: single;
+// end;
 var
-  //a  : array [1 .. 1000] of rec;
-  i  : integer;
-  max: integer;
-  el, m45, ncnt:integer;
-  e:boolean;
+  // a  : array [1 .. 1000] of rec;
+  i            : integer;
+  max          : integer;
+  el, m45, ncnt: integer;
+  e            : Boolean;
 begin
   command(false);
 
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
-    ' and uisp=' + StringGrid1.cells[0, StringGrid1.row]);
+    ' and uisp=' + StringGrid1.Cells[0, StringGrid1.row]);
   QTemp.ExecSQL;
   Qm.Close;
   Qe.Close;
   Qm.Open;
   Qe.Open;
-  e:=true;
+  e := true;
   while e do
-   begin
+  begin
     QInsAll.ParamByName('NOMER').AsString := Nomer;
     QInsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label13.Caption);
-    QInsAll.ParamByName('U12').AsFloat    := SimpleRoundTo(Qe.Fieldbyname('u1').Asfloat,RazU);
-    QInsAll.ParamByName('U23').AsFloat    := SimpleRoundTo(Qe.Fieldbyname('u2').Asfloat,RazU);
-    QInsAll.ParamByName('U31').AsFloat    := SimpleRoundTo(Qe.Fieldbyname('u3').Asfloat,RazU);
-    QInsAll.ParamByName('I1').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('i1').Asfloat,RazI);
-    QInsAll.ParamByName('I2').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('i2').Asfloat,RazI);
-    QInsAll.ParamByName('I3').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('i3').Asfloat,RazI);
-    QInsAll.ParamByName('P1').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('p1').Asfloat,RazP);
-    QInsAll.ParamByName('P2').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('p1').Asfloat,RazP);
-    QInsAll.ParamByName('P3').AsFloat     := SimpleRoundTo(Qe.Fieldbyname('p1').Asfloat,RazP);
-    QInsAll.ParamByName('torq').AsFloat   := SimpleRoundTo(Qm.FieldByName('torq').AsFloat, RazM);
+    QInsAll.ParamByName('U12').AsFloat    :=
+      SimpleRoundTo(Qe.Fieldbyname('u1').AsFloat, RazU);
+    QInsAll.ParamByName('U23').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('u2').AsFloat, RazU);
+    QInsAll.ParamByName('U31').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('u3').AsFloat, RazU);
+    QInsAll.ParamByName('I1').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('i1').AsFloat, RazI);
+    QInsAll.ParamByName('I2').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('i2').AsFloat, RazI);
+    QInsAll.ParamByName('I3').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('i3').AsFloat, RazI);
+    QInsAll.ParamByName('P1').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('p1').AsFloat, RazP);
+    QInsAll.ParamByName('P2').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('p1').AsFloat, RazP);
+    QInsAll.ParamByName('P3').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('p1').AsFloat, RazP);
+    QInsAll.ParamByName('torq').AsFloat :=
+      SimpleRoundTo(Qm.Fieldbyname('torq').AsFloat, RazM);
     QInsAll.ExecSQL;
 
-    qm.next;
-    qe.next;
-    e:=not qe.eof and not qm.eof;
-   end;
+    Qm.next;
+    Qe.next;
+    e := not Qe.eof and not Qm.eof;
+  end;
 
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -220,37 +235,34 @@ begin
     ' and uisp=' + Label13.Caption);
   QTemp.ExecSQL;
 
-  QSelectSred.Close;
-  QSelectSred.ParamByName('nomer').AsString := Nomer;
-  QSelectSred.ParamByName('uisp').AsFloat   := Strtofloat(Label13.Caption);
-  QSelectSred.Open;
+  QSelectsred.Close;
+  QSelectsred.ParamByName('nomer').AsString := Nomer;
+  QSelectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label13.Caption);
+  QSelectsred.Open;
 
-
-  StringGrid1.cells[1, StringGrid1.row] :=
-    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('u').AsFloat, RazU));
-  StringGrid1.cells[2, StringGrid1.row] :=
-    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('i').AsFloat, RazI));
-  StringGrid1.cells[3, StringGrid1.row] :=
-    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('p').AsFloat, RazP));
-  StringGrid1.cells[4, StringGrid1.row] :=
-    FloatToStr(SimpleRoundTo(QSelectSred.FieldByName('t').AsFloat, RazM));
+  StringGrid1.Cells[1, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('u').AsFloat, RazU));
+  StringGrid1.Cells[2, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('i').AsFloat, RazI));
+  StringGrid1.Cells[3, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('p').AsFloat, RazP));
+  StringGrid1.Cells[4, StringGrid1.row] :=
+    FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('t').AsFloat, RazM));
 
   QInsSvod.ParamByName('nomer').AsString := Nomer;
   QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label13.Caption);
   QInsSvod.ParamByName('r').AsFloat      :=
     SimpleRoundTo(Strtofloat(Edit2.text), RazR);
   QInsSvod.ParamByName('u').AsFloat :=
-    SimpleRoundTo(QSelectSred.FieldByName('u').AsFloat, RazU);
+    SimpleRoundTo(QSelectsred.Fieldbyname('u').AsFloat, RazU);
   QInsSvod.ParamByName('i').AsFloat :=
-    SimpleRoundTo(QSelectSred.FieldByName('i').AsFloat, RazI);
+    SimpleRoundTo(QSelectsred.Fieldbyname('i').AsFloat, RazI);
   QInsSvod.ParamByName('p').AsFloat :=
-    SimpleRoundTo(QSelectSred.FieldByName('p').AsFloat, RazP);
+    SimpleRoundTo(QSelectsred.Fieldbyname('p').AsFloat, RazP);
   QInsSvod.ParamByName('m').AsFloat :=
-    SimpleRoundTo(QSelectSred.FieldByName('t').AsFloat, RazM);
+    SimpleRoundTo(QSelectsred.Fieldbyname('t').AsFloat, RazM);
   QInsSvod.ParamByName('tmp').AsFloat := 0;
   QInsSvod.ExecSQL;
-
-
 
   Qm.Close;
   Qe.Close;
@@ -264,8 +276,8 @@ procedure TFKZ.FormActivate(Sender: TObject);
 begin
   enableclose := true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('ukz'));
-  Edit1.Text := QTemp.FieldByName('value').AsString;
-  nomer:=LAbel2.Caption;
+  Edit1.text      := QTemp.Fieldbyname('value').AsString;
+  Nomer           := Label2.Caption;
   TimerUp.Enabled := true;
 end;
 
@@ -276,14 +288,14 @@ end;
 
 procedure TFKZ.FormCreate(Sender: TObject);
 begin
-  StringGrid1.Rowcount    := 6;
-  StringGrid1.cells[0, 0] := 'U кк';
-  StringGrid1.cells[1, 0] := 'U сред';
-  StringGrid1.cells[2, 0] := 'I сред';
-  StringGrid1.cells[3, 0] := 'P сред';
-  StringGrid1.cells[4, 0] := 'М сред';
-  StringGrid1.cells[0, 1] := '380';
-  StringGrid1.cells[0, 2] := '100';
+  StringGrid1.RowCount    := 6;
+  StringGrid1.Cells[0, 0] := 'U кк';
+  StringGrid1.Cells[1, 0] := 'U сред';
+  StringGrid1.Cells[2, 0] := 'I сред';
+  StringGrid1.Cells[3, 0] := 'P сред';
+  StringGrid1.Cells[4, 0] := 'М сред';
+  StringGrid1.Cells[0, 1] := '380';
+  StringGrid1.Cells[0, 2] := '100';
 end;
 
 procedure TFKZ.FormHide(Sender: TObject);
@@ -292,7 +304,7 @@ begin
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('update zdelta set value= ' + Quotedstr(Edit1.Text) +
+  QTemp.SQL.Add('update zdelta set value= ' + Quotedstr(Edit1.text) +
     ' where name=' + Quotedstr('ukz'));
   QTemp.ExecSQL;
 
@@ -300,9 +312,9 @@ end;
 
 procedure TFKZ.StringGrid1Click(Sender: TObject);
 begin
-  if StringGrid1.cells[0, StringGrid1.row] <> '' then
+  if StringGrid1.Cells[0, StringGrid1.row] <> '' then
   begin
-    Label13.Caption := StringGrid1.cells[0, StringGrid1.row];
+    Label13.Caption := StringGrid1.Cells[0, StringGrid1.row];
     BitBtn8.Enabled := true;
   end;
 end;
@@ -311,15 +323,15 @@ procedure TFKZ.TimerUpTimer(Sender: TObject);
 begin
   QUp.Close;
   QUp.Open();
-  Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);
-  Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
-  Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
-  if ABS(QUp.FieldByName('U').AsFloat - Strtofloat(Label13.Caption)) >
-    myfloat(Edit1.Text) then
+  Label11.Caption := myformat(trazp, QUp.Fieldbyname('P').AsFloat);
+  Label10.Caption := myformat(trazi, QUp.Fieldbyname('I').AsFloat);
+  Label12.Caption := myformat(trazm, QUp.Fieldbyname('M').AsFloat);
+  if ABS(QUp.Fieldbyname('U').AsFloat - Strtofloat(Label13.Caption)) >
+    myfloat(Edit1.text) then
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;
-  Label9.Caption      := myformat(trazu, QUp.FieldByName('U').AsFloat);
+  Label9.Caption      := myformat(trazu, QUp.Fieldbyname('U').AsFloat);
 end;
 
 end.

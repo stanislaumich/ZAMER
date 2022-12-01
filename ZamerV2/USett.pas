@@ -113,26 +113,24 @@ end;
 
 procedure TFSett.BitBtn3Click(Sender: TObject);
 begin
- ShellExecute(Handle, 'open', PWideChar(Edit1.text),
-      nil, nil, SW_SHOWNORMAL);
+  ShellExecute(Handle, 'open', PWideChar(Edit1.Text), nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TFSett.BitBtn4Click(Sender: TObject);
 begin
-  ShellExecute(Handle, 'open', PWideChar(Edit2.text),
-      nil, nil, SW_SHOWNORMAL);
+  ShellExecute(Handle, 'open', PWideChar(Edit2.Text), nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TFSett.Button1Click(Sender: TObject);
 begin
   If OpenDialog1.Execute then
-    Edit1.Text := '"'+OpenDialog1.Filename+'"';
+    Edit1.Text := '"' + OpenDialog1.Filename + '"';
 end;
 
 procedure TFSett.Button2Click(Sender: TObject);
 begin
   If OpenDialog1.Execute then
-    Edit2.Text := '"'+OpenDialog1.Filename+'"';
+    Edit2.Text := '"' + OpenDialog1.Filename + '"';
 end;
 
 procedure TFSett.FormCreate(Sender: TObject);

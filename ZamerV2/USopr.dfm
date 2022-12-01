@@ -11,6 +11,7 @@ object FSopr: TFSopr
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
     591
@@ -113,7 +114,6 @@ object FSopr: TFSopr
     Height = 31
     Hint = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072' '#1086#1082#1088' '#1089#1088#1077#1076#1099' '#1057#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1077
     TabOrder = 1
-    Text = '0'
   end
   object ComboBox7: TComboBox
     Left = 172
@@ -332,6 +332,7 @@ object FSopr: TFSopr
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 6
+    OnClick = BitBtn1Click
   end
   object BitBtn5: TBitBtn
     Left = 446
@@ -398,6 +399,7 @@ object FSopr: TFSopr
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 7
+    OnClick = BitBtn5Click
   end
   object RadioGroup1: TRadioGroup
     Left = 8
@@ -431,10 +433,12 @@ object FSopr: TFSopr
     TabOrder = 11
   end
   object QTemp: TFDQuery
+    Connection = FZamerV2.FDC
     Left = 464
     Top = 76
   end
   object QSoprot: TFDQuery
+    Connection = FZamerV2.FDC
     SQL.Strings = (
       'INSERT INTO ZAMER.ZSOPROT ('
       '   NOMER, TEMPER, PHAS, '

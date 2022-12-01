@@ -51,6 +51,7 @@ type
     procedure StringGrid3KeyPress(Sender: TObject; var Key: Char);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
   public
@@ -67,14 +68,21 @@ implementation
 Uses Uzv2Main;
 
 procedure TFSopr.BitBtn1Click(Sender: TObject);
+var
+  buttonSelected: integer;
 begin
-  Edit8.Text      := '';
-  Edit13.Text     := '';
-  Edit16.Text     := '';
-  ComboBox7.Text  := '';
-  ComboBox8.Text  := '';
-  ComboBox9.Text  := '';
-  ComboBox10.Text := '';
+  buttonSelected := MessageDlg('Действительно очистить таблицу?',
+    mtConfirmation, [mbYes, mbNo], 0);
+  if buttonSelected = mrYes then
+  begin
+    Edit8.Text      := '';
+    Edit13.Text     := '';
+    Edit16.Text     := '';
+    ComboBox7.Text  := '';
+    ComboBox8.Text  := '';
+    ComboBox9.Text  := '';
+    ComboBox10.Text := '';
+  end;
 end;
 
 procedure TFSopr.BitBtn5Click(Sender: TObject);
@@ -135,16 +143,33 @@ end;
 
 procedure TFSopr.Button50Click(Sender: TObject);
 var
-  i, j: integer;
+  i, j          : integer;
+  buttonSelected: integer;
 begin
-  Edit8.Text                  := '0';
-  ComboBox7.Text              := '';
-  ComboBox8.Text              := '';
-  for i                       := 1 to 3 do
-    for j                     := 1 to 3 do
-      StringGrid3.cells[i, j] := '0';
-  Edit13.Text                 := '500';
-  Edit16.Text                 := '500';
+  buttonSelected := MessageDlg('Действительно очистить таблицу?',
+    mtConfirmation, [mbYes, mbNo], 0);
+  if buttonSelected = mrYes then
+  begin
+    Edit8.Text                  := '';
+    ComboBox7.Text              := '';
+    ComboBox8.Text              := '';
+    for i                       := 1 to 3 do
+      for j                     := 1 to 3 do
+        StringGrid3.cells[i, j] := '0';
+    Edit13.Text                 := '500';
+    Edit16.Text                 := '500';
+  end;
+
+end;
+
+procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+ var
+  buttonSelected: integer;
+begin
+buttonSelected := MessageDlg('Сохранить данные?',
+    mtConfirmation, [mbYes, mbNo], 0);
+  if buttonSelected = mrYes then
+  BitBtn5.Click;
 end;
 
 procedure TFSopr.FormCreate(Sender: TObject);
