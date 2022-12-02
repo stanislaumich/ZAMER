@@ -24,7 +24,6 @@ type
     Label37: TLabel;
     StringGrid3: TStringGrid;
     ComboBox9: TComboBox;
-    Button50: TButton;
     GroupBox4: TGroupBox;
     Label38: TLabel;
     Label39: TLabel;
@@ -34,8 +33,6 @@ type
     Edit16: TEdit;
     Label4: TLabel;
     Label5: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
     BitBtn1: TBitBtn;
     BitBtn5: TBitBtn;
     Label1: TLabel;
@@ -46,12 +43,24 @@ type
     RadioButton3: TRadioButton;
     QTemp: TFDQuery;
     QSoprot: TFDQuery;
+    BitBtn2: TBitBtn;
     procedure Button50Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid3KeyPress(Sender: TObject; var Key: Char);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure Edit8Change(Sender: TObject);
+    procedure ComboBox7Change(Sender: TObject);
+    procedure ComboBox8Change(Sender: TObject);
+    procedure ComboBox9Change(Sender: TObject);
+    procedure ComboBox10Change(Sender: TObject);
+    procedure Edit13Change(Sender: TObject);
+    procedure Edit16Change(Sender: TObject);
+    procedure RadioButton1Click(Sender: TObject);
+    procedure RadioButton2Click(Sender: TObject);
+    procedure RadioButton3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -60,7 +69,7 @@ type
 
 var
   FSopr: TFSopr;
-
+  enableclose:boolean;
 implementation
 
 {$R *.dfm}
@@ -83,6 +92,27 @@ begin
     ComboBox9.Text  := '';
     ComboBox10.Text := '';
   end;
+end;
+
+procedure TFSopr.BitBtn2Click(Sender: TObject);
+var
+  i, j          : integer;
+  buttonSelected: integer;
+begin
+  buttonSelected := MessageDlg('Действительно очистить таблицу?',
+    mtConfirmation, [mbYes, mbNo], 0);
+  if buttonSelected = mrYes then
+  begin
+    Edit8.Text                  := '';
+    ComboBox7.Text              := '';
+    ComboBox8.Text              := '';
+    for i                       := 1 to 3 do
+      for j                     := 1 to 3 do
+        StringGrid3.cells[i, j] := '0';
+    Edit13.Text                 := '500';
+    Edit16.Text                 := '500';
+  end;
+
 end;
 
 procedure TFSopr.BitBtn5Click(Sender: TObject);
@@ -135,7 +165,7 @@ begin
     end;
   end;
   QSoprot.ExecSQL;
-
+  ShowMessage('Данные сохранены успешно!');
   FZamerV2.ImgSet(FZamerV2.Image1, true);
   FSopr.Close;
 
@@ -162,10 +192,46 @@ begin
 
 end;
 
+procedure TFSopr.ComboBox10Change(Sender: TObject);
+begin
+enableclose:=false;
+end;
+
+procedure TFSopr.ComboBox7Change(Sender: TObject);
+begin
+ enableclose:=false;
+end;
+
+procedure TFSopr.ComboBox8Change(Sender: TObject);
+begin
+ enableclose:=false;
+end;
+
+procedure TFSopr.ComboBox9Change(Sender: TObject);
+begin
+ enableclose:=false;
+end;
+
+procedure TFSopr.Edit13Change(Sender: TObject);
+begin
+enableclose:=false;
+end;
+
+procedure TFSopr.Edit16Change(Sender: TObject);
+begin
+enableclose:=false;
+end;
+
+procedure TFSopr.Edit8Change(Sender: TObject);
+begin
+ enableclose:=false;
+end;
+
 procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
  var
   buttonSelected: integer;
 begin
+ if enableclose then exit;
 buttonSelected := MessageDlg('Сохранить данные?',
     mtConfirmation, [mbYes, mbNo], 0);
   if buttonSelected = mrYes then
@@ -190,16 +256,44 @@ begin
       StringGrid3.cells[i, j]  := '0';
       StringGrid3.ColWidths[i] := 160;
     end;
+ enableclose:=true;
+end;
+
+procedure TFSopr.RadioButton1Click(Sender: TObject);
+begin
+enableclose:=false;
+end;
+
+procedure TFSopr.RadioButton2Click(Sender: TObject);
+begin
+enableclose:=false;
+end;
+
+procedure TFSopr.RadioButton3Click(Sender: TObject);
+begin
+enableclose:=false;
 end;
 
 procedure TFSopr.StringGrid3KeyPress(Sender: TObject; var Key: Char);
 begin
-  if Key = #13 then
-    if (StringGrid3.Row = 3) and (StringGrid3.cells[StringGrid3.Col, 3] <> '')
-    then
-      if StringGrid3.Col < 3 then
+    enableclose:=false;
+   if (StringGrid3.Row = 3) and (StringGrid3.Col = 3) then exit;
+
+   if Key = #13 then
+    begin
+     if (StringGrid3.Row = 3) then
+      begin
+       if (StringGrid3.cells[StringGrid3.Col, 3] <> '') then
         StringGrid3.Selection :=
           TGridRect(Rect(StringGrid3.Col + 1, 1, StringGrid3.Col + 1, 1));
+      end
+     else
+      StringGrid3.Selection :=
+          TGridRect(Rect(StringGrid3.Col , StringGrid3.Row+1, StringGrid3.Col, StringGrid3.Row+1));
+
+
+    end;
+
 end;
 
 end.

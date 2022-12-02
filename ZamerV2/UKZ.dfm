@@ -14,6 +14,7 @@ object FKZ: TFKZ
   Position = poScreenCenter
   OnActivate = FormActivate
   OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnHide = FormHide
   DesignSize = (
@@ -45,7 +46,7 @@ object FKZ: TFKZ
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Top = 32
+    Top = 28
     Width = 517
     Height = 201
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1086#1074
@@ -462,7 +463,7 @@ object FKZ: TFKZ
   end
   object BitBtn10: TBitBtn
     Left = 208
-    Top = 517
+    Top = 516
     Width = 155
     Height = 53
     Anchors = [akRight]

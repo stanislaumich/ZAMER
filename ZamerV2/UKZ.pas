@@ -65,6 +65,7 @@ type
     procedure StringGrid1Click(Sender: TObject);
     procedure BitBtn12Click(Sender: TObject);
     procedure BitBtn10Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
   public
@@ -171,6 +172,7 @@ begin
   StringGrid1.Enabled := false;
   BitBtn9.Enabled     := true;
   BitBtn8.Enabled     := false;
+  enableclose:=false;
 end;
 
 // end f9
@@ -284,6 +286,27 @@ end;
 procedure TFKZ.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   TimerUp.Enabled := false;
+end;
+
+procedure TFKZ.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+var
+  buttonSelected: integer;
+begin
+ if enableclose then canclose:=true else
+  begin
+    buttonSelected :=
+      MessageDlg('” вас есть несохраненные данные, сохранить их?',
+      mtConfirmation, [mbYes, mbNo, mbCancel], 0);
+    if buttonSelected = mrYes then
+    begin
+      BitBtn12.Click;
+      CanClose := true;
+    end;
+    if buttonSelected = mrNo then
+      CanClose := true;
+    if buttonSelected = mrCancel then
+      CanClose := false;
+  end;
 end;
 
 procedure TFKZ.FormCreate(Sender: TObject);

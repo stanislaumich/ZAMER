@@ -23,7 +23,6 @@ type
     Label37: TLabel;
     StringGrid3: TStringGrid;
     ComboBox9: TComboBox;
-    Button50: TButton;
     GroupBox4: TGroupBox;
     Label38: TLabel;
     Label39: TLabel;
@@ -49,11 +48,14 @@ type
     RadioButton4: TRadioButton;
     RadioButton5: TRadioButton;
     RadioButton6: TRadioButton;
+    BitBtn2: TBitBtn;
+    Label6: TLabel;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button50Click(Sender: TObject);
     procedure StringGrid3KeyPress(Sender: TObject; var Key: Char);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,6 +91,24 @@ begin
   ComboBox8.Text  := '';
   ComboBox9.Text  := '';
   ComboBox10.Text := '';
+end;
+
+procedure TFSoprot.BitBtn2Click(Sender: TObject);
+var
+  i, j: integer;
+begin
+  Edit8.Text := '0';
+  // Edit1.Text                  := '0';
+  ComboBox7.Text              := '';
+  ComboBox8.Text              := '';
+  for i                       := 1 to 3 do
+    for j                     := 1 to 3 do
+      StringGrid3.cells[i, j] := '0';
+  RadioButton4.Checked        := false;
+  RadioButton5.Checked        := false;
+  RadioButton6.Checked        := false;
+  Edit13.Text                 := '500';
+  Edit16.Text                 := '500';
 end;
 
 procedure TFSoprot.BitBtn5Click(Sender: TObject);

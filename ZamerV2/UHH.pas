@@ -14,15 +14,6 @@ uses
 
 type
   TFormHH = class(TForm)
-    Panel1: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
     Panel2: TPanel;
     Label11: TLabel;
     Label12: TLabel;
@@ -33,13 +24,11 @@ type
     TimUp: TTimer;
     QUp: TFDQuery;
     QTemp: TFDQuery;
-    BitBtn1: TBitBtn;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     RadioButton4: TRadioButton;
     RadioButton5: TRadioButton;
     RadioButton6: TRadioButton;
-    Label13: TLabel;
     Label14: TLabel;
     GroupBox3: TGroupBox;
     StringGrid1: TStringGrid;
@@ -58,6 +47,24 @@ type
     QInsAll: TFDQuery;
     Label15: TLabel;
     Qsred: TFDQuery;
+    GroupBox5: TGroupBox;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    BitBtn2: TBitBtn;
+    Label2: TLabel;
+    Edit2: TEdit;
+    Edit1: TEdit;
+    Label1: TLabel;
+    Label4: TLabel;
+    Label3: TLabel;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -74,6 +81,9 @@ type
     procedure BitSaveClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure BitBtn1Click(Sender: TObject);
+    procedure RadioButton4Click(Sender: TObject);
+    procedure RadioButton5Click(Sender: TObject);
+    procedure RadioButton6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -162,7 +172,7 @@ procedure TFormHH.StringGrid2Click(Sender: TObject);
 begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
-  Label8.Caption    := StringGrid2.Cells[0, StringGrid2.row];
+  Label26.Caption    := StringGrid2.Cells[0, StringGrid2.row];
 end;
 
 procedure TFormHH.Action1Execute(Sender: TObject);
@@ -240,14 +250,14 @@ end;
 
 procedure TFormHH.BitStartClick(Sender: TObject);
 begin
-  if (RadioButton1.Checked and RadioButton2.Checked and RadioButton3.Checked)
+  if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked)
   then
   begin
     times := Strtoint(Edit1.Text);
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label8.Caption);
+      ' and uisp=' + Label26.Caption);
     QTemp.ExecSQL;
     ProgressBar1.min      := 0;
     ProgressBar1.max      := times;
@@ -290,7 +300,6 @@ begin
       CanClose := true;
     if buttonSelected = mrCancel then
       CanClose := false;
-
   end;
 
 end;
@@ -355,7 +364,7 @@ begin
     StringGrid2.row                                := 1;
     tipispyt                                       := 1;
     // установите напряжение
-    Label8.Caption := StringGrid2.Cells[0, 1];
+    Label26.Caption := StringGrid2.Cells[0, 1];
   end
   else
     ShowMessage
@@ -394,7 +403,7 @@ begin
     StringGrid2.row                                := 1;
     tipispyt                                       := 2;
     // установите напряжение
-    Label8.Caption := StringGrid2.Cells[0, 1];
+    Label26.Caption := StringGrid2.Cells[0, 1];
   end
   else
     ShowMessage
@@ -432,28 +441,43 @@ begin
     StringGrid2.row                                := 1;
     tipispyt                                       := 3;
     // установите напряжение
-    Label8.Caption := StringGrid2.Cells[0, 1];
+    Label26.Caption := StringGrid2.Cells[0, 1];
   end
   else
     ShowMessage
       ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
+procedure TFormHH.RadioButton4Click(Sender: TObject);
+begin
+ enableclose:=false;
+end;
+
+procedure TFormHH.RadioButton5Click(Sender: TObject);
+begin
+enableclose:=false;
+end;
+
+procedure TFormHH.RadioButton6Click(Sender: TObject);
+begin
+ enableclose:=false;
+end;
+
 procedure TFormHH.TimUpTimer(Sender: TObject);
 begin
   QUp.Open('select U from zelspectmp');
-  if abs(QUp.FieldByName('U').Asfloat - myfloat(Label8.Caption)) <
+  if abs(QUp.FieldByName('U').Asfloat - myfloat(Label26.Caption)) <
     myfloat(NVLToZero(Edit2.Text)) then
   begin
-    Label4.Font.Color := clGreen;
-    Label9.Font.Color := clGreen;
+    Label22.Font.Color := clGreen;
+    Label16.Font.Color := clGreen;
   end
   else
   begin
-    Label4.Font.Color := clRed;
-    Label9.Font.Color := clRed;
+    Label16.Font.Color := clRed;
+    Label22.Font.Color := clRed;
   end;
-  Label9.Caption := myformat(tRazU, QUp.FieldByName('U').Asfloat);
+  Label22.Caption := myformat(tRazU, QUp.FieldByName('U').Asfloat);
 end;
 
 procedure TFormHH.TimWork1000Timer(Sender: TObject);
@@ -474,7 +498,7 @@ begin
     While not QTemp.Eof do
     begin
       QInsAll.ParamByName('NOMER').AsString := Nomer;
-      QInsAll.ParamByName('UISP').Asfloat   := StrtoFloat(Label8.Caption);
+      QInsAll.ParamByName('UISP').Asfloat   := StrtoFloat(Label26.Caption);
       QInsAll.ParamByName('U12').Asfloat    := QTemp.FieldByName('u1').Asfloat;
       QInsAll.ParamByName('U23').Asfloat    := QTemp.FieldByName('u2').Asfloat;
       QInsAll.ParamByName('U31').Asfloat    := QTemp.FieldByName('u3').Asfloat;
@@ -495,16 +519,16 @@ begin
       QTemp.Next;
     end;
     QTemp.Open('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label8.Caption + ' and dumax>' + Edit2.Text);
+      ' and uisp=' + Label26.Caption + ' and dumax>' + Edit2.Text);
     errcnt := QTemp.FieldByName('r').Asinteger;
     QTemp.Open('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label8.Caption + ' and dumax<=' + Edit2.Text);
+      ' and uisp=' + Label26.Caption + ' and dumax<=' + Edit2.Text);
 
     goodcnt := QTemp.FieldByName('r').Asinteger;
     Qsred.Close;
     Qsred.Unprepare;
     Qsred.ParamByName('nomer').AsString := Nomer;
-    Qsred.ParamByName('uisp').Asfloat   := StrtoFloat(Label8.Caption);
+    Qsred.ParamByName('uisp').Asfloat   := StrtoFloat(Label26.Caption);
     Qsred.ParamByName('delta').Asfloat  := myfloat(Edit2.Text);
     Qsred.Open;
     StringGrid2.Cells[1, StringGrid2.row] :=
