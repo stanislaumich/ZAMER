@@ -8,7 +8,8 @@ uses
   Vcl.ComCtrls, Vcl.Buttons, Vcl.Grids, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, ustr, uadd, System.Actions,
+  Vcl.ActnList;
 
 type
   TFNagr = class(TForm)
@@ -58,12 +59,23 @@ type
     BitBtn10: TBitBtn;
     BitBtn11: TBitBtn;
     QTemp: TFDQuery;
+    TimerUp: TTimer;
+    Timer1000: TTimer;
+    QInssvod: TFDQuery;
+    QInsAll: TFDQuery;
+    QSelectSred: TFDQuery;
+    ActionList1: TActionList;
+    Action1: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure TimerUpTimer(Sender: TObject);
+    procedure StringGrid1Click(Sender: TObject);
+    procedure Timer1000Timer(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure command(b: Boolean);
   end;
 
 var
@@ -72,7 +84,30 @@ var
 implementation
  uses uzv2main;
 {$R *.dfm}
+procedure TFNagr.Action1Execute(Sender: TObject);
+begin
+ BitBtn1.Click;
+end;
 
+procedure TFNagr.command(b: Boolean);
+begin
+  if b then
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('insert into command (nomer, command) values(' +
+      Quotedstr(Nomer) + ' , 11)');
+    QTemp.ExecSQL;
+  end
+  else
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('insert into command (nomer, command) values(' +
+      Quotedstr(Nomer) + ' , 10)');
+    QTemp.ExecSQL;
+  end;
+end;
 procedure TFNagr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   QTemp.Close;
@@ -125,6 +160,48 @@ begin
   QTemp.Open('select value from zdelta where name=' + Quotedstr('pnag'));
   FNagr.Edit3.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Close;
+
+
+end;
+
+procedure TFNagr.StringGrid1Click(Sender: TObject);
+begin
+{
+  if StringGrid1.Row = 1 then
+  begin
+    Label18.Caption := FMain.Edit6.Text;
+    Label19.Caption := '0';
+  end
+  else
+  begin
+    Label18.Caption := FMain.Edit6.Text;
+    Label19.Caption := Floattostr(1000 * Strtofloat(FMain.Edit7.Text));
+  end;
+  }
+
+end;
+
+procedure TFNagr.Timer1000Timer(Sender: TObject);
+begin
+
+ ProgressBar1.StepIt;
+ // If Timer1000.tag <= 0 then
+
+
+end;
+
+procedure TFNagr.TimerUpTimer(Sender: TObject);
+begin
+{
+  Label7.Caption := FMain.KrVarLabel1.Caption;
+  Label8.Caption := FMain.KrVarLabel2.Caption;
+  Label9.Caption := FMain.KrVarLabel3.Caption;
+
+  QgetMN.Open('select * from zamer');
+  Label10.Caption := QgetMN.FieldByName('torq').Asstring;
+  Label11.Caption := QgetMN.FieldByName('rot').Asstring;
+  Label12.Caption := QgetMN.FieldByName('power').Asstring;
+  }
 
 
 end;

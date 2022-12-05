@@ -63,11 +63,11 @@ object FNagr: TFNagr
     TabOrder = 1
     ExplicitWidth = 980
     object Label2: TLabel
-      Left = 158
-      Top = 32
-      Width = 199
+      Left = 46
+      Top = 65
+      Width = 311
       Height = 29
-      Caption = #1053#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1042'.:'
+      Caption = #1058#1077#1082#1091#1097#1077#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1042'.:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24
@@ -128,11 +128,11 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label8: TLabel
-      Left = 234
-      Top = 100
-      Width = 123
+      Left = 121
+      Top = 131
+      Width = 236
       Height = 29
-      Caption = #1053#1072#1075#1088#1091#1079#1082#1072':'
+      Caption = #1058#1077#1082#1091#1097#1072#1103' '#1085#1072#1075#1088#1091#1079#1082#1072':'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24
@@ -142,7 +142,7 @@ object FNagr: TFNagr
     end
     object Label9: TLabel
       Left = 370
-      Top = 32
+      Top = 65
       Width = 90
       Height = 33
       AutoSize = False
@@ -212,7 +212,7 @@ object FNagr: TFNagr
     end
     object Label14: TLabel
       Left = 370
-      Top = 100
+      Top = 131
       Width = 151
       Height = 33
       AutoSize = False
@@ -226,7 +226,7 @@ object FNagr: TFNagr
     end
     object Label18: TLabel
       Left = 8
-      Top = 67
+      Top = 32
       Width = 349
       Height = 29
       Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042':'
@@ -239,7 +239,7 @@ object FNagr: TFNagr
     end
     object Label19: TLabel
       Left = 370
-      Top = 67
+      Top = 32
       Width = 15
       Height = 29
       Caption = '0'
@@ -252,7 +252,7 @@ object FNagr: TFNagr
     end
     object Label23: TLabel
       Left = 40
-      Top = 131
+      Top = 100
       Width = 317
       Height = 29
       Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1075#1088#1091#1079#1082#1091', '#1042#1090':'
@@ -265,7 +265,7 @@ object FNagr: TFNagr
     end
     object Label24: TLabel
       Left = 370
-      Top = 131
+      Top = 100
       Width = 15
       Height = 29
       Caption = '0'
@@ -407,6 +407,7 @@ object FNagr: TFNagr
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnClick = StringGrid1Click
       ExplicitTop = 15
     end
     object BitBtn1: TBitBtn
@@ -741,5 +742,206 @@ object FNagr: TFNagr
     Connection = FZamerV2.FDC
     Left = 812
     Top = 372
+  end
+  object TimerUp: TTimer
+    Interval = 500
+    OnTimer = TimerUpTimer
+    Left = 776
+    Top = 114
+  end
+  object Timer1000: TTimer
+    OnTimer = Timer1000Timer
+    Left = 824
+    Top = 114
+  end
+  object QInssvod: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZNAGREVSVOD ('
+      '   NOMER, U, I, '
+      '   P, N, M, '
+      '   T1, R, TIP, '
+      '   DOP1, RKORP, ROBM, '
+      '   T2, T3, T) '
+      'VALUES ( :NOMER, :U, :I, '
+      '   :P, :N, :M, '
+      '   :T1, :R, :TIP, '
+      '   :DOP1, :RKORP, :ROBM, '
+      '   :T2, :T3, :T )')
+    Left = 360
+    Top = 336
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'N'
+        ParamType = ptInput
+      end
+      item
+        Name = 'M'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'R'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'RKORP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ROBM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'T'
+        ParamType = ptInput
+      end>
+  end
+  object QInsAll: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZNAGREVALL ('
+      '   NOMER, U1, U2, '
+      '   U3, I1, I2, '
+      '   I3, P, M, '
+      '   N, DOP1, TIP, '
+      '   NAGR) '
+      'VALUES ( :NOMER ,'
+      ' :U1 ,'
+      ' :U2 ,'
+      ' :U3 ,'
+      ' :I1 ,'
+      ' :I2 ,'
+      ' :I3,'
+      ' :P ,'
+      ' :M ,'
+      ' :N ,'
+      ' :DOP1,'
+      ' :TIP ,'
+      ' :NAGR  )')
+    Left = 516
+    Top = 336
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'M'
+        ParamType = ptInput
+      end
+      item
+        Name = 'N'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NAGR'
+        ParamType = ptInput
+      end>
+  end
+  object QSelectSred: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'SELECT'
+      '    NOMER, '
+      '    avg(U1) su1, avg(U2) su2, avg(U3) su3,'
+      '    avg(I1) si1,avg(I2) si2, avg(I3) si3,'
+      
+        '    avg(P) sp,avg(M) sM, avg(N) sn --,    --0 mumax, 0 mpmax,avg' +
+        '(torq) t, avg(power) pow, avg(rot) r'
+      '    FROM ZAMER.ZNAGREVALL'
+      '    where nomer=:nomer and tip=:tip -- and pisp=:pisp '
+      '    group by nomer, tip')
+    Left = 436
+    Top = 336
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end>
+  end
+  object ActionList1: TActionList
+    Left = 836
+    Top = 436
+    object Action1: TAction
+      Caption = 'Action1'
+      ShortCut = 116
+      OnExecute = Action1Execute
+    end
   end
 end
