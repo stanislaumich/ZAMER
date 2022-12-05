@@ -48,7 +48,7 @@ object FNagrev: TFNagrev
   end
   object Label23: TLabel
     Left = 349
-    Top = 481
+    Top = 479
     Width = 58
     Height = 23
     Caption = 'T1, C='
