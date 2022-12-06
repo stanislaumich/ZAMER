@@ -384,7 +384,6 @@ object FSopr: TFSopr
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 6
     OnClick = BitBtn1Click
-    ExplicitTop = 592
   end
   object BitBtn5: TBitBtn
     Left = 446
@@ -452,7 +451,6 @@ object FSopr: TFSopr
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 7
     OnClick = BitBtn5Click
-    ExplicitTop = 592
   end
   object RadioGroup1: TRadioGroup
     Left = 8
