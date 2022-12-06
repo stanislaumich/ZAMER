@@ -3,7 +3,8 @@ unit Unagr;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.ComCtrls, Vcl.Buttons, Vcl.Grids, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
@@ -86,16 +87,18 @@ var
   FNagr: TFNagr;
 
 implementation
- uses uzv2main;
+
+uses uzv2main;
 {$R *.dfm}
+
 procedure TFNagr.Action1Execute(Sender: TObject);
 begin
- BitBtn1.Click;
+  BitBtn1.Click;
 end;
 
 procedure TFNagr.BitBtn1Click(Sender: TObject);
 begin
- Timer1000.Enabled:=True;
+  Timer1000.Enabled := True;
 end;
 
 procedure TFNagr.command(b: Boolean);
@@ -117,34 +120,37 @@ begin
     QTemp.ExecSQL;
   end;
 end;
+
 procedure TFNagr.Edit3Change(Sender: TObject);
 var
- s:string;
+  s: string;
 
 begin
- s:=FZamerV2.CombPisp.Text;
- LAbel29.Caption:=inttostr(round(strtofloat(s)/100*strtofloat(edit3.text)));
+  if s<>'' then
+  s               := FZamerV2.CombPisp.Text else s:='0';
+  Label29.Caption :=
+    inttostr(round(strtofloat(s) / 100 * strtofloat(Edit3.Text)));
 end;
 
 procedure TFNagr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('update zini set value=' + Quotedstr(FNagr.Edit1.Text)+' where name='+Quotedstr('nagtime'));
+  QTemp.SQL.Add('update zini set value=' + Quotedstr(FNagr.Edit1.Text) +
+    ' where name=' + Quotedstr('nagtime'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('update zdelta set value=' + Quotedstr(FNagr.Edit2.Text)+' where name='+Quotedstr('unag'));
+  QTemp.SQL.Add('update zdelta set value=' + Quotedstr(FNagr.Edit2.Text) +
+    ' where name=' + Quotedstr('unag'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('update zdelta set value=' + Quotedstr(FNagr.Edit3.Text)+' where name='+Quotedstr('pnag'));
+  QTemp.SQL.Add('update zdelta set value=' + Quotedstr(FNagr.Edit3.Text) +
+    ' where name=' + Quotedstr('pnag'));
   QTemp.ExecSQL;
-
-
-
 
 end;
 
@@ -179,22 +185,21 @@ begin
   FNagr.Edit3.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Close;
 
-
 end;
 
 procedure TFNagr.StringGrid1Click(Sender: TObject);
 begin
-{
-  if StringGrid1.Row = 1 then
-  begin
+  {
+    if StringGrid1.Row = 1 then
+    begin
     Label18.Caption := FMain.Edit6.Text;
     Label19.Caption := '0';
-  end
-  else
-  begin
+    end
+    else
+    begin
     Label18.Caption := FMain.Edit6.Text;
     Label19.Caption := Floattostr(1000 * Strtofloat(FMain.Edit7.Text));
-  end;
+    end;
   }
 
 end;
@@ -202,25 +207,23 @@ end;
 procedure TFNagr.Timer1000Timer(Sender: TObject);
 begin
 
- ProgressBar1.StepIt;
- // If Timer1000.tag <= 0 then
-
+  ProgressBar1.StepIt;
+  // If Timer1000.tag <= 0 then
 
 end;
 
 procedure TFNagr.TimerUpTimer(Sender: TObject);
 begin
-{
-  Label7.Caption := FMain.KrVarLabel1.Caption;
-  Label8.Caption := FMain.KrVarLabel2.Caption;
-  Label9.Caption := FMain.KrVarLabel3.Caption;
+  {
+    Label7.Caption := FMain.KrVarLabel1.Caption;
+    Label8.Caption := FMain.KrVarLabel2.Caption;
+    Label9.Caption := FMain.KrVarLabel3.Caption;
 
-  QgetMN.Open('select * from zamer');
-  Label10.Caption := QgetMN.FieldByName('torq').Asstring;
-  Label11.Caption := QgetMN.FieldByName('rot').Asstring;
-  Label12.Caption := QgetMN.FieldByName('power').Asstring;
+    QgetMN.Open('select * from zamer');
+    Label10.Caption := QgetMN.FieldByName('torq').Asstring;
+    Label11.Caption := QgetMN.FieldByName('rot').Asstring;
+    Label12.Caption := QgetMN.FieldByName('power').Asstring;
   }
-
 
 end;
 

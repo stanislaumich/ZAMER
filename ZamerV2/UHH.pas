@@ -172,7 +172,7 @@ procedure TFormHH.StringGrid2Click(Sender: TObject);
 begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
-  Label26.Caption    := StringGrid2.Cells[0, StringGrid2.row];
+  Label26.Caption   := StringGrid2.Cells[0, StringGrid2.row];
 end;
 
 procedure TFormHH.Action1Execute(Sender: TObject);
@@ -250,8 +250,7 @@ end;
 
 procedure TFormHH.BitStartClick(Sender: TObject);
 begin
-  if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked)
-  then
+  if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked) then
   begin
     times := Strtoint(Edit1.Text);
     QTemp.Close;
@@ -450,17 +449,17 @@ end;
 
 procedure TFormHH.RadioButton4Click(Sender: TObject);
 begin
- enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFormHH.RadioButton5Click(Sender: TObject);
 begin
-enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFormHH.RadioButton6Click(Sender: TObject);
 begin
- enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFormHH.TimUpTimer(Sender: TObject);

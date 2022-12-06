@@ -56,7 +56,7 @@ object FormHH: TFormHH
     Left = 567
     Top = 215
     Width = 261
-    Height = 58
+    Height = 57
     Anchors = [akLeft, akBottom]
     Caption = 
       #1055#1088#1080' '#1079#1072#1087#1086#1083#1085#1077#1085#1080#1080' '#1090#1072#1073#1083#1080#1094#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1074#1099#1093#1086#1076#1103#1097#1080#1077' '#1079#1072' '#1087#1088#1077#1076#1077#1083#1099' '#1076 +
@@ -208,7 +208,6 @@ object FormHH: TFormHH
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitTop = 217
     object StringGrid1: TStringGrid
       Left = 3
       Top = 28
@@ -258,7 +257,6 @@ object FormHH: TFormHH
     Font.Style = []
     ParentFont = False
     TabOrder = 3
-    ExplicitTop = 217
     DesignSize = (
       768
       392)
@@ -355,7 +353,6 @@ object FormHH: TFormHH
       9271E7D3C5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 4
     OnClick = BitStartClick
-    ExplicitTop = 620
   end
   object BitSave: TBitBtn
     Left = 879
@@ -423,7 +420,6 @@ object FormHH: TFormHH
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 5
     OnClick = BitSaveClick
-    ExplicitTop = 620
   end
   object BitClear: TBitBtn
     Left = 553
@@ -491,7 +487,6 @@ object FormHH: TFormHH
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 6
     OnClick = BitClearClick
-    ExplicitTop = 621
   end
   object GroupBox5: TGroupBox
     Left = 0
@@ -727,7 +722,6 @@ object FormHH: TFormHH
       Anchors = [akTop, akRight]
       TabOrder = 1
       Text = '1'
-      ExplicitLeft = 750
     end
     object Edit1: TEdit
       Left = 787
@@ -737,7 +731,6 @@ object FormHH: TFormHH
       Anchors = [akTop, akRight]
       TabOrder = 2
       Text = '15'
-      ExplicitLeft = 750
     end
   end
   object TimUp: TTimer

@@ -172,7 +172,7 @@ begin
   StringGrid1.Enabled := false;
   BitBtn9.Enabled     := true;
   BitBtn8.Enabled     := false;
-  enableclose:=false;
+  enableclose         := false;
 end;
 
 // end f9
@@ -292,7 +292,9 @@ procedure TFKZ.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonSelected: integer;
 begin
- if enableclose then canclose:=true else
+  if enableclose then
+    CanClose := true
+  else
   begin
     buttonSelected :=
       MessageDlg('” вас есть несохраненные данные, сохранить их?',

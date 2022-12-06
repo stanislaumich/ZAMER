@@ -43,14 +43,14 @@ type
     RadioButton3: TRadioButton;
     QTemp: TFDQuery;
     QSoprot: TFDQuery;
-    BitBtn2: TBitBtn;
+    Edit1: TEdit;
+    Edit2: TEdit;
     procedure Button50Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid3KeyPress(Sender: TObject; var Key: Char);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure BitBtn2Click(Sender: TObject);
     procedure Edit8Change(Sender: TObject);
     procedure ComboBox7Change(Sender: TObject);
     procedure ComboBox8Change(Sender: TObject);
@@ -68,8 +68,9 @@ type
   end;
 
 var
-  FSopr: TFSopr;
-  enableclose:boolean;
+  FSopr      : TFSopr;
+  enableclose: Boolean;
+
 implementation
 
 {$R *.dfm}
@@ -78,39 +79,32 @@ Uses Uzv2Main;
 
 procedure TFSopr.BitBtn1Click(Sender: TObject);
 var
-  buttonSelected: integer;
+  buttonSelected, i, j: integer;
 begin
-  buttonSelected := MessageDlg('Действительно очистить таблицу?',
+  buttonSelected := MessageDlg('Действительно очистить все поля?',
     mtConfirmation, [mbYes, mbNo], 0);
   if buttonSelected = mrYes then
   begin
-    Edit8.Text      := '';
-    Edit13.Text     := '';
-    Edit16.Text     := '';
-    ComboBox7.Text  := '';
-    ComboBox8.Text  := '';
-    ComboBox9.Text  := '';
-    ComboBox10.Text := '';
-  end;
-end;
-
-procedure TFSopr.BitBtn2Click(Sender: TObject);
-var
-  i, j          : integer;
-  buttonSelected: integer;
-begin
-  buttonSelected := MessageDlg('Действительно очистить таблицу?',
-    mtConfirmation, [mbYes, mbNo], 0);
-  if buttonSelected = mrYes then
-  begin
+    Edit8.Text                  := '';
+    Edit1.Text                  := '';
+    Edit2.Text                  := '';
+    Edit13.Text                 := '';
+    Edit16.Text                 := '';
+    ComboBox7.Text              := '';
+    ComboBox8.Text              := '';
+    ComboBox9.Text              := '';
+    ComboBox10.Text             := '';
     Edit8.Text                  := '';
     ComboBox7.Text              := '';
     ComboBox8.Text              := '';
     for i                       := 1 to 3 do
       for j                     := 1 to 3 do
-        StringGrid3.cells[i, j] := '0';
-    Edit13.Text                 := '500';
-    Edit16.Text                 := '500';
+        StringGrid3.cells[i, j] := '';
+    Edit13.Text                 := '';
+    Edit16.Text                 := '';
+    RadioButton1.Checked:=false;
+    RadioButton2.Checked:=false;
+    RadioButton3.Checked:=false;
   end;
 
 end;
@@ -126,8 +120,12 @@ begin
   QSoprot.Close;
   try
     QSoprot.ParamByName('NOMER').Asstring := Label6.Caption;
-    QSoprot.ParamByName('TEMPER').AsFloat :=
+    QSoprot.ParamByName('TEMP1').AsFloat :=
       myfloat(strreplace(Edit8.Text, '.', ','));
+    QSoprot.ParamByName('TEMP2').AsFloat :=
+      myfloat(strreplace(Edit1.Text, '.', ','));
+    QSoprot.ParamByName('TEMP3').AsFloat :=
+      myfloat(strreplace(Edit2.Text, '.', ','));
     QSoprot.ParamByName('PHAS').Asstring     := ComboBox7.Text;
     QSoprot.ParamByName('SOED').Asstring     := ComboBox8.Text;
     QSoprot.ParamByName('SOPRED').Asstring   := ComboBox9.Text;
@@ -166,7 +164,7 @@ begin
   end;
   QSoprot.ExecSQL;
   ShowMessage('Данные сохранены успешно!');
-  EnableClose:=true;
+  enableclose := true;
   FZamerV2.ImgSet(FZamerV2.Image1, true);
   FSopr.Close;
 
@@ -195,48 +193,49 @@ end;
 
 procedure TFSopr.ComboBox10Change(Sender: TObject);
 begin
-enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.ComboBox7Change(Sender: TObject);
 begin
- enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.ComboBox8Change(Sender: TObject);
 begin
- enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.ComboBox9Change(Sender: TObject);
 begin
- enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.Edit13Change(Sender: TObject);
 begin
-enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.Edit16Change(Sender: TObject);
 begin
-enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.Edit8Change(Sender: TObject);
 begin
- enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
- var
+var
   buttonSelected: integer;
 begin
- if enableclose then exit;
-buttonSelected := MessageDlg('Сохранить данные?',
-    mtConfirmation, [mbYes, mbNo], 0);
+  if enableclose then
+    exit;
+  buttonSelected := MessageDlg('Сохранить данные?', mtConfirmation,
+    [mbYes, mbNo], 0);
   if buttonSelected = mrYes then
-  BitBtn5.Click;
+    BitBtn5.Click;
 end;
 
 procedure TFSopr.FormCreate(Sender: TObject);
@@ -257,43 +256,44 @@ begin
       StringGrid3.cells[i, j]  := '0';
       StringGrid3.ColWidths[i] := 160;
     end;
- enableclose:=true;
+  enableclose := true;
 end;
 
 procedure TFSopr.RadioButton1Click(Sender: TObject);
 begin
-enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.RadioButton2Click(Sender: TObject);
 begin
-enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.RadioButton3Click(Sender: TObject);
 begin
-enableclose:=false;
+  enableclose := false;
 end;
 
 procedure TFSopr.StringGrid3KeyPress(Sender: TObject; var Key: Char);
 begin
-    enableclose:=false;
-   if (StringGrid3.Row = 3) and (StringGrid3.Col = 3) then exit;
+  enableclose := false;
+  if (StringGrid3.Row = 3) and (StringGrid3.Col = 3) then
+    exit;
 
-   if Key = #13 then
+  if Key = #13 then
+  begin
+    if (StringGrid3.Row = 3) then
     begin
-     if (StringGrid3.Row = 3) then
-      begin
-       if (StringGrid3.cells[StringGrid3.Col, 3] <> '') then
+      if (StringGrid3.cells[StringGrid3.Col, 3] <> '') then
         StringGrid3.Selection :=
           TGridRect(Rect(StringGrid3.Col + 1, 1, StringGrid3.Col + 1, 1));
-      end
-     else
+    end
+    else
       StringGrid3.Selection :=
-          TGridRect(Rect(StringGrid3.Col , StringGrid3.Row+1, StringGrid3.Col, StringGrid3.Row+1));
+        TGridRect(Rect(StringGrid3.Col, StringGrid3.Row + 1, StringGrid3.Col,
+        StringGrid3.Row + 1));
 
-
-    end;
+  end;
 
 end;
 

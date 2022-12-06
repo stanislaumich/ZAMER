@@ -98,7 +98,7 @@ type
         procedure BSoprotClick(Sender: TObject);
         procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
         procedure BKzClick(Sender: TObject);
-    procedure BNagrClick(Sender: TObject);
+        procedure BNagrClick(Sender: TObject);
     private
         { Private declarations }
     public
@@ -383,8 +383,8 @@ end;
 
 procedure TFZamerV2.BNagrClick(Sender: TObject);
 begin
-FNagr.Label6.Caption:=Nomer;
- FNagr.ShowModal;
+    FNagr.Label6.Caption := nomer;
+    FNagr.ShowModal;
 end;
 
 procedure TFZamerV2.enableispyt(f: Boolean);
@@ -476,7 +476,9 @@ begin
     QTemp.Open('select * from zsoprot where nomer=' + Quotedstr(nomer));
     FZamerV2.ImgSet(FZamerV2.Image1, QTemp.RecordCount <> 0);
 
-    FSopr.Edit8.Text     := QTemp.FieldByName('TEMPER').Asstring;
+    FSopr.Edit8.Text     := QTemp.FieldByName('TEMP1').Asstring;
+    FSopr.Edit1.Text     := QTemp.FieldByName('TEMP2').Asstring;
+    FSopr.Edit2.Text     := QTemp.FieldByName('TEMP3').Asstring;
     FSopr.ComboBox7.Text := QTemp.FieldByName('PHAS').Asstring;
     FSopr.ComboBox8.Text := QTemp.FieldByName('SOED').Asstring;
     FSopr.ComboBox9.Text := QTemp.FieldByName('SOPRED').Asstring;
