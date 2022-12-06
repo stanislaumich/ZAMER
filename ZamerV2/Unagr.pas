@@ -66,12 +66,16 @@ type
     QSelectSred: TFDQuery;
     ActionList1: TActionList;
     Action1: TAction;
+    Label28: TLabel;
+    Label29: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
     procedure StringGrid1Click(Sender: TObject);
     procedure Timer1000Timer(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure Edit3Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -87,6 +91,11 @@ implementation
 procedure TFNagr.Action1Execute(Sender: TObject);
 begin
  BitBtn1.Click;
+end;
+
+procedure TFNagr.BitBtn1Click(Sender: TObject);
+begin
+ Timer1000.Enabled:=True;
 end;
 
 procedure TFNagr.command(b: Boolean);
@@ -108,6 +117,15 @@ begin
     QTemp.ExecSQL;
   end;
 end;
+procedure TFNagr.Edit3Change(Sender: TObject);
+var
+ s:string;
+
+begin
+ s:=FZamerV2.CombPisp.Text;
+ LAbel29.Caption:=inttostr(round(strtofloat(s)/100*strtofloat(edit3.text)));
+end;
+
 procedure TFNagr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   QTemp.Close;

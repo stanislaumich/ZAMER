@@ -2,8 +2,8 @@ object FNagr: TFNagr
   Left = 0
   Top = 0
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072#1075#1088#1077#1074#1072
-  ClientHeight = 588
-  ClientWidth = 968
+  ClientHeight = 561
+  ClientWidth = 1035
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,14 +14,14 @@ object FNagr: TFNagr
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    968
-    588)
+    1035
+    561)
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 968
+    Width = 1035
     Height = 30
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
@@ -31,7 +31,7 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 591
+    ExplicitWidth = 968
     object Label1: TLabel
       Left = 3
       Top = 2
@@ -50,7 +50,7 @@ object FNagr: TFNagr
   object GroupBox1: TGroupBox
     Left = 0
     Top = 30
-    Width = 968
+    Width = 1035
     Height = 167
     Align = alTop
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1087#1088#1080#1073#1086#1088#1086#1074
@@ -61,7 +61,7 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 980
+    ExplicitWidth = 968
     object Label2: TLabel
       Left = 46
       Top = 65
@@ -280,7 +280,7 @@ object FNagr: TFNagr
   object GroupBox3: TGroupBox
     Left = 0
     Top = 200
-    Width = 968
+    Width = 1035
     Height = 75
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
@@ -291,7 +291,7 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitWidth = 970
+    ExplicitWidth = 968
     object Label15: TLabel
       Left = 8
       Top = 32
@@ -309,9 +309,31 @@ object FNagr: TFNagr
     object Label17: TLabel
       Left = 588
       Top = 32
-      Width = 268
+      Width = 260
       Height = 25
-      Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1084#1086#1097#1085#1086#1089#1090#1080', '#1042#1090'.:'
+      Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1084#1086#1097#1085#1086#1089#1090#1080', %:'
+    end
+    object Label28: TLabel
+      Left = 911
+      Top = 32
+      Width = 49
+      Height = 25
+      Caption = ', '#1042#1090'.:'
+    end
+    object Label29: TLabel
+      Left = 960
+      Top = 32
+      Width = 13
+      Height = 25
+      Caption = '0'
+      Color = clBlue
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -21
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
     end
     object Edit1: TEdit
       Left = 184
@@ -332,17 +354,19 @@ object FNagr: TFNagr
     object Edit3: TEdit
       Left = 862
       Top = 28
-      Width = 81
+      Width = 46
       Height = 33
       TabOrder = 2
       Text = '10'
+      OnChange = Edit3Change
     end
   end
   object GroupBox4: TGroupBox
     Left = 0
     Top = 275
-    Width = 802
-    Height = 310
+    Width = 861
+    Height = 284
+    Anchors = [akLeft, akTop, akBottom]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -351,6 +375,7 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    ExplicitHeight = 310
     object Label20: TLabel
       Left = 8
       Top = 148
@@ -373,33 +398,30 @@ object FNagr: TFNagr
       Caption = #1052#1077#1078#1076#1091' '#1086#1073#1084#1086#1090#1082#1072#1084#1080', '#1054#1084':'
     end
     object Label25: TLabel
-      Left = 10
-      Top = 247
+      Left = 362
+      Top = 179
       Width = 58
       Height = 23
       Caption = 'T1, C='
-      Visible = False
     end
     object Label26: TLabel
-      Left = 279
-      Top = 247
+      Left = 631
+      Top = 179
       Width = 58
       Height = 23
       Caption = 'T3, C='
-      Visible = False
     end
     object Label27: TLabel
-      Left = 139
-      Top = 247
+      Left = 491
+      Top = 179
       Width = 58
       Height = 23
       Caption = 'T2, C='
-      Visible = False
     end
     object StringGrid1: TStringGrid
       Left = 2
       Top = 25
-      Width = 798
+      Width = 857
       Height = 117
       Align = alTop
       ColCount = 11
@@ -408,11 +430,11 @@ object FNagr: TFNagr
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       OnClick = StringGrid1Click
-      ExplicitTop = 15
+      ExplicitWidth = 798
     end
     object BitBtn1: TBitBtn
-      Left = 644
-      Top = 148
+      Left = 542
+      Top = 209
       Width = 155
       Height = 41
       Caption = #1057#1090#1072#1088#1090' F5'
@@ -474,10 +496,11 @@ object FNagr: TFNagr
         FFFFFFFFFFFFFFFFFFFF249E3C2CBB5331C15731C15731C15731C1572CBB5324
         9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 1
+      OnClick = BitBtn1Click
     end
     object BitBtn2: TBitBtn
-      Left = 644
-      Top = 192
+      Left = 703
+      Top = 209
       Width = 155
       Height = 41
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
@@ -542,13 +565,14 @@ object FNagr: TFNagr
     end
     object ProgressBar1: TProgressBar
       Left = 2
-      Top = 283
-      Width = 798
+      Top = 257
+      Width = 857
       Height = 25
       Align = alBottom
       Step = 1
       TabOrder = 3
-      ExplicitTop = 239
+      ExplicitTop = 283
+      ExplicitWidth = 798
     end
     object Edit4: TEdit
       Left = 257
@@ -567,40 +591,34 @@ object FNagr: TFNagr
       Text = '0'
     end
     object Edit6: TEdit
-      Left = 72
-      Top = 244
+      Left = 424
+      Top = 176
       Width = 61
       Height = 31
       TabOrder = 6
-      Text = '0'
-      Visible = False
     end
     object Edit8: TEdit
-      Left = 346
-      Top = 244
+      Left = 698
+      Top = 176
       Width = 61
       Height = 31
       TabOrder = 7
-      Text = '0'
-      Visible = False
     end
     object Edit7: TEdit
-      Left = 201
-      Top = 244
+      Left = 553
+      Top = 176
       Width = 61
       Height = 31
       TabOrder = 8
-      Text = '0'
-      Visible = False
     end
   end
   object BitBtn10: TBitBtn
-    Left = 806
-    Top = 281
+    Left = 869
+    Top = 276
     Width = 158
     Height = 45
     Anchors = [akLeft, akBottom]
-    Caption = #1047#1072#1087#1080#1089#1072#1090#1100
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -667,10 +685,10 @@ object FNagr: TFNagr
     TabOrder = 4
   end
   object BitBtn11: TBitBtn
-    Left = 806
-    Top = 327
+    Left = 869
+    Top = 322
     Width = 158
-    Height = 41
+    Height = 47
     Anchors = [akLeft, akBottom]
     Caption = #1054#1090#1084#1077#1085#1072
     Font.Charset = DEFAULT_CHARSET
@@ -750,6 +768,7 @@ object FNagr: TFNagr
     Top = 114
   end
   object Timer1000: TTimer
+    Enabled = False
     OnTimer = Timer1000Timer
     Left = 824
     Top = 114
@@ -936,8 +955,8 @@ object FNagr: TFNagr
       end>
   end
   object ActionList1: TActionList
-    Left = 836
-    Top = 436
+    Left = 904
+    Top = 396
     object Action1: TAction
       Caption = 'Action1'
       ShortCut = 116
