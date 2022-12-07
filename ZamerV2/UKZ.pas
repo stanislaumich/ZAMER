@@ -124,7 +124,7 @@ end;
 
 procedure TFKZ.Edit2Change(Sender: TObject);
 begin
- EnableClose:=false;
+  enableclose := false;
 end;
 
 procedure TFKZ.Action1Execute(Sender: TObject);
@@ -144,12 +144,12 @@ begin
   for i                       := 1 to StringGrid1.ColCount - 1 do
     for j                     := 1 to StringGrid1.RowCount - 1 do
       StringGrid1.Cells[i, j] := '';
-  Edit2.Enabled:=True;
+  Edit2.Enabled               := True;
 end;
 
 procedure TFKZ.BitBtn12Click(Sender: TObject);
 begin
-  EnableClose:=True;
+  enableclose := True;
   FKZ.Close;
 end;
 
@@ -176,9 +176,9 @@ begin
   QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
     ' and uisp=' + StringGrid1.Cells[0, StringGrid1.row]);
   QTemp.ExecSQL;
-  command(true);
+  command(True);
   StringGrid1.Enabled := false;
-  BitBtn9.Enabled     := true;
+  BitBtn9.Enabled     := True;
   BitBtn8.Enabled     := false;
   enableclose         := false;
 end;
@@ -207,7 +207,7 @@ begin
   Qe.Close;
   Qm.Open;
   Qe.Open;
-  e := true;
+  e := True;
   while e do
   begin
     QInsAll.ParamByName('NOMER').AsString := Nomer;
@@ -279,16 +279,16 @@ begin
   /// //////////////////////////////////////////////////////////////////////////
   BitBtn9.Enabled     := false;
   BitBtn8.Enabled     := false;
-  StringGrid1.Enabled := true;
+  StringGrid1.Enabled := True;
 end;
 
 procedure TFKZ.FormActivate(Sender: TObject);
 begin
-  enableclose := true;
+  enableclose := True;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('ukz'));
   Edit1.text      := QTemp.Fieldbyname('value').AsString;
   Nomer           := Label2.Caption;
-  TimerUp.Enabled := true;
+  TimerUp.Enabled := True;
 end;
 
 procedure TFKZ.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -301,7 +301,7 @@ var
   buttonSelected: integer;
 begin
   if enableclose then
-    CanClose := true
+    CanClose := True
   else
   begin
     buttonSelected :=
@@ -310,10 +310,10 @@ begin
     if buttonSelected = mrYes then
     begin
       BitBtn12.Click;
-      CanClose := true;
+      CanClose := True;
     end;
     if buttonSelected = mrNo then
-      CanClose := true;
+      CanClose := True;
     if buttonSelected = mrCancel then
       CanClose := false;
   end;
@@ -348,7 +348,7 @@ begin
   if StringGrid1.Cells[0, StringGrid1.row] <> '' then
   begin
     Label13.Caption := StringGrid1.Cells[0, StringGrid1.row];
-    BitBtn8.Enabled := true;
+    BitBtn8.Enabled := True;
   end;
 end;
 

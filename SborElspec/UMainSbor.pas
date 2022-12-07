@@ -344,8 +344,8 @@ begin
   end;
 
   QtmpUpd.ParamByName('u').AsFloat := Simpleroundto(USred.Value, RazU);
-  QtmpUpd.ParamByName('i').AsFloat := Simpleroundto(USred.Value, RazI);
-  QtmpUpd.ParamByName('p').AsFloat := Simpleroundto(USred.Value, RazP);
+  QtmpUpd.ParamByName('i').AsFloat := Simpleroundto(ISred.Value, RazI);
+  QtmpUpd.ParamByName('p').AsFloat := Simpleroundto(PSred.Value, RazP);
 
   QtmpUpd.ParamByName('u1').AsFloat := Simpleroundto(U1.Value, RazU);
   QtmpUpd.ParamByName('u2').AsFloat := Simpleroundto(U2.Value, RazU);

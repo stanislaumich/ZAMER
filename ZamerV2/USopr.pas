@@ -102,9 +102,9 @@ begin
         StringGrid3.cells[i, j] := '';
     Edit13.Text                 := '';
     Edit16.Text                 := '';
-    RadioButton1.Checked:=false;
-    RadioButton2.Checked:=false;
-    RadioButton3.Checked:=false;
+    RadioButton1.Checked        := false;
+    RadioButton2.Checked        := false;
+    RadioButton3.Checked        := false;
   end;
 
 end;
@@ -120,7 +120,7 @@ begin
   QSoprot.Close;
   try
     QSoprot.ParamByName('NOMER').Asstring := Label6.Caption;
-    QSoprot.ParamByName('TEMP1').AsFloat :=
+    QSoprot.ParamByName('TEMP1').AsFloat  :=
       myfloat(strreplace(Edit8.Text, '.', ','));
     QSoprot.ParamByName('TEMP2').AsFloat :=
       myfloat(strreplace(Edit1.Text, '.', ','));

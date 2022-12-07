@@ -69,6 +69,7 @@ type
     Action1: TAction;
     Label28: TLabel;
     Label29: TLabel;
+    QUp: TFDQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -77,6 +78,9 @@ type
     procedure Action1Execute(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure Edit3Change(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -122,14 +126,22 @@ begin
 end;
 
 procedure TFNagr.Edit3Change(Sender: TObject);
-var
-  s: string;
-
 begin
-  if s<>'' then
-  s               := FZamerV2.CombPisp.Text else s:='0';
-  Label29.Caption :=
-    inttostr(round(strtofloat(s) / 100 * strtofloat(Edit3.Text)));
+  Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
+    myfloat(Edit3.Text)));
+end;
+
+procedure TFNagr.FormActivate(Sender: TObject);
+begin
+  Label19.Caption := Fzamerv2.CombUisp.Text;
+  Label24.Caption := inttostr(round(strtofloat(Fzamerv2.CombPisp.Text) * 1000));
+  Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
+    myfloat(Edit3.Text)));
+end;
+
+procedure TFNagr.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  TimerUp.Enabled := false;
 end;
 
 procedure TFNagr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -187,6 +199,11 @@ begin
 
 end;
 
+procedure TFNagr.FormShow(Sender: TObject);
+begin
+  TimerUp.Enabled := True;
+end;
+
 procedure TFNagr.StringGrid1Click(Sender: TObject);
 begin
   {
@@ -214,16 +231,26 @@ end;
 
 procedure TFNagr.TimerUpTimer(Sender: TObject);
 begin
-  {
-    Label7.Caption := FMain.KrVarLabel1.Caption;
-    Label8.Caption := FMain.KrVarLabel2.Caption;
-    Label9.Caption := FMain.KrVarLabel3.Caption;
 
-    QgetMN.Open('select * from zamer');
-    Label10.Caption := QgetMN.FieldByName('torq').Asstring;
-    Label11.Caption := QgetMN.FieldByName('rot').Asstring;
-    Label12.Caption := QgetMN.FieldByName('power').Asstring;
-  }
+  QUp.Close;
+  QUp.Open();
+  Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
+  Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
+  Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
+
+  if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
+    myfloat(Edit2.Text) then
+    Label9.Font.Color := clRed
+  else
+    Label9.Font.Color := clGreen;
+  Label9.Caption      := myformat(trazu, QUp.FieldByName('U').AsFloat);
+  //
+  if ABS(QUp.FieldByName('P').AsFloat - strtofloat(Label24.Caption)) >
+    myfloat(Label29.Caption) then
+    Label14.Font.Color := clRed
+  else
+    Label14.Font.Color := clGreen;
+  Label14.Caption      := myformat(trazu, QUp.FieldByName('P').AsFloat);
 
 end;
 
