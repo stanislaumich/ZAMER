@@ -390,6 +390,12 @@ end;
 procedure TFZamerV2.enableispyt(f: Boolean);
 begin
     BSoprot.Enabled := f;
+    BHH.Enabled := f;
+    BKZ.Enabled := f;
+    BNagr.Enabled := f;
+    BRH.Enabled := f;
+    BMH.Enabled := f;
+    BPI.Enabled := f;
 end;
 
 procedure TFZamerV2.LoadIspyt(nomer: string);
@@ -517,6 +523,7 @@ begin
 
     FKZ.StringGrid1.row      := 1;
     FKZ.StringGrid1.rowcount := 10;
+    FKZ.Edit2.Enabled:=False;
     while not(QTemp.Eof) do
     begin
         FKZ.StringGrid1.Cells[0, FKZ.StringGrid1.row] :=

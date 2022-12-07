@@ -459,6 +459,7 @@ object FKZ: TFKZ
       Width = 70
       Height = 31
       TabOrder = 3
+      OnChange = Edit2Change
     end
   end
   object BitBtn10: TBitBtn
@@ -529,7 +530,7 @@ object FKZ: TFKZ
     OnClick = BitBtn10Click
   end
   object BitBtn12: TBitBtn
-    Left = 369
+    Left = 366
     Top = 516
     Width = 151
     Height = 53

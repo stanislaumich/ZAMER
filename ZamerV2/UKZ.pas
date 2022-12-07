@@ -66,6 +66,7 @@ type
     procedure BitBtn12Click(Sender: TObject);
     procedure BitBtn10Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure Edit2Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -121,6 +122,11 @@ begin
   end;
 end;
 
+procedure TFKZ.Edit2Change(Sender: TObject);
+begin
+ EnableClose:=false;
+end;
+
 procedure TFKZ.Action1Execute(Sender: TObject);
 begin
   BitBtn8Click(FKZ);
@@ -138,10 +144,12 @@ begin
   for i                       := 1 to StringGrid1.ColCount - 1 do
     for j                     := 1 to StringGrid1.RowCount - 1 do
       StringGrid1.Cells[i, j] := '';
+  Edit2.Enabled:=True;
 end;
 
 procedure TFKZ.BitBtn12Click(Sender: TObject);
 begin
+  EnableClose:=True;
   FKZ.Close;
 end;
 
