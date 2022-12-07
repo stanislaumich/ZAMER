@@ -58,7 +58,6 @@ type
     Label27: TLabel;
     Edit7: TEdit;
     BitBtn10: TBitBtn;
-    BitBtn11: TBitBtn;
     QTemp: TFDQuery;
     TimerUp: TTimer;
     Timer1000: TTimer;
@@ -95,6 +94,7 @@ implementation
 uses uzv2main;
 {$R *.dfm}
 
+
 procedure TFNagr.Action1Execute(Sender: TObject);
 begin
   BitBtn1.Click;
@@ -102,6 +102,8 @@ end;
 
 procedure TFNagr.BitBtn1Click(Sender: TObject);
 begin
+  Command(True);
+  BitBtn1.Enabled:=False;
   Timer1000.Enabled := True;
 end;
 
@@ -223,10 +225,16 @@ end;
 
 procedure TFNagr.Timer1000Timer(Sender: TObject);
 begin
+ ProgressBar1.StepIt;
+  If ProgressBar1.Position > Strtoint(Edit1.Text) then
+  begin
+    Timer1000.Enabled     := False;
+    ProgressBar1.Position := 0;
+    // остановить датчик 45
+    Command(false);
 
-  ProgressBar1.StepIt;
-  // If Timer1000.tag <= 0 then
-
+  end;
+ BitBtn1.Enabled:=True;
 end;
 
 procedure TFNagr.TimerUpTimer(Sender: TObject);
