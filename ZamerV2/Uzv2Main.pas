@@ -99,6 +99,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure BKzClick(Sender: TObject);
     procedure BNagrClick(Sender: TObject);
+    procedure BRHClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -122,7 +123,7 @@ implementation
 
 {$R *.dfm}
 
-uses UARC, UHH, USopr, UKZ, Unagr;
+uses UARC, UHH, USopr, UKZ, Unagr, URH;
 
 procedure TFZamerV2.ImgSet(i: TImage; v: Boolean);
 var
@@ -377,6 +378,12 @@ procedure TFZamerV2.BNagrClick(Sender: TObject);
 begin
   FNagr.Label6.Caption := nomer;
   FNagr.ShowModal;
+end;
+
+procedure TFZamerV2.BRHClick(Sender: TObject);
+begin
+  FRH.Label6.Caption := nomer;
+  FRH.ShowModal;
 end;
 
 procedure TFZamerV2.enableispyt(f: Boolean);

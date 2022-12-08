@@ -843,6 +843,7 @@ object FZamerV2: TFZamerV2
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 4
+        OnClick = BRHClick
       end
       object BMH: TButton
         Left = 3

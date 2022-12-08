@@ -1,7 +1,7 @@
 object FRH: TFRH
   Left = 0
   Top = 0
-  Caption = 'FRH'
+  Caption = #1056#1072#1073#1086#1095#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
   ClientHeight = 906
   ClientWidth = 1037
   Color = clBtnFace
@@ -11,6 +11,10 @@ object FRH: TFRH
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
   DesignSize = (
     1037
     906)
@@ -573,6 +577,7 @@ object FRH: TFRH
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goRowSelect, goFixedRowDefAlign]
       ParentFont = False
       TabOrder = 0
+      OnClick = StringGrid2Click
       ExplicitWidth = 733
     end
     object BitBtn1: TBitBtn
@@ -835,14 +840,14 @@ object FRH: TFRH
     Text = '0'
   end
   object QCommand: TFDQuery
-    Connection = FMain.FDOra
+    Connection = FZamerV2.FDC
     SQL.Strings = (
       'select * from command')
     Left = 463
     Top = 458
   end
   object Qselectsred: TFDQuery
-    Connection = FMain.FDOra
+    Connection = FZamerV2.FDC
     SQL.Strings = (
       'select'
       'nomer, uisp, sum(u) u, sum(i) i,sum(p) p, sum(umax) umax, '
@@ -890,7 +895,7 @@ object FRH: TFRH
       end>
   end
   object QinsAll: TFDQuery
-    Connection = FMain.FDOra
+    Connection = FZamerV2.FDC
     SQL.Strings = (
       'INSERT INTO ZAMER.ZRHALL ('
       '   NOMER, UISP, U12, '
@@ -990,12 +995,12 @@ object FRH: TFRH
       end>
   end
   object QTemp: TFDQuery
-    Connection = FMain.FDOra
+    Connection = FZamerV2.FDC
     Left = 664
     Top = 469
   end
   object QInsSvod: TFDQuery
-    Connection = FMain.FDOra
+    Connection = FZamerV2.FDC
     SQL.Strings = (
       'INSERT INTO ZAMER.ZRHSVOD ('
       '   NOMER, UISP, USRED, '
@@ -1089,8 +1094,25 @@ object FRH: TFRH
     Top = 457
   end
   object TimerUp: TTimer
+    Enabled = False
     Interval = 500
+    OnTimer = TimerUpTimer
     Left = 783
     Top = 58
+  end
+  object QUp: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'select '
+      'sum(u) u, sum(i) i, sum(p) p, sum(m) m, sum(n) n  from'
+      '('
+      'select U,I,P,to_number(0) M, to_number(0) N  from zelspectmp'
+      'union all'
+      
+        'select 0 U, 0 I, 0 P, to_number(torq) M, to_number(rot) N  from ' +
+        'zamer'
+      ')')
+    Left = 780
+    Top = 112
   end
 end
