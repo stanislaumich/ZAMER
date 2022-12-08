@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, ustr, uadd, System.Actions,
-  Vcl.ActnList;
+  Vcl.ActnList, math;
 
 type
   TFNagr = class(TForm)
@@ -69,6 +69,7 @@ type
     Label28: TLabel;
     Label29: TLabel;
     QUp: TFDQuery;
+    QTemp2: TFDQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -102,7 +103,17 @@ end;
 
 procedure TFNagr.BitBtn1Click(Sender: TObject);
 begin
+ if (Edit4.text='') or (Edit5.text='') or (Edit6.text='') or (Edit7.text='') or (Edit8.text='') then
+ begin
+  ShowMessage('Не заполнены поля сопротивления и температуры!');
+  Exit;
+ end;
   Command(True);
+  ProgressBAr1.Min:=0;
+  ProgressBAr1.Max:=Strtoint(Edit1.TExt);
+  ProgressBar1.Step:=1;
+  ProgressBar1.Position:=0;
+  Timer1000.Tag:=0;
   BitBtn1.Enabled:=False;
   Timer1000.Enabled := True;
 end;
@@ -224,17 +235,155 @@ begin
 end;
 
 procedure TFNagr.Timer1000Timer(Sender: TObject);
+var
+ acount1, acount2, ncnt, i:integer;
 begin
  ProgressBar1.StepIt;
-  If ProgressBar1.Position > Strtoint(Edit1.Text) then
+ Timer1000.Tag:=Timer1000.Tag+1;
+  If Timer1000.Tag > Strtoint(Edit1.Text) then
   begin
     Timer1000.Enabled     := False;
     ProgressBar1.Position := 0;
     // остановить датчик 45
     Command(false);
 
+
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select count(*) cnt from zamertmp');
+    acount1 := QTemp.FieldByName('cnt').Asinteger;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select count(*) cnt from zelspec');
+    acount2 := QTemp.FieldByName('cnt').Asinteger;
+    ncnt    := min(acount2, acount1);
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    {:NOMER ,
+ :U1 ,
+ :U2 ,
+ :U3 ,
+ :I1 ,
+ :I2 ,
+ :I3,
+ :P ,
+ :M ,
+ :N ,
+ :DOP1,
+ :TIP ,
+ :NAGR  p1 p2 p3}
+    QTemp.Open('select * from zamertmp');
+    QTemp.First;
+    QTemp2.Open('select * from zelspec');
+    QTemp2.First;
+    for i := 1 to ncnt do
+    begin
+      QInsAll.ParamByName('NOMER').Asstring := Nomer;
+      QInsAll.ParamByName('U1').AsFloat     := Qtemp2.FieldByName('U1').AsFloat;
+      QInsAll.ParamByName('U2').AsFloat     := Qtemp2.FieldByName('U2').AsFloat;
+      QInsAll.ParamByName('U3').AsFloat     := Qtemp2.FieldByName('U3').AsFloat;
+      QInsAll.ParamByName('I1').AsFloat     := Qtemp2.FieldByName('i1').AsFloat;
+      QInsAll.ParamByName('I2').AsFloat     := Qtemp2.FieldByName('i2').AsFloat;
+      QInsAll.ParamByName('I3').AsFloat     := Qtemp2.FieldByName('i3').AsFloat;
+      QInsAll.ParamByName('P').AsFloat      := Qtemp2.FieldByName('p').AsFloat;
+
+      QInsAll.ParamByName('P1').AsFloat      :=Qtemp2.FieldByName('p1').AsFloat;
+      QInsAll.ParamByName('P2').AsFloat      := Qtemp2.FieldByName('p2').AsFloat;
+      QInsAll.ParamByName('P3').AsFloat      := Qtemp2.FieldByName('p3').AsFloat;
+
+      QInsAll.ParamByName('M').AsFloat      :=
+        simpleroundto(QTemp.FieldByName('torq').AsFloat, RazM);
+      QInsAll.ParamByName('N').AsFloat :=
+        simpleroundto(QTemp.FieldByName('rot').AsFloat, RazN);
+      QInsAll.ParamByName('DOP1').AsFloat := 0;
+      QInsAll.ParamByName('Tip').AsFloat  := StringGrid1.Row;
+      QInsAll.ParamByName('nagr').AsFloat := 0;
+      QInsAll.ExecSQL;
+      QTemp.Next;
+      QTemp2.Next;
+    end;
+
+    /// /////////////////
+    ///
+    QSelectSred.Close;
+    QSelectSred.ParamByName('nomer').Asstring := Nomer;
+    QSelectSred.ParamByName('tip').Asinteger  := StringGrid1.Row;
+    // Qselectsred.ParamByName('pisp').AsFloat   := Strtofloat(Label8.Caption);
+    QSelectSred.Open;
+    QInssvod.Close;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('delete from znagrevsvod where nomer=' + Quotedstr(Nomer) +
+      ' and tip=' + inttostr(StringGrid1.Row));
+    QTemp.ExecSQL;
+    {
+      :NOMER, :U, :I,
+      :P, :N, :M,
+      :T1, :R, :TIP,
+      :DOP1, :RKORP, :ROBM,
+      :T2, :T3, :T
+    }
+
+    QInssvod.ParamByName('nomer').Asstring :=
+      QSelectSred.FieldByName('nomer').Asstring;
+    QInssvod.ParamByName('u').AsFloat :=
+      simpleroundto((QSelectSred.FieldByName('su1').AsFloat +
+      QSelectSred.FieldByName('su2').AsFloat + QSelectSred.FieldByName('su3')
+      .AsFloat) / 3, RazU);
+    QInssvod.ParamByName('i').AsFloat :=
+      simpleroundto((QSelectSred.FieldByName('si1').AsFloat +
+      QSelectSred.FieldByName('si2').AsFloat + QSelectSred.FieldByName('si3')
+      .AsFloat) / 3, RazI);
+    QInssvod.ParamByName('p').AsFloat :=
+      simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP);
+    QInssvod.ParamByName('n').AsFloat :=
+      simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN);
+    QInssvod.ParamByName('m').AsFloat :=
+      simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM);
+    QInssvod.ParamByName('dop1').AsFloat := 0;
+    QInssvod.ParamByName('t').AsFloat    :=
+      simpleroundto((Strtofloat(Edit6.Text) + Strtofloat(Edit7.Text) +
+      Strtofloat(Edit8.Text)) / 3, -1);
+    QInssvod.ParamByName('robm').AsFloat  := Strtofloat(Edit5.Text);
+    QInssvod.ParamByName('rkorp').AsFloat := Strtofloat(Edit4.Text);
+    QInssvod.ParamByName('tip').Asinteger := StringGrid1.Row;
+    QInssvod.ParamByName('t1').AsFloat    := Strtofloat(Edit6.Text);
+    QInssvod.ParamByName('t2').AsFloat    := Strtofloat(Edit7.Text);
+    QInssvod.ParamByName('t3').AsFloat    := Strtofloat(Edit8.Text);
+    QInssvod.ParamByName('r').AsFloat     := 0;
+    QInssvod.ExecSQL;
+
+    StringGrid1.cells[1, StringGrid1.Row] :=
+      Floattostr(simpleroundto((QSelectSred.FieldByName('su1').AsFloat +
+      QSelectSred.FieldByName('su2').AsFloat + QSelectSred.FieldByName('su3')
+      .AsFloat) / 3, RazU));
+    StringGrid1.cells[2, StringGrid1.Row] :=
+      Floattostr(simpleroundto((QSelectSred.FieldByName('si1').AsFloat +
+      QSelectSred.FieldByName('si2').AsFloat + QSelectSred.FieldByName('si3')
+      .AsFloat) / 3, RazI));
+    StringGrid1.cells[3, StringGrid1.Row] :=
+      Floattostr(simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP));
+    StringGrid1.cells[4, StringGrid1.Row] :=
+      Floattostr(simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN));
+    StringGrid1.cells[5, StringGrid1.Row] :=
+      Floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
+    StringGrid1.cells[6, StringGrid1.Row] :=
+      Floattostr(simpleroundto((Strtofloat(Edit6.Text) + Strtofloat(Edit7.Text)
+      + Strtofloat(Edit8.Text)) / 3, -1));
+    StringGrid1.cells[7, StringGrid1.Row] := '0';
+
+
+
+
+
+
+
+
+
+
+    BitBtn1.Enabled:=True;
   end;
- BitBtn1.Enabled:=True;
+
 end;
 
 procedure TFNagr.TimerUpTimer(Sender: TObject);

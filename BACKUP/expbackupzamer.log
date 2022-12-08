@@ -51,7 +51,7 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZELSPEC
-                                                           44 rows exported
+                                                          137 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                     ZELSPECTMP
                                                             1 rows exported
@@ -87,10 +87,10 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                     ZNAGREVALL
-                                                            0 rows exported
+                                                           27 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                    ZNAGREVSVOD
-                                                            0 rows exported
+                                                            2 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZPROCH
                                                             0 rows exported

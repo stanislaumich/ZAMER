@@ -578,7 +578,6 @@ object FNagr: TFNagr
       Width = 80
       Height = 31
       TabOrder = 4
-      Text = '0'
     end
     object Edit5: TEdit
       Left = 257
@@ -586,7 +585,6 @@ object FNagr: TFNagr
       Width = 80
       Height = 31
       TabOrder = 5
-      Text = '0'
     end
     object Edit6: TEdit
       Left = 424
@@ -786,7 +784,7 @@ object FNagr: TFNagr
       '   U3, I1, I2, '
       '   I3, P, M, '
       '   N, DOP1, TIP, '
-      '   NAGR) '
+      '   NAGR,p1,p2,p3) '
       'VALUES ( :NOMER ,'
       ' :U1 ,'
       ' :U2 ,'
@@ -799,7 +797,7 @@ object FNagr: TFNagr
       ' :N ,'
       ' :DOP1,'
       ' :TIP ,'
-      ' :NAGR  )')
+      ' :NAGR, :p1, :p2, :p3 )')
     Left = 516
     Top = 336
     ParamData = <
@@ -854,6 +852,18 @@ object FNagr: TFNagr
       item
         Name = 'NAGR'
         ParamType = ptInput
+      end
+      item
+        Name = 'P1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P3'
+        ParamType = ptInput
       end>
   end
   object QSelectSred: TFDQuery
@@ -904,5 +914,10 @@ object FNagr: TFNagr
       ')')
     Left = 776
     Top = 72
+  end
+  object QTemp2: TFDQuery
+    Connection = FZamerV2.FDC
+    Left = 760
+    Top = 375
   end
 end
