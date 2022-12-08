@@ -11,7 +11,8 @@ uses
   USopr in 'USopr.pas' {FSopr} ,
   UKZ in 'UKZ.pas' {FKZ} ,
   UAuto in 'UAuto.pas' {FAuto} ,
-  Unagr in 'Unagr.pas' {FNagr};
+  Unagr in 'Unagr.pas' {FNagr} ,
+  URH in 'URH.pas' {FRH};
 
 {$R *.res}
 
@@ -26,6 +27,7 @@ begin
   Application.CreateForm(TFKZ, FKZ);
   Application.CreateForm(TFAuto, FAuto);
   Application.CreateForm(TFNagr, FNagr);
+  Application.CreateForm(TFRH, FRH);
   Application.Run;
 
 end.

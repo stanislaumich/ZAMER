@@ -84,6 +84,7 @@ type
     procedure Edit4Change(Sender: TObject);
     procedure Edit5Change(Sender: TObject);
     procedure StringGrid1KeyPress(Sender: TObject; var Key: Char);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -129,20 +130,20 @@ begin
   for i := 1 to 2 do
   begin
     QInssvod.ParamByName('nomer').Asstring := Nomer;
-    QInssvod.ParamByName('u').AsFloat := strtofloat(StringGrid1.cells[1, i]);
-    QInssvod.ParamByName('i').AsFloat := strtofloat(StringGrid1.cells[2, i]);
-    QInssvod.ParamByName('p').AsFloat := strtofloat(StringGrid1.cells[3, i]);
-    QInssvod.ParamByName('n').AsFloat := strtofloat(StringGrid1.cells[4, i]);
-    QInssvod.ParamByName('m').AsFloat := strtofloat(StringGrid1.cells[5, i]);
+    QInssvod.ParamByName('u').AsFloat := myfloat(StringGrid1.cells[1, i]);
+    QInssvod.ParamByName('i').AsFloat := myfloat(StringGrid1.cells[2, i]);
+    QInssvod.ParamByName('p').AsFloat := myfloat(StringGrid1.cells[3, i]);
+    QInssvod.ParamByName('n').AsFloat := myfloat(StringGrid1.cells[4, i]);
+    QInssvod.ParamByName('m').AsFloat := myfloat(StringGrid1.cells[5, i]);
     QInssvod.ParamByName('dop1').AsFloat := 0;
     QInssvod.ParamByName('t').AsFloat     := 0;
-    QInssvod.ParamByName('robm').AsFloat  := strtofloat(Edit5.Text);
-    QInssvod.ParamByName('rkorp').AsFloat := strtofloat(Edit4.Text);
+    QInssvod.ParamByName('robm').AsFloat  := myfloat(Edit5.Text);
+    QInssvod.ParamByName('rkorp').AsFloat := myfloat(Edit4.Text);
     QInssvod.ParamByName('tip').Asinteger := i;
 
-    QInssvod.ParamByName('t1').AsFloat := strtofloat(StringGrid1.cells[6, i]);
-    QInssvod.ParamByName('t2').AsFloat := strtofloat(StringGrid1.cells[7, i]);
-    QInssvod.ParamByName('t3').AsFloat := strtofloat(StringGrid1.cells[8, i]);
+    QInssvod.ParamByName('t1').AsFloat := myfloat(StringGrid1.cells[6, i]);
+    QInssvod.ParamByName('t2').AsFloat := myfloat(StringGrid1.cells[7, i]);
+    QInssvod.ParamByName('t3').AsFloat := myfloat(StringGrid1.cells[8, i]);
     QInssvod.ParamByName('r').AsFloat  := 0;
     QInssvod.ExecSQL;
   end;
@@ -177,10 +178,30 @@ begin
   Timer1000.Enabled     := true;
 end;
 
+procedure TFNagr.BitBtn2Click(Sender: TObject);
+var
+  buttonselected,i,j: integer;
+begin
+  buttonselected := MessageDlg('Очистить данные испытания?', mtConfirmation,
+    [mbYes, mbNo], 0);
+  if buttonselected = mrYes then
+  begin
+    for i:=1 to 2 do
+     for j:=1 to 9 do
+      Stringgrid1.cells[j,i]:='';
+    Edit4.Text := '';
+    Edit5.Text := '';
+    Edit6.Text := '';
+    Edit7.Text := '';
+    Edit8.Text := '';
+    Enableclose:=false;
+  end;
+end;
+
 procedure TFNagr.command(b: Boolean);
 var
- interval:integer;
- fname:string;
+  interval: integer;
+  fname   : string;
 begin
   interval := 50;
   fname    := '1600';
@@ -191,13 +212,13 @@ begin
 
     QTemp.SQL.Add
       ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(Nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
+      QuotedStr(Nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
       inttostr(interval) + ')');
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(Nomer) + ' , 11)');
+      QuotedStr(Nomer) + ' , 11)');
     QTemp.ExecSQL;
   end
   else
@@ -206,13 +227,13 @@ begin
     QTemp.SQL.Clear;
     QTemp.SQL.Add
       ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(Nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
+      QuotedStr(Nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
       inttostr(interval) + ')');
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(Nomer) + ' , 10)');
+      QuotedStr(Nomer) + ' , 10)');
     QTemp.ExecSQL;
   end;
 end;
@@ -244,6 +265,7 @@ end;
 
 procedure TFNagr.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  Fzamerv2.ImgSet(Fzamerv2.Image4, true);
   TimerUp.Enabled := false;
 end;
 
@@ -327,7 +349,7 @@ end;
 
 procedure TFNagr.StringGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
- EnableClose:=false;
+  enableclose := false;
 end;
 
 procedure TFNagr.Timer1000Timer(Sender: TObject);
@@ -375,7 +397,7 @@ begin
       QInsAll.ParamByName('P1').AsFloat := QTemp2.FieldByName('p1').AsFloat;
       QInsAll.ParamByName('P2').AsFloat := QTemp2.FieldByName('p2').AsFloat;
       QInsAll.ParamByName('P3').AsFloat := QTemp2.FieldByName('p3').AsFloat;
-      QInsAll.ParamByName('M').AsFloat :=
+      QInsAll.ParamByName('M').AsFloat  :=
         simpleroundto(QTemp.FieldByName('torq').AsFloat, RazM);
       QInsAll.ParamByName('N').AsFloat :=
         simpleroundto(QTemp.FieldByName('rot').AsFloat, RazN);

@@ -513,7 +513,6 @@ object FNagr: TFNagr
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       OnKeyPress = StringGrid1KeyPress
-      ExplicitWidth = 857
     end
     object BitBtn1: TBitBtn
       Left = 717
@@ -647,6 +646,7 @@ object FNagr: TFNagr
         FFFFFFFFFFFFFFFFFFFFB5B3FC4E49F6140BF31C13F31C12F31C12F31C12F31C
         12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
       TabOrder = 2
+      OnClick = BitBtn2Click
     end
     object ProgressBar1: TProgressBar
       Left = 2
@@ -656,7 +656,6 @@ object FNagr: TFNagr
       Align = alBottom
       Step = 1
       TabOrder = 3
-      ExplicitWidth = 857
     end
     object Edit4: TEdit
       Left = 257
