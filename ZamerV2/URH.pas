@@ -1,4 +1,4 @@
-unit URH;
+﻿unit URH;
 
 interface
 
@@ -78,6 +78,10 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure StringGrid2Click(Sender: TObject);
+    procedure RadioButton1Click(Sender: TObject);
+    procedure RadioButton2Click(Sender: TObject);
+    procedure RadioButton3Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -90,6 +94,8 @@ var
   FRH        : TFRH;
   enableclose: Boolean;
   nomer:string;
+  tipispyt:integer;
+  currentpower: single;
 implementation
 
 uses uzv2main;
@@ -123,6 +129,132 @@ begin
   end; }
 end;
 
+procedure TFRH.RadioButton1Click(Sender: TObject);
+var
+  i, j: Integer;
+  cod : Integer;
+
+begin
+  for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
+      StringGrid2.cells[i, j] := '';
+  if StringGrid1.cells[1, 1] = '' then
+  begin
+    Showmessage('Нет данных для испытания');
+    exit;
+  end;
+
+  val(Label3.Caption, currentpower, cod);
+
+  if cod = 0 then
+  begin
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
+      if StringGrid1.cells[1, i] <> '' then
+      begin
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
+        StringGrid2.cells[0, i] :=
+          Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
+          Strtoint(StringGrid1.cells[1, i]), RazP));
+      end;
+    StringGrid2.cells[0, StringGrid2.RowCount - 1] := '';
+    StringGrid2.row                                := 1;
+    tipispyt                                       := 1;
+    Label6.Caption                                 := Label3.Caption;
+    Label8.Caption                                 := StringGrid2.cells[0, 1];
+    BitBtn1.Enabled                                := true;
+    BitBtn2.Enabled                                := true;
+    BitBtn3.Enabled                                := true;
+  end
+  else
+    Showmessage
+      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
+end;
+
+procedure TFRH.RadioButton2Click(Sender: TObject);
+var
+  i, j: Integer;
+  cod : Integer;
+
+begin
+  for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
+      StringGrid2.cells[i, j] := '';
+  if StringGrid1.cells[1, 1] = '' then
+  begin
+    Showmessage('Нет данных для испытания');
+    exit;
+  end;
+
+  val(Label3.Caption, currentpower, cod);
+  if cod = 0 then
+  begin
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
+      if StringGrid1.cells[2, i] <> '' then
+      begin
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
+        StringGrid2.cells[0, i] :=
+          Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
+          Strtoint(StringGrid1.cells[2, i]), RazP));
+      end;
+    StringGrid2.cells[0, StringGrid2.RowCount - 1] := '';
+    StringGrid2.row                                := 1;
+    tipispyt                                       := 2;
+    Label6.Caption                                 := Label3.Caption;
+    Label8.Caption                                 := StringGrid2.cells[0, 1];
+    BitBtn1.Enabled                                := true;
+    BitBtn2.Enabled                                := true;
+    BitBtn3.Enabled                                := true;
+  end
+  else
+    Showmessage
+      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
+end;
+
+procedure TFRH.RadioButton3Click(Sender: TObject);
+var
+  i, j: Integer;
+  cod : Integer;
+
+begin
+  for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
+      StringGrid2.cells[i, j] := '';
+
+  if StringGrid1.cells[1, 1] = '' then
+  begin
+    Showmessage('Нет данных для испытания');
+    exit;
+  end;
+
+  val(Label3.Caption, currentpower, cod);
+  if cod = 0 then
+  begin
+    StringGrid2.RowCount := 2;
+    for i                := 1 to StringGrid1.RowCount - 1 do
+      if StringGrid1.cells[3, i] <> '' then
+      begin
+        StringGrid2.RowCount    := StringGrid2.RowCount + 1;
+        StringGrid2.cells[0, i] :=
+          Floattostr(simpleroundto(Strtofloat(Label10.Caption) * 1000 / 100 *
+          Strtoint(StringGrid1.cells[3, i]), RazP));
+      end;
+    StringGrid2.cells[0, StringGrid2.RowCount - 1] := '';
+    StringGrid2.row                                := 1;
+    tipispyt                                       := 3;
+    Label6.Caption                                 := Label3.Caption;
+    Label8.Caption                                 := StringGrid2.cells[0, 1];
+    BitBtn1.Enabled                                := true;
+    BitBtn2.Enabled                                := true;
+    BitBtn3.Enabled                                := true;
+  end
+  else
+    Showmessage
+      ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
+end;
+
+
 procedure TFRH.savegrids;
 var
   i, j: integer;
@@ -137,6 +269,34 @@ begin
 
 end;
 
+
+procedure TFRH.BitBtn3Click(Sender: TObject);
+var
+  i, j, buttonSelected: Integer;
+begin
+ buttonSelected :=
+      MessageDlg('Действительно очистить все замеры?',
+      mtConfirmation, mbYesNo, 0);
+if buttonSelected=mrNo then exit;
+
+  for i                       := 0 to StringGrid2.colcount - 1 do
+    for j                     := 1 to StringGrid2.RowCount - 1 do
+      StringGrid2.cells[i, j] := '';
+  StringGrid2.RowCount        := 2;
+  RadioButton1.Checked        := false;
+  RadioButton2.Checked        := false;
+  RadioButton3.Checked        := false;
+  BitBtn1.Enabled             := false;
+
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('delete from zrhall where nomer=' + Quotedstr(Nomer));
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(Nomer));
+  QTemp.ExecSQL;
+end;
 
 procedure TFRH.command(b: Boolean);
 var
@@ -179,7 +339,28 @@ begin
 end;
 
 procedure TFRH.FormActivate(Sender: TObject);
+var
+  i: Integer;
 begin
+  {Label3.Caption            := FMain.Edit6.Text;
+  Label10.Caption           := FMain.Edit7.Text;
+  Label17.Caption           := Floattostr(Strtofloat(FMain.Edit7.Text) * 1000);
+  ch                        := false; }
+  for i                     := 1 to 8 do
+    StringGrid1.cells[0, i] := inttostr(i);
+  StringGrid1.cells[0, 0]   := '№';
+  StringGrid1.cells[1, 0]   := 'Вар. 1';
+  StringGrid1.cells[2, 0]   := 'Вар. 2';
+  StringGrid1.cells[3, 0]   := 'Вар. 3';
+  StringGrid2.cells[0, 0]   := 'Нагр.';
+  StringGrid2.cells[1, 0]   := 'U сред';
+  StringGrid2.cells[2, 0]   := 'I сред';
+  StringGrid2.cells[3, 0]   := 'P сред';
+  StringGrid2.cells[4, 0]   := 'N сред';
+  StringGrid2.cells[5, 0]   := 'M сред';
+  StringGrid2.cells[6, 0]   := '▲Umax';
+  StringGrid2.cells[7, 0]   := '▲Pmax';
+
  Nomer:=Label6.Caption;
  EnableClose:=true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('urh'));
@@ -220,7 +401,7 @@ begin
  if enableclose then canclose:=true
   else begin
    buttonselected:=  MessageDlg
-      ('� ��� ���� ������������� ������, ��� ����� ���� �������, ������������� ������� ����?',
+      ('У вас есть несохраненная работа, она может быть утеряна, действительно закрыть окно?',
       mtConfirmation, [mbYes, mbNo, MbCancel], 0) ;
    if buttonselected=mrYes then begin BitBtn10.Click; canclose:=true;end;
    if buttonselected=mrNo  then canclose:=true;

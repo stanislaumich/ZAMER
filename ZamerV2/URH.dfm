@@ -2,7 +2,7 @@ object FRH: TFRH
   Left = 0
   Top = 0
   Caption = #1056#1072#1073#1086#1095#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
-  ClientHeight = 906
+  ClientHeight = 718
   ClientWidth = 1037
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object FRH: TFRH
   OnShow = FormShow
   DesignSize = (
     1037
-    906)
+    718)
   PixelsPerInch = 96
   TextHeight = 13
   object Label20: TLabel
@@ -25,7 +25,6 @@ object FRH: TFRH
     Top = 687
     Width = 58
     Height = 23
-    Anchors = [akLeft]
     Caption = 'T1, C='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -39,7 +38,6 @@ object FRH: TFRH
     Top = 687
     Width = 58
     Height = 23
-    Anchors = [akLeft]
     Caption = 'T2, C='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -53,7 +51,6 @@ object FRH: TFRH
     Top = 687
     Width = 58
     Height = 23
-    Anchors = [akLeft]
     Caption = 'T3, C='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -67,7 +64,6 @@ object FRH: TFRH
     Top = 687
     Width = 26
     Height = 23
-    Anchors = [akLeft]
     Caption = 'R='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -89,8 +85,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitLeft = -400
-    ExplicitWidth = 1035
     object Label1: TLabel
       Left = 3
       Top = 2
@@ -120,8 +114,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitLeft = -400
-    ExplicitWidth = 1035
     DesignSize = (
       1037
       167)
@@ -167,7 +159,7 @@ object FRH: TFRH
     end
     object Label5: TLabel
       Left = 483
-      Top = 67
+      Top = 65
       Width = 172
       Height = 29
       Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'.:'
@@ -180,7 +172,7 @@ object FRH: TFRH
     end
     object Label7: TLabel
       Left = 533
-      Top = 96
+      Top = 100
       Width = 122
       Height = 29
       Caption = #1054#1073'./'#1084#1080#1085'.:'
@@ -263,7 +255,7 @@ object FRH: TFRH
     end
     object Label13: TLabel
       Left = 661
-      Top = 96
+      Top = 100
       Width = 99
       Height = 33
       AutoSize = False
@@ -428,7 +420,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitWidth = 1451
     object Label15: TLabel
       Left = 8
       Top = 32
@@ -502,7 +493,6 @@ object FRH: TFRH
     Top = 278
     Width = 273
     Height = 368
-    Anchors = [akLeft]
     Caption = #1042#1099#1073#1086#1088' '#1074#1072#1088#1080#1072#1085#1090#1072' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -527,6 +517,7 @@ object FRH: TFRH
       Width = 13
       Height = 17
       TabOrder = 1
+      OnClick = RadioButton1Click
     end
     object RadioButton2: TRadioButton
       Left = 159
@@ -534,6 +525,7 @@ object FRH: TFRH
       Width = 21
       Height = 17
       TabOrder = 2
+      OnClick = RadioButton2Click
     end
     object RadioButton3: TRadioButton
       Left = 224
@@ -541,6 +533,7 @@ object FRH: TFRH
       Width = 20
       Height = 17
       TabOrder = 3
+      OnClick = RadioButton3Click
     end
   end
   object GroupBox4: TGroupBox
@@ -548,7 +541,6 @@ object FRH: TFRH
     Top = 278
     Width = 761
     Height = 400
-    Anchors = [akLeft, akRight]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -557,7 +549,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 4
-    ExplicitWidth = 775
     DesignSize = (
       761
       400)
@@ -578,7 +569,6 @@ object FRH: TFRH
       ParentFont = False
       TabOrder = 0
       OnClick = StringGrid2Click
-      ExplicitWidth = 733
     end
     object BitBtn1: TBitBtn
       Left = 12
@@ -777,6 +767,7 @@ object FRH: TFRH
         FFFFFFFFFFFFFFFFFFFFB5B3FC4E49F6140BF31C13F31C12F31C12F31C12F31C
         12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
       TabOrder = 3
+      OnClick = BitBtn3Click
     end
   end
   object Edit4: TEdit
@@ -784,7 +775,6 @@ object FRH: TFRH
     Top = 684
     Width = 69
     Height = 31
-    Anchors = [akLeft]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -799,7 +789,6 @@ object FRH: TFRH
     Top = 684
     Width = 70
     Height = 31
-    Anchors = [akLeft]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -814,7 +803,6 @@ object FRH: TFRH
     Top = 684
     Width = 69
     Height = 31
-    Anchors = [akLeft]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -829,7 +817,6 @@ object FRH: TFRH
     Top = 684
     Width = 71
     Height = 31
-    Anchors = [akLeft]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
