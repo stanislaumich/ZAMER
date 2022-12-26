@@ -361,6 +361,8 @@ begin
       Qinsdvig.ParamByName('TEMP').Asstring   := EditTemp.Text;
       Qinsdvig.ExecSQL;
       comboaddtext;
+      FSopr.ComboBox9.Text          := FSopr.ComboBox9.Items[0];
+      FSopr.ComboBox10.Text         := FSopr.ComboBox10.Items[0];
       ShowMessage('ћожно приступать к испытани€м');
       enableispyt(true);
     end;
@@ -486,11 +488,11 @@ begin
   FSopr.ComboBox7.Text := QTemp.FieldByName('PHAS').Asstring;
   FSopr.ComboBox8.Text := QTemp.FieldByName('SOED').Asstring;
   FSopr.ComboBox9.Text := QTemp.FieldByName('SOPRED').Asstring;
-  if FSopr.ComboBox9.Text = '' then
-    FSopr.ComboBox9.Text := 'ќм';
+  //if FSopr.ComboBox9.Text = '' then
+  //  FSopr.ComboBox9.Text := 'ћќм';
   FSopr.ComboBox10.Text  := QTemp.FieldByName('IZOLED').Asstring;
-  if FSopr.ComboBox10.Text = '' then
-    FSopr.ComboBox10.Text := 'ћќм';
+  //if FSopr.ComboBox10.Text = '' then
+  //  FSopr.ComboBox10.Text := 'ћќм';
 
   FSopr.Edit13.Text             := QTemp.FieldByName('IZOLKORP').Asstring;
   FSopr.Edit16.Text             := QTemp.FieldByName('IZOLOBMOT').Asstring;

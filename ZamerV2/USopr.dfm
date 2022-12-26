@@ -168,15 +168,7 @@ object FSopr: TFSopr
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      Text = #1054#1084
       OnChange = ComboBox9Change
-      Items.Strings = (
-        #1054#1084
-        #1084#1082#1054#1084
-        #1084#1054#1084
-        #1082#1054#1084
-        #1052#1054#1084
-        #1043#1054#1084)
     end
   end
   object GroupBox4: TGroupBox
@@ -221,15 +213,7 @@ object FSopr: TFSopr
       Width = 192
       Height = 31
       TabOrder = 0
-      Text = #1052#1054#1084
       OnChange = ComboBox10Change
-      Items.Strings = (
-        #1052#1054#1084
-        #1084#1082#1054#1084
-        #1084#1054#1084
-        #1054#1084
-        #1082#1054#1084
-        #1043#1054#1084)
     end
     object Edit13: TEdit
       Left = 375

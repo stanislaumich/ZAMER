@@ -236,6 +236,7 @@ begin
     [mbYes, mbNo], 0);
   if buttonSelected = mrYes then
     BitBtn5.Click;
+
 end;
 
 procedure TFSopr.FormCreate(Sender: TObject);
@@ -248,8 +249,14 @@ begin
   StringGrid3.cells[1, 0] := 'U1-U2(U-V)/гл.*';
   StringGrid3.cells[2, 0] := 'V1-V2(V-W)/всп.*';
   StringGrid3.cells[3, 0] := 'W1-W2(W-U)';
-  ComboBox9.Text          := 'ќм';
-  ComboBox10.Text         := 'ћќм';
+
+  ComboBox9.Items.Clear;
+  ComboBox10.Items.Clear;
+  ComboBox9.Items.LoadFromFile(ExtractFilepath(Application.ExeName)+'R_SoprotList.txt');
+  ComboBox10.Items.LoadFromFile(ExtractFilepath(Application.ExeName)+'R_SoprotList.txt');
+  ComboBox9.Text          := ComboBox9.Items[0];
+  ComboBox10.Text         := ComboBox10.Items[0];
+
   for i                   := 1 to 3 do
     for j                 := 1 to 3 do
     begin
