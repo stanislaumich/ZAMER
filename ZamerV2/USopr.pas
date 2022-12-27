@@ -45,6 +45,9 @@ type
     QSoprot: TFDQuery;
     Edit1: TEdit;
     Edit2: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label7: TLabel;
     procedure Button50Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid3KeyPress(Sender: TObject; var Key: Char);

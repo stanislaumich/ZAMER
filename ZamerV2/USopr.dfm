@@ -71,6 +71,27 @@ object FSopr: TFSopr
     Height = 23
     Caption = #1095#1072#1089#1090#1100#1102' '#1076#1074#1080#1075#1072#1090#1077#1083#1103': I=25'#1040', U '#1085#1077' '#1073#1086#1083#1077#1077' 2,0 '#1042'.'
   end
+  object Label2: TLabel
+    Left = 435
+    Top = 68
+    Width = 139
+    Height = 23
+    Caption = '1 '#1064#1077#1089#1090#1100' '#1082#1086#1085#1094#1086#1074
+  end
+  object Label3: TLabel
+    Left = 435
+    Top = 92
+    Width = 106
+    Height = 23
+    Caption = '2 '#1058#1088#1080' '#1082#1086#1085#1094#1072
+  end
+  object Label7: TLabel
+    Left = 435
+    Top = 114
+    Width = 129
+    Height = 23
+    Caption = '3 '#1054#1076#1085#1086#1092#1072#1079#1085#1099#1081
+  end
   object Panel1: TPanel
     Left = 0
     Top = 0
@@ -121,9 +142,9 @@ object FSopr: TFSopr
     TabOrder = 3
     OnChange = ComboBox8Change
     Items.Strings = (
-      #1064#1077#1089#1090#1100' '#1082#1086#1085#1094#1086#1074
-      #1058#1088#1080' '#1082#1086#1085#1094#1072
-      #1054#1076#1085#1086#1092#1072#1079#1085#1099#1081)
+      '1'
+      '2'
+      '3')
   end
   object GroupBox3: TGroupBox
     Left = 4
@@ -426,8 +447,8 @@ object FSopr: TFSopr
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 444
-    Top = 100
+    Left = 336
+    Top = 236
   end
   object QSoprot: TFDQuery
     Connection = FZamerV2.FDC
@@ -447,8 +468,8 @@ object FSopr: TFSopr
       '   :IZM2V1V2, :IZM3V1V2, :IZM1W1W2, '
       '   :IZM2W1W2, :IZM3W1W2, :ISPYT13, '
       '   :BOLT )')
-    Left = 484
-    Top = 100
+    Left = 376
+    Top = 236
     ParamData = <
       item
         Name = 'NOMER'
