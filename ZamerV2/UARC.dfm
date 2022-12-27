@@ -18,7 +18,7 @@ object FARC: TFARC
   PixelsPerInch = 96
   TextHeight = 13
   object GB1: TGroupBox
-    Left = 8
+    Left = 3
     Top = 0
     Width = 1005
     Height = 469
@@ -35,6 +35,13 @@ object FARC: TFARC
       Height = 13
       Caption = '0'
       Visible = False
+    end
+    object Label2: TLabel
+      Left = 884
+      Top = 124
+      Width = 6
+      Height = 13
+      Caption = '0'
     end
     object GridSpis: TDBGrid
       Left = 2
@@ -266,6 +273,7 @@ object FARC: TFARC
         723AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       ModalResult = 6
       TabOrder = 2
+      OnClick = BitReportClick
     end
     object BitDelete: TBitBtn
       Left = 879

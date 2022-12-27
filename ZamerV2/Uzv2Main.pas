@@ -12,7 +12,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.Oracle,
   FireDAC.Phys.OracleDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
   FireDAC.DatS, ShellApi,
-  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,ComObj,
   FireDAC.Comp.Client;
 
 type
@@ -112,6 +112,8 @@ type
     procedure ImgSet(i: TImage; v: Boolean);
     procedure LoadIspyt(nomer: string);
     procedure enableispyt(f: Boolean);
+    procedure FormReport;
+    Procedure AddReportString(fn:string; s1,s2,s3:string);
   end;
 
 var
@@ -123,8 +125,362 @@ implementation
 
 {$R *.dfm}
 
-uses UARC, UHH, USopr, UKZ, Unagr, URH;
+uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP;
 
+{
+procedure TFMain.FormCurrentReport;
+
+
+begin
+
+        // рабочая характеристика i p rot torq
+        FrepP.Label1.Caption := 'Рабочая характеристика';
+        for i                := 1 to 10 do
+        begin
+            wrepl('i' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[2, i])
+        end;
+        for i := 1 to 10 do
+        begin
+            wrepl('p' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[3, i]);
+        end;
+        for i := 1 to 10 do
+        begin
+            wrepl('rot' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[4, i]);
+        end;
+        for i := 1 to 10 do
+        begin
+            wrepl('torq' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[5, i]);
+        end;
+
+
+        FrepP.Label1.Caption := 'Короткое замыкание';
+        // короткое замыкание
+        wrepl('rkz', FKZam.Edit2.Text);
+        for i     := 1 to 5 do
+            for j := 1 to 4 do
+            begin
+                wrepl('Kz' + inttostr(i) + inttostr(j),
+                  FKZam.StringGrid1.Cells[j, i]);
+            end;
+        // Нагрев
+        FrepP.Label1.Caption := 'Нагрев';
+        wrepl('Nr1x', Fnagrev.Edit4.Text);
+        wrepl('Nr2x', Fnagrev.Edit5.Text);
+        wrepl('N11x', Fnagrev.StringGrid1.Cells[2, 1]);
+        wrepl('N21x', Fnagrev.StringGrid1.Cells[2, 2]); // i
+        wrepl('N12x', Fnagrev.StringGrid1.Cells[3, 1]);
+        wrepl('N22x', Fnagrev.StringGrid1.Cells[3, 2]); // p
+        wrepl('N13x', Fnagrev.StringGrid1.Cells[4, 1]);
+        wrepl('N23x', Fnagrev.StringGrid1.Cells[4, 2]); // n
+        wrepl('N14x', Fnagrev.StringGrid1.Cells[5, 1]);
+        wrepl('N24x', Fnagrev.StringGrid1.Cells[5, 2]); // m
+        wrepl('N15x', Fnagrev.StringGrid1.Cells[6, 1]);
+        wrepl('N25x', Fnagrev.StringGrid1.Cells[6, 2]); // t
+        wrepl('N16x', Fnagrev.StringGrid1.Cells[7, 1]);
+        wrepl('N26x', Fnagrev.StringGrid1.Cells[7, 2]); // r
+
+        wrepl('N36x', Edit7.Text); // r RH
+
+        wrepl('N35x', Floattostr(simpleroundto((strtofloat(Frh.Edit4.Text) +
+          strtofloat(Frh.Edit5.Text) + strtofloat(Frh.Edit6.Text)) / 3, -1)));
+
+        // прочие хар-ки
+        FrepP.Label1.Caption := 'Прочие характеристики';
+        for j                := 1 to 18 do
+        begin
+            wrepl('Pr' + inttostr(j + 100),
+              NVLToEmp(Fproch.StringGrid1.Cells[j, 1]));
+        end;
+        for j := 1 to 18 do
+        begin
+            wrepl('Pz' + inttostr(j + 100),
+              NVLToEmp(Fproch.StringGrid1.Cells[j, 2]));
+        end;
+        for i     := 1 to 2 do
+            for j := 1 to 8 do
+            begin
+                wrepl('Wh' + inttostr(i) + '-' + inttostr(j),
+                  Fproch.Stringgrid2.Cells[j, i]);
+            end;
+        wrepl('rrmass', NVLToEmp(Fproch.Edit2.Text));
+        wrepl('tmpr', Fproch.Edit3.Text);
+        wrepl('davl', Fproch.Edit5.Text);
+        wrepl('vlag', Fproch.Edit4.Text);
+        // галочки
+
+        if Fproch.radiobutton1.Checked then
+            wrepl('epr', ans[1]);
+        if Fproch.radiobutton2.Checked then
+            wrepl('epr', ans[2]);
+        if Fproch.radiobutton3.Checked then
+            wrepl('epr', ans[0]);
+        if Fproch.radiobutton4.Checked then
+            wrepl('ipc', ans[1]);
+        if Fproch.radiobutton5.Checked then
+            wrepl('ipc', ans[2]);
+        if Fproch.radiobutton6.Checked then
+            wrepl('ipc', ans[0]);
+        if Fproch.RadioButton7.Checked then
+            wrepl('ipt', ans[1]);
+        if Fproch.RadioButton8.Checked then
+            wrepl('ipt', ans[2]);
+        if Fproch.RadioButton9.Checked then
+            wrepl('ipt', ans[0]);
+        if Fproch.RadioButton10.Checked then
+            wrepl('triz', ans[1]);
+        if Fproch.RadioButton11.Checked then
+            wrepl('triz', ans[2]);
+        if Fproch.RadioButton12.Checked then
+            wrepl('triz', ans[0]);
+        if Fproch.RadioButton13.Checked then
+            wrepl('u074', ans[1]);
+        if Fproch.RadioButton14.Checked then
+            wrepl('u074', ans[2]);
+        if Fproch.RadioButton15.Checked then
+            wrepl('u074', ans[0]);
+        if Fproch.RadioButton16.Checked then
+            wrepl('u113', ans[1]);
+        if Fproch.RadioButton17.Checked then
+            wrepl('u113', ans[2]);
+        if Fproch.RadioButton18.Checked then
+            wrepl('u113', ans[0]);
+
+        wrepl('IE', ComboBox3.Text);
+        wrepl('upri', Fproch.Edit1.Text);
+        wrepl('stendn', ComboBox4.Text);
+        wrepl('stenda', Label24.Caption);
+        wrepl('urab', Edit5.Text);
+        wrepl('prab', Edit7.Text);
+        wrepl('humi', Edit8.Text);
+        wrepl('pressure', Edit9.Text);
+        wrepl('osobenn', Edit10.Text);
+        wrepl('prim', Edit11.Text);
+        wrepl('numdv', Edit4.Text);
+        wrepl('tipdv', ComboBox1.Text);
+        wrepl('date', DateToStr(DateTimePicker1.Date));
+        wrepl('fio', ComboBox5.Text);
+        wrepl('polus', ComboBox2.Text);
+        wrepl('regim', ComboBox6.Text);
+        // сохранение документа
+        FrepP.Label1.Caption := 'Сохранение документа';
+        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Nomer + '.docx');
+        WordApp.ActiveDocument.Close(wdDoNotSaveChanges);
+    finally
+        WordApp.Quit;
+        WordApp := Unassigned;
+    end;
+    FrepP.Hide;
+    ShowMessage('Отчет сформирован!');
+end;
+
+
+
+
+ }
+////////////////////////////////////////////////////////////////////////////////
+
+Procedure TFZamerV2.AddReportString(fn:string; s1,s2,s3:string);
+ var
+  f:textfile;
+  s:string;
+ begin
+  s:=s1+';'+s2+';'+s3+';';
+  AssignFile(f,fn);
+  {$i-}
+   Append(f);
+  {$i+}
+  If IOResult<>0 then
+   begin
+     Rewrite(f);
+     Closefile(f);
+     Append(f);
+   end;
+   Writeln(f,s);
+   Closefile(f);
+ end;
+
+procedure TFZamerV2.FormReport;
+const
+    wdFindContinue     = 1;
+    wdReplaceOne       = 1;
+    wdReplaceAll       = 2;
+    wdDoNotSaveChanges = 0;
+var
+    WordApp                    : OLEVariant;
+    SearchString, ReplaceString: string;
+    i, j                       : Integer;
+    Blank                      : string;
+    ReportPath, fn:string;
+    ans: array [0 .. 2] of string;
+
+    procedure wrepl(s1: string; s2: string);
+    begin
+        SearchString  := s1;
+        ReplaceString := s2;
+        WordApp.Selection.Find.ClearFormatting;
+        WordApp.Selection.Find.Text              := SearchString;
+        WordApp.Selection.Find.Replacement.Text  := ReplaceString;
+        WordApp.Selection.Find.Forward           := True;
+        WordApp.Selection.Find.Wrap              := wdFindContinue;
+        WordApp.Selection.Find.Format            := false;
+        WordApp.Selection.Find.MatchCase         := True;
+        WordApp.Selection.Find.MatchWholeWord    := false;
+        WordApp.Selection.Find.MatchWildcards    := false;
+        WordApp.Selection.Find.MatchSoundsLike   := false;
+        WordApp.Selection.Find.MatchAllWordForms := false;
+        WordApp.Selection.Find.Execute(Replace := wdReplaceAll);
+    end;
+
+begin
+    FrepP.Label1.Caption := 'Создание документа';
+    FrepP.Show;
+    // ****************
+    {Qtemp.Close;
+    Qtemp.Open('select * from ini where name=' + Quotedstr('set_yes'));
+    ans[1] := Qtemp.FieldByName('value').Asstring;
+    Qtemp.Close;
+    Qtemp.Open('select * from ini where name=' + Quotedstr('set_no'));
+    ans[2] := Qtemp.FieldByName('value').Asstring;
+    Qtemp.Close;
+    Qtemp.Open('select * from ini where name=' + Quotedstr('set_un'));
+    ans[0] := Qtemp.FieldByName('value').Asstring;
+    }
+    // *****************
+    Blank := Extractfilepath(paramstr(0)) + 'REPORT\BLANK.docx';
+    ReportPath:=Extractfilepath(paramstr(0)) + 'REPORT';
+    fn:=ReportPath+'\'+Nomer+'.csv';
+    Deletefile(fn);
+    if not FileExists(Blank) then
+    begin
+        ShowMessage('Бланк отчета не найден.');
+        exit;
+    end;
+    try
+        WordApp := CreateOLEObject('Word.Application');
+    except
+        on E: Exception do
+        begin
+            E.Message := 'Word недоступен';
+            raise;
+        end;
+    end;
+    try
+        WordApp.Visible := false;
+        WordApp.Documents.Open(Blank);
+        // заголовок отчета
+        FrepP.Label1.Caption := 'Заголовок отчета';
+
+        wrepl('dater',    Datetostr(FZamerV2.Datetimepicker1.Date));
+        AddReportString(fn,'0','dater',  Datetostr(FZamerV2.Datetimepicker1.Date));
+        wrepl('numdv',    FZamerV2.EditNumDvig.Text);
+        AddReportString(fn,'0','numdv',FZamerV2.EditNumDvig.Text);
+        wrepl('urab' ,    FZamerV2.CombUIsp.TExt);
+        AddReportString(fn,'0','urab' ,FZamerV2.CombUIsp.TExt);
+        wrepl('prab' ,    FZamerV2.CombPIsp.TExt);
+        AddReportString(fn,'0','prab' , FZamerV2.CombPIsp.TExt);
+        wrepl('polus',    FZamerV2.CombPolIsp.Text);
+        AddReportString(fn,'0','polus',    FZamerV2.CombPolIsp.Text);
+    //    wrepl('fsoed',    FZamerV2.
+
+        wrepl('regim',    FZamerV2.CombRegim.Text);
+        AddReportString(fn,'0','regim',    FZamerV2.CombRegim.Text);
+        wrepl('IE'   ,    FZamerV2.CombEnergo.Text);
+        AddReportString(fn,'0','IE'   ,    FZamerV2.CombEnergo.Text);
+    //    wrepl('fprizn',   FZamerV2.
+
+        wrepl('osobenn',  FZamerV2.EditOsob.Text);
+        AddReportString(fn,'0', 'osobenn',  FZamerV2.EditOsob.Text);
+        wrepl('humi'    , FZamerV2.EditHumi.Text);
+        AddReportString(fn,'0','humi'    , FZamerV2.EditHumi.Text);
+        wrepl('pressure', FZamerV2.EDitPress.Text);
+        AddReportString(fn,'0','pressure', FZamerV2.EDitPress.Text);
+        wrepl('stendn'  , FZamerV2.CombStend.Text);
+        AddReportString(fn,'0','stendn'  , FZamerV2.CombStend.Text);
+        wrepl('stenda'  , FZamerV2.Label19.Caption);
+        AddReportString(fn,'0','stenda'  , FZamerV2.Label19.Caption);
+        wrepl('prim'    , FZamerV2.EditOsmotr.Text);
+        AddReportString(fn,'0','prim'    , FZamerV2.EditOsmotr.Text);
+        // bolt
+
+        // сопротивление
+        FrepP.Label1.Caption := 'Сопротивление';
+        for i                := 1 to 3 do
+            for j            := 1 to 3 do
+            begin
+                wrepl('st' + inttostr(i) + inttostr(j),
+                  FSopr.StringGrid3.Cells[j, i]);
+                AddReportString(fn,'1','st' + inttostr(i) + inttostr(j),FSopr.Stringgrid3.Cells[1, i]);
+            end;
+        wrepl('fsoed', FSopr.ComboBox7.Text);
+        wrepl('fprizn', FSopr.ComboBox8.Text);
+        wrepl('stred', FSopr.ComboBox9.Text);
+        wrepl('rizoled', FSopr.ComboBox10.Text);
+        wrepl('rizolvk', FSopr.Edit13.Text);
+        wrepl('rizolob', FSopr.Edit16.Text);
+
+        wrepl('temper', FSopr.Edit8.Text);
+        //wrepl('temper', FSopr.Edit1.Text);
+        //wrepl('temper', FSopr.Edit2.Text);
+
+        // wrepl('bolt', FSoprot.Edit1.Text);
+        if FSopr.radiobutton1.Checked then
+            wrepl('bolt', 'ВЫДЕРЖАЛ');
+        if FSopr.radiobutton2.Checked then
+            wrepl('bolt', 'НЕ ВЫДЕРЖАЛ');
+        if FSopr.radiobutton3.Checked then
+            wrepl('bolt', 'НЕ ИСПЫТЫВАЛОСЬ');
+
+        if FSopr.radiobutton1.Checked then
+            wrepl('mvit', FSopr.RadioButton1.Caption);
+        if FSopr.radiobutton2.Checked then
+            wrepl('mvit', FSopr.RadioButton2.Caption);
+        if FSopr.radiobutton3.Checked then
+            wrepl('mvit', FSopr.RadioButton3.Caption);
+
+
+        {// холостой ход
+        FrepP.Label1.Caption := 'Холостой ход';
+        for i := 1 to 10 do
+        begin
+            wrepl('u' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[1, i]);
+            AddReportString(fn,'1','u' + inttostr(i) + 'hh',Formhh.Stringgrid2.Cells[1, i]);
+        end;
+        for i := 1 to 10 do
+        begin
+            wrepl('i' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[2, i]);
+            AddReportString(fn,'1','i' + inttostr(i) + 'hh',Formhh.Stringgrid2.Cells[2, i]);
+        end;
+        for i := 1 to 10 do
+        begin
+            wrepl('p' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[3, i]);
+            AddReportString(fn,'1','p' + inttostr(i) + 'hh',Formhh.Stringgrid2.Cells[3, i]);
+        end;
+        for i := 1 to 10 do
+        begin
+            wrepl('R' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[5, i]);
+            AddReportString(fn,'1','r' + inttostr(i) + 'hh',Formhh.Stringgrid2.Cells[5, i]);
+        end;
+        /////////
+        }
+
+
+
+
+
+        // сохранение документа
+        FrepP.Label1.Caption := 'Сохранение документа';
+        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Nomer + '.DOCX');
+        WordApp.ActiveDocument.Close(wdDoNotSaveChanges);
+    finally
+        WordApp.Quit;
+        WordApp := Unassigned;
+    end;
+    FrepP.Hide;
+    ShowMessage('Отчет сформирован!');    ///
+
+end;
+
+////////////////////////////////////////////////////////////////////////////////TFZamerV2.
 procedure TFZamerV2.ImgSet(i: TImage; v: Boolean);
 var
   s: string;
@@ -597,6 +953,7 @@ begin
     LNOMER.Caption := Farc.Label1.Caption;
     nomer          := LNOMER.Caption;
     LoadIspyt(nomer);
+    FormReport;
   end;
 
 end;

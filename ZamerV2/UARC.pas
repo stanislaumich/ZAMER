@@ -22,9 +22,11 @@ type
     Label1: TLabel;
     QuerySpis: TFDQuery;
     QTemp: TFDQuery;
+    Label2: TLabel;
     procedure FormActivate(Sender: TObject);
     procedure BitSelectClick(Sender: TObject);
     procedure GridSpisDblClick(Sender: TObject);
+    procedure BitReportClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -73,9 +75,16 @@ begin
   end; { with }
 end; { setgridcolumnwidths }
 
+procedure TFARC.BitReportClick(Sender: TObject);
+begin
+ Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
+ Label2.Caption:='1';
+end;
+
 procedure TFARC.BitSelectClick(Sender: TObject);
 begin
   Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
+  Label2.Caption:='0';
   // FARC.Close;
 end;
 

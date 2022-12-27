@@ -433,14 +433,14 @@ object FSopr: TFSopr
     Connection = FZamerV2.FDC
     SQL.Strings = (
       'INSERT INTO ZAMER.ZSOPROT ('
-      '   NOMER, TEMPER, PHAS, '
+      '   NOMER, TEMP1, TEMP2, TEMP3, PHAS, '
       '   SOED, SOPRED, IZOLED, '
       '   IZOLKORP, IZOLOBMOT, IZM1U1U2, '
       '   IZM2U1U2, IZM3U1U2, IZM1V1V2, '
       '   IZM2V1V2, IZM3V1V2, IZM1W1W2, '
       '   IZM2W1W2, IZM3W1W2, ISPYT13, '
       '   BOLT) '
-      'VALUES ( :NOMER, :TEMPER, :PHAS, '
+      'VALUES ( :NOMER, :TEMP1, :TEMP2, :TEMP3, :PHAS, '
       '   :SOED, :SOPRED, :IZOLED, '
       '   :IZOLKORP, :IZOLOBMOT, :IZM1U1U2, '
       '   :IZM2U1U2, :IZM3U1U2, :IZM1V1V2, '
@@ -453,9 +453,18 @@ object FSopr: TFSopr
       item
         Name = 'NOMER'
         ParamType = ptInput
+        Value = Null
       end
       item
-        Name = 'TEMPER'
+        Name = 'TEMP1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TEMP2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TEMP3'
         ParamType = ptInput
       end
       item
