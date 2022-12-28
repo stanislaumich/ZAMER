@@ -312,6 +312,8 @@ var
     Blank                      : string;
     ReportPath, fn:string;
     ans: array [0 .. 2] of string;
+    tmp:single;
+
 
     procedure wrepl(s1: string; s2: string);
     begin
@@ -380,13 +382,11 @@ begin
         AddReportString(fn,'0','prab' , FZamerV2.CombPIsp.TExt);
         wrepl('polus',    FZamerV2.CombPolIsp.Text);
         AddReportString(fn,'0','polus',    FZamerV2.CombPolIsp.Text);
-    //    wrepl('fsoed',    FZamerV2.
 
         wrepl('regim',    FZamerV2.CombRegim.Text);
         AddReportString(fn,'0','regim',    FZamerV2.CombRegim.Text);
         wrepl('IE'   ,    FZamerV2.CombEnergo.Text);
         AddReportString(fn,'0','IE'   ,    FZamerV2.CombEnergo.Text);
-    //    wrepl('fprizn',   FZamerV2.
 
         wrepl('osobenn',  FZamerV2.EditOsob.Text);
         AddReportString(fn,'0', 'osobenn',  FZamerV2.EditOsob.Text);
@@ -400,7 +400,6 @@ begin
         AddReportString(fn,'0','stenda'  , FZamerV2.Label19.Caption);
         wrepl('prim'    , FZamerV2.EditOsmotr.Text);
         AddReportString(fn,'0','prim'    , FZamerV2.EditOsmotr.Text);
-        // bolt
 
         // сопротивление
         FrepP.Label1.Caption := 'Сопротивление';
@@ -409,20 +408,25 @@ begin
             begin
                 wrepl('st' + inttostr(i) + inttostr(j),
                   FSopr.StringGrid3.Cells[j, i]);
-                AddReportString(fn,'1','st' + inttostr(i) + inttostr(j),FSopr.Stringgrid3.Cells[1, i]);
+                AddReportString(fn,'1','st' + inttostr(i) + inttostr(j),FSopr.Stringgrid3.Cells[j, i]);
             end;
         wrepl('fsoed', FSopr.ComboBox7.Text);
+        AddReportString(fn,'1','fsoed', FSopr.ComboBox7.Text);
         wrepl('fprizn', FSopr.ComboBox8.Text);
+        AddReportString(fn,'1','fprizn', FSopr.ComboBox8.Text);
         wrepl('stred', FSopr.ComboBox9.Text);
+        AddReportString(fn,'1','stred', FSopr.ComboBox9.Text);
         wrepl('rizoled', FSopr.ComboBox10.Text);
+        AddReportString(fn,'1','rizoled', FSopr.ComboBox10.Text);
         wrepl('rizolvk', FSopr.Edit13.Text);
+        AddReportString(fn,'1','rizolvk', FSopr.Edit13.Text);
         wrepl('rizolob', FSopr.Edit16.Text);
+        AddReportString(fn,'1','rizolob', FSopr.Edit16.Text);
 
-        wrepl('temper', FSopr.Edit8.Text);
-        //wrepl('temper', FSopr.Edit1.Text);
-        //wrepl('temper', FSopr.Edit2.Text);
+        tmp:=(strtofloat(FSopr.Edit8.Text)+strtofloat(FSopr.Edit1.Text)+strtofloat(FSopr.Edit2.Text))/3;
+        wrepl('temper', floattostr(simpleroundto(tmp,-2)));
+        AddReportString(fn,'1','temper',  floattostr(simpleroundto(tmp,-2)));
 
-        // wrepl('bolt', FSoprot.Edit1.Text);
         if FSopr.radiobutton1.Checked then
             wrepl('bolt', 'ВЫДЕРЖАЛ');
         if FSopr.radiobutton2.Checked then
