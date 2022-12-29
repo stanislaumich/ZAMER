@@ -28,10 +28,27 @@ function NVLToEmp(s: string): string;
 implementation // --------------------------------------------------------------
 
 uses System.SysUtils,ustr;
+{
+ShowMessage('##### : '+FormatFloat('#####', float));
+  ShowMessage('00000 : '+FormatFloat('00000', float));
+  ShowMessage('0     : '+FormatFloat('0'    , float));
+  ShowMessage('#,##0 : '+FormatFloat('#,##0', float));
+  ShowMessage(',0    : '+FormatFloat(',0'   , float));
+  ShowMessage('');
 
+  // Включение десятичного значения
+  ShowMessage('0.#### : '+FormatFloat('0.####', float));
+  ShowMessage('0.0000 : '+FormatFloat('0.0000', float));
+  ShowMessage('');
+
+  // Научный формат
+  ShowMessage('0.0000000E+00 : '+FormatFloat('0.0000000E+00', float));
+  ShowMessage('0.0000000E-00 : '+FormatFloat('0.0000000E-00', float));
+  ShowMessage('#.#######E-## : '+FormatFloat('#.#######E-##', float));
+  }
 function myformat(s:string; f:double ):string;
  begin
-   myformat:=FormatFloat(s,f);
+   myformat:=FormatFloat(s,f);//
  end;
 
 function myfloat(s: string): double;

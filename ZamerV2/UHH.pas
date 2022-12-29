@@ -265,6 +265,7 @@ begin
     command(true);
     enableclose         := false;
     TimWork1000.Enabled := true;
+    BitStart.Enabled:=false;
   end
   else
     ShowMessage('Ќе выбран ни один вариант испытани€ в левой таблице!!');
@@ -544,6 +545,7 @@ begin
 
     if StringGrid2.row < StringGrid2.RowCount - 2 then
       StringGrid2.row := StringGrid2.row + 1;
+      BitStart.Enabled:=true;
   end;
 
 end;

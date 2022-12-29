@@ -77,14 +77,14 @@ end; { setgridcolumnwidths }
 
 procedure TFARC.BitReportClick(Sender: TObject);
 begin
- Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
- Label2.Caption:='1';
+  Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
+  Label2.Caption := '1';
 end;
 
 procedure TFARC.BitSelectClick(Sender: TObject);
 begin
   Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
-  Label2.Caption:='0';
+  Label2.Caption := '0';
   // FARC.Close;
 end;
 

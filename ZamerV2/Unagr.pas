@@ -130,16 +130,16 @@ begin
   for i := 1 to 2 do
   begin
     QInssvod.ParamByName('nomer').Asstring := Nomer;
-    QInssvod.ParamByName('u').AsFloat := myfloat(StringGrid1.cells[1, i]);
-    QInssvod.ParamByName('i').AsFloat := myfloat(StringGrid1.cells[2, i]);
-    QInssvod.ParamByName('p').AsFloat := myfloat(StringGrid1.cells[3, i]);
-    QInssvod.ParamByName('n').AsFloat := myfloat(StringGrid1.cells[4, i]);
-    QInssvod.ParamByName('m').AsFloat := myfloat(StringGrid1.cells[5, i]);
-    QInssvod.ParamByName('dop1').AsFloat := 0;
-    QInssvod.ParamByName('t').AsFloat     := 0;
-    QInssvod.ParamByName('robm').AsFloat  := myfloat(Edit5.Text);
-    QInssvod.ParamByName('rkorp').AsFloat := myfloat(Edit4.Text);
-    QInssvod.ParamByName('tip').Asinteger := i;
+    QInssvod.ParamByName('u').AsFloat      := myfloat(StringGrid1.cells[1, i]);
+    QInssvod.ParamByName('i').AsFloat      := myfloat(StringGrid1.cells[2, i]);
+    QInssvod.ParamByName('p').AsFloat      := myfloat(StringGrid1.cells[3, i]);
+    QInssvod.ParamByName('n').AsFloat      := myfloat(StringGrid1.cells[4, i]);
+    QInssvod.ParamByName('m').AsFloat      := myfloat(StringGrid1.cells[5, i]);
+    QInssvod.ParamByName('dop1').AsFloat   := 0;
+    QInssvod.ParamByName('t').AsFloat      := 0;
+    QInssvod.ParamByName('robm').AsFloat   := myfloat(Edit5.Text);
+    QInssvod.ParamByName('rkorp').AsFloat  := myfloat(Edit4.Text);
+    QInssvod.ParamByName('tip').Asinteger  := i;
 
     QInssvod.ParamByName('t1').AsFloat := myfloat(StringGrid1.cells[6, i]);
     QInssvod.ParamByName('t2').AsFloat := myfloat(StringGrid1.cells[7, i]);
@@ -180,21 +180,21 @@ end;
 
 procedure TFNagr.BitBtn2Click(Sender: TObject);
 var
-  buttonselected,i,j: integer;
+  buttonselected, i, j: integer;
 begin
   buttonselected := MessageDlg('Очистить данные испытания?', mtConfirmation,
     [mbYes, mbNo], 0);
   if buttonselected = mrYes then
   begin
-    for i:=1 to 2 do
-     for j:=1 to 9 do
-      Stringgrid1.cells[j,i]:='';
-    Edit4.Text := '';
-    Edit5.Text := '';
-    Edit6.Text := '';
-    Edit7.Text := '';
-    Edit8.Text := '';
-    Enableclose:=false;
+    for i                       := 1 to 2 do
+      for j                     := 1 to 9 do
+        StringGrid1.cells[j, i] := '';
+    Edit4.Text                  := '';
+    Edit5.Text                  := '';
+    Edit6.Text                  := '';
+    Edit7.Text                  := '';
+    Edit8.Text                  := '';
+    enableclose                 := false;
   end;
 end;
 

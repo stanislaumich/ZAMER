@@ -9,7 +9,7 @@ uses
   Vcl.Grids, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, System.Actions, Vcl.ActnList, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uadd,ustr,math;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uadd, ustr, math;
 
 type
   TFRH = class(TForm)
@@ -91,11 +91,12 @@ type
   end;
 
 var
-  FRH        : TFRH;
-  enableclose: Boolean;
-  nomer:string;
-  tipispyt:integer;
+  FRH         : TFRH;
+  enableclose : Boolean;
+  nomer       : string;
+  tipispyt    : integer;
   currentpower: single;
+
 implementation
 
 uses uzv2main;
@@ -105,34 +106,34 @@ procedure TFRH.loadgrids;
 var
   i, j, k: integer;
 begin
-{  QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
+  { QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
     + Quotedstr(FormHH.Name) + ' and name=' + Quotedstr('StringGrid1'));
-  k                           := 13;
-  StringGrid1.RowCount        := k;
-  for i                       := 0 to k - 1 do
+    k                           := 13;
+    StringGrid1.RowCount        := k;
+    for i                       := 0 to k - 1 do
     for j                     := 0 to 3 do
-      StringGrid1.Cells[j, i] := '';
-  While not QTemp.Eof do
-  begin
+    StringGrid1.Cells[j, i] := '';
+    While not QTemp.Eof do
+    begin
     StringGrid1.Cells[QTemp.FieldByName('icol').Asinteger,
-      QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
+    QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
     QTemp.Next;
-  end;
+    end;
 
-  QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
+    QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
     + Quotedstr(FormHH.Name) + ' and name=' + Quotedstr('StringGrid2'));
-  While not QTemp.Eof do
-  begin
+    While not QTemp.Eof do
+    begin
     StringGrid2.Cells[QTemp.FieldByName('icol').Asinteger,
-      QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
+    QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
     QTemp.Next;
-  end; }
+    end; }
 end;
 
 procedure TFRH.RadioButton1Click(Sender: TObject);
 var
-  i, j: Integer;
-  cod : Integer;
+  i, j: integer;
+  cod : integer;
 
 begin
   for i                       := 0 to StringGrid2.colcount - 1 do
@@ -173,8 +174,8 @@ end;
 
 procedure TFRH.RadioButton2Click(Sender: TObject);
 var
-  i, j: Integer;
-  cod : Integer;
+  i, j: integer;
+  cod : integer;
 
 begin
   for i                       := 0 to StringGrid2.colcount - 1 do
@@ -214,8 +215,8 @@ end;
 
 procedure TFRH.RadioButton3Click(Sender: TObject);
 var
-  i, j: Integer;
-  cod : Integer;
+  i, j: integer;
+  cod : integer;
 
 begin
   for i                       := 0 to StringGrid2.colcount - 1 do
@@ -254,7 +255,6 @@ begin
       ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
-
 procedure TFRH.savegrids;
 var
   i, j: integer;
@@ -269,15 +269,14 @@ begin
 
 end;
 
-
 procedure TFRH.BitBtn3Click(Sender: TObject);
 var
-  i, j, buttonSelected: Integer;
+  i, j, buttonSelected: integer;
 begin
- buttonSelected :=
-      MessageDlg('Действительно очистить все замеры?',
-      mtConfirmation, mbYesNo, 0);
-if buttonSelected=mrNo then exit;
+  buttonSelected := MessageDlg('Действительно очистить все замеры?',
+    mtConfirmation, mbYesNo, 0);
+  if buttonSelected = mrNo then
+    exit;
 
   for i                       := 0 to StringGrid2.colcount - 1 do
     for j                     := 1 to StringGrid2.RowCount - 1 do
@@ -290,11 +289,11 @@ if buttonSelected=mrNo then exit;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('delete from zrhall where nomer=' + Quotedstr(Nomer));
+  QTemp.SQL.Add('delete from zrhall where nomer=' + Quotedstr(nomer));
   QTemp.ExecSQL;
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(Nomer));
+  QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(nomer));
   QTemp.ExecSQL;
 end;
 
@@ -312,13 +311,13 @@ begin
 
     QTemp.SQL.Add
       ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(Nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
+      Quotedstr(nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
       inttostr(interval) + ')');
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(Nomer) + ' , 11)');
+      Quotedstr(nomer) + ' , 11)');
     QTemp.ExecSQL;
   end
   else
@@ -327,25 +326,25 @@ begin
     QTemp.SQL.Clear;
     QTemp.SQL.Add
       ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(Nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
+      Quotedstr(nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
       inttostr(interval) + ')');
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(Nomer) + ' , 10)');
+      Quotedstr(nomer) + ' , 10)');
     QTemp.ExecSQL;
   end;
 end;
 
 procedure TFRH.FormActivate(Sender: TObject);
 var
-  i: Integer;
+  i: integer;
 begin
-  {Label3.Caption            := FMain.Edit6.Text;
-  Label10.Caption           := FMain.Edit7.Text;
-  Label17.Caption           := Floattostr(Strtofloat(FMain.Edit7.Text) * 1000);
-  ch                        := false; }
+  { Label3.Caption            := FMain.Edit6.Text;
+    Label10.Caption           := FMain.Edit7.Text;
+    Label17.Caption           := Floattostr(Strtofloat(FMain.Edit7.Text) * 1000);
+    ch                        := false; }
   for i                     := 1 to 8 do
     StringGrid1.cells[0, i] := inttostr(i);
   StringGrid1.cells[0, 0]   := '№';
@@ -361,8 +360,8 @@ begin
   StringGrid2.cells[6, 0]   := '▲Umax';
   StringGrid2.cells[7, 0]   := '▲Pmax';
 
- Nomer:=Label6.Caption;
- EnableClose:=true;
+  nomer       := Label6.Caption;
+  enableclose := true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('urh'));
   Edit2.Text := QTemp.FieldByName('value').AsString;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('prh'));
@@ -374,14 +373,14 @@ end;
 
 procedure TFRH.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
- TimerUp.Enabled:=False;
+  TimerUp.Enabled := false;
 
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('update zdelta set value= ' + Quotedstr(Edit2.Text) +
     ' where name=' + Quotedstr('urh'));
   QTemp.ExecSQL;
-   QTemp.Close;
+  QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('update zdelta set value= ' + Quotedstr(Edit3.Text) +
     ' where name=' + Quotedstr('prh'));
@@ -396,30 +395,39 @@ end;
 
 procedure TFRH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
- buttonselected:integer;
+  buttonSelected: integer;
 begin
- if enableclose then canclose:=true
-  else begin
-   buttonselected:=  MessageDlg
+  if enableclose then
+    CanClose := true
+  else
+  begin
+    buttonSelected :=
+      MessageDlg
       ('У вас есть несохраненная работа, она может быть утеряна, действительно закрыть окно?',
-      mtConfirmation, [mbYes, mbNo, MbCancel], 0) ;
-   if buttonselected=mrYes then begin BitBtn10.Click; canclose:=true;end;
-   if buttonselected=mrNo  then canclose:=true;
-   if buttonselected=mrCancel  then canclose:=false;
+      mtConfirmation, [mbYes, mbNo, MbCancel], 0);
+    if buttonSelected = mrYes then
+    begin
+      BitBtn10.Click;
+      CanClose := true;
+    end;
+    if buttonSelected = mrNo then
+      CanClose := true;
+    if buttonSelected = mrCancel then
+      CanClose := false;
   end;
 end;
 
 procedure TFRH.FormShow(Sender: TObject);
 begin
- TimerUp.Enabled:=true;
- Enableclose:=true;
+  TimerUp.Enabled := true;
+  enableclose     := true;
 end;
 
 procedure TFRH.StringGrid2Click(Sender: TObject);
 begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
-  Label26.Caption   := StringGrid2.Cells[0, StringGrid2.row];
+  Label26.Caption   := StringGrid2.cells[0, StringGrid2.row];
 end;
 
 procedure TFRH.TimerUpTimer(Sender: TObject);
@@ -431,14 +439,14 @@ begin
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
 
-  if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
+  if ABS(QUp.FieldByName('U').AsFloat - Strtofloat(Label19.Caption)) >
     myfloat(Edit2.Text) then
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;
   Label9.Caption      := myformat(trazu, QUp.FieldByName('U').AsFloat);
   //
-  if ABS(QUp.FieldByName('P').AsFloat - strtofloat(Label24.Caption)) >
+  if ABS(QUp.FieldByName('P').AsFloat - Strtofloat(Label24.Caption)) >
     myfloat(Label29.Caption) then
     Label14.Font.Color := clRed
   else

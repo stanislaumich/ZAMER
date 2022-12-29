@@ -255,13 +255,15 @@ begin
 
   ComboBox9.Items.Clear;
   ComboBox10.Items.Clear;
-  ComboBox9.Items.LoadFromFile(ExtractFilepath(Application.ExeName)+'R_SoprotList.txt');
-  ComboBox10.Items.LoadFromFile(ExtractFilepath(Application.ExeName)+'R_SoprotList.txt');
-  ComboBox9.Text          := ComboBox9.Items[0];
-  ComboBox10.Text         := ComboBox10.Items[0];
+  ComboBox9.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
+    'R_SoprotList.txt');
+  ComboBox10.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
+    'R_SoprotList.txt');
+  ComboBox9.Text  := ComboBox9.Items[0];
+  ComboBox10.Text := ComboBox10.Items[0];
 
-  for i                   := 1 to 3 do
-    for j                 := 1 to 3 do
+  for i   := 1 to 3 do
+    for j := 1 to 3 do
     begin
       StringGrid3.cells[i, j]  := '0';
       StringGrid3.ColWidths[i] := 160;
