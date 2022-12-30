@@ -424,10 +424,16 @@ begin
         AddReportString(fn, '1', 'rizolvk', FSopr.Edit13.Text);
         wrepl('rizolob', FSopr.Edit16.Text);
         AddReportString(fn, '1', 'rizolob', FSopr.Edit16.Text);
-        tmp := (strtofloat(FSopr.Edit8.Text) + strtofloat(FSopr.Edit1.Text) +
-          strtofloat(FSopr.Edit2.Text)) / 3;
-        wrepl('temper', myformat('0.00', tmp));
-        AddReportString(fn, '1', 'temper', myformat('0.00', tmp));
+
+        //tmp := (strtofloat(FSopr.Edit8.Text) + strtofloat(FSopr.Edit1.Text) +
+        //  strtofloat(FSopr.Edit2.Text)) / 3;
+
+        wrepl('tempersopr1', myformat('0.00', strtofloat(FSopr.Edit8.Text)));
+        wrepl('tempersopr2', myformat('0.00', strtofloat(FSopr.Edit1.Text)));
+        wrepl('tempersopr3', myformat('0.00', strtofloat(FSopr.Edit2.Text)));
+        AddReportString(fn, '1', 'tempersopr1', myformat('0.00', strtofloat(FSopr.Edit8.Text)));
+        AddReportString(fn, '1', 'tempersopr2', myformat('0.00', strtofloat(FSopr.Edit1.Text)));
+        AddReportString(fn, '1', 'tempersopr3', myformat('0.00', strtofloat(FSopr.Edit2.Text)));
 
         if FSopr.radiobutton1.Checked then
             wrepl('bolt', 'ÂÛÄÅÐÆÀË');
