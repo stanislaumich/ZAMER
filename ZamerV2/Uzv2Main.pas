@@ -451,25 +451,25 @@ begin
 
         // холостой ход
         FrepP.Label1.Caption := 'Холостой ход';
-        for i                := 1 to 10 do
+        for i                := 1 to 12 do
         begin
             wrepl('u' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[1, i]);
             AddReportString(fn, '1', 'u' + inttostr(i) + 'hh',
               Formhh.Stringgrid2.Cells[1, i]);
         end;
-        for i := 1 to 10 do
+        for i := 1 to 12 do
         begin
             wrepl('i' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[2, i]);
             AddReportString(fn, '1', 'i' + inttostr(i) + 'hh',
               Formhh.Stringgrid2.Cells[2, i]);
         end;
-        for i := 1 to 10 do
+        for i := 1 to 12 do
         begin
             wrepl('p' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[3, i]);
             AddReportString(fn, '1', 'p' + inttostr(i) + 'hh',
               Formhh.Stringgrid2.Cells[3, i]);
         end;
-        for i := 1 to 10 do
+        for i := 1 to 12 do
         begin
             wrepl('R' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[5, i]);
             AddReportString(fn, '1', 'r' + inttostr(i) + 'hh',
@@ -1015,7 +1015,7 @@ begin
     QTemp.Open('select value from zini where name=' + Quotedstr('MNTPath'));
     ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
       nil, nil, SW_SHOWNORMAL);
-
+    Datetimepicker1.Date:=Date;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('Update version set maintotal=maintotal+1');
     QTemp.ExecSQL;

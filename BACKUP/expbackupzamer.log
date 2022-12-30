@@ -47,11 +47,11 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                       ZDVIGALL
-                                                            7 rows exported
+                                                            8 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZELSPEC
-                                                           45 rows exported
+                                                           21 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                     ZELSPECTMP
                                                             1 rows exported
@@ -61,15 +61,15 @@ EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZGRIDS
                                                            42 rows exported
 . . exporting table                         ZHHALL
-                                                          442 rows exported
+                                                          914 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZHHSVOD
-                                                           10 rows exported
+                                                           22 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                           ZINI
-                                                           34 rows exported
+                                                           38 rows exported
 . . exporting table                         ZKZALL
                                                            14 rows exported
 EXP-00091: Exporting questionable statistics.
@@ -104,7 +104,7 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZSOPROT
-                                                            5 rows exported
+                                                            6 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                          ZSOTR
