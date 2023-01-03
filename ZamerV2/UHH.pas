@@ -225,9 +225,9 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add
-      ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL)');
+      ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL,EDIZM)');
     QTemp.SQL.Add
-      (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL)');
+      (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm)');
     QTemp.ParamByName('nomer').AsString  := Nomer;
     QTemp.ParamByName('uisp').AsString   := StringGrid2.Cells[0, i];
     QTemp.ParamByName('usred').AsString  := NVLToZero(StringGrid2.Cells[1, i]);
