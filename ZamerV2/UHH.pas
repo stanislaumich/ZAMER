@@ -466,7 +466,7 @@ end;
 
 procedure TFormHH.TimUpTimer(Sender: TObject);
 begin
-  QUp.Open('select U from zelspectmp');
+  QUp.Open('select U, i, p from zelspectmp');
   if abs(QUp.FieldByName('U').Asfloat - myfloat(Label26.Caption)) <
     myfloat(NVLToZero(Edit2.Text)) then
   begin
@@ -479,6 +479,8 @@ begin
     Label22.Font.Color := clRed;
   end;
   Label22.Caption := myformat(tRazU, QUp.FieldByName('U').Asfloat);
+  Label23.Caption := myformat(tRazI, QUp.FieldByName('I').Asfloat);
+  Label24.Caption := myformat(tRazP, QUp.FieldByName('P').Asfloat);
 end;
 
 procedure TFormHH.TimWork1000Timer(Sender: TObject);

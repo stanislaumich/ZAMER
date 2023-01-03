@@ -471,7 +471,7 @@ begin
         end;
         for i := 1 to 12 do
         begin
-            wrepl('R' + inttostr(i) + 'hh', NVLToEmp(Formhh.Stringgrid2.Cells[5, i]));
+            wrepl('R' + inttostr(i) + 'hh', (Formhh.Stringgrid2.Cells[5, i]));
             AddReportString(fn, '1', 'r' + inttostr(i) + 'hh',
               Formhh.Stringgrid2.Cells[5, i]);
         end;
