@@ -308,6 +308,7 @@ end;
 procedure TFormHH.FormCreate(Sender: TObject);
 begin
   loadgrids;
+  ComboBox1.Items.LoadFromFile(extractfilepath(application.exename)+'R_SoprotListHH.txt');
 end;
 
 procedure TFormHH.FormHide(Sender: TObject);
@@ -337,7 +338,6 @@ procedure TFormHH.RadioButton1Click(Sender: TObject);
 var
   i, j: integer;
   cod : integer;
-
 begin
   for i                       := 0 to StringGrid2.colcount - 1 do
     for j                     := 1 to StringGrid2.RowCount - 1 do
