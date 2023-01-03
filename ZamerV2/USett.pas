@@ -43,6 +43,10 @@ type
     Edit5: TEdit;
     BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
+    GroupBox5: TGroupBox;
+    ListBox1: TListBox;
+    Memo1: TMemo;
+    Button3: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -50,6 +54,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
+    procedure ListBox1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,7 +64,7 @@ type
 
 var
   FSett: TFSett;
-
+  fname:string;
 implementation
 
 Uses uzv2Main;
@@ -133,6 +139,11 @@ begin
     Edit2.Text := '"' + OpenDialog1.Filename + '"';
 end;
 
+procedure TFSett.Button3Click(Sender: TObject);
+begin
+memo1.lines.savetofile(fname);
+end;
+
 procedure TFSett.FormCreate(Sender: TObject);
 begin
   // QTemp.Close;
@@ -149,6 +160,14 @@ begin
   Edit5.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('ComPortU'));
   CombCom.Text := QTemp.FieldByName('value').Asstring;
+end;
+
+procedure TFSett.ListBox1Click(Sender: TObject);
+begin
+ fname:=listbox1.items[listbox1.ItemIndex];
+ delete(fname,1,pos(';',fname));
+ fname:= extractfilepath(Application.exename)+fname;
+ memo1.lines.loadfromfile(fname);
 end;
 
 end.

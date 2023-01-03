@@ -287,9 +287,9 @@ begin
   ComboBox9.Items.Clear;
   ComboBox10.Items.Clear;
   ComboBox9.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
-    'R_SoprotList.txt');
+    'R_SoprotListUP.txt');
   ComboBox10.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
-    'R_SoprotList.txt');
+    'R_SoprotListDown.txt');
   ComboBox9.Text  := ComboBox9.Items[0];
   ComboBox10.Text := ComboBox10.Items[0];
 

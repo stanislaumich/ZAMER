@@ -3,7 +3,7 @@ object FSett: TFSett
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
-  ClientHeight = 272
+  ClientHeight = 501
   ClientWidth = 883
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object FSett: TFSett
   OnCreate = FormCreate
   DesignSize = (
     883
-    272)
+    501)
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -243,7 +243,7 @@ object FSett: TFSett
   end
   object BitBtn2: TBitBtn
     Left = 719
-    Top = 224
+    Top = 453
     Width = 162
     Height = 47
     Anchors = [akRight, akBottom]
@@ -307,6 +307,7 @@ object FSett: TFSett
       79FE5079FE5079FF5179FE5077FD4D75FC4A70FC6E8CFDFFFFFF}
     TabOrder = 4
     OnClick = BitBtn2Click
+    ExplicitTop = 224
   end
   object GroupBox4: TGroupBox
     Left = 3
@@ -374,6 +375,44 @@ object FSett: TFSett
       Height = 21
       TabOrder = 3
       Text = 'Edit5'
+    end
+  end
+  object GroupBox5: TGroupBox
+    Left = 3
+    Top = 268
+    Width = 710
+    Height = 229
+    Caption = #1045#1076#1080#1085#1080#1094#1099' '#1080#1079#1084#1077#1088#1077#1085#1080#1103' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103
+    TabOrder = 6
+    object ListBox1: TListBox
+      Left = 2
+      Top = 15
+      Width = 408
+      Height = 212
+      Align = alLeft
+      ItemHeight = 13
+      Items.Strings = (
+        #1054#1082#1085#1086' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103' - '#1089#1086#1087#1088#1086#1090'. '#1086#1073#1084#1086#1090#1086#1082';R_SoprotListUp.txt'
+        #1054#1082#1085#1086' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103' - '#1089#1086#1087#1088' '#1080#1079#1086#1083'.;R_SoprotListDown.txt')
+      TabOrder = 0
+      OnClick = ListBox1Click
+    end
+    object Memo1: TMemo
+      Left = 416
+      Top = 15
+      Width = 214
+      Height = 211
+      ScrollBars = ssVertical
+      TabOrder = 1
+    end
+    object Button3: TButton
+      Left = 632
+      Top = 15
+      Width = 75
+      Height = 25
+      Caption = #1047#1072#1087#1080#1089#1072#1090#1100
+      TabOrder = 2
+      OnClick = Button3Click
     end
   end
   object TabSotrud: TFDTable

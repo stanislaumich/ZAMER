@@ -831,6 +831,7 @@ begin
 
     tip                         := 1;
     Formhh.Stringgrid2.rowcount := QTemp.RecordCount + 2;
+    Formhh.ComboBox1.Text:=QTemp.FieldByName('edizm').Asstring;
     while not(QTemp.Eof) do
     begin
         Formhh.Stringgrid2.Cells[1, tip] := QTemp.FieldByName('usred').Asstring;

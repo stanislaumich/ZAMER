@@ -199,7 +199,7 @@ object FSopr: TFSopr
     object ComboBox9: TComboBox
       Left = 244
       Top = 29
-      Width = 145
+      Width = 69
       Height = 31
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
