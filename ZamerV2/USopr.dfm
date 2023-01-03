@@ -74,23 +74,41 @@ object FSopr: TFSopr
   object Label2: TLabel
     Left = 435
     Top = 68
-    Width = 139
-    Height = 23
-    Caption = '1 '#1064#1077#1089#1090#1100' '#1082#1086#1085#1094#1086#1074
+    Width = 127
+    Height = 19
+    Caption = '1 - '#1064#1077#1089#1090#1100' '#1082#1086#1085#1094#1086#1074
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label3: TLabel
     Left = 435
     Top = 92
-    Width = 106
-    Height = 23
-    Caption = '2 '#1058#1088#1080' '#1082#1086#1085#1094#1072
+    Width = 101
+    Height = 19
+    Caption = '2 - '#1058#1088#1080' '#1082#1086#1085#1094#1072
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label7: TLabel
     Left = 435
     Top = 114
-    Width = 129
-    Height = 23
-    Caption = '3 '#1054#1076#1085#1086#1092#1072#1079#1085#1099#1081
+    Width = 120
+    Height = 19
+    Caption = '3 - '#1054#1076#1085#1086#1092#1072#1079#1085#1099#1081
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Panel1: TPanel
     Left = 0
@@ -122,6 +140,7 @@ object FSopr: TFSopr
     Hint = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072' '#1086#1082#1088' '#1089#1088#1077#1076#1099' '#1057#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1077
     TabOrder = 1
     OnChange = Edit8Change
+    OnClick = Edit8Click
   end
   object ComboBox7: TComboBox
     Left = 172
@@ -206,12 +225,12 @@ object FSopr: TFSopr
     ParentFont = False
     TabOrder = 5
     object Label38: TLabel
-      Left = 92
+      Left = 9
       Top = 26
-      Width = 223
+      Width = 414
       Height = 23
       Alignment = taRightJustify
-      Caption = #1045#1076#1080#1085#1080#1094#1072' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103':'
+      Caption = #1045#1076#1080#1085#1080#1094#1072' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103' '#1080#1079#1084#1077#1088#1077#1085#1080#1103' '#1080#1079#1086#1083#1103#1094#1080#1080':'
     end
     object Label39: TLabel
       Left = 10
@@ -229,9 +248,9 @@ object FSopr: TFSopr
       Caption = 'R '#1080#1079#1086#1083'. '#1084#1077#1078#1076#1091' '#1086#1073#1084#1086#1090#1082#1072#1084#1080' '#1093#1086#1083#1086#1076#1085#1086#1077':'
     end
     object ComboBox10: TComboBox
-      Left = 321
+      Left = 429
       Top = 23
-      Width = 192
+      Width = 84
       Height = 31
       TabOrder = 0
       OnChange = ComboBox10Change
@@ -245,6 +264,7 @@ object FSopr: TFSopr
       TabOrder = 1
       Text = '500'
       OnChange = Edit13Change
+      OnClick = Edit13Click
     end
     object Edit16: TEdit
       Left = 375
@@ -255,6 +275,7 @@ object FSopr: TFSopr
       TabOrder = 2
       Text = '500'
       OnChange = Edit16Change
+      OnClick = Edit16Click
     end
   end
   object BitBtn1: TBitBtn
@@ -437,6 +458,7 @@ object FSopr: TFSopr
     Width = 77
     Height = 31
     TabOrder = 12
+    OnClick = Edit1Click
   end
   object Edit2: TEdit
     Left = 510
@@ -444,6 +466,7 @@ object FSopr: TFSopr
     Width = 77
     Height = 31
     TabOrder = 13
+    OnClick = Edit2Click
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC

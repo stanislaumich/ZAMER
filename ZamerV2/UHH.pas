@@ -51,12 +51,10 @@ type
     Label16: TLabel;
     Label17: TLabel;
     Label18: TLabel;
-    Label19: TLabel;
     Label21: TLabel;
     Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
-    Label25: TLabel;
     Label26: TLabel;
     BitBtn2: TBitBtn;
     Label2: TLabel;
@@ -65,6 +63,8 @@ type
     Label1: TLabel;
     Label4: TLabel;
     Label3: TLabel;
+    ComboBox1: TComboBox;
+    Label8: TLabel;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -242,6 +242,7 @@ begin
       QTemp.ParamByName('vizol').Asinteger := 1;
     if RadioButton5.Checked then
       QTemp.ParamByName('vizol').Asinteger := 2;
+    QTemp.ParamByName('edizm').AsString :=ComboBox1.Text;
     QTemp.ExecSQL;
   end;
   enableclose := true;

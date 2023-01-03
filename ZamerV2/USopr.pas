@@ -64,6 +64,11 @@ type
     procedure RadioButton1Click(Sender: TObject);
     procedure RadioButton2Click(Sender: TObject);
     procedure RadioButton3Click(Sender: TObject);
+    procedure Edit8Click(Sender: TObject);
+    procedure Edit1Click(Sender: TObject);
+    procedure Edit2Click(Sender: TObject);
+    procedure Edit13Click(Sender: TObject);
+    procedure Edit16Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -78,7 +83,7 @@ implementation
 
 {$R *.dfm}
 
-Uses Uzv2Main;
+Uses Uzv2Main, uhh;
 
 procedure TFSopr.BitBtn1Click(Sender: TObject);
 var
@@ -212,6 +217,7 @@ end;
 procedure TFSopr.ComboBox9Change(Sender: TObject);
 begin
   enableclose := false;
+  formhh.Combobox1.text:=Combobox9.text;
 end;
 
 procedure TFSopr.Edit13Change(Sender: TObject);
@@ -219,14 +225,39 @@ begin
   enableclose := false;
 end;
 
+procedure TFSopr.Edit13Click(Sender: TObject);
+begin
+Edit13.Text:='';
+end;
+
 procedure TFSopr.Edit16Change(Sender: TObject);
 begin
   enableclose := false;
 end;
 
+procedure TFSopr.Edit16Click(Sender: TObject);
+begin
+Edit16.Text:='';
+end;
+
+procedure TFSopr.Edit1Click(Sender: TObject);
+begin
+Edit1.Text:='';
+end;
+
+procedure TFSopr.Edit2Click(Sender: TObject);
+begin
+Edit2.Text:='';
+end;
+
 procedure TFSopr.Edit8Change(Sender: TObject);
 begin
   enableclose := false;
+end;
+
+procedure TFSopr.Edit8Click(Sender: TObject);
+begin
+Edit8.Text:='';
 end;
 
 procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);

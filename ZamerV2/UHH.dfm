@@ -69,6 +69,13 @@ object FormHH: TFormHH
     ParentFont = False
     WordWrap = True
   end
+  object Label8: TLabel
+    Left = 582
+    Top = 278
+    Width = 199
+    Height = 25
+    Caption = #1045#1076'. '#1080#1079#1084'. '#1089#1086#1087#1088#1086#1090#1080#1074#1083'.:'
+  end
   object Panel2: TPanel
     Left = 0
     Top = 0
@@ -537,19 +544,6 @@ object FormHH: TFormHH
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label19: TLabel
-      Left = 219
-      Top = 134
-      Width = 188
-      Height = 29
-      Caption = #1052#1086#1084#1077#1085#1090', '#1053'.*'#1084'.:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
     object Label21: TLabel
       Left = 7
       Top = 28
@@ -592,19 +586,6 @@ object FormHH: TFormHH
     object Label24: TLabel
       Left = 413
       Top = 99
-      Width = 15
-      Height = 29
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label25: TLabel
-      Left = 413
-      Top = 134
       Width = 15
       Height = 29
       Caption = '0'
@@ -732,6 +713,14 @@ object FormHH: TFormHH
       TabOrder = 2
       Text = '15'
     end
+  end
+  object ComboBox1: TComboBox
+    Left = 787
+    Top = 275
+    Width = 76
+    Height = 33
+    TabOrder = 8
+    Text = #1052#1054#1084
   end
   object TimUp: TTimer
     Enabled = False
