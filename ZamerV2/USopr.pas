@@ -48,6 +48,8 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     procedure Button50Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid3KeyPress(Sender: TObject; var Key: Char);
@@ -175,7 +177,6 @@ begin
   enableclose := true;
   FZamerV2.ImgSet(FZamerV2.Image1, true);
   FSopr.Close;
-
 end;
 
 procedure TFSopr.Button50Click(Sender: TObject);
@@ -227,7 +228,7 @@ end;
 
 procedure TFSopr.Edit13Click(Sender: TObject);
 begin
-Edit13.Text:='';
+Edit13.SelectAll;
 end;
 
 procedure TFSopr.Edit16Change(Sender: TObject);
@@ -237,17 +238,17 @@ end;
 
 procedure TFSopr.Edit16Click(Sender: TObject);
 begin
-Edit16.Text:='';
+Edit16.SelectAll;
 end;
 
 procedure TFSopr.Edit1Click(Sender: TObject);
 begin
-Edit1.Text:='';
+Edit1.SelectAll;
 end;
 
 procedure TFSopr.Edit2Click(Sender: TObject);
 begin
-Edit2.Text:='';
+Edit2.SelectAll;
 end;
 
 procedure TFSopr.Edit8Change(Sender: TObject);
@@ -257,20 +258,23 @@ end;
 
 procedure TFSopr.Edit8Click(Sender: TObject);
 begin
-Edit8.Text:='';
+Edit8.SelectAll;
 end;
 
 procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonSelected: integer;
 begin
-  if enableclose then
-    exit;
-  buttonSelected := MessageDlg('Сохранить данные?', mtConfirmation,
-    [mbYes, mbNo], 0);
-  if buttonSelected = mrYes then
-    BitBtn5.Click;
 
+if enableclose then canclose:=true
+ else
+  begin
+   buttonSelected := MessageDlg('Сохранить данные?', mtConfirmation,
+    [mbYes, mbNo, mbCancel], 0);
+   if buttonSelected = mrYes then begin canclose:=true; BitBtn5.Click;end;
+   if buttonSelected = mrNo then canclose:=true;
+   if buttonSelected = mrCancel then CanClose:=false;
+  end;
 end;
 
 procedure TFSopr.FormCreate(Sender: TObject);

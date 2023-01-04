@@ -376,12 +376,23 @@ begin
           Datetostr(FZamerV2.DateTimePicker1.Date));
         wrepl('numdv', FZamerV2.EditNumDvig.Text);
         AddReportString(fn, '0', 'numdv', FZamerV2.EditNumDvig.Text);
-        wrepl('urab', FZamerV2.CombUisp.Text);
-        AddReportString(fn, '0', 'urab', FZamerV2.CombUisp.Text);
-        wrepl('prab', FZamerV2.CombPIsp.Text);
-        AddReportString(fn, '0', 'prab', FZamerV2.CombPIsp.Text);
-        wrepl('polus', FZamerV2.CombPolIsp.Text);
-        AddReportString(fn, '0', 'polus', FZamerV2.CombPolIsp.Text);
+
+        wrepl('urab', FZamerV2.CombUnom.Text);
+        AddReportString(fn, '0', 'unom', FZamerV2.CombUnom.Text);
+        wrepl('uisp', FZamerV2.CombUisp.Text);
+        AddReportString(fn, '0', 'uisp', FZamerV2.CombUisp.Text);
+
+        wrepl('prab', FZamerV2.CombPNom.Text);
+        AddReportString(fn, '0', 'pnom', FZamerV2.CombPNom.Text);
+        wrepl('pisp', FZamerV2.CombPIsp.Text);
+        AddReportString(fn, '0', 'pisp', FZamerV2.CombPIsp.Text);
+
+
+        wrepl('polus', FZamerV2.CombPolNom.Text);
+        AddReportString(fn, '0', 'polus', FZamerV2.CombPolNom.Text);
+        wrepl('polutisp', FZamerV2.CombPolIsp.Text);
+        AddReportString(fn, '0', 'polusisp', FZamerV2.CombPolIsp.Text);
+
         wrepl('tipdv', FZamerV2.CombTipDvig.Text);
         AddReportString(fn, '0', 'tipdv', FZamerV2.CombTipDvig.Text);
         wrepl('regim', FZamerV2.CombRegim.Text);
@@ -428,12 +439,12 @@ begin
         //tmp := (strtofloat(FSopr.Edit8.Text) + strtofloat(FSopr.Edit1.Text) +
         //  strtofloat(FSopr.Edit2.Text)) / 3;
 
-        wrepl('tempersopr1', myformat('0.00', strtofloat(FSopr.Edit8.Text)));
-        wrepl('tempersopr2', myformat('0.00', strtofloat(FSopr.Edit1.Text)));
-        wrepl('tempersopr3', myformat('0.00', strtofloat(FSopr.Edit2.Text)));
-        AddReportString(fn, '1', 'tempersopr1', myformat('0.00', strtofloat(FSopr.Edit8.Text)));
-        AddReportString(fn, '1', 'tempersopr2', myformat('0.00', strtofloat(FSopr.Edit1.Text)));
-        AddReportString(fn, '1', 'tempersopr3', myformat('0.00', strtofloat(FSopr.Edit2.Text)));
+        wrepl('tempersopr1', myformat('0.0', strtofloat(FSopr.Edit8.Text)));
+        wrepl('tempersopr2', myformat('0.0', strtofloat(FSopr.Edit1.Text)));
+        wrepl('tempersopr3', myformat('0.0', strtofloat(FSopr.Edit2.Text)));
+        AddReportString(fn, '1', 'tempersopr1', myformat('0.0', strtofloat(FSopr.Edit8.Text)));
+        AddReportString(fn, '1', 'tempersopr2', myformat('0.0', strtofloat(FSopr.Edit1.Text)));
+        AddReportString(fn, '1', 'tempersopr3', myformat('0.0', strtofloat(FSopr.Edit2.Text)));
 
         if FSopr.radiobutton1.Checked then
             wrepl('bolt', 'ÂÛÄÅÐÆÀË');

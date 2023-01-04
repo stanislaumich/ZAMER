@@ -247,6 +247,20 @@ object FSopr: TFSopr
       Alignment = taRightJustify
       Caption = 'R '#1080#1079#1086#1083'. '#1084#1077#1078#1076#1091' '#1086#1073#1084#1086#1090#1082#1072#1084#1080' '#1093#1086#1083#1086#1076#1085#1086#1077':'
     end
+    object Label8: TLabel
+      Left = 439
+      Top = 60
+      Width = 40
+      Height = 23
+      Caption = #1052#1054#1084
+    end
+    object Label9: TLabel
+      Left = 439
+      Top = 92
+      Width = 40
+      Height = 23
+      Caption = #1052#1054#1084
+    end
     object ComboBox10: TComboBox
       Left = 429
       Top = 23
@@ -258,7 +272,7 @@ object FSopr: TFSopr
     object Edit13: TEdit
       Left = 375
       Top = 57
-      Width = 138
+      Width = 58
       Height = 31
       Hint = #1057#1086#1087#1088' '#1080#1079#1086#1083
       TabOrder = 1
@@ -269,7 +283,7 @@ object FSopr: TFSopr
     object Edit16: TEdit
       Left = 375
       Top = 89
-      Width = 138
+      Width = 58
       Height = 31
       Hint = #1057#1086#1087#1088' '#1084#1077#1078#1076#1091' '#1086#1073#1084#1086#1090#1082#1072#1084#1080
       TabOrder = 2
