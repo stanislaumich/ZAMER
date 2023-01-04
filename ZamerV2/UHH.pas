@@ -225,9 +225,9 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add
-      ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL,EDIZM)');
+      ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL,EDIZM, perc)');
     QTemp.SQL.Add
-      (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm)');
+      (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm, :perc)');
     QTemp.ParamByName('nomer').AsString  := Nomer;
     QTemp.ParamByName('uisp').AsString   := StringGrid2.Cells[0, i];
     QTemp.ParamByName('usred').AsString  := NVLToZero(StringGrid2.Cells[1, i]);
@@ -243,6 +243,7 @@ begin
     if RadioButton5.Checked then
       QTemp.ParamByName('vizol').Asinteger := 2;
     QTemp.ParamByName('edizm').AsString :=ComboBox1.Text;
+    QTemp.ParamByName('perc').Asinteger := round(strtoint(StringGrid2.Cells[0, i])/strtoint(label7.Caption)*100);
     QTemp.ExecSQL;
   end;
   enableclose := true;

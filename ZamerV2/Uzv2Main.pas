@@ -839,13 +839,13 @@ begin
     Formhh.ComboBox1.Text:=QTemp.FieldByName('edizm').Asstring;
     while not(QTemp.Eof) do
     begin
+        Formhh.Stringgrid2.Cells[0, tip] := QTemp.FieldByName('uisp').Asstring;
         Formhh.Stringgrid2.Cells[1, tip] := QTemp.FieldByName('usred').Asstring;
         Formhh.Stringgrid2.Cells[2, tip] := QTemp.FieldByName('isred').Asstring;
         Formhh.Stringgrid2.Cells[3, tip] := QTemp.FieldByName('psred').Asstring;
         Formhh.Stringgrid2.Cells[4, tip] := QTemp.FieldByName('dumax').Asstring;
         Formhh.Stringgrid2.Cells[5, tip] := QTemp.FieldByName('r').Asstring;
-        Formhh.Stringgrid2.Cells[6, tip] := QTemp.FieldByName('otklon')
-          .Asstring;
+        Formhh.Stringgrid2.Cells[6, tip] := QTemp.FieldByName('otklon').Asstring;
         QTemp.Next;
         tip := tip + 1;
     end;
