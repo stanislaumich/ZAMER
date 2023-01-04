@@ -729,6 +729,11 @@ begin
             Qinsdvig.ParamByName('ISPOLN').Asstring := EditOsob.Text;
             Qinsdvig.ParamByName('READY').AsInteger := 0;
             Qinsdvig.ParamByName('NOMER').Asstring  := nomer;
+            if CombSotrud.Text='' then
+             begin
+              ShowMessage('Не указано ФИО испытателя, проверьте внимательно все необходимые поля');
+              exit;
+             end;
             Qinsdvig.ParamByName('fio').Asstring    := CombSotrud.Text;
             Qinsdvig.ParamByName('regim').Asstring  := CombRegim.Text;
             Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;

@@ -246,6 +246,7 @@ begin
     QTemp.ExecSQL;
   end;
   enableclose := true;
+  FZamerV2.ImgSet(FZamerV2.Image2, true);
   FormHH.Close;
 end;
 
@@ -343,6 +344,7 @@ begin
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
+
   if StringGrid1.Cells[1, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
@@ -382,6 +384,7 @@ begin
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
+
   if StringGrid1.Cells[2, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
@@ -420,6 +423,7 @@ begin
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
+
   if StringGrid1.Cells[3, 1] = '' then
   begin
     ShowMessage('Нет данных для испытания');
