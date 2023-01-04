@@ -212,6 +212,7 @@ object FZamerV2: TFZamerV2
         65F36465F36465F36465F26464F26464F26160F29797F7FFFFFF}
       ParentFont = False
       TabOrder = 0
+      TabStop = False
       OnClick = ExitBtnClick
     end
     object HideBtn: TBitBtn
@@ -284,6 +285,7 @@ object FZamerV2: TFZamerV2
         7B20CE6E13C76110FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       ParentFont = False
       TabOrder = 1
+      TabStop = False
       OnClick = HideBtnClick
     end
   end
@@ -1063,7 +1065,7 @@ object FZamerV2: TFZamerV2
         Width = 79
         Height = 27
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 3
+        TabOrder = 8
         Text = '0'
       end
       object CombEnergo: TComboBox
@@ -1071,7 +1073,7 @@ object FZamerV2: TFZamerV2
         Top = 228
         Width = 167
         Height = 27
-        TabOrder = 4
+        TabOrder = 9
         Text = 'CombEnergo'
       end
       object EditHumi: TEdit
@@ -1079,7 +1081,7 @@ object FZamerV2: TFZamerV2
         Top = 259
         Width = 167
         Height = 27
-        TabOrder = 5
+        TabOrder = 10
         Text = 'EditHumi'
       end
       object EditPress: TEdit
@@ -1087,7 +1089,7 @@ object FZamerV2: TFZamerV2
         Top = 290
         Width = 167
         Height = 27
-        TabOrder = 6
+        TabOrder = 11
         Text = 'EditPress'
       end
       object CombRegim: TComboBox
@@ -1095,7 +1097,7 @@ object FZamerV2: TFZamerV2
         Top = 349
         Width = 275
         Height = 27
-        TabOrder = 7
+        TabOrder = 13
         Text = 'CombRegim'
       end
       object CombStend: TComboBox
@@ -1104,7 +1106,7 @@ object FZamerV2: TFZamerV2
         Top = 380
         Width = 275
         Height = 27
-        TabOrder = 8
+        TabOrder = 14
         Text = 'CombStend'
         OnChange = CombStendChange
       end
@@ -1114,7 +1116,7 @@ object FZamerV2: TFZamerV2
         Width = 338
         Height = 27
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 9
+        TabOrder = 15
         Text = 'EditOsob'
       end
       object EditOsmotr: TEdit
@@ -1123,7 +1125,7 @@ object FZamerV2: TFZamerV2
         Width = 338
         Height = 27
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 10
+        TabOrder = 16
         Text = 'EditOsmotr'
       end
       object CombSotrud: TComboBox
@@ -1133,7 +1135,7 @@ object FZamerV2: TFZamerV2
         Width = 239
         Height = 27
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 11
+        TabOrder = 17
         Text = 'CombSotrud'
       end
       object BitStartIsp: TBitBtn
@@ -1205,7 +1207,7 @@ object FZamerV2: TFZamerV2
           FFFFFFFFFFFFFFFFFFFF249E3C2CBB5331C15731C15731C15731C1572CBB5324
           9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 18
         OnClick = BitStartIspClick
       end
       object BitArc: TBitBtn
@@ -1277,7 +1279,7 @@ object FZamerV2: TFZamerV2
           3EDBAD6DD7A768D6A768D6A668D6A669D6A669D6A669D6A767D6A767D6A767D6
           A768D6A768D7A669CF9956EEDBC8FFFFFFFFFFFFFFFFFFFFFFFF}
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 19
         OnClick = BitArcClick
       end
       object BitBtn5: TBitBtn
@@ -1343,7 +1345,7 @@ object FZamerV2: TFZamerV2
           FBF4E5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFF3DB9FF3DDA2F2DCA1F2DBA0F2DBA1F1D598FF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-        TabOrder = 14
+        TabOrder = 20
         OnClick = BitBtn5Click
       end
       object CombUnom: TComboBox
@@ -1351,7 +1353,7 @@ object FZamerV2: TFZamerV2
         Top = 133
         Width = 78
         Height = 27
-        TabOrder = 15
+        TabOrder = 3
         Text = '0'
       end
       object CombUisp: TComboBox
@@ -1359,7 +1361,7 @@ object FZamerV2: TFZamerV2
         Top = 133
         Width = 79
         Height = 27
-        TabOrder = 16
+        TabOrder = 4
         Text = '0'
       end
       object CombPNom: TComboBox
@@ -1367,7 +1369,7 @@ object FZamerV2: TFZamerV2
         Top = 164
         Width = 78
         Height = 27
-        TabOrder = 17
+        TabOrder = 5
         Text = '0'
       end
       object CombPIsp: TComboBox
@@ -1375,7 +1377,7 @@ object FZamerV2: TFZamerV2
         Top = 164
         Width = 79
         Height = 27
-        TabOrder = 18
+        TabOrder = 6
         Text = '0'
       end
       object CombPolNom: TComboBox
@@ -1383,7 +1385,7 @@ object FZamerV2: TFZamerV2
         Top = 195
         Width = 78
         Height = 27
-        TabOrder = 19
+        TabOrder = 7
         Text = '0'
       end
       object EditTemp: TEdit
@@ -1391,7 +1393,7 @@ object FZamerV2: TFZamerV2
         Top = 320
         Width = 167
         Height = 27
-        TabOrder = 20
+        TabOrder = 12
         Text = 'EditTemp'
       end
     end

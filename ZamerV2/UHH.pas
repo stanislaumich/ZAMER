@@ -65,6 +65,10 @@ type
     Label3: TLabel;
     ComboBox1: TComboBox;
     Label8: TLabel;
+    BitBtn1: TBitBtn;
+    BitBtn3: TBitBtn;
+    OpenDialog1: TOpenDialog;
+    SaveDialog1: TSaveDialog;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -84,6 +88,7 @@ type
     procedure RadioButton4Click(Sender: TObject);
     procedure RadioButton5Click(Sender: TObject);
     procedure RadioButton6Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -181,8 +186,44 @@ begin
 end;
 
 procedure TFormHH.BitBtn1Click(Sender: TObject);
+var
+ i,j:integer;
+ f:textfile;
+ s:string;
 begin
-  FAuto.ShowModal;
+  If OpenDialog1.Execute then
+   begin
+    assignfile(f,opendialog1.filename);
+    reset(f);
+    for i:=1 to 3 do
+     for j:=1 to 12 do
+      begin
+       Readln(f,s);
+       stringgrid1.cells[i,j]:=s;
+      end;
+     Closefile(f);
+   end;
+
+end;
+
+procedure TFormHH.BitBtn3Click(Sender: TObject);
+var
+ i,j:integer;
+ f:textfile;
+ s:string;
+begin
+if Savedialog1.Execute then
+ begin
+  assignfile(f,savedialog1.filename);
+    rewrite(f);
+    for i:=1 to 3 do
+     for j:=1 to 12 do
+      begin
+       s:=stringgrid1.cells[i,j];
+       Writeln(f,s);
+      end;
+     Closefile(f);
+ end;
 end;
 
 procedure TFormHH.BitClearClick(Sender: TObject);
@@ -341,7 +382,7 @@ var
   i, j: integer;
   cod : integer;
 begin
-  for i                       := 0 to StringGrid2.colcount - 1 do
+  for i                       := 0 to 0{StringGrid2.colcount - 1} do
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
@@ -381,7 +422,7 @@ var
   cod : integer;
 
 begin
-  for i                       := 0 to StringGrid2.colcount - 1 do
+  for i                       := 0 to 0{StringGrid2.colcount - 1} do
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
@@ -420,7 +461,7 @@ var
   i, j: integer;
   cod : integer;
 begin
-  for i                       := 0 to StringGrid2.colcount - 1 do
+  for i                       := 0 to 0{StringGrid2.colcount - 1} do
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
