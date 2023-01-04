@@ -56,6 +56,7 @@ var
   v: Integer;
   f: double;
 begin
+  s:=StringReplace(s, ',', '.',[rfReplaceAll, rfIgnoreCase]);
   val(s, f, v);
   if v = 0 then
     myfloat := f

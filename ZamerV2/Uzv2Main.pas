@@ -387,7 +387,6 @@ begin
         wrepl('pisp', FZamerV2.CombPIsp.Text);
         AddReportString(fn, '0', 'pisp', FZamerV2.CombPIsp.Text);
 
-
         wrepl('polus', FZamerV2.CombPolNom.Text);
         AddReportString(fn, '0', 'polus', FZamerV2.CombPolNom.Text);
         wrepl('polutisp', FZamerV2.CombPolIsp.Text);
