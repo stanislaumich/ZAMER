@@ -255,6 +255,7 @@ end;
 procedure TFormHH.BitSaveClick(Sender: TObject);
 var
   i: integer;
+  s:string;
 begin
   for i := 1 to StringGrid2.RowCount - 2 do
   begin
@@ -276,7 +277,11 @@ begin
     QTemp.ParamByName('psred').AsString  := NVLToZero(StringGrid2.Cells[3, i]);
     QTemp.ParamByName('tip').Asinteger   := tipispyt;
     QTemp.ParamByName('dumax').AsString  := NVLToZero(StringGrid2.Cells[4, i]);
-    QTemp.ParamByName('r').AsString      := NVLToZero(StringGrid2.Cells[5, i]);
+    s:=StringGrid2.Cells[5, i];
+    s:= StringReplace(s, '.', ',',[rfReplaceAll, rfIgnoreCase]);
+    if s='' then s:='0';
+    QTemp.ParamByName('r').AsFloat      := Strtofloat(s);
+
     QTemp.ParamByName('otklon').AsString := NVLToZero(StringGrid2.Cells[6, i]);
     QTemp.ParamByName('vizol').Asinteger := 0;
     if RadioButton4.Checked then

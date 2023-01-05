@@ -463,7 +463,9 @@ object FSopr: TFSopr
     Width = 153
     Height = 17
     Caption = #1053#1077' '#1080#1079#1084#1077#1088#1103#1083#1086#1089#1100
+    Checked = True
     TabOrder = 11
+    TabStop = True
     OnClick = RadioButton3Click
   end
   object Edit1: TEdit

@@ -24,10 +24,31 @@ function Point(s: string): string;
 function Comma(s: string): string;
 function NVLToZero(s: string): string;
 function NVLToEmp(s: string): string;
+function addzeroend(sin:string;n:integer):string;
+
 
 implementation // --------------------------------------------------------------
 
 uses System.SysUtils,ustr;
+
+function addzeroend(sin:string;n:integer):string;
+var
+ i:integer;
+ s:string;
+begin
+ if pos(',',sin)=0
+  then
+   begin
+    s:=sin+',';
+    for i:=1 to n do s:=s+'0';
+   end
+  else
+   begin
+    s:=sin;
+   end;
+ addzeroend:=s;
+end;
+
 {
 ShowMessage('##### : '+FormatFloat('#####', float));
   ShowMessage('00000 : '+FormatFloat('00000', float));

@@ -299,6 +299,9 @@ begin
     Closefile(f);
 end;
 
+
+
+
 procedure TFZamerV2.FormReport;
 const
     wdFindContinue     = 1;
@@ -434,9 +437,6 @@ begin
         AddReportString(fn, '1', 'rizolvk', FSopr.Edit13.Text);
         wrepl('rizolob', FSopr.Edit16.Text);
         AddReportString(fn, '1', 'rizolob', FSopr.Edit16.Text);
-
-        //tmp := (strtofloat(FSopr.Edit8.Text) + strtofloat(FSopr.Edit1.Text) +
-        //  strtofloat(FSopr.Edit2.Text)) / 3;
 
         wrepl('tempersopr1', myformat('0.0', strtofloat(FSopr.Edit8.Text)));
         wrepl('tempersopr2', myformat('0.0', strtofloat(FSopr.Edit1.Text)));
@@ -850,9 +850,9 @@ begin
     while not(QTemp.Eof) do
     begin
         Formhh.Stringgrid2.Cells[0, tip] := QTemp.FieldByName('uisp').Asstring;
-        Formhh.Stringgrid2.Cells[1, tip] := QTemp.FieldByName('usred').Asstring;
-        Formhh.Stringgrid2.Cells[2, tip] := QTemp.FieldByName('isred').Asstring;
-        Formhh.Stringgrid2.Cells[3, tip] := QTemp.FieldByName('psred').Asstring;
+        Formhh.Stringgrid2.Cells[1, tip] := addzeroend(QTemp.FieldByName('usred').Asstring,1);
+        Formhh.Stringgrid2.Cells[2, tip] := addzeroend(QTemp.FieldByName('isred').AsString,2);
+        Formhh.Stringgrid2.Cells[3, tip] := addzeroend(QTemp.FieldByName('psred').Asstring,1);
         Formhh.Stringgrid2.Cells[4, tip] := QTemp.FieldByName('dumax').Asstring;
         Formhh.Stringgrid2.Cells[5, tip] := QTemp.FieldByName('r').Asstring;
         Formhh.Stringgrid2.Cells[6, tip] := QTemp.FieldByName('otklon').Asstring;

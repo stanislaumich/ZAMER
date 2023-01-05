@@ -196,7 +196,9 @@ object FormHH: TFormHH
         Width = 177
         Height = 24
         Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        Checked = True
         TabOrder = 2
+        TabStop = True
         OnClick = RadioButton6Click
       end
     end
