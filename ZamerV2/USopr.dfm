@@ -360,12 +360,12 @@ object FSopr: TFSopr
     OnClick = BitBtn1Click
   end
   object BitBtn5: TBitBtn
-    Left = 446
+    Left = 336
     Top = 566
-    Width = 139
+    Width = 249
     Height = 46
     Anchors = [akLeft, akBottom]
-    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -19

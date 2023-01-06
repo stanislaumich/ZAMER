@@ -429,7 +429,7 @@ object FormHH: TFormHH
     end
   end
   object BitStart: TBitBtn
-    Left = 724
+    Left = 603
     Top = 717
     Width = 149
     Height = 41
@@ -496,12 +496,12 @@ object FormHH: TFormHH
     OnClick = BitStartClick
   end
   object BitSave: TBitBtn
-    Left = 879
+    Left = 758
     Top = 717
-    Width = 161
+    Width = 282
     Height = 41
     Anchors = [akLeft, akBottom]
-    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
       180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
@@ -563,10 +563,10 @@ object FormHH: TFormHH
     OnClick = BitSaveClick
   end
   object BitClear: TBitBtn
-    Left = 553
-    Top = 718
+    Left = 433
+    Top = 717
     Width = 165
-    Height = 39
+    Height = 41
     Anchors = [akLeft, akBottom]
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     Glyph.Data = {

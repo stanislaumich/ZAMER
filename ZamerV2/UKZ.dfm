@@ -312,16 +312,9 @@ object FKZ: TFKZ
       Height = 23
       Caption = 'R='
     end
-    object Label17: TLabel
-      Left = 117
-      Top = 220
-      Width = 25
-      Height = 23
-      Caption = #1054#1084
-    end
     object BitBtn8: TBitBtn
       Left = 220
-      Top = 228
+      Top = 229
       Width = 138
       Height = 48
       Anchors = [akRight, akBottom]
@@ -474,6 +467,14 @@ object FKZ: TFKZ
       Height = 31
       TabOrder = 3
       OnChange = Edit2Change
+    end
+    object ComboBox1: TComboBox
+      Left = 117
+      Top = 217
+      Width = 80
+      Height = 31
+      TabOrder = 4
+      Text = 'ComboBox1'
     end
   end
   object BitBtn10: TBitBtn
@@ -755,16 +756,17 @@ object FKZ: TFKZ
       'INSERT INTO ZAMER.ZKZSVOD ('
       '   NOMER, UISP, U, '
       '   I, P, M,R, '
-      '   TMP) '
+      '   TMP, edizm) '
       'VALUES ( :NOMER, :UISP, :U, '
       '   :I, :P, :M,:R, '
-      '   :TMP )')
+      '   :TMP, :edizm )')
     Left = 460
     Top = 204
     ParamData = <
       item
         Name = 'NOMER'
         ParamType = ptInput
+        Value = Null
       end
       item
         Name = 'UISP'
@@ -792,6 +794,10 @@ object FKZ: TFKZ
       end
       item
         Name = 'TMP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'EDIZM'
         ParamType = ptInput
       end>
   end

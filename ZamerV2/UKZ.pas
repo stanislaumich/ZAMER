@@ -34,7 +34,6 @@ type
     Label14: TLabel;
     Label15: TLabel;
     Label16: TLabel;
-    Label17: TLabel;
     BitBtn8: TBitBtn;
     BitBtn9: TBitBtn;
     StringGrid1: TStringGrid;
@@ -54,6 +53,7 @@ type
     QInsSvod: TFDQuery;
     Label18: TLabel;
     Label19: TLabel;
+    ComboBox1: TComboBox;
     procedure BitBtn8Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure BitBtn9Click(Sender: TObject);
@@ -302,6 +302,7 @@ begin
   QInsSvod.ParamByName('m').AsFloat :=
     SimpleRoundTo(QSelectsred.Fieldbyname('t').AsFloat, RazM);
   QInsSvod.ParamByName('tmp').AsFloat := 0;
+  QInsSvod.ParamByName('edizm').AsString := ComboBox1.Text;
   QInsSvod.ExecSQL;
 
   Qm.Close;
@@ -321,7 +322,7 @@ begin
   TimerUp.Enabled := True;
   Label19.Caption:=FZamerV2.CombUIsp.Text;
 
-  StringGrid1.RowCount    := 3;
+  StringGrid1.RowCount    := 6;
   StringGrid1.Cells[0, 0] := 'U кк';
   StringGrid1.Cells[1, 0] := 'U сред';
   StringGrid1.Cells[2, 0] := 'I сред';
@@ -362,15 +363,10 @@ end;
 
 procedure TFKZ.FormCreate(Sender: TObject);
 begin
-{  StringGrid1.RowCount    := 6;
-  StringGrid1.Cells[0, 0] := 'U кк';
-  StringGrid1.Cells[1, 0] := 'U сред';
-  StringGrid1.Cells[2, 0] := 'I сред';
-  StringGrid1.Cells[3, 0] := 'P сред';
-  StringGrid1.Cells[4, 0] := 'М сред';
-  StringGrid1.Cells[0, 1] := '380';
-  StringGrid1.Cells[0, 2] := '100';
-  }
+ComboBox1.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
+    'R_KZamList.txt');
+//ComboBox1.Text  := ComboBox1.Items[0];
+Combobox1.ItemIndex:=0;
 end;
 
 procedure TFKZ.FormHide(Sender: TObject);

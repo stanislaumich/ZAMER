@@ -938,6 +938,7 @@ begin
         FKZ.StringGrid1.row := FKZ.StringGrid1.row + 1;
         if QTemp.FieldByName('uisp').Asstring = CombUisp.Text then
         FKZ.Edit2.Text      := QTemp.FieldByName('r').Asstring;
+        FKZ.ComboBox1.Text:=QTemp.FieldByName('edizm').AsString;
         QTemp.Next;
     end;
     /// ////////////////////////////////////////////////////////////
