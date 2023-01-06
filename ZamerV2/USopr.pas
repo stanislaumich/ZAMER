@@ -217,8 +217,8 @@ end;
 
 procedure TFSopr.ComboBox9Change(Sender: TObject);
 begin
-  enableclose := false;
-  formhh.Combobox1.text:=Combobox9.text;
+  enableclose           := false;
+  formhh.Combobox1.Text := ComboBox9.Text;
 end;
 
 procedure TFSopr.Edit13Change(Sender: TObject);
@@ -228,7 +228,7 @@ end;
 
 procedure TFSopr.Edit13Click(Sender: TObject);
 begin
-Edit13.SelectAll;
+  Edit13.SelectAll;
 end;
 
 procedure TFSopr.Edit16Change(Sender: TObject);
@@ -238,17 +238,17 @@ end;
 
 procedure TFSopr.Edit16Click(Sender: TObject);
 begin
-Edit16.SelectAll;
+  Edit16.SelectAll;
 end;
 
 procedure TFSopr.Edit1Click(Sender: TObject);
 begin
-Edit1.SelectAll;
+  Edit1.SelectAll;
 end;
 
 procedure TFSopr.Edit2Click(Sender: TObject);
 begin
-Edit2.SelectAll;
+  Edit2.SelectAll;
 end;
 
 procedure TFSopr.Edit8Change(Sender: TObject);
@@ -258,7 +258,7 @@ end;
 
 procedure TFSopr.Edit8Click(Sender: TObject);
 begin
-Edit8.SelectAll;
+  Edit8.SelectAll;
 end;
 
 procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -266,14 +266,21 @@ var
   buttonSelected: integer;
 begin
 
-if enableclose then canclose:=true
- else
+  if enableclose then
+    CanClose := true
+  else
   begin
-   buttonSelected := MessageDlg('Сохранить данные?', mtConfirmation,
-    [mbYes, mbNo, mbCancel], 0);
-   if buttonSelected = mrYes then begin canclose:=true; BitBtn5.Click;end;
-   if buttonSelected = mrNo then canclose:=true;
-   if buttonSelected = mrCancel then CanClose:=false;
+    buttonSelected := MessageDlg('Сохранить данные?', mtConfirmation,
+      [mbYes, mbNo, mbCancel], 0);
+    if buttonSelected = mrYes then
+    begin
+      CanClose := true;
+      BitBtn5.Click;
+    end;
+    if buttonSelected = mrNo then
+      CanClose := true;
+    if buttonSelected = mrCancel then
+      CanClose := false;
   end;
 end;
 
@@ -294,9 +301,10 @@ begin
     'R_SoprotListUP.txt');
   ComboBox10.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
     'R_SoprotListDown.txt');
-  ComboBox9.Text  := ComboBox9.Items[0];
-  ComboBox10.Text := ComboBox10.Items[0];
-
+  //ComboBox9.Text  := ComboBox9.Items[0];
+  //ComboBox10.Text := ComboBox10.Items[0];
+  ComboBox9.ItemIndex := 0;
+  ComboBox10.ItemIndex := 0;
   for i   := 1 to 3 do
     for j := 1 to 3 do
     begin

@@ -299,9 +299,6 @@ begin
     Closefile(f);
 end;
 
-
-
-
 procedure TFZamerV2.FormReport;
 const
     wdFindContinue     = 1;
@@ -441,9 +438,12 @@ begin
         wrepl('tempersopr1', myformat('0.0', strtofloat(FSopr.Edit8.Text)));
         wrepl('tempersopr2', myformat('0.0', strtofloat(FSopr.Edit1.Text)));
         wrepl('tempersopr3', myformat('0.0', strtofloat(FSopr.Edit2.Text)));
-        AddReportString(fn, '1', 'tempersopr1', myformat('0.0', strtofloat(FSopr.Edit8.Text)));
-        AddReportString(fn, '1', 'tempersopr2', myformat('0.0', strtofloat(FSopr.Edit1.Text)));
-        AddReportString(fn, '1', 'tempersopr3', myformat('0.0', strtofloat(FSopr.Edit2.Text)));
+        AddReportString(fn, '1', 'tempersopr1',
+          myformat('0.0', strtofloat(FSopr.Edit8.Text)));
+        AddReportString(fn, '1', 'tempersopr2',
+          myformat('0.0', strtofloat(FSopr.Edit1.Text)));
+        AddReportString(fn, '1', 'tempersopr3',
+          myformat('0.0', strtofloat(FSopr.Edit2.Text)));
 
         if FSopr.radiobutton1.Checked then
             wrepl('bolt', 'ВЫДЕРЖАЛ');
@@ -739,11 +739,12 @@ begin
             Qinsdvig.ParamByName('ISPOLN').Asstring := EditOsob.Text;
             Qinsdvig.ParamByName('READY').AsInteger := 0;
             Qinsdvig.ParamByName('NOMER').Asstring  := nomer;
-            if CombSotrud.Text='' then
-             begin
-              ShowMessage('Не указано ФИО испытателя, проверьте внимательно все необходимые поля');
-              exit;
-             end;
+            if CombSotrud.Text = '' then
+            begin
+                ShowMessage
+                  ('Не указано ФИО испытателя, проверьте внимательно все необходимые поля');
+                exit;
+            end;
             Qinsdvig.ParamByName('fio').Asstring    := CombSotrud.Text;
             Qinsdvig.ParamByName('regim').Asstring  := CombRegim.Text;
             Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
@@ -853,16 +854,20 @@ begin
 
     tip                         := 1;
     Formhh.Stringgrid2.rowcount := QTemp.RecordCount + 2;
-    Formhh.ComboBox1.Text:=QTemp.FieldByName('edizm').Asstring;
+    Formhh.ComboBox1.Text       := QTemp.FieldByName('edizm').Asstring;
     while not(QTemp.Eof) do
     begin
         Formhh.Stringgrid2.Cells[0, tip] := QTemp.FieldByName('uisp').Asstring;
-        Formhh.Stringgrid2.Cells[1, tip] := addzeroend(QTemp.FieldByName('usred').Asstring,1);
-        Formhh.Stringgrid2.Cells[2, tip] := addzeroend(QTemp.FieldByName('isred').AsString,2);
-        Formhh.Stringgrid2.Cells[3, tip] := addzeroend(QTemp.FieldByName('psred').Asstring,1);
+        Formhh.Stringgrid2.Cells[1, tip] :=
+          addzeroend(QTemp.FieldByName('usred').Asstring, 1);
+        Formhh.Stringgrid2.Cells[2, tip] :=
+          addzeroend(QTemp.FieldByName('isred').Asstring, 2);
+        Formhh.Stringgrid2.Cells[3, tip] :=
+          addzeroend(QTemp.FieldByName('psred').Asstring, 1);
         Formhh.Stringgrid2.Cells[4, tip] := QTemp.FieldByName('dumax').Asstring;
         Formhh.Stringgrid2.Cells[5, tip] := QTemp.FieldByName('r').Asstring;
-        Formhh.Stringgrid2.Cells[6, tip] := QTemp.FieldByName('otklon').Asstring;
+        Formhh.Stringgrid2.Cells[6, tip] := QTemp.FieldByName('otklon')
+          .Asstring;
         QTemp.Next;
         tip := tip + 1;
     end;
@@ -922,7 +927,7 @@ begin
 
     FKZ.StringGrid1.row      := 1;
     FKZ.StringGrid1.rowcount := 10;
-    //FKZ.Edit2.Enabled        := false;
+    // FKZ.Edit2.Enabled        := false;
     while not(QTemp.Eof) do
     begin
         FKZ.StringGrid1.Cells[0, FKZ.StringGrid1.row] :=
@@ -937,8 +942,8 @@ begin
           QTemp.FieldByName('m').Asstring;
         FKZ.StringGrid1.row := FKZ.StringGrid1.row + 1;
         if QTemp.FieldByName('uisp').Asstring = CombUisp.Text then
-        FKZ.Edit2.Text      := QTemp.FieldByName('r').Asstring;
-        FKZ.ComboBox1.Text:=QTemp.FieldByName('edizm').AsString;
+            FKZ.Edit2.Text := QTemp.FieldByName('r').Asstring;
+        FKZ.ComboBox1.Text := QTemp.FieldByName('edizm').Asstring;
         QTemp.Next;
     end;
     /// ////////////////////////////////////////////////////////////
@@ -1040,7 +1045,7 @@ begin
     QTemp.Open('select value from zini where name=' + Quotedstr('MNTPath'));
     ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
       nil, nil, SW_SHOWNORMAL);
-    Datetimepicker1.Date:=Date;
+    DateTimePicker1.Date := Date;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('Update version set maintotal=maintotal+1');
     QTemp.ExecSQL;

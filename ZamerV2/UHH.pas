@@ -187,43 +187,43 @@ end;
 
 procedure TFormHH.BitBtn1Click(Sender: TObject);
 var
- i,j:integer;
- f:textfile;
- s:string;
+  i, j: integer;
+  f   : textfile;
+  s   : string;
 begin
   If OpenDialog1.Execute then
-   begin
-    assignfile(f,opendialog1.filename);
+  begin
+    assignfile(f, OpenDialog1.filename);
     reset(f);
-    for i:=1 to 3 do
-     for j:=1 to 12 do
+    for i   := 1 to 3 do
+      for j := 1 to 12 do
       begin
-       Readln(f,s);
-       stringgrid1.cells[i,j]:=s;
+        Readln(f, s);
+        StringGrid1.Cells[i, j] := s;
       end;
-     Closefile(f);
-   end;
+    Closefile(f);
+  end;
 
 end;
 
 procedure TFormHH.BitBtn3Click(Sender: TObject);
 var
- i,j:integer;
- f:textfile;
- s:string;
+  i, j: integer;
+  f   : textfile;
+  s   : string;
 begin
-if Savedialog1.Execute then
- begin
-  assignfile(f,savedialog1.filename);
+  if SaveDialog1.Execute then
+  begin
+    assignfile(f, SaveDialog1.filename);
     rewrite(f);
-    for i:=1 to 3 do
-     for j:=1 to 12 do
+    for i   := 1 to 3 do
+      for j := 1 to 12 do
       begin
-       s:=stringgrid1.cells[i,j];
-       Writeln(f,s);
+        s := StringGrid1.Cells[i, j];
+        Writeln(f, s);
       end;
-     Closefile(f);
- end;
+    Closefile(f);
+  end;
 end;
 
 procedure TFormHH.BitClearClick(Sender: TObject);
@@ -255,7 +255,7 @@ end;
 procedure TFormHH.BitSaveClick(Sender: TObject);
 var
   i: integer;
-  s:string;
+  s: string;
 begin
   for i := 1 to StringGrid2.RowCount - 2 do
   begin
@@ -270,17 +270,18 @@ begin
       ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL,EDIZM, perc)');
     QTemp.SQL.Add
       (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm, :perc)');
-    QTemp.ParamByName('nomer').AsString  := Nomer;
-    QTemp.ParamByName('uisp').AsString   := StringGrid2.Cells[0, i];
-    QTemp.ParamByName('usred').AsString  := NVLToZero(StringGrid2.Cells[1, i]);
-    QTemp.ParamByName('isred').AsString  := NVLToZero(StringGrid2.Cells[2, i]);
-    QTemp.ParamByName('psred').AsString  := NVLToZero(StringGrid2.Cells[3, i]);
-    QTemp.ParamByName('tip').Asinteger   := tipispyt;
-    QTemp.ParamByName('dumax').AsString  := NVLToZero(StringGrid2.Cells[4, i]);
-    s:=StringGrid2.Cells[5, i];
-    s:= StringReplace(s, '.', ',',[rfReplaceAll, rfIgnoreCase]);
-    if s='' then s:='0';
-    QTemp.ParamByName('r').AsFloat      := Strtofloat(s);
+    QTemp.ParamByName('nomer').AsString := Nomer;
+    QTemp.ParamByName('uisp').AsString  := StringGrid2.Cells[0, i];
+    QTemp.ParamByName('usred').AsString := NVLToZero(StringGrid2.Cells[1, i]);
+    QTemp.ParamByName('isred').AsString := NVLToZero(StringGrid2.Cells[2, i]);
+    QTemp.ParamByName('psred').AsString := NVLToZero(StringGrid2.Cells[3, i]);
+    QTemp.ParamByName('tip').Asinteger  := tipispyt;
+    QTemp.ParamByName('dumax').AsString := NVLToZero(StringGrid2.Cells[4, i]);
+    s                                   := StringGrid2.Cells[5, i];
+    s := StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
+    if s = '' then
+      s                            := '0';
+    QTemp.ParamByName('r').AsFloat := Strtofloat(s);
 
     QTemp.ParamByName('otklon').AsString := NVLToZero(StringGrid2.Cells[6, i]);
     QTemp.ParamByName('vizol').Asinteger := 0;
@@ -288,8 +289,9 @@ begin
       QTemp.ParamByName('vizol').Asinteger := 1;
     if RadioButton5.Checked then
       QTemp.ParamByName('vizol').Asinteger := 2;
-    QTemp.ParamByName('edizm').AsString :=ComboBox1.Text;
-    QTemp.ParamByName('perc').Asinteger := round(strtoint(StringGrid2.Cells[0, i])/strtoint(label7.Caption)*100);
+    QTemp.ParamByName('edizm').AsString    := ComboBox1.Text;
+    QTemp.ParamByName('perc').Asinteger    :=
+      round(strtoint(StringGrid2.Cells[0, i]) / strtoint(Label7.Caption) * 100);
     QTemp.ExecSQL;
   end;
   enableclose := true;
@@ -301,7 +303,7 @@ procedure TFormHH.BitStartClick(Sender: TObject);
 begin
   if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked) then
   begin
-    times := Strtoint(Edit1.Text);
+    times := strtoint(Edit1.Text);
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
@@ -314,7 +316,7 @@ begin
     command(true);
     enableclose         := false;
     TimWork1000.Enabled := true;
-    BitStart.Enabled:=false;
+    BitStart.Enabled    := false;
   end
   else
     ShowMessage('Ќе выбран ни один вариант испытани€ в левой таблице!!');
@@ -356,7 +358,9 @@ end;
 procedure TFormHH.FormCreate(Sender: TObject);
 begin
   loadgrids;
-  ComboBox1.Items.LoadFromFile(extractfilepath(application.exename)+'R_SoprotListHH.txt');
+  ComboBox1.Items.LoadFromFile(extractfilepath(application.exename) +
+    'R_SoprotListHH.txt');
+    ComboBox1.ItemIndex := 0;
 end;
 
 procedure TFormHH.FormHide(Sender: TObject);
@@ -387,7 +391,7 @@ var
   i, j: integer;
   cod : integer;
 begin
-  for i                       := 0 to 0{StringGrid2.colcount - 1} do
+  for i                       := 0 to 0 { StringGrid2.colcount - 1 } do
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
@@ -398,7 +402,7 @@ begin
     exit;
   end;
 
-  val(FZamerv2.CombUisp.Text, currentvolt, cod);
+  val(FZamerV2.CombUisp.Text, currentvolt, cod);
   if cod = 0 then
   begin
     StringGrid2.RowCount := 2;
@@ -408,7 +412,7 @@ begin
         StringGrid2.RowCount    := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
           floattostr(round(currentvolt / 100 *
-          Strtoint(StringGrid1.Cells[1, i])));
+          strtoint(StringGrid1.Cells[1, i])));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row                                := 1;
@@ -427,7 +431,7 @@ var
   cod : integer;
 
 begin
-  for i                       := 0 to 0{StringGrid2.colcount - 1} do
+  for i                       := 0 to 0 { StringGrid2.colcount - 1 } do
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
@@ -438,7 +442,7 @@ begin
     exit;
   end;
 
-  val(FZamerv2.CombUisp.Text, currentvolt, cod);
+  val(FZamerV2.CombUisp.Text, currentvolt, cod);
   if cod = 0 then
   begin
     StringGrid2.RowCount := 2;
@@ -448,7 +452,7 @@ begin
         StringGrid2.RowCount    := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
           floattostr(round(currentvolt / 100 *
-          Strtoint(StringGrid1.Cells[2, i])));
+          strtoint(StringGrid1.Cells[2, i])));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row                                := 1;
@@ -466,7 +470,7 @@ var
   i, j: integer;
   cod : integer;
 begin
-  for i                       := 0 to 0{StringGrid2.colcount - 1} do
+  for i                       := 0 to 0 { StringGrid2.colcount - 1 } do
     for j                     := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
   StringGrid2.RowCount        := 2;
@@ -477,7 +481,7 @@ begin
     exit;
   end;
 
-  val(FZamerv2.CombUisp.Text, currentvolt, cod);
+  val(FZamerV2.CombUisp.Text, currentvolt, cod);
   if cod = 0 then
   begin
     StringGrid2.RowCount := 2;
@@ -487,7 +491,7 @@ begin
         StringGrid2.RowCount    := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
           floattostr(round(currentvolt / 100 *
-          Strtoint(StringGrid1.Cells[3, i])));
+          strtoint(StringGrid1.Cells[3, i])));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row                                := 1;
@@ -518,7 +522,7 @@ end;
 procedure TFormHH.TimUpTimer(Sender: TObject);
 begin
   QUp.Open('select U, i, p from zelspectmp');
-  if abs(QUp.FieldByName('U').Asfloat - myfloat(Label26.Caption)) <
+  if abs(QUp.FieldByName('U').AsFloat - myfloat(Label26.Caption)) <
     myfloat(NVLToZero(Edit2.Text)) then
   begin
     Label22.Font.Color := clGreen;
@@ -529,9 +533,9 @@ begin
     Label16.Font.Color := clRed;
     Label22.Font.Color := clRed;
   end;
-  Label22.Caption := myformat(tRazU, QUp.FieldByName('U').Asfloat);
-  Label23.Caption := myformat(tRazI, QUp.FieldByName('I').Asfloat);
-  Label24.Caption := myformat(tRazP, QUp.FieldByName('P').Asfloat);
+  Label22.Caption := myformat(tRazU, QUp.FieldByName('U').AsFloat);
+  Label23.Caption := myformat(tRazI, QUp.FieldByName('I').AsFloat);
+  Label24.Caption := myformat(tRazP, QUp.FieldByName('P').AsFloat);
 end;
 
 procedure TFormHH.TimWork1000Timer(Sender: TObject);
@@ -552,23 +556,23 @@ begin
     While not QTemp.Eof do
     begin
       QInsAll.ParamByName('NOMER').AsString := Nomer;
-      QInsAll.ParamByName('UISP').Asfloat   := StrtoFloat(Label26.Caption);
-      QInsAll.ParamByName('U12').Asfloat    := QTemp.FieldByName('u1').Asfloat;
-      QInsAll.ParamByName('U23').Asfloat    := QTemp.FieldByName('u2').Asfloat;
-      QInsAll.ParamByName('U31').Asfloat    := QTemp.FieldByName('u3').Asfloat;
-      QInsAll.ParamByName('I1').Asfloat     := QTemp.FieldByName('i1').Asfloat;
-      QInsAll.ParamByName('I2').Asfloat     := QTemp.FieldByName('i2').Asfloat;
-      QInsAll.ParamByName('I3').Asfloat     := QTemp.FieldByName('i3').Asfloat;
-      QInsAll.ParamByName('P1').Asfloat     := QTemp.FieldByName('p1').Asfloat;
-      QInsAll.ParamByName('P2').Asfloat     := QTemp.FieldByName('p2').Asfloat;
-      QInsAll.ParamByName('P3').Asfloat     := QTemp.FieldByName('p3').Asfloat;
-      QInsAll.ParamByName('Ps').Asfloat     :=
-        (QTemp.FieldByName('p1').Asfloat + QTemp.FieldByName('p2').Asfloat +
-        QTemp.FieldByName('p3').Asfloat);
-      QInsAll.ParamByName('DUMAX').Asfloat := 0;
-      QInsAll.ParamByName('FU').Asfloat    := QTemp.FieldByName('u').Asfloat;
-      QInsAll.ParamByName('FI').Asfloat    := QTemp.FieldByName('i').Asfloat;
-      QInsAll.ParamByName('FP').Asfloat    := QTemp.FieldByName('p').Asfloat;
+      QInsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label26.Caption);
+      QInsAll.ParamByName('U12').AsFloat    := QTemp.FieldByName('u1').AsFloat;
+      QInsAll.ParamByName('U23').AsFloat    := QTemp.FieldByName('u2').AsFloat;
+      QInsAll.ParamByName('U31').AsFloat    := QTemp.FieldByName('u3').AsFloat;
+      QInsAll.ParamByName('I1').AsFloat     := QTemp.FieldByName('i1').AsFloat;
+      QInsAll.ParamByName('I2').AsFloat     := QTemp.FieldByName('i2').AsFloat;
+      QInsAll.ParamByName('I3').AsFloat     := QTemp.FieldByName('i3').AsFloat;
+      QInsAll.ParamByName('P1').AsFloat     := QTemp.FieldByName('p1').AsFloat;
+      QInsAll.ParamByName('P2').AsFloat     := QTemp.FieldByName('p2').AsFloat;
+      QInsAll.ParamByName('P3').AsFloat     := QTemp.FieldByName('p3').AsFloat;
+      QInsAll.ParamByName('Ps').AsFloat     :=
+        (QTemp.FieldByName('p1').AsFloat + QTemp.FieldByName('p2').AsFloat +
+        QTemp.FieldByName('p3').AsFloat);
+      QInsAll.ParamByName('DUMAX').AsFloat := 0;
+      QInsAll.ParamByName('FU').AsFloat    := QTemp.FieldByName('u').AsFloat;
+      QInsAll.ParamByName('FI').AsFloat    := QTemp.FieldByName('i').AsFloat;
+      QInsAll.ParamByName('FP').AsFloat    := QTemp.FieldByName('p').AsFloat;
       QInsAll.ExecSQL;
       QTemp.Next;
     end;
@@ -582,15 +586,15 @@ begin
     Qsred.Close;
     Qsred.Unprepare;
     Qsred.ParamByName('nomer').AsString := Nomer;
-    Qsred.ParamByName('uisp').Asfloat   := StrtoFloat(Label26.Caption);
-    Qsred.ParamByName('delta').Asfloat  := myfloat(Edit2.Text);
+    Qsred.ParamByName('uisp').AsFloat   := Strtofloat(Label26.Caption);
+    Qsred.ParamByName('delta').AsFloat  := myfloat(Edit2.Text);
     Qsred.Open;
     StringGrid2.Cells[1, StringGrid2.row] :=
-      floattostr(Qsred.FieldByName('u').Asfloat);
+      floattostr(Qsred.FieldByName('u').AsFloat);
     StringGrid2.Cells[2, StringGrid2.row] :=
-      floattostr(Qsred.FieldByName('i').Asfloat);
+      floattostr(Qsred.FieldByName('i').AsFloat);
     StringGrid2.Cells[3, StringGrid2.row] :=
-      floattostr(Qsred.FieldByName('p').Asfloat);
+      floattostr(Qsred.FieldByName('p').AsFloat);
     StringGrid2.Cells[4, StringGrid2.row] := Qsred.FieldByName('m').AsString;
     StringGrid2.Cells[5, StringGrid2.row] := '0';
     StringGrid2.Cells[6, StringGrid2.row] :=
@@ -599,7 +603,7 @@ begin
 
     if StringGrid2.row < StringGrid2.RowCount - 2 then
       StringGrid2.row := StringGrid2.row + 1;
-      BitStart.Enabled:=true;
+    BitStart.Enabled  := true;
   end;
 
 end;

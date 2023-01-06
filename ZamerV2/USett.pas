@@ -64,7 +64,8 @@ type
 
 var
   FSett: TFSett;
-  fname:string;
+  fname: string;
+
 implementation
 
 Uses uzv2Main;
@@ -141,7 +142,7 @@ end;
 
 procedure TFSett.Button3Click(Sender: TObject);
 begin
-memo1.lines.savetofile(fname);
+  Memo1.lines.savetofile(fname);
 end;
 
 procedure TFSett.FormCreate(Sender: TObject);
@@ -164,10 +165,10 @@ end;
 
 procedure TFSett.ListBox1Click(Sender: TObject);
 begin
- fname:=listbox1.items[listbox1.ItemIndex];
- delete(fname,1,pos(';',fname));
- fname:= extractfilepath(Application.exename)+fname;
- memo1.lines.loadfromfile(fname);
+  fname := ListBox1.items[ListBox1.ItemIndex];
+  delete(fname, 1, pos(';', fname));
+  fname := extractfilepath(Application.exename) + fname;
+  Memo1.lines.loadfromfile(fname);
 end;
 
 end.

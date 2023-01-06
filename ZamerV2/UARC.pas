@@ -91,8 +91,8 @@ end;
 procedure TFARC.FormActivate(Sender: TObject);
 begin
   setgridcolumnwidths(GridSpis);
-  GridSpis.datasource.DataSet.Active:=false;
-  GridSpis.datasource.DataSet.Active:=true;
+  GridSpis.datasource.DataSet.Active := false;
+  GridSpis.datasource.DataSet.Active := true;
   GridSpis.datasource.DataSet.first;
   Label1.Caption := GridSpis.datasource.DataSet.FieldByName('NOMER').Asstring;
 end;
