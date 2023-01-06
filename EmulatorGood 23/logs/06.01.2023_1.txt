@@ -1,1 +1,37 @@
 06.01.2023 10:00:24.651 - Запуск Modbus TCP/RTU Эмулятор
+06.01.2023 10:00:25.236 - TModbusTCPServer.Create
+06.01.2023 10:00:25.826 - TModbusTCPServer.Start
+06.01.2023 10:00:25.826 - TTCPAccept.Create IN, Port = 502
+06.01.2023 10:00:25.846 - TTCPAccept.Create OUT
+06.01.2023 10:00:25.846 - TTCPAccept.Execute IN
+06.01.2023 10:00:25.846 - TTCPAccept.InitSocket IN
+06.01.2023 10:00:25.851 - TTCPAccept.InitSocket - OUT
+06.01.2023 10:02:54.368 - TModbusTCPServer.ClientConnectEvent
+06.01.2023 10:02:54.468 - TModbusTCPServer.AddClient
+06.01.2023 10:02:54.468 - TModbusTCPClient.Start
+06.01.2023 10:02:54.468 - TTCPAccept.InitSocket IN
+06.01.2023 10:03:34.239 - TModbusTCPServer.OnClientDisconnect
+06.01.2023 10:05:57.81 - TModbusTCPServer.ClientConnectEvent
+06.01.2023 10:05:57.81 - TModbusTCPServer.RemoveClient
+06.01.2023 10:05:57.776 - TModbusTCPServer.AddClient
+06.01.2023 10:05:57.776 - TModbusTCPClient.Start
+06.01.2023 10:05:57.776 - TTCPAccept.InitSocket IN
+06.01.2023 10:06:38.98 - TModbusTCPServer.OnClientDisconnect
+06.01.2023 10:11:03.381 - TModbusTCPServer.ClientConnectEvent
+06.01.2023 10:11:03.381 - TModbusTCPServer.RemoveClient
+06.01.2023 10:11:03.501 - TModbusTCPServer.AddClient
+06.01.2023 10:11:03.501 - TModbusTCPClient.Start
+06.01.2023 10:11:03.501 - TTCPAccept.InitSocket IN
+06.01.2023 10:11:37.634 - TModbusTCPServer.OnClientDisconnect
+06.01.2023 10:13:49.798 - TModbusTCPServer.ClientConnectEvent
+06.01.2023 10:13:49.798 - TModbusTCPServer.RemoveClient
+06.01.2023 10:13:49.848 - TModbusTCPServer.AddClient
+06.01.2023 10:13:49.848 - TModbusTCPClient.Start
+06.01.2023 10:13:49.848 - TTCPAccept.InitSocket IN
+06.01.2023 10:14:38.315 - TModbusTCPServer.OnClientDisconnect
+06.01.2023 10:17:57.619 - TModbusTCPServer.ClientConnectEvent
+06.01.2023 10:17:57.619 - TModbusTCPServer.RemoveClient
+06.01.2023 10:17:57.719 - TModbusTCPServer.AddClient
+06.01.2023 10:17:57.719 - TModbusTCPClient.Start
+06.01.2023 10:17:57.719 - TTCPAccept.InitSocket IN
+06.01.2023 10:18:22.310 - TModbusTCPServer.OnClientDisconnect

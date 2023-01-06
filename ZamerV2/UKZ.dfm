@@ -477,7 +477,7 @@ object FKZ: TFKZ
     end
   end
   object BitBtn10: TBitBtn
-    Left = 208
+    Left = 200
     Top = 516
     Width = 155
     Height = 53
@@ -544,12 +544,12 @@ object FKZ: TFKZ
     OnClick = BitBtn10Click
   end
   object BitBtn12: TBitBtn
-    Left = 366
+    Left = 358
     Top = 516
-    Width = 151
+    Width = 160
     Height = 53
     Anchors = [akRight, akBottom]
-    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
     Glyph.Data = {
       F6060000424DF606000000000000360000002800000018000000180000000100
       180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
@@ -608,6 +608,7 @@ object FKZ: TFKZ
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 4
+    WordWrap = True
     OnClick = BitBtn12Click
   end
   object QTemp: TFDQuery

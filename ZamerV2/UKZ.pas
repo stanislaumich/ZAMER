@@ -150,7 +150,30 @@ begin
 end;
 
 procedure TFKZ.BitBtn12Click(Sender: TObject);
+var
+ s:string;
+ cod:integer;
+ f:Real;
 begin
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  if Edit2.Text='' then
+   begin
+    ShowMessage('Необходимо указать сопротивление для сохранения!');
+    exit;
+   end;
+  s:=edit2.Text;
+  S:=StringReplace(s,',','.',[rfReplaceAll, rfIgnoreCase]);
+  val(s,f,cod);
+  if cod<>0 then
+   begin
+    Showmessage('Сопротивление не является числом');
+    end;
+
+  QTEmp.SQL.Add('update zkzsvod set r='+s);
+  QTEmp.SQL.Add(' where nomer='+Quotedstr(nomer)+' and uisp='+label19.caption);
+  QTemp.ExecSQL;
+
   enableclose := True;
   FKZ.Close;
 end;
@@ -264,8 +287,10 @@ begin
 
   QInsSvod.ParamByName('nomer').AsString := Nomer;
   QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label13.Caption);
-  QInsSvod.ParamByName('r').AsFloat      :=
-    SimpleRoundTo(Strtofloat(Edit2.text), RazR);
+  //if stringgrid1.row=1 then
+  QInsSvod.ParamByName('r').AsFloat      := 0;
+    //SimpleRoundTo(Strtofloat(Edit2.text), RazR);
+
   QInsSvod.ParamByName('u').AsFloat :=
     SimpleRoundTo(QSelectsred.Fieldbyname('u').AsFloat, RazU);
   QInsSvod.ParamByName('i').AsFloat :=
@@ -293,6 +318,16 @@ begin
   Nomer           := Label2.Caption;
   TimerUp.Enabled := True;
   Label19.Caption:=FZamerV2.CombUIsp.Text;
+
+  StringGrid1.RowCount    := 3;
+  StringGrid1.Cells[0, 0] := 'U кк';
+  StringGrid1.Cells[1, 0] := 'U сред';
+  StringGrid1.Cells[2, 0] := 'I сред';
+  StringGrid1.Cells[3, 0] := 'P сред';
+  StringGrid1.Cells[4, 0] := 'М сред';
+  StringGrid1.Cells[0, 2] := Label19.Caption;
+  StringGrid1.Cells[0, 1] := Inttostr(Round(Strtoint(Label19.Caption)/3.8));
+
 end;
 
 procedure TFKZ.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -325,7 +360,7 @@ end;
 
 procedure TFKZ.FormCreate(Sender: TObject);
 begin
-  StringGrid1.RowCount    := 6;
+{  StringGrid1.RowCount    := 6;
   StringGrid1.Cells[0, 0] := 'U кк';
   StringGrid1.Cells[1, 0] := 'U сред';
   StringGrid1.Cells[2, 0] := 'I сред';
@@ -333,6 +368,7 @@ begin
   StringGrid1.Cells[4, 0] := 'М сред';
   StringGrid1.Cells[0, 1] := '380';
   StringGrid1.Cells[0, 2] := '100';
+  }
 end;
 
 procedure TFKZ.FormHide(Sender: TObject);
