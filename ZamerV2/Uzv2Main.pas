@@ -936,6 +936,7 @@ begin
         FKZ.StringGrid1.Cells[4, FKZ.StringGrid1.row] :=
           QTemp.FieldByName('m').Asstring;
         FKZ.StringGrid1.row := FKZ.StringGrid1.row + 1;
+        if QTemp.FieldByName('uisp').Asstring = CombUisp.Text then
         FKZ.Edit2.Text      := QTemp.FieldByName('r').Asstring;
         QTemp.Next;
     end;

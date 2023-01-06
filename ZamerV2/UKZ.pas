@@ -146,7 +146,8 @@ begin
   for i                       := 1 to StringGrid1.ColCount - 1 do
     for j                     := 1 to StringGrid1.RowCount - 1 do
       StringGrid1.Cells[i, j] := '';
-  //Edit2.Enabled               := True;
+  Edit2.Text               := '';
+  enableclose := false;
 end;
 
 procedure TFKZ.BitBtn12Click(Sender: TObject);
@@ -168,6 +169,7 @@ begin
   if cod<>0 then
    begin
     Showmessage('Сопротивление не является числом');
+    exit;
     end;
 
   QTEmp.SQL.Add('update zkzsvod set r='+s);
