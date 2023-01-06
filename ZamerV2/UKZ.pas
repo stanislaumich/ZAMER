@@ -52,6 +52,8 @@ type
     QInsAll: TFDQuery;
     QSelectsred: TFDQuery;
     QInsSvod: TFDQuery;
+    Label18: TLabel;
+    Label19: TLabel;
     procedure BitBtn8Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure BitBtn9Click(Sender: TObject);
@@ -144,7 +146,7 @@ begin
   for i                       := 1 to StringGrid1.ColCount - 1 do
     for j                     := 1 to StringGrid1.RowCount - 1 do
       StringGrid1.Cells[i, j] := '';
-  Edit2.Enabled               := True;
+  //Edit2.Enabled               := True;
 end;
 
 procedure TFKZ.BitBtn12Click(Sender: TObject);
@@ -162,11 +164,12 @@ end;
 procedure TFKZ.BitBtn8Click(Sender: TObject);
 
 begin
-  if Edit2.text = '' then
+{  if Edit2.text = '' then
   begin
     Showmessage('Не указано сопротивление!');
     exit;
   end;
+}
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('truncate table zamertmp');
@@ -289,6 +292,7 @@ begin
   Edit1.text      := QTemp.Fieldbyname('value').AsString;
   Nomer           := Label2.Caption;
   TimerUp.Enabled := True;
+  Label19.Caption:=FZamerV2.CombUIsp.Text;
 end;
 
 procedure TFKZ.FormClose(Sender: TObject; var Action: TCloseAction);

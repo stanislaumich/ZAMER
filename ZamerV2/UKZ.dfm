@@ -43,6 +43,20 @@ object FKZ: TFKZ
       Height = 23
       Caption = '0'
     end
+    object Label18: TLabel
+      Left = 96
+      Top = 3
+      Width = 287
+      Height = 23
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1086#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
+    end
+    object Label19: TLabel
+      Left = 389
+      Top = 3
+      Width = 64
+      Height = 23
+      Caption = 'Label19'
+    end
   end
   object GroupBox1: TGroupBox
     Left = 0

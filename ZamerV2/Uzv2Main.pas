@@ -753,6 +753,13 @@ begin
             comboaddtext;
             FSopr.ComboBox9.Text  := FSopr.ComboBox9.Items[0];
             FSopr.ComboBox10.Text := FSopr.ComboBox10.Items[0];
+            FZamerV2.ImgSet(FZamerV2.Image1, false);
+            FZamerV2.ImgSet(FZamerV2.Image2, false);
+            FZamerV2.ImgSet(FZamerV2.Image3, false);
+            FZamerV2.ImgSet(FZamerV2.Image4, false);
+            FZamerV2.ImgSet(FZamerV2.Image5, false);
+            FZamerV2.ImgSet(FZamerV2.Image6, false);
+            FZamerV2.ImgSet(FZamerV2.Image7, false);
             ShowMessage('Можно приступать к испытаниям');
             enableispyt(True);
         end;
@@ -915,7 +922,7 @@ begin
 
     FKZ.StringGrid1.row      := 1;
     FKZ.StringGrid1.rowcount := 10;
-    FKZ.Edit2.Enabled        := false;
+    //FKZ.Edit2.Enabled        := false;
     while not(QTemp.Eof) do
     begin
         FKZ.StringGrid1.Cells[0, FKZ.StringGrid1.row] :=
