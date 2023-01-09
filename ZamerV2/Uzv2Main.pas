@@ -917,7 +917,7 @@ begin
         2:
             FSopr.radiobutton2.Checked := True;
     end;
-    /// ////////////////////////////////////////////////////////////
+    /// ///////////////////////////////// stringreplace  [rfReplaceAll, rfIgnoreCase]///////////////////////////
     // загрузить  ороткое замыкание если есть
     QTemp.Close;
     QTemp.SQL.Clear;

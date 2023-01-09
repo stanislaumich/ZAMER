@@ -192,7 +192,7 @@ object FSopr: TFSopr
       Height = 107
       ColCount = 4
       RowCount = 4
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       OnKeyPress = StringGrid3KeyPress
     end

@@ -414,7 +414,7 @@ object FormHH: TFormHH
       Font.Height = -19
       Font.Name = 'Tahoma'
       Font.Style = []
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goDrawFocusSelected, goColSizing, goEditing, goFixedRowDefAlign]
       ParentFont = False
       TabOrder = 0
       OnClick = StringGrid2Click

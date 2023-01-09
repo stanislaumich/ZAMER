@@ -137,13 +137,13 @@ begin
     QInssvod.ParamByName('m').AsFloat      := myfloat(StringGrid1.cells[5, i]);
     QInssvod.ParamByName('dop1').AsFloat   := 0;
     QInssvod.ParamByName('t').AsFloat      := 0;
-    QInssvod.ParamByName('robm').AsFloat   := myfloat(Edit5.Text);
-    QInssvod.ParamByName('rkorp').AsFloat  := myfloat(Edit4.Text);
+    QInssvod.ParamByName('robm').AsFloat   := myfloat(StringReplace(Edit5.Text,'.',',',[rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('rkorp').AsFloat  := myfloat(StringReplace(Edit4.Text,'.',',',[rfReplaceAll, rfIgnoreCase]));
     QInssvod.ParamByName('tip').Asinteger  := i;
 
-    QInssvod.ParamByName('t1').AsFloat := myfloat(StringGrid1.cells[6, i]);
-    QInssvod.ParamByName('t2').AsFloat := myfloat(StringGrid1.cells[7, i]);
-    QInssvod.ParamByName('t3').AsFloat := myfloat(StringGrid1.cells[8, i]);
+    QInssvod.ParamByName('t1').AsFloat := myfloat(StringReplace(StringGrid1.cells[6, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('t2').AsFloat := myfloat(StringReplace(StringGrid1.cells[7, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('t3').AsFloat := myfloat(StringReplace(StringGrid1.cells[8, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
     QInssvod.ParamByName('r').AsFloat  := 0;
     QInssvod.ExecSQL;
   end;

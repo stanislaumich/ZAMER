@@ -456,7 +456,7 @@ object FKZ: TFKZ
       Anchors = [akLeft, akTop, akRight]
       DefaultColWidth = 95
       FixedCols = 0
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goThumbTracking, goFixedRowDefAlign]
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goDrawFocusSelected, goColSizing, goEditing, goThumbTracking, goFixedRowDefAlign]
       TabOrder = 2
       OnClick = StringGrid1Click
     end

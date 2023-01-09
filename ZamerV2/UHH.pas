@@ -360,7 +360,7 @@ begin
   loadgrids;
   ComboBox1.Items.LoadFromFile(extractfilepath(application.exename) +
     'R_SoprotListHH.txt');
-    ComboBox1.ItemIndex := 0;
+  ComboBox1.ItemIndex := 0;
 end;
 
 procedure TFormHH.FormHide(Sender: TObject);

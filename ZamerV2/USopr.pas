@@ -301,12 +301,12 @@ begin
     'R_SoprotListUP.txt');
   ComboBox10.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
     'R_SoprotListDown.txt');
-  //ComboBox9.Text  := ComboBox9.Items[0];
-  //ComboBox10.Text := ComboBox10.Items[0];
-  ComboBox9.ItemIndex := 0;
+  // ComboBox9.Text  := ComboBox9.Items[0];
+  // ComboBox10.Text := ComboBox10.Items[0];
+  ComboBox9.ItemIndex  := 0;
   ComboBox10.ItemIndex := 0;
-  for i   := 1 to 3 do
-    for j := 1 to 3 do
+  for i                := 1 to 3 do
+    for j              := 1 to 3 do
     begin
       StringGrid3.cells[i, j]  := '0';
       StringGrid3.ColWidths[i] := 160;
