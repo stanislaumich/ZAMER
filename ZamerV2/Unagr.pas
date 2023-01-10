@@ -371,7 +371,8 @@ begin
   QTemp.Open('select value from zdelta where name=' + QuotedStr('pnag'));
   FNagr.Edit3.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Close;
-
+  ComboBox1.Items.LoadFromFile(Extractfilepath(Application.Exename)+'R_NagrKorp.txt');
+  ComboBox2.Items.LoadFromFile(Extractfilepath(Application.Exename)+'R_NagrObm.txt');
 end;
 
 procedure TFNagr.FormShow(Sender: TObject);

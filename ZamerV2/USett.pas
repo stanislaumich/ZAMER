@@ -161,6 +161,7 @@ begin
   Edit5.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('ComPortU'));
   CombCom.Text := QTemp.FieldByName('value').Asstring;
+  ListBox1.Items.LoadFromFile(Extractfilepath(Application.ExeName)+'LIST.TXT');
 end;
 
 procedure TFSett.ListBox1Click(Sender: TObject);
