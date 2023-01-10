@@ -2,7 +2,7 @@ object FNagr: TFNagr
   Left = 0
   Top = 0
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072#1075#1088#1077#1074#1072
-  ClientHeight = 561
+  ClientHeight = 548
   ClientWidth = 1035
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object FNagr: TFNagr
   OnShow = FormShow
   DesignSize = (
     1035
-    561)
+    548)
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -381,7 +381,7 @@ object FNagr: TFNagr
     Left = 0
     Top = 275
     Width = 1035
-    Height = 284
+    Height = 271
     Anchors = [akLeft, akTop, akRight, akBottom]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
@@ -391,9 +391,10 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    ExplicitHeight = 284
     DesignSize = (
       1035
-      284)
+      271)
     object Label20: TLabel
       Left = 8
       Top = 148
@@ -454,10 +455,10 @@ object FNagr: TFNagr
     end
     object BitBtn1: TBitBtn
       Left = 597
-      Top = 206
+      Top = 193
       Width = 155
       Height = 45
-      Anchors = [akTop, akRight]
+      Anchors = [akBottom]
       Caption = #1057#1090#1072#1088#1090' F5'
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
@@ -518,13 +519,14 @@ object FNagr: TFNagr
         9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 1
       OnClick = BitBtn1Click
+      ExplicitTop = 206
     end
     object BitBtn2: TBitBtn
       Left = 391
-      Top = 206
+      Top = 193
       Width = 155
       Height = 45
-      Anchors = [akTop, akRight]
+      Anchors = [akBottom]
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
@@ -585,15 +587,17 @@ object FNagr: TFNagr
         12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
       TabOrder = 2
       OnClick = BitBtn2Click
+      ExplicitTop = 206
     end
     object ProgressBar1: TProgressBar
       Left = 2
-      Top = 257
+      Top = 244
       Width = 1031
       Height = 25
       Align = alBottom
       Step = 1
       TabOrder = 3
+      ExplicitTop = 257
     end
     object Edit4: TEdit
       Left = 221
@@ -637,10 +641,10 @@ object FNagr: TFNagr
     end
     object BitBtn10: TBitBtn
       Left = 788
-      Top = 206
+      Top = 193
       Width = 242
       Height = 45
-      Anchors = [akLeft, akBottom]
+      Anchors = [akBottom]
       Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -707,6 +711,7 @@ object FNagr: TFNagr
       ParentFont = False
       TabOrder = 9
       OnClick = BitBtn10Click
+      ExplicitTop = 206
     end
     object ComboBox1: TComboBox
       Left = 280
@@ -727,8 +732,8 @@ object FNagr: TFNagr
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 812
-    Top = 372
+    Left = 712
+    Top = 344
   end
   object TimerUp: TTimer
     Enabled = False
@@ -937,8 +942,8 @@ object FNagr: TFNagr
       end>
   end
   object ActionList1: TActionList
-    Left = 904
-    Top = 396
+    Left = 780
+    Top = 344
     object Action1: TAction
       Caption = 'Action1'
       ShortCut = 116
@@ -962,7 +967,7 @@ object FNagr: TFNagr
   end
   object QTemp2: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 760
-    Top = 375
+    Left = 640
+    Top = 343
   end
 end

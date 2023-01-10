@@ -495,8 +495,15 @@ begin
         for i     := 1 to 5 do
             for j := 1 to 4 do
             begin
-                wrepl('Kz' + inttostr(i) + inttostr(j),
-                  FKZ.StringGrid1.Cells[j, i]);
+                if FKZ.StringGrid1.Cells[j, i] = '' then
+                 begin
+                  wrepl('Kz' + inttostr(i) + inttostr(j),                  '');
+                  continue;
+                 end;
+                if j=2 then wrepl('Kz' + inttostr(i) + inttostr(j),
+                  myformat('0.000', strtofloat(FKZ.StringGrid1.Cells[j, i])))
+                   else wrepl('Kz' + inttostr(i) + inttostr(j),
+                  myformat('0.0', strtofloat(FKZ.StringGrid1.Cells[j, i])));
             end;
 
         /// //////   myformat('0.0', strtofloat(FSopr.Edit8.Text))
