@@ -404,16 +404,16 @@ object FNagr: TFNagr
     object Label21: TLabel
       Left = 10
       Top = 175
-      Width = 243
+      Width = 206
       Height = 23
-      Caption = #1054#1090#1085#1086#1089#1080#1090#1077#1083#1100#1085#1086' '#1082#1086#1088#1087#1091#1089#1072', '#1054#1084':'
+      Caption = #1054#1090#1085#1086#1089#1080#1090#1077#1083#1100#1085#1086' '#1082#1086#1088#1087#1091#1089#1072':'
     end
     object Label22: TLabel
       Left = 51
       Top = 205
-      Width = 202
+      Width = 165
       Height = 23
-      Caption = #1052#1077#1078#1076#1091' '#1086#1073#1084#1086#1090#1082#1072#1084#1080', '#1054#1084':'
+      Caption = #1052#1077#1078#1076#1091' '#1086#1073#1084#1086#1090#1082#1072#1084#1080':'
     end
     object Label25: TLabel
       Left = 475
@@ -596,17 +596,17 @@ object FNagr: TFNagr
       TabOrder = 3
     end
     object Edit4: TEdit
-      Left = 257
+      Left = 221
       Top = 172
-      Width = 80
+      Width = 56
       Height = 31
       TabOrder = 4
       OnChange = Edit4Change
     end
     object Edit5: TEdit
-      Left = 257
-      Top = 202
-      Width = 80
+      Left = 221
+      Top = 206
+      Width = 56
       Height = 31
       TabOrder = 5
       OnChange = Edit5Change
@@ -707,6 +707,22 @@ object FNagr: TFNagr
       ParentFont = False
       TabOrder = 9
       OnClick = BitBtn10Click
+    end
+    object ComboBox1: TComboBox
+      Left = 280
+      Top = 172
+      Width = 69
+      Height = 31
+      TabOrder = 10
+      Text = #1054#1084
+    end
+    object ComboBox2: TComboBox
+      Left = 280
+      Top = 206
+      Width = 69
+      Height = 31
+      TabOrder = 11
+      Text = #1054#1084
     end
   end
   object QTemp: TFDQuery

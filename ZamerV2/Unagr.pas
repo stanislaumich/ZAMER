@@ -72,6 +72,8 @@ type
     BitBtn10: TBitBtn;
     Label30: TLabel;
     Label31: TLabel;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
