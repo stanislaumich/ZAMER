@@ -384,8 +384,9 @@ begin
 
         wrepl('prab', FZamerV2.CombPNom.Text);
         AddReportString(fn, '0', 'pnom', FZamerV2.CombPNom.Text);
-        wrepl('pisp', FZamerV2.CombPIsp.Text);
-        AddReportString(fn, '0', 'pisp', FZamerV2.CombPIsp.Text);
+
+        wrepl('pisp', inttostr(round(strtofloat(FZamerV2.CombPIsp.Text)*1000)));
+        AddReportString(fn, '0', 'pisp', inttostr(round(strtofloat(FZamerV2.CombPIsp.Text)*1000)));
 
         wrepl('polus', FZamerV2.CombPolNom.Text);
         AddReportString(fn, '0', 'polus', FZamerV2.CombPolNom.Text);
@@ -486,6 +487,44 @@ begin
               Formhh.Stringgrid2.Cells[5, i]);
         end;
         /// //////
+        // короткое замыкание
+        FrepP.Label1.Caption := 'Короткое замыкание';
+        wrepl('rkz', FKZ.Edit2.Text);
+        for i     := 1 to 5 do
+            for j := 1 to 4 do
+            begin
+                wrepl('Kz' + inttostr(i) + inttostr(j),
+                  FKZ.StringGrid1.Cells[j, i]);
+            end;
+
+        /// //////   myformat('0.0', strtofloat(FSopr.Edit8.Text))
+        // Нагрев
+        FrepP.Label1.Caption := 'Нагрев';
+        //wrepl('N11x', Fnagr.Edit4.Text);
+        //wrepl('N12x', Fnagr.Edit5.Text);
+        wrepl('N11x', myformat('0.00', strtofloat(Fnagr.StringGrid1.Cells[2, 1])));
+        wrepl('N21x', myformat('0.00', strtofloat(Fnagr.StringGrid1.Cells[2, 2]))); // i
+        wrepl('N12x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[3, 1])));
+        wrepl('N22x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[3, 2]))); // p
+        wrepl('N13x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[4, 1])));
+        wrepl('N23x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[4, 2]))); // n
+        wrepl('N14x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[5, 1])));
+        wrepl('N24x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[5, 2]))); // m
+        wrepl('N15x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[6, 1])));
+        wrepl('N25x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[6, 2]))); // t1
+        wrepl('N16x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[7, 1])));
+        wrepl('N26x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[7, 2]))); // t2
+        wrepl('N17x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[8, 1])));
+        wrepl('N27x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[8, 2]))); // t3
+        wrepl('N18x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[9, 1])));
+        wrepl('N28x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[9, 2]))); // r
+        wrepl('N31x', Fnagr.Edit4.Text); // R korp
+        wrepl('N32x', Fnagr.Edit5.Text); // R obm
+
+
+
+
+
 
         // сохранение документа
         FrepP.Label1.Caption := 'Сохранение документа';
