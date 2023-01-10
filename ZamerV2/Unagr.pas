@@ -117,24 +117,31 @@ procedure TFNagr.BitBtn10Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (Edit4.Text = '') or (Edit5.Text = '') then
-  begin
+  { if (Edit4.Text = '') or (Edit5.Text = '') then
+    begin
     ShowMessage('Не заполнены поля сопротивления!');
     Exit;
-  end;
-   if StringGrid1.cells[6, 1] = '' then StringGrid1.cells[6, 1] := '0';
-   if StringGrid1.cells[7, 1] = '' then StringGrid1.cells[7, 1] := '0';
-   if StringGrid1.cells[8, 1] = '' then StringGrid1.cells[8, 1] := '0';
-   if StringGrid1.cells[6, 1] = '' then StringGrid1.cells[6, 1] := '0';
-   if StringGrid1.cells[7, 2] = '' then StringGrid1.cells[7, 2] := '0';
-   if StringGrid1.cells[8, 2] = '' then StringGrid1.cells[8, 2] := '0';
-  {if (StringGrid1.cells[6, 1] = '') or (StringGrid1.cells[7, 1] = '') or
+    end;
+  }
+  if StringGrid1.cells[6, 1] = '' then
+    StringGrid1.cells[6, 1] := '0';
+  if StringGrid1.cells[7, 1] = '' then
+    StringGrid1.cells[7, 1] := '0';
+  if StringGrid1.cells[8, 1] = '' then
+    StringGrid1.cells[8, 1] := '0';
+  if StringGrid1.cells[6, 1] = '' then
+    StringGrid1.cells[6, 1] := '0';
+  if StringGrid1.cells[7, 2] = '' then
+    StringGrid1.cells[7, 2] := '0';
+  if StringGrid1.cells[8, 2] = '' then
+    StringGrid1.cells[8, 2] := '0';
+  { if (StringGrid1.cells[6, 1] = '') or (StringGrid1.cells[7, 1] = '') or
     (StringGrid1.cells[8, 1] = '') or (StringGrid1.cells[6, 2] = '') or
     (StringGrid1.cells[7, 2] = '') or (StringGrid1.cells[8, 2] = '') then
-  begin
+    begin
     ShowMessage('Необходимо заполнить все значения температуры в таблице!');
     Exit;
-  end;
+    end;
   }
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -151,14 +158,26 @@ begin
     QInssvod.ParamByName('m').AsFloat      := myfloat(StringGrid1.cells[5, i]);
     QInssvod.ParamByName('dop1').AsFloat   := 0;
     QInssvod.ParamByName('t').AsFloat      := 0;
-    QInssvod.ParamByName('robm').AsFloat   := myfloat(StringReplace(Edit5.Text,'.',',',[rfReplaceAll, rfIgnoreCase]));
-    QInssvod.ParamByName('rkorp').AsFloat  := myfloat(StringReplace(Edit4.Text,'.',',',[rfReplaceAll, rfIgnoreCase]));
-    QInssvod.ParamByName('tip').Asinteger  := i;
+    QInssvod.ParamByName('robm').AsFloat   :=
+      myfloat(StringReplace(Edit5.Text, '.', ',',
+      [rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('rkorp').AsFloat :=
+      myfloat(StringReplace(Edit4.Text, '.', ',',
+      [rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('tip').Asinteger := i;
 
-    QInssvod.ParamByName('t1').AsFloat := myfloat(StringReplace(StringGrid1.cells[6, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
-    QInssvod.ParamByName('t2').AsFloat := myfloat(StringReplace(StringGrid1.cells[7, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
-    QInssvod.ParamByName('t3').AsFloat := myfloat(StringReplace(StringGrid1.cells[8, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
-    QInssvod.ParamByName('r').AsFloat  := myfloat(StringReplace(StringGrid1.cells[9, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('t1').AsFloat :=
+      myfloat(StringReplace(StringGrid1.cells[6, i], '.', ',',
+      [rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('t2').AsFloat :=
+      myfloat(StringReplace(StringGrid1.cells[7, i], '.', ',',
+      [rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('t3').AsFloat :=
+      myfloat(StringReplace(StringGrid1.cells[8, i], '.', ',',
+      [rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('r').AsFloat :=
+      myfloat(StringReplace(StringGrid1.cells[9, i], '.', ',',
+      [rfReplaceAll, rfIgnoreCase]));
     QInssvod.ExecSQL;
   end;
 
@@ -447,9 +466,8 @@ begin
     StringGrid1.cells[5, StringGrid1.Row] :=
       Floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
     BitBtn1.Enabled := true;
-    if StringGrid1.Row<Stringgrid1.RowCount-2
-    then
-     StringGrid1.Row:=StringGrid1.Row+1;
+    if StringGrid1.Row < StringGrid1.RowCount - 2 then
+      StringGrid1.Row := StringGrid1.Row + 1;
   end;
 
 end;

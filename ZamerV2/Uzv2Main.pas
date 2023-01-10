@@ -385,8 +385,10 @@ begin
         wrepl('prab', FZamerV2.CombPNom.Text);
         AddReportString(fn, '0', 'pnom', FZamerV2.CombPNom.Text);
 
-        wrepl('pisp', inttostr(round(strtofloat(FZamerV2.CombPIsp.Text)*1000)));
-        AddReportString(fn, '0', 'pisp', inttostr(round(strtofloat(FZamerV2.CombPIsp.Text)*1000)));
+        wrepl('pisp', inttostr(round(strtofloat(FZamerV2.CombPIsp.Text)
+          * 1000)));
+        AddReportString(fn, '0', 'pisp',
+          inttostr(round(strtofloat(FZamerV2.CombPIsp.Text) * 1000)));
 
         wrepl('polus', FZamerV2.CombPolNom.Text);
         AddReportString(fn, '0', 'polus', FZamerV2.CombPolNom.Text);
@@ -500,26 +502,42 @@ begin
         /// //////   myformat('0.0', strtofloat(FSopr.Edit8.Text))
         // Нагрев
         FrepP.Label1.Caption := 'Нагрев';
-        //wrepl('N11x', Fnagr.Edit4.Text);
-        //wrepl('N12x', Fnagr.Edit5.Text);
-        wrepl('N11x', myformat('0.00', strtofloat(Fnagr.StringGrid1.Cells[2, 1])));
-        wrepl('N21x', myformat('0.00', strtofloat(Fnagr.StringGrid1.Cells[2, 2]))); // i
-        wrepl('N12x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[3, 1])));
-        wrepl('N22x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[3, 2]))); // p
-        wrepl('N13x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[4, 1])));
-        wrepl('N23x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[4, 2]))); // n
-        wrepl('N14x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[5, 1])));
-        wrepl('N24x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[5, 2]))); // m
-        wrepl('N15x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[6, 1])));
-        wrepl('N25x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[6, 2]))); // t1
-        wrepl('N16x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[7, 1])));
-        wrepl('N26x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[7, 2]))); // t2
-        wrepl('N17x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[8, 1])));
-        wrepl('N27x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[8, 2]))); // t3
-        wrepl('N18x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[9, 1])));
-        wrepl('N28x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[9, 2]))); // r
-        wrepl('N31x', Fnagr.Edit4.Text); // R korp
-        wrepl('N32x', Fnagr.Edit5.Text); // R obm
+        // wrepl('N11x', Fnagr.Edit4.Text);
+        // wrepl('N12x', Fnagr.Edit5.Text);
+        wrepl('N11x', myformat('0.00',
+          strtofloat(Fnagr.StringGrid1.Cells[2, 1])));
+        wrepl('N21x', myformat('0.00', strtofloat(Fnagr.StringGrid1.Cells[2,
+          2]))); // i
+        wrepl('N12x', myformat('0.0',
+          strtofloat(Fnagr.StringGrid1.Cells[3, 1])));
+        wrepl('N22x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[3,
+          2]))); // p
+        wrepl('N13x', myformat('0.0',
+          strtofloat(Fnagr.StringGrid1.Cells[4, 1])));
+        wrepl('N23x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[4,
+          2]))); // n
+        wrepl('N14x', myformat('0.0',
+          strtofloat(Fnagr.StringGrid1.Cells[5, 1])));
+        wrepl('N24x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[5,
+          2]))); // m
+        wrepl('N15x', myformat('0.0',
+          strtofloat(Fnagr.StringGrid1.Cells[6, 1])));
+        wrepl('N25x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[6,
+          2]))); // t1
+        wrepl('N16x', myformat('0.0',
+          strtofloat(Fnagr.StringGrid1.Cells[7, 1])));
+        wrepl('N26x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[7,
+          2]))); // t2
+        wrepl('N17x', myformat('0.0',
+          strtofloat(Fnagr.StringGrid1.Cells[8, 1])));
+        wrepl('N27x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[8,
+          2]))); // t3
+        wrepl('N18x', myformat('0.0',
+          strtofloat(Fnagr.StringGrid1.Cells[9, 1])));
+        wrepl('N28x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[9,
+          2]))); // r
+        if Fnagr.Edit4.Text<>'0' then wrepl('N31x', Fnagr.Edit4.Text) else wrepl('N31x', ''); // R korp
+        if Fnagr.Edit5.Text<>'0' then wrepl('N32x', Fnagr.Edit5.Text) else wrepl('N32x', ''); // R obm
 
 
 
@@ -815,9 +833,9 @@ end;
 
 procedure TFZamerV2.BNagrClick(Sender: TObject);
 begin
-    FNagr.Label6.Caption := nomer;
-    FNagr.Label31.Caption := CombUIsp.Text;
-    FNagr.ShowModal;
+    Fnagr.Label6.Caption  := nomer;
+    Fnagr.Label31.Caption := CombUisp.Text;
+    Fnagr.ShowModal;
 end;
 
 procedure TFZamerV2.BRHClick(Sender: TObject);
@@ -995,33 +1013,33 @@ begin
     QTemp.first;
 
     if QTemp.FieldByName('RKORP').Asstring = '' then
-        FNagr.Edit4.Text := '0'
+        Fnagr.Edit4.Text := '0'
     else
-        FNagr.Edit4.Text := QTemp.FieldByName('RKORP').Asstring;
+        Fnagr.Edit4.Text := QTemp.FieldByName('RKORP').Asstring;
 
     if QTemp.FieldByName('ROBM').Asstring = '' then
-        FNagr.Edit5.Text := '0'
+        Fnagr.Edit5.Text := '0'
     else
-        FNagr.Edit5.Text := QTemp.FieldByName('ROBM').Asstring;
+        Fnagr.Edit5.Text := QTemp.FieldByName('ROBM').Asstring;
     while not QTemp.Eof do
     begin
-        FNagr.StringGrid1.Cells[1, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[1, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('u').Asstring;
-        FNagr.StringGrid1.Cells[2, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[2, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('i').Asstring;
-        FNagr.StringGrid1.Cells[3, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[3, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('p').Asstring;
-        FNagr.StringGrid1.Cells[4, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[4, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('n').Asstring;
-        FNagr.StringGrid1.Cells[5, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[5, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('m').Asstring;
-        FNagr.StringGrid1.Cells[6, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[6, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('t1').Asstring;
-        FNagr.StringGrid1.Cells[7, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[7, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('t2').Asstring;
-        FNagr.StringGrid1.Cells[8, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[8, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('t3').Asstring;
-        FNagr.StringGrid1.Cells[9, QTemp.FieldByName('tip').AsInteger] :=
+        Fnagr.StringGrid1.Cells[9, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('r').Asstring;
         QTemp.Next;
     end;
