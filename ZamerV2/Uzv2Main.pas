@@ -777,6 +777,7 @@ end;
 procedure TFZamerV2.BNagrClick(Sender: TObject);
 begin
     FNagr.Label6.Caption := nomer;
+    FNagr.Label31.Caption := CombUIsp.Text;
     FNagr.ShowModal;
 end;
 
@@ -981,6 +982,8 @@ begin
           QTemp.FieldByName('t2').Asstring;
         FNagr.StringGrid1.Cells[8, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('t3').Asstring;
+        FNagr.StringGrid1.Cells[9, QTemp.FieldByName('tip').AsInteger] :=
+          QTemp.FieldByName('r').Asstring;
         QTemp.Next;
     end;
 

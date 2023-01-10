@@ -48,6 +48,20 @@ object FNagr: TFNagr
       Height = 23
       Caption = '0'
     end
+    object Label30: TLabel
+      Left = 96
+      Top = 3
+      Width = 287
+      Height = 23
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1086#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
+    end
+    object Label31: TLabel
+      Left = 389
+      Top = 3
+      Width = 10
+      Height = 23
+      Caption = '0'
+    end
   end
   object GroupBox1: TGroupBox
     Left = 0
@@ -431,13 +445,12 @@ object FNagr: TFNagr
       Width = 1031
       Height = 117
       Align = alTop
-      ColCount = 9
+      ColCount = 10
       FixedCols = 0
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       OnKeyPress = StringGrid1KeyPress
-      ExplicitLeft = 3
     end
     object BitBtn1: TBitBtn
       Left = 597

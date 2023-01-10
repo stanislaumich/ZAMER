@@ -70,6 +70,8 @@ type
     QUp: TFDQuery;
     QTemp2: TFDQuery;
     BitBtn10: TBitBtn;
+    Label30: TLabel;
+    Label31: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -115,13 +117,20 @@ procedure TFNagr.BitBtn10Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (StringGrid1.cells[6, 1] = '') or (StringGrid1.cells[7, 1] = '') or
+   if StringGrid1.cells[6, 1] = '' then StringGrid1.cells[6, 1] := '0';
+   if StringGrid1.cells[7, 1] = '' then StringGrid1.cells[7, 1] := '0';
+   if StringGrid1.cells[8, 1] = '' then StringGrid1.cells[8, 1] := '0';
+   if StringGrid1.cells[6, 1] = '' then StringGrid1.cells[6, 1] := '0';
+   if StringGrid1.cells[7, 2] = '' then StringGrid1.cells[7, 2] := '0';
+   if StringGrid1.cells[8, 2] = '' then StringGrid1.cells[8, 2] := '0';
+  {if (StringGrid1.cells[6, 1] = '') or (StringGrid1.cells[7, 1] = '') or
     (StringGrid1.cells[8, 1] = '') or (StringGrid1.cells[6, 2] = '') or
     (StringGrid1.cells[7, 2] = '') or (StringGrid1.cells[8, 2] = '') then
   begin
     ShowMessage('Необходимо заполнить все значения температуры в таблице!');
     Exit;
   end;
+  }
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from znagrevsvod where nomer=' + QuotedStr(Nomer));
@@ -144,7 +153,7 @@ begin
     QInssvod.ParamByName('t1').AsFloat := myfloat(StringReplace(StringGrid1.cells[6, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
     QInssvod.ParamByName('t2').AsFloat := myfloat(StringReplace(StringGrid1.cells[7, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
     QInssvod.ParamByName('t3').AsFloat := myfloat(StringReplace(StringGrid1.cells[8, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
-    QInssvod.ParamByName('r').AsFloat  := 0;
+    QInssvod.ParamByName('r').AsFloat  := myfloat(StringReplace(StringGrid1.cells[9, i],'.',',',[rfReplaceAll, rfIgnoreCase]));
     QInssvod.ExecSQL;
   end;
 
@@ -325,6 +334,7 @@ begin
   StringGrid1.cells[6, 0] := 'T1,C';
   StringGrid1.cells[7, 0] := 'T2,C';
   StringGrid1.cells[8, 0] := 'T3,C';
+  StringGrid1.cells[9, 0] := 'R, Ом';
   StringGrid1.cells[0, 1] := 'Без нагрузки';
   StringGrid1.cells[0, 2] := 'С нагрузкой';
 
@@ -436,6 +446,9 @@ begin
     StringGrid1.cells[5, StringGrid1.Row] :=
       Floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
     BitBtn1.Enabled := true;
+    if StringGrid1.Row<Stringgrid1.RowCount-2
+    then
+     StringGrid1.Row:=StringGrid1.Row+1;
   end;
 
 end;
