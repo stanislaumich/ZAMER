@@ -117,6 +117,11 @@ procedure TFNagr.BitBtn10Click(Sender: TObject);
 var
   i: integer;
 begin
+  if (Edit4.Text = '') or (Edit5.Text = '') then
+  begin
+    ShowMessage('Не заполнены поля сопротивления!');
+    Exit;
+  end;
    if StringGrid1.cells[6, 1] = '' then StringGrid1.cells[6, 1] := '0';
    if StringGrid1.cells[7, 1] = '' then StringGrid1.cells[7, 1] := '0';
    if StringGrid1.cells[8, 1] = '' then StringGrid1.cells[8, 1] := '0';
@@ -163,11 +168,7 @@ end;
 
 procedure TFNagr.BitBtn1Click(Sender: TObject);
 begin
-  if (Edit4.Text = '') or (Edit5.Text = '') then
-  begin
-    ShowMessage('Не заполнены поля сопротивления!');
-    Exit;
-  end;
+
   enableclose := false;
   QTemp.Close;
   QTemp.SQL.Clear;
