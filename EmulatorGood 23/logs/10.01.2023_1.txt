@@ -137,3 +137,42 @@
 10.01.2023 13:56:07.748 - TModbusTCPClient.Start
 10.01.2023 13:56:07.748 - TTCPAccept.InitSocket IN
 10.01.2023 13:56:22.487 - TModbusTCPServer.OnClientDisconnect
+10.01.2023 14:17:51.221 - TModbusTCPServer.ClientConnectEvent
+10.01.2023 14:17:51.227 - TModbusTCPServer.RemoveClient
+10.01.2023 14:17:51.392 - TModbusTCPServer.AddClient
+10.01.2023 14:17:51.392 - TModbusTCPClient.Start
+10.01.2023 14:17:51.392 - TTCPAccept.InitSocket IN
+10.01.2023 14:24:57.170 - TModbusTCPServer.ClientConnectEvent
+10.01.2023 14:24:57.240 - TModbusTCPServer.AddClient
+10.01.2023 14:24:57.240 - TModbusTCPClient.Start
+10.01.2023 14:24:57.240 - TTCPAccept.InitSocket IN
+10.01.2023 14:37:50.385 - TModbusTCPServer.OnClientDisconnect
+10.01.2023 14:38:03.157 - TModbusTCPServer.OnClientDisconnect
+10.01.2023 15:11:57.465 - TModbusTCPServer.ClientConnectEvent
+10.01.2023 15:11:57.466 - TModbusTCPServer.RemoveClient
+10.01.2023 15:11:57.668 - TModbusTCPServer.RemoveClient
+10.01.2023 15:11:57.757 - TModbusTCPServer.AddClient
+10.01.2023 15:11:57.757 - TModbusTCPClient.Start
+10.01.2023 15:11:57.757 - TTCPAccept.InitSocket IN
+10.01.2023 15:21:47.231 - TModbusTCPServer.OnClientDisconnect
+10.01.2023 15:22:11.82 - TModbusTCPServer.ClientConnectEvent
+10.01.2023 15:22:11.82 - TModbusTCPServer.RemoveClient
+10.01.2023 15:22:11.159 - TModbusTCPServer.AddClient
+10.01.2023 15:22:11.159 - TModbusTCPClient.Start
+10.01.2023 15:22:11.159 - TTCPAccept.InitSocket IN
+10.01.2023 15:26:11.190 - TModbusTCPServer.OnClientDisconnect
+10.01.2023 15:34:11.892 - TModbusTCPServer.ClientConnectEvent
+10.01.2023 15:34:11.892 - TModbusTCPServer.RemoveClient
+10.01.2023 15:34:12.130 - TModbusTCPServer.AddClient
+10.01.2023 15:34:12.130 - TModbusTCPClient.Start
+10.01.2023 15:34:12.130 - TTCPAccept.InitSocket IN
+10.01.2023 15:34:17.722 - TModbusTCPServer.OnClientDisconnect
+10.01.2023 16:02:30.807 - TModbusTCPServer.Stop
+10.01.2023 16:02:30.807 - TTCPAccept.StopThread IN
+10.01.2023 16:02:30.807 - TTCPAccept.Execute OUT
+10.01.2023 16:02:30.807 - TTCPAccept.StopThread OUT
+10.01.2023 16:02:30.807 - TTCPAccept.Destroy IN
+10.01.2023 16:02:30.807 - TTCPAccept.Destroy OUT
+10.01.2023 16:02:33.283 - TModbusTCPServer.Stop
+10.01.2023 16:02:33.283 - TModbusTCPServer.Destroy
+10.01.2023 16:02:33.288 - Останов Modbus TCP/RTU Эмулятор
