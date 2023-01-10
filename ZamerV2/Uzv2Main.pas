@@ -429,8 +429,8 @@ begin
         AddReportString(fn, '1', 'fsoed', FSopr.ComboBox7.Text);
         wrepl('fprizn', FSopr.ComboBox8.Text);
         AddReportString(fn, '1', 'fprizn', FSopr.ComboBox8.Text);
-        wrepl('stred', FSopr.ComboBox9.Text);
-        AddReportString(fn, '1', 'stred', FSopr.ComboBox9.Text);
+        wrepl('stred1', FSopr.ComboBox9.Text);
+        AddReportString(fn, '1', 'stred1', FSopr.ComboBox9.Text);
         wrepl('rizoled', FSopr.ComboBox10.Text);
         AddReportString(fn, '1', 'rizoled', FSopr.ComboBox10.Text);
         wrepl('rizolvk', FSopr.Edit13.Text);
@@ -464,6 +464,8 @@ begin
 
         // холостой ход
         FrepP.Label1.Caption := 'Холостой ход';
+        wrepl('stred2', FormHH.ComboBox1.Text);
+        AddReportString(fn, '1', 'stred2', FormHH.ComboBox1.Text);
         for i                := 1 to 12 do
         begin
             wrepl('u' + inttostr(i) + 'hh', Formhh.Stringgrid2.Cells[1, i]);
@@ -491,7 +493,9 @@ begin
         /// //////
         // короткое замыкание
         FrepP.Label1.Caption := 'Короткое замыкание';
-        wrepl('rkz', FKZ.Edit2.Text);
+
+        wrepl('stred3', FKZ.ComboBox1.Text);
+        AddReportString(fn, '1', 'stred3', FKZ.ComboBox1.Text);
         for i     := 1 to 5 do
             for j := 1 to 4 do
             begin
@@ -509,8 +513,8 @@ begin
         /// //////   myformat('0.0', strtofloat(FSopr.Edit8.Text))
         // Нагрев
         FrepP.Label1.Caption := 'Нагрев';
-        // wrepl('N11x', Fnagr.Edit4.Text);
-        // wrepl('N12x', Fnagr.Edit5.Text);
+        wrepl('stred4', Fnagr.ComboBox3.Text);
+        AddReportString(fn, '1', 'stred4', Fnagr.ComboBox3.Text);
         wrepl('N11x', myformat('0.00',
           strtofloat(Fnagr.StringGrid1.Cells[2, 1])));
         wrepl('N21x', myformat('0.00', strtofloat(Fnagr.StringGrid1.Cells[2,
@@ -545,9 +549,6 @@ begin
           2]))); // r
         if Fnagr.Edit4.Text<>'0' then wrepl('N31x', Fnagr.Edit4.Text) else wrepl('N31x', ''); // R korp
         if Fnagr.Edit5.Text<>'0' then wrepl('N32x', Fnagr.Edit5.Text) else wrepl('N32x', ''); // R obm
-
-
-
 
 
 
@@ -841,7 +842,8 @@ end;
 procedure TFZamerV2.BNagrClick(Sender: TObject);
 begin
     Fnagr.Label6.Caption  := nomer;
-    Fnagr.Label31.Caption := CombUisp.Text;
+    Fnagr.Label26.Caption := CombUisp.Text;
+    Fnagr.Label31.Caption := CombPisp.Text;
     Fnagr.ShowModal;
 end;
 

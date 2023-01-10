@@ -51,12 +51,6 @@ type
     Label19: TLabel;
     Label23: TLabel;
     Label24: TLabel;
-    Label25: TLabel;
-    Edit6: TEdit;
-    Label26: TLabel;
-    Edit8: TEdit;
-    Label27: TLabel;
-    Edit7: TEdit;
     QTemp: TFDQuery;
     TimerUp: TTimer;
     Timer1000: TTimer;
@@ -74,6 +68,10 @@ type
     Label31: TLabel;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
+    ComboBox3: TComboBox;
+    Label32: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -222,9 +220,6 @@ begin
         StringGrid1.cells[j, i] := '';
     Edit4.Text                  := '';
     Edit5.Text                  := '';
-    Edit6.Text                  := '';
-    Edit7.Text                  := '';
-    Edit8.Text                  := '';
     enableclose                 := false;
   end;
 end;
@@ -356,7 +351,7 @@ begin
   StringGrid1.cells[6, 0] := 'T1,C';
   StringGrid1.cells[7, 0] := 'T2,C';
   StringGrid1.cells[8, 0] := 'T3,C';
-  StringGrid1.cells[9, 0] := 'R, Ом';
+  StringGrid1.cells[9, 0] := 'R';
   StringGrid1.cells[0, 1] := 'Без нагрузки';
   StringGrid1.cells[0, 2] := 'С нагрузкой';
 
@@ -373,6 +368,7 @@ begin
   QTemp.Close;
   ComboBox1.Items.LoadFromFile(Extractfilepath(Application.Exename)+'R_NagrKorp.txt');
   ComboBox2.Items.LoadFromFile(Extractfilepath(Application.Exename)+'R_NagrObm.txt');
+  ComboBox3.Items.LoadFromFile(Extractfilepath(Application.Exename)+'R_NagrIspyt.txt');
 end;
 
 procedure TFNagr.FormShow(Sender: TObject);

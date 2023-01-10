@@ -2,7 +2,7 @@ object FNagr: TFNagr
   Left = 0
   Top = 0
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072#1075#1088#1077#1074#1072
-  ClientHeight = 548
+  ClientHeight = 591
   ClientWidth = 1035
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object FNagr: TFNagr
   OnShow = FormShow
   DesignSize = (
     1035
-    548)
+    591)
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -49,15 +49,29 @@ object FNagr: TFNagr
       Caption = '0'
     end
     object Label30: TLabel
-      Left = 96
+      Left = 478
       Top = 3
+      Width = 282
+      Height = 23
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1072#1103' '#1084#1086#1097#1085#1086#1089#1090#1100', '#1082#1042#1090'.:'
+    end
+    object Label31: TLabel
+      Left = 766
+      Top = 4
+      Width = 10
+      Height = 23
+      Caption = '0'
+    end
+    object Label25: TLabel
+      Left = 108
+      Top = 2
       Width = 287
       Height = 23
       Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1086#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
     end
-    object Label31: TLabel
-      Left = 389
-      Top = 3
+    object Label26: TLabel
+      Left = 401
+      Top = 2
       Width = 10
       Height = 23
       Caption = '0'
@@ -381,7 +395,7 @@ object FNagr: TFNagr
     Left = 0
     Top = 275
     Width = 1035
-    Height = 271
+    Height = 314
     Anchors = [akLeft, akTop, akRight, akBottom]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
@@ -394,58 +408,46 @@ object FNagr: TFNagr
     ExplicitHeight = 284
     DesignSize = (
       1035
-      271)
+      314)
     object Label20: TLabel
       Left = 8
-      Top = 148
+      Top = 193
       Width = 451
       Height = 23
+      Anchors = [akLeft, akBottom]
       Caption = #1057#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1077' '#1080#1079#1086#1083#1103#1094#1080#1080' '#1086#1073#1084#1086#1090#1086#1082' '#1089#1090#1072#1090#1086#1088#1072' ('#1075#1086#1088#1103#1095'.)'
+      ExplicitTop = 148
     end
     object Label21: TLabel
       Left = 10
-      Top = 175
+      Top = 220
       Width = 206
       Height = 23
+      Anchors = [akLeft, akBottom]
       Caption = #1054#1090#1085#1086#1089#1080#1090#1077#1083#1100#1085#1086' '#1082#1086#1088#1087#1091#1089#1072':'
+      ExplicitTop = 175
     end
     object Label22: TLabel
       Left = 51
-      Top = 205
+      Top = 250
       Width = 165
       Height = 23
+      Anchors = [akLeft, akBottom]
       Caption = #1052#1077#1078#1076#1091' '#1086#1073#1084#1086#1090#1082#1072#1084#1080':'
+      ExplicitTop = 205
     end
-    object Label25: TLabel
-      Left = 475
-      Top = 148
-      Width = 58
+    object Label32: TLabel
+      Left = 502
+      Top = 23
+      Width = 324
       Height = 23
-      Caption = 'T1, C='
-      Visible = False
-    end
-    object Label26: TLabel
-      Left = 744
-      Top = 148
-      Width = 58
-      Height = 23
-      Caption = 'T3, C='
-      Visible = False
-    end
-    object Label27: TLabel
-      Left = 604
-      Top = 148
-      Width = 58
-      Height = 23
-      Caption = 'T2, C='
-      Visible = False
+      Caption = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103':'
     end
     object StringGrid1: TStringGrid
       Left = 2
-      Top = 25
+      Top = 56
       Width = 1031
-      Height = 117
-      Align = alTop
+      Height = 129
       ColCount = 10
       FixedCols = 0
       RowCount = 4
@@ -455,7 +457,7 @@ object FNagr: TFNagr
     end
     object BitBtn1: TBitBtn
       Left = 597
-      Top = 193
+      Top = 236
       Width = 155
       Height = 45
       Anchors = [akBottom]
@@ -523,7 +525,7 @@ object FNagr: TFNagr
     end
     object BitBtn2: TBitBtn
       Left = 391
-      Top = 193
+      Top = 236
       Width = 155
       Height = 45
       Anchors = [akBottom]
@@ -591,7 +593,7 @@ object FNagr: TFNagr
     end
     object ProgressBar1: TProgressBar
       Left = 2
-      Top = 244
+      Top = 287
       Width = 1031
       Height = 25
       Align = alBottom
@@ -601,47 +603,27 @@ object FNagr: TFNagr
     end
     object Edit4: TEdit
       Left = 221
-      Top = 172
+      Top = 217
       Width = 56
       Height = 31
+      Anchors = [akLeft, akBottom]
       TabOrder = 4
       OnChange = Edit4Change
+      ExplicitTop = 172
     end
     object Edit5: TEdit
       Left = 221
-      Top = 206
+      Top = 251
       Width = 56
       Height = 31
+      Anchors = [akLeft, akBottom]
       TabOrder = 5
       OnChange = Edit5Change
-    end
-    object Edit6: TEdit
-      Left = 537
-      Top = 145
-      Width = 61
-      Height = 31
-      TabOrder = 6
-      Visible = False
-    end
-    object Edit8: TEdit
-      Left = 811
-      Top = 145
-      Width = 61
-      Height = 31
-      TabOrder = 7
-      Visible = False
-    end
-    object Edit7: TEdit
-      Left = 666
-      Top = 145
-      Width = 61
-      Height = 31
-      TabOrder = 8
-      Visible = False
+      ExplicitTop = 206
     end
     object BitBtn10: TBitBtn
       Left = 788
-      Top = 193
+      Top = 236
       Width = 242
       Height = 45
       Anchors = [akBottom]
@@ -709,25 +691,36 @@ object FNagr: TFNagr
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 6
       OnClick = BitBtn10Click
       ExplicitTop = 206
     end
     object ComboBox1: TComboBox
       Left = 280
-      Top = 172
+      Top = 217
       Width = 69
       Height = 31
-      TabOrder = 10
+      Anchors = [akLeft, akBottom]
+      TabOrder = 7
       Text = #1054#1084
+      ExplicitTop = 172
     end
     object ComboBox2: TComboBox
       Left = 280
-      Top = 206
+      Top = 251
       Width = 69
       Height = 31
-      TabOrder = 11
+      Anchors = [akLeft, akBottom]
+      TabOrder = 8
       Text = #1054#1084
+      ExplicitTop = 206
+    end
+    object ComboBox3: TComboBox
+      Left = 832
+      Top = 20
+      Width = 69
+      Height = 31
+      TabOrder = 9
     end
   end
   object QTemp: TFDQuery
