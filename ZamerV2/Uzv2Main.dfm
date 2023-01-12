@@ -878,6 +878,7 @@ object FZamerV2: TFZamerV2
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 6
+        OnClick = BPIClick
       end
     end
     object GroupBox1: TGroupBox

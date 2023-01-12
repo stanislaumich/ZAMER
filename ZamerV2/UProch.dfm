@@ -1,0 +1,741 @@
+object FProch: TFProch
+  Left = 0
+  Top = 0
+  Caption = #1055#1088#1086#1095#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103
+  ClientHeight = 770
+  ClientWidth = 1024
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -19
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 23
+  object Label9: TLabel
+    Left = 650
+    Top = 622
+    Width = 95
+    Height = 23
+    Caption = #1052#1072#1089#1089#1072', '#1082#1075'.:'
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 43
+    Width = 825
+    Height = 389
+    TabOrder = 0
+    object GroupBox4: TGroupBox
+      Left = 1
+      Top = 21
+      Width = 820
+      Height = 64
+      Caption = #1069#1083#1077#1082#1090#1088#1080#1095#1077#1089#1082#1072#1103' '#1087#1088#1086#1095#1085#1086#1089#1090#1100' '#1080#1079#1086#1083#1103#1094#1080#1080
+      Color = clSilver
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 12
+        Top = 27
+        Width = 26
+        Height = 23
+        Caption = 'U='
+      end
+      object Label2: TLabel
+        Left = 112
+        Top = 27
+        Width = 73
+        Height = 23
+        Caption = #1042', 1'#1084#1080#1085'.'
+      end
+      object Edit1: TEdit
+        Left = 44
+        Top = 24
+        Width = 62
+        Height = 31
+        TabOrder = 0
+        Text = '0'
+      end
+      object RadioButton1: TRadioButton
+        Left = 199
+        Top = 27
+        Width = 113
+        Height = 26
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 1
+      end
+      object RadioButton2: TRadioButton
+        Left = 319
+        Top = 27
+        Width = 137
+        Height = 26
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 2
+      end
+      object RadioButton3: TRadioButton
+        Left = 464
+        Top = 28
+        Width = 166
+        Height = 22
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 3
+      end
+      object RadioButton19: TRadioButton
+        Left = 800
+        Top = 33
+        Width = 14
+        Height = 17
+        Caption = 'RadioButton19'
+        TabOrder = 4
+      end
+    end
+    object GroupBox5: TGroupBox
+      Left = 1
+      Top = 91
+      Width = 820
+      Height = 62
+      Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1087#1088#1080' '#1087#1086#1074#1099#1096#1077#1085#1086#1081' '#1095#1072#1089#1090#1086#1090#1077' '#1074#1088#1072#1097#1077#1085#1080#1103
+      TabOrder = 1
+      object Label13: TLabel
+        Left = 12
+        Top = 28
+        Width = 273
+        Height = 23
+        Caption = 'N=1.2Nm'#1072#1093'('#1073#1077#1079#1086#1087'/'#1085#1086#1084')., 2'#1084#1080#1085'.'
+      end
+      object RadioButton4: TRadioButton
+        Left = 295
+        Top = 27
+        Width = 113
+        Height = 27
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        Color = clGreen
+        ParentColor = False
+        TabOrder = 0
+      end
+      object RadioButton5: TRadioButton
+        Left = 412
+        Top = 28
+        Width = 141
+        Height = 25
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        Color = clRed
+        ParentColor = False
+        TabOrder = 1
+      end
+      object RadioButton6: TRadioButton
+        Left = 556
+        Top = 28
+        Width = 165
+        Height = 25
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        Color = clYellow
+        ParentColor = False
+        TabOrder = 2
+      end
+      object RadioButton20: TRadioButton
+        Left = 800
+        Top = 32
+        Width = 16
+        Height = 17
+        Caption = 'RadioButton20'
+        TabOrder = 3
+      end
+    end
+    object GroupBox6: TGroupBox
+      Left = 1
+      Top = 159
+      Width = 820
+      Height = 56
+      Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072' '#1087#1077#1088#1077#1075#1088#1091#1079#1082#1091' '#1087#1086' '#1090#1086#1082#1091
+      Color = clSilver
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 2
+      object Label4: TLabel
+        Left = 12
+        Top = 26
+        Width = 127
+        Height = 23
+        Caption = 'I=1,5I'#1085', 2'#1084#1080#1085'.'
+      end
+      object RadioButton7: TRadioButton
+        Left = 150
+        Top = 27
+        Width = 113
+        Height = 23
+        Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 0
+      end
+      object RadioButton8: TRadioButton
+        Left = 270
+        Top = 26
+        Width = 147
+        Height = 25
+        Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+        TabOrder = 1
+      end
+      object RadioButton9: TRadioButton
+        Left = 417
+        Top = 24
+        Width = 165
+        Height = 30
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 2
+      end
+      object RadioButton21: TRadioButton
+        Left = 800
+        Top = 32
+        Width = 13
+        Height = 17
+        Caption = 'RadioButton21'
+        TabOrder = 3
+      end
+    end
+    object GroupBox7: TGroupBox
+      Left = 2
+      Top = 221
+      Width = 820
+      Height = 57
+      Caption = #1055#1086#1089#1083#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1103' '#1085#1072' '#1087#1077#1088#1077#1075#1088#1091#1079#1082#1091' '#1087#1086' '#1090#1086#1082#1091
+      Color = clBtnFace
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 3
+      object Label5: TLabel
+        Left = 11
+        Top = 24
+        Width = 53
+        Height = 23
+        Caption = 'R'#1080#1079#1086#1083
+      end
+      object RadioButton10: TRadioButton
+        Left = 73
+        Top = 24
+        Width = 150
+        Height = 25
+        Caption = #1057#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
+        TabOrder = 0
+      end
+      object RadioButton11: TRadioButton
+        Left = 225
+        Top = 24
+        Width = 168
+        Height = 25
+        Caption = #1053#1077' '#1089#1086#1086#1090#1074#1077#1090#1089#1074#1091#1077#1090
+        TabOrder = 1
+      end
+      object RadioButton12: TRadioButton
+        Left = 399
+        Top = 24
+        Width = 161
+        Height = 25
+        Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+        TabOrder = 2
+      end
+      object RadioButton22: TRadioButton
+        Left = 800
+        Top = 28
+        Width = 13
+        Height = 17
+        Caption = 'RadioButton22'
+        TabOrder = 3
+      end
+    end
+    object GroupBox8: TGroupBox
+      Left = 1
+      Top = 284
+      Width = 820
+      Height = 97
+      Caption = #1044#1083#1103' '#1076#1074#1080#1075#1072#1090#1077#1083#1077#1081' 4'#1040#1057' '#1088#1072#1073#1086#1090#1086#1089#1087#1086#1089#1086#1073#1085#1086#1089#1090#1100' '#1087#1088#1080':'
+      Color = clSilver
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 4
+      object Label7: TLabel
+        Left = 19
+        Top = 29
+        Width = 156
+        Height = 23
+        Caption = '0,74U'#1085'('#1052#1085#1086#1084') 15'#1089
+      end
+      object Label8: TLabel
+        Left = 19
+        Top = 64
+        Width = 156
+        Height = 23
+        Caption = '1,13U'#1085'('#1052#1085#1086#1084') 15'#1089
+      end
+      object Panel4: TPanel
+        Left = 188
+        Top = 24
+        Width = 629
+        Height = 34
+        TabOrder = 0
+        object RadioButton13: TRadioButton
+          Left = 5
+          Top = 2
+          Width = 113
+          Height = 29
+          Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+          TabOrder = 0
+        end
+        object RadioButton14: TRadioButton
+          Left = 125
+          Top = 5
+          Width = 142
+          Height = 26
+          Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+          TabOrder = 1
+        end
+        object RadioButton15: TRadioButton
+          Left = 273
+          Top = 2
+          Width = 167
+          Height = 29
+          Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+          TabOrder = 2
+        end
+        object RadioButton23: TRadioButton
+          Left = 612
+          Top = 9
+          Width = 13
+          Height = 17
+          Caption = 'RadioButton23'
+          TabOrder = 3
+        end
+      end
+      object Panel5: TPanel
+        Left = 188
+        Top = 61
+        Width = 629
+        Height = 33
+        TabOrder = 1
+        object RadioButton16: TRadioButton
+          Left = 5
+          Top = 4
+          Width = 113
+          Height = 25
+          Caption = #1042#1099#1076#1077#1088#1078#1072#1083
+          TabOrder = 0
+        end
+        object RadioButton17: TRadioButton
+          Left = 125
+          Top = 3
+          Width = 142
+          Height = 25
+          Caption = #1053#1077' '#1074#1099#1076#1077#1088#1078#1072#1083
+          TabOrder = 1
+        end
+        object RadioButton18: TRadioButton
+          Left = 273
+          Top = 3
+          Width = 166
+          Height = 25
+          Caption = #1053#1077' '#1087#1088#1086#1074#1086#1076#1080#1083#1086#1089#1100
+          TabOrder = 2
+        end
+        object RadioButton24: TRadioButton
+          Left = 612
+          Top = 8
+          Width = 14
+          Height = 17
+          Caption = 'RadioButton24'
+          TabOrder = 3
+        end
+      end
+    end
+  end
+  object BitBtn1: TBitBtn
+    Left = 767
+    Top = 723
+    Width = 250
+    Height = 40
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
+    Glyph.Data = {
+      F6060000424DF606000000000000360000002800000018000000180000000100
+      180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF169C16169C16FFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF169C1624B72C22B62A22B62A
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF17A61721B4282F
+      D4442ED34128C63422B62AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF18AB
+      181DAE2330D4462FD4442ED2422DD03F28C63422B62AFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFF18B0181BAD1E30D24732D74A30D4472CD24125CF3A2BD03C28C63422B6
+      2AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFF18B2181BAD1E2FD04636DA5132D64A2FD5474DDF66AAF1BA
+      37D64A29D03C28C63423B92DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFF18B61819AD192ECD4239DB5735D75033D74C81
+      EB9858EF7BB3F8CCAAF1BA38D64B2AD03D28C63421B428FFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF92DD9218B1182BC83C3ADC5C38DA
+      5636D85281EB9821C72821C52821C728B4F9CDAAF1BA2ED3422BD13E28C6341C
+      AA22FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF18B1182EC83A
+      3DDD6238DA5A38DA5681EB9821C72816A116FFFFFF16A11629D133C9FADB93ED
+      A72AD13E2CD34028C6341AA31EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF22BB2938DA5A3FDE6438DA5AB6F4D121C72816A116FFFFFFFFFFFFFFFFFF
+      17A9173ADA47D6FAE380EA9629D13D2DD44228C63423B92DFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFF20BA286CE89038DA5AB6F4D121C72816A116FFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFF16A51646E05ADDFBE868E57D28CF3C2ED44328C634
+      179C19FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF18B2184AD95FB6F4D155DE6B16A1
+      16FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF16A5165EE974DFFBEA4F
+      DE6528D03D2FD54427C032179A17FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF18B719
+      16A11616A116FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FF18A81877EF92DCFBE843DB582BD13E2FD64423B92D169C16FFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFF18AD1996F4B1D6FAE34FDE652CD2412FD5441FB1
+      27169C16FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF21BB2AB6F7CDD6FAE3
+      4FDE652DD3422ED3421CA922169F16FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF22BD2B96F4B1D6FAE34FDE652FD5442DCF3F1AA31E92DD92FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFF22BD2B96F4B1D6FAE34FDE6530D7472ACB3B1A
+      A31EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF22BD2B4AD95ED6FA
+      E34FDE6531D7481CA723FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFF22BD2B4AD95ED6FAE32ECD411FB127FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFF92DD924AD95E27C032FFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    TabOrder = 1
+    OnClick = BitBtn1Click
+  end
+  object BitBtn3: TBitBtn
+    Left = 831
+    Top = 615
+    Width = 186
+    Height = 40
+    Caption = #1054#1095#1080#1089#1090#1080#1090#1100
+    Glyph.Data = {
+      F6060000424DF606000000000000360000002800000018000000180000000100
+      180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
+      FFFFFFC8C7FFDCDBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBEBDE90607EE5E5DC4FFFFFFFF
+      FFFFFFFFFFFFFFFF3135FF243CFF1D2EFF4D4BFDFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF100FDD1720
+      FF3534B2FFFFFFFFFFFFFFFFFF615CFF3357FF2E51FF2A4AFF233EFF3734FBFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      716EDC0909FF0B13FF5B5AC2FFFFFFFFFFFFFFFFFF201EFF325BFF2C4FFF2948
+      FF233FFF1628FFA8A5FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFE0DFF70200EA1414FF0509EFA6A4DEFFFFFFFFFFFFFFFFFF231FFF
+      4E76FF2B4DFF2948FF233DFF203CFF191BFAFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFF2522DE100CFF1414FF0000D0EFEEF9FFFFFFFF
+      FFFFFFFFFF3A36FF7190FF284BFF2847FF233DFF1F3AFF182BFF8380F7FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5E5ADD0500FF100CFF0708FF4A48
+      BEFFFFFFFFFFFFFFFFFFFFFFFFA6A3FF4248FF5275FF2645FF233DFF1F39FF1D
+      34FF0B10FBF3F2FEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAAA7ED0500FD0F07FF
+      100CFF0200D9CBCAEEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3332FF697AFF3454
+      FF213CFF1F39FF1C32FF1728FF3834F3FFFFFFFFFFFFFFFFFFFFFFFFA7A5EF05
+      00F80F08FF0E07FF0602FF3935BEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFF0400FF7F98FF213DFF1E38FF1C32FF192CFF0C15FF9592F4FFFFFFFFFF
+      FFE1E0FA0601FB0F09FF0E07FF0F08FF0400CECBCAF0FFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFCECDFF110EFF7591FF1D38FF1B31FF192BFF1824FF
+      0708F5F8F7FFE4E3FB0702F4110DFF0F09FF0E07FF0500F8716ED7FFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF817FFE2625FD607DFF17
+      2DFF192BFF1825FF131CFF201BEC0E0DFB100FFF110DFF100AFF0C06FF130FC7
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FF5D59FB414AFF5570FF1728FF1825FF1820FF1317FF1616FF1210FF120EFF12
+      0CFF0300DBCDCBF4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFF221FF7474EFE5568FF1723FF1920FF171CFF1616
+      FF1310FF1211FF0803EB827FE5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1C19F3444CFF2937FF
+      1B23FF191CFF1817FF1513FF0C08F64E4DDEFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F8AFC2E
+      3AFF2638FF1B25FF1D24FF1B1FFF1C1CFF1816FF0D09E9D8D7F8FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBCB8
+      FF545BFF637AFF6279FF5F70FF5F6CFF4952FF4B4FFF4142FF2524FF2624FF13
+      0DEAE0DFF9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      D7D5FF797CFF6A7EFF6C85FF687EFF6378FF6172FF5D6AFF6972FF9A9CFFA7A8
+      FF6F6CFF5853FF5B56FF4F48F7C8C7F4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFF9895FF6F83FF7894FF738DFF6F85FF6C81FF667BFF6373FF7D8AFF
+      8485FC615AF05B54EF9F9DFF8F8DFF5B55FF5B52FF514BF8ACA9EDFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFABA7FF7D94FF809CFF7B94FF7790FF7389FF6F84FF66
+      7CFF95A3FF8989FC6560F4FFFFFFD9D8FB5751EC807DF7AAA6FF7770FF5C56FF
+      5754FF7A77E7FFFFFFFFFFFFFFFFFFFFFFFF7175FF89A5FF839EFF7F98FF7C94
+      FF768BFF788DFFA1B0FF7978FA8C87F7FEFEFFFFFFFFFFFFFFFFFFFF7D7BEC69
+      65ED9A98FEA7A0FF7D7BFF6060FF5757ECB8B7EBFFFFFFFFFFFF9093FF9EB6FF
+      839FFF8098FF7D95FF95A5FFA9B3FF706CFBB2AEFBFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFD7D5F96B67E47873EDA19BFDAAACFF979DFF7680FB7276E8E5
+      E5F87973FFB1BDFFBCCDFFB4C5FFBDCBFF979CFD706AFCD9D7FEFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBCB9F26C69DF6C68E28C8D
+      F29FA7FAC5D3FF797EE6E7E6FF837CFF7D78FF827FFF6D67FE938EFEFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFE3E2F9A3A1E87675DA7674D88282D8FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    TabOrder = 2
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Top = 433
+    Width = 1017
+    Height = 170
+    Caption = #1042#1080#1073#1088#1086#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080
+    TabOrder = 3
+    object StringGrid1: TStringGrid
+      Left = 2
+      Top = 68
+      Width = 1013
+      Height = 100
+      Align = alBottom
+      ColCount = 19
+      DefaultColWidth = 85
+      RowCount = 3
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
+      TabOrder = 0
+    end
+    object Panel1: TPanel
+      Left = 89
+      Top = 32
+      Width = 306
+      Height = 34
+      Caption = #1042#1080#1073#1088#1086#1089#1082#1086#1088#1086#1089#1090#1100
+      Color = clSilver
+      ParentBackground = False
+      TabOrder = 1
+    end
+    object Panel2: TPanel
+      Left = 396
+      Top = 32
+      Width = 306
+      Height = 34
+      Caption = #1042#1080#1073#1088#1086#1089#1084#1077#1097#1077#1085#1080#1077
+      Color = clSilver
+      ParentBackground = False
+      TabOrder = 2
+    end
+    object Panel3: TPanel
+      Left = 703
+      Top = 32
+      Width = 312
+      Height = 34
+      Caption = #1042#1080#1073#1088#1086#1091#1089#1082#1086#1088#1077#1085#1080#1077
+      Color = clSilver
+      ParentBackground = False
+      TabOrder = 3
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 2
+    Top = 607
+    Width = 629
+    Height = 158
+    Caption = #1059#1088#1086#1074#1077#1085#1100' '#1079#1074#1091#1082#1086#1074#1086#1081' '#1084#1086#1097#1085#1086#1089#1090#1080', '#1076#1041#1040
+    TabOrder = 4
+    object Label10: TLabel
+      Left = 20
+      Top = 36
+      Width = 137
+      Height = 23
+      Caption = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072', '#1057
+    end
+    object Label11: TLabel
+      Left = 236
+      Top = 36
+      Width = 126
+      Height = 23
+      Caption = #1042#1083#1072#1078#1085#1086#1089#1090#1100', %'
+    end
+    object Label12: TLabel
+      Left = 427
+      Top = 36
+      Width = 130
+      Height = 23
+      Caption = #1044#1072#1074#1083#1077#1085#1080#1077', '#1082#1055#1072
+    end
+    object StringGrid2: TStringGrid
+      Left = 2
+      Top = 72
+      Width = 625
+      Height = 84
+      Align = alBottom
+      Color = clWhite
+      ColCount = 9
+      RowCount = 3
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
+      TabOrder = 0
+    end
+    object Edit3: TEdit
+      Left = 163
+      Top = 32
+      Width = 61
+      Height = 31
+      TabOrder = 1
+      Text = '0'
+    end
+    object Edit4: TEdit
+      Left = 368
+      Top = 32
+      Width = 53
+      Height = 31
+      TabOrder = 2
+      Text = '0'
+    end
+    object Edit5: TEdit
+      Left = 563
+      Top = 32
+      Width = 62
+      Height = 31
+      TabOrder = 3
+      Text = '0'
+    end
+  end
+  object Edit2: TEdit
+    Left = 750
+    Top = 619
+    Width = 72
+    Height = 31
+    TabOrder = 5
+    Text = '0'
+  end
+  object Panel6: TPanel
+    Left = 0
+    Top = 0
+    Width = 1024
+    Height = 37
+    Align = alTop
+    TabOrder = 6
+    ExplicitWidth = 1102
+    object Label3: TLabel
+      Left = 8
+      Top = 7
+      Width = 29
+      Height = 23
+      Caption = #8470':'
+    end
+    object Label6: TLabel
+      Left = 43
+      Top = 7
+      Width = 10
+      Height = 23
+      Caption = '0'
+    end
+  end
+  object QInsProch: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZPROCH ('
+      '   NOMER, EPROCH, HIFREQ,'
+      '   PEREGRUZ, RIZOL, MASSA,'
+      '   U074, U113, EPROCHU)'
+      'VALUES ( :NOMER, :EPROCH, :HIFREQ,'
+      '   :PEREGRUZ, :RIZOL, :MASSA,'
+      '   :U074, :U113, :EPROCHU )')
+    Left = 852
+    Top = 296
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'EPROCH'
+        ParamType = ptInput
+      end
+      item
+        Name = 'HIFREQ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PEREGRUZ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'RIZOL'
+        ParamType = ptInput
+      end
+      item
+        Name = 'MASSA'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U074'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U113'
+        ParamType = ptInput
+      end
+      item
+        Name = 'EPROCHU'
+        ParamType = ptInput
+      end>
+  end
+  object Qinsvibro: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZVIBRO ('
+      '   NOMER, X, Y,'
+      '   VAL)'
+      'VALUES ( :NOMER, :X, :Y,'
+      '   :VAL )')
+    Left = 908
+    Top = 296
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'X'
+        ParamType = ptInput
+      end
+      item
+        Name = 'Y'
+        ParamType = ptInput
+      end
+      item
+        Name = 'VAL'
+        ParamType = ptInput
+      end>
+  end
+  object QInsZvuk: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZZVUK ('
+      '   NOMER, X, Y,'
+      '   VAL)'
+      'VALUES ( :NOMER, :X, :Y,'
+      '   :VAL )')
+    Left = 908
+    Top = 352
+    ParamData = <
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'X'
+        ParamType = ptInput
+      end
+      item
+        Name = 'Y'
+        ParamType = ptInput
+      end
+      item
+        Name = 'VAL'
+        ParamType = ptInput
+      end>
+  end
+  object QTemp: TFDQuery
+    Connection = FZamerV2.FDC
+    Left = 852
+    Top = 352
+  end
+end

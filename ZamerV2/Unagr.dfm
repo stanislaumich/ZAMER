@@ -405,7 +405,6 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 3
-    ExplicitHeight = 284
     DesignSize = (
       1035
       314)
@@ -521,7 +520,6 @@ object FNagr: TFNagr
         9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 1
       OnClick = BitBtn1Click
-      ExplicitTop = 206
     end
     object BitBtn2: TBitBtn
       Left = 391
@@ -589,7 +587,6 @@ object FNagr: TFNagr
         12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
       TabOrder = 2
       OnClick = BitBtn2Click
-      ExplicitTop = 206
     end
     object ProgressBar1: TProgressBar
       Left = 2
@@ -599,7 +596,6 @@ object FNagr: TFNagr
       Align = alBottom
       Step = 1
       TabOrder = 3
-      ExplicitTop = 257
     end
     object Edit4: TEdit
       Left = 221
@@ -609,7 +605,6 @@ object FNagr: TFNagr
       Anchors = [akLeft, akBottom]
       TabOrder = 4
       OnChange = Edit4Change
-      ExplicitTop = 172
     end
     object Edit5: TEdit
       Left = 221
@@ -619,10 +614,9 @@ object FNagr: TFNagr
       Anchors = [akLeft, akBottom]
       TabOrder = 5
       OnChange = Edit5Change
-      ExplicitTop = 206
     end
     object BitBtn10: TBitBtn
-      Left = 788
+      Left = 790
       Top = 236
       Width = 242
       Height = 45
@@ -693,7 +687,6 @@ object FNagr: TFNagr
       ParentFont = False
       TabOrder = 6
       OnClick = BitBtn10Click
-      ExplicitTop = 206
     end
     object ComboBox1: TComboBox
       Left = 280
@@ -703,7 +696,6 @@ object FNagr: TFNagr
       Anchors = [akLeft, akBottom]
       TabOrder = 7
       Text = #1054#1084
-      ExplicitTop = 172
     end
     object ComboBox2: TComboBox
       Left = 280
@@ -713,7 +705,6 @@ object FNagr: TFNagr
       Anchors = [akLeft, akBottom]
       TabOrder = 8
       Text = #1054#1084
-      ExplicitTop = 206
     end
     object ComboBox3: TComboBox
       Left = 832

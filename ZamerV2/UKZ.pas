@@ -366,7 +366,6 @@ procedure TFKZ.FormCreate(Sender: TObject);
 begin
   ComboBox1.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
     'R_KZamList.txt');
-  // ComboBox1.Text  := ComboBox1.Items[0];
   ComboBox1.ItemIndex := 0;
 end;
 

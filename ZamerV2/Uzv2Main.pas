@@ -100,6 +100,7 @@ type
         procedure BKzClick(Sender: TObject);
         procedure BNagrClick(Sender: TObject);
         procedure BRHClick(Sender: TObject);
+    procedure BPIClick(Sender: TObject);
     private
         { Private declarations }
     public
@@ -125,7 +126,7 @@ implementation
 
 {$R *.dfm}
 
-uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP;
+uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch;
 
 {
   procedure TFMain.FormCurrentReport;
@@ -826,6 +827,9 @@ begin
             FZamerV2.ImgSet(FZamerV2.Image5, false);
             FZamerV2.ImgSet(FZamerV2.Image6, false);
             FZamerV2.ImgSet(FZamerV2.Image7, false);
+            FProch.Edit3.Text:=EditTemp.Text;
+            FProch.Edit4.Text:=EditHumi.Text;
+            FProch.Edit5.Text:=EditPress.Text;
             ShowMessage('Можно приступать к испытаниям');
             enableispyt(True);
         end;
@@ -847,6 +851,13 @@ begin
     Fnagr.ShowModal;
 end;
 
+procedure TFZamerV2.BPIClick(Sender: TObject);
+begin
+    FProch.Label6.Caption := nomer;
+    FProch.ShowModal;
+
+end;
+
 procedure TFZamerV2.BRHClick(Sender: TObject);
 begin
     FRH.Label6.Caption := nomer;
@@ -861,7 +872,7 @@ begin
     BNagr.Enabled   := f;
     BRH.Enabled     := f;
     // BMH.Enabled := f;
-    // BPI.Enabled := f;
+    BPI.Enabled := f;
 end;
 
 procedure TFZamerV2.LoadIspyt(nomer: string);
@@ -1052,6 +1063,96 @@ begin
           QTemp.FieldByName('r').Asstring;
         QTemp.Next;
     end;
+    //            Загрузить прочие испытания
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zproch where nomer=' + Quotedstr(Nomer));
+    FZamerV2.ImgSet(FZamerV2.Image7, QTemp.RecordCount <> 0);
+    //
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zproch where nomer=' + Quotedstr(Nomer));
+    if Qtemp.FieldByName('eprochu').Asstring = '' then
+        Fproch.Edit1.Text := '380'
+    else
+        Fproch.Edit1.Text := Qtemp.FieldByName('eprochu').Asstring;
+    if Qtemp.FieldByName('massa').Asstring = '' then
+        Fproch.Edit2.Text := '0'
+    else
+        Fproch.Edit2.Text := Qtemp.FieldByName('massa').Asstring;
+
+    case Qtemp.FieldByName('eproch').AsInteger of
+        1:
+            Fproch.radiobutton1.Checked := True;
+        2:
+            Fproch.radiobutton2.Checked := True;
+        0:
+            Fproch.radiobutton3.Checked := True;
+    end;
+    case Qtemp.FieldByName('hifreq').AsInteger of
+        1:
+            Fproch.radiobutton4.Checked := True;
+        2:
+            Fproch.radiobutton5.Checked := True;
+        0:
+            Fproch.radiobutton6.Checked := True;
+    end;
+    case Qtemp.FieldByName('peregruz').AsInteger of
+        1:
+            Fproch.RadioButton7.Checked := True;
+        2:
+            Fproch.RadioButton8.Checked := True;
+        0:
+            Fproch.RadioButton9.Checked := True;
+    end;
+    case Qtemp.FieldByName('rizol').AsInteger of
+        1:
+            Fproch.RadioButton10.Checked := True;
+        2:
+            Fproch.RadioButton11.Checked := True;
+        0:
+            Fproch.RadioButton12.Checked := True;
+    end;
+    case Qtemp.FieldByName('u074').AsInteger of
+        1:
+            Fproch.RadioButton13.Checked := True;
+        2:
+            Fproch.RadioButton14.Checked := True;
+        0:
+            Fproch.RadioButton15.Checked := True;
+    end;
+    case Qtemp.FieldByName('u113').AsInteger of
+        1:
+            Fproch.RadioButton16.Checked := True;
+        2:
+            Fproch.RadioButton17.Checked := True;
+        0:
+            Fproch.RadioButton18.Checked := True;
+    end;
+
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zvibro where nomer=' + Quotedstr(Nomer));
+    while not(Qtemp.Eof) do
+    begin
+        Fproch.StringGrid1.Cells[Qtemp.FieldByName('y').AsInteger,
+          Qtemp.FieldByName('x').AsInteger] := Qtemp.FieldByName('val')
+          .Asstring;
+        Qtemp.Next;
+    end;
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zzvuk where nomer=' + Quotedstr(Nomer));
+    while not(Qtemp.Eof) do
+    begin
+        Fproch.Stringgrid2.Cells[Qtemp.FieldByName('y').AsInteger,
+          Qtemp.FieldByName('x').AsInteger] := Qtemp.FieldByName('val')
+          .Asstring;
+        Qtemp.Next;
+    end;
+
+
+    //
 
     /// ////////////////////////////////////////////////////////////////////////////
 end;
