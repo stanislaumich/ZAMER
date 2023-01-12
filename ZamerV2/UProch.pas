@@ -218,7 +218,7 @@ begin
     ShowMessage('Ошибка преобразования числа звукоиспытания, строка ' +
       inttostr(errx1) + ', столбец ' + inttostr(erry1))
   end;
-
+ FProch.Close;
 end;
 
 
