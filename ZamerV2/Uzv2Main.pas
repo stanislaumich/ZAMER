@@ -551,7 +551,66 @@ begin
         if Fnagr.Edit4.Text<>'0' then wrepl('N31x', Fnagr.Edit4.Text) else wrepl('N31x', ''); // R korp
         if Fnagr.Edit5.Text<>'0' then wrepl('N32x', Fnagr.Edit5.Text) else wrepl('N32x', ''); // R obm
 
+        // прочие характеристики
+        FrepP.Label1.Caption := 'ѕрочие характеристики';
+        for j                := 1 to 18 do
+        begin
+            wrepl('Pr' + inttostr(j + 100),
+              NVLToEmp(Fproch.StringGrid1.Cells[j, 1]));
+        end;
+        for j := 1 to 18 do
+        begin
+            wrepl('Pz' + inttostr(j + 100),
+              NVLToEmp(Fproch.StringGrid1.Cells[j, 2]));
+        end;
+        for i     := 1 to 2 do
+            for j := 1 to 8 do
+            begin
+                wrepl('Wh' + inttostr(i) + '-' + inttostr(j),
+                  NVLToEmp(Fproch.Stringgrid2.Cells[j, i]));
+            end;
+        wrepl('rrmass', NVLToEmp(Fproch.Edit2.Text));
+        wrepl('tmpr', Fproch.Edit3.Text);
+        wrepl('davl', Fproch.Edit5.Text);
+        wrepl('vlag', Fproch.Edit4.Text);
+        // галочки
 
+        if Fproch.radiobutton1.Checked then
+            wrepl('epr', ans[1]);
+        if Fproch.radiobutton2.Checked then
+            wrepl('epr', ans[2]);
+        if Fproch.radiobutton3.Checked then
+            wrepl('epr', ans[0]);
+        if Fproch.radiobutton4.Checked then
+            wrepl('ipc', ans[1]);
+        if Fproch.radiobutton5.Checked then
+            wrepl('ipc', ans[2]);
+        if Fproch.radiobutton6.Checked then
+            wrepl('ipc', ans[0]);
+        if Fproch.RadioButton7.Checked then
+            wrepl('ipt', ans[1]);
+        if Fproch.RadioButton8.Checked then
+            wrepl('ipt', ans[2]);
+        if Fproch.RadioButton9.Checked then
+            wrepl('ipt', ans[0]);
+        if Fproch.RadioButton10.Checked then
+            wrepl('triz', ans[1]);
+        if Fproch.RadioButton11.Checked then
+            wrepl('triz', ans[2]);
+        if Fproch.RadioButton12.Checked then
+            wrepl('triz', ans[0]);
+        if Fproch.RadioButton13.Checked then
+            wrepl('u074', ans[1]);
+        if Fproch.RadioButton14.Checked then
+            wrepl('u074', ans[2]);
+        if Fproch.RadioButton15.Checked then
+            wrepl('u074', ans[0]);
+        if Fproch.RadioButton16.Checked then
+            wrepl('u113', ans[1]);
+        if Fproch.RadioButton17.Checked then
+            wrepl('u113', ans[2]);
+        if Fproch.RadioButton18.Checked then
+            wrepl('u113', ans[0]);
 
         // сохранение документа
         FrepP.Label1.Caption := '—охранение документа';

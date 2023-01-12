@@ -95,7 +95,7 @@ EXP-00091: Exporting questionable statistics.
                                                             8 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZPROCH
-                                                            0 rows exported
+                                                            1 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZRHALL
                                                             0 rows exported
@@ -118,11 +118,11 @@ EXP-00091: Exporting questionable statistics.
                                                            17 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZVIBRO
-                                                            0 rows exported
+                                                           36 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                          ZZVUK
-                                                            0 rows exported
+                                                           16 rows exported
 EXP-00091: Exporting questionable statistics.
 . exporting synonyms
 . exporting views
