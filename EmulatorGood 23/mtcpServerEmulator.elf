@@ -1,0 +1,445 @@
+EurekaLog 5.1.5
+
+Application:
+-------------------------------------------------------
+  1.1 Start Date      : Fri, 10 Feb 2023 08:12:21 +0300
+  1.2 Name/Description: ???????? Modbus ?????????
+  1.3 Version Number  : 2.34.65.953
+  1.4 Parameters      : 
+  1.5 Compilation Date: Thu, 6 Jan 2022 23:42:50 +0300
+
+Exception:
+-------------------------------------------------------------------------------
+  2.1 Date   : Fri, 10 Feb 2023 08:12:37 +0300
+  2.2 Address: 004EF88A
+  2.3 Module : mtcpServerEmulator.exe
+  2.4 Type   : EDOMParseError
+  2.5 Message: ?????????????? ?????? ? ????? ?????, ????? ????? ??? ????? ????.
+               .
+               Line:_0
+               .
+
+Active Controls:
+------------------------------------------------------
+  3.1 Form Class   : TMainForm
+  3.2 Form Text    : ???????? Modbus TCP/RTU ?????????
+  3.3 Control Class: TTreeView
+  3.4 Control Text : 
+
+Computer:
+---------------------------------------------------------------------
+  4.1 Name          : PROG
+  4.2 User          : Lz42
+  4.3 Total Memory  : 2048 Mb
+  4.4 Free Memory   : 1483 Mb
+  4.5 Total Disk    : 465.76 Gb
+  4.6 Free Disk     : 18.45 Gb
+  4.7 System Up Time: 11 minutes, 44 seconds
+  4.8 Processor     : Intel(R) Xeon(R) CPU           E5430  @ 2.66GHz
+  4.9 Display Mode  : 1920 x 1080, 32 bit
+
+Operating System:
+---------------------------------------
+  5.1 Type    : Microsoft Windows Vista
+  5.2 Build # : 9200
+  5.3 Update  : 
+  5.4 Language: English
+
+Network:
+---------------------------------
+  6.1 IP Address: 192.168.001.156
+  6.2 Submask   : 255.255.255.000
+  6.3 Gateway   : 192.168.001.101
+  6.4 DNS 1     : 192.168.001.101
+  6.5 DNS 2     : 194.158.196.137
+  6.6 DHCP      : ON             
+
+Call Stack Information:
+-------------------------------------------------------------------------------------------------
+|Address |Module                |Unit            |Class         |Procedure/Method          |Line|
+-------------------------------------------------------------------------------------------------
+| Running Thread: ID=3052; Priority=0; Class=; [Main]                                           |
+|-----------------------------------------------------------------------------------------------|
+|00557C4D|mtcpServerEmulator.exe|Main.pas        |TMainForm     |OpenConfig                |3344|
+|00557BE0|mtcpServerEmulator.exe|Main.pas        |TMainForm     |OpenConfig                |3339|
+|00554D02|mtcpServerEmulator.exe|Main.pas        |TMainForm     |OpenMenuClick             |2649|
+|77AE654A|ntdll.dll             |                |              |NtCallbackReturn          |    |
+|75EA51CB|user32.dll            |                |              |DispatchMessageA          |    |
+|75EA51C0|user32.dll            |                |              |DispatchMessageA          |    |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+|-----------------------------------------------------------------------------------------------|
+|                                                                                               |
+| Running Thread: ID=1192; Priority=-1; Class=TSaveLogThread                                    |
+|-----------------------------------------------------------------------------------------------|
+|77AE6850|ntdll.dll             |                |              |ZwDelayExecution          |    |
+|7597B029|KERNELBASE.dll        |                |              |SleepEx                   |    |
+|761DE8B0|KERNEL32.DLL          |                |              |BaseFormatObjectAttributes|    |
+|0053D3BC|mtcpServerEmulator.exe|AuxilClasses.pas|TSaveLogThread|Execute                   |360 |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+|-----------------------------------------------------------------------------------------------|
+| Calling Thread: ID=3052; Priority=0; Class=; [Main]                                           |
+|-----------------------------------------------------------------------------------------------|
+|00534144|mtcpServerEmulator.exe|Logs.pas        |              |StartLogs                 |21  |
+|00534114|mtcpServerEmulator.exe|Logs.pas        |              |StartLogs                 |18  |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+|-----------------------------------------------------------------------------------------------|
+|                                                                                               |
+| Running Thread: ID=9412; Priority=-1; Class=TTracer                                           |
+|-----------------------------------------------------------------------------------------------|
+|7599FA02|KERNELBASE.dll        |                |              |WaitForSingleObjectEx     |    |
+|7599F980|KERNELBASE.dll        |                |              |WaitForSingleObjectEx     |    |
+|7599F96D|KERNELBASE.dll        |                |              |WaitForSingleObject       |    |
+|761DE8E0|KERNEL32.DLL          |                |              |BaseFormatObjectAttributes|    |
+|005366B9|mtcpServerEmulator.exe|TraceLogUnit.pas|TTracer       |Execute                   |520 |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+|-----------------------------------------------------------------------------------------------|
+| Calling Thread: ID=3052; Priority=0; Class=; [Main]                                           |
+|-----------------------------------------------------------------------------------------------|
+|0053CDB8|mtcpServerEmulator.exe|AuxilClasses.pas|TAuxilThread  |Create                    |176 |
+|0053CD60|mtcpServerEmulator.exe|AuxilClasses.pas|TAuxilThread  |Create                    |169 |
+|0053661D|mtcpServerEmulator.exe|TraceLogUnit.pas|TTracer       |Create                    |498 |
+|00536604|mtcpServerEmulator.exe|TraceLogUnit.pas|TTracer       |Create                    |497 |
+|00535BB1|mtcpServerEmulator.exe|TraceLogUnit.pas|TTraceLogForm |Create                    |169 |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+-------------------------------------------------------------------------------------------------
+
+Modules Information:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|Handle  |Name                           |Description                                                                                                  |Version            |Size   |Modified           |Path                                                                                                         |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|00400000|mtcpServerEmulator.exe         |???????? Modbus ?????????                                                                                    |2.34.65.953        |2249104|2022-11-21 08:34:54|S:\ZAMER\EmulatorGood 23                                                                                     |
+|68B70000|FileSyncShell.dll              |Microsoft OneDrive Shell Extension                                                                           |22.77.410.7        |1579936|2023-02-09 14:09:10|C:\Program Files (x86)\Microsoft OneDrive\22.077.0410.0007                                                   |
+|68E00000|Windows.Storage.Search.dll     |Windows.Storage.Search                                                                                       |6.2.22621.1        |684544 |2022-05-07 08:19:54|C:\Windows\system32                                                                                          |
+|68F40000|StructuredQuery.dll            |Structured Query                                                                                             |7.0.22621.317      |560392 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|69A00000|tiptsf.dll                     |?????????????? ????????? ????? ????????? ?????????? ? ?????? ??????????? ?????                               |6.2.22621.317      |493408 |2022-09-25 05:32:34|C:\Program Files (x86)\Common Files\microsoft shared\ink                                                     |
+|69B20000|comctl32.dll                   |Common Controls Library                                                                                      |5.82.22621.317     |583008 |2022-09-24 18:05:48|C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.22621.317_none_42d658918da1ea95|
+|69C60000|Windows.StateRepositoryPS.dll  |Windows StateRepository Proxy/Stub Server                                                                    |6.2.22621.457      |387344 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|69CC0000|edputil.dll                    |????????? ????????? EDP                                                                                      |6.2.22621.1        |104448 |2022-05-07 08:19:58|C:\Windows\SYSTEM32                                                                                          |
+|69CF0000|msimg32.dll                    |GDIEXT Client DLL                                                                                            |6.2.22621.317      |7168   |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|6C900000|windows.staterepositorycore.dll|Windows StateRepository API Core                                                                             |6.2.22621.457      |70752  |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|6C920000|Windows.System.Launcher.dll    |Windows.System.Launcher                                                                                      |6.2.22621.457      |932304 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|6D4B0000|msxml3.dll                     |MSXML 3.0                                                                                                    |8.110.22621.317    |1365504|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|6D610000|ntshrui.dll                    |?????????? ????????, ?????????????? ????? ??????                                                             |6.2.22621.1        |455168 |2022-05-07 08:19:50|C:\Windows\SYSTEM32                                                                                          |
+|6E7B0000|twinapi.appcore.dll            |twinapi.appcore                                                                                              |6.2.22621.317      |1903816|2022-09-25 05:32:38|C:\Windows\system32                                                                                          |
+|6E980000|dataexchange.dll               |Data exchange                                                                                                |6.2.22621.317      |295424 |2022-09-25 05:32:40|C:\Windows\system32                                                                                          |
+|6E9D0000|msvcp110_win.dll               |Microsoft® STL110 C++ Runtime Library                                                                        |6.2.22621.1        |418336 |2022-05-07 08:19:48|C:\Windows\SYSTEM32                                                                                          |
+|6EA40000|policymanager.dll              |Policy Manager DLL                                                                                           |6.2.22621.317      |586200 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|6EAD0000|thumbcache.dll                 |??? ??????? ??????????                                                                                       |6.2.22621.1        |342368 |2022-05-07 08:19:52|C:\Windows\System32                                                                                          |
+|6FCF0000|davclnt.dll                    |Web DAV Client DLL                                                                                           |6.2.22621.1        |80384  |2022-05-07 08:20:26|C:\Windows\System32                                                                                          |
+|6FD10000|ntlanman.dll                   |Microsoft® LAN Manager                                                                                       |6.2.22621.1        |66560  |2022-05-07 08:19:58|C:\Windows\System32                                                                                          |
+|6FD30000|drprov.dll                     |?????? ??????? ? ???? ??? ???????, ?????????????? ?????? ??????????? ? ?????????? ???????? ????? (??????????)|6.2.22621.1        |21504  |2022-05-07 08:20:24|C:\Windows\System32                                                                                          |
+|6FD40000|p9np.dll                       |Plan 9 Network Provider                                                                                      |6.2.22621.317      |126808 |2022-09-25 05:32:34|C:\Windows\System32                                                                                          |
+|6FD60000|propsys.dll                    |??????? ??????? ??????? (??????????)                                                                         |7.0.22621.1        |813464 |2022-05-07 08:19:54|C:\Windows\system32                                                                                          |
+|6FE50000|CoreUIComponents.dll           |Microsoft Core UI Components Dll                                                                             |6.2.22621.317      |2699256|2022-09-25 05:32:40|C:\Windows\SYSTEM32                                                                                          |
+|700E0000|CoreMessaging.dll              |Microsoft CoreMessaging Dll                                                                                  |6.2.22621.317      |834176 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|701B0000|textinputframework.dll         |"TextInputFramework.DYNLINK"                                                                                 |6.2.22621.317      |924568 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|702A0000|TextShaping.dll                |Microsoft Text Shaping Library                                                                               |6.2.22621.317      |611016 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|70340000|WindowsCodecs.dll              |Microsoft Windows Codecs Library                                                                             |6.2.22621.317      |1450304|2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|70610000|WINSTA.dll                     |Winstation Library                                                                                           |6.2.22621.317      |306288 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|70660000|comctl32.DLL                   |User Experience Controls Library                                                                             |6.10.22621.317     |2231136|2022-09-24 18:05:50|C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.317_none_f0f07d5ed588c8a8 |
+|70890000|WININET.dll                    |?????????? ????????? ??? Win32                                                                               |11.0.22621.317     |4770416|2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|717C0000|WTSAPI32.dll                   |Windows Remote Desktop Session Host Server SDK APIs                                                          |6.2.22621.1        |54760  |2022-05-07 08:19:52|C:\Windows\SYSTEM32                                                                                          |
+|71890000|srvcli.dll                     |Server Service Client DLL                                                                                    |6.2.22621.1        |80072  |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|718B0000|MPR.dll                        |?????????? ????????????? ??? ?????????? ????? ???????                                                        |6.2.22621.1        |94544  |2022-05-07 08:19:58|C:\Windows\SYSTEM32                                                                                          |
+|718D0000|dwmapi.dll                     |????????? API ?????????? ???? ???????? ????? (??????????)                                                    |6.2.22621.317      |128088 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|71900000|USERENV.dll                    |Userenv                                                                                                      |6.2.22621.1        |121368 |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|71940000|uxtheme.dll                    |?????????? ??? UxTheme (Microsoft)                                                                           |6.2.22621.521      |500224 |2022-09-25 05:32:40|C:\Windows\system32                                                                                          |
+|71BA0000|wkscli.dll                     |Workstation Service Client DLL                                                                               |6.2.22621.1        |66136  |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|71BC0000|profapi.dll                    |User Profile Basic API                                                                                       |6.2.22621.1        |93520  |2022-05-07 08:19:50|C:\Windows\SYSTEM32                                                                                          |
+|71BE0000|wintypes.dll                   |?????????? DLL ???????? ????? Windows                                                                        |6.2.22621.317      |813480 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|71CB0000|windows.storage.dll            |API ???????? Microsoft WinRT                                                                                 |6.2.22621.521      |7110656|2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|72530000|netutils.dll                   |Net Win32 API Helpers DLL                                                                                    |6.2.22621.1        |39256  |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|726F0000|SspiCli.dll                    |Security Support Provider Interface                                                                          |6.2.22621.317      |164768 |2022-09-25 05:32:40|C:\Windows\SYSTEM32                                                                                          |
+|72720000|Secur32.dll                    |Security Support Provider Interface                                                                          |6.2.22621.1        |20992  |2022-05-07 08:20:02|C:\Windows\SYSTEM32                                                                                          |
+|731D0000|bcrypt.dll                     |?????????? ????????????????? ?????????? Windows                                                              |6.2.22621.1        |100712 |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|731F0000|CRYPTBASE.DLL                  |Base cryptographic API DLL                                                                                   |6.2.22621.1        |33144  |2022-05-07 08:19:50|C:\Windows\SYSTEM32                                                                                          |
+|74690000|wsock32.dll                    |Windows Socket 32-Bit DLL                                                                                    |6.2.22621.1        |16384  |2022-05-07 08:19:58|C:\Windows\SYSTEM32                                                                                          |
+|74AF0000|apphelp.dll                    |?????????? ?????????? ????????????? ??????????                                                               |6.2.22621.457      |670432 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|75360000|kernel.appcore.dll             |AppModel API Host                                                                                            |6.2.22621.1        |69752  |2022-05-07 08:19:54|C:\Windows\SYSTEM32                                                                                          |
+|75630000|CFGMGR32.dll                   |Configuration Manager DLL                                                                                    |6.2.22621.1        |244832 |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|75670000|MSVCR90.dll                    |Microsoft® C Runtime Library                                                                                 |9.0.30729.9635     |656272 |2022-05-07 08:20:22|C:\Windows\WinSxS\x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.9635_none_508ff82ebcbafee0               |
+|75720000|nvStInit.dll                   |NVIDIA Stereo Initialization dll, Version 307.74                                                             |6.0.6000.16384     |17880  |2013-01-12 13:42:10|C:\Program Files (x86)\NVIDIA Corporation\3D Vision                                                          |
+|757B0000|version.dll                    |Version Checking and File Installation Libraries                                                             |6.2.22621.1        |28912  |2022-05-07 08:19:50|C:\Windows\SYSTEM32                                                                                          |
+|75860000|KERNELBASE.dll                 |?????????? ??????? Windows NT BASE API                                                                       |6.2.22621.521      |2535520|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|75AD0000|PSAPI.DLL                      |Process Status Helper                                                                                        |6.2.22621.1        |18080  |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|75AE0000|msvcp_win.dll                  |Microsoft® C Runtime Library                                                                                 |6.2.22621.1        |492232 |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|75D50000|RPCRT4.dll                     |?????????? ?????????? ?????? ????????                                                                        |6.2.22621.1        |761288 |2022-05-07 08:19:50|C:\Windows\System32                                                                                          |
+|75E10000|user32.dll                     |????????????????????? ?????????? ??????? USER API Windows                                                    |6.2.22621.457      |1730272|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|75FC0000|WS2_32.dll                     |32-????????? ?????????? Windows Socket 2.0                                                                   |6.2.22621.1        |389440 |2022-05-07 08:19:50|C:\Windows\System32                                                                                          |
+|76020000|ucrtbase.dll                   |Microsoft® C Runtime Library                                                                                 |6.2.22621.1        |1128496|2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|76140000|advapi32.dll                   |??????????? ?????????? API Windows 32                                                                        |6.2.22621.105      |502544 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|761C0000|KERNEL32.DLL                   |?????????? ??????? Windows NT BASE API                                                                       |6.2.22621.457      |674936 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|762B0000|gdi32full.dll                  |GDI Client DLL                                                                                               |6.2.22621.521      |898712 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76390000|sechost.dll                    |Host for SCM/SDDL/LSA Lookup APIs                                                                            |6.2.22621.317      |529440 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|76420000|CRYPT32.dll                    |API32 ????????????                                                                                           |6.2.22621.382      |1051080|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|765A0000|shell32.dll                    |????? ?????????? ???????? Windows                                                                            |6.2.22621.457      |6652000|2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|76BF0000|oleaut32.dll                   |OLEAUT32.DLL                                                                                                 |6.2.22621.105      |631680 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76C90000|bcryptPrimitives.dll           |Windows Cryptographic Primitives Library                                                                     |6.2.22621.1        |398768 |2022-05-07 08:19:36|C:\Windows\System32                                                                                          |
+|76D00000|MSCTF.dll                      |????????? ?????????? MSCTF                                                                                   |6.2.22621.382      |888880 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76DE0000|ole32.dll                      |Microsoft OLE ??? Windows                                                                                    |6.2.22621.317      |1368168|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76F30000|GDI32.dll                      |GDI Client DLL                                                                                               |6.2.22621.1        |132224 |2022-05-07 08:19:54|C:\Windows\System32                                                                                          |
+|76F70000|msvcrt.dll                     |Windows NT CRT DLL                                                                                           |7.0.22621.4        |797488 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|77040000|SHLWAPI.dll                    |?????????? ????????? ???????? ????????                                                                       |6.2.22621.317      |302656 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|77090000|comdlg32.dll                   |?????????? ????? ?????????? ????                                                                             |6.2.22621.317      |689664 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|77140000|combase.dll                    |Microsoft COM ??? Windows                                                                                    |6.2.22621.317      |2614520|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|77480000|shcore.dll                     |SHCORE                                                                                                       |6.2.22621.317      |786128 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|77540000|IMM32.DLL                      |Multi-User Windows IMM32 API Client DLL                                                                      |6.2.22621.1        |147192 |2022-05-07 08:19:58|C:\Windows\System32                                                                                          |
+|77570000|clbcatq.dll                    |COM+ Configuration Catalog                                                                                   |2001.12.10941.16384|521640 |2022-05-07 08:19:58|C:\Windows\System32                                                                                          |
+|77600000|win32u.dll                     |Win32u                                                                                                       |6.2.22621.1        |103288 |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|77A70000|ntdll.dll                      |????????? ?????????? NT                                                                                      |6.2.22621.317      |1747888|2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Registers:
+-----------------------------
+EAX: 0250D400   EDI: 000DFC44
+EBX: 023F0001   ESI: 004EF550
+ECX: 0250D400   ESP: 000DF460
+EDX: 004EF88F   EIP: 004EF88A
+
+Stack:               Memory Dump:
+------------------   ---------------------------------------------------------------------------
+000DF460: 000DF4FC   004EF88A: E8 49 56 F1 FF 33 D2 8B 45 F4 E8 57 13 00 00 33  .IV..3..E..W...3
+000DF464: 00404DB4   004EF89A: C0 5A 59 59 64 89 10 68 11 F9 4E 00 8D 85 7C FF  .ZYYd..h..N...|.
+000DF468: 000DF4F4   004EF8AA: FF FF BA 02 00 00 00 E8 32 65 F1 FF 8D 45 88 E8  ........2e...E..
+000DF46C: 023F0001   004EF8BA: C2 5C F1 FF 8D 45 8C E8 0A 65 F1 FF 8D 45 C0 E8  .\...E...e...E..
+000DF470: 00000000   004EF8CA: EE 7B F1 FF 8D 45 C4 E8 E6 7B F1 FF 8D 45 C8 E8  .{...E...{...E..
+000DF474: 00000000   004EF8DA: F2 5A F2 FF 8D 45 D8 8B 15 2C 86 4E 00 B9 03 00  .Z...E...,.N....
+000DF478: 00000000   004EF8EA: 00 00 E8 BB 6A F1 FF 8D 45 E8 E8 87 5C F1 FF 8D  ....j...E...\...
+000DF47C: 00000000   004EF8FA: 45 F8 E8 7F 5C F1 FF 8D 45 FC E8 B3 7B F1 FF C3  E...\...E...{...
+000DF480: 00000000   004EF90A: E9 25 54 F1 FF EB 95 5B 8B E5 5D C3 00 00 F2 C0  .%T....[..].....
+000DF484: 030EF8EC   004EF91A: F4 2B 6E 09 D4 11 83 DA 00 C0 4F 60 B2 DD FF FF  .+n.......O`....
+000DF488: 0000000F   004EF92A: FF FF 02 00 00 00 0D 0A 00 00 FF FF FF FF 0E 00  ................
+000DF48C: 004EF930   004EF93A: 00 00 25 73 25 73 25 73 3A 20 25 64 25 73 25 73  ..%s%s%s: %d%s%s
+000DF490: 0000000B   004EF94A: 00 00 53 56 8B D8 84 D2 74 0B 8B C3 66 BE EF FF  ..SV....t...f...
+000DF494: 0250CA90   004EF95A: E8 FD 4D F1 FF 8D 43 5C E8 55 7B F1 FF 8D 43 48  ..M...C\.U{...CH
+000DF498: 0000000B   004EF96A: E8 4D 7B F1 FF 8D 43 4C E8 45 7B F1 FF 8D 43 54  .M{...CL.E{...CT
+000DF49C: 00000000   004EF97A: E8 3D 7B F1 FF 33 C0 89 43 68 33 D2 8B C3 E8 63  .={..3..Ch3....c
+
+
+
+EurekaLog 5.1.5
+
+Application:
+-------------------------------------------------------
+  1.1 Start Date      : Fri, 10 Feb 2023 08:12:21 +0300
+  1.2 Name/Description: ???????? Modbus ?????????
+  1.3 Version Number  : 2.34.65.953
+  1.4 Parameters      : 
+  1.5 Compilation Date: Thu, 6 Jan 2022 23:42:50 +0300
+
+Exception:
+-------------------------------------------------------------------------------
+  2.1 Date   : Fri, 10 Feb 2023 08:12:51 +0300
+  2.2 Address: 004EF88A
+  2.3 Module : mtcpServerEmulator.exe
+  2.4 Type   : EDOMParseError
+  2.5 Message: ?????????????? ?????? ? ????? ?????, ????? ????? ??? ????? ????.
+               .
+               Line:_0
+               .
+
+Active Controls:
+------------------------------------------------------
+  3.1 Form Class   : TMainForm
+  3.2 Form Text    : ???????? Modbus TCP/RTU ?????????
+  3.3 Control Class: TTreeView
+  3.4 Control Text : 
+
+Computer:
+---------------------------------------------------------------------
+  4.1 Name          : PROG
+  4.2 User          : Lz42
+  4.3 Total Memory  : 2048 Mb
+  4.4 Free Memory   : 1489 Mb
+  4.5 Total Disk    : 465.76 Gb
+  4.6 Free Disk     : 18.45 Gb
+  4.7 System Up Time: 11 minutes, 58 seconds
+  4.8 Processor     : Intel(R) Xeon(R) CPU           E5430  @ 2.66GHz
+  4.9 Display Mode  : 1920 x 1080, 32 bit
+
+Operating System:
+---------------------------------------
+  5.1 Type    : Microsoft Windows Vista
+  5.2 Build # : 9200
+  5.3 Update  : 
+  5.4 Language: English
+
+Network:
+---------------------------------
+  6.1 IP Address: 192.168.001.156
+  6.2 Submask   : 255.255.255.000
+  6.3 Gateway   : 192.168.001.101
+  6.4 DNS 1     : 192.168.001.101
+  6.5 DNS 2     : 194.158.196.137
+  6.6 DHCP      : ON             
+
+Call Stack Information:
+-------------------------------------------------------------------------------------------------
+|Address |Module                |Unit            |Class         |Procedure/Method          |Line|
+-------------------------------------------------------------------------------------------------
+| Running Thread: ID=3052; Priority=0; Class=; [Main]                                           |
+|-----------------------------------------------------------------------------------------------|
+|00557C4D|mtcpServerEmulator.exe|Main.pas        |TMainForm     |OpenConfig                |3344|
+|00557BE0|mtcpServerEmulator.exe|Main.pas        |TMainForm     |OpenConfig                |3339|
+|00554D02|mtcpServerEmulator.exe|Main.pas        |TMainForm     |OpenMenuClick             |2649|
+|77AE654A|ntdll.dll             |                |              |NtCallbackReturn          |    |
+|75EA51CB|user32.dll            |                |              |DispatchMessageA          |    |
+|75EA51C0|user32.dll            |                |              |DispatchMessageA          |    |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+|-----------------------------------------------------------------------------------------------|
+|                                                                                               |
+| Running Thread: ID=1192; Priority=-1; Class=TSaveLogThread                                    |
+|-----------------------------------------------------------------------------------------------|
+|77AE6850|ntdll.dll             |                |              |ZwDelayExecution          |    |
+|7597B029|KERNELBASE.dll        |                |              |SleepEx                   |    |
+|761DE8B0|KERNEL32.DLL          |                |              |BaseFormatObjectAttributes|    |
+|0053D3BC|mtcpServerEmulator.exe|AuxilClasses.pas|TSaveLogThread|Execute                   |360 |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+|-----------------------------------------------------------------------------------------------|
+| Calling Thread: ID=3052; Priority=0; Class=; [Main]                                           |
+|-----------------------------------------------------------------------------------------------|
+|00534144|mtcpServerEmulator.exe|Logs.pas        |              |StartLogs                 |21  |
+|00534114|mtcpServerEmulator.exe|Logs.pas        |              |StartLogs                 |18  |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+|-----------------------------------------------------------------------------------------------|
+|                                                                                               |
+| Running Thread: ID=9412; Priority=-1; Class=TTracer                                           |
+|-----------------------------------------------------------------------------------------------|
+|7599FA02|KERNELBASE.dll        |                |              |WaitForSingleObjectEx     |    |
+|7599F980|KERNELBASE.dll        |                |              |WaitForSingleObjectEx     |    |
+|7599F96D|KERNELBASE.dll        |                |              |WaitForSingleObject       |    |
+|761DE8E0|KERNEL32.DLL          |                |              |BaseFormatObjectAttributes|    |
+|005366B9|mtcpServerEmulator.exe|TraceLogUnit.pas|TTracer       |Execute                   |520 |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+|-----------------------------------------------------------------------------------------------|
+| Calling Thread: ID=3052; Priority=0; Class=; [Main]                                           |
+|-----------------------------------------------------------------------------------------------|
+|0053CDB8|mtcpServerEmulator.exe|AuxilClasses.pas|TAuxilThread  |Create                    |176 |
+|0053CD60|mtcpServerEmulator.exe|AuxilClasses.pas|TAuxilThread  |Create                    |169 |
+|0053661D|mtcpServerEmulator.exe|TraceLogUnit.pas|TTracer       |Create                    |498 |
+|00536604|mtcpServerEmulator.exe|TraceLogUnit.pas|TTracer       |Create                    |497 |
+|00535BB1|mtcpServerEmulator.exe|TraceLogUnit.pas|TTraceLogForm |Create                    |169 |
+|761D7BA7|KERNEL32.DLL          |                |              |BaseThreadInitThunk       |    |
+-------------------------------------------------------------------------------------------------
+
+Modules Information:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|Handle  |Name                           |Description                                                                                                  |Version            |Size   |Modified           |Path                                                                                                         |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|00400000|mtcpServerEmulator.exe         |???????? Modbus ?????????                                                                                    |2.34.65.953        |2249104|2022-11-21 08:34:54|S:\ZAMER\EmulatorGood 23                                                                                     |
+|68B70000|FileSyncShell.dll              |Microsoft OneDrive Shell Extension                                                                           |22.77.410.7        |1579936|2023-02-09 14:09:10|C:\Program Files (x86)\Microsoft OneDrive\22.077.0410.0007                                                   |
+|68E00000|Windows.Storage.Search.dll     |Windows.Storage.Search                                                                                       |6.2.22621.1        |684544 |2022-05-07 08:19:54|C:\Windows\system32                                                                                          |
+|68EB0000|Windows.FileExplorer.Common.dll|Windows.FileExplorer.Common                                                                                  |6.2.22621.457      |452096 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|68F40000|StructuredQuery.dll            |Structured Query                                                                                             |7.0.22621.317      |560392 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|69A00000|tiptsf.dll                     |?????????????? ????????? ????? ????????? ?????????? ? ?????? ??????????? ?????                               |6.2.22621.317      |493408 |2022-09-25 05:32:34|C:\Program Files (x86)\Common Files\microsoft shared\ink                                                     |
+|69B20000|comctl32.dll                   |Common Controls Library                                                                                      |5.82.22621.317     |583008 |2022-09-24 18:05:48|C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.22621.317_none_42d658918da1ea95|
+|69C60000|Windows.StateRepositoryPS.dll  |Windows StateRepository Proxy/Stub Server                                                                    |6.2.22621.457      |387344 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|69CC0000|edputil.dll                    |????????? ????????? EDP                                                                                      |6.2.22621.1        |104448 |2022-05-07 08:19:58|C:\Windows\SYSTEM32                                                                                          |
+|69CF0000|msimg32.dll                    |GDIEXT Client DLL                                                                                            |6.2.22621.317      |7168   |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|6C900000|windows.staterepositorycore.dll|Windows StateRepository API Core                                                                             |6.2.22621.457      |70752  |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|6C920000|Windows.System.Launcher.dll    |Windows.System.Launcher                                                                                      |6.2.22621.457      |932304 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|6D4B0000|msxml3.dll                     |MSXML 3.0                                                                                                    |8.110.22621.317    |1365504|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|6D610000|ntshrui.dll                    |?????????? ????????, ?????????????? ????? ??????                                                             |6.2.22621.1        |455168 |2022-05-07 08:19:50|C:\Windows\SYSTEM32                                                                                          |
+|6E7B0000|twinapi.appcore.dll            |twinapi.appcore                                                                                              |6.2.22621.317      |1903816|2022-09-25 05:32:38|C:\Windows\system32                                                                                          |
+|6E980000|dataexchange.dll               |Data exchange                                                                                                |6.2.22621.317      |295424 |2022-09-25 05:32:40|C:\Windows\system32                                                                                          |
+|6E9D0000|msvcp110_win.dll               |Microsoft® STL110 C++ Runtime Library                                                                        |6.2.22621.1        |418336 |2022-05-07 08:19:48|C:\Windows\SYSTEM32                                                                                          |
+|6EA40000|policymanager.dll              |Policy Manager DLL                                                                                           |6.2.22621.317      |586200 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|6EAD0000|thumbcache.dll                 |??? ??????? ??????????                                                                                       |6.2.22621.1        |342368 |2022-05-07 08:19:52|C:\Windows\System32                                                                                          |
+|6EB30000|WINNSI.DLL                     |Network Store Information RPC interface                                                                      |6.2.22621.1        |31032  |2022-05-07 08:19:36|C:\Windows\SYSTEM32                                                                                          |
+|6EBD0000|dhcpcsvc.DLL                   |?????? DHCP-???????                                                                                          |6.2.22621.1        |86896  |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|6EBF0000|dhcpcsvc6.DLL                  |?????? DHCPv6                                                                                                |6.2.22621.1        |75632  |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|6FCF0000|davclnt.dll                    |Web DAV Client DLL                                                                                           |6.2.22621.1        |80384  |2022-05-07 08:20:26|C:\Windows\System32                                                                                          |
+|6FD10000|ntlanman.dll                   |Microsoft® LAN Manager                                                                                       |6.2.22621.1        |66560  |2022-05-07 08:19:58|C:\Windows\System32                                                                                          |
+|6FD30000|drprov.dll                     |?????? ??????? ? ???? ??? ???????, ?????????????? ?????? ??????????? ? ?????????? ???????? ????? (??????????)|6.2.22621.1        |21504  |2022-05-07 08:20:24|C:\Windows\System32                                                                                          |
+|6FD40000|p9np.dll                       |Plan 9 Network Provider                                                                                      |6.2.22621.317      |126808 |2022-09-25 05:32:34|C:\Windows\System32                                                                                          |
+|6FD60000|propsys.dll                    |??????? ??????? ??????? (??????????)                                                                         |7.0.22621.1        |813464 |2022-05-07 08:19:54|C:\Windows\system32                                                                                          |
+|6FE50000|CoreUIComponents.dll           |Microsoft Core UI Components Dll                                                                             |6.2.22621.317      |2699256|2022-09-25 05:32:40|C:\Windows\SYSTEM32                                                                                          |
+|700E0000|CoreMessaging.dll              |Microsoft CoreMessaging Dll                                                                                  |6.2.22621.317      |834176 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|701B0000|textinputframework.dll         |"TextInputFramework.DYNLINK"                                                                                 |6.2.22621.317      |924568 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|702A0000|TextShaping.dll                |Microsoft Text Shaping Library                                                                               |6.2.22621.317      |611016 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|70340000|WindowsCodecs.dll              |Microsoft Windows Codecs Library                                                                             |6.2.22621.317      |1450304|2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|70610000|WINSTA.dll                     |Winstation Library                                                                                           |6.2.22621.317      |306288 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|70660000|comctl32.DLL                   |User Experience Controls Library                                                                             |6.10.22621.317     |2231136|2022-09-24 18:05:50|C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.317_none_f0f07d5ed588c8a8 |
+|70890000|WININET.dll                    |?????????? ????????? ??? Win32                                                                               |11.0.22621.317     |4770416|2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|717C0000|WTSAPI32.dll                   |Windows Remote Desktop Session Host Server SDK APIs                                                          |6.2.22621.1        |54760  |2022-05-07 08:19:52|C:\Windows\SYSTEM32                                                                                          |
+|71890000|srvcli.dll                     |Server Service Client DLL                                                                                    |6.2.22621.1        |80072  |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|718B0000|MPR.dll                        |?????????? ????????????? ??? ?????????? ????? ???????                                                        |6.2.22621.1        |94544  |2022-05-07 08:19:58|C:\Windows\SYSTEM32                                                                                          |
+|718D0000|dwmapi.dll                     |????????? API ?????????? ???? ???????? ????? (??????????)                                                    |6.2.22621.317      |128088 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|71900000|USERENV.dll                    |Userenv                                                                                                      |6.2.22621.1        |121368 |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|71940000|uxtheme.dll                    |?????????? ??? UxTheme (Microsoft)                                                                           |6.2.22621.521      |500224 |2022-09-25 05:32:40|C:\Windows\system32                                                                                          |
+|71BA0000|wkscli.dll                     |Workstation Service Client DLL                                                                               |6.2.22621.1        |66136  |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|71BC0000|profapi.dll                    |User Profile Basic API                                                                                       |6.2.22621.1        |93520  |2022-05-07 08:19:50|C:\Windows\SYSTEM32                                                                                          |
+|71BE0000|wintypes.dll                   |?????????? DLL ???????? ????? Windows                                                                        |6.2.22621.317      |813480 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|71CB0000|windows.storage.dll            |API ???????? Microsoft WinRT                                                                                 |6.2.22621.521      |7110656|2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|72430000|DNSAPI.dll                     |???????????? ?????????? API DNS-???????                                                                      |6.2.22621.1        |753056 |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|72530000|netutils.dll                   |Net Win32 API Helpers DLL                                                                                    |6.2.22621.1        |39256  |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|726F0000|SspiCli.dll                    |Security Support Provider Interface                                                                          |6.2.22621.317      |164768 |2022-09-25 05:32:40|C:\Windows\SYSTEM32                                                                                          |
+|72720000|Secur32.dll                    |Security Support Provider Interface                                                                          |6.2.22621.1        |20992  |2022-05-07 08:20:02|C:\Windows\SYSTEM32                                                                                          |
+|731D0000|bcrypt.dll                     |?????????? ????????????????? ?????????? Windows                                                              |6.2.22621.1        |100712 |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|731F0000|CRYPTBASE.DLL                  |Base cryptographic API DLL                                                                                   |6.2.22621.1        |33144  |2022-05-07 08:19:50|C:\Windows\SYSTEM32                                                                                          |
+|74660000|iphlpapi.dll                   |API ???????????????? ?????????? IP                                                                           |6.2.22621.1        |138464 |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|74690000|wsock32.dll                    |Windows Socket 32-Bit DLL                                                                                    |6.2.22621.1        |16384  |2022-05-07 08:19:58|C:\Windows\SYSTEM32                                                                                          |
+|74AF0000|apphelp.dll                    |?????????? ?????????? ????????????? ??????????                                                               |6.2.22621.457      |670432 |2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+|75360000|kernel.appcore.dll             |AppModel API Host                                                                                            |6.2.22621.1        |69752  |2022-05-07 08:19:54|C:\Windows\SYSTEM32                                                                                          |
+|75630000|CFGMGR32.dll                   |Configuration Manager DLL                                                                                    |6.2.22621.1        |244832 |2022-05-07 08:19:56|C:\Windows\SYSTEM32                                                                                          |
+|75670000|MSVCR90.dll                    |Microsoft® C Runtime Library                                                                                 |9.0.30729.9635     |656272 |2022-05-07 08:20:22|C:\Windows\WinSxS\x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.9635_none_508ff82ebcbafee0               |
+|75720000|nvStInit.dll                   |NVIDIA Stereo Initialization dll, Version 307.74                                                             |6.0.6000.16384     |17880  |2013-01-12 13:42:10|C:\Program Files (x86)\NVIDIA Corporation\3D Vision                                                          |
+|757B0000|version.dll                    |Version Checking and File Installation Libraries                                                             |6.2.22621.1        |28912  |2022-05-07 08:19:50|C:\Windows\SYSTEM32                                                                                          |
+|75860000|KERNELBASE.dll                 |?????????? ??????? Windows NT BASE API                                                                       |6.2.22621.521      |2535520|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|75AD0000|PSAPI.DLL                      |Process Status Helper                                                                                        |6.2.22621.1        |18080  |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|75AE0000|msvcp_win.dll                  |Microsoft® C Runtime Library                                                                                 |6.2.22621.1        |492232 |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|75D50000|RPCRT4.dll                     |?????????? ?????????? ?????? ????????                                                                        |6.2.22621.1        |761288 |2022-05-07 08:19:50|C:\Windows\System32                                                                                          |
+|75E10000|user32.dll                     |????????????????????? ?????????? ??????? USER API Windows                                                    |6.2.22621.457      |1730272|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|75FC0000|WS2_32.dll                     |32-????????? ?????????? Windows Socket 2.0                                                                   |6.2.22621.1        |389440 |2022-05-07 08:19:50|C:\Windows\System32                                                                                          |
+|76020000|ucrtbase.dll                   |Microsoft® C Runtime Library                                                                                 |6.2.22621.1        |1128496|2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|76140000|advapi32.dll                   |??????????? ?????????? API Windows 32                                                                        |6.2.22621.105      |502544 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|761C0000|KERNEL32.DLL                   |?????????? ??????? Windows NT BASE API                                                                       |6.2.22621.457      |674936 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|762B0000|gdi32full.dll                  |GDI Client DLL                                                                                               |6.2.22621.521      |898712 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76390000|sechost.dll                    |Host for SCM/SDDL/LSA Lookup APIs                                                                            |6.2.22621.317      |529440 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|76420000|CRYPT32.dll                    |API32 ????????????                                                                                           |6.2.22621.382      |1051080|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76590000|NSI.dll                        |NSI User-mode interface DLL                                                                                  |6.2.22621.1        |21728  |2022-05-07 08:19:36|C:\Windows\System32                                                                                          |
+|765A0000|shell32.dll                    |????? ?????????? ???????? Windows                                                                            |6.2.22621.457      |6652000|2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|76BF0000|oleaut32.dll                   |OLEAUT32.DLL                                                                                                 |6.2.22621.105      |631680 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76C90000|bcryptPrimitives.dll           |Windows Cryptographic Primitives Library                                                                     |6.2.22621.1        |398768 |2022-05-07 08:19:36|C:\Windows\System32                                                                                          |
+|76D00000|MSCTF.dll                      |????????? ?????????? MSCTF                                                                                   |6.2.22621.382      |888880 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76DE0000|ole32.dll                      |Microsoft OLE ??? Windows                                                                                    |6.2.22621.317      |1368168|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|76F30000|GDI32.dll                      |GDI Client DLL                                                                                               |6.2.22621.1        |132224 |2022-05-07 08:19:54|C:\Windows\System32                                                                                          |
+|76F70000|msvcrt.dll                     |Windows NT CRT DLL                                                                                           |7.0.22621.4        |797488 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|77040000|SHLWAPI.dll                    |?????????? ????????? ???????? ????????                                                                       |6.2.22621.317      |302656 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|77090000|comdlg32.dll                   |?????????? ????? ?????????? ????                                                                             |6.2.22621.317      |689664 |2022-09-25 05:32:40|C:\Windows\System32                                                                                          |
+|77140000|combase.dll                    |Microsoft COM ??? Windows                                                                                    |6.2.22621.317      |2614520|2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|77480000|shcore.dll                     |SHCORE                                                                                                       |6.2.22621.317      |786128 |2022-09-25 05:32:38|C:\Windows\System32                                                                                          |
+|77540000|IMM32.DLL                      |Multi-User Windows IMM32 API Client DLL                                                                      |6.2.22621.1        |147192 |2022-05-07 08:19:58|C:\Windows\System32                                                                                          |
+|77570000|clbcatq.dll                    |COM+ Configuration Catalog                                                                                   |2001.12.10941.16384|521640 |2022-05-07 08:19:58|C:\Windows\System32                                                                                          |
+|77600000|win32u.dll                     |Win32u                                                                                                       |6.2.22621.1        |103288 |2022-05-07 08:19:56|C:\Windows\System32                                                                                          |
+|77A70000|ntdll.dll                      |????????? ?????????? NT                                                                                      |6.2.22621.317      |1747888|2022-09-25 05:32:38|C:\Windows\SYSTEM32                                                                                          |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Registers:
+-----------------------------
+EAX: 048FEA90   EDI: 000DFC44
+EBX: 02476101   ESI: 004EF550
+ECX: 048FEA00   ESP: 000DF460
+EDX: 004EF88F   EIP: 004EF88A
+
+Stack:               Memory Dump:
+------------------   ---------------------------------------------------------------------------
+000DF460: 000DF4FC   004EF88A: E8 49 56 F1 FF 33 D2 8B 45 F4 E8 57 13 00 00 33  .IV..3..E..W...3
+000DF464: 00404DB4   004EF89A: C0 5A 59 59 64 89 10 68 11 F9 4E 00 8D 85 7C FF  .ZYYd..h..N...|.
+000DF468: 000DF4F4   004EF8AA: FF FF BA 02 00 00 00 E8 32 65 F1 FF 8D 45 88 E8  ........2e...E..
+000DF46C: 02476101   004EF8BA: C2 5C F1 FF 8D 45 8C E8 0A 65 F1 FF 8D 45 C0 E8  .\...E...e...E..
+000DF470: 00000000   004EF8CA: EE 7B F1 FF 8D 45 C4 E8 E6 7B F1 FF 8D 45 C8 E8  .{...E...{...E..
+000DF474: 00000000   004EF8DA: F2 5A F2 FF 8D 45 D8 8B 15 2C 86 4E 00 B9 03 00  .Z...E...,.N....
+000DF478: 00000000   004EF8EA: 00 00 E8 BB 6A F1 FF 8D 45 E8 E8 87 5C F1 FF 8D  ....j...E...\...
+000DF47C: 00000000   004EF8FA: 45 F8 E8 7F 5C F1 FF 8D 45 FC E8 B3 7B F1 FF C3  E...\...E...{...
+000DF480: 00000000   004EF90A: E9 25 54 F1 FF EB 95 5B 8B E5 5D C3 00 00 F2 C0  .%T....[..].....
+000DF484: 007C24BC   004EF91A: F4 2B 6E 09 D4 11 83 DA 00 C0 4F 60 B2 DD FF FF  .+n.......O`....
+000DF488: 0000000F   004EF92A: FF FF 02 00 00 00 0D 0A 00 00 FF FF FF FF 0E 00  ................
+000DF48C: 004EF930   004EF93A: 00 00 25 73 25 73 25 73 3A 20 25 64 25 73 25 73  ..%s%s%s: %d%s%s
+000DF490: 0000000B   004EF94A: 00 00 53 56 8B D8 84 D2 74 0B 8B C3 66 BE EF FF  ..SV....t...f...
+000DF494: 048FEA80   004EF95A: E8 FD 4D F1 FF 8D 43 5C E8 55 7B F1 FF 8D 43 48  ..M...C\.U{...CH
+000DF498: 0000000B   004EF96A: E8 4D 7B F1 FF 8D 43 4C E8 45 7B F1 FF 8D 43 54  .M{...CL.E{...CT
+000DF49C: 00000000   004EF97A: E8 3D 7B F1 FF 33 C0 89 43 68 33 D2 8B C3 E8 63  .={..3..Ch3....c
+
+
+

@@ -611,7 +611,6 @@ object FProch: TFProch
     Height = 37
     Align = alTop
     TabOrder = 6
-    ExplicitWidth = 1102
     object Label3: TLabel
       Left = 8
       Top = 7

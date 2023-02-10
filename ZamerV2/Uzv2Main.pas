@@ -843,8 +843,8 @@ begin
             LNOMER.Caption := QTemp.FieldByName('nomer').Asstring;
             nomer          := LNOMER.Caption;
             Qinsdvig.Close;
-            Qinsdvig.ParamByName('DATA').Asstring :=
-              Datetostr(DateTimePicker1.Date);
+            Qinsdvig.ParamByName('DATA').AsDate :=
+              DateTimePicker1.Date;
             Qinsdvig.ParamByName('TIPDV').Asstring := CombTipDvig.Text;
             Qinsdvig.ParamByName('NOMDV').Asstring := EditNumDvig.Text;
             Qinsdvig.ParamByName('POLUS').Asstring := CombPolIsp.Text;

@@ -92,6 +92,8 @@ implementation
 
 {$R *.dfm}
 
+uses Uzv2Main;
+
 procedure TFProch.BitBtn1Click(Sender: TObject);
 var
   i, j, inq                    : Integer;
@@ -219,6 +221,7 @@ begin
       inttostr(errx1) + ', столбец ' + inttostr(erry1))
   end;
  FProch.Close;
+ FZamerV2.ImgSet(FZamerV2.Image7, True);
 end;
 
 
