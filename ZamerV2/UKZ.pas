@@ -176,7 +176,7 @@ begin
   QTemp.SQL.Add(' where nomer=' + Quotedstr(Nomer) + ' and uisp=' +
     Label19.caption);
   QTemp.ExecSQL;
-
+  FZamerV2.ImgSet(FZamerV2.Image3, True);
   enableclose := True;
   FKZ.Close;
 end;
@@ -260,7 +260,7 @@ begin
     QInsAll.ParamByName('P3').AsFloat :=
       SimpleRoundTo(Qe.Fieldbyname('p1').AsFloat, RazP);
     QInsAll.ParamByName('torq').AsFloat :=
-      SimpleRoundTo(Qm.Fieldbyname('torq').AsFloat, RazM);
+      SimpleRoundTo(strtofloat(MyPoint(Qm.Fieldbyname('torq').AsString)), RazM);
     QInsAll.ExecSQL;
 
     Qm.next;
@@ -398,7 +398,7 @@ begin
   Label10.caption := myformat(trazi, QUp.Fieldbyname('I').AsFloat);
   Label12.caption := myformat(trazm, QUp.Fieldbyname('M').AsFloat);
   if ABS(QUp.Fieldbyname('U').AsFloat - Strtofloat(Label13.caption)) >
-    myfloat(Edit1.Text) then
+    strtofloat(Edit1.Text) then
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;

@@ -543,7 +543,6 @@ object FKZ: TFKZ
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 3
     OnClick = BitBtn10Click
-    ExplicitTop = 526
   end
   object BitBtn12: TBitBtn
     Left = 274
@@ -612,7 +611,6 @@ object FKZ: TFKZ
     TabOrder = 4
     WordWrap = True
     OnClick = BitBtn12Click
-    ExplicitTop = 526
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC

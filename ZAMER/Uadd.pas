@@ -25,11 +25,21 @@ function Comma(s: string): string;
 function NVLToZero(s: string): string;
 function NVLToEmp(s: string): string;
 function addzeroend(sin:string;n:integer):string;
-
-
+function MyPoint(s:string):string;
+function MyComma(s:string):string;
 implementation // --------------------------------------------------------------
 
 uses System.SysUtils,ustr;
+
+function MyPoint(s:string):string;
+begin
+  MyPoint:=StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
+end;
+
+function MyComma(s:string):string;
+begin
+  MyComma:=StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+end;
 
 function addzeroend(sin:string;n:integer):string;
 var

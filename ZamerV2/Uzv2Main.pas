@@ -115,6 +115,7 @@ type
         procedure enableispyt(f: Boolean);
         procedure FormReport;
         Procedure AddReportString(fn: string; s1, s2, s3: string);
+
     end;
 
 var
@@ -127,6 +128,9 @@ implementation
 {$R *.dfm}
 
 uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch;
+
+
+
 
 {
   procedure TFMain.FormCurrentReport;

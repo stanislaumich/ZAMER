@@ -272,11 +272,11 @@ begin
       (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm, :perc)');
     QTemp.ParamByName('nomer').AsString := Nomer;
     QTemp.ParamByName('uisp').AsString  := StringGrid2.Cells[0, i];
-    QTemp.ParamByName('usred').AsString := NVLToZero(StringGrid2.Cells[1, i]);
-    QTemp.ParamByName('isred').AsString := NVLToZero(StringGrid2.Cells[2, i]);
-    QTemp.ParamByName('psred').AsString := NVLToZero(StringGrid2.Cells[3, i]);
+    QTemp.ParamByName('usred').AsFloat := Strtofloat(NVLToZero(StringGrid2.Cells[1, i]));
+    QTemp.ParamByName('isred').AsFloat := Strtofloat(NVLToZero(StringGrid2.Cells[2, i]));
+    QTemp.ParamByName('psred').AsFloat := Strtofloat(NVLToZero(StringGrid2.Cells[3, i]));
     QTemp.ParamByName('tip').Asinteger  := tipispyt;
-    QTemp.ParamByName('dumax').AsString := NVLToZero(StringGrid2.Cells[4, i]);
+    QTemp.ParamByName('dumax').AsFloat := Strtofloat(NVLToZero(StringGrid2.Cells[4, i]));
     s                                   := StringGrid2.Cells[5, i];
     s := StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
     if s = '' then

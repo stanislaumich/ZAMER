@@ -117,12 +117,7 @@ procedure TFNagr.BitBtn10Click(Sender: TObject);
 var
   i: integer;
 begin
-  { if (Edit4.Text = '') or (Edit5.Text = '') then
-    begin
-    ShowMessage('Не заполнены поля сопротивления!');
-    Exit;
-    end;
-  }
+
   if StringGrid1.cells[6, 1] = '' then
     StringGrid1.cells[6, 1] := '0';
   if StringGrid1.cells[7, 1] = '' then
@@ -135,14 +130,7 @@ begin
     StringGrid1.cells[7, 2] := '0';
   if StringGrid1.cells[8, 2] = '' then
     StringGrid1.cells[8, 2] := '0';
-  { if (StringGrid1.cells[6, 1] = '') or (StringGrid1.cells[7, 1] = '') or
-    (StringGrid1.cells[8, 1] = '') or (StringGrid1.cells[6, 2] = '') or
-    (StringGrid1.cells[7, 2] = '') or (StringGrid1.cells[8, 2] = '') then
-    begin
-    ShowMessage('Необходимо заполнить все значения температуры в таблице!');
-    Exit;
-    end;
-  }
+
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from znagrevsvod where nomer=' + QuotedStr(Nomer));
@@ -287,6 +275,7 @@ begin
   Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
     myfloat(Edit3.Text)));
   enableclose := true;
+  BitBtn1.Enabled:=true;
 end;
 
 procedure TFNagr.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -427,9 +416,9 @@ begin
       QInsAll.ParamByName('P2').AsFloat := QTemp2.FieldByName('p2').AsFloat;
       QInsAll.ParamByName('P3').AsFloat := QTemp2.FieldByName('p3').AsFloat;
       QInsAll.ParamByName('M').AsFloat  :=
-        simpleroundto(QTemp.FieldByName('torq').AsFloat, RazM);
+        simpleroundto(strtofloat(MyPoint(QTemp.FieldByName('torq').AsString)), RazM);
       QInsAll.ParamByName('N').AsFloat :=
-        simpleroundto(QTemp.FieldByName('rot').AsFloat, RazN);
+        simpleroundto(strtofloat(MyPoint(QTemp.FieldByName('rot').AsString)), RazN);
       QInsAll.ParamByName('DOP1').AsFloat := 0;
       QInsAll.ParamByName('Tip').AsFloat  := StringGrid1.Row;
       QInsAll.ParamByName('nagr').AsFloat := 0;
