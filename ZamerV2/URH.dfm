@@ -2,7 +2,7 @@ object FRH: TFRH
   Left = 0
   Top = 0
   Caption = #1056#1072#1073#1086#1095#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
-  ClientHeight = 721
+  ClientHeight = 744
   ClientWidth = 1037
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,14 +17,15 @@ object FRH: TFRH
   OnShow = FormShow
   DesignSize = (
     1037
-    721)
+    744)
   PixelsPerInch = 96
   TextHeight = 13
   object Label20: TLabel
     Left = 9
-    Top = 687
+    Top = 714
     Width = 58
     Height = 23
+    Anchors = [akLeft, akBottom]
     Caption = 'T1, C='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -32,12 +33,14 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    ExplicitTop = 687
   end
   object Label25: TLabel
     Left = 147
-    Top = 687
+    Top = 714
     Width = 58
     Height = 23
+    Anchors = [akLeft, akBottom]
     Caption = 'T2, C='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -45,12 +48,14 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    ExplicitTop = 687
   end
   object Label26: TLabel
     Left = 290
-    Top = 687
+    Top = 714
     Width = 58
     Height = 23
+    Anchors = [akLeft, akBottom]
     Caption = 'T3, C='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -58,12 +63,14 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    ExplicitTop = 687
   end
   object Label27: TLabel
     Left = 426
-    Top = 687
+    Top = 714
     Width = 26
     Height = 23
+    Anchors = [akLeft, akBottom]
     Caption = 'R='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -71,6 +78,7 @@ object FRH: TFRH
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    ExplicitTop = 687
   end
   object Panel1: TPanel
     Left = 0
@@ -95,6 +103,34 @@ object FRH: TFRH
     object Label6: TLabel
       Left = 36
       Top = 2
+      Width = 10
+      Height = 23
+      Caption = '0'
+    end
+    object Label21: TLabel
+      Left = 108
+      Top = 1
+      Width = 78
+      Height = 23
+      Caption = 'Uisp, '#1042'.='
+    end
+    object Label22: TLabel
+      Left = 192
+      Top = 1
+      Width = 10
+      Height = 23
+      Caption = '0'
+    end
+    object Label30: TLabel
+      Left = 317
+      Top = 1
+      Width = 85
+      Height = 23
+      Caption = 'Pisp, '#1042#1090'.='
+    end
+    object Label31: TLabel
+      Left = 408
+      Top = 1
       Width = 10
       Height = 23
       Caption = '0'
@@ -693,6 +729,7 @@ object FRH: TFRH
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 1
+      OnClick = BitBtn1Click
     end
     object BitBtn2: TBitBtn
       Left = 192
@@ -830,9 +867,10 @@ object FRH: TFRH
   end
   object Edit4: TEdit
     Left = 68
-    Top = 684
+    Top = 711
     Width = 69
     Height = 31
+    Anchors = [akLeft, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -841,12 +879,14 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 5
     Text = '0'
+    ExplicitTop = 684
   end
   object Edit5: TEdit
     Left = 207
-    Top = 684
+    Top = 711
     Width = 70
     Height = 31
+    Anchors = [akLeft, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -855,12 +895,14 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 6
     Text = '0'
+    ExplicitTop = 684
   end
   object Edit6: TEdit
     Left = 348
-    Top = 684
+    Top = 711
     Width = 69
     Height = 31
+    Anchors = [akLeft, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -869,12 +911,14 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 7
     Text = '0'
+    ExplicitTop = 684
   end
   object Edit7: TEdit
     Left = 458
-    Top = 684
+    Top = 711
     Width = 71
     Height = 31
+    Anchors = [akLeft, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -883,14 +927,15 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 8
     Text = '0'
+    ExplicitTop = 684
   end
   object BitBtn10: TBitBtn
     Left = 764
-    Top = 682
+    Top = 705
     Width = 273
     Height = 36
     Anchors = [akLeft, akBottom]
-    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
+    Caption = #1047#1072#1082#1088#1099#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -955,14 +1000,22 @@ object FRH: TFRH
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     ParentFont = False
     TabOrder = 9
+    OnClick = BitBtn10Click
     ExplicitTop = 684
+  end
+  object ProgressBar1: TProgressBar
+    Left = 8
+    Top = 681
+    Width = 1029
+    Height = 24
+    TabOrder = 10
   end
   object QCommand: TFDQuery
     Connection = FZamerV2.FDC
     SQL.Strings = (
       'select * from command')
-    Left = 463
-    Top = 458
+    Left = 375
+    Top = 362
   end
   object Qselectsred: TFDQuery
     Connection = FZamerV2.FDC
@@ -996,8 +1049,8 @@ object FRH: TFRH
       '    group by nomer, uisp, PISP'
       '    )group by nomer, uisp, PISP,t,r,pow'
       '    ) group by nomer, uisp')
-    Left = 503
-    Top = 405
+    Left = 471
+    Top = 361
     ParamData = <
       item
         Name = 'NOMER'
@@ -1028,8 +1081,8 @@ object FRH: TFRH
       '   :P2, :P3, :TORQ, '
       '   :POWER, :ROT, :DUMAX, '
       '   :DPMAX, :PISP, :u, :i, :p )')
-    Left = 596
-    Top = 465
+    Left = 572
+    Top = 357
     ParamData = <
       item
         Name = 'NOMER'
@@ -1114,8 +1167,8 @@ object FRH: TFRH
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 664
-    Top = 469
+    Left = 412
+    Top = 433
   end
   object QInsSvod: TFDQuery
     Connection = FZamerV2.FDC
@@ -1129,8 +1182,8 @@ object FRH: TFRH
       '   :ISRED, :PSRED, :TIP, '
       '   :TORQ, :ROT, :POWER, '
       '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3,:r )')
-    Left = 748
-    Top = 461
+    Left = 648
+    Top = 361
     ParamData = <
       item
         Name = 'NOMER'
@@ -1208,8 +1261,9 @@ object FRH: TFRH
   end
   object Timer1000: TTimer
     Enabled = False
-    Left = 328
-    Top = 457
+    OnTimer = Timer1000Timer
+    Left = 728
+    Top = 61
   end
   object TimerUp: TTimer
     Enabled = False
@@ -1234,11 +1288,16 @@ object FRH: TFRH
     Top = 112
   end
   object OpenDialog1: TOpenDialog
-    Left = 860
-    Top = 406
+    Left = 848
+    Top = 62
   end
   object SaveDialog1: TSaveDialog
-    Left = 864
-    Top = 462
+    Left = 848
+    Top = 114
+  end
+  object Qtemp2: TFDQuery
+    Connection = FZamerV2.FDC
+    Left = 468
+    Top = 434
   end
 end

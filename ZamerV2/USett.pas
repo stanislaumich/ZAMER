@@ -161,15 +161,16 @@ begin
   Edit5.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('ComPortU'));
   CombCom.Text := QTemp.FieldByName('value').Asstring;
-  ListBox1.Items.LoadFromFile(Extractfilepath(Application.ExeName)+'LIST.TXT');
+  ListBox1.Items.LoadFromFile(Extractfilepath(Application.ExeName) +
+    'LIST.TXT');
 end;
 
 procedure TFSett.ListBox1Click(Sender: TObject);
 begin
-  fname := ListBox1.items[ListBox1.ItemIndex];
+  fname := ListBox1.Items[ListBox1.ItemIndex];
   delete(fname, 1, pos(';', fname));
-  fname := extractfilepath(Application.exename) + fname;
-  Memo1.lines.loadfromfile(fname);
+  fname := Extractfilepath(Application.ExeName) + fname;
+  Memo1.lines.LoadFromFile(fname);
 end;
 
 end.

@@ -78,7 +78,7 @@ type
   end;
 
 var
-  FSopr      : TFSopr;
+  FSopr: TFSopr;
   enableclose: Boolean;
 
 implementation
@@ -95,26 +95,26 @@ begin
     mtConfirmation, [mbYes, mbNo], 0);
   if buttonSelected = mrYes then
   begin
-    Edit8.Text                  := '';
-    Edit1.Text                  := '';
-    Edit2.Text                  := '';
-    Edit13.Text                 := '';
-    Edit16.Text                 := '';
-    ComboBox7.Text              := '';
-    ComboBox8.Text              := '';
-    ComboBox9.Text              := '';
-    ComboBox10.Text             := '';
-    Edit8.Text                  := '';
-    ComboBox7.Text              := '';
-    ComboBox8.Text              := '';
-    for i                       := 1 to 3 do
-      for j                     := 1 to 3 do
+    Edit8.Text := '';
+    Edit1.Text := '';
+    Edit2.Text := '';
+    Edit13.Text := '';
+    Edit16.Text := '';
+    ComboBox7.Text := '';
+    ComboBox8.Text := '';
+    ComboBox9.Text := '';
+    ComboBox10.Text := '';
+    Edit8.Text := '';
+    ComboBox7.Text := '';
+    ComboBox8.Text := '';
+    for i := 1 to 3 do
+      for j := 1 to 3 do
         StringGrid3.cells[i, j] := '';
-    Edit13.Text                 := '';
-    Edit16.Text                 := '';
-    RadioButton1.Checked        := false;
-    RadioButton2.Checked        := false;
-    RadioButton3.Checked        := false;
+    Edit13.Text := '';
+    Edit16.Text := '';
+    RadioButton1.Checked := false;
+    RadioButton2.Checked := false;
+    RadioButton3.Checked := false;
   end;
 
 end;
@@ -130,27 +130,27 @@ begin
   QSoprot.Close;
   try
     QSoprot.ParamByName('NOMER').Asstring := Label6.Caption;
-    QSoprot.ParamByName('TEMP1').AsFloat  :=
+    QSoprot.ParamByName('TEMP1').AsFloat :=
       myfloat(strreplace(Edit8.Text, '.', ','));
     QSoprot.ParamByName('TEMP2').AsFloat :=
       myfloat(strreplace(Edit1.Text, '.', ','));
     QSoprot.ParamByName('TEMP3').AsFloat :=
       myfloat(strreplace(Edit2.Text, '.', ','));
-    QSoprot.ParamByName('PHAS').Asstring     := ComboBox7.Text;
-    QSoprot.ParamByName('SOED').Asstring     := ComboBox8.Text;
-    QSoprot.ParamByName('SOPRED').Asstring   := ComboBox9.Text;
-    QSoprot.ParamByName('IZOLED').Asstring   := ComboBox10.Text;
-    QSoprot.ParamByName('IZOLKORP').AsFloat  := myfloat(Edit13.Text);
+    QSoprot.ParamByName('PHAS').Asstring := ComboBox7.Text;
+    QSoprot.ParamByName('SOED').Asstring := ComboBox8.Text;
+    QSoprot.ParamByName('SOPRED').Asstring := ComboBox9.Text;
+    QSoprot.ParamByName('IZOLED').Asstring := ComboBox10.Text;
+    QSoprot.ParamByName('IZOLKORP').AsFloat := myfloat(Edit13.Text);
     QSoprot.ParamByName('IZOLOBMOT').AsFloat := myfloat(Edit16.Text);
 
     QSoprot.ParamByName('ISPYT13').AsInteger := 0;
-    QSoprot.ParamByName('BOLT').AsInteger    := 0;
+    QSoprot.ParamByName('BOLT').AsInteger := 0;
     if RadioButton1.Checked then
       QSoprot.ParamByName('BOLT').AsInteger := 1;
     if RadioButton2.Checked then
       QSoprot.ParamByName('BOLT').AsInteger := 2;
 
-    for i   := 1 to 3 do
+    for i := 1 to 3 do
       for j := 1 to 3 do
         if StringGrid3.cells[i, j] = '' then
           StringGrid3.cells[i, j] := '0';
@@ -181,21 +181,21 @@ end;
 
 procedure TFSopr.Button50Click(Sender: TObject);
 var
-  i, j          : integer;
+  i, j: integer;
   buttonSelected: integer;
 begin
   buttonSelected := MessageDlg('Действительно очистить таблицу?',
     mtConfirmation, [mbYes, mbNo], 0);
   if buttonSelected = mrYes then
   begin
-    Edit8.Text                  := '';
-    ComboBox7.Text              := '';
-    ComboBox8.Text              := '';
-    for i                       := 1 to 3 do
-      for j                     := 1 to 3 do
+    Edit8.Text := '';
+    ComboBox7.Text := '';
+    ComboBox8.Text := '';
+    for i := 1 to 3 do
+      for j := 1 to 3 do
         StringGrid3.cells[i, j] := '0';
-    Edit13.Text                 := '500';
-    Edit16.Text                 := '500';
+    Edit13.Text := '500';
+    Edit16.Text := '500';
   end;
 
 end;
@@ -217,7 +217,7 @@ end;
 
 procedure TFSopr.ComboBox9Change(Sender: TObject);
 begin
-  enableclose           := false;
+  enableclose := false;
   formhh.Combobox1.Text := ComboBox9.Text;
 end;
 
@@ -303,12 +303,12 @@ begin
     'R_SoprotListDown.txt');
   // ComboBox9.Text  := ComboBox9.Items[0];
   // ComboBox10.Text := ComboBox10.Items[0];
-  ComboBox9.ItemIndex  := 0;
+  ComboBox9.ItemIndex := 0;
   ComboBox10.ItemIndex := 0;
-  for i                := 1 to 3 do
-    for j              := 1 to 3 do
+  for i := 1 to 3 do
+    for j := 1 to 3 do
     begin
-      StringGrid3.cells[i, j]  := '0';
+      StringGrid3.cells[i, j] := '0';
       StringGrid3.ColWidths[i] := 160;
     end;
   enableclose := true;

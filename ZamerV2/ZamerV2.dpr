@@ -14,7 +14,8 @@ uses
   Unagr in 'Unagr.pas' {FNagr},
   URH in 'URH.pas' {FRH},
   URepP in 'URepP.pas' {FRepP},
-  UProch in 'UProch.pas' {FProch};
+  UProch in 'UProch.pas' {FProch},
+  YesOrNoDialog in 'YesOrNoDialog.pas';
 
 {$R *.res}
 

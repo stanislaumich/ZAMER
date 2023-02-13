@@ -76,10 +76,10 @@ type
   end;
 
 var
-  FKZ        : TFKZ;
+  FKZ: TFKZ;
   enableclose: Boolean;
-  interval   : integer;
-  fname      : string;
+  interval: integer;
+  fname: string;
 
 implementation
 
@@ -90,7 +90,7 @@ Uses uzv2Main, UAuto;
 procedure TFKZ.command(b: Boolean);
 begin
   interval := 50;
-  fname    := '1600';
+  fname := '1600';
   if b then
   begin
     QTemp.Close;
@@ -143,18 +143,18 @@ procedure TFKZ.BitBtn10Click(Sender: TObject);
 var
   i, j: integer;
 begin
-  for i                       := 1 to StringGrid1.ColCount - 1 do
-    for j                     := 1 to StringGrid1.RowCount - 1 do
+  for i := 1 to StringGrid1.ColCount - 1 do
+    for j := 1 to StringGrid1.RowCount - 1 do
       StringGrid1.Cells[i, j] := '';
-  Edit2.Text                  := '';
-  enableclose                 := false;
+  Edit2.Text := '';
+  enableclose := false;
 end;
 
 procedure TFKZ.BitBtn12Click(Sender: TObject);
 var
-  s  : string;
+  s: string;
   cod: integer;
-  f  : Real;
+  f: Real;
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -207,9 +207,9 @@ begin
   QTemp.ExecSQL;
   command(True);
   StringGrid1.Enabled := false;
-  BitBtn9.Enabled     := True;
-  BitBtn8.Enabled     := false;
-  enableclose         := false;
+  BitBtn9.Enabled := True;
+  BitBtn8.Enabled := false;
+  enableclose := false;
 end;
 
 // end f9
@@ -220,10 +220,10 @@ procedure TFKZ.BitBtn9Click(Sender: TObject);
 // end;
 var
   // a  : array [1 .. 1000] of rec;
-  i            : integer;
-  max          : integer;
+  i: integer;
+  max: integer;
   el, m45, ncnt: integer;
-  e            : Boolean;
+  e: Boolean;
 begin
   command(false);
 
@@ -240,8 +240,8 @@ begin
   while e do
   begin
     QInsAll.ParamByName('NOMER').AsString := Nomer;
-    QInsAll.ParamByName('UISP').AsFloat   := Strtofloat(Label13.caption);
-    QInsAll.ParamByName('U12').AsFloat    :=
+    QInsAll.ParamByName('UISP').AsFloat := Strtofloat(Label13.caption);
+    QInsAll.ParamByName('U12').AsFloat :=
       SimpleRoundTo(Qe.Fieldbyname('u1').AsFloat, RazU);
     QInsAll.ParamByName('U23').AsFloat :=
       SimpleRoundTo(Qe.Fieldbyname('u2').AsFloat, RazU);
@@ -260,7 +260,7 @@ begin
     QInsAll.ParamByName('P3').AsFloat :=
       SimpleRoundTo(Qe.Fieldbyname('p1').AsFloat, RazP);
     QInsAll.ParamByName('torq').AsFloat :=
-      SimpleRoundTo(strtofloat(MyPoint(Qm.Fieldbyname('torq').AsString)), RazM);
+      SimpleRoundTo(Strtofloat(MyPoint(Qm.Fieldbyname('torq').AsString)), RazM);
     QInsAll.ExecSQL;
 
     Qm.next;
@@ -276,7 +276,7 @@ begin
 
   QSelectsred.Close;
   QSelectsred.ParamByName('nomer').AsString := Nomer;
-  QSelectsred.ParamByName('uisp').AsFloat   := Strtofloat(Label13.caption);
+  QSelectsred.ParamByName('uisp').AsFloat := Strtofloat(Label13.caption);
   QSelectsred.Open;
 
   StringGrid1.Cells[1, StringGrid1.row] :=
@@ -289,7 +289,7 @@ begin
     FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('t').AsFloat, RazM));
 
   QInsSvod.ParamByName('nomer').AsString := Nomer;
-  QInsSvod.ParamByName('uisp').AsFloat   := Strtofloat(Label13.caption);
+  QInsSvod.ParamByName('uisp').AsFloat := Strtofloat(Label13.caption);
   // if stringgrid1.row=1 then
   QInsSvod.ParamByName('r').AsFloat := 0;
   // SimpleRoundTo(Strtofloat(Edit2.text), RazR);
@@ -302,15 +302,15 @@ begin
     SimpleRoundTo(QSelectsred.Fieldbyname('p').AsFloat, RazP);
   QInsSvod.ParamByName('m').AsFloat :=
     SimpleRoundTo(QSelectsred.Fieldbyname('t').AsFloat, RazM);
-  QInsSvod.ParamByName('tmp').AsFloat    := 0;
+  QInsSvod.ParamByName('tmp').AsFloat := 0;
   QInsSvod.ParamByName('edizm').AsString := ComboBox1.Text;
   QInsSvod.ExecSQL;
 
   Qm.Close;
   Qe.Close;
   /// //////////////////////////////////////////////////////////////////////////
-  BitBtn9.Enabled     := false;
-  BitBtn8.Enabled     := false;
+  BitBtn9.Enabled := false;
+  BitBtn8.Enabled := false;
   StringGrid1.Enabled := True;
 end;
 
@@ -318,12 +318,12 @@ procedure TFKZ.FormActivate(Sender: TObject);
 begin
   enableclose := True;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('ukz'));
-  Edit1.Text      := QTemp.Fieldbyname('value').AsString;
-  Nomer           := Label2.caption;
+  Edit1.Text := QTemp.Fieldbyname('value').AsString;
+  Nomer := Label2.caption;
   TimerUp.Enabled := True;
   Label19.caption := FZamerV2.CombUIsp.Text;
 
-  StringGrid1.RowCount    := 6;
+  StringGrid1.RowCount := 6;
   StringGrid1.Cells[0, 0] := 'U кк';
   StringGrid1.Cells[1, 0] := 'U сред';
   StringGrid1.Cells[2, 0] := 'I сред';
@@ -398,11 +398,11 @@ begin
   Label10.caption := myformat(trazi, QUp.Fieldbyname('I').AsFloat);
   Label12.caption := myformat(trazm, QUp.Fieldbyname('M').AsFloat);
   if ABS(QUp.Fieldbyname('U').AsFloat - Strtofloat(Label13.caption)) >
-    strtofloat(Edit1.Text) then
+    Strtofloat(Edit1.Text) then
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;
-  Label9.caption      := myformat(trazu, QUp.Fieldbyname('U').AsFloat);
+  Label9.caption := myformat(trazu, QUp.Fieldbyname('U').AsFloat);
 end;
 
 end.

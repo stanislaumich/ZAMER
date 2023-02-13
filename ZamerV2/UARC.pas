@@ -46,12 +46,12 @@ const
   defborder = 10;
 var
   temp, n: integer;
-  lmax   : array [0 .. 30] of integer;
+  lmax: array [0 .. 30] of integer;
 begin
   with grid do
   begin
     canvas.font := font;
-    for n       := 0 to columns.count - 1 do
+    for n := 0 to columns.count - 1 do
       // if columns[n].visible then
       lmax[n] := canvas.textwidth(fields[n].fieldname) + defborder;
     grid.datasource.DataSet.first;

@@ -95,7 +95,7 @@ type
   end;
 
 var
-  FNagr      : TFNagr;
+  FNagr: TFNagr;
   enableclose: Boolean;
 
 implementation
@@ -139,14 +139,14 @@ begin
   for i := 1 to 2 do
   begin
     QInssvod.ParamByName('nomer').Asstring := Nomer;
-    QInssvod.ParamByName('u').AsFloat      := myfloat(StringGrid1.cells[1, i]);
-    QInssvod.ParamByName('i').AsFloat      := myfloat(StringGrid1.cells[2, i]);
-    QInssvod.ParamByName('p').AsFloat      := myfloat(StringGrid1.cells[3, i]);
-    QInssvod.ParamByName('n').AsFloat      := myfloat(StringGrid1.cells[4, i]);
-    QInssvod.ParamByName('m').AsFloat      := myfloat(StringGrid1.cells[5, i]);
-    QInssvod.ParamByName('dop1').AsFloat   := 0;
-    QInssvod.ParamByName('t').AsFloat      := 0;
-    QInssvod.ParamByName('robm').AsFloat   :=
+    QInssvod.ParamByName('u').AsFloat := myfloat(StringGrid1.cells[1, i]);
+    QInssvod.ParamByName('i').AsFloat := myfloat(StringGrid1.cells[2, i]);
+    QInssvod.ParamByName('p').AsFloat := myfloat(StringGrid1.cells[3, i]);
+    QInssvod.ParamByName('n').AsFloat := myfloat(StringGrid1.cells[4, i]);
+    QInssvod.ParamByName('m').AsFloat := myfloat(StringGrid1.cells[5, i]);
+    QInssvod.ParamByName('dop1').AsFloat := 0;
+    QInssvod.ParamByName('t').AsFloat := 0;
+    QInssvod.ParamByName('robm').AsFloat :=
       myfloat(StringReplace(Edit5.Text, '.', ',',
       [rfReplaceAll, rfIgnoreCase]));
     QInssvod.ParamByName('rkorp').AsFloat :=
@@ -186,13 +186,13 @@ begin
   QTemp.SQL.Add('truncate table zelspec');
   QTemp.ExecSQL;
   command(true);
-  ProgressBar1.Min      := 0;
-  ProgressBar1.Max      := Strtoint(Edit1.Text);
-  ProgressBar1.Step     := 1;
+  ProgressBar1.Min := 0;
+  ProgressBar1.Max := Strtoint(Edit1.Text);
+  ProgressBar1.Step := 1;
   ProgressBar1.Position := 0;
-  Timer1000.Tag         := 0;
-  BitBtn1.Enabled       := false;
-  Timer1000.Enabled     := true;
+  Timer1000.Tag := 0;
+  BitBtn1.Enabled := false;
+  Timer1000.Enabled := true;
 end;
 
 procedure TFNagr.BitBtn2Click(Sender: TObject);
@@ -203,22 +203,22 @@ begin
     [mbYes, mbNo], 0);
   if buttonselected = mrYes then
   begin
-    for i                       := 1 to 2 do
-      for j                     := 1 to 9 do
+    for i := 1 to 2 do
+      for j := 1 to 9 do
         StringGrid1.cells[j, i] := '';
-    Edit4.Text                  := '';
-    Edit5.Text                  := '';
-    enableclose                 := false;
+    Edit4.Text := '';
+    Edit5.Text := '';
+    enableclose := false;
   end;
 end;
 
 procedure TFNagr.command(b: Boolean);
 var
   interval: integer;
-  fname   : string;
+  fname: string;
 begin
   interval := 50;
-  fname    := '1600';
+  fname := '1600';
   if b then
   begin
     QTemp.Close;
@@ -275,7 +275,7 @@ begin
   Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
     myfloat(Edit3.Text)));
   enableclose := true;
-  BitBtn1.Enabled:=true;
+  BitBtn1.Enabled := true;
 end;
 
 procedure TFNagr.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -327,7 +327,7 @@ end;
 procedure TFNagr.FormCreate(Sender: TObject);
 var
   i, j: integer;
-  s   : string;
+  s: string;
 begin
   StringGrid1.cells[0, 0] := 'Нагрузка';
   StringGrid1.cells[1, 0] := 'U сред В.';
@@ -355,9 +355,12 @@ begin
   QTemp.Open('select value from zdelta where name=' + QuotedStr('pnag'));
   FNagr.Edit3.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Close;
-  ComboBox1.Items.LoadFromFile(Extractfilepath(Application.Exename)+'R_NagrKorp.txt');
-  ComboBox2.Items.LoadFromFile(Extractfilepath(Application.Exename)+'R_NagrObm.txt');
-  ComboBox3.Items.LoadFromFile(Extractfilepath(Application.Exename)+'R_NagrIspyt.txt');
+  ComboBox1.Items.LoadFromFile(Extractfilepath(Application.Exename) +
+    'R_NagrKorp.txt');
+  ComboBox2.Items.LoadFromFile(Extractfilepath(Application.Exename) +
+    'R_NagrObm.txt');
+  ComboBox3.Items.LoadFromFile(Extractfilepath(Application.Exename) +
+    'R_NagrIspyt.txt');
 end;
 
 procedure TFNagr.FormShow(Sender: TObject);
@@ -378,7 +381,7 @@ begin
   Timer1000.Tag := Timer1000.Tag + 1;
   If Timer1000.Tag > Strtoint(Edit1.Text) then
   begin
-    Timer1000.Enabled     := false;
+    Timer1000.Enabled := false;
     ProgressBar1.Position := 0;
     // остановить датчик 45
     command(false);
@@ -391,7 +394,7 @@ begin
     QTemp.SQL.Clear;
     QTemp.Open('select count(*) cnt from zelspec');
     acount2 := QTemp.FieldByName('cnt').Asinteger;
-    ncnt    := Min(acount2, acount1);
+    ncnt := Min(acount2, acount1);
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from znagrevall where nomer=' + QuotedStr(Nomer) +
@@ -411,16 +414,18 @@ begin
       QInsAll.ParamByName('I1').AsFloat := QTemp2.FieldByName('i1').AsFloat;
       QInsAll.ParamByName('I2').AsFloat := QTemp2.FieldByName('i2').AsFloat;
       QInsAll.ParamByName('I3').AsFloat := QTemp2.FieldByName('i3').AsFloat;
-      QInsAll.ParamByName('P').AsFloat  := QTemp2.FieldByName('p').AsFloat;
+      QInsAll.ParamByName('P').AsFloat := QTemp2.FieldByName('p').AsFloat;
       QInsAll.ParamByName('P1').AsFloat := QTemp2.FieldByName('p1').AsFloat;
       QInsAll.ParamByName('P2').AsFloat := QTemp2.FieldByName('p2').AsFloat;
       QInsAll.ParamByName('P3').AsFloat := QTemp2.FieldByName('p3').AsFloat;
-      QInsAll.ParamByName('M').AsFloat  :=
-        simpleroundto(strtofloat(MyPoint(QTemp.FieldByName('torq').AsString)), RazM);
+      QInsAll.ParamByName('M').AsFloat :=
+        simpleroundto(strtofloat(MyPoint(QTemp.FieldByName('torq')
+        .Asstring)), RazM);
       QInsAll.ParamByName('N').AsFloat :=
-        simpleroundto(strtofloat(MyPoint(QTemp.FieldByName('rot').AsString)), RazN);
+        simpleroundto(strtofloat(MyPoint(QTemp.FieldByName('rot')
+        .Asstring)), RazN);
       QInsAll.ParamByName('DOP1').AsFloat := 0;
-      QInsAll.ParamByName('Tip').AsFloat  := StringGrid1.Row;
+      QInsAll.ParamByName('Tip').AsFloat := StringGrid1.Row;
       QInsAll.ParamByName('nagr').AsFloat := 0;
       QInsAll.ExecSQL;
       QTemp.Next;
@@ -431,7 +436,7 @@ begin
     ///
     QSelectSred.Close;
     QSelectSred.ParamByName('nomer').Asstring := Nomer;
-    QSelectSred.ParamByName('tip').Asinteger  := StringGrid1.Row;
+    QSelectSred.ParamByName('tip').Asinteger := StringGrid1.Row;
     QSelectSred.Open;
     QInssvod.Close;
     QTemp.Close;
@@ -474,14 +479,14 @@ begin
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;
-  Label9.Caption      := myformat(trazu, QUp.FieldByName('U').AsFloat);
+  Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
   //
   if ABS(QUp.FieldByName('P').AsFloat - strtofloat(Label24.Caption)) >
     myfloat(Label29.Caption) then
     Label14.Font.Color := clRed
   else
     Label14.Font.Color := clGreen;
-  Label14.Caption      := myformat(trazu, QUp.FieldByName('P').AsFloat);
+  Label14.Caption := myformat(trazu, QUp.FieldByName('P').AsFloat);
 
 end;
 

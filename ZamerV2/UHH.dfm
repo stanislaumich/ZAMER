@@ -429,7 +429,7 @@ object FormHH: TFormHH
     end
   end
   object BitStart: TBitBtn
-    Left = 603
+    Left = 604
     Top = 717
     Width = 149
     Height = 41
