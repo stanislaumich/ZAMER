@@ -33,7 +33,6 @@ type
     Label19: TLabel;
     Label23: TLabel;
     Label24: TLabel;
-    BitBtn10: TBitBtn;
     GroupBox3: TGroupBox;
     Label15: TLabel;
     Label16: TLabel;
@@ -71,6 +70,11 @@ type
     Timer1000: TTimer;
     TimerUp: TTimer;
     QUp: TFDQuery;
+    BitBtn10: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    OpenDialog1: TOpenDialog;
+    SaveDialog1: TSaveDialog;
     procedure Action1Execute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -81,6 +85,9 @@ type
     procedure RadioButton1Click(Sender: TObject);
     procedure RadioButton2Click(Sender: TObject);
     procedure RadioButton3Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure Edit3Change(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
   private
     { Private declarations }
@@ -106,28 +113,58 @@ procedure TFRH.loadgrids;
 var
   i, j, k: integer;
 begin
-  { QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
-    + Quotedstr(FormHH.Name) + ' and name=' + Quotedstr('StringGrid1'));
-    k                           := 13;
-    StringGrid1.RowCount        := k;
-    for i                       := 0 to k - 1 do
+  QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
+    + Quotedstr(FRH.Name) + ' and name=' + Quotedstr('StringGrid1'));
+  k                           := 13;
+  StringGrid1.RowCount        := k;
+  for i                       := 0 to k - 1 do
     for j                     := 0 to 3 do
-    StringGrid1.Cells[j, i] := '';
-    While not QTemp.Eof do
-    begin
+      StringGrid1.Cells[j, i] := '';
+  While not QTemp.Eof do
+  begin
     StringGrid1.Cells[QTemp.FieldByName('icol').Asinteger,
-    QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
+      QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
     QTemp.Next;
-    end;
+  end;
 
-    QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
-    + Quotedstr(FormHH.Name) + ' and name=' + Quotedstr('StringGrid2'));
-    While not QTemp.Eof do
-    begin
+  QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
+    + Quotedstr(FRH.Name) + ' and name=' + Quotedstr('StringGrid2'));
+  While not QTemp.Eof do
+  begin
     StringGrid2.Cells[QTemp.FieldByName('icol').Asinteger,
-    QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
+      QTemp.FieldByName('irow').Asinteger] := QTemp.FieldByName('val').AsString;
     QTemp.Next;
-    end; }
+  end;
+
+end;
+
+procedure TFRH.savegrids;
+var
+  i, j, k: integer;
+begin
+{   QTEmp.Close;
+   QTemp.SQL.Clear;
+   QTemp.SQL.Add('DELETE FROM ZAMER.ZGRIDS WHERE FORM='
+    + Quotedstr(FRH.Name) + ' and name=' + Quotedstr('StringGrid1'));
+   QTemp.ExecSQL;
+   QTemp.Close;
+   QTemp.SQL.Clear;
+   QTemp.SQL.Add('insert into ZAMER.ZGRIDS (NAME, FORM, IROW, ICOL, VAL) VALUES(');
+   QTemp.SQL.Add(':NAME, :FORM, :IROW,:ICOL, :VAL)');
+
+  k                           := 13;
+  StringGrid1.RowCount        := k;
+  for i                       := 0 to k - 1 do
+    for j                     := 0 to 3 do
+      begin
+        QTemp.ParamByName('FORM').Asstring:= (FRH.Name);
+        QTemp.ParamByName('NAME').Asstring:= ('StringGrid1');
+        QTemp.ParamByName('IROW').AsInteger:= i;
+        QTemp.ParamByName('ICOL').AsInteger:= j;
+        QTemp.ParamByName('VAL').Asstring:=  StringGrid1.Cells[j, i];
+        QTemp.ExecSQL;
+      end;
+ }
 end;
 
 procedure TFRH.RadioButton1Click(Sender: TObject);
@@ -255,20 +292,28 @@ begin
       ('Не удалось получить испытательное напряжение двигателя из установок текущего испытания');
 end;
 
-procedure TFRH.savegrids;
+
+
+procedure TFRH.BitBtn5Click(Sender: TObject);
+
 var
   i, j: integer;
+  f   : textfile;
+  s   : string;
 begin
-  { SELECT
-    NAME, FORM, IROW,
-    ICOL, VAL
-    FROM ZAMER.ZGRIDS; }
-  // QTEmp.Close;
-  // QTemp.SQL.Clear;
-  // QTemp.SQl.Add('delete from')
-
+  if SaveDialog1.Execute then
+  begin
+    assignfile(f, SaveDialog1.filename);
+    rewrite(f);
+    for i   := 1 to 3 do
+      for j := 1 to 12 do
+      begin
+        s := StringGrid1.Cells[i, j];
+        Writeln(f, s);
+      end;
+    Closefile(f);
+  end;
 end;
-
 procedure TFRH.BitBtn3Click(Sender: TObject);
 var
   i, j, buttonSelected: integer;
@@ -295,6 +340,28 @@ begin
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(nomer));
   QTemp.ExecSQL;
+end;
+
+
+procedure TFRH.BitBtn4Click(Sender: TObject);
+var
+  i, j: integer;
+  f   : textfile;
+  s   : string;
+begin
+  If OpenDialog1.Execute then
+  begin
+    assignfile(f, OpenDialog1.filename);
+    reset(f);
+    for i   := 1 to 3 do
+      for j := 1 to 12 do
+      begin
+        Readln(f, s);
+        StringGrid1.Cells[i, j] := s;
+      end;
+    Closefile(f);
+  end;
+
 end;
 
 procedure TFRH.command(b: Boolean);
@@ -337,14 +404,17 @@ begin
   end;
 end;
 
+procedure TFRH.Edit3Change(Sender: TObject);
+begin
+  Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
+    myfloat(Edit3.Text)));
+end;
+
 procedure TFRH.FormActivate(Sender: TObject);
 var
   i: integer;
 begin
-  { Label3.Caption            := FMain.Edit6.Text;
-    Label10.Caption           := FMain.Edit7.Text;
-    Label17.Caption           := Floattostr(Strtofloat(FMain.Edit7.Text) * 1000);
-    ch                        := false; }
+  Label24.Caption := inttostr(round(strtofloat(Fzamerv2.CombPisp.Text) * 1000));
   for i                     := 1 to 8 do
     StringGrid1.cells[0, i] := inttostr(i);
   StringGrid1.cells[0, 0]   := '№';

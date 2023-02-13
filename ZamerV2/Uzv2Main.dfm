@@ -815,7 +815,7 @@ object FZamerV2: TFZamerV2
       end
       object BNagr: TButton
         Left = 3
-        Top = 111
+        Top = 110
         Width = 310
         Height = 25
         Anchors = [akLeft, akTop, akRight]

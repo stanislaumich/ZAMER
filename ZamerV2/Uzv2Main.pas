@@ -923,6 +923,8 @@ end;
 
 procedure TFZamerV2.BRHClick(Sender: TObject);
 begin
+    FRH.Label19.Caption := CombUisp.Text;
+    FRH.Label24.Caption := CombPisp.Text;
     FRH.Label6.Caption := nomer;
     FRH.ShowModal;
 end;
