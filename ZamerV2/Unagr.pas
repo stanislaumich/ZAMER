@@ -17,19 +17,6 @@ type
     Panel1: TPanel;
     Label1: TLabel;
     Label6: TLabel;
-    GroupBox1: TGroupBox;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
     GroupBox3: TGroupBox;
     Label15: TLabel;
     Label16: TLabel;
@@ -47,10 +34,6 @@ type
     ProgressBar1: TProgressBar;
     Edit4: TEdit;
     Edit5: TEdit;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label23: TLabel;
-    Label24: TLabel;
     QTemp: TFDQuery;
     TimerUp: TTimer;
     Timer1000: TTimer;
@@ -72,6 +55,23 @@ type
     Label32: TLabel;
     Label25: TLabel;
     Label26: TLabel;
+    GroupBox1: TGroupBox;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
     Label27: TLabel;
     Label33: TLabel;
     procedure FormCreate(Sender: TObject);
@@ -337,8 +337,6 @@ begin
   StringGrid1.cells[3, 0] := 'P סנוה Âע.';
   StringGrid1.cells[4, 0] := 'N סנוה מב.לטם';
   StringGrid1.cells[5, 0] := 'Ì סנוה Íל';
-  // StringGrid1.cells[6, 0]  := 'T, C';
-  // StringGrid1.cells[7, 0]  := 'R, Îל';
   StringGrid1.cells[6, 0] := 'T1,C';
   StringGrid1.cells[7, 0] := 'T2,C';
   StringGrid1.cells[8, 0] := 'T3,C';
@@ -352,10 +350,10 @@ begin
   FNagr.Edit1.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Close;
   QTemp.Open('select value from zdelta where name=' + QuotedStr('unag'));
-  FNagr.Edit2.Text := QTemp.FieldByName('value').Asstring;
+  FNagr.Edit2.Text := trim(QTemp.FieldByName('value').Asstring);
   QTemp.Close;
   QTemp.Open('select value from zdelta where name=' + QuotedStr('pnag'));
-  FNagr.Edit3.Text := QTemp.FieldByName('value').Asstring;
+  FNagr.Edit3.Text := trim(QTemp.FieldByName('value').Asstring);
   QTemp.Close;
   ComboBox1.Items.LoadFromFile(Extractfilepath(Application.Exename) +
     'R_NagrKorp.txt');
@@ -472,25 +470,36 @@ begin
 
   QUp.Close;
   QUp.Open();
-  Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
-  Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
-  Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
-  Label11.Caption := myformat(trazm, QUp.FieldByName('P').AsFloat);
 
-  if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
-    myfloat(Edit2.Text) then
+  Label13.Caption := myformat(trazn, strtofloat(QUp.FieldByName('N').Asstring));
+  Label10.Caption := myformat(trazi, strtofloat(QUp.FieldByName('I').Asstring));
+  Label12.Caption := myformat(trazm, strtofloat(QUp.FieldByName('M').Asstring));
+  Label11.Caption := myformat(trazp, strtofloat(QUp.FieldByName('P').Asstring));
+
+  if ABS(strtofloat(QUp.FieldByName('U').Asstring) - strtofloat(Label19.Caption)
+    ) > strtofloat(trim(Edit2.Text)) then
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;
-  Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
-  //
-  if ABS(QUp.FieldByName('Pt').AsFloat - strtofloat(Label24.Caption)) >
-    myfloat(Label29.Caption) then
+  Label9.Caption := myformat(trazu, strtofloat(QUp.FieldByName('U').Asstring));
+
+  if ABS(strtofloat(QUp.FieldByName('Pt').Asstring) -
+    strtofloat(Label24.Caption)) > strtofloat(Label29.Caption) then
     Label14.Font.Color := clRed
   else
-    Label14.Font.Color := clGreen;Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
+    Label14.Font.Color := clGreen;
 
-  Label33.caption:=inttostr(round(QUp.FieldByName('Pt').AsFloat/ QUp.FieldByName('P').AsFloat *100));
+  Label14.Caption := myformat(trazm,
+    strtofloat(QUp.FieldByName('Pt').Asstring));
+
+  // ךןה
+  if strtofloat(QUp.FieldByName('P').Asstring)=0 then
+   Label33.Caption :='X'
+  else
+  begin
+    Label33.Caption := inttostr(round(strtofloat(QUp.FieldByName('Pt').Asstring)
+      / strtofloat(QUp.FieldByName('P').Asstring) * 100));
+  end;
 
 end;
 

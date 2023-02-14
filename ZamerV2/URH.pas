@@ -9,7 +9,8 @@ uses
   Vcl.Grids, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, System.Actions, Vcl.ActnList, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uadd, ustr, math, Vcl.ComCtrls, YesOrNoDialog;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uadd, ustr, math, Vcl.ComCtrls,
+  YesOrNoDialog;
 
 type
   TFRH = class(TForm)
@@ -327,8 +328,8 @@ end;
 /// ///////////////////////////////////
 procedure TFRH.BitBtn10Click(Sender: TObject);
 begin
-// сохранять ничего не нужно
-FRH.Close;
+  // сохранять ничего не нужно
+  FRH.Close;
 end;
 
 procedure TFRH.BitBtn1Click(Sender: TObject);
@@ -517,25 +518,25 @@ procedure TFRH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonSelected: integer;
 begin
-canClose:=true;
-{  if enableclose then
+  CanClose := true;
+  { if enableclose then
     CanClose := true
-  else
-  begin
+    else
+    begin
     buttonSelected :=
-      MessageDlg
-      ('У вас есть несохраненная работа, она может быть утеряна, сохранить результаты?',
-      mtConfirmation, [mbYes, mbNo, MbCancel], 0);
+    MessageDlg
+    ('У вас есть несохраненная работа, она может быть утеряна, сохранить результаты?',
+    mtConfirmation, [mbYes, mbNo, MbCancel], 0);
     if buttonSelected = mrYes then
     begin
-      BitBtn10.Click;
-      CanClose := true;
+    BitBtn10.Click;
+    CanClose := true;
     end;
     if buttonSelected = mrNo then
-      CanClose := true;
+    CanClose := true;
     if buttonSelected = mrCancel then
-      CanClose := false;
-  end;
+    CanClose := false;
+    end;
   }
 end;
 
@@ -604,11 +605,14 @@ begin
       QinsAll.ParamByName('DPMAX').AsFloat := 0;
 
       QinsAll.ParamByName('rot').AsFloat :=
-        simpleroundto(StrToFloat(MyPoint(QTemp.FieldByName('rot').AsString)), RazN);
+        simpleroundto(Strtofloat(MyPoint(QTemp.FieldByName('rot')
+        .AsString)), RazN);
       QinsAll.ParamByName('torq').AsFloat :=
-        simpleroundto(StrToFloat(MyPoint(QTemp.FieldByName('torq').AsString)), RazM);
+        simpleroundto(Strtofloat(MyPoint(QTemp.FieldByName('torq')
+        .AsString)), RazM);
       QinsAll.ParamByName('power').AsFloat :=
-        simpleroundto(StrToFloat(MyPoint(QTemp.FieldByName('power').AsString)), RazP);
+        simpleroundto(Strtofloat(MyPoint(QTemp.FieldByName('power')
+        .AsString)), RazP);
 
       QinsAll.ExecSQL;
       QTemp.Next;

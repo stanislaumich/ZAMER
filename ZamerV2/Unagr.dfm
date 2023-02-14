@@ -77,263 +77,6 @@ object FNagr: TFNagr
       Caption = '0'
     end
   end
-  object GroupBox1: TGroupBox
-    Left = 0
-    Top = 30
-    Width = 1035
-    Height = 167
-    Align = alTop
-    Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1087#1088#1080#1073#1086#1088#1086#1074
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -24
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 1
-    ExplicitLeft = 2
-    ExplicitTop = 31
-    object Label2: TLabel
-      Left = 46
-      Top = 65
-      Width = 311
-      Height = 29
-      Caption = #1058#1077#1082#1091#1097#1077#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1042'.:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label3: TLabel
-      Left = 566
-      Top = 100
-      Width = 84
-      Height = 29
-      Caption = #1058#1086#1082' '#1040'.:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label4: TLabel
-      Left = 471
-      Top = 131
-      Width = 179
-      Height = 29
-      Caption = #1069#1083'. '#1084#1086#1097#1085'. '#1042#1090'.:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label5: TLabel
-      Left = 478
-      Top = 32
-      Width = 172
-      Height = 29
-      Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'.:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label7: TLabel
-      Left = 528
-      Top = 65
-      Width = 122
-      Height = 29
-      Caption = #1054#1073'./'#1084#1080#1085'.:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label8: TLabel
-      Left = 121
-      Top = 131
-      Width = 236
-      Height = 29
-      Caption = #1058#1077#1082#1091#1097#1072#1103' '#1085#1072#1075#1088#1091#1079#1082#1072':'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label9: TLabel
-      Left = 370
-      Top = 65
-      Width = 90
-      Height = 33
-      AutoSize = False
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clHighlight
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label10: TLabel
-      Left = 656
-      Top = 100
-      Width = 82
-      Height = 33
-      AutoSize = False
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clHighlight
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label11: TLabel
-      Left = 656
-      Top = 131
-      Width = 141
-      Height = 33
-      AutoSize = False
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clHighlight
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label12: TLabel
-      Left = 656
-      Top = 32
-      Width = 82
-      Height = 33
-      AutoSize = False
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clHighlight
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label13: TLabel
-      Left = 656
-      Top = 65
-      Width = 99
-      Height = 33
-      AutoSize = False
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clHighlight
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label14: TLabel
-      Left = 370
-      Top = 131
-      Width = 151
-      Height = 33
-      AutoSize = False
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clHighlight
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label18: TLabel
-      Left = 0
-      Top = 32
-      Width = 357
-      Height = 29
-      Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label19: TLabel
-      Left = 370
-      Top = 32
-      Width = 15
-      Height = 29
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label23: TLabel
-      Left = 40
-      Top = 100
-      Width = 317
-      Height = 29
-      Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1075#1088#1091#1079#1082#1091', '#1042#1090':'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label24: TLabel
-      Left = 370
-      Top = 100
-      Width = 15
-      Height = 29
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label27: TLabel
-      Left = 810
-      Top = 32
-      Width = 106
-      Height = 29
-      Caption = #1050#1055#1044', %:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label33: TLabel
-      Left = 922
-      Top = 32
-      Width = 15
-      Height = 29
-      Caption = '0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-  end
   object GroupBox3: TGroupBox
     Left = 0
     Top = 200
@@ -347,7 +90,7 @@ object FNagr: TFNagr
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     object Label15: TLabel
       Left = 8
       Top = 32
@@ -430,7 +173,7 @@ object FNagr: TFNagr
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     DesignSize = (
       1035
       314)
@@ -738,6 +481,261 @@ object FNagr: TFNagr
       Width = 69
       Height = 31
       TabOrder = 9
+    end
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 30
+    Width = 1035
+    Height = 167
+    Align = alTop
+    Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1087#1088#1080#1073#1086#1088#1086#1074
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    object Label2: TLabel
+      Left = 46
+      Top = 65
+      Width = 311
+      Height = 29
+      Caption = #1058#1077#1082#1091#1097#1077#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077' '#1042'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 566
+      Top = 100
+      Width = 84
+      Height = 29
+      Caption = #1058#1086#1082' '#1040'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 471
+      Top = 131
+      Width = 179
+      Height = 29
+      Caption = #1069#1083'. '#1084#1086#1097#1085'. '#1042#1090'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 478
+      Top = 32
+      Width = 172
+      Height = 29
+      Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 528
+      Top = 65
+      Width = 122
+      Height = 29
+      Caption = #1054#1073'./'#1084#1080#1085'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 121
+      Top = 131
+      Width = 236
+      Height = 29
+      Caption = #1058#1077#1082#1091#1097#1072#1103' '#1085#1072#1075#1088#1091#1079#1082#1072':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 370
+      Top = 65
+      Width = 90
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 656
+      Top = 100
+      Width = 82
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 656
+      Top = 131
+      Width = 141
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label12: TLabel
+      Left = 656
+      Top = 32
+      Width = 82
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 656
+      Top = 65
+      Width = 99
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label14: TLabel
+      Left = 370
+      Top = 131
+      Width = 151
+      Height = 33
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label18: TLabel
+      Left = 0
+      Top = 32
+      Width = 357
+      Height = 29
+      Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label19: TLabel
+      Left = 370
+      Top = 32
+      Width = 15
+      Height = 29
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label23: TLabel
+      Left = 40
+      Top = 100
+      Width = 317
+      Height = 29
+      Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1077' '#1085#1072#1075#1088#1091#1079#1082#1091', '#1042#1090':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label24: TLabel
+      Left = 370
+      Top = 100
+      Width = 15
+      Height = 29
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label27: TLabel
+      Left = 810
+      Top = 32
+      Width = 106
+      Height = 29
+      Caption = #1050#1055#1044', %:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label33: TLabel
+      Left = 922
+      Top = 32
+      Width = 15
+      Height = 29
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
   end
   object QTemp: TFDQuery
