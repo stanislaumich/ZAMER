@@ -879,7 +879,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 5
     Text = '0'
-    ExplicitTop = 684
   end
   object Edit5: TEdit
     Left = 207
@@ -895,7 +894,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 6
     Text = '0'
-    ExplicitTop = 684
   end
   object Edit6: TEdit
     Left = 348
@@ -911,7 +909,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 7
     Text = '0'
-    ExplicitTop = 684
   end
   object Edit7: TEdit
     Left = 458
@@ -927,7 +924,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 8
     Text = '0'
-    ExplicitTop = 684
   end
   object BitBtn10: TBitBtn
     Left = 764
@@ -1001,7 +997,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 9
     OnClick = BitBtn10Click
-    ExplicitTop = 684
   end
   object ProgressBar1: TProgressBar
     Left = 8

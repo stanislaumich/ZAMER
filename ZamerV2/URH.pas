@@ -209,8 +209,8 @@ begin
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 1;
-    Label6.Caption := Label31.Caption;
-    Label8.Caption := StringGrid2.Cells[0, 1];
+    Label19.Caption := Label22.Caption;
+    Label24.Caption := StringGrid2.Cells[0, 1];
     BitBtn1.Enabled := true;
     BitBtn2.Enabled := true;
     BitBtn3.Enabled := true;
@@ -250,8 +250,8 @@ begin
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 2;
-    Label6.Caption := Label31.Caption;
-    Label8.Caption := StringGrid2.Cells[0, 1];
+    Label19.Caption := Label22.Caption;
+    Label24.Caption := StringGrid2.Cells[0, 1];
     BitBtn1.Enabled := true;
     BitBtn2.Enabled := true;
     BitBtn3.Enabled := true;
@@ -292,8 +292,8 @@ begin
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 3;
-    Label6.Caption := Label31.Caption;
-    Label8.Caption := StringGrid2.Cells[0, 1];
+    Label19.Caption := Label22.Caption;
+    Label24.Caption := StringGrid2.Cells[0, 1];
     BitBtn1.Enabled := true;
     BitBtn2.Enabled := true;
     BitBtn3.Enabled := true;
@@ -549,7 +549,7 @@ procedure TFRH.StringGrid2Click(Sender: TObject);
 begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
-  Label26.Caption := StringGrid2.Cells[0, StringGrid2.row];
+  Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
 end;
 
 procedure TFRH.Timer1000Timer(Sender: TObject);
@@ -561,6 +561,7 @@ begin
   if times <= 0 then
   begin
     Timer1000.Enabled := false;
+    ProgressBar1.Stepit;
     command(false);
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -628,8 +629,8 @@ begin
 
     QInsSvod.ParamByName('nomer').AsString :=
       Qselectsred.FieldByName('nomer').AsString;
-    QInsSvod.ParamByName('uisp').AsFloat := Strtofloat(Label6.Caption);
-    QInsSvod.ParamByName('pisp').AsFloat := Strtofloat(Label8.Caption);
+    QInsSvod.ParamByName('uisp').AsFloat := Strtofloat(Label19.Caption);
+    QInsSvod.ParamByName('pisp').AsFloat := Strtofloat(Label24.Caption);
     QInsSvod.ParamByName('usred').AsFloat :=
       simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU);
     QInsSvod.ParamByName('isred').AsFloat :=
@@ -681,7 +682,7 @@ begin
       StringGrid2.row := StringGrid2.row + 1;
       BitBtn3.Enabled := true;
       BitBtn1.Enabled := true;
-      Label8.Caption := StringGrid2.Cells[0, StringGrid2.row];
+      Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
     end;
   end
   else
