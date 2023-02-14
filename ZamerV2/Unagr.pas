@@ -475,7 +475,7 @@ begin
   Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
-  //Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
+  Label11.Caption := myformat(trazm, QUp.FieldByName('P').AsFloat);
 
   if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
     myfloat(Edit2.Text) then

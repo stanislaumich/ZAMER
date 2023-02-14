@@ -120,18 +120,17 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 734
+      Left = 471
       Top = 131
-      Width = 182
+      Width = 179
       Height = 29
-      Caption = #1052#1086#1097#1085#1086#1089#1090#1100' '#1042#1090'.:'
+      Caption = #1069#1083'. '#1084#1086#1097#1085'. '#1042#1090'.:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      Visible = False
     end
     object Label5: TLabel
       Left = 478
@@ -201,7 +200,7 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 922
+      Left = 656
       Top = 131
       Width = 141
       Height = 33
@@ -213,7 +212,6 @@ object FNagr: TFNagr
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      Visible = False
     end
     object Label12: TLabel
       Left = 656
