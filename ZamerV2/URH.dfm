@@ -107,31 +107,31 @@ object FRH: TFRH
       Height = 23
       Caption = '0'
     end
-    object Label21: TLabel
-      Left = 108
-      Top = 1
-      Width = 78
+    object Label32: TLabel
+      Left = 98
+      Top = 3
+      Width = 287
       Height = 23
-      Caption = 'Uisp, '#1042'.='
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1086#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1077', '#1042'.:'
     end
-    object Label22: TLabel
-      Left = 192
-      Top = 1
+    object Label33: TLabel
+      Left = 391
+      Top = 3
       Width = 10
       Height = 23
       Caption = '0'
     end
-    object Label30: TLabel
-      Left = 317
-      Top = 1
-      Width = 85
+    object Label34: TLabel
+      Left = 468
+      Top = 4
+      Width = 273
       Height = 23
-      Caption = 'Pisp, '#1042#1090'.='
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1072#1103' '#1084#1086#1097#1085#1086#1089#1090#1100', '#1042#1090'.:'
     end
-    object Label31: TLabel
-      Left = 408
-      Top = 1
-      Width = 10
+    object Label35: TLabel
+      Left = 747
+      Top = 4
+      Width = 13
       Height = 23
       Caption = '0'
     end
@@ -164,8 +164,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 571
-      Top = 131
+      Left = 563
+      Top = 100
       Width = 84
       Height = 29
       Caption = #1058#1086#1082' '#1040'.:'
@@ -177,11 +177,11 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 473
-      Top = 32
-      Width = 182
+      Left = 468
+      Top = 131
+      Width = 179
       Height = 29
-      Caption = #1052#1086#1097#1085#1086#1089#1090#1100' '#1042#1090'.:'
+      Caption = #1069#1083'. '#1084#1086#1097#1085'. '#1042#1090'.:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24
@@ -191,8 +191,8 @@ object FRH: TFRH
       Visible = False
     end
     object Label5: TLabel
-      Left = 483
-      Top = 65
+      Left = 475
+      Top = 30
       Width = 172
       Height = 29
       Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'.:'
@@ -204,8 +204,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 533
-      Top = 100
+      Left = 525
+      Top = 65
       Width = 122
       Height = 29
       Caption = #1054#1073'./'#1084#1080#1085'.:'
@@ -244,8 +244,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label10: TLabel
-      Left = 661
-      Top = 131
+      Left = 653
+      Top = 100
       Width = 128
       Height = 33
       AutoSize = False
@@ -258,8 +258,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 661
-      Top = 32
+      Left = 653
+      Top = 131
       Width = 141
       Height = 33
       AutoSize = False
@@ -273,8 +273,8 @@ object FRH: TFRH
       Visible = False
     end
     object Label12: TLabel
-      Left = 661
-      Top = 67
+      Left = 653
+      Top = 32
       Width = 82
       Height = 33
       AutoSize = False
@@ -287,8 +287,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label13: TLabel
-      Left = 661
-      Top = 100
+      Left = 653
+      Top = 65
       Width = 99
       Height = 33
       AutoSize = False
@@ -356,6 +356,32 @@ object FRH: TFRH
     object Label24: TLabel
       Left = 370
       Top = 100
+      Width = 15
+      Height = 29
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label21: TLabel
+      Left = 810
+      Top = 32
+      Width = 106
+      Height = 29
+      Caption = #1050#1055#1044', %:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label22: TLabel
+      Left = 922
+      Top = 32
       Width = 15
       Height = 29
       Caption = '0'
@@ -1257,15 +1283,15 @@ object FRH: TFRH
   object Timer1000: TTimer
     Enabled = False
     OnTimer = Timer1000Timer
-    Left = 728
-    Top = 61
+    Left = 800
+    Top = 381
   end
   object TimerUp: TTimer
     Enabled = False
     Interval = 500
     OnTimer = TimerUpTimer
-    Left = 783
-    Top = 58
+    Left = 855
+    Top = 378
   end
   object QUp: TFDQuery
     Connection = FZamerV2.FDC
@@ -1279,16 +1305,16 @@ object FRH: TFRH
         'select 0 U, 0 I, 0 P, to_number(torq) M, to_number(rot) N  from ' +
         'zamer'
       ')')
-    Left = 780
-    Top = 112
+    Left = 860
+    Top = 424
   end
   object OpenDialog1: TOpenDialog
-    Left = 848
-    Top = 62
+    Left = 920
+    Top = 374
   end
   object SaveDialog1: TSaveDialog
-    Left = 848
-    Top = 114
+    Left = 928
+    Top = 434
   end
   object Qtemp2: TFDQuery
     Connection = FZamerV2.FDC

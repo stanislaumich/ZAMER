@@ -493,8 +493,8 @@ begin
     strtofloat(QUp.FieldByName('Pt').Asstring));
 
   // κοδ
-  if strtofloat(QUp.FieldByName('P').Asstring)=0 then
-   Label33.Caption :='X'
+  if strtofloat(QUp.FieldByName('P').Asstring) = 0 then
+    Label33.Caption := 'X'
   else
   begin
     Label33.Caption := inttostr(round(strtofloat(QUp.FieldByName('Pt').Asstring)

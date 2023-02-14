@@ -76,12 +76,14 @@ type
     BitBtn5: TBitBtn;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
-    Label21: TLabel;
-    Label22: TLabel;
-    Label30: TLabel;
-    Label31: TLabel;
     ProgressBar1: TProgressBar;
     Qtemp2: TFDQuery;
+    Label32: TLabel;
+    Label33: TLabel;
+    Label34: TLabel;
+    Label35: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
     procedure Action1Execute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -194,7 +196,7 @@ begin
     exit;
   end;
 
-  val(Label31.Caption, currentpower, cod);
+  val(Label35.Caption, currentpower, cod);
 
   if cod = 0 then
   begin
@@ -204,7 +206,7 @@ begin
       begin
         StringGrid2.RowCount := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
-          Floattostr(simpleroundto(Strtofloat(Label31.Caption) / 100 *
+          Floattostr(simpleroundto(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[1, i]), RazP));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
@@ -236,7 +238,7 @@ begin
     exit;
   end;
 
-  val(Label31.Caption, currentpower, cod);
+  val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
     StringGrid2.RowCount := 2;
@@ -245,7 +247,7 @@ begin
       begin
         StringGrid2.RowCount := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
-          Floattostr(simpleroundto(Strtofloat(Label31.Caption) / 100 *
+          Floattostr(simpleroundto(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[2, i]), RazP));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
@@ -278,7 +280,7 @@ begin
     exit;
   end;
 
-  val(Label31.Caption, currentpower, cod);
+  val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
     StringGrid2.RowCount := 2;
@@ -287,7 +289,7 @@ begin
       begin
         StringGrid2.RowCount := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
-          Floattostr(simpleroundto(Strtofloat(Label31.Caption) / 100 *
+          Floattostr(simpleroundto(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[3, i]), RazP));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
@@ -489,7 +491,7 @@ begin
   Edit1.Text := QTemp.FieldByName('value').AsString;
   loadgrids;
   Label22.Caption := Fzamerv2.CombUisp.Text;
-  Label31.Caption := Floattostr(Strtofloat(Fzamerv2.CombPisp.Text) * 1000);
+  Label35.Caption := Floattostr(Strtofloat(Fzamerv2.CombPisp.Text) * 1000);
 end;
 
 procedure TFRH.FormClose(Sender: TObject; var Action: TCloseAction);
