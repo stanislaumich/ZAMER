@@ -131,7 +131,7 @@ object FRH: TFRH
     object Label35: TLabel
       Left = 747
       Top = 4
-      Width = 13
+      Width = 10
       Height = 23
       Caption = '0'
     end
@@ -1297,13 +1297,17 @@ object FRH: TFRH
     Connection = FZamerV2.FDC
     SQL.Strings = (
       'select '
-      'sum(u) u, sum(i) i, sum(p) p, sum(m) m, sum(n) n  from'
+      
+        'sum(u) u, sum(i) i, sum(p) p, sum(m) m, sum(n) n, sum(pw) pt  fr' +
+        'om'
       '('
-      'select U,I,P,to_number(0) M, to_number(0) N  from zelspectmp'
+      
+        'select U,I,P,to_number(0) M, to_number(0) N, to_number(0) pw  fr' +
+        'om zelspectmp'
       'union all'
       
-        'select 0 U, 0 I, 0 P, to_number(torq) M, to_number(rot) N  from ' +
-        'zamer'
+        'select 0 U, 0 I, 0 P, to_number(torq) M, to_number(rot) N, to_nu' +
+        'mber(power) pw from zamer'
       ')')
     Left = 860
     Top = 424

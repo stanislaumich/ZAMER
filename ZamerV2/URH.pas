@@ -700,6 +700,40 @@ begin
 
   QUp.Close;
   QUp.Open();
+
+  Label13.Caption := myformat(trazn, strtofloat(QUp.FieldByName('N').Asstring));
+  Label10.Caption := myformat(trazi, strtofloat(QUp.FieldByName('I').Asstring));
+  Label12.Caption := myformat(trazm, strtofloat(QUp.FieldByName('M').Asstring));
+  Label11.Caption := myformat(trazp, strtofloat(QUp.FieldByName('P').Asstring));
+
+  if ABS(strtofloat(QUp.FieldByName('U').Asstring) - strtofloat(Label19.Caption)
+    ) > strtofloat(trim(Edit2.Text)) then
+    Label9.Font.Color := clRed
+  else
+    Label9.Font.Color := clGreen;
+  Label9.Caption := myformat(trazu, strtofloat(QUp.FieldByName('U').Asstring));
+
+  if ABS(strtofloat(QUp.FieldByName('Pt').Asstring) -
+    strtofloat(Label24.Caption)) > strtofloat(Label29.Caption) then
+    Label14.Font.Color := clRed
+  else
+    Label14.Font.Color := clGreen;
+
+  Label14.Caption := myformat(trazm,
+    strtofloat(QUp.FieldByName('Pt').Asstring));
+
+  // кпд
+  if strtofloat(QUp.FieldByName('P').Asstring) = 0 then
+    Label33.Caption := 'X'
+  else
+  begin
+    Label22.Caption := inttostr(round(strtofloat(QUp.FieldByName('Pt').Asstring)
+      / strtofloat(QUp.FieldByName('P').Asstring) * 100));
+  end;
+
+  {
+  QUp.Close;
+  QUp.Open();
   Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
@@ -717,6 +751,8 @@ begin
   else
     Label14.Font.Color := clGreen;
   Label14.Caption := myformat(trazu, QUp.FieldByName('P').AsFloat);
+
+  }
 end;
 
 procedure TFRH.Action1Execute(Sender: TObject);
