@@ -91,6 +91,8 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    ExplicitLeft = 2
+    ExplicitTop = 31
     object Label2: TLabel
       Left = 46
       Top = 65
@@ -105,8 +107,8 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 571
-      Top = 131
+      Left = 566
+      Top = 100
       Width = 84
       Height = 29
       Caption = #1058#1086#1082' '#1040'.:'
@@ -118,8 +120,8 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 473
-      Top = 32
+      Left = 734
+      Top = 131
       Width = 182
       Height = 29
       Caption = #1052#1086#1097#1085#1086#1089#1090#1100' '#1042#1090'.:'
@@ -132,8 +134,8 @@ object FNagr: TFNagr
       Visible = False
     end
     object Label5: TLabel
-      Left = 483
-      Top = 67
+      Left = 478
+      Top = 32
       Width = 172
       Height = 29
       Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'.:'
@@ -145,8 +147,8 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 533
-      Top = 96
+      Left = 528
+      Top = 65
       Width = 122
       Height = 29
       Caption = #1054#1073'./'#1084#1080#1085'.:'
@@ -185,9 +187,9 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label10: TLabel
-      Left = 661
-      Top = 131
-      Width = 128
+      Left = 656
+      Top = 100
+      Width = 82
       Height = 33
       AutoSize = False
       Caption = '0'
@@ -199,8 +201,8 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 661
-      Top = 32
+      Left = 922
+      Top = 131
       Width = 141
       Height = 33
       AutoSize = False
@@ -214,8 +216,8 @@ object FNagr: TFNagr
       Visible = False
     end
     object Label12: TLabel
-      Left = 661
-      Top = 67
+      Left = 656
+      Top = 32
       Width = 82
       Height = 33
       AutoSize = False
@@ -228,8 +230,8 @@ object FNagr: TFNagr
       ParentFont = False
     end
     object Label13: TLabel
-      Left = 661
-      Top = 96
+      Left = 656
+      Top = 65
       Width = 99
       Height = 33
       AutoSize = False
@@ -297,6 +299,32 @@ object FNagr: TFNagr
     object Label24: TLabel
       Left = 370
       Top = 100
+      Width = 15
+      Height = 29
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label27: TLabel
+      Left = 810
+      Top = 32
+      Width = 106
+      Height = 29
+      Caption = #1050#1055#1044', %:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label33: TLabel
+      Left = 922
+      Top = 32
       Width = 15
       Height = 29
       Caption = '0'
@@ -723,14 +751,14 @@ object FNagr: TFNagr
     Enabled = False
     Interval = 500
     OnTimer = TimerUpTimer
-    Left = 776
-    Top = 114
+    Left = 436
+    Top = 390
   end
   object Timer1000: TTimer
     Enabled = False
     OnTimer = Timer1000Timer
-    Left = 824
-    Top = 114
+    Left = 516
+    Top = 394
   end
   object QInssvod: TFDQuery
     Connection = FZamerV2.FDC
@@ -938,16 +966,20 @@ object FNagr: TFNagr
     Connection = FZamerV2.FDC
     SQL.Strings = (
       'select '
-      'sum(u) u, sum(i) i, sum(p) p, sum(m) m, sum(n) n  from'
+      
+        'sum(u) u, sum(i) i, sum(p) p, sum(m) m, sum(n) n, sum(pw) pt  fr' +
+        'om'
       '('
-      'select U,I,P,to_number(0) M, to_number(0) N  from zelspectmp'
+      
+        'select U,I,P,to_number(0) M, to_number(0) N, to_number(0) pw  fr' +
+        'om zelspectmp'
       'union all'
       
-        'select 0 U, 0 I, 0 P, to_number(torq) M, to_number(rot) N  from ' +
-        'zamer'
+        'select 0 U, 0 I, 0 P, to_number(torq) M, to_number(rot) N, to_nu' +
+        'mber(power) pw from zamer'
       ')')
-    Left = 776
-    Top = 72
+    Left = 364
+    Top = 388
   end
   object QTemp2: TFDQuery
     Connection = FZamerV2.FDC

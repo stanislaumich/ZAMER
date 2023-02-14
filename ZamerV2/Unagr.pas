@@ -72,6 +72,8 @@ type
     Label32: TLabel;
     Label25: TLabel;
     Label26: TLabel;
+    Label27: TLabel;
+    Label33: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -473,6 +475,7 @@ begin
   Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
+  //Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
 
   if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
     myfloat(Edit2.Text) then
@@ -481,12 +484,13 @@ begin
     Label9.Font.Color := clGreen;
   Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
   //
-  if ABS(QUp.FieldByName('P').AsFloat - strtofloat(Label24.Caption)) >
+  if ABS(QUp.FieldByName('Pt').AsFloat - strtofloat(Label24.Caption)) >
     myfloat(Label29.Caption) then
     Label14.Font.Color := clRed
   else
-    Label14.Font.Color := clGreen;
-  Label14.Caption := myformat(trazu, QUp.FieldByName('P').AsFloat);
+    Label14.Font.Color := clGreen;Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
+
+  Label33.caption:=inttostr(round(QUp.FieldByName('Pt').AsFloat/ QUp.FieldByName('P').AsFloat *100));
 
 end;
 
