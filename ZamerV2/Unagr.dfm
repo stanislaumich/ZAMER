@@ -764,12 +764,12 @@ object FNagr: TFNagr
       '   P, N, M, '
       '   T1, R, TIP, '
       '   DOP1, RKORP, ROBM, '
-      '   T2, T3, T) '
+      '   T2, T3, T, edizmispyt, edizmkorp, edizmobm) '
       'VALUES ( :NOMER, :U, :I, '
       '   :P, :N, :M, '
       '   :T1, :R, :TIP, '
       '   :DOP1, :RKORP, :ROBM, '
-      '   :T2, :T3, :T )')
+      '   :T2, :T3, :T, :edizmispyt, :edizmkorp, :edizmobm )')
     Left = 360
     Top = 336
     ParamData = <
@@ -831,6 +831,18 @@ object FNagr: TFNagr
       end
       item
         Name = 'T'
+        ParamType = ptInput
+      end
+      item
+        Name = 'EDIZMISPYT'
+        ParamType = ptInput
+      end
+      item
+        Name = 'EDIZMKORP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'EDIZMOBM'
         ParamType = ptInput
       end>
   end

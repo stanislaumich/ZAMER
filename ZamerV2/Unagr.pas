@@ -168,6 +168,10 @@ begin
     QInssvod.ParamByName('r').AsFloat :=
       myfloat(StringReplace(StringGrid1.cells[9, i], '.', ',',
       [rfReplaceAll, rfIgnoreCase]));
+    QInssvod.ParamByName('edizmkorp').AsString:=ComboBox1.Text;
+    QInssvod.ParamByName('edizmobm').AsString:=ComboBox2.Text;
+    QInssvod.ParamByName('edizmispyt').AsString:=ComboBox3.Text;
+
     QInssvod.ExecSQL;
   end;
 

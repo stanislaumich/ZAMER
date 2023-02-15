@@ -1128,7 +1128,7 @@ begin
 
     FKZ.StringGrid1.row := 1;
     FKZ.StringGrid1.rowcount := 10;
-    // FKZ.Edit2.Enabled        := false;
+
     while not(QTemp.Eof) do
     begin
         FKZ.StringGrid1.Cells[0, FKZ.StringGrid1.row] :=
@@ -1154,7 +1154,9 @@ begin
 
     { SELECT NOMER, U, I, P, N, M,  T1, R, TIP, DOP1, RKORP, ROBM, T2, T3, T }
     QTemp.first;
-
+    FNagr.ComboBox3.Text:= QTemp.FieldByName('edizmispyt').AsString;
+    FNagr.ComboBox1.Text:= QTemp.FieldByName('edizmkorp').AsString;
+    FNagr.ComboBox2.Text:= QTemp.FieldByName('edizmobm').AsString;
     if QTemp.FieldByName('RKORP').Asstring = '' then
         Fnagr.Edit4.Text := '0'
     else
