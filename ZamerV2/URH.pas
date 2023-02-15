@@ -518,7 +518,7 @@ begin
   QTemp.Open('select * from zini where name=' + Quotedstr('rhtime'));
   Edit1.Text := QTemp.FieldByName('value').AsString;
   loadgrids;
-  Label22.Caption := Fzamerv2.CombUisp.Text;
+  Label22.Caption := 'X';
   Label35.Caption := Floattostr(Strtofloat(Fzamerv2.CombPisp.Text) * 1000);
 end;
 
@@ -770,28 +770,7 @@ begin
       / Strtofloat(QUp.FieldByName('P').AsString) * 100));
   end;
 
-  {
-    QUp.Close;
-    QUp.Open();
-    Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
-    Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
-    Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
 
-    if ABS(QUp.FieldByName('U').AsFloat - Strtofloat(Label19.Caption)) >
-    myfloat(Edit2.Text) then
-    Label9.Font.Color := clRed
-    else
-    Label9.Font.Color := clGreen;
-    Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
-    //
-    if ABS(QUp.FieldByName('P').AsFloat - Strtofloat(Label24.Caption)) >
-    myfloat(Label29.Caption) then
-    Label14.Font.Color := clRed
-    else
-    Label14.Font.Color := clGreen;
-    Label14.Caption := myformat(trazu, QUp.FieldByName('P').AsFloat);
-
-  }
 end;
 
 procedure TFRH.Action1Execute(Sender: TObject);
