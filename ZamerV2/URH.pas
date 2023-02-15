@@ -84,6 +84,7 @@ type
     Label35: TLabel;
     Label21: TLabel;
     Label22: TLabel;
+    Label30: TLabel;
     procedure Action1Execute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -190,12 +191,12 @@ begin
   for i := 0 to StringGrid2.colcount - 1 do
     for j := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
-  if StringGrid1.Cells[1, 1] = '' then
+  {if StringGrid1.Cells[1, 1] = '' then
   begin
     Showmessage('Нет данных для испытания');
     exit;
   end;
-
+  }
   val(Label35.Caption, currentpower, cod);
 
   if cod = 0 then
@@ -212,7 +213,7 @@ begin
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 1;
-    Label19.Caption := Label22.Caption;
+    Label19.Caption := Label33.Caption;
     Label24.Caption := StringGrid2.Cells[0, 1];
     BitBtn1.Enabled := true;
     BitBtn2.Enabled := true;
@@ -232,12 +233,12 @@ begin
   for i := 0 to StringGrid2.colcount - 1 do
     for j := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
-  if StringGrid1.Cells[1, 1] = '' then
+  {if StringGrid1.Cells[1, 1] = '' then
   begin
     Showmessage('Нет данных для испытания');
     exit;
   end;
-
+  }
   val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
@@ -253,7 +254,7 @@ begin
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 2;
-    Label19.Caption := Label22.Caption;
+    Label19.Caption := Label33.Caption;
     Label24.Caption := StringGrid2.Cells[0, 1];
     BitBtn1.Enabled := true;
     BitBtn2.Enabled := true;
@@ -273,13 +274,13 @@ begin
   for i := 0 to StringGrid2.colcount - 1 do
     for j := 1 to StringGrid2.RowCount - 1 do
       StringGrid2.Cells[i, j] := '';
-
+  {
   if StringGrid1.Cells[1, 1] = '' then
   begin
     Showmessage('Нет данных для испытания');
     exit;
   end;
-
+  }
   val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
@@ -295,7 +296,7 @@ begin
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 3;
-    Label19.Caption := Label22.Caption;
+    Label19.Caption := Label33.Caption;
     Label24.Caption := StringGrid2.Cells[0, 1];
     BitBtn1.Enabled := true;
     BitBtn2.Enabled := true;
@@ -338,6 +339,7 @@ procedure TFRH.BitBtn1Click(Sender: TObject);
 begin
   if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked) then
   begin
+
     times := Strtoint(Edit1.Text);
     BitBtn1.Enabled := false;
     ProgressBar1.min := 0;
@@ -347,9 +349,17 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zrhall where nomer=' + Quotedstr(nomer) +
-      ' and uisp=' + Label22.Caption + ' and pisp=' + StringGrid2.Cells[0,
+      ' and uisp=' + Label19.Caption + ' and pisp=' + StringGrid2.Cells[0,
       StringGrid2.row]);
     QTemp.ExecSQL;
+
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(Nomer) +
+      ' and uisp=' + Label19.Caption + ' and pisp='+StringGrid2.Cells[0,
+      StringGrid2.row]);
+    QTemp.ExecSQL;
+
     enableclose := false;
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -546,6 +556,7 @@ procedure TFRH.FormShow(Sender: TObject);
 begin
   TimerUp.Enabled := true;
   enableclose := true;
+  nomer := Label6.Caption;
 end;
 
 procedure TFRH.StringGrid2Click(Sender: TObject);
@@ -553,6 +564,7 @@ begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
   Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
+  Label19.Caption :=  Label33.Caption   ;
 end;
 
 procedure TFRH.Timer1000Timer(Sender: TObject);
@@ -628,6 +640,8 @@ begin
     Qselectsred.Open;
     QInsSvod.Close;
     QTemp.Close;
+    if Qselectsred.FieldByName('u').AsFloat<>0 then
+    begin
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zrhsvod where nomer=' + Quotedstr(nomer) +
       ' and uisp=' + Label19.Caption + ' and pisp=' + Point(Label24.Caption));
@@ -659,7 +673,7 @@ begin
     QInsSvod.ParamByName('t3').AsFloat := Strtofloat(Edit6.Text);
     QInsSvod.ParamByName('r').AsFloat := Strtofloat(Edit7.Text);
     QInsSvod.ExecSQL;
-
+    end;// inssvod
     StringGrid2.Cells[1, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('u').AsFloat, RazU));
     StringGrid2.Cells[2, StringGrid2.row] :=

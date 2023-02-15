@@ -908,6 +908,7 @@ end;
 procedure TFZamerV2.BRHClick(Sender: TObject);
 begin
   FRH.Label19.Caption := CombUisp.Text;
+  FRH.Label33.Caption := CombUisp.Text;
   FRH.Label24.Caption := floattostr(strtofloat(CombPIsp.Text) * 1000);
   FRH.Label6.Caption := nomer;
   FRH.ShowModal;
@@ -927,7 +928,7 @@ end;
 procedure TFZamerV2.LoadIspyt(nomer: string);
 var
   s: string;
-  tip: Integer;
+  tip, i, j: Integer;
 begin
   // двигатель целиком
   QTemp.Close;
@@ -1018,11 +1019,7 @@ begin
   FSopr.ComboBox7.Text := QTemp.FieldByName('PHAS').Asstring;
   FSopr.ComboBox8.Text := QTemp.FieldByName('SOED').Asstring;
   FSopr.ComboBox9.Text := QTemp.FieldByName('SOPRED').Asstring;
-  // if FSopr.ComboBox9.Text = '' then
-  // FSopr.ComboBox9.Text := 'ћќм';
   FSopr.ComboBox10.Text := QTemp.FieldByName('IZOLED').Asstring;
-  // if FSopr.ComboBox10.Text = '' then
-  // FSopr.ComboBox10.Text := 'ћќм';
 
   FSopr.Edit13.Text := QTemp.FieldByName('IZOLKORP').Asstring;
   FSopr.Edit16.Text := QTemp.FieldByName('IZOLOBMOT').Asstring;
@@ -1196,6 +1193,70 @@ begin
       QTemp.FieldByName('x').AsInteger] := QTemp.FieldByName('val').Asstring;
     QTemp.Next;
   end;
+
+
+  // загрузить рабочую характеристику
+  for i                               := 0 to Frh.Stringgrid2.colcount - 1 do
+        for j                           := 1 to Frh.Stringgrid2.rowcount - 1 do
+            Frh.Stringgrid2.Cells[i, j] := '';
+    Frh.Stringgrid2.rowcount            := 2;
+
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zrhsvod where nomer=' + Quotedstr(Nomer) +
+      ' order by pisp desc');
+    FZamerV2.ImgSet(FZamerV2.Image5, QTemp.RecordCount <> 0);
+
+    tip := Qtemp.FieldByName('tip').AsInteger;
+    case tip of
+        1:
+            begin
+                Frh.Radiobutton1Click(Frh);
+                Frh.radiobutton1.Checked := True;
+            end;
+        2:
+            begin
+                Frh.Radiobutton2Click(Frh);
+                Frh.radiobutton2.Checked := True;
+            end;
+        3:
+            begin
+                Frh.Radiobutton3Click(Frh);
+                Frh.radiobutton3.Checked := True;
+            end;
+    end;
+    tip                      := 1;
+    Frh.Stringgrid2.rowcount := Qtemp.RecordCount + 2;
+    if Qtemp.FieldByName('t1').Asstring = '' then
+        Frh.Edit4.Text := '0'
+    else
+        Frh.Edit4.Text := Qtemp.FieldByName('t1').Asstring;
+    if Qtemp.FieldByName('t2').Asstring = '' then
+        Frh.Edit5.Text := '0'
+    else
+        Frh.Edit5.Text := Qtemp.FieldByName('t2').Asstring;
+    if Qtemp.FieldByName('t3').Asstring = '' then
+        Frh.Edit6.Text := '0'
+    else
+        Frh.Edit6.Text := Qtemp.FieldByName('t3').Asstring;
+    if Qtemp.FieldByName('r').Asstring = '' then
+        Frh.Edit7.Text := '0'
+    else
+        Frh.Edit7.Text := Qtemp.FieldByName('r').Asstring;
+
+    while not(Qtemp.Eof) do
+    begin
+        Frh.Stringgrid2.Cells[0, tip] := Qtemp.FieldByName('pisp').Asstring;
+        Frh.Stringgrid2.Cells[1, tip] := Qtemp.FieldByName('usred').Asstring;
+        Frh.Stringgrid2.Cells[2, tip] := Qtemp.FieldByName('isred').Asstring;
+        Frh.Stringgrid2.Cells[3, tip] := Qtemp.FieldByName('psred').Asstring;
+        Frh.Stringgrid2.Cells[4, tip] := Qtemp.FieldByName('rot').Asstring;
+        Frh.Stringgrid2.Cells[5, tip] := Qtemp.FieldByName('torq').Asstring;
+        Frh.Stringgrid2.Cells[6, tip] := Qtemp.FieldByName('dumax').Asstring;
+        Frh.Stringgrid2.Cells[7, tip] := Qtemp.FieldByName('dpmax').Asstring;
+        Qtemp.Next;
+        tip := tip + 1;
+    end;
 
 
   //

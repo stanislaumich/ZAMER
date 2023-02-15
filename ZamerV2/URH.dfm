@@ -480,7 +480,7 @@ object FRH: TFRH
     Left = 0
     Top = 278
     Width = 273
-    Height = 375
+    Height = 400
     Caption = #1042#1099#1073#1086#1088' '#1074#1072#1088#1080#1072#1085#1090#1072' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -489,6 +489,20 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    object Label30: TLabel
+      Left = 3
+      Top = 372
+      Width = 251
+      Height = 26
+      Caption = #1057#1087#1080#1089#1086#1082' '#1080#1089#1087#1099#1090#1072#1085#1080#1081' '#1084#1086#1078#1085#1086' '#1089#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1075#1088#1091#1079#1080#1090#1100' '#1089#1090#1088#1077#1083#1082#1072#1084#1080' '#1085#1072' '#1076#1080#1089#1082
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      WordWrap = True
+    end
     object StringGrid1: TStringGrid
       Left = 4
       Top = 28
@@ -829,7 +843,6 @@ object FRH: TFRH
       Width = 134
       Height = 54
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
-      Enabled = False
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
