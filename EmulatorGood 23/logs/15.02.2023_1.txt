@@ -1,0 +1,73 @@
+15.02.2023 08:33:36.403 - Запуск Modbus TCP/RTU Эмулятор
+15.02.2023 08:33:36.807 - TModbusTCPServer.Create
+15.02.2023 08:33:37.137 - TModbusTCPServer.Start
+15.02.2023 08:33:37.137 - TTCPAccept.Create IN, Port = 502
+15.02.2023 08:33:37.139 - TTCPAccept.Create OUT
+15.02.2023 08:33:37.286 - TTCPAccept.Execute IN
+15.02.2023 08:33:37.286 - TTCPAccept.InitSocket IN
+15.02.2023 08:33:37.416 - TTCPAccept.InitSocket - OUT
+15.02.2023 09:39:30.662 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 09:39:30.682 - TModbusTCPServer.AddClient
+15.02.2023 09:39:30.682 - TModbusTCPClient.Start
+15.02.2023 09:39:30.684 - TTCPAccept.InitSocket IN
+15.02.2023 09:43:25.944 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 09:43:56.761 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 09:43:56.761 - TModbusTCPServer.RemoveClient
+15.02.2023 09:43:58.46 - TModbusTCPServer.AddClient
+15.02.2023 09:43:58.46 - TModbusTCPClient.Start
+15.02.2023 09:43:58.46 - TTCPAccept.InitSocket IN
+15.02.2023 09:45:53.252 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 09:49:12.258 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 09:49:12.258 - TModbusTCPServer.RemoveClient
+15.02.2023 09:49:12.805 - TModbusTCPServer.AddClient
+15.02.2023 09:49:12.805 - TModbusTCPClient.Start
+15.02.2023 09:49:12.805 - TTCPAccept.InitSocket IN
+15.02.2023 09:49:43.800 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 09:57:47.381 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 09:57:47.381 - TModbusTCPServer.RemoveClient
+15.02.2023 09:57:47.648 - TModbusTCPServer.AddClient
+15.02.2023 09:57:47.648 - TModbusTCPClient.Start
+15.02.2023 09:57:47.648 - TTCPAccept.InitSocket IN
+15.02.2023 09:58:30.3 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 09:58:48.212 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 09:58:48.212 - TModbusTCPServer.RemoveClient
+15.02.2023 09:58:48.908 - TModbusTCPServer.AddClient
+15.02.2023 09:58:48.908 - TModbusTCPClient.Start
+15.02.2023 09:58:48.908 - TTCPAccept.InitSocket IN
+15.02.2023 09:59:57.655 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 10:09:38.92 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 10:09:38.92 - TModbusTCPServer.RemoveClient
+15.02.2023 10:09:38.399 - TModbusTCPServer.AddClient
+15.02.2023 10:09:38.399 - TModbusTCPClient.Start
+15.02.2023 10:09:38.399 - TTCPAccept.InitSocket IN
+15.02.2023 10:10:54.148 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 10:12:21.283 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 10:12:21.283 - TModbusTCPServer.RemoveClient
+15.02.2023 10:12:21.717 - TModbusTCPServer.AddClient
+15.02.2023 10:12:21.719 - TModbusTCPClient.Start
+15.02.2023 10:12:21.719 - TTCPAccept.InitSocket IN
+15.02.2023 10:13:35.361 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 10:14:23.358 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 10:14:23.358 - TModbusTCPServer.RemoveClient
+15.02.2023 10:14:23.687 - TModbusTCPServer.AddClient
+15.02.2023 10:14:23.687 - TModbusTCPClient.Start
+15.02.2023 10:14:23.687 - TTCPAccept.InitSocket IN
+15.02.2023 10:40:17.14 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 10:40:40.982 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 10:40:40.982 - TModbusTCPServer.RemoveClient
+15.02.2023 10:40:41.824 - TModbusTCPServer.AddClient
+15.02.2023 10:40:41.824 - TModbusTCPClient.Start
+15.02.2023 10:40:41.824 - TTCPAccept.InitSocket IN
+15.02.2023 10:45:17.971 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 10:45:40.611 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 10:45:40.611 - TModbusTCPServer.RemoveClient
+15.02.2023 10:45:40.763 - TModbusTCPServer.AddClient
+15.02.2023 10:45:40.763 - TModbusTCPClient.Start
+15.02.2023 10:45:40.763 - TTCPAccept.InitSocket IN
+15.02.2023 10:46:21.428 - TModbusTCPServer.OnClientDisconnect
+15.02.2023 10:49:34.159 - TModbusTCPServer.ClientConnectEvent
+15.02.2023 10:49:34.159 - TModbusTCPServer.RemoveClient
+15.02.2023 10:49:34.634 - TModbusTCPServer.AddClient
+15.02.2023 10:49:34.634 - TModbusTCPClient.Start
+15.02.2023 10:49:34.634 - TTCPAccept.InitSocket IN
+15.02.2023 10:50:48.901 - TModbusTCPServer.OnClientDisconnect
