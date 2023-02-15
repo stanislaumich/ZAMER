@@ -27,9 +27,16 @@ function NVLToEmp(s: string): string;
 function addzeroend(sin:string;n:integer):string;
 function MyPoint(s:string):string;
 function MyComma(s:string):string;
+function myZero(s:string):string;
 implementation // --------------------------------------------------------------
 
 uses System.SysUtils,ustr;
+
+function myZero(s:string):string;
+ begin
+  if trim(s)='' then
+   myzero:='0' else myZero:=trim(s);
+ end;
 
 function MyPoint(s:string):string;
 begin

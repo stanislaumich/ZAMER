@@ -315,6 +315,7 @@ var
     ReportPath, fn: string;
     ans: array [0 .. 2] of string;
     tmp: real;
+    ts:string;
 
     procedure wrepl(s1: string; s2: string);
     begin
@@ -568,7 +569,8 @@ begin
             wrepl('N32x', Fnagr.Edit5.Text)
         else
             wrepl('N32x', ''); // R obm
-
+        wrepl('RNAG1','НЕИЗВЕСТНО');
+        wrepl('stred5',Fnagr.ComboBox3.Text);//
         // прочие характеристики
         FrepP.Label1.Caption := 'Прочие характеристики';
         for j := 1 to 18 do
@@ -637,33 +639,43 @@ begin
           tRazM = '0.00';
           tRazR = '0.0';
         }
-
+        wrepl('TRH1',Frh.Edit4.Text);
+        wrepl('TRH2',Frh.Edit5.Text);
+        wrepl('TRH3',Frh.Edit6.Text);
+        wrepl('RRH1',Frh.Edit7.Text);
+        wrepl('stred6',Frh.ComboBox1.Text);
         // рабочая характеристика
         FrepP.Label1.Caption := 'Рабочая характеристика';
+
         for i := 1 to 10 do
         begin
+        ts:=  myzero(Frh.Stringgrid2.Cells[1, i]);
             wrepl('u' + inttostr(i) + 'rh',
-              myformat(tRazU, strtofloat(Frh.Stringgrid2.Cells[1, i])));
+              myformat(tRazU, strtofloat(ts)));
         end;
         for i := 1 to 10 do
         begin
+        ts:= myzero(Frh.Stringgrid2.Cells[2, i]);
             wrepl('i' + inttostr(i) + 'rh',
-              myformat(tRazI, strtofloat(Frh.Stringgrid2.Cells[2, i])));
+              myformat(tRazI, strtofloat(ts)));
         end;
         for i := 1 to 10 do
         begin
+        ts:= myzero(Frh.Stringgrid2.Cells[3, i]);
             wrepl('p' + inttostr(i) + 'rh',
-              myformat(tRazP, strtofloat(Frh.Stringgrid2.Cells[3, i])));
+              myformat(tRazP, strtofloat(ts)));
         end;
         for i := 1 to 10 do
         begin
+        ts:=  myzero(Frh.Stringgrid2.Cells[4, i]);
             wrepl('rot' + inttostr(i) + 'rh',
-              myformat(tRAZN, strtofloat(Frh.Stringgrid2.Cells[4, i])));
+              myformat(tRAZN, strtofloat(ts)));
         end;
         for i := 1 to 10 do
         begin
+        ts:= myzero(Frh.Stringgrid2.Cells[5, i]);
             wrepl('torq' + inttostr(i) + 'rh',
-              myformat(tRazR, strtofloat(Frh.Stringgrid2.Cells[5, i])));
+              myformat(tRazR, strtofloat(ts)));
         end;
 
         // сохранение документа
@@ -1311,6 +1323,12 @@ begin
     else
         Frh.Edit7.Text := QTemp.FieldByName('r').Asstring;
 
+    FRH.Edit4.Text:=QTemp.FieldByName('t1').Asstring;
+    FRH.Edit5.Text:=QTemp.FieldByName('t2').Asstring;
+    FRH.Edit6.Text:=QTemp.FieldByName('t3').Asstring;
+    FRH.Edit7.Text:=QTemp.FieldByName('r').Asstring;
+
+    FRH.ComboBox1.Text:=QTemp.FieldByName('edizm').Asstring;
     while not(QTemp.Eof) do
     begin
         Frh.Stringgrid2.Cells[0, tip] := QTemp.FieldByName('pisp').Asstring;

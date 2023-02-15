@@ -14,6 +14,7 @@ object FRH: TFRH
   OnActivate = FormActivate
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
     1037
@@ -188,7 +189,6 @@ object FRH: TFRH
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      Visible = False
     end
     object Label5: TLabel
       Left = 475
@@ -270,7 +270,6 @@ object FRH: TFRH
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      Visible = False
     end
     object Label12: TLabel
       Left = 653
@@ -688,7 +687,7 @@ object FRH: TFRH
       400)
     object StringGrid2: TStringGrid
       Left = 3
-      Top = 28
+      Top = 24
       Width = 752
       Height = 309
       Anchors = [akLeft, akTop, akRight, akBottom]
@@ -966,11 +965,11 @@ object FRH: TFRH
   end
   object BitBtn10: TBitBtn
     Left = 764
-    Top = 705
+    Top = 709
     Width = 273
     Height = 36
     Anchors = [akLeft, akBottom]
-    Caption = #1047#1072#1082#1088#1099#1090#1100
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -1043,6 +1042,20 @@ object FRH: TFRH
     Width = 1029
     Height = 24
     TabOrder = 10
+  end
+  object ComboBox1: TComboBox
+    Left = 535
+    Top = 711
+    Width = 106
+    Height = 31
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 11
+    Text = 'ComboBox1'
   end
   object QCommand: TFDQuery
     Connection = FZamerV2.FDC

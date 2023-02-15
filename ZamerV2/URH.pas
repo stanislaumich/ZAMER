@@ -85,6 +85,7 @@ type
     Label21: TLabel;
     Label22: TLabel;
     Label30: TLabel;
+    ComboBox1: TComboBox;
     procedure Action1Execute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -102,6 +103,7 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1000Timer(Sender: TObject);
     procedure BitBtn10Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -188,9 +190,9 @@ var
   cod: integer;
 
 begin
-  for i := 0 to StringGrid2.colcount - 1 do
-    for j := 1 to StringGrid2.RowCount - 1 do
-      StringGrid2.Cells[i, j] := '';
+  //for i := 0 to StringGrid2.colcount - 1 do
+  //  for j := 1 to StringGrid2.RowCount - 1 do
+  //    StringGrid2.Cells[i, j] := '';
   { if StringGrid1.Cells[1, 1] = '' then
     begin
     Showmessage('Нет данных для испытания');
@@ -230,9 +232,9 @@ var
   cod: integer;
 
 begin
-  for i := 0 to StringGrid2.colcount - 1 do
-    for j := 1 to StringGrid2.RowCount - 1 do
-      StringGrid2.Cells[i, j] := '';
+  //for i := 0 to StringGrid2.colcount - 1 do
+  //  for j := 1 to StringGrid2.RowCount - 1 do
+  //    StringGrid2.Cells[i, j] := '';
   { if StringGrid1.Cells[1, 1] = '' then
     begin
     Showmessage('Нет данных для испытания');
@@ -271,9 +273,9 @@ var
   cod: integer;
 
 begin
-  for i := 0 to StringGrid2.colcount - 1 do
-    for j := 1 to StringGrid2.RowCount - 1 do
-      StringGrid2.Cells[i, j] := '';
+  //for i := 0 to StringGrid2.colcount - 1 do
+  //  for j := 1 to StringGrid2.RowCount - 1 do
+   //   StringGrid2.Cells[i, j] := '';
   {
     if StringGrid1.Cells[1, 1] = '' then
     begin
@@ -331,7 +333,23 @@ end;
 /// ///////////////////////////////////
 procedure TFRH.BitBtn10Click(Sender: TObject);
 begin
-  // сохранять ничего не нужно
+  // обновить температуры
+
+  QTEmp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.add('update zrhsvod set ');
+  QTemp.SQL.add('t1= '+Quotedstr(Edit4.text));
+  QTemp.SQL.add(',t2= '+Quotedstr(Edit5.text));
+  QTemp.SQL.add(',t3= '+Quotedstr(Edit6.text));
+  QTemp.SQL.add(',r= '+Quotedstr(Edit7.text));
+  QTemp.SQL.add(',edizm= '+Quotedstr(ComboBox1.Text));
+  QTemp.SQL.add(' where nomer= '+Quotedstr(nomer));
+  QTemp.ExecSQL;
+  FZamerV2.ImgSet(FZamerV2.Image5, true);
+  enableclose:=true;
+  //canclose:=true;
+
+
   FRH.Close;
 end;
 
@@ -552,6 +570,13 @@ begin
   }
 end;
 
+procedure TFRH.FormCreate(Sender: TObject);
+begin
+ ComboBox1.Items.LoadFromFile(extractfilepath(application.exename) +
+    'R_SoprotListRH.txt');
+  ComboBox1.ItemIndex := 0;
+end;
+
 procedure TFRH.FormShow(Sender: TObject);
 begin
   TimerUp.Enabled := true;
@@ -738,7 +763,7 @@ begin
 
   // кпд
   if Strtofloat(QUp.FieldByName('P').AsString) = 0 then
-    Label33.Caption := 'X'
+    Label22.Caption := 'X'
   else
   begin
     Label22.Caption := inttostr(round(Strtofloat(QUp.FieldByName('Pt').AsString)
