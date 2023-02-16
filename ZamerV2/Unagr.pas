@@ -486,6 +486,7 @@ begin
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
   Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);
+
   if checkbox1.checked  then
   begin
   if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)
@@ -521,7 +522,9 @@ begin
     Label33.Caption := 'X'
   else
   begin
-    Label33.Caption := inttostr(round(pt/p*100));
+    if P<>0 then
+    Label33.Caption := inttostr(round(pt/p*100))
+    else Label33.Caption := 'X';
   end;
   end;
 end;
