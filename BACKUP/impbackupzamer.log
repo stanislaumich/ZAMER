@@ -19,49 +19,48 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                      "VERSION"
                                                             1 rows imported
 . . importing table                        "ZAMER"
-                                                            1 rows imported
+                                                            0 rows imported
 . . importing table                     "ZAMERTMP"
-                                                           11 rows imported
+                                                            0 rows imported
 . . importing table                       "ZDELTA"
                                                             6 rows imported
 . . importing table                     "ZDVIGALL"
-                                                           17 rows imported
+                                                           18 rows imported
 . . importing table                      "ZELSPEC"
-.
-                                                         1780 rows imported
+                                                           46 rows imported
 . . importing table                   "ZELSPECTMP"
-                                                            1 rows imported
+                                                            0 rows imported
 . . importing table                         "ZERR"
                                                             3 rows imported
 . . importing table                       "ZGRIDS"
-                                                           42 rows imported
+                                                           94 rows imported
 . . importing table                       "ZHHALL"
 .
-                                                         1504 rows imported
+                                                         1631 rows imported
 . . importing table                      "ZHHSVOD"
-                                                           36 rows imported
+                                                           39 rows imported
 . . importing table                         "ZINI"
-                                                           52 rows imported
+                                                           53 rows imported
 . . importing table                       "ZKZALL"
-                                                           33 rows imported
+                                                           39 rows imported
 . . importing table                      "ZKZSVOD"
-                                                            7 rows imported
+                                                            9 rows imported
 . . importing table                      "ZMEHALL"
                                                             0 rows imported
 . . importing table                     "ZMEHSVOD"
                                                             0 rows imported
 . . importing table                   "ZNAGREVALL"
-                                                          149 rows imported
+                                                          170 rows imported
 . . importing table                  "ZNAGREVSVOD"
-                                                            8 rows imported
-. . importing table                       "ZPROCH"
-                                                            1 rows imported
-. . importing table                       "ZRHALL"
-                                                            0 rows imported
-. . importing table                      "ZRHSVOD"
-                                                            0 rows imported
-. . importing table                      "ZSOPROT"
                                                            10 rows imported
+. . importing table                       "ZPROCH"
+                                                            2 rows imported
+. . importing table                       "ZRHALL"
+                                                           26 rows imported
+. . importing table                      "ZRHSVOD"
+                                                            3 rows imported
+. . importing table                      "ZSOPROT"
+                                                           11 rows imported
 . . importing table                        "ZSOTR"
                                                             2 rows imported
 . . importing table                       "ZSTEND"
@@ -69,8 +68,8 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                       "ZTABLE"
                                                            17 rows imported
 . . importing table                       "ZVIBRO"
-                                                           36 rows imported
+                                                           72 rows imported
 . . importing table                        "ZZVUK"
-                                                           16 rows imported
+                                                           32 rows imported
 About to enable constraints...
 Import terminated successfully without warnings.

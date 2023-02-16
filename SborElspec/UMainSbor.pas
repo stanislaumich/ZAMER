@@ -233,6 +233,8 @@ begin
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+ c:integer;
 begin
   restoreini;
   prevstat := false;
@@ -241,6 +243,18 @@ begin
   QTemp.SQL.Add('Update zini set value=' + Quotedstr(Form1.Caption) +
     ' where name=' + Quotedstr('ElspecFormHeader'));
   QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('select count(*) c from zelspectmp');
+  QTemp.Open;
+  c:=QTemp.FieldByName('c').AsInteger;
+  if c=0 then
+   begin
+      QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('insert into zelspectmp (u) values(0)');
+  QTemp.ExecSQL;
+   end;
   Button1.Click;
 end;
 

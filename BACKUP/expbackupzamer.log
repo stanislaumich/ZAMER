@@ -37,7 +37,7 @@ EXP-00091: Exporting questionable statistics.
                                                             1 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                          ZAMER
-                                                            0 rows exported
+                                                            1 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                       ZAMERTMP
                                                             0 rows exported
@@ -51,10 +51,10 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZELSPEC
-                                                           46 rows exported
+                                                            0 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                     ZELSPECTMP
-                                                            0 rows exported
+                                                            1 rows exported
 . . exporting table                           ZERR
                                                             3 rows exported
 EXP-00091: Exporting questionable statistics.

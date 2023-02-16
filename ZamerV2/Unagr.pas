@@ -470,39 +470,50 @@ begin
 end;
 
 procedure TFNagr.TimerUpTimer(Sender: TObject);
+var
+ pt,p:single;
+ cod1,cod2:integer;
 begin
 
   QUp.Close;
   QUp.Open();
 
-  Label13.Caption := myformat(trazn, strtofloat(QUp.FieldByName('N').Asstring));
-  Label10.Caption := myformat(trazi, strtofloat(QUp.FieldByName('I').Asstring));
-  Label12.Caption := myformat(trazm, strtofloat(QUp.FieldByName('M').Asstring));
-  Label11.Caption := myformat(trazp, strtofloat(QUp.FieldByName('P').Asstring));
+  Label13.Caption := myformat(trazn, strtofloat((QUp.FieldByName('N').Asstring)));
+  Label10.Caption := myformat(trazi, strtofloat((QUp.FieldByName('I').Asstring)));
+  Label12.Caption := myformat(trazm, strtofloat((QUp.FieldByName('M').Asstring)));
+  Label11.Caption := myformat(trazp, strtofloat((QUp.FieldByName('P').Asstring)));
 
-  if ABS(strtofloat(QUp.FieldByName('U').Asstring) - strtofloat(Label19.Caption)
+  {
+  Label13.Caption := QUp.FieldByName('N').Asstring;
+  Label10.Caption := QUp.FieldByName('I').Asstring;
+  Label12.Caption := QUp.FieldByName('M').Asstring;
+  Label11.Caption := QUp.FieldByName('P').Asstring;
+  }
+  if ABS(strtofloat(MyZero(QUp.FieldByName('U').Asstring)) - strtofloat(Label19.Caption)
     ) > strtofloat(trim(Edit2.Text)) then
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;
-  Label9.Caption := myformat(trazu, strtofloat(QUp.FieldByName('U').Asstring));
+  Label9.Caption := myformat(trazu, strtofloat(MyZero(QUp.FieldByName('U').Asstring)));
 
-  if ABS(strtofloat(QUp.FieldByName('Pt').Asstring) -
+  if ABS(strtofloat(MyZero(QUp.FieldByName('Pt').Asstring))-
     strtofloat(Label24.Caption)) > strtofloat(Label29.Caption) then
     Label14.Font.Color := clRed
   else
     Label14.Font.Color := clGreen;
 
   Label14.Caption := myformat(trazm,
-    strtofloat(QUp.FieldByName('Pt').Asstring));
+    strtofloat(MyZero(QUp.FieldByName('Pt').Asstring)));
 
   // κοδ
-  if strtofloat(QUp.FieldByName('P').Asstring) = 0 then
+  val(MyComma(QUp.FieldByName('P').Asstring),p,cod1);
+  val(MyComma(QUp.FieldByName('Pt').Asstring),pt,cod2);
+
+  if (cod1 <> 0) or (cod2 <> 0) then
     Label33.Caption := 'X'
   else
   begin
-    Label33.Caption := inttostr(round(strtofloat(QUp.FieldByName('Pt').Asstring)
-      / strtofloat(QUp.FieldByName('P').Asstring) * 100));
+    Label33.Caption := inttostr(round(pt/p)*100);
   end;
 
 end;
