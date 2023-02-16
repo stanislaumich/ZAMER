@@ -518,7 +518,9 @@ begin
   val(MyComma(QUp.FieldByName('P').Asstring),p,cod1);
   val(MyComma(QUp.FieldByName('Pt').Asstring),pt,cod2);
 
-  if (cod1 <> 0) or (cod2 <> 0) then
+
+
+  if (cod1 = 0) or (cod2 = 0) then
     Label33.Caption := 'X'
   else
   begin
