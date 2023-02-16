@@ -478,32 +478,26 @@ begin
   QUp.Close;
   QUp.Open();
 
-  Label13.Caption := myformat(trazn, strtofloat((QUp.FieldByName('N').Asstring)));
-  Label10.Caption := myformat(trazi, strtofloat((QUp.FieldByName('I').Asstring)));
-  Label12.Caption := myformat(trazm, strtofloat((QUp.FieldByName('M').Asstring)));
-  Label11.Caption := myformat(trazp, strtofloat((QUp.FieldByName('P').Asstring)));
+  Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
+  Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
+  Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
+  Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);
 
-  {
-  Label13.Caption := QUp.FieldByName('N').Asstring;
-  Label10.Caption := QUp.FieldByName('I').Asstring;
-  Label12.Caption := QUp.FieldByName('M').Asstring;
-  Label11.Caption := QUp.FieldByName('P').Asstring;
-  }
-  if ABS(strtofloat(MyZero(QUp.FieldByName('U').Asstring)) - strtofloat(Label19.Caption)
+  if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)
     ) > strtofloat(trim(Edit2.Text)) then
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;
-  Label9.Caption := myformat(trazu, strtofloat(MyZero(QUp.FieldByName('U').Asstring)));
+  Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
 
-  if ABS(strtofloat(MyZero(QUp.FieldByName('Pt').Asstring))-
+  if ABS(QUp.FieldByName('Pt').AsFloat-
     strtofloat(Label24.Caption)) > strtofloat(Label29.Caption) then
     Label14.Font.Color := clRed
   else
     Label14.Font.Color := clGreen;
 
   Label14.Caption := myformat(trazm,
-    strtofloat(MyZero(QUp.FieldByName('Pt').Asstring)));
+    QUp.FieldByName('Pt').AsFloat);
 
   // κοδ
   val(MyComma(QUp.FieldByName('P').Asstring),p,cod1);
@@ -513,7 +507,7 @@ begin
     Label33.Caption := 'X'
   else
   begin
-    Label33.Caption := inttostr(round(pt/p)*100);
+    Label33.Caption := inttostr(round(pt/p*100));
   end;
 
 end;
