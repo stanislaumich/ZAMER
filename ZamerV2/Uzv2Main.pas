@@ -315,7 +315,7 @@ var
     ReportPath, fn: string;
     ans: array [0 .. 2] of string;
     tmp: real;
-    ts:string;
+    ts: string;
 
     procedure wrepl(s1: string; s2: string);
     begin
@@ -569,8 +569,8 @@ begin
             wrepl('N32x', Fnagr.Edit5.Text)
         else
             wrepl('N32x', ''); // R obm
-        wrepl('RNAG1','НЕИЗВЕСТНО');
-        wrepl('stred5',Fnagr.ComboBox3.Text);//
+        wrepl('RNAG1', 'НЕИЗВЕСТНО');
+        wrepl('stred5', Fnagr.ComboBox3.Text); //
         // прочие характеристики
         FrepP.Label1.Caption := 'Прочие характеристики';
         for j := 1 to 18 do
@@ -639,43 +639,38 @@ begin
           tRazM = '0.00';
           tRazR = '0.0';
         }
-        wrepl('TRH1',Frh.Edit4.Text);
-        wrepl('TRH2',Frh.Edit5.Text);
-        wrepl('TRH3',Frh.Edit6.Text);
-        wrepl('RRH1',Frh.Edit7.Text);
-        wrepl('stred6',Frh.ComboBox1.Text);
+        wrepl('TRH1', Frh.Edit4.Text);
+        wrepl('TRH2', Frh.Edit5.Text);
+        wrepl('TRH3', Frh.Edit6.Text);
+        wrepl('RRH1', Frh.Edit7.Text);
+        wrepl('stred6', Frh.ComboBox1.Text);
         // рабочая характеристика
         FrepP.Label1.Caption := 'Рабочая характеристика';
 
         for i := 1 to 10 do
         begin
-        ts:=  myzero(Frh.Stringgrid2.Cells[1, i]);
-            wrepl('u' + inttostr(i) + 'rh',
-              myformat(tRazU, strtofloat(ts)));
+            ts := myzero(Frh.Stringgrid2.Cells[1, i]);
+            wrepl('u' + inttostr(i) + 'rh', myformat(tRazU, strtofloat(ts)));
         end;
         for i := 1 to 10 do
         begin
-        ts:= myzero(Frh.Stringgrid2.Cells[2, i]);
-            wrepl('i' + inttostr(i) + 'rh',
-              myformat(tRazI, strtofloat(ts)));
+            ts := myzero(Frh.Stringgrid2.Cells[2, i]);
+            wrepl('i' + inttostr(i) + 'rh', myformat(tRazI, strtofloat(ts)));
         end;
         for i := 1 to 10 do
         begin
-        ts:= myzero(Frh.Stringgrid2.Cells[3, i]);
-            wrepl('p' + inttostr(i) + 'rh',
-              myformat(tRazP, strtofloat(ts)));
+            ts := myzero(Frh.Stringgrid2.Cells[3, i]);
+            wrepl('p' + inttostr(i) + 'rh', myformat(tRazP, strtofloat(ts)));
         end;
         for i := 1 to 10 do
         begin
-        ts:=  myzero(Frh.Stringgrid2.Cells[4, i]);
-            wrepl('rot' + inttostr(i) + 'rh',
-              myformat(tRAZN, strtofloat(ts)));
+            ts := myzero(Frh.Stringgrid2.Cells[4, i]);
+            wrepl('rot' + inttostr(i) + 'rh', myformat(tRAZN, strtofloat(ts)));
         end;
         for i := 1 to 10 do
         begin
-        ts:= myzero(Frh.Stringgrid2.Cells[5, i]);
-            wrepl('torq' + inttostr(i) + 'rh',
-              myformat(tRazR, strtofloat(ts)));
+            ts := myzero(Frh.Stringgrid2.Cells[5, i]);
+            wrepl('torq' + inttostr(i) + 'rh', myformat(tRazR, strtofloat(ts)));
         end;
 
         // сохранение документа
@@ -1154,9 +1149,9 @@ begin
 
     { SELECT NOMER, U, I, P, N, M,  T1, R, TIP, DOP1, RKORP, ROBM, T2, T3, T }
     QTemp.first;
-    FNagr.ComboBox3.Text:= QTemp.FieldByName('edizmispyt').AsString;
-    FNagr.ComboBox1.Text:= QTemp.FieldByName('edizmkorp').AsString;
-    FNagr.ComboBox2.Text:= QTemp.FieldByName('edizmobm').AsString;
+    Fnagr.ComboBox3.Text := QTemp.FieldByName('edizmispyt').Asstring;
+    Fnagr.ComboBox1.Text := QTemp.FieldByName('edizmkorp').Asstring;
+    Fnagr.ComboBox2.Text := QTemp.FieldByName('edizmobm').Asstring;
     if QTemp.FieldByName('RKORP').Asstring = '' then
         Fnagr.Edit4.Text := '0'
     else
@@ -1325,12 +1320,12 @@ begin
     else
         Frh.Edit7.Text := QTemp.FieldByName('r').Asstring;
 
-    FRH.Edit4.Text:=QTemp.FieldByName('t1').Asstring;
-    FRH.Edit5.Text:=QTemp.FieldByName('t2').Asstring;
-    FRH.Edit6.Text:=QTemp.FieldByName('t3').Asstring;
-    FRH.Edit7.Text:=QTemp.FieldByName('r').Asstring;
+    Frh.Edit4.Text := QTemp.FieldByName('t1').Asstring;
+    Frh.Edit5.Text := QTemp.FieldByName('t2').Asstring;
+    Frh.Edit6.Text := QTemp.FieldByName('t3').Asstring;
+    Frh.Edit7.Text := QTemp.FieldByName('r').Asstring;
 
-    FRH.ComboBox1.Text:=QTemp.FieldByName('edizm').Asstring;
+    Frh.ComboBox1.Text := QTemp.FieldByName('edizm').Asstring;
     while not(QTemp.Eof) do
     begin
         Frh.Stringgrid2.Cells[0, tip] := QTemp.FieldByName('pisp').Asstring;

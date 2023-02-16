@@ -172,9 +172,9 @@ begin
     QInssvod.ParamByName('r').AsFloat :=
       myfloat(StringReplace(StringGrid1.cells[9, i], '.', ',',
       [rfReplaceAll, rfIgnoreCase]));
-    QInssvod.ParamByName('edizmkorp').AsString:=ComboBox1.Text;
-    QInssvod.ParamByName('edizmobm').AsString:=ComboBox2.Text;
-    QInssvod.ParamByName('edizmispyt').AsString:=ComboBox3.Text;
+    QInssvod.ParamByName('edizmkorp').Asstring := ComboBox1.Text;
+    QInssvod.ParamByName('edizmobm').Asstring := ComboBox2.Text;
+    QInssvod.ParamByName('edizmispyt').Asstring := ComboBox3.Text;
 
     QInssvod.ExecSQL;
   end;
@@ -475,8 +475,8 @@ end;
 
 procedure TFNagr.TimerUpTimer(Sender: TObject);
 var
- pt,p:single;
- cod1,cod2:integer;
+  pt, p: single;
+  cod1, cod2: integer;
 begin
 
   QUp.Close;
@@ -487,47 +487,45 @@ begin
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
   Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);
 
-  if checkbox1.checked  then
+  // if checkbox1.checked  then
   begin
-  if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)
-    ) > strtofloat(trim(Edit2.Text)) then
-    Label9.Font.Color := clRed
-  else
-    Label9.Font.Color := clGreen;
-  Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
- end;
-  if checkbox2.checked  then
-  begin
-
-  if ABS(QUp.FieldByName('Pt').AsFloat-
-    strtofloat(Label24.Caption)) > strtofloat(Label29.Caption) then
-    Label14.Font.Color := clRed
-  else
-    Label14.Font.Color := clGreen;
- end;
-  if checkbox3.checked  then
+    if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
+      strtofloat(trim(Edit2.Text)) then
+      Label9.Font.Color := clRed
+    else
+      Label9.Font.Color := clGreen;
+    Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
+  end;
+  // if checkbox2.checked  then
   begin
 
-  Label14.Caption := myformat(trazm,
-    QUp.FieldByName('Pt').AsFloat);
+    if ABS(QUp.FieldByName('Pt').AsFloat - strtofloat(Label24.Caption)) >
+      strtofloat(Label29.Caption) then
+      Label14.Font.Color := clRed
+    else
+      Label14.Font.Color := clGreen;
+  end;
+  // if checkbox3.checked  then
+  begin
+
+    Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
   end;
   // κοδ
-   if checkbox4.checked  then
+  // if checkbox4.checked  then
   begin
 
-  val(MyComma(QUp.FieldByName('P').Asstring),p,cod1);
-  val(MyComma(QUp.FieldByName('Pt').Asstring),pt,cod2);
+    val(MyComma(QUp.FieldByName('P').Asstring), p, cod1);
+    val(MyComma(QUp.FieldByName('Pt').Asstring), pt, cod2);
 
-
-
-  if (cod1 = 0) or (cod2 = 0) then
-    Label33.Caption := 'X'
-  else
-  begin
-    if P<>0 then
-    Label33.Caption := inttostr(round(pt/p*100))
-    else Label33.Caption := 'X';
-  end;
+    if (cod1 = 0) or (cod2 = 0) then
+      Label33.Caption := 'X'
+    else
+    begin
+      if p <> 0 then
+        Label33.Caption := inttostr(round(pt / p * 100))
+      else
+        Label33.Caption := 'X';
+    end;
   end;
 end;
 
