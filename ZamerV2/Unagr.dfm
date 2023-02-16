@@ -737,6 +737,38 @@ object FNagr: TFNagr
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object CheckBox1: TCheckBox
+      Left = 804
+      Top = 68
+      Width = 97
+      Height = 17
+      Caption = 'CheckBox1'
+      TabOrder = 0
+    end
+    object CheckBox2: TCheckBox
+      Left = 804
+      Top = 92
+      Width = 97
+      Height = 17
+      Caption = 'CheckBox2'
+      TabOrder = 1
+    end
+    object CheckBox3: TCheckBox
+      Left = 808
+      Top = 116
+      Width = 97
+      Height = 17
+      Caption = 'CheckBox3'
+      TabOrder = 2
+    end
+    object CheckBox4: TCheckBox
+      Left = 812
+      Top = 136
+      Width = 97
+      Height = 17
+      Caption = 'CheckBox4'
+      TabOrder = 3
+    end
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC

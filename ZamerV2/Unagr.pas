@@ -74,6 +74,10 @@ type
     Label24: TLabel;
     Label27: TLabel;
     Label33: TLabel;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -482,24 +486,34 @@ begin
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
   Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);
-
+  if checkbox1.checked  then
+  begin
   if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)
     ) > strtofloat(trim(Edit2.Text)) then
     Label9.Font.Color := clRed
   else
     Label9.Font.Color := clGreen;
   Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
+ end;
+  if checkbox2.checked  then
+  begin
 
   if ABS(QUp.FieldByName('Pt').AsFloat-
     strtofloat(Label24.Caption)) > strtofloat(Label29.Caption) then
     Label14.Font.Color := clRed
   else
     Label14.Font.Color := clGreen;
+ end;
+  if checkbox3.checked  then
+  begin
 
   Label14.Caption := myformat(trazm,
     QUp.FieldByName('Pt').AsFloat);
-
+  end;
   // κοδ
+   if checkbox4.checked  then
+  begin
+
   val(MyComma(QUp.FieldByName('P').Asstring),p,cod1);
   val(MyComma(QUp.FieldByName('Pt').Asstring),pt,cod2);
 
@@ -509,7 +523,7 @@ begin
   begin
     Label33.Caption := inttostr(round(pt/p*100));
   end;
-
+  end;
 end;
 
 end.
