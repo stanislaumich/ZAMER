@@ -517,7 +517,7 @@ begin
   QTemp.Open('select * from zini where name=' + Quotedstr('rhtime'));
   Edit1.text := QTemp.FieldByName('value').AsString;
   loadgrids;
-  Label22.Caption := 'X';
+  //Label22.Caption := 'X';
   Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.text) * 1000);
 end;
 

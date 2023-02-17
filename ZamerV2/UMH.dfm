@@ -12,6 +12,7 @@ object FMH: TFMH
   Font.Style = []
   OldCreateOrder = False
   OnActivate = FormActivate
+  OnCreate = FormCreate
   OnHide = FormHide
   PixelsPerInch = 96
   TextHeight = 13
@@ -304,7 +305,7 @@ object FMH: TFMH
   object GroupBox11: TGroupBox
     Left = 0
     Top = 32
-    Width = 549
+    Width = 582
     Height = 89
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1086#1074
     Font.Charset = DEFAULT_CHARSET
@@ -384,7 +385,7 @@ object FMH: TFMH
     object Label7: TLabel
       Left = 385
       Top = 28
-      Width = 65
+      Width = 108
       Height = 23
       AutoSize = False
       Caption = '0'
@@ -423,8 +424,8 @@ object FMH: TFMH
     end
   end
   object BitBtn1: TBitBtn
-    Left = 588
-    Top = 52
+    Left = 646
+    Top = 31
     Width = 153
     Height = 53
     Caption = #1047#1072#1087#1080#1089#1072#1090#1100
@@ -494,8 +495,8 @@ object FMH: TFMH
     TabOrder = 4
   end
   object BitBtn2: TBitBtn
-    Left = 588
-    Top = 108
+    Left = 646
+    Top = 84
     Width = 153
     Height = 54
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
@@ -565,8 +566,8 @@ object FMH: TFMH
     TabOrder = 5
   end
   object BitBtn3: TBitBtn
-    Left = 588
-    Top = 442
+    Left = 646
+    Top = 432
     Width = 153
     Height = 52
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
@@ -636,8 +637,8 @@ object FMH: TFMH
     TabOrder = 6
   end
   object Button1: TButton
-    Left = 589
-    Top = 220
+    Left = 647
+    Top = 218
     Width = 152
     Height = 49
     Caption = #1043#1088#1072#1092#1080#1082
@@ -663,7 +664,6 @@ object FMH: TFMH
     Font.Style = []
     ParentFont = False
     TabOrder = 8
-    ExplicitWidth = 839
     object Label12: TLabel
       Left = 3
       Top = 2
@@ -695,12 +695,12 @@ object FMH: TFMH
     object Label34: TLabel
       Left = 450
       Top = 2
-      Width = 273
+      Width = 282
       Height = 23
-      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1072#1103' '#1084#1086#1097#1085#1086#1089#1090#1100', '#1042#1090'.:'
+      Caption = #1048#1089#1087#1099#1090#1072#1090#1077#1083#1100#1085#1072#1103' '#1084#1086#1097#1085#1086#1089#1090#1100', '#1082#1042#1090'.:'
     end
     object Label35: TLabel
-      Left = 731
+      Left = 738
       Top = 2
       Width = 10
       Height = 23
@@ -709,28 +709,29 @@ object FMH: TFMH
   end
   object TimerUp: TTimer
     Enabled = False
+    Interval = 500
     OnTimer = TimerUpTimer
-    Left = 618
-    Top = 196
+    Left = 418
+    Top = 48
   end
   object Timer2: TTimer
     Enabled = False
     Interval = 50
-    Left = 618
-    Top = 248
+    Left = 358
+    Top = 240
   end
   object QCommand: TFDQuery
-    Connection = FMain.FDOra
-    Left = 674
-    Top = 196
+    Connection = FZamerV2.FDC
+    Left = 170
+    Top = 244
   end
   object QTemp: TFDQuery
-    Connection = FMain.FDOra
-    Left = 674
-    Top = 248
+    Connection = FZamerV2.FDC
+    Left = 118
+    Top = 244
   end
   object QInsall: TFDQuery
-    Connection = FMain.FDOra
+    Connection = FZamerV2.FDC
     SQL.Strings = (
       'INSERT INTO ZAMER.ZMEHALL ('
       '   NOMER, USRED, U12, '
@@ -739,8 +740,8 @@ object FMH: TFMH
       'VALUES ( :NOMER, :USRED, :U12, '
       '   :U23, :U31, :TORQ, '
       '   :ROT, :TIP, :NUMISP )')
-    Left = 618
-    Top = 300
+    Left = 34
+    Top = 400
     ParamData = <
       item
         Name = 'NOMER'
@@ -780,7 +781,7 @@ object FMH: TFMH
       end>
   end
   object QInsSvod: TFDQuery
-    Connection = FMain.FDOra
+    Connection = FZamerV2.FDC
     SQL.Strings = (
       'INSERT INTO ZAMER.ZMEHSVOD ('
       '   NOMER, U, TORQ, '
@@ -789,8 +790,8 @@ object FMH: TFMH
       'VALUES ( :NOMER, :U, :TORQ, '
       '   :ROT, :TIP, :NUMISP, '
       '   :CHECKED )')
-    Left = 674
-    Top = 300
+    Left = 118
+    Top = 400
     ParamData = <
       item
         Name = 'NOMER'
@@ -821,14 +822,23 @@ object FMH: TFMH
         ParamType = ptInput
       end>
   end
-  object QGetMN: TFDQuery
-    Connection = FMain.FDOra
-    Left = 618
-    Top = 352
+  object QUp: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'select sum(rot) rot, sum(torq)torq, sum(u) u '
+      'from('
+      'select to_number(rot) rot,'
+      ' to_number(torq) torq, 0 u from zamer'
+      'union'
+      'select 0 rot,'
+      ' 0 torq, u from zelspectmp'
+      ')')
+    Left = 354
+    Top = 400
   end
   object ActionList1: TActionList
-    Left = 674
-    Top = 352
+    Left = 282
+    Top = 240
     object upstart: TAction
       Caption = 'upstart'
       ShortCut = 115

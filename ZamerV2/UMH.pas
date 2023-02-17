@@ -1,4 +1,4 @@
-unit UMH;
+﻿unit UMH;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, System.Actions,
   Vcl.ActnList, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls, Vcl.Grids;
+  Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls, Vcl.Grids, uadd;
 
 type
   TFMH = class(TForm)
@@ -56,7 +56,7 @@ type
     QTemp: TFDQuery;
     QInsall: TFDQuery;
     QInsSvod: TFDQuery;
-    QGetMN: TFDQuery;
+    QUp: TFDQuery;
     ActionList1: TActionList;
     upstart: TAction;
     upstop: TAction;
@@ -72,6 +72,7 @@ type
     procedure TimerUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -87,15 +88,43 @@ implementation
 
 procedure TFMH.TimerUpTimer(Sender: TObject);
 begin
-  //Label5.Caption := FMAin.KrVarLabel1.Caption;
-  //QGetMN.Open('select * from zamer');
-  //Label6.Caption := QGetMN.FieldByName('torq').AsString;
-  //Label7.Caption := QGetMN.FieldByName('rot').AsString;
+  QUp.Close;
+  QUp.Open();
+
+  Label6.Caption := myformat(trazm, QUp.FieldByName('torq').AsFloat);
+  Label7.Caption := myformat(trazr, QUp.FieldByName('rot').AsFloat);
+  Label5.Caption := myformat(trazu, QUp.FieldByName('u').AsFloat);
 end;
 
 procedure TFMH.FormActivate(Sender: TObject);
+var
+  i: integer;
 begin
+
  TimerUp.Enabled:=true;
+end;
+
+procedure TFMH.FormCreate(Sender: TObject);
+begin
+  StringGrid7.cells[0, 0] := '';
+  StringGrid7.cells[1, 0] := 'Uсред, В';
+  StringGrid7.cells[2, 0] := 'M, Н/м';
+  StringGrid7.cells[3, 0] := 'N, об/мин';
+  StringGrid7.cells[0, 1] := 'Изм. 1';
+  StringGrid7.cells[0, 2] := 'Изм. 2';
+  StringGrid7.cells[0, 3] := 'Изм. 3';
+  StringGrid7.cells[0, 4] := 'Изм. 4';
+  StringGrid7.cells[0, 5] := 'Изм. 5';
+  //row                     := 1;
+  StringGrid8.cells[0, 0] := '';
+  StringGrid8.cells[1, 0] := 'Uсред, В';
+  StringGrid8.cells[2, 0] := 'M, Н/м';
+  StringGrid8.cells[3, 0] := 'N, об/мин';
+  StringGrid8.cells[0, 1] := 'Изм. 1';
+  StringGrid8.cells[0, 2] := 'Изм. 2';
+  StringGrid8.cells[0, 3] := 'Изм. 3';
+  StringGrid8.cells[0, 4] := 'Изм. 4';
+  StringGrid8.cells[0, 5] := 'Изм. 5';
 end;
 
 procedure TFMH.FormHide(Sender: TObject);

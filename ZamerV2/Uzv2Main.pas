@@ -965,10 +965,10 @@ end;
 
 procedure TFZamerV2.BMHClick(Sender: TObject);
 begin
-    //Fmh.Label19.Caption := CombUisp.Text;
-    //Fmh.Label33.Caption := CombUisp.Text;
+    Fmh.Label35.Caption := CombPisp.Text;
+    Fmh.Label33.Caption := CombUisp.Text;
     //Fmh.Label24.Caption := floattostr(strtofloat(CombPIsp.Text) * 1000);
-    //Fmh.Label6.Caption := nomer;
+    Fmh.Label13.Caption := nomer;
     Fmh.ShowModal;
 end;
 
