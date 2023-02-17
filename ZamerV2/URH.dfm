@@ -381,9 +381,9 @@ object FRH: TFRH
     object Label22: TLabel
       Left = 922
       Top = 32
-      Width = 15
+      Width = 16
       Height = 29
-      Caption = '0'
+      Caption = 'X'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -24

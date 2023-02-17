@@ -514,10 +514,29 @@ begin
   // if checkbox4.checked  then
   begin
 
-    val(MyComma(QUp.FieldByName('P').Asstring), p, cod1);
-    val(MyComma(QUp.FieldByName('Pt').Asstring), pt, cod2);
-
-    if (cod1 = 0) or (cod2 = 0) then
+    //val((QUp.FieldByName('P').Asstring), p, cod1);
+    //val((QUp.FieldByName('Pt').Asstring), pt, cod2);
+    cod1:=0;
+    cod2:=0;
+    try
+    p:=  strtofloat(Label11.Caption);
+    except
+     on e:exception do
+      begin
+        e:=nil;
+        cod1:=1
+      end;
+    end;
+    try
+    pt:=   strtofloat(Label14.Caption);
+    except
+     on e:exception do
+      begin
+        e:=nil;
+        cod2:=1
+      end;
+    end;
+    if (cod1 = 1) or (cod2 = 1) then
       Label33.Caption := 'X'
     else
     begin
