@@ -101,6 +101,7 @@ type
         procedure BNagrClick(Sender: TObject);
         procedure BRHClick(Sender: TObject);
         procedure BPIClick(Sender: TObject);
+    procedure BMHClick(Sender: TObject);
     private
         { Private declarations }
     public
@@ -127,7 +128,7 @@ implementation
 
 {$R *.dfm}
 
-uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch;
+uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH;
 
 {
   procedure TFMain.FormCurrentReport;
@@ -962,6 +963,15 @@ begin
     FKZ.ShowModal;
 end;
 
+procedure TFZamerV2.BMHClick(Sender: TObject);
+begin
+    //Fmh.Label19.Caption := CombUisp.Text;
+    //Fmh.Label33.Caption := CombUisp.Text;
+    //Fmh.Label24.Caption := floattostr(strtofloat(CombPIsp.Text) * 1000);
+    //Fmh.Label6.Caption := nomer;
+    Fmh.ShowModal;
+end;
+
 procedure TFZamerV2.BNagrClick(Sender: TObject);
 begin
     Fnagr.Label6.Caption := nomer;
@@ -974,7 +984,6 @@ procedure TFZamerV2.BPIClick(Sender: TObject);
 begin
     Fproch.Label6.Caption := nomer;
     Fproch.ShowModal;
-
 end;
 
 procedure TFZamerV2.BRHClick(Sender: TObject);
@@ -993,7 +1002,7 @@ begin
     BKz.Enabled := f;
     BNagr.Enabled := f;
     BRH.Enabled := f;
-    // BMH.Enabled := f;
+    BMH.Enabled := f;
     BPI.Enabled := f;
 end;
 

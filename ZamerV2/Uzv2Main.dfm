@@ -862,6 +862,7 @@ object FZamerV2: TFZamerV2
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 5
+        OnClick = BMHClick
       end
       object BPI: TButton
         Left = 3
