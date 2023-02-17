@@ -1391,13 +1391,7 @@ end;
 
 procedure TFZamerV2.FormCreate(Sender: TObject);
 begin
-    { QTemp.Open('select value from zini where name=' +
-      Quotedstr('ElspecFormHeader'));
-      PostMessage(FindWindow(nil, PWideChar(QTemp.FieldByName('value').Asstring)),
-      WM_QUIT, 0, 0);
 
-      PostMessage(FindWindow(nil, 'Сбор показаний Т45'), WM_QUIT, 0, 0);
-    }
     QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
     ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
       nil, nil, SW_SHOWNORMAL);
@@ -1407,6 +1401,16 @@ begin
     DateTimePicker1.Date := Date;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('Update version set maintotal=maintotal+1');
+    QTemp.ExecSQL;
+    Qtemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('UPDATE ZAMER.ZAMER SET TORQ  = 0, ROT = 0, POWER = 0');
+    QTemp.ExecSQL;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('UPDATE ZAMER.ZELSPECTMP SET ID  = 0, U = 0, I   = 0, ');
+    QTemp.SQL.Add(' P   = 0, U1  = 0, U2  = 0, U3  = 0, I1  = 0, ');
+    QTemp.SQL.Add(' I2  = 0, I3  = 0, DOP = 0, P1  = 0, P2  = 0, ');
+    QTemp.SQL.Add(' P3  = 0, KPD = 0');
     QTemp.ExecSQL;
     cancloseapp := True;
     restoreini;

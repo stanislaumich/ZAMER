@@ -744,6 +744,7 @@ object FNagr: TFNagr
       Height = 17
       Caption = 'CheckBox1'
       TabOrder = 0
+      Visible = False
     end
     object CheckBox2: TCheckBox
       Left = 804
@@ -752,6 +753,7 @@ object FNagr: TFNagr
       Height = 17
       Caption = 'CheckBox2'
       TabOrder = 1
+      Visible = False
     end
     object CheckBox3: TCheckBox
       Left = 808
@@ -760,6 +762,7 @@ object FNagr: TFNagr
       Height = 17
       Caption = 'CheckBox3'
       TabOrder = 2
+      Visible = False
     end
     object CheckBox4: TCheckBox
       Left = 812
@@ -768,6 +771,7 @@ object FNagr: TFNagr
       Height = 17
       Caption = 'CheckBox4'
       TabOrder = 3
+      Visible = False
     end
   end
   object QTemp: TFDQuery
