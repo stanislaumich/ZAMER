@@ -16,7 +16,8 @@ uses
   URepP in 'URepP.pas' {FRepP},
   UProch in 'UProch.pas' {FProch},
   YesOrNoDialog in 'YesOrNoDialog.pas',
-  UMH in 'UMH.pas' {FMH};
+  UMH in 'UMH.pas' {FMH},
+  UGraph in 'UGraph.pas' {Fgraph};
 
 {$R *.res}
 
@@ -35,6 +36,7 @@ begin
   Application.CreateForm(TFRepP, FRepP);
   Application.CreateForm(TFProch, FProch);
   Application.CreateForm(TFMH, FMH);
+  Application.CreateForm(TFgraph, Fgraph);
   Application.Run;
 
 end.

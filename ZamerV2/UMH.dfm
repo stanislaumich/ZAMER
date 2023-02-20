@@ -2,8 +2,8 @@ object FMH: TFMH
   Left = 0
   Top = 0
   Caption = #1052#1077#1093#1072#1085#1080#1095#1077#1089#1082#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
-  ClientHeight = 500
-  ClientWidth = 799
+  ClientHeight = 485
+  ClientWidth = 781
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -110,6 +110,7 @@ object FMH: TFMH
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnClick = Button27Click
     end
     object Button32: TButton
       Left = 442
@@ -126,6 +127,7 @@ object FMH: TFMH
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = Button32Click
     end
     object RadioButton11: TRadioButton
       Left = 420
@@ -143,7 +145,7 @@ object FMH: TFMH
     end
     object RadioButton13: TRadioButton
       Left = 420
-      Top = 89
+      Top = 92
       Width = 20
       Height = 17
       TabOrder = 5
@@ -208,7 +210,7 @@ object FMH: TFMH
     end
     object Button37: TButton
       Left = 442
-      Top = 14
+      Top = 10
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]
@@ -220,6 +222,7 @@ object FMH: TFMH
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnClick = Button37Click
     end
     object Button42: TButton
       Left = 442
@@ -235,6 +238,7 @@ object FMH: TFMH
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = Button42Click
     end
     object RadioButton16: TRadioButton
       Left = 420
@@ -424,11 +428,11 @@ object FMH: TFMH
     end
   end
   object BitBtn1: TBitBtn
-    Left = 646
-    Top = 31
-    Width = 153
+    Left = 585
+    Top = 32
+    Width = 191
     Height = 53
-    Caption = #1047#1072#1087#1080#1089#1072#1090#1100
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -493,13 +497,14 @@ object FMH: TFMH
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     ParentFont = False
     TabOrder = 4
+    WordWrap = True
   end
   object BitBtn2: TBitBtn
-    Left = 646
-    Top = 84
-    Width = 153
+    Left = 585
+    Top = 91
+    Width = 192
     Height = 54
-    Caption = #1054#1090#1084#1077#1085#1080#1090#1100
+    Caption = #1054#1090#1084#1077#1085#1080#1090#1100' '#1080'   '#1079#1072#1082#1088#1099#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -564,11 +569,12 @@ object FMH: TFMH
       12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
     ParentFont = False
     TabOrder = 5
+    WordWrap = True
   end
   object BitBtn3: TBitBtn
-    Left = 646
-    Top = 432
-    Width = 153
+    Left = 585
+    Top = 433
+    Width = 192
     Height = 52
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     Font.Charset = DEFAULT_CHARSET
@@ -637,9 +643,9 @@ object FMH: TFMH
     TabOrder = 6
   end
   object Button1: TButton
-    Left = 647
-    Top = 218
-    Width = 152
+    Left = 585
+    Top = 219
+    Width = 191
     Height = 49
     Caption = #1043#1088#1072#1092#1080#1082
     Font.Charset = DEFAULT_CHARSET
@@ -654,7 +660,7 @@ object FMH: TFMH
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 799
+    Width = 781
     Height = 29
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
@@ -714,11 +720,12 @@ object FMH: TFMH
     Left = 418
     Top = 48
   end
-  object Timer2: TTimer
+  object Timer1000: TTimer
     Enabled = False
     Interval = 50
-    Left = 358
-    Top = 240
+    OnTimer = Timer1000Timer
+    Left = 486
+    Top = 48
   end
   object QCommand: TFDQuery
     Connection = FZamerV2.FDC
@@ -837,23 +844,27 @@ object FMH: TFMH
     Top = 400
   end
   object ActionList1: TActionList
-    Left = 282
-    Top = 240
+    Left = 734
+    Top = 172
     object upstart: TAction
       Caption = 'upstart'
       ShortCut = 115
+      OnExecute = upstartExecute
     end
     object upstop: TAction
       Caption = 'upstop'
-      ShortCut = 119
+      ShortCut = 120
+      OnExecute = upstopExecute
     end
     object downstart: TAction
       Caption = 'downstart'
       ShortCut = 116
+      OnExecute = downstartExecute
     end
-    object downstop: TAction
-      Caption = 'downstop'
-      ShortCut = 120
-    end
+  end
+  object Qtemp2: TFDQuery
+    Connection = FZamerV2.FDC
+    Left = 223
+    Top = 244
   end
 end

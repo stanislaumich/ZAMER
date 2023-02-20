@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, System.Actions,
   Vcl.ActnList, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls, Vcl.Grids, uadd;
+  Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls, Vcl.Grids, uadd, math;
 
 type
   TFMH = class(TForm)
@@ -51,7 +51,7 @@ type
     BitBtn3: TBitBtn;
     Button1: TButton;
     TimerUp: TTimer;
-    Timer2: TTimer;
+    Timer1000: TTimer;
     QCommand: TFDQuery;
     QTemp: TFDQuery;
     QInsall: TFDQuery;
@@ -61,7 +61,6 @@ type
     upstart: TAction;
     upstop: TAction;
     downstart: TAction;
-    downstop: TAction;
     Panel1: TPanel;
     Label12: TLabel;
     Label13: TLabel;
@@ -69,22 +68,286 @@ type
     Label33: TLabel;
     Label34: TLabel;
     Label35: TLabel;
+    Qtemp2: TFDQuery;
     procedure TimerUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Timer1000Timer(Sender: TObject);
+    procedure Button27Click(Sender: TObject);
+    procedure upstartExecute(Sender: TObject);
+    procedure downstartExecute(Sender: TObject);
+    procedure upstopExecute(Sender: TObject);
+    procedure Button37Click(Sender: TObject);
+    procedure Button32Click(Sender: TObject);
+    procedure Button42Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure command(b: Boolean);
+  end;
+
+    R = record
+    u1, u2, u3, n, m, usred: single;
   end;
 
 var
   FMH: TFMH;
+  nomer:string;
+
 
 implementation
 
 {$R *.dfm}
+
+uses UGraph;
+var
+
+  amax, amin           : array [1 .. 5, 1 .. 1000] of R;
+  cmax, cmin           : array [1 .. 5] of Integer;
+  count, num, curr, row: Integer;
+
+procedure TFMH.Button32Click(Sender: TObject);
+var
+  t, i: Integer;
+  f   : single;
+begin
+  // Timer1.Enabled := false;
+  Timer1000.Enabled := false;
+  Command(false);
+  // начинаем обсчеты
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('select count(*) c from zamertmp');
+  QTemp.Open;
+  count:= QTemp.FieldByName('c').AsInteger;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('select count(*) c from zelspec');
+  QTemp.Open;
+  t := min(count, QTemp.FieldByName('c').AsInteger);
+  QTemp.Close;
+  QTemp.Open('select to_number(rot) rot, to_number(torq) torq from zamertmp order by rowid');
+  QTemp.First;
+  QTemp2.Open('select * from zelspec order by rowid');
+  QTemp.First;
+  QInsall.Close;
+  for i := 1 to t do
+  begin
+    QInsall.ParamByName('nomer').AsString := nomer;
+    QInsall.ParamByName('usred').AsFloat  :=
+      SimpleRoundTo(amax[row, i].usred, -4);
+    QInsall.ParamByName('u12').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u1').AsFloat, RazU);
+    QInsall.ParamByName('u23').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u2').AsFloat, RazU);
+    QInsall.ParamByName('u31').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u3').AsFloat, RazU);
+    QInsall.ParamByName('torq').AsFloat :=
+      SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM);
+    QInsall.ParamByName('rot').AsFloat :=
+      SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, RazN);
+    QInsall.ParamByName('tip').AsInteger    := 1;
+    QInsall.ParamByName('numisp').AsInteger := row;
+    QInsall.ExecSQL;
+    QTemp.Next;
+  end;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add
+    ('select * from zmehall where torq=(select max(torq) from zmehall where nomer='
+    + Quotedstr(nomer) + ' and numisp=' + inttostr(row) +
+    ' and tip=1) and nomer=' + Quotedstr(nomer) + ' and numisp=' + inttostr(row)
+    + ' and tip=1');
+  QTemp.Open;
+  StringGrid7.cells[1, row] :=
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, RazU));
+  StringGrid7.cells[2, row] :=
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM));
+  StringGrid7.cells[3, row] :=
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, RazN));
+  QTemp.Close;
+  Button27.Enabled := true;
+  Button37.Enabled := true;
+  Button32.Enabled := false;
+end;
+
+procedure TFMH.Button37Click(Sender: TObject);
+var
+  i : Integer;
+  tr: R;
+begin // start
+  tr.u1    := 0;
+  tr.u2    := 0;
+  tr.u3    := 0;
+  tr.usred := 0;
+  tr.n     := 0;
+  tr.m     := 0;
+
+  count := 0; // current number
+  curr  := 2; // stringgrid7
+  row   := StringGrid8.row;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zamertmp');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zelspec');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('delete from zmehall where nomer=' + Quotedstr(nomer) +
+    ' and tip=2 and numisp=' + inttostr(row));
+  QTemp.ExecSQL;
+  for i          := 1 to 1000 do
+    amin[row, i] := tr;
+  Command(true);
+  Timer1000.Enabled   := true;
+  Button37.Enabled := false;
+  Button42.Enabled := true;
+  Button27.Enabled := false;
+end;
+
+procedure TFMH.Button42Click(Sender: TObject);
+var
+  t, i: Integer;
+  f   : single;
+begin
+  Timer1000.Enabled := false;
+  Command(false);
+  // начинаем обсчеты
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('select count(*) c from zamertmp');
+  QTemp.Open;
+  count:= QTemp.FieldByName('c').AsInteger;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('select count(*) c from zelspec');
+  QTemp.Open;
+  t := min(count, QTemp.FieldByName('c').AsInteger);
+  QTemp.Close;
+  QTemp.Open('select to_number(rot) rot, to_number(torq) torq from zamertmp order by rowid');
+  QTemp.First;
+  QTemp2.Open('select * from zelspec order by rowid');
+  QTemp.First;
+  QInsall.Close;
+  for i := 1 to t do
+  begin
+    QInsall.ParamByName('nomer').AsString := nomer;
+    QInsall.ParamByName('usred').AsFloat  :=
+      SimpleRoundTo(amax[row, i].usred, -4);
+    QInsall.ParamByName('u12').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u1').AsFloat, RazU);
+    QInsall.ParamByName('u23').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u2').AsFloat, RazU);
+    QInsall.ParamByName('u31').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u3').AsFloat, RazU);
+    QInsall.ParamByName('torq').AsFloat :=
+      SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4);
+    QInsall.ParamByName('rot').AsFloat :=
+      SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4);
+    QInsall.ParamByName('tip').AsInteger    := 2;
+    QInsall.ParamByName('numisp').AsInteger := row;
+    QInsall.ExecSQL;
+    QTemp.Next;
+  end;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add
+    ('select * from zmehall where torq=(select min(torq) from zmehall where nomer='
+    + Quotedstr(nomer) + ' and numisp=' + inttostr(row) +
+    ' and tip=2) and nomer=' + Quotedstr(nomer) + ' and numisp=' + inttostr(row)
+    + ' and tip=2');
+
+  QTemp.Open;
+  StringGrid8.cells[1, row] :=
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, RazU));
+  StringGrid8.cells[2, row] :=
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM));
+  StringGrid8.cells[3, row] :=
+    FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, RazN));
+  QTemp.Close;
+  Button37.Enabled := true;
+  Button27.Enabled := true;
+  Button42.Enabled := false;
+  FGraph.Button4.Click;
+  FGraph.ShowModal;
+end;
+
+procedure TFMH.command(b: Boolean);
+var
+  interval: integer;
+  fname: string;
+begin
+  interval := 50;
+  fname := '1600';
+  if b then
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+
+    QTemp.SQL.add
+      ('insert into command (nomer, filename,command, dat,interval) values(' +
+      Quotedstr(nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
+      inttostr(interval) + ')');
+    QTemp.ExecSQL;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.add('insert into command (nomer, command) values(' +
+      Quotedstr(nomer) + ' , 11)');
+    QTemp.ExecSQL;
+  end
+  else
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.add
+      ('insert into command (nomer, filename,command, dat,interval) values(' +
+      Quotedstr(nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
+      inttostr(interval) + ')');
+    QTemp.ExecSQL;
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.add('insert into command (nomer, command) values(' +
+      Quotedstr(nomer) + ' , 10)');
+    QTemp.ExecSQL;
+  end;
+end;
+
+procedure TFMH.downstartExecute(Sender: TObject);
+begin
+ Button37.Click;
+end;
+
+procedure TFMH.Timer1000Timer(Sender: TObject);
+begin
+
+ count := count + 1;
+  if count >= 1000 then
+  begin
+    Timer1000.Enabled := false;
+    ShowMessage('достигнуто максимальное количество замеров, замер остановлен');
+    // exit;
+  end;
+  if curr = 1 then
+  begin
+  //Label5.Caption := myformat(trazu, QUp.FieldByName('u').AsFloat);
+  {  amax[row, count].u1    := SimpleRoundTo(FMAin.RU1.Value, -4);
+    amax[row, count].u2    := SimpleRoundTo(FMAin.RU2.Value, -4);
+    amax[row, count].u3    := SimpleRoundTo(FMAin.RU3.Value, -4);
+    amax[row, count].usred := 0;
+   }
+  end;
+  if curr = 2 then
+  begin
+  {  amin[row, count].u1    := SimpleRoundTo(FMAin.RU1.Value, -4);
+    amin[row, count].u2    := SimpleRoundTo(FMAin.RU2.Value, -4);
+    amin[row, count].u3    := SimpleRoundTo(FMAin.RU3.Value, -4);
+    amin[row, count].usred := 0;
+   }
+  end;
+
+  if count mod 10 = 0 then
+    Label8.Caption := inttostr(count);
+
+end;
 
 procedure TFMH.TimerUpTimer(Sender: TObject);
 begin
@@ -96,11 +359,65 @@ begin
   Label5.Caption := myformat(trazu, QUp.FieldByName('u').AsFloat);
 end;
 
+procedure TFMH.upstartExecute(Sender: TObject);
+begin
+      Button27.Click;
+end;
+
+procedure TFMH.upstopExecute(Sender: TObject);
+begin
+ if curr = 1 then
+    Button32.Click;
+ if curr = 2 then
+    Button42.Click;
+
+end;
+
+procedure TFMH.Button27Click(Sender: TObject);
+var
+  i : Integer;
+  tr: R;
+begin // start
+
+  tr.u1    := 0;
+  tr.u2    := 0;
+  tr.u3    := 0;
+  tr.usred := 0;
+  tr.n     := 0;
+  tr.m     := 0;
+  count    := 0; // current number
+  curr     := 1; // stringgrid7
+  row      := StringGrid7.row;
+
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zamertmp');
+  QTemp.ExecSQL;
+   QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zelspec');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('delete from zmehall where nomer=' + Quotedstr(nomer) +
+    ' and tip=1 and numisp=' + inttostr(row));
+  QTemp.ExecSQL;
+  QTemp.Close;
+  for i          := 1 to 1000 do
+    amax[row, i] := tr;
+  Command(true);
+  // Timer1.Enabled   := true;
+  Timer1000.Enabled   := true;
+  Button27.Enabled := false;
+  Button32.Enabled := true;
+  Button37.Enabled := false;
+end;
+
 procedure TFMH.FormActivate(Sender: TObject);
 var
   i: integer;
 begin
-
+ Nomer:=Label13.Caption;
  TimerUp.Enabled:=true;
 end;
 

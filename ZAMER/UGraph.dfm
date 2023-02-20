@@ -2,7 +2,7 @@ object FGraph: TFGraph
   Left = 0
   Top = 0
   Caption = 'FGraph'
-  ClientHeight = 638
+  ClientHeight = 651
   ClientWidth = 987
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,12 +16,12 @@ object FGraph: TFGraph
   OnCreate = FormCreate
   DesignSize = (
     987
-    638)
+    651)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 81
-    Top = 599
+    Top = 612
     Width = 122
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -32,10 +32,11 @@ object FGraph: TFGraph
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 599
   end
   object Label2: TLabel
     Left = 209
-    Top = 599
+    Top = 612
     Width = 15
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -46,10 +47,11 @@ object FGraph: TFGraph
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 599
   end
   object Label3: TLabel
     Left = 296
-    Top = 599
+    Top = 612
     Width = 106
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -60,10 +62,11 @@ object FGraph: TFGraph
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 599
   end
   object Label4: TLabel
     Left = 408
-    Top = 599
+    Top = 612
     Width = 15
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -74,10 +77,11 @@ object FGraph: TFGraph
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 599
   end
   object Label5: TLabel
     Left = 615
-    Top = 599
+    Top = 612
     Width = 15
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -88,10 +92,11 @@ object FGraph: TFGraph
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 599
   end
   object Label6: TLabel
     Left = 489
-    Top = 599
+    Top = 612
     Width = 120
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -102,28 +107,31 @@ object FGraph: TFGraph
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 599
   end
   object Label7: TLabel
     Left = 697
-    Top = 586
+    Top = 599
     Width = 49
     Height = 13
     Anchors = [akRight, akBottom]
     Caption = #1058#1086#1083#1097#1080#1085#1072':'
+    ExplicitTop = 586
   end
   object Label8: TLabel
     Left = 677
-    Top = 610
+    Top = 623
     Width = 49
     Height = 13
     Anchors = [akRight, akBottom]
     Caption = #1052#1072#1089#1096#1090#1072#1073':'
+    ExplicitTop = 610
   end
   object Chart1: TChart
     Left = 0
     Top = 0
     Width = 987
-    Height = 577
+    Height = 590
     Legend.Alignment = laLeft
     Title.Font.Height = -41
     Title.Text.Strings = (
@@ -133,6 +141,7 @@ object FGraph: TFGraph
     Align = alTop
     TabOrder = 0
     Anchors = [akLeft, akTop, akRight, akBottom]
+    ExplicitHeight = 577
     DefaultCanvas = 'TGDIPlusCanvas'
     PrintMargins = (
       15
@@ -177,17 +186,18 @@ object FGraph: TFGraph
   end
   object Button4: TButton
     Left = 0
-    Top = 599
+    Top = 612
     Width = 75
     Height = 31
     Anchors = [akLeft, akBottom]
     Caption = #1055#1086#1089#1090#1088#1086#1080#1090#1100
     TabOrder = 1
     OnClick = Button4Click
+    ExplicitTop = 599
   end
   object BitBtn1: TBitBtn
     Left = 788
-    Top = 593
+    Top = 606
     Width = 199
     Height = 44
     Anchors = [akRight, akBottom]
@@ -257,19 +267,21 @@ object FGraph: TFGraph
     ParentFont = False
     TabOrder = 2
     OnClick = BitBtn1Click
+    ExplicitTop = 593
   end
   object Edit1: TEdit
     Left = 752
-    Top = 583
+    Top = 596
     Width = 30
     Height = 21
     Anchors = [akRight, akBottom]
     TabOrder = 3
     Text = '6'
+    ExplicitTop = 583
   end
   object UpDown1: TUpDown
     Left = 765
-    Top = 607
+    Top = 620
     Width = 16
     Height = 21
     Anchors = [akRight, akBottom]
@@ -277,15 +289,17 @@ object FGraph: TFGraph
     Position = 10
     TabOrder = 4
     OnClick = UpDown1Click
+    ExplicitTop = 607
   end
   object Edit2: TEdit
     Left = 732
-    Top = 607
+    Top = 620
     Width = 33
     Height = 21
     Anchors = [akRight, akBottom]
     TabOrder = 5
     Text = '10'
+    ExplicitTop = 607
   end
   object QTemp: TFDQuery
     Connection = FMain.FDOra
