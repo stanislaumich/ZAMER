@@ -129,41 +129,6 @@ object FMH: TFMH
       TabOrder = 2
       OnClick = Button32Click
     end
-    object RadioButton11: TRadioButton
-      Left = 420
-      Top = 48
-      Width = 20
-      Height = 17
-      TabOrder = 3
-    end
-    object RadioButton12: TRadioButton
-      Left = 420
-      Top = 70
-      Width = 20
-      Height = 17
-      TabOrder = 4
-    end
-    object RadioButton13: TRadioButton
-      Left = 420
-      Top = 92
-      Width = 20
-      Height = 17
-      TabOrder = 5
-    end
-    object RadioButton14: TRadioButton
-      Left = 420
-      Top = 112
-      Width = 20
-      Height = 17
-      TabOrder = 6
-    end
-    object RadioButton15: TRadioButton
-      Left = 420
-      Top = 133
-      Width = 20
-      Height = 17
-      TabOrder = 7
-    end
     object Button47: TButton
       Left = 442
       Top = 119
@@ -177,6 +142,41 @@ object FMH: TFMH
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      TabOrder = 3
+    end
+    object CheckBox1: TCheckBox
+      Left = 420
+      Top = 49
+      Width = 15
+      Height = 17
+      TabOrder = 4
+    end
+    object CheckBox2: TCheckBox
+      Left = 420
+      Top = 70
+      Width = 15
+      Height = 17
+      TabOrder = 5
+    end
+    object CheckBox3: TCheckBox
+      Left = 420
+      Top = 90
+      Width = 15
+      Height = 17
+      TabOrder = 6
+    end
+    object CheckBox4: TCheckBox
+      Left = 420
+      Top = 112
+      Width = 15
+      Height = 17
+      TabOrder = 7
+    end
+    object CheckBox5: TCheckBox
+      Left = 420
+      Top = 134
+      Width = 15
+      Height = 17
       TabOrder = 8
     end
   end
@@ -240,41 +240,6 @@ object FMH: TFMH
       TabOrder = 2
       OnClick = Button42Click
     end
-    object RadioButton16: TRadioButton
-      Left = 420
-      Top = 51
-      Width = 20
-      Height = 17
-      TabOrder = 3
-    end
-    object RadioButton17: TRadioButton
-      Left = 420
-      Top = 73
-      Width = 20
-      Height = 17
-      TabOrder = 4
-    end
-    object RadioButton18: TRadioButton
-      Left = 420
-      Top = 95
-      Width = 20
-      Height = 17
-      TabOrder = 5
-    end
-    object RadioButton19: TRadioButton
-      Left = 420
-      Top = 115
-      Width = 20
-      Height = 17
-      TabOrder = 6
-    end
-    object RadioButton20: TRadioButton
-      Left = 420
-      Top = 136
-      Width = 20
-      Height = 17
-      TabOrder = 7
-    end
     object Button48: TButton
       Left = 442
       Top = 116
@@ -288,6 +253,41 @@ object FMH: TFMH
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      TabOrder = 3
+    end
+    object CheckBox6: TCheckBox
+      Left = 420
+      Top = 48
+      Width = 15
+      Height = 17
+      TabOrder = 4
+    end
+    object CheckBox7: TCheckBox
+      Left = 420
+      Top = 70
+      Width = 15
+      Height = 17
+      TabOrder = 5
+    end
+    object CheckBox8: TCheckBox
+      Left = 420
+      Top = 90
+      Width = 15
+      Height = 17
+      TabOrder = 6
+    end
+    object CheckBox9: TCheckBox
+      Left = 420
+      Top = 112
+      Width = 15
+      Height = 17
+      TabOrder = 7
+    end
+    object CheckBox10: TCheckBox
+      Left = 420
+      Top = 134
+      Width = 15
+      Height = 17
       TabOrder = 8
     end
   end
@@ -498,6 +498,7 @@ object FMH: TFMH
     ParentFont = False
     TabOrder = 4
     WordWrap = True
+    OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
     Left = 585
@@ -570,13 +571,15 @@ object FMH: TFMH
     ParentFont = False
     TabOrder = 5
     WordWrap = True
+    OnClick = BitBtn2Click
   end
   object BitBtn3: TBitBtn
-    Left = 585
-    Top = 433
+    Left = 588
+    Top = 432
     Width = 192
     Height = 52
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19

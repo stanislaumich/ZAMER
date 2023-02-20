@@ -20,21 +20,11 @@ type
     StringGrid7: TStringGrid;
     Button27: TButton;
     Button32: TButton;
-    RadioButton11: TRadioButton;
-    RadioButton12: TRadioButton;
-    RadioButton13: TRadioButton;
-    RadioButton14: TRadioButton;
-    RadioButton15: TRadioButton;
     Button47: TButton;
     GroupBox18: TGroupBox;
     StringGrid8: TStringGrid;
     Button37: TButton;
     Button42: TButton;
-    RadioButton16: TRadioButton;
-    RadioButton17: TRadioButton;
-    RadioButton18: TRadioButton;
-    RadioButton19: TRadioButton;
-    RadioButton20: TRadioButton;
     Button48: TButton;
     Edit14: TEdit;
     GroupBox11: TGroupBox;
@@ -69,6 +59,16 @@ type
     Label34: TLabel;
     Label35: TLabel;
     Qtemp2: TFDQuery;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
+    CheckBox6: TCheckBox;
+    CheckBox7: TCheckBox;
+    CheckBox8: TCheckBox;
+    CheckBox9: TCheckBox;
+    CheckBox10: TCheckBox;
     procedure TimerUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -81,6 +81,8 @@ type
     procedure Button37Click(Sender: TObject);
     procedure Button32Click(Sender: TObject);
     procedure Button42Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -101,7 +103,7 @@ implementation
 
 {$R *.dfm}
 
-uses UGraph;
+uses UGraph, Uzv2Main;
 var
 
   amax, amin           : array [1 .. 5, 1 .. 1000] of R;
@@ -371,6 +373,137 @@ begin
  if curr = 2 then
     Button42.Click;
 
+end;
+
+procedure TFMH.BitBtn1Click(Sender: TObject);
+var
+  i, j: Integer;
+  // r: single;
+  buttonSelected: Integer;
+begin
+
+  // find for max and min
+  buttonSelected := MessageDlg('Найти максимальные и минимальные моменты?',
+    mtConfirmation, mbYesNo, 0);
+  if buttonSelected = mrYes then
+  begin
+    // max
+    j     := 1;
+    for i := 1 to 5 do
+    begin
+      if StringGrid7.cells[2, i] <> '' then
+      begin
+        if strtofloat(StringGrid7.cells[2, i]) >
+          strtofloat(StringGrid7.cells[2, j]) then
+          j := i;
+      end;
+    end;
+    StringGrid7.row := j;
+    case j of
+      1:
+        CheckBox1.Checked := true;
+      2:
+        CheckBox2.Checked := true;
+      3:
+        CheckBox3.Checked := true;
+      4:
+        CheckBox4.Checked := true;
+      5:
+        CheckBox5.Checked := true;
+    end;
+    // min
+    j     := 1;
+    for i := 1 to 5 do
+    begin
+      if StringGrid8.cells[2, i] <> '' then
+      begin
+        if strtofloat(StringGrid8.cells[2, i]) <
+          strtofloat(StringGrid8.cells[2, j]) then
+          j := i;
+      end;
+    end;
+    StringGrid8.row := j;
+    case j of
+      1:
+        CheckBox6.Checked := true;
+      2:
+        CheckBox7.Checked := true;
+      3:
+        CheckBox8.Checked := true;
+      4:
+        CheckBox9.Checked := true;
+      5:
+        CheckBox10.Checked := true;
+    end;
+  end;
+
+  // ask me to save data and save
+  buttonSelected :=
+    MessageDlg('Правильно ли выделены максимальные и минимальные моменты?',
+    mtConfirmation, mbYesNo, 0);
+  if buttonSelected = mrYes then
+  begin
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add(' delete from zmehsvod where nomer=' + Quotedstr(nomer) +
+      ' and tip=1');
+    QTemp.ExecSQL;
+    for i := 1 to 5 do
+      if StringGrid7.cells[1, i] <> '' then
+      begin
+        QInsSvod.Close;
+        QInsSvod.ParamByName('nomer').AsString := nomer;
+        QInsSvod.ParamByName('u').AsFloat      :=
+          strtofloat(StringGrid7.cells[1, i]);
+        QInsSvod.ParamByName('torq').AsFloat :=
+          strtofloat(StringGrid7.cells[2, i]);
+        QInsSvod.ParamByName('rot').AsFloat :=
+          strtofloat(StringGrid7.cells[3, i]);
+        QInsSvod.ParamByName('tip').AsInteger    := 1;
+        QInsSvod.ParamByName('numisp').AsInteger := i;
+        if i = StringGrid7.row then
+          QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        QInsSvod.ExecSQL;
+      end;
+    /// ///////
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add(' delete from zmehsvod where nomer=' + Quotedstr(nomer) +
+      ' and tip=2');
+    QTemp.ExecSQL;
+    for i := 1 to 5 do
+      if StringGrid8.cells[1, i] <> '' then
+      begin
+        QInsSvod.Close;
+        QInsSvod.ParamByName('nomer').AsString := nomer;
+        QInsSvod.ParamByName('u').AsFloat      :=
+          strtofloat(StringGrid8.cells[1, i]);
+        QInsSvod.ParamByName('torq').AsFloat :=
+          strtofloat(StringGrid8.cells[2, i]);
+        QInsSvod.ParamByName('rot').AsFloat :=
+          strtofloat(StringGrid8.cells[3, i]);
+        QInsSvod.ParamByName('tip').AsInteger    := 2;
+        QInsSvod.ParamByName('numisp').AsInteger := i;
+        if i = StringGrid8.row then
+          QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        QInsSvod.ExecSQL;
+      end;
+    /// ///////
+
+    FZamerV2.ImgSet(FZamerV2.Image6, true);
+    FMH.Close;
+  end;
+end;
+
+
+procedure TFMH.BitBtn2Click(Sender: TObject);
+begin
+  FZamerV2.ImgSet(FZamerV2.Image6, false);
+  FMH.Close;
 end;
 
 procedure TFMH.Button27Click(Sender: TObject);

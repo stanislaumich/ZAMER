@@ -123,6 +123,7 @@ var
     FZamerV2: TFZamerV2;
     nomer: String;
     cancloseapp: Boolean;
+    m:set of byte;
 
 implementation
 
@@ -130,156 +131,7 @@ implementation
 
 uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH;
 
-{
-  procedure TFMain.FormCurrentReport;
 
-
-  begin
-
-  // рабочая характеристика i p rot torq
-  FrepP.Label1.Caption := 'Рабочая характеристика';
-  for i                := 1 to 10 do
-  begin
-  wrepl('i' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[2, i])
-  end;
-  for i := 1 to 10 do
-  begin
-  wrepl('p' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[3, i]);
-  end;
-  for i := 1 to 10 do
-  begin
-  wrepl('rot' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[4, i]);
-  end;
-  for i := 1 to 10 do
-  begin
-  wrepl('torq' + inttostr(i) + 'rh', Frh.Stringgrid2.Cells[5, i]);
-  end;
-
-
-  FrepP.Label1.Caption := 'Короткое замыкание';
-  // короткое замыкание
-  wrepl('rkz', FKZam.Edit2.Text);
-  for i     := 1 to 5 do
-  for j := 1 to 4 do
-  begin
-  wrepl('Kz' + inttostr(i) + inttostr(j),
-  FKZam.StringGrid1.Cells[j, i]);
-  end;
-  // Нагрев
-  FrepP.Label1.Caption := 'Нагрев';
-  wrepl('Nr1x', Fnagrev.Edit4.Text);
-  wrepl('Nr2x', Fnagrev.Edit5.Text);
-  wrepl('N11x', Fnagrev.StringGrid1.Cells[2, 1]);
-  wrepl('N21x', Fnagrev.StringGrid1.Cells[2, 2]); // i
-  wrepl('N12x', Fnagrev.StringGrid1.Cells[3, 1]);
-  wrepl('N22x', Fnagrev.StringGrid1.Cells[3, 2]); // p
-  wrepl('N13x', Fnagrev.StringGrid1.Cells[4, 1]);
-  wrepl('N23x', Fnagrev.StringGrid1.Cells[4, 2]); // n
-  wrepl('N14x', Fnagrev.StringGrid1.Cells[5, 1]);
-  wrepl('N24x', Fnagrev.StringGrid1.Cells[5, 2]); // m
-  wrepl('N15x', Fnagrev.StringGrid1.Cells[6, 1]);
-  wrepl('N25x', Fnagrev.StringGrid1.Cells[6, 2]); // t
-  wrepl('N16x', Fnagrev.StringGrid1.Cells[7, 1]);
-  wrepl('N26x', Fnagrev.StringGrid1.Cells[7, 2]); // r
-
-  wrepl('N36x', Edit7.Text); // r RH
-
-  wrepl('N35x', Floattostr(simpleroundto((strtofloat(Frh.Edit4.Text) +
-  strtofloat(Frh.Edit5.Text) + strtofloat(Frh.Edit6.Text)) / 3, -1)));
-
-  // прочие хар-ки
-  FrepP.Label1.Caption := 'Прочие характеристики';
-  for j                := 1 to 18 do
-  begin
-  wrepl('Pr' + inttostr(j + 100),
-  NVLToEmp(Fproch.StringGrid1.Cells[j, 1]));
-  end;
-  for j := 1 to 18 do
-  begin
-  wrepl('Pz' + inttostr(j + 100),
-  NVLToEmp(Fproch.StringGrid1.Cells[j, 2]));
-  end;
-  for i     := 1 to 2 do
-  for j := 1 to 8 do
-  begin
-  wrepl('Wh' + inttostr(i) + '-' + inttostr(j),
-  Fproch.Stringgrid2.Cells[j, i]);
-  end;
-  wrepl('rrmass', NVLToEmp(Fproch.Edit2.Text));
-  wrepl('tmpr', Fproch.Edit3.Text);
-  wrepl('davl', Fproch.Edit5.Text);
-  wrepl('vlag', Fproch.Edit4.Text);
-  // галочки
-
-  if Fproch.radiobutton1.Checked then
-  wrepl('epr', ans[1]);
-  if Fproch.radiobutton2.Checked then
-  wrepl('epr', ans[2]);
-  if Fproch.radiobutton3.Checked then
-  wrepl('epr', ans[0]);
-  if Fproch.radiobutton4.Checked then
-  wrepl('ipc', ans[1]);
-  if Fproch.radiobutton5.Checked then
-  wrepl('ipc', ans[2]);
-  if Fproch.radiobutton6.Checked then
-  wrepl('ipc', ans[0]);
-  if Fproch.RadioButton7.Checked then
-  wrepl('ipt', ans[1]);
-  if Fproch.RadioButton8.Checked then
-  wrepl('ipt', ans[2]);
-  if Fproch.RadioButton9.Checked then
-  wrepl('ipt', ans[0]);
-  if Fproch.RadioButton10.Checked then
-  wrepl('triz', ans[1]);
-  if Fproch.RadioButton11.Checked then
-  wrepl('triz', ans[2]);
-  if Fproch.RadioButton12.Checked then
-  wrepl('triz', ans[0]);
-  if Fproch.RadioButton13.Checked then
-  wrepl('u074', ans[1]);
-  if Fproch.RadioButton14.Checked then
-  wrepl('u074', ans[2]);
-  if Fproch.RadioButton15.Checked then
-  wrepl('u074', ans[0]);
-  if Fproch.RadioButton16.Checked then
-  wrepl('u113', ans[1]);
-  if Fproch.RadioButton17.Checked then
-  wrepl('u113', ans[2]);
-  if Fproch.RadioButton18.Checked then
-  wrepl('u113', ans[0]);
-
-  wrepl('IE', ComboBox3.Text);
-  wrepl('upri', Fproch.Edit1.Text);
-  wrepl('stendn', ComboBox4.Text);
-  wrepl('stenda', Label24.Caption);
-  wrepl('urab', Edit5.Text);
-  wrepl('prab', Edit7.Text);
-  wrepl('humi', Edit8.Text);
-  wrepl('pressure', Edit9.Text);
-  wrepl('osobenn', Edit10.Text);
-  wrepl('prim', Edit11.Text);
-  wrepl('numdv', Edit4.Text);
-  wrepl('tipdv', ComboBox1.Text);
-  wrepl('date', DateToStr(DateTimePicker1.Date));
-  wrepl('fio', ComboBox5.Text);
-  wrepl('polus', ComboBox2.Text);
-  wrepl('regim', ComboBox6.Text);
-  // сохранение документа
-  FrepP.Label1.Caption := 'Сохранение документа';
-  WordApp.ActiveDocument.SaveAs(ReportPath + '\' + Nomer + '.docx');
-  WordApp.ActiveDocument.Close(wdDoNotSaveChanges);
-  finally
-  WordApp.Quit;
-  WordApp := Unassigned;
-  end;
-  FrepP.Hide;
-  ShowMessage('Отчет сформирован!');
-  end;
-
-
-
-
-}
 /// /////////////////////////////////////////////////////////////////////////////
 
 Procedure TFZamerV2.AddReportString(fn: string; s1, s2, s3: string);
@@ -317,6 +169,7 @@ var
     ans: array [0 .. 2] of string;
     tmp: real;
     ts: string;
+    k:byte;
 
     procedure wrepl(s1: string; s2: string);
     begin
@@ -674,6 +527,40 @@ begin
             wrepl('torq' + inttostr(i) + 'rh', myformat(tRazR, strtofloat(ts)));
         end;
 
+        // Механическая характеристика
+        wrepl('u11', FMH.Stringgrid7.cells[1,1]);
+        m:=[];
+        k:=0;
+        if FMH.CheckBox1.Checked then include(m,1);
+        if FMH.CheckBox2.Checked then include(m,2);
+        if FMH.CheckBox3.Checked then include(m,3);
+        if FMH.CheckBox4.Checked then include(m,4);
+        if FMH.CheckBox5.Checked then include(m,5);
+        for i := 1 to 5 do
+          if i in m then
+           begin
+            k:=k+1;
+            wrepl('u1'+inttostr(k), FMH.Stringgrid7.cells[1,k]);
+            wrepl('u2'+inttostr(k), FMH.Stringgrid7.cells[2,k]);
+            wrepl('u3'+inttostr(k), FMH.Stringgrid7.cells[3,k]);
+           end;
+         wrepl('u11','');
+         wrepl('u12','');
+         wrepl('u13','');
+         wrepl('u21','');
+         wrepl('u22','');
+         wrepl('u23','');
+         wrepl('u31','');
+         wrepl('u32','');
+         wrepl('u33','');
+        {
+        m:=[];
+        if FMH.CheckBox6.Checked then include(m,1);
+        if FMH.CheckBox7.Checked then include(m,2);
+        if FMH.CheckBox8.Checked then include(m,3);
+        if FMH.CheckBox9.Checked then include(m,4);
+        if FMH.CheckBox10.Checked then include(m,5);
+        }
         // сохранение документа
         FrepP.Label1.Caption := 'Сохранение документа';
         WordApp.ActiveDocument.SaveAs(ReportPath + '\' + nomer + '.DOCX');
@@ -1348,7 +1235,71 @@ begin
         QTemp.Next;
         tip := tip + 1;
     end;
+    // загрузить механическую характеристику
 
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer));
+    FZamerV2.ImgSet(FZamerV2.Image6, Qtemp.RecordCount <> 0);
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer) +
+      ' and tip=1');
+    while not(Qtemp.Eof) do
+    begin
+        FMH.StringGrid7.Cells[1, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('u').Asstring;
+        FMH.StringGrid7.Cells[2, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('torq').Asstring;
+        FMH.StringGrid7.Cells[3, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('rot').Asstring;
+        if Qtemp.FieldByName('checked').AsInteger = 1 then
+        begin
+            case Qtemp.FieldByName('numisp').AsInteger of
+                1:
+                    FMH.CheckBox1.Checked := True;
+                2:
+                    FMH.CheckBox2.Checked := True;
+                3:
+                    FMH.CheckBox3.Checked := True;
+                4:
+                    FMH.CheckBox4.Checked := True;
+                5:
+                    FMH.CheckBox5.Checked := True;
+            end;
+        end;
+        Qtemp.Next;
+    end;
+    Qtemp.Close;
+    Qtemp.SQL.Clear;
+    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer) +
+      ' and tip=2');
+    while not(Qtemp.Eof) do
+    begin
+        FMH.StringGrid8.Cells[1, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('u').Asstring;
+        FMH.StringGrid8.Cells[2, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('torq').Asstring;
+        FMH.StringGrid8.Cells[3, Qtemp.FieldByName('numisp').AsInteger] :=
+          Qtemp.FieldByName('rot').Asstring;
+        if Qtemp.FieldByName('checked').AsInteger = 1 then
+        begin
+            case Qtemp.FieldByName('numisp').AsInteger of
+                1:
+                    FMH.CheckBox6.Checked := True;
+                2:
+                    FMH.CheckBox7.Checked := True;
+                3:
+                    FMH.CheckBox8.Checked := True;
+                4:
+                    FMH.CheckBox9.Checked := True;
+                5:
+                    FMH.CheckBox10.Checked := True;
+            end;
+        end;
+        Qtemp.Next;
+
+    end;
 
     //
 
