@@ -383,6 +383,7 @@ var
 begin
 
   // find for max and min
+  {
   buttonSelected := MessageDlg('Найти максимальные и минимальные моменты?',
     mtConfirmation, mbYesNo, 0);
   if buttonSelected = mrYes then
@@ -436,7 +437,7 @@ begin
         CheckBox10.Checked := true;
     end;
   end;
-
+  }
   // ask me to save data and save
   buttonSelected :=
     MessageDlg('Правильно ли выделены максимальные и минимальные моменты?',
@@ -461,10 +462,23 @@ begin
           strtofloat(StringGrid7.cells[3, i]);
         QInsSvod.ParamByName('tip').AsInteger    := 1;
         QInsSvod.ParamByName('numisp').AsInteger := i;
-        if i = StringGrid7.row then
-          QInsSvod.ParamByName('checked').AsInteger := 1
+        case i of
+        1:  if checkbox1.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
         else
           QInsSvod.ParamByName('checked').AsInteger := 0;
+        2:  if checkbox2.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        3:  if checkbox3.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        4:  if checkbox4.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        5:  if checkbox5.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        end;
         QInsSvod.ExecSQL;
       end;
     /// ///////
@@ -486,10 +500,23 @@ begin
           strtofloat(StringGrid8.cells[3, i]);
         QInsSvod.ParamByName('tip').AsInteger    := 2;
         QInsSvod.ParamByName('numisp').AsInteger := i;
-        if i = StringGrid8.row then
-          QInsSvod.ParamByName('checked').AsInteger := 1
+        case i of
+        1:  if checkbox6.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
         else
           QInsSvod.ParamByName('checked').AsInteger := 0;
+        2:  if checkbox7.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        3:  if checkbox8.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        4:  if checkbox9.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        5:  if checkbox10.Checked then QInsSvod.ParamByName('checked').AsInteger := 1
+        else
+          QInsSvod.ParamByName('checked').AsInteger := 0;
+        end;
         QInsSvod.ExecSQL;
       end;
     /// ///////

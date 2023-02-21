@@ -168,7 +168,7 @@ var
     ReportPath, fn: string;
     ans: array [0 .. 2] of string;
     tmp: real;
-    ts: string;
+    ts, tm: string;
     k:byte;
 
     procedure wrepl(s1: string; s2: string);
@@ -271,6 +271,8 @@ begin
         AddReportString(fn, '0', 'stenda', FZamerV2.Label19.Caption);
         wrepl('prim', FZamerV2.EditOsmotr.Text);
         AddReportString(fn, '0', 'prim', FZamerV2.EditOsmotr.Text);
+        wrepl('fio', FZamerV2.CombSotrud.Text);
+        AddReportString(fn, '0', 'fio', FZamerV2.CombSotrud.Text);
 
         // сопротивление
         FrepP.Label1.Caption := 'Сопротивление';
@@ -553,17 +555,33 @@ begin
          wrepl('u31','');
          wrepl('u32','');
          wrepl('u33','');
-        {
+
         m:=[];
         if FMH.CheckBox6.Checked then include(m,1);
         if FMH.CheckBox7.Checked then include(m,2);
         if FMH.CheckBox8.Checked then include(m,3);
         if FMH.CheckBox9.Checked then include(m,4);
         if FMH.CheckBox10.Checked then include(m,5);
-        }
+        k:=3;
+        for i := 1 to 5 do
+          if i in m then
+           begin
+            k:=k+1;
+            wrepl('u1'+inttostr(k), FMH.Stringgrid8.cells[1,i]);
+            wrepl('u2'+inttostr(k), FMH.Stringgrid8.cells[2,i]);
+            wrepl('u3'+inttostr(k), FMH.Stringgrid8.cells[3,i]);
+           end;
+         wrepl('u14','');
+         wrepl('u15','');
+         wrepl('u24','');
+         wrepl('u25','');
+         wrepl('u34','');
+         wrepl('u35','');
         // сохранение документа
         FrepP.Label1.Caption := 'Сохранение документа';
-        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + nomer + '.DOCX');
+        tm:=timetostr(time);
+        tm:=StringReplace(tm, ':', '-', [rfReplaceAll, rfIgnoreCase]);
+        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + nomer +'_'+datetostr(date)+ '_' + tm+'.DOCX');
         WordApp.ActiveDocument.Close(wdDoNotSaveChanges);
     finally
         WordApp.Quit;
