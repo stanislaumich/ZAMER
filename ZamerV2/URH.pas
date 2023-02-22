@@ -485,7 +485,7 @@ end;
 procedure TFRH.Edit3Change(Sender: TObject);
 begin
   Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *
-    myfloat(Edit3.text)));
+    myfloat(emp(Edit3.text))));
 end;
 
 procedure TFRH.FormActivate(Sender: TObject);
@@ -527,12 +527,12 @@ begin
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.add('update zdelta set value= ' + Quotedstr(Edit2.text) +
+  QTemp.SQL.add('update zdelta set value= ' + Quotedstr(emp(Edit2.text)) +
     ' where name=' + Quotedstr('urh'));
   QTemp.ExecSQL;
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.add('update zdelta set value= ' + Quotedstr(Edit3.text) +
+  QTemp.SQL.add('update zdelta set value= ' + Quotedstr(emp(Edit3.text)) +
     ' where name=' + Quotedstr('prh'));
   QTemp.ExecSQL;
   QTemp.Close;
@@ -749,7 +749,7 @@ begin
   // if checkbox1.checked  then
   begin
     if ABS(QUp.FieldByName('U').AsFloat - Strtofloat(Label19.Caption)) >
-      Strtofloat(trim(Edit2.text)) then
+      Strtofloat(emp(trim(Edit2.text))) then
       Label9.Font.Color := clRed
     else
       Label9.Font.Color := clGreen;

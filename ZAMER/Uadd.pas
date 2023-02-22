@@ -28,9 +28,22 @@ function addzeroend(sin:string;n:integer):string;
 function MyPoint(s:string):string;
 function MyComma(s:string):string;
 function myZero(s:string):string;
+function emp(s:string):string;
 implementation // --------------------------------------------------------------
 
 uses System.SysUtils,ustr;
+function emp(s:string):string;
+ begin
+   try
+    emp:=floattostr(strtofloat(s));
+   except
+    on e:exception do
+     begin
+       e:=nil;
+       emp:='0';
+     end;
+   end;
+ end;
 
 function myZero(s:string):string;
  begin
