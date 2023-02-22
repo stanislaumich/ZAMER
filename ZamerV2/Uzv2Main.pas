@@ -86,6 +86,7 @@ type
         EditTemp: TEdit;
         Label10: TLabel;
     BitBtn2: TBitBtn;
+    QUpdDvig: TFDQuery;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
@@ -103,6 +104,7 @@ type
         procedure BRHClick(Sender: TObject);
         procedure BPIClick(Sender: TObject);
     procedure BMHClick(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -794,6 +796,71 @@ end;
 procedure TFZamerV2.BitBtn1Click(Sender: TObject);
 begin
     ExitBtn.Click;
+end;
+
+procedure TFZamerV2.BitBtn2Click(Sender: TObject);
+begin
+{
+
+UPDATE ZAMER.ZDVIGALL
+SET    DATA    = :DATA,
+       TIPDV   = :TIPDV,
+       NOMDV   = :NOMDV,
+       POLUS   = :POLUS,
+       UNOM    = :UNOM,
+       UISP    = :UISP,
+       PNOM    = :PNOM,
+       HUMID   = :HUMID,
+       PRESSUR = :PRESSUR,
+       ENERGO  = :ENERGO,
+       STENDN  = :STENDN,
+       STENDA  = :STENDA,
+       DOP1    = :DOP1,
+       READY   = :READY,
+       NOMER   = :NOMER,
+       ISPOLN  = :ISPOLN,
+       FIO     = :FIO,
+       REGIM   = :REGIM,
+       PISP    = :PISP,
+       POLNOM  = :POLNOM,
+       POLISP  = :POLISP,
+       TEMP    = :TEMP
+WHERE  NOMER   = :NOMER
+;}
+            QUpdDvig.Close;
+            QUpdDvig.ParamByName('DATA').AsDate := DateTimePicker1.Date;
+            QUpdDvig.ParamByName('TIPDV').Asstring := CombTipDvig.Text;
+            QUpdDvig.ParamByName('NOMDV').Asstring := EditNumDvig.Text;
+            QUpdDvig.ParamByName('POLUS').Asstring := CombPolIsp.Text;
+            QUpdDvig.ParamByName('UNOM').AsInteger := strtoint(CombUnom.Text);
+            QUpdDvig.ParamByName('UISP').AsInteger := strtoint(CombUisp.Text);
+            QUpdDvig.ParamByName('PNOM').AsFloat :=
+              strtofloat(Comma(CombPNom.Text));
+            QUpdDvig.ParamByName('PISP').AsFloat :=
+              strtofloat(Comma(CombPIsp.Text));
+            QUpdDvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
+            QUpdDvig.ParamByName('PRESSUR').AsFloat :=
+              strtofloat(EditPress.Text);
+            QUpdDvig.ParamByName('ENERGO').Asstring := CombEnergo.Text;
+            QUpdDvig.ParamByName('STENDN').Asstring := CombStend.Text;
+            QUpdDvig.ParamByName('STENDA').Asstring := Label19.Caption;
+            QUpdDvig.ParamByName('DOP1').Asstring := EditOsmotr.Text;
+            QUpdDvig.ParamByName('ISPOLN').Asstring := EditOsob.Text;
+            QUpdDvig.ParamByName('READY').AsInteger := 0;
+            QUpdDvig.ParamByName('NOMER').Asstring := lnomer.Caption;
+            if CombSotrud.Text = '' then
+            begin
+                ShowMessage
+                  ('Не указано ФИО испытателя, проверьте внимательно все необходимые поля');
+                exit;
+            end;
+            QUpdDvig.ParamByName('fio').Asstring := CombSotrud.Text;
+            QUpdDvig.ParamByName('regim').Asstring := CombRegim.Text;
+            QUpdDvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
+            QUpdDvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
+            QUpdDvig.ParamByName('TEMP').Asstring := EditTemp.Text;
+            QUpdDvig.ExecSQL;
+            ShowMessage('Данные двигателя изменены успешно');
 end;
 
 procedure TFZamerV2.BitStartIspClick(Sender: TObject);

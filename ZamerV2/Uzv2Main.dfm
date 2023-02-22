@@ -1468,6 +1468,7 @@ object FZamerV2: TFZamerV2
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         ParentFont = False
         TabOrder = 21
+        OnClick = BitBtn2Click
       end
     end
   end
@@ -1526,6 +1527,125 @@ object FZamerV2: TFZamerV2
       '   :PISP, :POLNOM, :POLISP, :TEMP)')
     Left = 18
     Top = 176
+    ParamData = <
+      item
+        Name = 'DATA'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIPDV'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NOMDV'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POLUS'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UNOM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'UISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PNOM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'HUMID'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PRESSUR'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ENERGO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'STENDN'
+        ParamType = ptInput
+      end
+      item
+        Name = 'STENDA'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'READY'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NOMER'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ISPOLN'
+        ParamType = ptInput
+      end
+      item
+        Name = 'FIO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'REGIM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'PISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POLNOM'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POLISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TEMP'
+        ParamType = ptInput
+      end>
+  end
+  object QUpdDvig: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      'UPDATE ZAMER.ZDVIGALL'
+      'SET    DATA    = :DATA,'
+      '       TIPDV   = :TIPDV,'
+      '       NOMDV   = :NOMDV,'
+      '       POLUS   = :POLUS,'
+      '       UNOM    = :UNOM,'
+      '       UISP    = :UISP,'
+      '       PNOM    = :PNOM,'
+      '       HUMID   = :HUMID,'
+      '       PRESSUR = :PRESSUR,'
+      '       ENERGO  = :ENERGO,'
+      '       STENDN  = :STENDN,'
+      '       STENDA  = :STENDA,'
+      '       DOP1    = :DOP1,'
+      '       READY   = :READY,'
+      '       NOMER   = :NOMER,'
+      '       ISPOLN  = :ISPOLN,'
+      '       FIO     = :FIO,'
+      '       REGIM   = :REGIM,'
+      '       PISP    = :PISP,'
+      '       POLNOM  = :POLNOM,'
+      '       POLISP  = :POLISP,'
+      '       TEMP    = :TEMP'
+      'WHERE  NOMER   = :NOMER')
+    Left = 18
+    Top = 220
     ParamData = <
       item
         Name = 'DATA'
