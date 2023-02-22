@@ -170,6 +170,9 @@ begin
   Button27.Enabled := true;
   Button37.Enabled := true;
   Button32.Enabled := false;
+  upstart.Enabled:=true;
+  downstart.Enabled:=true;
+  upstop.Enabled:=false;
 end;
 
 procedure TFMH.Button37Click(Sender: TObject);
@@ -205,6 +208,9 @@ begin // start
   Command(true);
   Timer1000.Enabled   := true;
   Button37.Enabled := false;
+  upstart.Enabled:=false;
+  downstart.Enabled:=false;
+  upstop.Enabled:=true;
   Button42.Enabled := true;
   Button27.Enabled := false;
 end;
@@ -569,6 +575,9 @@ begin // start
   // Timer1.Enabled   := true;
   Timer1000.Enabled   := true;
   Button27.Enabled := false;
+  upstart.Enabled:=false;
+  downstart.Enabled:=false;
+  upstop.Enabled:=true;
   Button32.Enabled := true;
   Button37.Enabled := false;
 end;

@@ -108,7 +108,18 @@ implementation
 
 uses uzv2main;
 {$R *.dfm}
-
+function emp(s:string):string;
+ begin
+   try
+    emp:=floattostr(strtofloat(s));
+   except
+    on e:exception do
+     begin
+       e:=nil;
+       emp:='0';
+     end;
+   end;
+ end;
 procedure TFNagr.change(Sender: TObject);
 begin
   enableclose := false;
@@ -297,22 +308,24 @@ end;
 procedure TFNagr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonselected: integer;
+
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('update zini set value=' + QuotedStr(FNagr.Edit1.Text) +
+
+  QTemp.SQL.Add('update zini set value=' + QuotedStr(emp(FNagr.Edit1.Text)) +
     ' where name=' + QuotedStr('nagtime'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('update zdelta set value=' + QuotedStr(FNagr.Edit2.Text) +
+  QTemp.SQL.Add('update zdelta set value=' + QuotedStr(emp(FNagr.Edit2.Text)) +
     ' where name=' + QuotedStr('unag'));
   QTemp.ExecSQL;
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.Add('update zdelta set value=' + QuotedStr(FNagr.Edit3.Text) +
+  QTemp.SQL.Add('update zdelta set value=' + QuotedStr(emp(FNagr.Edit3.Text)) +
     ' where name=' + QuotedStr('pnag'));
   QTemp.ExecSQL;
 
@@ -473,6 +486,8 @@ begin
 
 end;
 
+
+
 procedure TFNagr.TimerUpTimer(Sender: TObject);
 var
   pt, p: single;
@@ -489,8 +504,10 @@ begin
 
   // if checkbox1.checked  then
   begin
+    if emp(edit2.Text)='0' then edit2.font.color:=clRed else edit2.font.color:=clBlack;
+
     if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
-      strtofloat(trim(Edit2.Text)) then
+      strtofloat(trim(emp(Edit2.Text))) then
       Label9.Font.Color := clRed
     else
       Label9.Font.Color := clGreen;
