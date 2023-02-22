@@ -366,15 +366,15 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.add('delete from zrhall where nomer=' + Quotedstr(nomer) +
-      ' and uisp=' + Label19.Caption + ' and pisp=' + StringGrid2.Cells[0,
-      StringGrid2.row]);
+      ' and uisp=' + Label19.Caption + ' and pisp=' + mycomma(StringGrid2.Cells[0,
+      StringGrid2.row]));
     QTemp.ExecSQL;
 
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.add('delete from zrhsvod where nomer=' + Quotedstr(nomer) +
-      ' and uisp=' + Label19.Caption + ' and pisp=' + StringGrid2.Cells[0,
-      StringGrid2.row]);
+      ' and uisp=' + Label19.Caption + ' and pisp=' + mycomma(StringGrid2.Cells[0,
+      StringGrid2.row]));
     QTemp.ExecSQL;
 
     enableclose := false;
