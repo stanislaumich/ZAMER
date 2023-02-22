@@ -85,6 +85,7 @@ type
         Qinsdvig: TFDQuery;
         EditTemp: TEdit;
         Label10: TLabel;
+    BitBtn2: TBitBtn;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
