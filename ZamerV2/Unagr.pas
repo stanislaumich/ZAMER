@@ -276,7 +276,7 @@ end;
 procedure TFNagr.Edit3Change(Sender: TObject);
 begin
   Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
-    myfloat(Edit3.Text)));
+    myfloat(emp(Edit3.Text))));
 end;
 
 procedure TFNagr.Edit4Change(Sender: TObject);
@@ -294,7 +294,7 @@ begin
   Label19.Caption := Fzamerv2.CombUisp.Text;
   Label24.Caption := inttostr(round(strtofloat(Fzamerv2.CombPisp.Text) * 1000));
   Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
-    myfloat(Edit3.Text)));
+    myfloat(emp(Edit3.Text))));
   enableclose := true;
   BitBtn1.Enabled := true;
 end;
