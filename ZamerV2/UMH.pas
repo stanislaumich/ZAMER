@@ -150,7 +150,7 @@ begin
     QInsall.ParamByName('tip').AsInteger    := 1;
     QInsall.ParamByName('numisp').AsInteger := row;
     QInsall.ExecSQL;
-    QTemp.Next;
+    QTemp.Next;  QTemp2.Next;
   end;
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -254,7 +254,7 @@ begin
     QInsall.ParamByName('tip').AsInteger    := 2;
     QInsall.ParamByName('numisp').AsInteger := row;
     QInsall.ExecSQL;
-    QTemp.Next;
+    QTemp.Next; QTemp2.Next;
   end;
   QTemp.Close;
   QTemp.SQL.Clear;
