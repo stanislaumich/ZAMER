@@ -692,10 +692,10 @@ begin
       QInsSvod.ParamByName('power').AsFloat :=
         simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
       QInsSvod.ParamByName('tip').Asinteger := tipispyt;
-      QInsSvod.ParamByName('t1').AsFloat := Strtofloat(Edit4.text);
-      QInsSvod.ParamByName('t2').AsFloat := Strtofloat(Edit5.text);
-      QInsSvod.ParamByName('t3').AsFloat := Strtofloat(Edit6.text);
-      QInsSvod.ParamByName('r').AsFloat := Strtofloat(Edit7.text);
+      QInsSvod.ParamByName('t1').AsFloat := 0;
+      QInsSvod.ParamByName('t2').AsFloat := 0;
+      QInsSvod.ParamByName('t3').AsFloat := 0;
+      QInsSvod.ParamByName('r').AsFloat := 0;
       QInsSvod.ExecSQL;
     end; // inssvod
     StringGrid2.Cells[1, StringGrid2.row] :=
