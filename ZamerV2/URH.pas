@@ -209,8 +209,8 @@ begin
       begin
         StringGrid2.RowCount := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
-          Floattostr(simpleroundto(Strtofloat(Label35.Caption) / 100 *
-          Strtoint(StringGrid1.Cells[1, i]), RazP));
+          Floattostr(round(Strtofloat(Label35.Caption) / 100 *
+          Strtoint(StringGrid1.Cells[1, i])));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
@@ -250,8 +250,8 @@ begin
       begin
         StringGrid2.RowCount := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
-          Floattostr(simpleroundto(Strtofloat(Label35.Caption) / 100 *
-          Strtoint(StringGrid1.Cells[2, i]), RazP));
+          Floattostr(round(Strtofloat(Label35.Caption) / 100 *
+          Strtoint(StringGrid1.Cells[2, i])));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
@@ -292,8 +292,8 @@ begin
       begin
         StringGrid2.RowCount := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
-          Floattostr(simpleroundto(Strtofloat(Label35.Caption) / 100 *
-          Strtoint(StringGrid1.Cells[3, i]), RazP));
+          Floattostr(round(Strtofloat(Label35.Caption) / 100 *
+          Strtoint(StringGrid1.Cells[3, i])));
       end;
     StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
