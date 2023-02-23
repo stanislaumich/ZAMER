@@ -288,7 +288,7 @@ begin
     FloatToStr(SimpleRoundTo(resa[maxni].m, RazM));
   StringGrid7.cells[3, row] :=
     FloatToStr(SimpleRoundTo(resa[maxni].n, RazN));
-
+          {
     QInsAll.close;
     QInsall.ParamByName('nomer').AsString := nomer;
     QInsall.ParamByName('usred').AsFloat  := resa[maxni].u;
@@ -300,7 +300,7 @@ begin
     QInsall.ParamByName('tip').AsInteger    := 1;
     QInsall.ParamByName('numisp').AsInteger := row;
     QInsall.ExecSQL;
-
+       }
 
 
     end;
