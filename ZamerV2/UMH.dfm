@@ -181,7 +181,7 @@ object FMH: TFMH
     end
   end
   object GroupBox18: TGroupBox
-    Left = 7
+    Left = 8
     Top = 327
     Width = 575
     Height = 161
@@ -673,7 +673,6 @@ object FMH: TFMH
     Font.Style = []
     ParentFont = False
     TabOrder = 8
-    ExplicitWidth = 781
     object Label12: TLabel
       Left = 3
       Top = 2

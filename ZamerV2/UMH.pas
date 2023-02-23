@@ -178,24 +178,9 @@ var
   f , maxn : double;
   fnd : integer;
 begin
-  // Timer1.Enabled := false;
   Timer1000.Enabled := false;
   Command(false);
   // начинаем обсчеты
-  {QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('select count(*) c from zamertmp');
-  QTemp.Open;
-  count:= QTemp.FieldByName('c').AsInteger;
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('select count(*) c from zelspec');
-  QTemp.Open;
-  t := min(count, QTemp.FieldByName('c').AsInteger);
-  }
-
-
-
   QTemp.Close;
   QTemp.Open('SELECT to_number(rot) n, to_number(torq) m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
     ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
@@ -208,7 +193,6 @@ begin
     Ra[Rn].m:= QTemp.FieldByName('m').AsFloat;
     Ra[Rn].n:= QTemp.FieldByName('n').AsFloat;
     Ra[Rn].t:= QTemp.FieldByName('t').AsFloat;
-    //memo1.lines.add(floattostr(Ra[Rn].m)+' '+floattostr(Ra[Rn].n)+' ' +floattostr(Ra[Rn].t));
     QTemp.Next;
    end;
 
@@ -297,6 +281,7 @@ begin
             maxn:=resa[i].n;
            end;
          end;
+
      StringGrid7.cells[1, row] :=
     FloatToStr(SimpleRoundTo(resa[maxni].u, RazU));
   StringGrid7.cells[2, row] :=
@@ -304,30 +289,32 @@ begin
   StringGrid7.cells[3, row] :=
     FloatToStr(SimpleRoundTo(resa[maxni].n, RazN));
 
-      {}
+    QInsAll.close;
+    QInsall.ParamByName('nomer').AsString := nomer;
+    QInsall.ParamByName('usred').AsFloat  := resa[maxni].u;
+    QInsall.ParamByName('u12').AsFloat := 0;
+    QInsall.ParamByName('u23').AsFloat := 0;
+    QInsall.ParamByName('u31').AsFloat := 0;
+    QInsall.ParamByName('torq').AsFloat := resa[maxni].m;
+    QInsall.ParamByName('rot').AsFloat := resa[maxni].n;
+    QInsall.ParamByName('tip').AsInteger    := 1;
+    QInsall.ParamByName('numisp').AsInteger := row;
+    QInsall.ExecSQL;
 
-
-
-
-         {
-
-496,7 4,19 2755,1
-495,9 33,77 2154,4
-497,5 17,35 1609,8
-491,9 24,86 1221,5
-490 30,52 803
-498 5,17 466,2
-490 34,26 259,8
-494,7 15,32 84,9
-498 25,22 13,4
-495,6 31,21 10,9
-497,7 7,19 105,1
-
-}
 
 
     end;
-
+    {QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('select count(*) c from zamertmp');
+  QTemp.Open;
+  count:= QTemp.FieldByName('c').AsInteger;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('select count(*) c from zelspec');
+  QTemp.Open;
+  t := min(count, QTemp.FieldByName('c').AsInteger);
+  }
   {
   QTemp.Close;
   QTemp.Open('select to_number(rot) rot, to_number(torq) torq from zamertmp order by rowid');
@@ -540,20 +527,11 @@ begin
   end;
   if curr = 1 then
   begin
-  //Label5.Caption := myformat(trazu, QUp.FieldByName('u').AsFloat);
-  {  amax[row, count].u1    := SimpleRoundTo(FMAin.RU1.Value, -4);
-    amax[row, count].u2    := SimpleRoundTo(FMAin.RU2.Value, -4);
-    amax[row, count].u3    := SimpleRoundTo(FMAin.RU3.Value, -4);
-    amax[row, count].usred := 0;
-   }
+
   end;
   if curr = 2 then
   begin
-  {  amin[row, count].u1    := SimpleRoundTo(FMAin.RU1.Value, -4);
-    amin[row, count].u2    := SimpleRoundTo(FMAin.RU2.Value, -4);
-    amin[row, count].u3    := SimpleRoundTo(FMAin.RU3.Value, -4);
-    amin[row, count].usred := 0;
-   }
+
   end;
 
   if count mod 10 = 0 then
