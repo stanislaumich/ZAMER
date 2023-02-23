@@ -676,10 +676,10 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
       Query1->SQL->Clear();
       Query1->SQL->Text = "truncate table zamertmp";
       Query1->ExecSQL();
-      Memo1->Lines->Add("Запущена серия замеров");
-      QCommand->SQL->Clear();
-      QCommand->SQL->Add("truncate table command");
-      QCommand->ExecSQL();
+	  Memo1->Lines->Add("Запущена серия замеров");
+	  QCommand->SQL->Clear();
+	  QCommand->SQL->Add("delete from command where command = '1'");
+	  QCommand->ExecSQL();
       EN = true;
     }
     //////////////////////////////////////////
@@ -688,7 +688,7 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
         EN = false;
         Memo1->Lines->Add("Остановлена серия замеров");
         QCommand->SQL->Clear();
-        QCommand->SQL->Add("truncate table command");
+		QCommand->SQL->Add("delete from command where command = '0'");
         QCommand->ExecSQL();
       }
       catch (...) {

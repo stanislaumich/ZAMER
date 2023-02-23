@@ -305,9 +305,7 @@ end;
 procedure TForm1.TCommTimer(Sender: TObject);
 begin
   QComm.SQL.Clear;
-  QComm.SQL.Add
-    ('select * from command where command =''10'' or command=''11''');
-  QComm.Open;
+  QComm.Open('select * from command where command =''10'' or command=''11''');
   if QComm.FieldByName('command').Asstring = '11' then // start
   begin
     QT.Close;

@@ -407,11 +407,12 @@ object Form1: TForm1
   end
   object GroupBox2: TGroupBox
     Left = 4
-    Top = 164
+    Top = 165
     Width = 158
     Height = 117
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 1
+    ExplicitTop = 164
     DesignSize = (
       158
       117)
