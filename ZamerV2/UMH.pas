@@ -69,6 +69,7 @@ type
     CheckBox8: TCheckBox;
     CheckBox9: TCheckBox;
     CheckBox10: TCheckBox;
+    Memo1: TMemo;
     procedure TimerUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -104,22 +105,84 @@ implementation
 {$R *.dfm}
 
 uses UGraph, Uzv2Main;
+
+type
+ Ur = record
+  u,t:double;
+  end;
+ Rr = record
+  m,n,t:double;
+  end;
+ Resr = record
+  u,m,n, t1,t2 :double;
+ end;
+
 var
+  Ua : array [1..1000] of Ur;
+  Ra : array [1..1000] of Rr;
+  ResA : array[1..1000] of ResR;
+  Uo : Ur;
+  Ro : Rr;
+  ResO : resR;
+  Un,Rn, ResN:integer;
+
+
 
   amax, amin           : array [1 .. 5, 1 .. 1000] of R;
   cmax, cmin           : array [1 .. 5] of Integer;
   count, num, curr, row: Integer;
 
+
+
+function GetNObor(t:double; max:integer): integer;
+ var
+  i, res:integer;
+  prev : double;
+begin
+  prev:=1000000;
+  res:=0;
+  for i:=1 to max do
+     if abs(t-Ra[i].t)<prev then
+      begin
+        res:=i;
+        prev:= abs(t-Ra[i].t);
+      end;
+  GetNobor:=res;
+end;
+
+function GetNU(t:double; max:integer): integer;
+ var
+  i, res:integer;
+  prev : double;
+begin
+  prev:=1000000;
+  res:=0;
+  for i:=1 to max do
+     if abs(t-Ua[i].t)<prev then
+      begin
+        res:=i;
+        prev:= abs(t-Ua[i].t);
+      end;
+  GetNU:=res;
+end;
+
+function gets(e:resr):string;
+ begin
+  gets:= floattostr(e.u)+' '+floattostr(e.m)+' '+floattostr(e.n);
+ end;
+
 procedure TFMH.Button32Click(Sender: TObject);
+
 var
-  t, i: Integer;
-  f   : single;
+  t, i, maxni: Integer;
+  f , maxn : double;
+  fnd : integer;
 begin
   // Timer1.Enabled := false;
   Timer1000.Enabled := false;
   Command(false);
   // начинаем обсчеты
-  QTemp.Close;
+  {QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('select count(*) c from zamertmp');
   QTemp.Open;
@@ -129,6 +192,143 @@ begin
   QTemp.SQL.Add('select count(*) c from zelspec');
   QTemp.Open;
   t := min(count, QTemp.FieldByName('c').AsInteger);
+  }
+
+
+
+  QTemp.Close;
+  QTemp.Open('SELECT to_number(rot) n, to_number(torq) m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
+    ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
+    ' FROM zamertmp order by rowid');
+  QTemp.First;
+  Rn:=0;
+  while not QTemp.eof do
+   begin
+    Rn:=Rn+1;
+    Ra[Rn].m:= QTemp.FieldByName('m').AsFloat;
+    Ra[Rn].n:= QTemp.FieldByName('n').AsFloat;
+    Ra[Rn].t:= QTemp.FieldByName('t').AsFloat;
+    //memo1.lines.add(floattostr(Ra[Rn].m)+' '+floattostr(Ra[Rn].n)+' ' +floattostr(Ra[Rn].t));
+    QTemp.Next;
+   end;
+
+  QTemp.Close;
+  QTemp.Open('SELECT to_number(u) u, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
+    ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
+    ' FROM zelspec order by rowid');
+  QTemp.First;
+  Un:=0;
+  while not QTemp.eof do
+   begin
+    Un:=Un+1;
+    Ua[Un].u:= QTemp.FieldByName('u').AsFloat;
+    Ua[Un].t:= QTemp.FieldByName('t').AsFloat;
+    QTemp.Next;
+   end;
+  QTemp.Close;
+  ResN:=0;
+  if Un < Rn then
+   begin // по напряжению
+   memo1.lines.add('U<N');
+    for i := 1 to Un do
+     begin // для каждого напряжения выбираем мин дельта времени с оборотами
+      fnd:= GetNobor(Ua[i].t, Rn);
+       memo1.lines.add(floattostr(Ua[i].t) + ' ' + inttostr(fnd));
+      if fnd = 0 then
+       begin  // was not found
+        ResN:=ResN+1;
+        ResA[Resn].u := 0;
+        ResA[Resn].m := 0;
+        ResA[Resn].n := 0;
+        ResA[Resn].t1:= 0;
+        ResA[Resn].t2:= 0;
+        memo1.lines.add('notfound');
+       end
+      else
+       begin // was found
+        ResN:=ResN+1;
+        ResA[Resn].u := Ua[i].u;
+        ResA[Resn].m := Ra[fnd].m;
+        ResA[Resn].n := Ra[fnd].n;
+        ResA[Resn].t1:= Ua[i].t;
+        ResA[Resn].t2:= Ra[fnd].t;
+        memo1.lines.add('found');
+       end;
+     end;
+   end
+   else
+    begin // по оборотам
+    memo1.lines.add('U>N');
+     for i := 1 to Rn do
+     begin // для каждого напряжения выбираем мин дельта времени с оборотами
+      fnd:= GetNU(Ra[i].t, Un);
+      memo1.lines.add(floattostr(Ra[i].t) + ' ' + inttostr(fnd));
+      if fnd = 0 then
+       begin  // was not found
+        ResN:=ResN+1;
+        ResA[Resn].u := 0;
+        ResA[Resn].m := 0;
+        ResA[Resn].n := 0;
+        ResA[Resn].t1:= 0;
+        ResA[Resn].t2:= 0;
+        memo1.lines.add('notfound');
+       end
+      else
+       begin // was found
+        ResN:=ResN+1;
+        ResA[Resn].u := Ua[fnd].u;
+        ResA[Resn].m := Ra[i].m;
+        ResA[Resn].n := Ra[i].n;
+        ResA[Resn].t1:= Ua[fnd].t;
+        ResA[Resn].t2:= Ra[i].t;
+        memo1.lines.add('found');
+       end;
+     end;
+
+     {}
+     // надо найти макс N
+
+      for i:=1 to resn do
+         begin
+          Memo1.lines.add(gets(resa[i]));
+          if resa[i].n>maxn then
+           begin
+            maxni:=i;
+            maxn:=resa[i].n;
+           end;
+         end;
+     StringGrid7.cells[1, row] :=
+    FloatToStr(SimpleRoundTo(resa[maxni].u, RazU));
+  StringGrid7.cells[2, row] :=
+    FloatToStr(SimpleRoundTo(resa[maxni].m, RazM));
+  StringGrid7.cells[3, row] :=
+    FloatToStr(SimpleRoundTo(resa[maxni].n, RazN));
+
+      {}
+
+
+
+
+         {
+
+496,7 4,19 2755,1
+495,9 33,77 2154,4
+497,5 17,35 1609,8
+491,9 24,86 1221,5
+490 30,52 803
+498 5,17 466,2
+490 34,26 259,8
+494,7 15,32 84,9
+498 25,22 13,4
+495,6 31,21 10,9
+497,7 7,19 105,1
+
+}
+
+
+    end;
+
+  {
   QTemp.Close;
   QTemp.Open('select to_number(rot) rot, to_number(torq) torq from zamertmp order by rowid');
   QTemp.First;
@@ -152,6 +352,9 @@ begin
     QInsall.ExecSQL;
     QTemp.Next;  QTemp2.Next;
   end;
+  }
+
+  {
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add
@@ -166,6 +369,7 @@ begin
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM));
   StringGrid7.cells[3, row] :=
     FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, RazN));
+  }
   QTemp.Close;
   Button27.Enabled := true;
   Button37.Enabled := true;

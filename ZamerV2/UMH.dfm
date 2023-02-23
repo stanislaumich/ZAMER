@@ -2,8 +2,8 @@ object FMH: TFMH
   Left = 0
   Top = 0
   Caption = #1052#1077#1093#1072#1085#1080#1095#1077#1089#1082#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
-  ClientHeight = 485
-  ClientWidth = 781
+  ClientHeight = 490
+  ClientWidth = 782
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -501,9 +501,9 @@ object FMH: TFMH
     OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
-    Left = 585
+    Left = 588
     Top = 91
-    Width = 192
+    Width = 191
     Height = 54
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100' '#1080'   '#1079#1072#1082#1088#1099#1090#1100
     Font.Charset = DEFAULT_CHARSET
@@ -574,9 +574,9 @@ object FMH: TFMH
     OnClick = BitBtn2Click
   end
   object BitBtn3: TBitBtn
-    Left = 588
+    Left = 585
     Top = 432
-    Width = 192
+    Width = 191
     Height = 52
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     Enabled = False
@@ -663,7 +663,7 @@ object FMH: TFMH
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 781
+    Width = 782
     Height = 29
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
@@ -673,6 +673,7 @@ object FMH: TFMH
     Font.Style = []
     ParentFont = False
     TabOrder = 8
+    ExplicitWidth = 781
     object Label12: TLabel
       Left = 3
       Top = 2
@@ -715,6 +716,14 @@ object FMH: TFMH
       Height = 23
       Caption = '0'
     end
+  end
+  object Memo1: TMemo
+    Left = 588
+    Top = 272
+    Width = 189
+    Height = 153
+    ScrollBars = ssBoth
+    TabOrder = 9
   end
   object TimerUp: TTimer
     Enabled = False
