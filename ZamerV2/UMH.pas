@@ -182,7 +182,7 @@ begin
   Command(false);
   // начинаем обсчеты
   QTemp.Close;
-  QTemp.Open('SELECT to_number(rot) n, to_number(torq) m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
+  QTemp.Open('SELECT to_number(replace(rot,'','',''.'')) n, to_number(replace(torq,'','',''.'')) m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
     ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
     ' FROM zamertmp order by rowid');
   QTemp.First;
@@ -288,7 +288,7 @@ begin
     FloatToStr(SimpleRoundTo(resa[maxni].m, RazM));
   StringGrid7.cells[3, row] :=
     FloatToStr(SimpleRoundTo(resa[maxni].n, RazN));
-          {
+
     QInsAll.close;
     QInsall.ParamByName('nomer').AsString := nomer;
     QInsall.ParamByName('usred').AsFloat  := resa[maxni].u;
@@ -300,7 +300,7 @@ begin
     QInsall.ParamByName('tip').AsInteger    := 1;
     QInsall.ParamByName('numisp').AsInteger := row;
     QInsall.ExecSQL;
-       }
+
 
 
     end;
