@@ -182,7 +182,7 @@ begin
   Command(false);
   // начинаем обсчеты
   QTemp.Close;
-  QTemp.Open('SELECT to_number(replace(rot,'','',''.'')) n, to_number(replace(torq,'','',''.'')) m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
+  QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
     ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
     ' FROM zamertmp order by rowid');
   QTemp.First;
@@ -197,7 +197,7 @@ begin
    end;
 
   QTemp.Close;
-  QTemp.Open('SELECT to_number(u) u, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
+  QTemp.Open('SELECT u, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
     ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
     ' FROM zelspec order by rowid');
   QTemp.First;
