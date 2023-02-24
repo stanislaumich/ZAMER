@@ -181,12 +181,14 @@ begin
   Timer1000.Enabled := false;
   Command(false);
   // начинаем обсчеты
+  memo1.lines.add('Запрос из Т45');
   QTemp.Close;
   QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
     ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
     ' FROM zamertmp order by rowid');
   QTemp.First;
   Rn:=0;
+  memo1.lines.add('Обработка Т45');
   while not QTemp.eof do
    begin
     Rn:=Rn+1;
@@ -195,13 +197,14 @@ begin
     Ra[Rn].t:= QTemp.FieldByName('t').AsFloat;
     QTemp.Next;
    end;
-
+  memo1.lines.add('Запрос из Элспек');
   QTemp.Close;
   QTemp.Open('SELECT u, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
     ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
     ' FROM zelspec order by rowid');
   QTemp.First;
   Un:=0;
+  memo1.lines.add('Обработка элспек');
   while not QTemp.eof do
    begin
     Un:=Un+1;
@@ -288,7 +291,7 @@ begin
     FloatToStr(SimpleRoundTo(resa[maxni].m, RazM));
   StringGrid7.cells[3, row] :=
     FloatToStr(SimpleRoundTo(resa[maxni].n, RazN));
-
+    memo1.lines.add('Вставка в итоговую таблицу');
     QInsAll.close;
     QInsall.ParamByName('nomer').AsString := nomer;
     QInsall.ParamByName('usred').AsFloat  := resa[maxni].u;
@@ -301,7 +304,7 @@ begin
     QInsall.ParamByName('numisp').AsInteger := row;
     QInsall.ExecSQL;
 
-
+    memo1.lines.add('Все завершено');
 
     end;
     {QTemp.Close;
@@ -364,6 +367,7 @@ begin
   upstart.Enabled:=true;
   downstart.Enabled:=true;
   upstop.Enabled:=false;
+  memo1.lines.add('Полный выход');
 end;
 
 procedure TFMH.Button37Click(Sender: TObject);
