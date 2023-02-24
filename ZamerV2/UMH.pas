@@ -184,7 +184,7 @@ begin
   memo1.lines.add('Запрос из Т45');
   QTemp.Close;
   QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
-    ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
+    ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS,FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
     ' FROM zamertmp order by rowid');
   QTemp.First;
   Rn:=0;
@@ -200,7 +200,7 @@ begin
   memo1.lines.add('Запрос из Элспек');
   QTemp.Close;
   QTemp.Open('SELECT u, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
-    ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS.FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
+    ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS,FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
     ' FROM zelspec order by rowid');
   QTemp.First;
   Un:=0;
