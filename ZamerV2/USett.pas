@@ -72,8 +72,17 @@ Uses uzv2Main;
 {$R *.dfm}
 
 procedure TFSett.BitBtn1Click(Sender: TObject);
+var
+ f:textfile;
 begin
-  QTemp.Close;
+   assignfile(f,extractfilepath(application.exename)+'PATH.INI');
+   rewrite(f);
+   Writeln(f,Edit1.Text);
+   Writeln(f, Edit2.Text);
+   Closefile(f);
+
+  {QTemp.Close;
+
   QTemp.SQL.Clear;
   QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit1.Text) +
     ' where name=' + Quotedstr('UIPPath'));
@@ -84,7 +93,7 @@ begin
   QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit2.Text) +
     ' where name=' + Quotedstr('MNTPath'));
   QTemp.ExecSQL;
-
+   }
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit4.Text) +
@@ -146,13 +155,34 @@ begin
 end;
 
 procedure TFSett.FormCreate(Sender: TObject);
+var
+ f:textfile;
+ s:string;
 begin
-  // QTemp.Close;
-  // QTemp.SQL.Clear;
+   assignfile(f,extractfilepath(application.exename)+'PATH.INI');
+   {$i-}
+   reset(f);
+   if IOResult=0 then
+    begin
+   Readln(f,s);
+   Edit1.Text:=s;
+   ReadLn(f, s);
+   Edit2.Text:=s;
+   Closefile(f);
+    end
+    else
+     begin
+      s:='Нужно указать путь';
+      Edit1.Text:=s;
+      Edit2.Text:=s;
+     end;
+   {$i+}
+  {
   QTemp.Open('Select value from zini where name=' + Quotedstr('UIPPath'));
   Edit1.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('MNTPath'));
   Edit2.Text := QTemp.FieldByName('value').Asstring;
+  }
   QTemp.Open('Select value from zini where name=' + Quotedstr('StepU'));
   Edit3.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('StepBig'));

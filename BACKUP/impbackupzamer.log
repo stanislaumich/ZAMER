@@ -21,13 +21,13 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                        "ZAMER"
                                                             1 rows imported
 . . importing table                     "ZAMERTMP"
-                                                           15 rows imported
+                                                           29 rows imported
 . . importing table                       "ZDELTA"
                                                             6 rows imported
 . . importing table                     "ZDVIGALL"
                                                            19 rows imported
 . . importing table                      "ZELSPEC"
-                                                           27 rows imported
+                                                           55 rows imported
 . . importing table                   "ZELSPECTMP"
                                                             1 rows imported
 . . importing table                         "ZERR"
@@ -36,7 +36,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
                                                            94 rows imported
 . . importing table                       "ZHHALL"
 .
-                                                         1631 rows imported
+                                                         1677 rows imported
 . . importing table                      "ZHHSVOD"
                                                            39 rows imported
 . . importing table                         "ZINI"
@@ -46,7 +46,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                      "ZKZSVOD"
                                                             9 rows imported
 . . importing table                      "ZMEHALL"
-                                                          202 rows imported
+                                                          104 rows imported
 . . importing table                     "ZMEHSVOD"
                                                             5 rows imported
 . . importing table                   "ZNAGREVALL"
