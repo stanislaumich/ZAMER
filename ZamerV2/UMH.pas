@@ -102,7 +102,7 @@ var
   nomer: string;
 
 CONST
- fstr = 'SS.FF';
+ fstr = 'SS,FF';
 
 implementation
 
