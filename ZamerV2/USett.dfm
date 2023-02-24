@@ -412,7 +412,6 @@ object FSett: TFSett
     end
   end
   object TabSotrud: TFDTable
-    Active = True
     Connection = FZamerV2.FDC
     TableName = 'zsotr'
     Left = 44

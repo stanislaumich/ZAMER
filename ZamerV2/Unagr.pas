@@ -108,18 +108,20 @@ implementation
 
 uses uzv2main;
 {$R *.dfm}
-function emp(s:string):string;
- begin
-   try
-    emp:=floattostr(strtofloat(s));
-   except
-    on e:exception do
-     begin
-       e:=nil;
-       emp:='0';
-     end;
-   end;
- end;
+
+function emp(s: string): string;
+begin
+  try
+    emp := floattostr(strtofloat(s));
+  except
+    on e: exception do
+    begin
+      e := nil;
+      emp := '0';
+    end;
+  end;
+end;
+
 procedure TFNagr.change(Sender: TObject);
 begin
   enableclose := false;
@@ -466,27 +468,25 @@ begin
       ' and tip=' + inttostr(StringGrid1.Row));
     QTemp.ExecSQL;
     StringGrid1.cells[1, StringGrid1.Row] :=
-      Floattostr(simpleroundto((QSelectSred.FieldByName('su1').AsFloat +
+      floattostr(simpleroundto((QSelectSred.FieldByName('su1').AsFloat +
       QSelectSred.FieldByName('su2').AsFloat + QSelectSred.FieldByName('su3')
       .AsFloat) / 3, RazU));
     StringGrid1.cells[2, StringGrid1.Row] :=
-      Floattostr(simpleroundto((QSelectSred.FieldByName('si1').AsFloat +
+      floattostr(simpleroundto((QSelectSred.FieldByName('si1').AsFloat +
       QSelectSred.FieldByName('si2').AsFloat + QSelectSred.FieldByName('si3')
       .AsFloat) / 3, RazI));
     StringGrid1.cells[3, StringGrid1.Row] :=
-      Floattostr(simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP));
+      floattostr(simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP));
     StringGrid1.cells[4, StringGrid1.Row] :=
-      Floattostr(simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN));
+      floattostr(simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN));
     StringGrid1.cells[5, StringGrid1.Row] :=
-      Floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
+      floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
     BitBtn1.Enabled := true;
     if StringGrid1.Row < StringGrid1.RowCount - 2 then
       StringGrid1.Row := StringGrid1.Row + 1;
   end;
 
 end;
-
-
 
 procedure TFNagr.TimerUpTimer(Sender: TObject);
 var
@@ -504,13 +504,16 @@ begin
 
   // if checkbox1.checked  then
   begin
-    if emp(edit2.Text)='0' then edit2.font.color:=clRed else edit2.font.color:=clBlack;
+    if emp(Edit2.Text) = '0' then
+      Edit2.font.color := clRed
+    else
+      Edit2.font.color := clBlack;
 
     if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
       strtofloat(trim(emp(Edit2.Text))) then
-      Label9.Font.Color := clRed
+      Label9.font.color := clRed
     else
-      Label9.Font.Color := clGreen;
+      Label9.font.color := clGreen;
     Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
   end;
   // if checkbox2.checked  then
@@ -518,9 +521,9 @@ begin
 
     if ABS(QUp.FieldByName('Pt').AsFloat - strtofloat(Label24.Caption)) >
       strtofloat(Label29.Caption) then
-      Label14.Font.Color := clRed
+      Label14.font.color := clRed
     else
-      Label14.Font.Color := clGreen;
+      Label14.font.color := clGreen;
   end;
   // if checkbox3.checked  then
   begin
@@ -531,26 +534,26 @@ begin
   // if checkbox4.checked  then
   begin
 
-    //val((QUp.FieldByName('P').Asstring), p, cod1);
-    //val((QUp.FieldByName('Pt').Asstring), pt, cod2);
-    cod1:=0;
-    cod2:=0;
+    // val((QUp.FieldByName('P').Asstring), p, cod1);
+    // val((QUp.FieldByName('Pt').Asstring), pt, cod2);
+    cod1 := 0;
+    cod2 := 0;
     try
-    p:=  strtofloat(Label11.Caption);
+      p := strtofloat(Label11.Caption);
     except
-     on e:exception do
+      on e: exception do
       begin
-        e:=nil;
-        cod1:=1
+        e := nil;
+        cod1 := 1
       end;
     end;
     try
-    pt:=   strtofloat(Label14.Caption);
+      pt := strtofloat(Label14.Caption);
     except
-     on e:exception do
+      on e: exception do
       begin
-        e:=nil;
-        cod2:=1
+        e := nil;
+        cod2 := 1
       end;
     end;
     if (cod1 = 1) or (cod2 = 1) then

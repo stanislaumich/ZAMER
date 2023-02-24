@@ -366,15 +366,15 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.add('delete from zrhall where nomer=' + Quotedstr(nomer) +
-      ' and uisp=' + Label19.Caption + ' and pisp=' + mycomma(StringGrid2.Cells[0,
-      StringGrid2.row]));
+      ' and uisp=' + Label19.Caption + ' and pisp=' +
+      mycomma(StringGrid2.Cells[0, StringGrid2.row]));
     QTemp.ExecSQL;
 
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.add('delete from zrhsvod where nomer=' + Quotedstr(nomer) +
-      ' and uisp=' + Label19.Caption + ' and pisp=' + mycomma(StringGrid2.Cells[0,
-      StringGrid2.row]));
+      ' and uisp=' + Label19.Caption + ' and pisp=' +
+      mycomma(StringGrid2.Cells[0, StringGrid2.row]));
     QTemp.ExecSQL;
 
     enableclose := false;
@@ -517,7 +517,7 @@ begin
   QTemp.Open('select * from zini where name=' + Quotedstr('rhtime'));
   Edit1.text := QTemp.FieldByName('value').AsString;
   loadgrids;
-  //Label22.Caption := 'X';
+  // Label22.Caption := 'X';
   Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.text) * 1000);
 end;
 
@@ -773,26 +773,26 @@ begin
   // if checkbox4.checked  then
   begin
 
-    //val(MyComma(QUp.FieldByName('P').AsString), p, cod1);
-    //val(MyComma(QUp.FieldByName('Pt').AsString), pt, cod2);
-    cod1:=0;
-    cod2:=0;
+    // val(MyComma(QUp.FieldByName('P').AsString), p, cod1);
+    // val(MyComma(QUp.FieldByName('Pt').AsString), pt, cod2);
+    cod1 := 0;
+    cod2 := 0;
     try
-    p:=  strtofloat(Label11.Caption);
+      p := Strtofloat(Label11.Caption);
     except
-     on e:exception do
+      on e: exception do
       begin
-        e:=nil;
-        cod1:=1
+        e := nil;
+        cod1 := 1
       end;
     end;
     try
-    pt:=   strtofloat(Label14.Caption);
+      pt := Strtofloat(Label14.Caption);
     except
-     on e:exception do
+      on e: exception do
       begin
-        e:=nil;
-        cod2:=1
+        e := nil;
+        cod2 := 1
       end;
     end;
     if (cod1 = 1) or (cod2 = 1) then

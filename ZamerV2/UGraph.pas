@@ -3,13 +3,14 @@ unit UGraph;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VclTee.TeeGDIPlus, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   System.Actions, Vcl.ActnList, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Buttons, VCLTee.Series,
-  VCLTee.TeEngine, Vcl.ExtCtrls, VCLTee.TeeProcs, VCLTee.Chart, math;
+  FireDAC.Comp.Client, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Buttons, VclTee.Series,
+  VclTee.TeEngine, Vcl.ExtCtrls, VclTee.TeeProcs, VclTee.Chart, math;
 
 type
   TFgraph = class(TForm)
@@ -36,8 +37,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
-      ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState; X,
-      Y: Integer);
+      ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState;
+      X, Y: Integer);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure UpDown1Click(Sender: TObject; Button: TUDBtnType);
     procedure BitBtn1Click(Sender: TObject);
@@ -49,32 +50,34 @@ type
 
 var
   Fgraph: TFgraph;
-    i, cnt: Integer;
-  tsred : Integer;
-  mas   : Integer;
+  i, cnt: Integer;
+  tsred: Integer;
+  mas: Integer;
+
 implementation
+
 uses umh;
 {$R *.dfm}
 
 procedure TFgraph.BitBtn1Click(Sender: TObject);
 begin
-  FMH.Stringgrid8.Cells[2, fmh.Stringgrid8.row] := Label4.Caption;
-  FMH.Stringgrid8.Cells[3, fmh.Stringgrid8.row] := Label5.Caption;
-  FGraph.Close;
+  FMH.Stringgrid8.Cells[2, FMH.Stringgrid8.row] := Label4.Caption;
+  FMH.Stringgrid8.Cells[3, FMH.Stringgrid8.row] := Label5.Caption;
+  Fgraph.Close;
 end;
 
 procedure TFgraph.Button4Click(Sender: TObject);
 var
   x0, y0, cx, cy, i, step: Integer;
-  tmin, tmax, imin       : Integer;
+  tmin, tmax, imin: Integer;
 begin
-  x0                    := 10;
-  y0                    := 700;
-  cx                    := 1;
-  cy                    := 10;
-  i                     := 0;
-  step                  := 1;
-  cnt                   := 0;
+  x0 := 10;
+  y0 := 700;
+  cx := 1;
+  cy := 10;
+  i := 0;
+  step := 1;
+  cnt := 0;
   Series1.LinePen.Width := Strtoint(Edit1.text);
   Series2.LinePen.Width := Strtoint(Edit1.text);
   Series1.Clear;
@@ -84,7 +87,8 @@ begin
   Label4.Caption := '0';
   Label5.Caption := '0';
   QTemp.Close;
-  QTemp.Open('select to_number(torq) torq, to_number(rot) rot from zamertmp order by ID');
+  QTemp.Open
+    ('select to_number(torq) torq, to_number(rot) rot from zamertmp order by ID');
   tmax := round(QTemp.fieldbyname('torq').asfloat);
   tmin := round(QTemp.fieldbyname('torq').asfloat);
   While not QTemp.Eof do
@@ -99,7 +103,7 @@ begin
       imin := i;
     end;
     QTemp.Next;
-    i   := i + step;
+    i := i + step;
     cnt := cnt + 1;
   end;
   tsred := ((tmax + tmin) div 2);
@@ -148,7 +152,7 @@ begin
     Edit1.text := '5'
   else
     Edit1.text := QTemp.fieldbyname('value').Asstring;
-  mas          := Strtoint(Edit2.text);
+  mas := Strtoint(Edit2.text);
 end;
 
 procedure TFgraph.UpDown1Click(Sender: TObject; Button: TUDBtnType);

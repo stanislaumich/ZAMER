@@ -73,27 +73,27 @@ Uses uzv2Main;
 
 procedure TFSett.BitBtn1Click(Sender: TObject);
 var
- f:textfile;
+  f: textfile;
 begin
-   assignfile(f,extractfilepath(application.exename)+'PATH.INI');
-   rewrite(f);
-   Writeln(f,Edit1.Text);
-   Writeln(f, Edit2.Text);
-   Closefile(f);
+  assignfile(f, extractfilepath(application.exename) + 'PATH.INI');
+  rewrite(f);
+  Writeln(f, Edit1.Text);
+  Writeln(f, Edit2.Text);
+  Closefile(f);
 
-  {QTemp.Close;
+  { QTemp.Close;
 
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit1.Text) +
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit1.Text) +
     ' where name=' + Quotedstr('UIPPath'));
-  QTemp.ExecSQL;
+    QTemp.ExecSQL;
 
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit2.Text) +
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit2.Text) +
     ' where name=' + Quotedstr('MNTPath'));
-  QTemp.ExecSQL;
-   }
+    QTemp.ExecSQL;
+  }
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit4.Text) +
@@ -156,32 +156,32 @@ end;
 
 procedure TFSett.FormCreate(Sender: TObject);
 var
- f:textfile;
- s:string;
+  f: textfile;
+  s: string;
 begin
-   assignfile(f,extractfilepath(application.exename)+'PATH.INI');
-   {$i-}
-   reset(f);
-   if IOResult=0 then
-    begin
-   Readln(f,s);
-   Edit1.Text:=s;
-   ReadLn(f, s);
-   Edit2.Text:=s;
-   Closefile(f);
-    end
-    else
-     begin
-      s:='Нужно указать путь';
-      Edit1.Text:=s;
-      Edit2.Text:=s;
-     end;
-   {$i+}
+  assignfile(f, extractfilepath(application.exename) + 'PATH.INI');
+{$I-}
+  reset(f);
+  if IOResult = 0 then
+  begin
+    Readln(f, s);
+    Edit1.Text := s;
+    Readln(f, s);
+    Edit2.Text := s;
+    Closefile(f);
+  end
+  else
+  begin
+    s := 'Нужно указать путь';
+    Edit1.Text := s;
+    Edit2.Text := s;
+  end;
+{$I+}
   {
-  QTemp.Open('Select value from zini where name=' + Quotedstr('UIPPath'));
-  Edit1.Text := QTemp.FieldByName('value').Asstring;
-  QTemp.Open('Select value from zini where name=' + Quotedstr('MNTPath'));
-  Edit2.Text := QTemp.FieldByName('value').Asstring;
+    QTemp.Open('Select value from zini where name=' + Quotedstr('UIPPath'));
+    Edit1.Text := QTemp.FieldByName('value').Asstring;
+    QTemp.Open('Select value from zini where name=' + Quotedstr('MNTPath'));
+    Edit2.Text := QTemp.FieldByName('value').Asstring;
   }
   QTemp.Open('Select value from zini where name=' + Quotedstr('StepU'));
   Edit3.Text := QTemp.FieldByName('value').Asstring;
@@ -191,7 +191,7 @@ begin
   Edit5.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('ComPortU'));
   CombCom.Text := QTemp.FieldByName('value').Asstring;
-  ListBox1.Items.LoadFromFile(Extractfilepath(Application.ExeName) +
+  ListBox1.Items.LoadFromFile(extractfilepath(application.exename) +
     'LIST.TXT');
 end;
 
@@ -199,7 +199,7 @@ procedure TFSett.ListBox1Click(Sender: TObject);
 begin
   fname := ListBox1.Items[ListBox1.ItemIndex];
   delete(fname, 1, pos(';', fname));
-  fname := Extractfilepath(Application.ExeName) + fname;
+  fname := extractfilepath(application.exename) + fname;
   Memo1.lines.LoadFromFile(fname);
 end;
 

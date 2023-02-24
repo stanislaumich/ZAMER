@@ -85,8 +85,8 @@ type
         Qinsdvig: TFDQuery;
         EditTemp: TEdit;
         Label10: TLabel;
-    BitBtn2: TBitBtn;
-    QUpdDvig: TFDQuery;
+        BitBtn2: TBitBtn;
+        QUpdDvig: TFDQuery;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
@@ -103,8 +103,8 @@ type
         procedure BNagrClick(Sender: TObject);
         procedure BRHClick(Sender: TObject);
         procedure BPIClick(Sender: TObject);
-    procedure BMHClick(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+        procedure BMHClick(Sender: TObject);
+        procedure BitBtn2Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -126,14 +126,13 @@ var
     FZamerV2: TFZamerV2;
     nomer: String;
     cancloseapp: Boolean;
-    m:set of byte;
+    m: set of byte;
 
 implementation
 
 {$R *.dfm}
 
 uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH;
-
 
 /// /////////////////////////////////////////////////////////////////////////////
 
@@ -172,7 +171,7 @@ var
     ans: array [0 .. 2] of string;
     tmp: real;
     ts, tm: string;
-    k:byte;
+    k: byte;
 
     procedure wrepl(s1: string; s2: string);
     begin
@@ -533,58 +532,69 @@ begin
         end;
 
         // Механическая характеристика
-        wrepl('u11', FMH.Stringgrid7.cells[1,1]);
-        m:=[];
-        k:=0;
-        if FMH.CheckBox1.Checked then include(m,1);
-        if FMH.CheckBox2.Checked then include(m,2);
-        if FMH.CheckBox3.Checked then include(m,3);
-        if FMH.CheckBox4.Checked then include(m,4);
-        if FMH.CheckBox5.Checked then include(m,5);
+        wrepl('u11', FMH.Stringgrid7.Cells[1, 1]);
+        m := [];
+        k := 0;
+        if FMH.CheckBox1.Checked then
+            include(m, 1);
+        if FMH.CheckBox2.Checked then
+            include(m, 2);
+        if FMH.CheckBox3.Checked then
+            include(m, 3);
+        if FMH.CheckBox4.Checked then
+            include(m, 4);
+        if FMH.CheckBox5.Checked then
+            include(m, 5);
         for i := 1 to 5 do
-          if i in m then
-           begin
-            k:=k+1;
-            wrepl('u1'+inttostr(k), FMH.Stringgrid7.cells[1,k]);
-            wrepl('u2'+inttostr(k), FMH.Stringgrid7.cells[2,k]);
-            wrepl('u3'+inttostr(k), FMH.Stringgrid7.cells[3,k]);
-           end;
-         wrepl('u11','');
-         wrepl('u12','');
-         wrepl('u13','');
-         wrepl('u21','');
-         wrepl('u22','');
-         wrepl('u23','');
-         wrepl('u31','');
-         wrepl('u32','');
-         wrepl('u33','');
+            if i in m then
+            begin
+                k := k + 1;
+                wrepl('u1' + inttostr(k), FMH.Stringgrid7.Cells[1, k]);
+                wrepl('u2' + inttostr(k), FMH.Stringgrid7.Cells[2, k]);
+                wrepl('u3' + inttostr(k), FMH.Stringgrid7.Cells[3, k]);
+            end;
+        wrepl('u11', '');
+        wrepl('u12', '');
+        wrepl('u13', '');
+        wrepl('u21', '');
+        wrepl('u22', '');
+        wrepl('u23', '');
+        wrepl('u31', '');
+        wrepl('u32', '');
+        wrepl('u33', '');
 
-        m:=[];
-        if FMH.CheckBox6.Checked then include(m,1);
-        if FMH.CheckBox7.Checked then include(m,2);
-        if FMH.CheckBox8.Checked then include(m,3);
-        if FMH.CheckBox9.Checked then include(m,4);
-        if FMH.CheckBox10.Checked then include(m,5);
-        k:=3;
+        m := [];
+        if FMH.CheckBox6.Checked then
+            include(m, 1);
+        if FMH.CheckBox7.Checked then
+            include(m, 2);
+        if FMH.CheckBox8.Checked then
+            include(m, 3);
+        if FMH.CheckBox9.Checked then
+            include(m, 4);
+        if FMH.CheckBox10.Checked then
+            include(m, 5);
+        k := 3;
         for i := 1 to 5 do
-          if i in m then
-           begin
-            k:=k+1;
-            wrepl('u1'+inttostr(k), FMH.Stringgrid8.cells[1,i]);
-            wrepl('u2'+inttostr(k), FMH.Stringgrid8.cells[2,i]);
-            wrepl('u3'+inttostr(k), FMH.Stringgrid8.cells[3,i]);
-           end;
-         wrepl('u14','');
-         wrepl('u15','');
-         wrepl('u24','');
-         wrepl('u25','');
-         wrepl('u34','');
-         wrepl('u35','');
+            if i in m then
+            begin
+                k := k + 1;
+                wrepl('u1' + inttostr(k), FMH.Stringgrid8.Cells[1, i]);
+                wrepl('u2' + inttostr(k), FMH.Stringgrid8.Cells[2, i]);
+                wrepl('u3' + inttostr(k), FMH.Stringgrid8.Cells[3, i]);
+            end;
+        wrepl('u14', '');
+        wrepl('u15', '');
+        wrepl('u24', '');
+        wrepl('u25', '');
+        wrepl('u34', '');
+        wrepl('u35', '');
         // сохранение документа
         FrepP.Label1.Caption := 'Сохранение документа';
-        tm:=timetostr(time);
-        tm:=StringReplace(tm, ':', '-', [rfReplaceAll, rfIgnoreCase]);
-        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + nomer +'_'+datetostr(date)+ '_' + tm+'.DOCX');
+        tm := timetostr(time);
+        tm := StringReplace(tm, ':', '-', [rfReplaceAll, rfIgnoreCase]);
+        WordApp.ActiveDocument.SaveAs(ReportPath + '\' + nomer + '_' +
+          Datetostr(Date) + '_' + tm + '.DOCX');
         WordApp.ActiveDocument.Close(wdDoNotSaveChanges);
     finally
         WordApp.Quit;
@@ -722,7 +732,7 @@ end;
 
 procedure TFZamerV2.Timer1000Timer(Sender: TObject);
 begin
-    Label2.Caption := TimeToStr(time);
+    Label2.Caption := timetostr(time);
 end;
 
 procedure TFZamerV2.ExitBtnClick(Sender: TObject);
@@ -800,67 +810,64 @@ end;
 
 procedure TFZamerV2.BitBtn2Click(Sender: TObject);
 begin
-{
+    {
 
-UPDATE ZAMER.ZDVIGALL
-SET    DATA    = :DATA,
-       TIPDV   = :TIPDV,
-       NOMDV   = :NOMDV,
-       POLUS   = :POLUS,
-       UNOM    = :UNOM,
-       UISP    = :UISP,
-       PNOM    = :PNOM,
-       HUMID   = :HUMID,
-       PRESSUR = :PRESSUR,
-       ENERGO  = :ENERGO,
-       STENDN  = :STENDN,
-       STENDA  = :STENDA,
-       DOP1    = :DOP1,
-       READY   = :READY,
-       NOMER   = :NOMER,
-       ISPOLN  = :ISPOLN,
-       FIO     = :FIO,
-       REGIM   = :REGIM,
-       PISP    = :PISP,
-       POLNOM  = :POLNOM,
-       POLISP  = :POLISP,
-       TEMP    = :TEMP
-WHERE  NOMER   = :NOMER
-;}
-            QUpdDvig.Close;
-            QUpdDvig.ParamByName('DATA').AsDate := DateTimePicker1.Date;
-            QUpdDvig.ParamByName('TIPDV').Asstring := CombTipDvig.Text;
-            QUpdDvig.ParamByName('NOMDV').Asstring := EditNumDvig.Text;
-            QUpdDvig.ParamByName('POLUS').Asstring := CombPolIsp.Text;
-            QUpdDvig.ParamByName('UNOM').AsInteger := strtoint(CombUnom.Text);
-            QUpdDvig.ParamByName('UISP').AsInteger := strtoint(CombUisp.Text);
-            QUpdDvig.ParamByName('PNOM').AsFloat :=
-              strtofloat(Comma(CombPNom.Text));
-            QUpdDvig.ParamByName('PISP').AsFloat :=
-              strtofloat(Comma(CombPIsp.Text));
-            QUpdDvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
-            QUpdDvig.ParamByName('PRESSUR').AsFloat :=
-              strtofloat(EditPress.Text);
-            QUpdDvig.ParamByName('ENERGO').Asstring := CombEnergo.Text;
-            QUpdDvig.ParamByName('STENDN').Asstring := CombStend.Text;
-            QUpdDvig.ParamByName('STENDA').Asstring := Label19.Caption;
-            QUpdDvig.ParamByName('DOP1').Asstring := EditOsmotr.Text;
-            QUpdDvig.ParamByName('ISPOLN').Asstring := EditOsob.Text;
-            QUpdDvig.ParamByName('READY').AsInteger := 0;
-            QUpdDvig.ParamByName('NOMER').Asstring := lnomer.Caption;
-            if CombSotrud.Text = '' then
-            begin
-                ShowMessage
-                  ('Не указано ФИО испытателя, проверьте внимательно все необходимые поля');
-                exit;
-            end;
-            QUpdDvig.ParamByName('fio').Asstring := CombSotrud.Text;
-            QUpdDvig.ParamByName('regim').Asstring := CombRegim.Text;
-            QUpdDvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
-            QUpdDvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
-            QUpdDvig.ParamByName('TEMP').Asstring := EditTemp.Text;
-            QUpdDvig.ExecSQL;
-            ShowMessage('Данные двигателя изменены успешно');
+      UPDATE ZAMER.ZDVIGALL
+      SET    DATA    = :DATA,
+      TIPDV   = :TIPDV,
+      NOMDV   = :NOMDV,
+      POLUS   = :POLUS,
+      UNOM    = :UNOM,
+      UISP    = :UISP,
+      PNOM    = :PNOM,
+      HUMID   = :HUMID,
+      PRESSUR = :PRESSUR,
+      ENERGO  = :ENERGO,
+      STENDN  = :STENDN,
+      STENDA  = :STENDA,
+      DOP1    = :DOP1,
+      READY   = :READY,
+      NOMER   = :NOMER,
+      ISPOLN  = :ISPOLN,
+      FIO     = :FIO,
+      REGIM   = :REGIM,
+      PISP    = :PISP,
+      POLNOM  = :POLNOM,
+      POLISP  = :POLISP,
+      TEMP    = :TEMP
+      WHERE  NOMER   = :NOMER
+      ; }
+    QUpdDvig.Close;
+    QUpdDvig.ParamByName('DATA').AsDate := DateTimePicker1.Date;
+    QUpdDvig.ParamByName('TIPDV').Asstring := CombTipDvig.Text;
+    QUpdDvig.ParamByName('NOMDV').Asstring := EditNumDvig.Text;
+    QUpdDvig.ParamByName('POLUS').Asstring := CombPolIsp.Text;
+    QUpdDvig.ParamByName('UNOM').AsInteger := strtoint(CombUnom.Text);
+    QUpdDvig.ParamByName('UISP').AsInteger := strtoint(CombUisp.Text);
+    QUpdDvig.ParamByName('PNOM').AsFloat := strtofloat(Comma(CombPNom.Text));
+    QUpdDvig.ParamByName('PISP').AsFloat := strtofloat(Comma(CombPIsp.Text));
+    QUpdDvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
+    QUpdDvig.ParamByName('PRESSUR').AsFloat := strtofloat(EditPress.Text);
+    QUpdDvig.ParamByName('ENERGO').Asstring := CombEnergo.Text;
+    QUpdDvig.ParamByName('STENDN').Asstring := CombStend.Text;
+    QUpdDvig.ParamByName('STENDA').Asstring := Label19.Caption;
+    QUpdDvig.ParamByName('DOP1').Asstring := EditOsmotr.Text;
+    QUpdDvig.ParamByName('ISPOLN').Asstring := EditOsob.Text;
+    QUpdDvig.ParamByName('READY').AsInteger := 0;
+    QUpdDvig.ParamByName('NOMER').Asstring := LNOMER.Caption;
+    if CombSotrud.Text = '' then
+    begin
+        ShowMessage
+          ('Не указано ФИО испытателя, проверьте внимательно все необходимые поля');
+        exit;
+    end;
+    QUpdDvig.ParamByName('fio').Asstring := CombSotrud.Text;
+    QUpdDvig.ParamByName('regim').Asstring := CombRegim.Text;
+    QUpdDvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
+    QUpdDvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
+    QUpdDvig.ParamByName('TEMP').Asstring := EditTemp.Text;
+    QUpdDvig.ExecSQL;
+    ShowMessage('Данные двигателя изменены успешно');
 end;
 
 procedure TFZamerV2.BitStartIspClick(Sender: TObject);
@@ -938,11 +945,11 @@ end;
 
 procedure TFZamerV2.BMHClick(Sender: TObject);
 begin
-    Fmh.Label35.Caption := CombPisp.Text;
-    Fmh.Label33.Caption := CombUisp.Text;
-    //Fmh.Label24.Caption := floattostr(strtofloat(CombPIsp.Text) * 1000);
-    Fmh.Label13.Caption := nomer;
-    Fmh.ShowModal;
+    FMH.Label35.Caption := CombPIsp.Text;
+    FMH.Label33.Caption := CombUisp.Text;
+    // Fmh.Label24.Caption := floattostr(strtofloat(CombPIsp.Text) * 1000);
+    FMH.Label13.Caption := nomer;
+    FMH.ShowModal;
 end;
 
 procedure TFZamerV2.BNagrClick(Sender: TObject);
@@ -1323,25 +1330,25 @@ begin
     end;
     // загрузить механическую характеристику
 
-    Qtemp.Close;
-    Qtemp.SQL.Clear;
-    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer));
-    FZamerV2.ImgSet(FZamerV2.Image6, Qtemp.RecordCount <> 0);
-    Qtemp.Close;
-    Qtemp.SQL.Clear;
-    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer) +
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select * from zmehsvod where nomer=' + Quotedstr(nomer));
+    FZamerV2.ImgSet(FZamerV2.Image6, QTemp.RecordCount <> 0);
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select * from zmehsvod where nomer=' + Quotedstr(nomer) +
       ' and tip=1');
-    while not(Qtemp.Eof) do
+    while not(QTemp.Eof) do
     begin
-        FMH.StringGrid7.Cells[1, Qtemp.FieldByName('numisp').AsInteger] :=
-          Qtemp.FieldByName('u').Asstring;
-        FMH.StringGrid7.Cells[2, Qtemp.FieldByName('numisp').AsInteger] :=
-          Qtemp.FieldByName('torq').Asstring;
-        FMH.StringGrid7.Cells[3, Qtemp.FieldByName('numisp').AsInteger] :=
-          Qtemp.FieldByName('rot').Asstring;
-        if Qtemp.FieldByName('checked').AsInteger = 1 then
+        FMH.Stringgrid7.Cells[1, QTemp.FieldByName('numisp').AsInteger] :=
+          QTemp.FieldByName('u').Asstring;
+        FMH.Stringgrid7.Cells[2, QTemp.FieldByName('numisp').AsInteger] :=
+          QTemp.FieldByName('torq').Asstring;
+        FMH.Stringgrid7.Cells[3, QTemp.FieldByName('numisp').AsInteger] :=
+          QTemp.FieldByName('rot').Asstring;
+        if QTemp.FieldByName('checked').AsInteger = 1 then
         begin
-            case Qtemp.FieldByName('numisp').AsInteger of
+            case QTemp.FieldByName('numisp').AsInteger of
                 1:
                     FMH.CheckBox1.Checked := True;
                 2:
@@ -1354,23 +1361,23 @@ begin
                     FMH.CheckBox5.Checked := True;
             end;
         end;
-        Qtemp.Next;
+        QTemp.Next;
     end;
-    Qtemp.Close;
-    Qtemp.SQL.Clear;
-    Qtemp.Open('select * from zmehsvod where nomer=' + Quotedstr(Nomer) +
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.Open('select * from zmehsvod where nomer=' + Quotedstr(nomer) +
       ' and tip=2');
-    while not(Qtemp.Eof) do
+    while not(QTemp.Eof) do
     begin
-        FMH.StringGrid8.Cells[1, Qtemp.FieldByName('numisp').AsInteger] :=
-          Qtemp.FieldByName('u').Asstring;
-        FMH.StringGrid8.Cells[2, Qtemp.FieldByName('numisp').AsInteger] :=
-          Qtemp.FieldByName('torq').Asstring;
-        FMH.StringGrid8.Cells[3, Qtemp.FieldByName('numisp').AsInteger] :=
-          Qtemp.FieldByName('rot').Asstring;
-        if Qtemp.FieldByName('checked').AsInteger = 1 then
+        FMH.Stringgrid8.Cells[1, QTemp.FieldByName('numisp').AsInteger] :=
+          QTemp.FieldByName('u').Asstring;
+        FMH.Stringgrid8.Cells[2, QTemp.FieldByName('numisp').AsInteger] :=
+          QTemp.FieldByName('torq').Asstring;
+        FMH.Stringgrid8.Cells[3, QTemp.FieldByName('numisp').AsInteger] :=
+          QTemp.FieldByName('rot').Asstring;
+        if QTemp.FieldByName('checked').AsInteger = 1 then
         begin
-            case Qtemp.FieldByName('numisp').AsInteger of
+            case QTemp.FieldByName('numisp').AsInteger of
                 1:
                     FMH.CheckBox6.Checked := True;
                 2:
@@ -1383,7 +1390,7 @@ begin
                     FMH.CheckBox10.Checked := True;
             end;
         end;
-        Qtemp.Next;
+        QTemp.Next;
 
     end;
 
@@ -1448,7 +1455,7 @@ begin
     QTemp.SQL.Clear;
     QTemp.SQL.Add('Update version set maintotal=maintotal+1');
     QTemp.ExecSQL;
-    Qtemp.Close;
+    QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('UPDATE ZAMER.ZAMER SET TORQ  = 0, ROT = 0, POWER = 0');
     QTemp.ExecSQL;
