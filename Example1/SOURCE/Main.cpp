@@ -108,6 +108,7 @@ void __fastcall TForm1::BConnectClick(TObject *Sender)
   BReadTemperature->Enabled = true;
   BReadComplex->Enabled = true;
   BReadMessage->Enabled = true;
+  Button1->Enabled = true;
 }
 // --------------------- "Close" BUTTON
 void __fastcall TForm1::BDisconnectClick (TObject *Sender)
@@ -124,6 +125,8 @@ void __fastcall TForm1::BDisconnectClick (TObject *Sender)
   BReadTemperature->Enabled = false;
   BReadComplex->Enabled = false;
   BReadMessage->Enabled = false;
+  Timer1->Enabled = false;
+  Button1->Enabled = false;
 }
 // --------------------- CLOSING THE FORM
 void __fastcall TForm1::FormClose (TObject *Sender, TCloseAction & Action)
@@ -478,4 +481,16 @@ void TForm1::Pause (unsigned int Timeout)
   delete PEvent2;
 }
 // ------------------------------------------------ ---------------------------
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+ BReadComplexClick(Form1);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+ Timer1->Enabled = !Timer1->Enabled;
+}
+//---------------------------------------------------------------------------
 

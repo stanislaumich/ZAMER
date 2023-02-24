@@ -447,4 +447,21 @@ object Form1: TForm1
       'Modbus TCP'
       'TILKOM protocol')
   end
+  object Button1: TButton
+    Left = 464
+    Top = 360
+    Width = 121
+    Height = 33
+    Caption = 'AUTO'
+    Enabled = False
+    TabOrder = 21
+    OnClick = Button1Click
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = Timer1Timer
+    Left = 96
+    Top = 204
+  end
 end

@@ -53,6 +53,8 @@ __published:    // IDE-managed Components
   TEdit *EUnitNumber;
   TComboBox *CB_Protocol;
   TLabel *LProtocol;
+	TTimer *Timer1;
+	TButton *Button1;
   void __fastcall BConnectClick(TObject *Sender);
   void __fastcall BDisconnectClick(TObject *Sender);
   void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -63,6 +65,8 @@ __published:    // IDE-managed Components
   void __fastcall BReadMessageClick(TObject *Sender);
   void __fastcall BClearClick(TObject *Sender);
   void __fastcall CBDecoderTypeChange(TObject *Sender);
+	void __fastcall Timer1Timer(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
   
 private:    // User declarations
   int ClientID;
