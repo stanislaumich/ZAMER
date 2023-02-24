@@ -372,10 +372,13 @@ end;
 
 procedure TFMH.Button37Click(Sender: TObject);
 var
-  i : Integer;
   tr: R;
+  t, i, maxni: Integer;
+  f , maxn : double;
+  fnd : integer;
 begin // start
-  tr.u1    := 0;
+
+ tr.u1    := 0;
   tr.u2    := 0;
   tr.u3    := 0;
   tr.usred := 0;
@@ -412,60 +415,141 @@ end;
 
 procedure TFMH.Button42Click(Sender: TObject);
 var
-  t, i: Integer;
-  f   : single;
+    t, i, maxni: Integer;
+  f , maxn : double;
+  fnd : integer;
 begin
-  Timer1000.Enabled := false;
+
+   Timer1000.Enabled := false;
   Command(false);
   // начинаем обсчеты
+  memo1.lines.add('Запрос из Т45');
   QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('select count(*) c from zamertmp');
-  QTemp.Open;
-  count:= QTemp.FieldByName('c').AsInteger;
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('select count(*) c from zelspec');
-  QTemp.Open;
-  t := min(count, QTemp.FieldByName('c').AsInteger);
-  QTemp.Close;
-  QTemp.Open('select to_number(rot) rot, to_number(torq) torq from zamertmp order by rowid');
+  QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
+    ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS,FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
+    ' FROM zamertmp order by rowid');
   QTemp.First;
-  QTemp2.Open('select * from zelspec order by rowid');
+  Rn:=0;
+  memo1.lines.add('Обработка Т45');
+  while not QTemp.eof do
+   begin
+    Rn:=Rn+1;
+    Ra[Rn].m:= QTemp.FieldByName('m').AsFloat;
+    Ra[Rn].n:= QTemp.FieldByName('n').AsFloat;
+    Ra[Rn].t:= QTemp.FieldByName('t').AsFloat;
+    QTemp.Next;
+   end;
+  memo1.lines.add('Запрос из Элспек');
+  QTemp.Close;
+  QTemp.Open('SELECT u, (CAST(ts as date) - date '+ Quotedstr('1970-01-01') +
+    ') * 86400 + to_number(TO_CHAR(ts,' +Quotedstr('SS,FF')+')) - to_number(to_char(ts,' +Quotedstr('SS')+')) t '+
+    ' FROM zelspec order by rowid');
   QTemp.First;
-  QInsall.Close;
-  for i := 1 to t do
-  begin
+  Un:=0;
+  memo1.lines.add('Обработка элспек');
+  while not QTemp.eof do
+   begin
+    Un:=Un+1;
+    Ua[Un].u:= QTemp.FieldByName('u').AsFloat;
+    Ua[Un].t:= QTemp.FieldByName('t').AsFloat;
+    QTemp.Next;
+   end;
+  QTemp.Close;
+  ResN:=0;
+  if Un < Rn then
+   begin // по напряжению
+   memo1.lines.add('U<N');
+    for i := 1 to Un do
+     begin // для каждого напряжения выбираем мин дельта времени с оборотами
+      fnd:= GetNobor(Ua[i].t, Rn);
+       memo1.lines.add(floattostr(Ua[i].t) + ' ' + inttostr(fnd));
+      if fnd = 0 then
+       begin  // was not found
+        ResN:=ResN+1;
+        ResA[Resn].u := 0;
+        ResA[Resn].m := 0;
+        ResA[Resn].n := 0;
+        ResA[Resn].t1:= 0;
+        ResA[Resn].t2:= 0;
+        memo1.lines.add('notfound');
+       end
+      else
+       begin // was found
+        ResN:=ResN+1;
+        ResA[Resn].u := Ua[i].u;
+        ResA[Resn].m := Ra[fnd].m;
+        ResA[Resn].n := Ra[fnd].n;
+        ResA[Resn].t1:= Ua[i].t;
+        ResA[Resn].t2:= Ra[fnd].t;
+        memo1.lines.add('found');
+       end;
+     end;
+   end
+   else
+    begin // по оборотам
+    memo1.lines.add('U>N');
+     for i := 1 to Rn do
+     begin // для каждого напряжения выбираем мин дельта времени с оборотами
+      fnd:= GetNU(Ra[i].t, Un);
+      memo1.lines.add(floattostr(Ra[i].t) + ' ' + inttostr(fnd));
+      if fnd = 0 then
+       begin  // was not found
+        ResN:=ResN+1;
+        ResA[Resn].u := 0;
+        ResA[Resn].m := 0;
+        ResA[Resn].n := 0;
+        ResA[Resn].t1:= 0;
+        ResA[Resn].t2:= 0;
+        memo1.lines.add('notfound');
+       end
+      else
+       begin // was found
+        ResN:=ResN+1;
+        ResA[Resn].u := Ua[fnd].u;
+        ResA[Resn].m := Ra[i].m;
+        ResA[Resn].n := Ra[i].n;
+        ResA[Resn].t1:= Ua[fnd].t;
+        ResA[Resn].t2:= Ra[i].t;
+        memo1.lines.add('found');
+       end;
+     end;
+
+     {}
+     // надо найти MIN N
+
+      for i:=1 to resn do
+         begin
+          Memo1.lines.add(gets(resa[i]));
+          if resa[i].n<maxn then
+           begin
+            maxni:=i;
+            maxn:=resa[i].n;
+           end;
+         end;
+
+     StringGrid7.cells[1, row] :=
+    FloatToStr(SimpleRoundTo(resa[maxni].u, RazU));
+  StringGrid7.cells[2, row] :=
+    FloatToStr(SimpleRoundTo(resa[maxni].m, RazM));
+  StringGrid7.cells[3, row] :=
+    FloatToStr(SimpleRoundTo(resa[maxni].n, RazN));
+    memo1.lines.add('Вставка в итоговую таблицу');
+    QInsAll.close;
     QInsall.ParamByName('nomer').AsString := nomer;
-    QInsall.ParamByName('usred').AsFloat  :=
-      SimpleRoundTo(amax[row, i].usred, -4);
-    QInsall.ParamByName('u12').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u1').AsFloat, RazU);
-    QInsall.ParamByName('u23').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u2').AsFloat, RazU);
-    QInsall.ParamByName('u31').AsFloat := SimpleRoundTo(QTemp2.FieldByName('u3').AsFloat, RazU);
-    QInsall.ParamByName('torq').AsFloat :=
-      SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, -4);
-    QInsall.ParamByName('rot').AsFloat :=
-      SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, -4);
-    QInsall.ParamByName('tip').AsInteger    := 2;
+    QInsall.ParamByName('usred').AsFloat  := resa[maxni].u;
+    QInsall.ParamByName('u12').AsFloat := 0;
+    QInsall.ParamByName('u23').AsFloat := 0;
+    QInsall.ParamByName('u31').AsFloat := 0;
+    QInsall.ParamByName('torq').AsFloat := resa[maxni].m;
+    QInsall.ParamByName('rot').AsFloat := resa[maxni].n;
+    QInsall.ParamByName('tip').AsInteger    := 1;
     QInsall.ParamByName('numisp').AsInteger := row;
     QInsall.ExecSQL;
-    QTemp.Next; QTemp2.Next;
-  end;
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add
-    ('select * from zmehall where torq=(select min(torq) from zmehall where nomer='
-    + Quotedstr(nomer) + ' and numisp=' + inttostr(row) +
-    ' and tip=2) and nomer=' + Quotedstr(nomer) + ' and numisp=' + inttostr(row)
-    + ' and tip=2');
 
-  QTemp.Open;
-  StringGrid8.cells[1, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('usred').AsFloat, RazU));
-  StringGrid8.cells[2, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('torq').AsFloat, RazM));
-  StringGrid8.cells[3, row] :=
-    FloatToStr(SimpleRoundTo(QTemp.FieldByName('rot').AsFloat, RazN));
+    memo1.lines.add('Все завершено');
+
+    end;
+
   QTemp.Close;
   Button37.Enabled := true;
   Button27.Enabled := true;
