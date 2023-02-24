@@ -878,4 +878,9 @@ object FMH: TFMH
     Left = 223
     Top = 244
   end
+  object Qi: TFDQuery
+    Connection = FZamerV2.FDC
+    Left = 224
+    Top = 423
+  end
 end

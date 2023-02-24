@@ -71,6 +71,7 @@ type
     CheckBox9: TCheckBox;
     CheckBox10: TCheckBox;
     Memo1: TMemo;
+    Qi: TFDQuery;
     procedure TimerUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -101,7 +102,7 @@ var
   nomer: string;
 
 CONST
- fstr = 'SS,FF';
+ fstr = 'SS.FF';
 
 implementation
 
@@ -386,6 +387,16 @@ begin
   Timer1000.Enabled := false;
   command(false);
   QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zmlast');
+  QTemp.ExecSQL;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zulast');
+  QTemp.ExecSQL;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zumsvod');
+  QTemp.ExecSQL;
+
+  QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zmehall where nomer=' + Quotedstr(nomer) +
     ' and tip=2 and numisp=' + inttostr(row));
   QTemp.ExecSQL;
@@ -403,12 +414,19 @@ begin
   QTemp.First;
   Rn := 0;
   Memo1.lines.Add('Обработка Т45');
+  QI.Close;
+  QI.SQL.Clear;
+  QI.sql.Add('INSERT INTO ZAMER.ZMLAST ( M, N, TS) VALUES ( :M , :N ,  :TS )');
   while not QTemp.eof do
   begin
     Rn := Rn + 1;
     Ra[Rn].m := QTemp.FieldByName('m').AsFloat;
     Ra[Rn].n := QTemp.FieldByName('n').AsFloat;
     Ra[Rn].t := QTemp.FieldByName('t').AsFloat;
+    QI.ParamByName('M').Asfloat:= Ra[Rn].m;
+    QI.ParamByName('N').Asfloat:= Ra[Rn].n;
+    QI.ParamByName('TS').Asfloat:= Ra[Rn].t;
+    QI.ExecSQL;
     QTemp.Next;
   end;
   Memo1.lines.Add('Запрос из Элспек');
@@ -420,15 +438,28 @@ begin
   QTemp.First;
   Un := 0;
   Memo1.lines.Add('Обработка элспек');
+
+  QI.Close;
+  QI.SQL.Clear;
+  QI.sql.Add('INSERT INTO ZAMER.ZULAST ( U, TS) VALUES ( :U, :TS )');
   while not QTemp.eof do
   begin
     Un := Un + 1;
     Ua[Un].u := QTemp.FieldByName('u').AsFloat;
     Ua[Un].t := QTemp.FieldByName('t').AsFloat;
+    QI.ParamByName('U').Asfloat:= Ua[Un].u;
+    QI.ParamByName('TS').Asfloat:= Ua[Un].t;
+    QI.ExecSQL;
     QTemp.Next;
   end;
   QTemp.Close;
   ResN := 0;
+
+  QI.Close;
+  QI.SQL.Clear;
+  QI.sql.Add('INSERT INTO ZAMER.ZUMSVOD (U, M, N, TU, TM)VALUES ( :U ,  :M , :N , :TU ,  :TM  )');
+
+
   if Un < Rn then
   begin // по напряжению
     Memo1.lines.Add('U<N');
@@ -454,6 +485,12 @@ begin
         ResA[ResN].n := Ra[fnd].n;
         ResA[ResN].t1 := Ua[i].t;
         ResA[ResN].t2 := Ra[fnd].t;
+        QI.ParamByName('U').Asfloat:= ResA[ResN].u;
+        QI.ParamByName('TU').Asfloat:= ResA[ResN].t1;
+        QI.ParamByName('M').Asfloat:= ResA[ResN].m;
+        QI.ParamByName('N').Asfloat:= ResA[ResN].n;
+        QI.ParamByName('TM').Asfloat:= ResA[ResN].t2;
+        QI.ExecSQL;
         Memo1.lines.Add('found');
       end;
     end;
@@ -483,6 +520,12 @@ begin
         ResA[ResN].n := Ra[i].n;
         ResA[ResN].t1 := Ua[fnd].t;
         ResA[ResN].t2 := Ra[i].t;
+        QI.ParamByName('U').Asfloat:= ResA[ResN].u;
+        QI.ParamByName('TU').Asfloat:= ResA[ResN].t1;
+        QI.ParamByName('M').Asfloat:= ResA[ResN].m;
+        QI.ParamByName('N').Asfloat:= ResA[ResN].n;
+        QI.ParamByName('TM').Asfloat:= ResA[ResN].t2;
+        QI.ExecSQL;
         Memo1.lines.Add('found');
       end;
     end;
