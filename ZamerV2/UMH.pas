@@ -101,9 +101,6 @@ var
   FMH: TFMH;
   nomer: string;
 
-CONST
- fstr = 'SS,FF';
-
 implementation
 
 {$R *.dfm}
@@ -195,8 +192,8 @@ begin
   QTemp.Close;
   QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date ' +
     Quotedstr('1970-01-01') + ') * 86400 + to_number(TO_CHAR(ts,' +
-    Quotedstr(fstr) + ')) - to_number(to_char(ts,' + Quotedstr('SS') +
-    ')) t ' + ' FROM zamertmp order by rowid');
+    Quotedstr(fstr) + ')) - to_number(to_char(ts,' + Quotedstr('SS') + ')) t ' +
+    ' FROM zamertmp order by rowid');
   QTemp.First;
   Rn := 0;
   Memo1.lines.Add('Обработка Т45');
@@ -409,24 +406,24 @@ begin
   QTemp.Close;
   QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date ' +
     Quotedstr('1970-01-01') + ') * 86400 + to_number(TO_CHAR(ts,' +
-    Quotedstr(fstr) + ')) - to_number(to_char(ts,' + Quotedstr('SS') +
-    ')) t ' + ' FROM zamertmp order by rowid');
+    Quotedstr(fstr) + ')) - to_number(to_char(ts,' + Quotedstr('SS') + ')) t ' +
+    ' FROM zamertmp order by rowid');
   QTemp.First;
   Rn := 0;
   Memo1.lines.Add('Обработка Т45');
-  QI.Close;
-  QI.SQL.Clear;
-  QI.sql.Add('INSERT INTO ZAMER.ZMLAST ( M, N, TS) VALUES ( :M , :N ,  :TS )');
+  Qi.Close;
+  Qi.SQL.Clear;
+  Qi.SQL.Add('INSERT INTO ZAMER.ZMLAST ( M, N, TS) VALUES ( :M , :N ,  :TS )');
   while not QTemp.eof do
   begin
     Rn := Rn + 1;
     Ra[Rn].m := QTemp.FieldByName('m').AsFloat;
     Ra[Rn].n := QTemp.FieldByName('n').AsFloat;
     Ra[Rn].t := QTemp.FieldByName('t').AsFloat;
-    QI.ParamByName('M').Asfloat:= Ra[Rn].m;
-    QI.ParamByName('N').Asfloat:= Ra[Rn].n;
-    QI.ParamByName('TS').Asfloat:= Ra[Rn].t;
-    QI.ExecSQL;
+    Qi.ParamByName('M').AsFloat := Ra[Rn].m;
+    Qi.ParamByName('N').AsFloat := Ra[Rn].n;
+    Qi.ParamByName('TS').AsFloat := Ra[Rn].t;
+    Qi.ExecSQL;
     QTemp.Next;
   end;
   Memo1.lines.Add('Запрос из Элспек');
@@ -439,26 +436,26 @@ begin
   Un := 0;
   Memo1.lines.Add('Обработка элспек');
 
-  QI.Close;
-  QI.SQL.Clear;
-  QI.sql.Add('INSERT INTO ZAMER.ZULAST ( U, TS) VALUES ( :U, :TS )');
+  Qi.Close;
+  Qi.SQL.Clear;
+  Qi.SQL.Add('INSERT INTO ZAMER.ZULAST ( U, TS) VALUES ( :U, :TS )');
   while not QTemp.eof do
   begin
     Un := Un + 1;
     Ua[Un].u := QTemp.FieldByName('u').AsFloat;
     Ua[Un].t := QTemp.FieldByName('t').AsFloat;
-    QI.ParamByName('U').Asfloat:= Ua[Un].u;
-    QI.ParamByName('TS').Asfloat:= Ua[Un].t;
-    QI.ExecSQL;
+    Qi.ParamByName('U').AsFloat := Ua[Un].u;
+    Qi.ParamByName('TS').AsFloat := Ua[Un].t;
+    Qi.ExecSQL;
     QTemp.Next;
   end;
   QTemp.Close;
   ResN := 0;
 
-  QI.Close;
-  QI.SQL.Clear;
-  QI.sql.Add('INSERT INTO ZAMER.ZUMSVOD (U, M, N, TU, TM)VALUES ( :U ,  :M , :N , :TU ,  :TM  )');
-
+  Qi.Close;
+  Qi.SQL.Clear;
+  Qi.SQL.Add
+    ('INSERT INTO ZAMER.ZUMSVOD (U, M, N, TU, TM)VALUES ( :U ,  :M , :N , :TU ,  :TM  )');
 
   if Un < Rn then
   begin // по напряжению
@@ -485,12 +482,12 @@ begin
         ResA[ResN].n := Ra[fnd].n;
         ResA[ResN].t1 := Ua[i].t;
         ResA[ResN].t2 := Ra[fnd].t;
-        QI.ParamByName('U').Asfloat:= ResA[ResN].u;
-        QI.ParamByName('TU').Asfloat:= ResA[ResN].t1;
-        QI.ParamByName('M').Asfloat:= ResA[ResN].m;
-        QI.ParamByName('N').Asfloat:= ResA[ResN].n;
-        QI.ParamByName('TM').Asfloat:= ResA[ResN].t2;
-        QI.ExecSQL;
+        Qi.ParamByName('U').AsFloat := ResA[ResN].u;
+        Qi.ParamByName('TU').AsFloat := ResA[ResN].t1;
+        Qi.ParamByName('M').AsFloat := ResA[ResN].m;
+        Qi.ParamByName('N').AsFloat := ResA[ResN].n;
+        Qi.ParamByName('TM').AsFloat := ResA[ResN].t2;
+        Qi.ExecSQL;
         Memo1.lines.Add('found');
       end;
     end;
@@ -520,19 +517,19 @@ begin
         ResA[ResN].n := Ra[i].n;
         ResA[ResN].t1 := Ua[fnd].t;
         ResA[ResN].t2 := Ra[i].t;
-        QI.ParamByName('U').Asfloat:= ResA[ResN].u;
-        QI.ParamByName('TU').Asfloat:= ResA[ResN].t1;
-        QI.ParamByName('M').Asfloat:= ResA[ResN].m;
-        QI.ParamByName('N').Asfloat:= ResA[ResN].n;
-        QI.ParamByName('TM').Asfloat:= ResA[ResN].t2;
-        QI.ExecSQL;
+        Qi.ParamByName('U').AsFloat := ResA[ResN].u;
+        Qi.ParamByName('TU').AsFloat := ResA[ResN].t1;
+        Qi.ParamByName('M').AsFloat := ResA[ResN].m;
+        Qi.ParamByName('N').AsFloat := ResA[ResN].n;
+        Qi.ParamByName('TM').AsFloat := ResA[ResN].t2;
+        Qi.ExecSQL;
         Memo1.lines.Add('found');
       end;
     end;
 
     { }
     // надо найти MIN N
-    maxn:=1000000;
+    maxn := 1000000;
     for i := 1 to ResN do
     begin
       Memo1.lines.Add(gets(ResA[i]));
@@ -569,7 +566,6 @@ begin
     QInsSvod.ParamByName('checked').AsInteger := 0;
     QInsSvod.ExecSQL;
 
-
     Memo1.lines.Add('Все завершено');
 
   end;
@@ -578,6 +574,9 @@ begin
   Button37.Enabled := true;
   Button27.Enabled := true;
   Button42.Enabled := false;
+  upstart.Enabled := true;
+  downstart.Enabled := true;
+  upstop.Enabled := false;
   FGraph.Button4.Click;
   FGraph.ShowModal;
 end;
@@ -672,7 +671,6 @@ begin
     Button32.Click;
   if curr = 2 then
     Button42.Click;
-
 end;
 
 procedure TFMH.BitBtn1Click(Sender: TObject);

@@ -225,7 +225,7 @@ object FMH: TFMH
       OnClick = Button37Click
     end
     object Button42: TButton
-      Left = 442
+      Left = 444
       Top = 58
       Width = 130
       Height = 42
