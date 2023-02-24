@@ -231,6 +231,7 @@ object FMH: TFMH
       Height = 42
       Anchors = [akTop, akRight]
       Caption = #1057#1090#1086#1087' F9'
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19

@@ -84,9 +84,10 @@ void __fastcall TForm1::BConnectClick(TObject *Sender) {
   NKan = 1;
   PSpecialParametrs = (struct _SpecialParametrs*)calloc
       (sizeof(struct _SpecialParametrs), 1);
-  PSpecialParametrs->AveragingFactor = StrToInt(EAveragingFactor->Text);
+  PSpecialParametrs->AveragingFactor = 2;
+  //StrToInt(EAveragingFactor->Text);//---------------------------------------------------------
   // Коэффициент усреднения данных
-  PSpecialParametrs->SpeedMeasurementPeriod = SpeedMeasurement;
+  PSpecialParametrs->SpeedMeasurementPeriod = 10;//SpeedMeasurement;
   // Период измерения частоты вращения
   PSpecialParametrs->ComPortNumber = StrToInt(EComPortNumber->Text);
   PSpecialParametrs->MODBUS_DeviceAddress = StrToInt(EUnitNumber->Text);
