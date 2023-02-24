@@ -86,6 +86,7 @@ type
     procedure Button42Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -546,8 +547,11 @@ begin
       QInsall.ExecSQL;
       if ResA[i].m < maxn then
       begin
-        maxni := i;
-        maxn := ResA[i].m;
+        if ResA[i].u>20 then
+         begin
+          maxni := i;
+          maxn := ResA[i].m;
+         end;
       end;
     end;
 
@@ -848,6 +852,11 @@ procedure TFMH.BitBtn2Click(Sender: TObject);
 begin
   FZamerV2.ImgSet(FZamerV2.Image6, false);
   FMH.Close;
+end;
+
+procedure TFMH.Button1Click(Sender: TObject);
+begin
+ Fgraph.ShowModal;
 end;
 
 procedure TFMH.Button27Click(Sender: TObject);

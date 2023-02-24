@@ -658,7 +658,7 @@ object FMH: TFMH
     Font.Style = []
     ParentFont = False
     TabOrder = 7
-    Visible = False
+    OnClick = Button1Click
   end
   object Panel1: TPanel
     Left = 0
