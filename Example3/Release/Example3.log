@@ -1,4 +1,0 @@
-﻿  Form1.cpp
-  LINK : указан параметр /LTCG, но не требуется создание кода; удалите /LTCG из командной строки компоновки для повышения производительности компоновщика
-  Example3.vcxproj -> D:\Transducer4\Example3\Release\Example3.exe
-  Example3.vcxproj -> D:\Transducer4\Example3\Release\Example3.pdb (Full PDB)
