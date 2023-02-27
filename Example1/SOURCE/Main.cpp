@@ -7,6 +7,7 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
+boolean Connected;
 //---------------------------------------------------------------------------
   // Array of formats for displaying the main measured value
   char *MasFormatovRas[4]={"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
@@ -23,8 +24,9 @@ __fastcall TForm1::TForm1(TComponent* Owner)
   BReadComplex->Enabled = false;
   BReadMessage->Enabled = false;
 
-  CBDecoderType->ItemIndex = 0;
+  CBDecoderType->ItemIndex = 7;// 5;
   CBDecoderTypeChange(this);
+  Connected = false;
 }
 // --------------------- "Open" BUTTON
 void __fastcall TForm1::BConnectClick(TObject *Sender)
@@ -45,7 +47,7 @@ void __fastcall TForm1::BConnectClick(TObject *Sender)
   BConnect->Enabled = false;
   PSpecialParametrs = (struct _SpecialParametrs *) calloc (sizeof (struct _SpecialParametrs), 1);
   PSpecialParametrs->AveragingFactor = StrToInt (EAveragingFactor->Text); // Data Averaging Coefficient
-  PSpecialParametrs->SpeedMeasurementPeriod = 1000; // Period of measurement of speed
+  PSpecialParametrs->SpeedMeasurementPeriod = 10; // Period of measurement of speed
   PSpecialParametrs->ComPortNumber = StrToInt (EComPortNumber->Text);
   PSpecialParametrs->MODBUS_DeviceAddress = StrToInt (EUnitNumber->Text);
   UnicodeString US = CBBaudRate->Items->Strings [CBBaudRate->ItemIndex];
@@ -71,7 +73,8 @@ void __fastcall TForm1::BConnectClick(TObject *Sender)
     return;
   }
   else {
-    Memo1->Lines->Add ("Decoder is open");
+	Memo1->Lines->Add ("Decoder is open");
+	Connected = true;
   }
   for (i = 0; i<3; i ++) {
     // ................... Read the service channel of the sensor
@@ -109,6 +112,7 @@ void __fastcall TForm1::BConnectClick(TObject *Sender)
   BReadComplex->Enabled = true;
   BReadMessage->Enabled = true;
   Button1->Enabled = true;
+  Memo2->Lines->Clear();
 }
 // --------------------- "Close" BUTTON
 void __fastcall TForm1::BDisconnectClick (TObject *Sender)
@@ -116,7 +120,8 @@ void __fastcall TForm1::BDisconnectClick (TObject *Sender)
   if (PDecoder != NULL) {
     DecoderClose (PDecoder);
     PDecoder = NULL;
-    Memo1->Lines->Add ("Decoder is closed");
+	Memo1->Lines->Add ("Decoder is closed");
+    Connected = false;
   }
   BConnect->Enabled = true;
   BDisconnect->Enabled = false;
@@ -125,8 +130,9 @@ void __fastcall TForm1::BDisconnectClick (TObject *Sender)
   BReadTemperature->Enabled = false;
   BReadComplex->Enabled = false;
   BReadMessage->Enabled = false;
-  Timer1->Enabled = false;
+  TimerMain->Enabled = false;
   Button1->Enabled = false;
+  Memo2->Lines->SaveToFile("RESULT.CSV");
 }
 // --------------------- CLOSING THE FORM
 void __fastcall TForm1::FormClose (TObject *Sender, TCloseAction & Action)
@@ -257,11 +263,12 @@ void __fastcall TForm1::BReadComplexClick (TObject *Sender)
     STSkorost->Caption = ASCaption.sprintf ("% 4.1f", Znachenie);
   }
   else {
-    STSkorost->Caption = ASCaption.sprintf ("% 4.0f", Znachenie);
+	STSkorost->Caption = ASCaption.sprintf ("% 4.0f", Znachenie);
   }
   // ................... Formation of a line to display power on the panel
   Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
   STMoschnost->Caption = ASCaption.sprintf (FormatOtobrajenia, Znachenie);
+  Memo2->Lines->Add(STOsnIzmVel->Caption+";"+STSkorost->Caption+";"+STMoschnost->Caption+";");
 }
 // --------------------- Reading decoder status messages
 void __fastcall TForm1::BReadMessageClick (TObject *Sender)
@@ -482,15 +489,62 @@ void TForm1::Pause (unsigned int Timeout)
 }
 // ------------------------------------------------ ---------------------------
 
-void __fastcall TForm1::Timer1Timer(TObject *Sender)
+void __fastcall TForm1::TimerMainTimer(TObject *Sender)
 {
  BReadComplexClick(Form1);
+ QUpd->ParamByName("TORQ")->AsFloat = StrToFloat(STOsnIzmVel->Caption);
+ QUpd->ParamByName("ROT")->AsFloat =  StrToFloat(STSkorost->Caption);
+ QUpd->ParamByName("POWER")->AsFloat = StrToFloat(STMoschnost->Caption);
+ QUpd->ExecSQL();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
- Timer1->Enabled = !Timer1->Enabled;
+ TimerMain->Enabled = !TimerMain->Enabled;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TimerCommandTimer(TObject *Sender)
+{
+ QCommand->Open();
+ if (QCommand->FieldByName("command")->AsInteger == 1)
+  {
+   if (!Connected){
+	Qtemp->Close();
+	QTemp->SQL->Clear();
+	QTemp->SQL->Add("Delete from command where command = 1");
+	QTemp->ExecSQL();
+
+
+
+
+	BConnectClick(Form1);
+   }
+
+   Panel3->Color = clRed;
+   TimerMain->Enabled = true;
+  }
+ if (QCommand->FieldByName("command")->AsInteger == 0)
+  {
+   TimerMain->Enabled = false;
+   if (Connected) {
+    Qtemp->Close();
+	QTemp->SQL->Clear();
+	QTemp->SQL->Add("Delete from command where command = 0");
+	QTemp->ExecSQL();
+
+
+
+	BDisconnectClick(Form1);
+   }
+   for(int i=0;i<Memo2->Lines->Count-1;i++){
+
+   }
+
+   Panel3->Color = clBtnFace;
+  }
+ QCommand->Close();
 }
 //---------------------------------------------------------------------------
 

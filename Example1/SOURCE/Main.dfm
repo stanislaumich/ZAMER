@@ -94,7 +94,7 @@ object Form1: TForm1
     Width = 66
     Height = 21
     TabOrder = 17
-    Text = '1'
+    Text = '10'
   end
   object EPortNumber: TEdit
     Left = 617
@@ -258,6 +258,14 @@ object Form1: TForm1
         Height = 21
         ReadOnly = True
         TabOrder = 4
+      end
+      object Panel3: TPanel
+        Left = 204
+        Top = 8
+        Width = 33
+        Height = 25
+        ParentBackground = False
+        TabOrder = 5
       end
     end
     object Memo1: TMemo
@@ -430,7 +438,7 @@ object Form1: TForm1
     Height = 21
     Associate = EAveragingFactor
     Min = 1
-    Position = 1
+    Position = 10
     TabOrder = 16
     Thousands = False
   end
@@ -449,19 +457,82 @@ object Form1: TForm1
   end
   object Button1: TButton
     Left = 464
-    Top = 360
+    Top = 320
     Width = 121
     Height = 33
-    Caption = 'AUTO'
+    Caption = 'Start/Stop'
     Enabled = False
     TabOrder = 21
     OnClick = Button1Click
   end
-  object Timer1: TTimer
+  object Memo2: TMemo
+    Left = 468
+    Top = 360
+    Width = 121
+    Height = 57
+    Lines.Strings = (
+      'Memo2')
+    TabOrder = 22
+  end
+  object TimerMain: TTimer
     Enabled = False
     Interval = 50
-    OnTimer = Timer1Timer
+    OnTimer = TimerMainTimer
     Left = 96
     Top = 204
+  end
+  object TimerCommand: TTimer
+    Interval = 500
+    OnTimer = TimerCommandTimer
+    Left = 168
+    Top = 204
+  end
+  object FDC: TFDConnection
+    Params.Strings = (
+      'Database=XE'
+      'DriverID=Ora'
+      'Password=zamer'
+      'User_Name=zamer')
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    Connected = True
+    LoginPrompt = False
+    Left = 24
+    Top = 292
+  end
+  object QCommand: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      'select * from command where command=1 or command=0')
+    Left = 72
+    Top = 292
+  end
+  object QUpd: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      'UPDATE ZAMER.ZAMER'
+      'SET    TORQ  = :TORQ,'
+      '       ROT   = :ROT,'
+      '       POWER = :POWER')
+    Left = 152
+    Top = 292
+    ParamData = <
+      item
+        Name = 'TORQ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ROT'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POWER'
+        ParamType = ptInput
+      end>
+  end
+  object QTemp: TFDQuery
+    Connection = FDC
+    Left = 228
+    Top = 296
   end
 end

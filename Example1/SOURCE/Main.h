@@ -9,6 +9,25 @@
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Dialogs.hpp>
+#include <Data.DB.hpp>
+#include <FireDAC.Comp.Client.hpp>
+#include <FireDAC.Comp.DataSet.hpp>
+#include <FireDAC.DApt.hpp>
+#include <FireDAC.DApt.Intf.hpp>
+#include <FireDAC.DatS.hpp>
+#include <FireDAC.Phys.hpp>
+#include <FireDAC.Phys.Intf.hpp>
+#include <FireDAC.Phys.Oracle.hpp>
+#include <FireDAC.Phys.OracleDef.hpp>
+#include <FireDAC.Stan.Async.hpp>
+#include <FireDAC.Stan.Def.hpp>
+#include <FireDAC.Stan.Error.hpp>
+#include <FireDAC.Stan.Intf.hpp>
+#include <FireDAC.Stan.Option.hpp>
+#include <FireDAC.Stan.Param.hpp>
+#include <FireDAC.Stan.Pool.hpp>
+#include <FireDAC.UI.Intf.hpp>
+#include <FireDAC.VCLUI.Wait.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -53,8 +72,15 @@ __published:    // IDE-managed Components
   TEdit *EUnitNumber;
   TComboBox *CB_Protocol;
   TLabel *LProtocol;
-	TTimer *Timer1;
+	TTimer *TimerMain;
 	TButton *Button1;
+	TMemo *Memo2;
+	TTimer *TimerCommand;
+	TFDConnection *FDC;
+	TFDQuery *QCommand;
+	TPanel *Panel3;
+	TFDQuery *QUpd;
+	TFDQuery *QTemp;
   void __fastcall BConnectClick(TObject *Sender);
   void __fastcall BDisconnectClick(TObject *Sender);
   void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -65,8 +91,9 @@ __published:    // IDE-managed Components
   void __fastcall BReadMessageClick(TObject *Sender);
   void __fastcall BClearClick(TObject *Sender);
   void __fastcall CBDecoderTypeChange(TObject *Sender);
-	void __fastcall Timer1Timer(TObject *Sender);
+	void __fastcall TimerMainTimer(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall TimerCommandTimer(TObject *Sender);
   
 private:    // User declarations
   int ClientID;
