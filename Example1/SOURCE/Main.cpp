@@ -260,7 +260,7 @@ void __fastcall TForm1::BReadComplexClick (TObject *Sender)
   POutputBuffer = (union _Otvet *) OtvetServera;
   // ................... Formation of a line for displaying the main measurement value in the panel
   Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
-  STOsnIzmVel->Caption = FloatToStr(SimpleRoundTo(Znachenie,-3)); --
+  STOsnIzmVel->Caption = FloatToStr(SimpleRoundTo(Znachenie,-1));
   //ASCaption.sprintf (FormatOtobrajenia, Znachenie);
   // ................... Formation of a line for displaying temperature
   Znachenie = POutputBuffer->Data.MD.RC.Temper;
@@ -268,22 +268,22 @@ void __fastcall TForm1::BReadComplexClick (TObject *Sender)
     STTemper->Caption = "";
   }
   else {
-	STTemper->Caption = FloatToStr(Znachenie);
+	STTemper->Caption = FloatToStr(SimpleRoundTo(Znachenie,-1));
 	//ASCaption.sprintf ("% 4.1f", Znachenie);
   }
   // ................... Formation of a line for displaying speed on the panel
   Znachenie = POutputBuffer->Data.MD.RC.Skorost;
   if (Znachenie < 1000) {
-	STSkorost->Caption = FloatToStr(Znachenie);
+	STSkorost->Caption = FloatToStr(SimpleRoundTo(Znachenie,-1));
 	//ASCaption.sprintf ("% 4.1f", Znachenie);
   }
   else {
-	STSkorost->Caption =  FloatToStr(Znachenie);
+	STSkorost->Caption =  FloatToStr(SimpleRoundTo(Znachenie,-1));
 	//ASCaption.sprintf ("% 4.0f", Znachenie);
   }
   // ................... Formation of a line to display power on the panel
   Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
-  STMoschnost->Caption = FloatToStr(Znachenie);
+  STMoschnost->Caption = FloatToStr(SimpleRoundTo(Znachenie,-1));
   //ASCaption.sprintf (FormatOtobrajenia, Znachenie);
   Memo2->Lines->Add(STOsnIzmVel->Caption+";"+STSkorost->Caption+";"+STMoschnost->Caption+";");
 }
@@ -530,6 +530,7 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender)
  if (QCommand->FieldByName("command")->AsInteger == 1)
   {
    if (!Connected){
+
 	Qtemp->Close();
 	Qtemp->SQL->Clear();
 	Qtemp->SQL->Add("Delete from command where command = 1");
