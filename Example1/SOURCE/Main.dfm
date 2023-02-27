@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Request-Answer mode example'
   ClientHeight = 471
-  ClientWidth = 759
+  ClientWidth = 745
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -305,35 +305,38 @@ object Form1: TForm1
     OnClick = BDisconnectClick
   end
   object BReadBase: TButton
-    Left = 617
-    Top = 243
+    Left = 591
+    Top = 228
     Width = 121
     Height = 33
     Caption = 'BReadBase'
     TabOrder = 4
+    Visible = False
     OnClick = BReadBaseClick
   end
   object BReadSpeed: TButton
     Left = 617
-    Top = 287
+    Top = 235
     Width = 121
     Height = 33
     Caption = 'BReadSpeed'
     TabOrder = 5
+    Visible = False
     OnClick = BReadSpeedClick
   end
   object BReadTemperature: TButton
-    Left = 617
-    Top = 332
+    Left = 591
+    Top = 255
     Width = 121
     Height = 33
     Caption = 'BReadTemperature'
     TabOrder = 6
+    Visible = False
     OnClick = BReadTemperatureClick
   end
   object BReadComplex: TButton
-    Left = 617
-    Top = 377
+    Left = 600
+    Top = 287
     Width = 121
     Height = 33
     Caption = 'BReadComplex'
@@ -468,10 +471,11 @@ object Form1: TForm1
   object Memo2: TMemo
     Left = 468
     Top = 360
-    Width = 121
+    Width = 270
     Height = 57
     Lines.Strings = (
       'Memo2')
+    ScrollBars = ssVertical
     TabOrder = 22
   end
   object TimerMain: TTimer

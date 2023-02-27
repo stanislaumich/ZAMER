@@ -260,7 +260,7 @@ void __fastcall TForm1::BReadComplexClick (TObject *Sender)
   POutputBuffer = (union _Otvet *) OtvetServera;
   // ................... Formation of a line for displaying the main measurement value in the panel
   Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
-  STOsnIzmVel->Caption = FloatToStr(SimpleRoundTo(Znachenie,-1));
+  STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie,-2));
   //ASCaption.sprintf (FormatOtobrajenia, Znachenie);
   // ................... Formation of a line for displaying temperature
   Znachenie = POutputBuffer->Data.MD.RC.Temper;
@@ -268,22 +268,22 @@ void __fastcall TForm1::BReadComplexClick (TObject *Sender)
     STTemper->Caption = "";
   }
   else {
-	STTemper->Caption = FloatToStr(SimpleRoundTo(Znachenie,-1));
+	STTemper->Caption = FloatToStr(RoundTo(Znachenie,-2));
 	//ASCaption.sprintf ("% 4.1f", Znachenie);
   }
   // ................... Formation of a line for displaying speed on the panel
   Znachenie = POutputBuffer->Data.MD.RC.Skorost;
   if (Znachenie < 1000) {
-	STSkorost->Caption = FloatToStr(SimpleRoundTo(Znachenie,-1));
+	STSkorost->Caption = FloatToStr(RoundTo(Znachenie,-2));
 	//ASCaption.sprintf ("% 4.1f", Znachenie);
   }
   else {
-	STSkorost->Caption =  FloatToStr(SimpleRoundTo(Znachenie,-1));
+	STSkorost->Caption =  FloatToStr(RoundTo(Znachenie,-2));
 	//ASCaption.sprintf ("% 4.0f", Znachenie);
   }
   // ................... Formation of a line to display power on the panel
   Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
-  STMoschnost->Caption = FloatToStr(SimpleRoundTo(Znachenie,-1));
+  STMoschnost->Caption = FloatToStr(RoundTo(Znachenie,-2));
   //ASCaption.sprintf (FormatOtobrajenia, Znachenie);
   Memo2->Lines->Add(STOsnIzmVel->Caption+";"+STSkorost->Caption+";"+STMoschnost->Caption+";");
 }
@@ -527,6 +527,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 void __fastcall TForm1::TimerCommandTimer(TObject *Sender)
 {
  QCommand->Open();
+ if (QCommand->RecordCount!=0){
  if (QCommand->FieldByName("command")->AsInteger == 1)
   {
    if (!Connected){
@@ -545,6 +546,7 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender)
    Panel3->Color = clRed;
    TimerMain->Enabled = true;
   }
+
  if (QCommand->FieldByName("command")->AsInteger == 0)
   {
    TimerMain->Enabled = false;
@@ -563,6 +565,7 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender)
    }
 
    Panel3->Color = clBtnFace;
+  }
   }
  QCommand->Close();
 }
