@@ -3,6 +3,8 @@
 #pragma hdrstop
 #include "DecoderBroker.h"
 #include "Main.h"
+#include <Math.hpp>
+#include <math.h>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -23,10 +25,20 @@ __fastcall TForm1::TForm1(TComponent* Owner)
   BReadTemperature->Enabled = false;
   BReadComplex->Enabled = false;
   BReadMessage->Enabled = false;
+  TRect *r = new TRect;
+  TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\settings45.ini");
+  GetWindowRect(this->Handle, r);
+  int l = r->Left;
+  int t = r->Top;
+  Form1->Left = Ini->ReadInteger("Position", "Left", 10);
+  Form1->Top = Ini->ReadInteger("Position", "Top", 10);
+  int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
+  Ini->Free();
 
-  CBDecoderType->ItemIndex = 7;// 5;
+  CBDecoderType->ItemIndex = Ind;// 5;
   CBDecoderTypeChange(this);
   Connected = false;
+  BConnectClick(Form1);
 }
 // --------------------- "Open" BUTTON
 void __fastcall TForm1::BConnectClick(TObject *Sender)
@@ -188,10 +200,10 @@ void __fastcall TForm1::BReadSpeedClick (TObject *Sender)
   // ................... Formation of a line for displaying speed on the panel
   Znachenie = POutputBuffer->Data.MD.RS.Skorost;
   if (Znachenie <1000) {
-    STSkorost->Caption = ASCaption.sprintf ("% 4.1f", Znachenie);
+	STSkorost->Caption = ASCaption.sprintf ("% 4.1f", Znachenie);
   }
   else {
-    STSkorost->Caption = ASCaption.sprintf ("% 4.0f", Znachenie);
+	STSkorost->Caption = ASCaption.sprintf ("% 4.0f", Znachenie);
   }
   // ................... Formation of a line to display power on the panel
   Znachenie = POutputBuffer->Data.MD.RS.Moschnost;
@@ -223,7 +235,7 @@ void __fastcall TForm1::BReadTemperatureClick (TObject *Sender)
     STTemper->Caption = "";
   }
   else {
-    STTemper->Caption = ASCaption.sprintf ("% 4.1f", Znachenie);
+	STTemper->Caption = ASCaption.sprintf ("% 4.1f", Znachenie);
   }
 }
 // --------------------- Read all measured values
@@ -248,26 +260,31 @@ void __fastcall TForm1::BReadComplexClick (TObject *Sender)
   POutputBuffer = (union _Otvet *) OtvetServera;
   // ................... Formation of a line for displaying the main measurement value in the panel
   Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
-  STOsnIzmVel->Caption = ASCaption.sprintf (FormatOtobrajenia, Znachenie);
+  STOsnIzmVel->Caption = FloatToStr(SimpleRoundTo(Znachenie,-3)); --
+  //ASCaption.sprintf (FormatOtobrajenia, Znachenie);
   // ................... Formation of a line for displaying temperature
   Znachenie = POutputBuffer->Data.MD.RC.Temper;
   if (Znachenie <-40) {
     STTemper->Caption = "";
   }
   else {
-    STTemper->Caption = ASCaption.sprintf ("% 4.1f", Znachenie);
+	STTemper->Caption = FloatToStr(Znachenie);
+	//ASCaption.sprintf ("% 4.1f", Znachenie);
   }
   // ................... Formation of a line for displaying speed on the panel
   Znachenie = POutputBuffer->Data.MD.RC.Skorost;
   if (Znachenie < 1000) {
-    STSkorost->Caption = ASCaption.sprintf ("% 4.1f", Znachenie);
+	STSkorost->Caption = FloatToStr(Znachenie);
+	//ASCaption.sprintf ("% 4.1f", Znachenie);
   }
   else {
-	STSkorost->Caption = ASCaption.sprintf ("% 4.0f", Znachenie);
+	STSkorost->Caption =  FloatToStr(Znachenie);
+	//ASCaption.sprintf ("% 4.0f", Znachenie);
   }
   // ................... Formation of a line to display power on the panel
   Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
-  STMoschnost->Caption = ASCaption.sprintf (FormatOtobrajenia, Znachenie);
+  STMoschnost->Caption = FloatToStr(Znachenie);
+  //ASCaption.sprintf (FormatOtobrajenia, Znachenie);
   Memo2->Lines->Add(STOsnIzmVel->Caption+";"+STSkorost->Caption+";"+STMoschnost->Caption+";");
 }
 // --------------------- Reading decoder status messages
@@ -492,10 +509,12 @@ void TForm1::Pause (unsigned int Timeout)
 void __fastcall TForm1::TimerMainTimer(TObject *Sender)
 {
  BReadComplexClick(Form1);
+ /*
  QUpd->ParamByName("TORQ")->AsFloat = StrToFloat(STOsnIzmVel->Caption);
  QUpd->ParamByName("ROT")->AsFloat =  StrToFloat(STSkorost->Caption);
  QUpd->ParamByName("POWER")->AsFloat = StrToFloat(STMoschnost->Caption);
  QUpd->ExecSQL();
+ */
 }
 //---------------------------------------------------------------------------
 
@@ -512,9 +531,9 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender)
   {
    if (!Connected){
 	Qtemp->Close();
-	QTemp->SQL->Clear();
-	QTemp->SQL->Add("Delete from command where command = 1");
-	QTemp->ExecSQL();
+	Qtemp->SQL->Clear();
+	Qtemp->SQL->Add("Delete from command where command = 1");
+	Qtemp->ExecSQL();
 
 
 
@@ -529,10 +548,10 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender)
   {
    TimerMain->Enabled = false;
    if (Connected) {
-    Qtemp->Close();
-	QTemp->SQL->Clear();
-	QTemp->SQL->Add("Delete from command where command = 0");
-	QTemp->ExecSQL();
+	Qtemp->Close();
+	Qtemp->SQL->Clear();
+	Qtemp->SQL->Add("Delete from command where command = 0");
+	Qtemp->ExecSQL();
 
 
 

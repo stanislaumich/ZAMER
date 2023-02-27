@@ -80,7 +80,7 @@ __published:    // IDE-managed Components
 	TFDQuery *QCommand;
 	TPanel *Panel3;
 	TFDQuery *QUpd;
-	TFDQuery *QTemp;
+	TFDQuery *Qtemp;
   void __fastcall BConnectClick(TObject *Sender);
   void __fastcall BDisconnectClick(TObject *Sender);
   void __fastcall FormClose(TObject *Sender, TCloseAction &Action);

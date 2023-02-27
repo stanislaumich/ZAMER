@@ -530,7 +530,7 @@ object Form1: TForm1
         ParamType = ptInput
       end>
   end
-  object QTemp: TFDQuery
+  object Qtemp: TFDQuery
     Connection = FDC
     Left = 228
     Top = 296
