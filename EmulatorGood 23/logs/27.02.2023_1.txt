@@ -6,3 +6,6 @@
 27.02.2023 08:27:02.233 - TTCPAccept.Execute IN
 27.02.2023 08:27:02.233 - TTCPAccept.InitSocket IN
 27.02.2023 08:27:02.240 - TTCPAccept.InitSocket - OUT
+27.02.2023 16:58:17.996 - TModbusTCPServer.Stop
+27.02.2023 16:58:17.996 - TTCPAccept.StopThread IN
+27.02.2023 16:58:17.996 - T

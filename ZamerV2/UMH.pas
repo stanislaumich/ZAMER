@@ -384,6 +384,7 @@ begin
 
   Timer1000.Enabled := false;
   command(false);
+  Sleep(2000);
   QTemp.SQL.Clear;
   QTemp.SQL.Add('truncate table zmlast');
   QTemp.ExecSQL;
@@ -623,6 +624,7 @@ begin
       Quotedstr(nomer) + ' , 10)');
     QTemp.ExecSQL;
   end;
+
 end;
 
 procedure TFMH.downstartExecute(Sender: TObject);

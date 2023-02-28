@@ -497,8 +497,11 @@ object Form1: TForm1
       'DriverID=Ora'
       'Password=zamer'
       'User_Name=zamer')
-    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.AssignedValues = [rvAutoReconnect, rvSilentMode]
     ResourceOptions.SilentMode = True
+    ResourceOptions.AutoReconnect = True
+    UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
+    UpdateOptions.AutoCommitUpdates = True
     Connected = True
     LoginPrompt = False
     Left = 24
@@ -536,7 +539,28 @@ object Form1: TForm1
   end
   object Qtemp: TFDQuery
     Connection = FDC
-    Left = 228
-    Top = 296
+    Left = 212
+    Top = 292
+  end
+  object QIns: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      'INSERT INTO ZAMER.ZAMERTMP (TORQ, ROT, POWER) '
+      'VALUES ( :TORQ , :ROT , :POWER  )')
+    Left = 284
+    Top = 292
+    ParamData = <
+      item
+        Name = 'TORQ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ROT'
+        ParamType = ptInput
+      end
+      item
+        Name = 'POWER'
+        ParamType = ptInput
+      end>
   end
 end
