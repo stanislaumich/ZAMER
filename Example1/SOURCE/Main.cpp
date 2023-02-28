@@ -15,6 +15,7 @@ float atorq[1000];
 float arot[1000];
 float apower[1000];
 int acount;
+int wr;
 // ---------------------------------------------------------------------------
 // Array of formats for displaying the main measured value
 char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
@@ -39,10 +40,14 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
 	Ini->Free();
-
+	wr = 0;
 	CBDecoderType->ItemIndex = Ind; // 5;
 	CBDecoderTypeChange(this);
 	Connected = false;
+	Qtemp->Close();
+	Qtemp->SQL->Clear();
+	Qtemp->SQL->Add("Delete from command where command between 0 and 1");
+	Qtemp->ExecSQL();
 	BConnectClick(Form1);
 }
 
@@ -170,7 +175,7 @@ void __fastcall TForm1::BDisconnectClick(TObject *Sender) {
 	BReadTemperature->Enabled = false;
 	BReadComplex->Enabled = false;
 	BReadMessage->Enabled = false;
-	TimerMain->Enabled = false;
+	// TimerMain->Enabled = false;
 	Button1->Enabled = false;
 	Memo2->Lines->SaveToFile("RESULT.CSV");
 }
@@ -313,8 +318,8 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
 	STMoschnost->Caption = FloatToStr(RoundTo(Znachenie, -2));
 	// ASCaption.sprintf (FormatOtobrajenia, Znachenie);
-	Memo2->Lines->Add(STOsnIzmVel->Caption + ";" + STSkorost->Caption + ";" +
-		STMoschnost->Caption + ";");
+	// Memo2->Lines->Add(STOsnIzmVel->Caption + ";" + STSkorost->Caption + ";" +
+	// STMoschnost->Caption + ";");
 }
 
 // --------------------- Reading decoder status messages
@@ -554,77 +559,66 @@ void TForm1::Pause(unsigned int Timeout) {
 
 void __fastcall TForm1::TimerMainTimer(TObject *Sender) {
 	BReadComplexClick(Form1);
-	/*
-	 float atorq[1000];
-	 float arot[1000];
-	 float apower[1000];
-	 int acount;
-	 */
-	atorq[acount] = QUpd->ParamByName("TORQ")->AsFloat;
-	arot[acount] = QUpd->ParamByName("ROT")->AsFloat;
-	apower[acount] = QUpd->ParamByName("POWER")->AsFloat;
-	QIns->ParamByName("TORQ")->AsFloat = atorq[acount];
-	QIns->ParamByName("ROT")->AsFloat = arot[acount];
-	QIns->ParamByName("POWER")->AsFloat = apower[acount];
-	QIns->ExecSQL();
-	acount += 1;
-	QUpd->ParamByName("TORQ")->AsFloat = StrToFloat(STOsnIzmVel->Caption);
-	QUpd->ParamByName("ROT")->AsFloat = StrToFloat(STSkorost->Caption);
-	QUpd->ParamByName("POWER")->AsFloat = StrToFloat(STMoschnost->Caption);
-	QUpd->ExecSQL();
 
+	float t = StrToFloat(STOsnIzmVel->Caption);
+	float r = StrToFloat(STSkorost->Caption);
+	float p = StrToFloat(STMoschnost->Caption);
+	QUpd->ParamByName("TORQ")->AsFloat = t;
+	QUpd->ParamByName("ROT")->AsFloat = r;
+	QUpd->ParamByName("POWER")->AsFloat = p;
+	QUpd->ExecSQL();
+	if (wr == 1) {
+		QIns->ParamByName("TORQ")->AsFloat = t;
+		QIns->ParamByName("ROT")->AsFloat = r;
+		QIns->ParamByName("POWER")->AsFloat = p;
+		QIns->ExecSQL();
+	}
 }
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button1Click(TObject *Sender) {
-	TimerMain->Enabled = !TimerMain->Enabled;
+	//TimerMain->Enabled = !TimerMain->Enabled;
 }
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
 
-	QCommand->Open();
+	QCommand->Open("select * from command where command between 0 and 1");
 	if (QCommand->RecordCount != 0) {
-		if (QCommand->FieldByName("command")->AsInteger == 1) {
-			if (!Connected) {
+		int a = QCommand->FieldByName("command")->AsInteger;
+		if (a == 1) {
+			//if (!Connected) {
 				QCommand->Close();
 				Qtemp->Close();
 				Qtemp->SQL->Clear();
-				Qtemp->SQL->Add("Delete from command where command = 1");
+				Qtemp->SQL->Add("Delete from command where command in(0, 1)");
 				Qtemp->ExecSQL();
-				acount = 0;
 				Qtemp->Close();
 				Qtemp->SQL->Clear();
 				Qtemp->SQL->Add("Truncate table zamertmp");
 				Qtemp->ExecSQL();
-
-				BConnectClick(Form1);
-			}
+				Qtemp->Close();
+				wr = 1; // lets write
+				//BConnectClick(Form1);
+			//}
 			Panel3->Color = clRed;
-			TimerMain->Enabled = true;
+			// TimerMain->Enabled = true;
 		}
-
-		if (QCommand->FieldByName("command")->AsInteger == 0) {
-			TimerMain->Enabled = false;
+		else{ // a = 0
+			// TimerMain->Enabled = false;
 			QCommand->Close();
-			if (Connected) {
+			//if (Connected) {
 				Qtemp->Close();
 				Qtemp->SQL->Clear();
-				Qtemp->SQL->Add("Delete from command where command = 0");
+				Qtemp->SQL->Add("Delete from command where command in(0, 1)");
 				Qtemp->ExecSQL();
-				/*
-				for (int i = 0; i < acount - 1; i++) {
-					QIns->ParamByName("TORQ")->AsFloat = atorq[i];
-					QIns->ParamByName("ROT")->AsFloat = arot[i];
-					QIns->ParamByName("POWER")->AsFloat = apower[i];
-					QIns->ExecSQL();
-				}
-				*/
-				BDisconnectClick(Form1);
-			}
+				Qtemp->Close();
+				wr = 0; // do not write
+				//BDisconnectClick(Form1);
+			//}
 			Panel3->Color = clBtnFace;
 		}
 	}
-	QCommand->Close();
+	// QCommand->Close();
 }
 // ---------------------------------------------------------------------------

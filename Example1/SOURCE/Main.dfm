@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Request-Answer mode example'
+  Caption = #1057#1073#1086#1088' '#1087#1086#1082#1072#1079#1072#1085#1080#1081' '#1058'45'
   ClientHeight = 471
   ClientWidth = 745
   Color = clBtnFace
@@ -94,7 +94,7 @@ object Form1: TForm1
     Width = 66
     Height = 21
     TabOrder = 17
-    Text = '10'
+    Text = '1'
   end
   object EPortNumber: TEdit
     Left = 617
@@ -441,7 +441,7 @@ object Form1: TForm1
     Height = 21
     Associate = EAveragingFactor
     Min = 1
-    Position = 10
+    Position = 1
     TabOrder = 16
     Thousands = False
   end
@@ -459,13 +459,14 @@ object Form1: TForm1
       'TILKOM protocol')
   end
   object Button1: TButton
-    Left = 464
-    Top = 320
+    Left = 612
+    Top = 321
     Width = 121
     Height = 33
     Caption = 'Start/Stop'
     Enabled = False
     TabOrder = 21
+    Visible = False
     OnClick = Button1Click
   end
   object Memo2: TMemo
@@ -477,9 +478,9 @@ object Form1: TForm1
       'Memo2')
     ScrollBars = ssVertical
     TabOrder = 22
+    Visible = False
   end
   object TimerMain: TTimer
-    Enabled = False
     Interval = 50
     OnTimer = TimerMainTimer
     Left = 96
@@ -509,13 +510,15 @@ object Form1: TForm1
   end
   object QCommand: TFDQuery
     Connection = FDC
+    ResourceOptions.AssignedValues = [rvCmdExecMode]
     SQL.Strings = (
-      'select * from command where command=1 or command=0')
+      'select * from command where command between 0 and 1')
     Left = 72
     Top = 292
   end
   object QUpd: TFDQuery
     Connection = FDC
+    ResourceOptions.AssignedValues = [rvCmdExecMode]
     SQL.Strings = (
       'UPDATE ZAMER.ZAMER'
       'SET    TORQ  = :TORQ,'
@@ -539,11 +542,13 @@ object Form1: TForm1
   end
   object Qtemp: TFDQuery
     Connection = FDC
+    ResourceOptions.AssignedValues = [rvCmdExecMode]
     Left = 212
     Top = 292
   end
   object QIns: TFDQuery
     Connection = FDC
+    ResourceOptions.AssignedValues = [rvCmdExecMode]
     SQL.Strings = (
       'INSERT INTO ZAMER.ZAMERTMP (TORQ, ROT, POWER) '
       'VALUES ( :TORQ , :ROT , :POWER  )')
