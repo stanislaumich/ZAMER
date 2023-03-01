@@ -16,6 +16,7 @@ float arot[1000];
 float apower[1000];
 int acount;
 int wr;
+float Corr;
 // ---------------------------------------------------------------------------
 // Array of formats for displaying the main measured value
 char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
@@ -39,6 +40,7 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Form1->Left = Ini->ReadInteger("Position", "Left", 10);
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
+	Corr = Ini->ReadFloat("Datchik", "Corr", 0);
 	Ini->Free();
 	wr = 0;
 	CBDecoderType->ItemIndex = Ind; // 5;
@@ -48,7 +50,7 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Qtemp->SQL->Clear();
 	Qtemp->SQL->Add("Delete from command where command between 0 and 1");
 	Qtemp->ExecSQL();
-	BConnectClick(Form1);
+
 }
 
 // --------------------- "Open" BUTTON
@@ -184,6 +186,16 @@ void __fastcall TForm1::BDisconnectClick(TObject *Sender) {
 void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction & Action) {
 	BDisconnectClick(this);
 	Action = caFree;
+    TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
+		"\settings45.ini");
+	//GetWindowRect(this->Handle, r);
+	//int l = r->Left;
+	//int t = r->Top;
+	Ini->WriteInteger("Position", "Left", Form1->Left);
+	Ini->WriteInteger("Position", "Top", Form1->Top);
+	//int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
+	Ini->WriteFloat("Datchik", "Corr", Corr);
+	Ini->Free();
 }
 
 // --------------------- Reading the main measured value
@@ -272,6 +284,29 @@ void __fastcall TForm1::BReadTemperatureClick(TObject *Sender) {
 	}
 }
 
+
+//-----------------------------------------------------------------------------------------------------------------------
+// Фильтры
+const int NUM_READ = 10;  // количество усреднений для средних арифм. фильтров
+// растянутое среднее арифметическое
+float midArifm2(float newVal) {
+  static byte counter = 0;     // счётчик
+  static float prevResult = 0; // хранит предыдущее готовое значение
+  static float sum = 0;  // сумма
+  sum += newVal;   // суммируем новое значение
+  counter++;       // счётчик++
+  if (counter == NUM_READ) {      // достигли кол-ва измерений
+    prevResult = sum / NUM_READ;  // считаем среднее
+    sum = 0;                      // обнуляем сумму
+    counter = 0;                  // сброс счётчика
+  }
+  return prevResult;
+}
+// -------------------------------------------------------------------------------
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------
 // --------------------- Read all measured values
 void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	int Kod, i;
@@ -293,7 +328,13 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	POutputBuffer = (union _Otvet*) OtvetServera;
 	// ................... Formation of a line for displaying the main measurement value in the panel
 	Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
-	STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
+	if (RadioButton1->Checked)
+	 STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -2));
+
+
+	if (RadioButton6->Checked)
+	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
+
 	// ASCaption.sprintf (FormatOtobrajenia, Znachenie);
 	// ................... Formation of a line for displaying temperature
 	Znachenie = POutputBuffer->Data.MD.RC.Temper;
@@ -587,7 +628,7 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
 	if (QCommand->RecordCount != 0) {
 		int a = QCommand->FieldByName("command")->AsInteger;
 		if (a == 1) {
-			//if (!Connected) {
+
 				QCommand->Close();
 				Qtemp->Close();
 				Qtemp->SQL->Clear();
@@ -599,26 +640,45 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
 				Qtemp->ExecSQL();
 				Qtemp->Close();
 				wr = 1; // lets write
-				//BConnectClick(Form1);
-			//}
+
 			Panel3->Color = clRed;
-			// TimerMain->Enabled = true;
+			Panel3->Caption = "ЗАПИСЬ";
 		}
 		else{ // a = 0
-			// TimerMain->Enabled = false;
+
 			QCommand->Close();
-			//if (Connected) {
+
 				Qtemp->Close();
 				Qtemp->SQL->Clear();
 				Qtemp->SQL->Add("Delete from command where command in(0, 1)");
 				Qtemp->ExecSQL();
 				Qtemp->Close();
 				wr = 0; // do not write
-				//BDisconnectClick(Form1);
-			//}
+
 			Panel3->Color = clBtnFace;
+			Panel3->Caption = "";
 		}
 	}
-	// QCommand->Close();
+
 }
 // ---------------------------------------------------------------------------
+void __fastcall TForm1::TimerStartTimer(TObject *Sender)
+{
+
+TimerStart->Enabled = false;
+BConnectClick(Form1);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::BitBtn2Click(TObject *Sender)
+{
+ Edit1->Text = "0";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::BitBtn1Click(TObject *Sender)
+{
+Edit1->Text = FloatToStr(StrToFloat(STOsnIzmVel->Caption)*(-1));
+}
+//---------------------------------------------------------------------------
+
