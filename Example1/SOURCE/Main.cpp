@@ -41,6 +41,31 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
 	Corr = Ini->ReadFloat("Datchik", "Corr", 0);
+	/*
+	if (RadioButton1->Checked) Ini->WriteInteger("FILTER", "Type", 1);
+	if (RadioButton2->Checked) Ini->WriteInteger("FILTER", "Type", 2);
+	if (RadioButton3->Checked) Ini->WriteInteger("FILTER", "Type", 3);
+	if (RadioButton4->Checked) Ini->WriteInteger("FILTER", "Type", 4);
+	if (RadioButton5->Checked) Ini->WriteInteger("FILTER", "Type", 5);
+	if (RadioButton6->Checked) Ini->WriteInteger("FILTER", "Type", 6);
+	*/
+	int g = Ini->ReadInteger("FILTER", "Type", 6);
+	switch(g)
+	{
+		case 1: RadioButton1->Checked = true;
+		break;
+		case 2: RadioButton2->Checked = true;
+		break;
+		case 3: RadioButton3->Checked = true;
+		break;
+		case 4: RadioButton4->Checked = true;
+		break;
+		case 5: RadioButton5->Checked = true;
+		break;
+		case 6: RadioButton6->Checked = true;
+		break;
+    }
+
 	Ini->Free();
 	wr = 0;
 	CBDecoderType->ItemIndex = Ind; // 5;
@@ -195,6 +220,13 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction & Action) {
 	Ini->WriteInteger("Position", "Top", Form1->Top);
 	//int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
 	Ini->WriteFloat("Datchik", "Corr", Corr);
+	if (RadioButton1->Checked) Ini->WriteInteger("FILTER", "Type", 1);
+	if (RadioButton2->Checked) Ini->WriteInteger("FILTER", "Type", 2);
+	if (RadioButton3->Checked) Ini->WriteInteger("FILTER", "Type", 3);
+	if (RadioButton4->Checked) Ini->WriteInteger("FILTER", "Type", 4);
+	if (RadioButton5->Checked) Ini->WriteInteger("FILTER", "Type", 5);
+	if (RadioButton6->Checked) Ini->WriteInteger("FILTER", "Type", 6);
+
 	Ini->Free();
 }
 
