@@ -11,7 +11,6 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
@@ -646,7 +645,7 @@ object Form1: TForm1
   object RadioButton1: TRadioButton
     Left = 444
     Top = 272
-    Width = 113
+    Width = 177
     Height = 17
     Caption = #1057#1088#1077#1076#1085#1077#1077' '#1072#1088#1080#1092#1084' 10'
     TabOrder = 23
@@ -654,7 +653,7 @@ object Form1: TForm1
   object RadioButton2: TRadioButton
     Left = 444
     Top = 296
-    Width = 113
+    Width = 177
     Height = 17
     Caption = #1041#1077#1075#1091#1097#1077#1077' '#1072#1088#1080#1092#1084' 10'
     TabOrder = 24
@@ -662,7 +661,7 @@ object Form1: TForm1
   object RadioButton3: TRadioButton
     Left = 444
     Top = 320
-    Width = 113
+    Width = 177
     Height = 17
     Caption = #1069#1082#1089#1087#1086#1085#1077#1085#1090' '#1073#1077#1075' 0,1'
     TabOrder = 25
@@ -670,24 +669,24 @@ object Form1: TForm1
   object RadioButton4: TRadioButton
     Left = 444
     Top = 344
-    Width = 113
+    Width = 177
     Height = 17
-    Caption = 'RadioButton4'
+    Caption = #1069#1082#1089#1087#1086#1085#1077#1085#1090' '#1072#1076#1072#1087#1090#1080#1074' ('#1088#1077#1079#1082#1080#1081')'
     TabOrder = 26
   end
   object RadioButton5: TRadioButton
     Left = 444
     Top = 368
-    Width = 113
+    Width = 177
     Height = 17
-    Caption = 'RadioButton5'
+    Caption = #1050#1072#1083#1084#1072#1085' ('#1072#1083#1100#1092#1072'-'#1073#1077#1090#1072')'
     TabOrder = 27
   end
   object RadioButton6: TRadioButton
     Left = 444
     Top = 391
-    Width = 113
-    Height = 17
+    Width = 177
+    Height = 18
     Caption = #1041#1077#1079' '#1092#1080#1083#1100#1090#1088#1072
     Checked = True
     TabOrder = 28

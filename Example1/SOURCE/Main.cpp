@@ -34,9 +34,9 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	TRect *r = new TRect;
 	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
 		"\settings45.ini");
-	GetWindowRect(this->Handle, r);
-	int l = r->Left;
-	int t = r->Top;
+	//GetWindowRect(this->Handle, r);
+	//int l = r->Left;
+	//int t = r->Top;
 	Form1->Left = Ini->ReadInteger("Position", "Left", 10);
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
@@ -349,6 +349,40 @@ float expRunningAverage(float newVal) {
   filVal += (newVal - filVal) * k;
   return filVal;
 }
+// ------------------------------------------------------------------------------
+float expRunningAverageAdaptive(float newVal) {
+  static float filVal = 0;
+  float k;
+  // резкость фильтра зависит от модуля разности значений
+  if (abs(newVal - filVal) > 1.5) k = 0.9;
+  else k = 0.03;
+
+  filVal += (newVal - filVal) * k;
+  return filVal;
+}
+// ------------------------------------------------------------------------------
+float dt = 0.02;
+float sigma_process = 3.0;
+float sigma_noise = 0.7;
+float ABfilter(float newVal) {
+  static float xk_1, vk_1, a, b;
+  static float xk, vk, rk;
+  static float xm;
+  float lambda = (float)sigma_process * dt * dt / sigma_noise;
+  float r = (4 + lambda - (float)sqrt(8 * lambda + lambda * lambda)) / 4;
+  a = (float)1 - r * r;
+  b = (float)2 * (2 - a) - 4 * (float)sqrt(1 - a);
+  xm = newVal;
+  xk = xk_1 + ((float) vk_1 * dt );
+  vk = vk_1;
+  rk = xm - xk;
+  xk += (float)a * rk;
+  vk += (float)( b * rk ) / dt;
+  xk_1 = xk;
+  vk_1 = vk;
+  return xk_1;
+}
+
 
 //-----------------------------------------------------------------------------------------------------------------------
 // --------------------- Read all measured values
@@ -379,9 +413,9 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	 if (RadioButton3->Checked)
 	 STOsnIzmVel->Caption = FloatToStr(RoundTo(expRunningAverage(Znachenie), -2));
 	 if (RadioButton4->Checked)
-	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
+	 STOsnIzmVel->Caption = FloatToStr(RoundTo(expRunningAverageAdaptive(Znachenie), -2));
      if (RadioButton5->Checked)
-	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
+	 STOsnIzmVel->Caption = FloatToStr(RoundTo(ABfilter(Znachenie), -2));
 	 if (RadioButton6->Checked)
 	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
 
