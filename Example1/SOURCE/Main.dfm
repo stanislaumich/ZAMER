@@ -644,16 +644,14 @@ object Form1: TForm1
     Width = 113
     Height = 17
     Caption = #1057#1088#1077#1076#1085#1077#1077' '#1072#1088#1080#1092#1084' 10'
-    Checked = True
     TabOrder = 23
-    TabStop = True
   end
   object RadioButton2: TRadioButton
     Left = 444
     Top = 296
     Width = 113
     Height = 17
-    Caption = 'RadioButton2'
+    Caption = #1041#1077#1075#1091#1097#1077#1077' '#1072#1088#1080#1092#1084' 10'
     TabOrder = 24
   end
   object RadioButton3: TRadioButton
@@ -661,7 +659,7 @@ object Form1: TForm1
     Top = 320
     Width = 113
     Height = 17
-    Caption = 'RadioButton3'
+    Caption = #1069#1082#1089#1087#1086#1085#1077#1085#1090' '#1073#1077#1075' 0,1'
     TabOrder = 25
   end
   object RadioButton4: TRadioButton
@@ -686,7 +684,9 @@ object Form1: TForm1
     Width = 113
     Height = 17
     Caption = #1041#1077#1079' '#1092#1080#1083#1100#1090#1088#1072
+    Checked = True
     TabOrder = 28
+    TabStop = True
   end
   object TimerMain: TTimer
     Interval = 50

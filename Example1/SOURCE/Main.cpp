@@ -288,6 +288,9 @@ void __fastcall TForm1::BReadTemperatureClick(TObject *Sender) {
 //-----------------------------------------------------------------------------------------------------------------------
 // Фильтры
 const int NUM_READ = 10;  // количество усреднений для средних арифм. фильтров
+
+
+
 // растянутое среднее арифметическое
 float midArifm2(float newVal) {
   static byte counter = 0;     // счётчик
@@ -303,8 +306,24 @@ float midArifm2(float newVal) {
   return prevResult;
 }
 // -------------------------------------------------------------------------------
-
-
+ float runMiddleArifmOptim(float newVal) {
+  static int t = 0;
+  static float vals[NUM_READ];
+  static float average = 0;
+  if (++t >= NUM_READ) t = 0; // перемотка t
+  average -= vals[t];         // вычитаем старое
+  average += newVal;          // прибавляем новое
+  vals[t] = newVal;           // запоминаем в массив
+  return ((float)average / NUM_READ);
+}
+ //-------------------------------------------------------------------------------
+ float k = 0.1;  // коэффициент фильтрации, 0.0-1.0
+// бегущее среднее
+float expRunningAverage(float newVal) {
+  static float filVal = 0;
+  filVal += (newVal - filVal) * k;
+  return filVal;
+}
 
 //-----------------------------------------------------------------------------------------------------------------------
 // --------------------- Read all measured values
@@ -330,9 +349,15 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
 	if (RadioButton1->Checked)
 	 STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -2));
-
-
-	if (RadioButton6->Checked)
+	if (RadioButton2->Checked)
+	 STOsnIzmVel->Caption = FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -2));
+	 if (RadioButton3->Checked)
+	 STOsnIzmVel->Caption = FloatToStr(RoundTo(expRunningAverage(Znachenie), -2));
+	 if (RadioButton4->Checked)
+	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
+     if (RadioButton5->Checked)
+	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
+	 if (RadioButton6->Checked)
 	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
 
 	// ASCaption.sprintf (FormatOtobrajenia, Znachenie);
