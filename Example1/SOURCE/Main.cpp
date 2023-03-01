@@ -41,14 +41,7 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
 	Corr = Ini->ReadFloat("Datchik", "Corr", 0);
-	/*
-	if (RadioButton1->Checked) Ini->WriteInteger("FILTER", "Type", 1);
-	if (RadioButton2->Checked) Ini->WriteInteger("FILTER", "Type", 2);
-	if (RadioButton3->Checked) Ini->WriteInteger("FILTER", "Type", 3);
-	if (RadioButton4->Checked) Ini->WriteInteger("FILTER", "Type", 4);
-	if (RadioButton5->Checked) Ini->WriteInteger("FILTER", "Type", 5);
-	if (RadioButton6->Checked) Ini->WriteInteger("FILTER", "Type", 6);
-	*/
+
 	int g = Ini->ReadInteger("FILTER", "Type", 6);
 	switch(g)
 	{
@@ -392,6 +385,8 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	 if (RadioButton6->Checked)
 	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
 
+     if (STOsnIzmVel->Caption =="NAN") STOsnIzmVel->Caption = "0";
+
 	// ASCaption.sprintf (FormatOtobrajenia, Znachenie);
 	// ................... Formation of a line for displaying temperature
 	Znachenie = POutputBuffer->Data.MD.RC.Temper;
@@ -402,6 +397,7 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 		STTemper->Caption = FloatToStr(RoundTo(Znachenie, -2));
 		// ASCaption.sprintf ("% 4.1f", Znachenie);
 	}
+	if (STTemper->Caption == "NAN") STTemper->Caption = "0";
 	// ................... Formation of a line for displaying speed on the panel
 	Znachenie = POutputBuffer->Data.MD.RC.Skorost;
 	if (Znachenie < 1000) {
@@ -412,9 +408,11 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 		STSkorost->Caption = FloatToStr(RoundTo(Znachenie, -2));
 		// ASCaption.sprintf ("% 4.0f", Znachenie);
 	}
+	if (STSkorost->Caption == "NAN") STSkorost->Caption = "0";
 	// ................... Formation of a line to display power on the panel
 	Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
 	STMoschnost->Caption = FloatToStr(RoundTo(Znachenie, -2));
+	if (STMoschnost->Caption =="NAN") STMoschnost->Caption = "0";
 	// ASCaption.sprintf (FormatOtobrajenia, Znachenie);
 	// Memo2->Lines->Add(STOsnIzmVel->Caption + ";" + STSkorost->Caption + ";" +
 	// STMoschnost->Caption + ";");
