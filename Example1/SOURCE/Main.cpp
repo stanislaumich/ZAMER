@@ -391,7 +391,7 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	// ................... Formation of a line for displaying temperature
 	Znachenie = POutputBuffer->Data.MD.RC.Temper;
 	if (Znachenie < -40) {
-		STTemper->Caption = "";
+		STTemper->Caption = "0";
 	}
 	else {
 		STTemper->Caption = FloatToStr(RoundTo(Znachenie, -2));

@@ -182,6 +182,7 @@ object Form1: TForm1
         AutoSize = False
         BevelKind = bkSoft
         BorderStyle = sbsSingle
+        Caption = '0'
         Color = clNavy
         Font.Charset = RUSSIAN_CHARSET
         Font.Color = clLime
@@ -204,6 +205,7 @@ object Form1: TForm1
         AutoSize = False
         BevelKind = bkSoft
         BorderStyle = sbsSingle
+        Caption = '0'
         Color = clNavy
         Font.Charset = RUSSIAN_CHARSET
         Font.Color = clLime
@@ -226,6 +228,7 @@ object Form1: TForm1
         AutoSize = False
         BevelKind = bkSoft
         BorderStyle = sbsSingle
+        Caption = '0'
         Color = clNavy
         Font.Charset = RUSSIAN_CHARSET
         Font.Color = clLime
@@ -248,6 +251,7 @@ object Form1: TForm1
         AutoSize = False
         BevelKind = bkSoft
         BorderStyle = sbsSingle
+        Caption = '0'
         Color = clNavy
         Font.Charset = RUSSIAN_CHARSET
         Font.Color = clLime
@@ -497,6 +501,7 @@ object Form1: TForm1
     Height = 33
     Caption = 'BReadComplex'
     TabOrder = 7
+    Visible = False
     OnClick = BReadComplexClick
   end
   object UpDown1: TUpDown
