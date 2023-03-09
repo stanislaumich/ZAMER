@@ -274,7 +274,7 @@ object Form1: TForm1
         Top = 4
         Width = 66
         Height = 25
-        Caption = #1047#1040#1055#1048#1057#1068
+        Caption = #1055#1056#1054#1057#1058#1054#1049
         ParentBackground = False
         TabOrder = 5
       end
@@ -696,6 +696,7 @@ object Form1: TForm1
     Top = 204
   end
   object TimerCommand: TTimer
+    Enabled = False
     Interval = 500
     OnTimer = TimerCommandTimer
     Left = 168

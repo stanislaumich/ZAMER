@@ -28,23 +28,20 @@ void __fastcall TForm1::MyStart(TMessage &Message) {
 	Qtemp->ExecSQL();
 	Qtemp->Close();
 	wr = 1; // lets write
-
 	Panel3->Color = clRed;
 	Panel3->Caption = "ÇÀÏÈÑÜ";
 }
 
 void __fastcall TForm1::MyStop(TMessage &Message) {
 	QCommand->Close();
-
 	Qtemp->Close();
 	Qtemp->SQL->Clear();
 	Qtemp->SQL->Add("Delete from command where command in(0, 1)");
 	Qtemp->ExecSQL();
 	Qtemp->Close();
 	wr = 0; // do not write
-
 	Panel3->Color = clBtnFace;
-	Panel3->Caption = "";
+	Panel3->Caption = "ÏÐÎÑÒÎÉ";
 }
 
 __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
@@ -765,7 +762,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
-
+/*
 	QCommand->Open("select * from command where command between 0 and 1");
 	if (QCommand->RecordCount != 0) {
 		int a = QCommand->FieldByName("command")->AsInteger;
@@ -801,7 +798,7 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
 			Panel3->Caption = "";
 		}
 	}
-
+ */
 }
 
 // ---------------------------------------------------------------------------
