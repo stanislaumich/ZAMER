@@ -24,7 +24,7 @@
         <Projects Include="ZamerV2\ZamerV2.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Example1\SOURCE\Example1.cbproj">
+        <Projects Include="Example1\SOURCE\SborT45.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -98,23 +98,23 @@
     <Target Name="ZamerV2:Make">
         <MSBuild Projects="ZamerV2\ZamerV2.dproj" Targets="Make"/>
     </Target>
-    <Target Name="Example1">
-        <MSBuild Projects="Example1\SOURCE\Example1.cbproj"/>
+    <Target Name="SborT45">
+        <MSBuild Projects="Example1\SOURCE\SborT45.cbproj"/>
     </Target>
-    <Target Name="Example1:Clean">
-        <MSBuild Projects="Example1\SOURCE\Example1.cbproj" Targets="Clean"/>
+    <Target Name="SborT45:Clean">
+        <MSBuild Projects="Example1\SOURCE\SborT45.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="Example1:Make">
-        <MSBuild Projects="Example1\SOURCE\Example1.cbproj" Targets="Make"/>
+    <Target Name="SborT45:Make">
+        <MSBuild Projects="Example1\SOURCE\SborT45.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Zamer;T45;TABLES;UPDATER;SborELSPEC;RegU;ZamerV2;Example1"/>
+        <CallTarget Targets="Zamer;T45;TABLES;UPDATER;SborELSPEC;RegU;ZamerV2;SborT45"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Zamer:Clean;T45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean;RegU:Clean;ZamerV2:Clean;Example1:Clean"/>
+        <CallTarget Targets="Zamer:Clean;T45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean;RegU:Clean;ZamerV2:Clean;SborT45:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Zamer:Make;T45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make;RegU:Make;ZamerV2:Make;Example1:Make"/>
+        <CallTarget Targets="Zamer:Make;T45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make;RegU:Make;ZamerV2:Make;SborT45:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

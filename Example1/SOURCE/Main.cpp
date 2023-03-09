@@ -30,26 +30,26 @@ void __fastcall TForm1::MyData(TMessage &Message) {
 	char *request = new char[pCds->cbData];
 	strncpy(request, (char*)pCds->lpData, pCds->cbData);
 	ShowMessage(request);
-	if (request[0]=='1'){
-	 Qtemp->SQL->Clear();
-	 Qtemp->SQL->Add("Truncate table zamertmp");
-	 Qtemp->ExecSQL();
-	 Qtemp->Close();
-	 wr = 1; // lets write
-	 Panel3->Color = clRed;
-	 Panel3->Caption = "ÇÀÏÈÑÜ";
+	if (request[0] == '1') {
+		Qtemp->SQL->Clear();
+		Qtemp->SQL->Add("Truncate table zamertmp");
+		Qtemp->ExecSQL();
+		Qtemp->Close();
+		wr = 1; // lets write
+		Panel3->Color = clRed;
+		Panel3->Caption = "ÇÀÏÈÑÜ";
 	}
-	else{
-     QCommand->Close();
-	Qtemp->Close();
-	Qtemp->SQL->Clear();
-	Qtemp->SQL->Add("Delete from command where command in(0, 1)");
-	Qtemp->ExecSQL();
-	Qtemp->Close();
-	wr = 0; // do not write
-	Panel3->Color = clBtnFace;
-	Panel3->Caption = "ÏÐÎÑÒÎÉ";
-    }
+	else {
+		QCommand->Close();
+		Qtemp->Close();
+		Qtemp->SQL->Clear();
+		Qtemp->SQL->Add("Delete from command where command in(0, 1)");
+		Qtemp->ExecSQL();
+		Qtemp->Close();
+		wr = 0; // do not write
+		Panel3->Color = clBtnFace;
+		Panel3->Caption = "ÏÐÎÑÒÎÉ";
+	}
 }
 
 void __fastcall TForm1::MyStart(TMessage &Message) {
@@ -86,9 +86,6 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	TRect *r = new TRect;
 	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
 		"\settings45.ini");
-	// GetWindowRect(this->Handle, r);
-	// int l = r->Left;
-	// int t = r->Top;
 	Form1->Left = Ini->ReadInteger("Position", "Left", 10);
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
