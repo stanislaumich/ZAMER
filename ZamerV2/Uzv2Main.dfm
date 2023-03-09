@@ -1470,6 +1470,24 @@ object FZamerV2: TFZamerV2
         TabOrder = 21
         OnClick = BitBtn2Click
       end
+      object Button1: TButton
+        Left = 228
+        Top = 439
+        Width = 21
+        Height = 18
+        Caption = 'Button1'
+        TabOrder = 22
+        OnClick = Button1Click
+      end
+      object Button2: TButton
+        Left = 255
+        Top = 439
+        Width = 21
+        Height = 19
+        Caption = 'Button2'
+        TabOrder = 23
+        OnClick = Button2Click
+      end
     end
   end
   object Timer1000: TTimer

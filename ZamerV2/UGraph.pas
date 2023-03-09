@@ -87,10 +87,9 @@ begin
   Label4.Caption := '0';
   Label5.Caption := '0';
   QTemp.Close;
-  //QTemp.Open
-  //  ('select to_number(torq) torq, to_number(rot) rot from zamertmp order by ID');
-  QTemp.Open
-    ('select m torq, n rot from zumsvod order by ID');
+  // QTemp.Open
+  // ('select to_number(torq) torq, to_number(rot) rot from zamertmp order by ID');
+  QTemp.Open('select m torq, n rot from zumsvod order by ID');
   tmax := round(QTemp.fieldbyname('torq').asfloat);
   tmin := round(QTemp.fieldbyname('torq').asfloat);
   While not QTemp.Eof do

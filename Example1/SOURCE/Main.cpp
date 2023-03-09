@@ -16,12 +16,21 @@ float arot[1000];
 float apower[1000];
 int acount;
 int wr;
-float Corr;
+float corr;
 // ---------------------------------------------------------------------------
 // Array of formats for displaying the main measured value
 char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
 
 // ---------------------------------------------------------------------------
+void __fastcall TForm1::MyStart (TMessage &Message)
+{
+//Application->MessageBox("Right button clicked","Test",MB_OK);
+}
+
+	void __fastcall TForm1::MyStop (TMessage &Message)
+	{
+      //Application->MessageBox("Right button clicked","Test",MB_OK);
+    }
 __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	EstIzm = false;
 	PDecoder = NULL;
@@ -40,7 +49,7 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Form1->Left = Ini->ReadInteger("Position", "Left", 10);
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
-	Corr = Ini->ReadFloat("Datchik", "Corr", 0);
+	corr = Ini->ReadFloat("Datchik", "Corr", 0);
 
 	int g = Ini->ReadInteger("FILTER", "Type", 6);
 	switch(g)
@@ -212,7 +221,7 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction & Action) {
 	Ini->WriteInteger("Position", "Left", Form1->Left);
 	Ini->WriteInteger("Position", "Top", Form1->Top);
 	//int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
-	Ini->WriteFloat("Datchik", "Corr", Corr);
+	Ini->WriteFloat("Datchik", "Corr", corr);
 	if (RadioButton1->Checked) Ini->WriteInteger("FILTER", "Type", 1);
 	if (RadioButton2->Checked) Ini->WriteInteger("FILTER", "Type", 2);
 	if (RadioButton3->Checked) Ini->WriteInteger("FILTER", "Type", 3);
@@ -406,6 +415,7 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	POutputBuffer = (union _Otvet*) OtvetServera;
 	// ................... Formation of a line for displaying the main measurement value in the panel
 	Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
+	Znachenie = Znachenie + corr;
 	if (RadioButton1->Checked)
 	 STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -2));
 	if (RadioButton2->Checked)
@@ -762,12 +772,30 @@ BConnectClick(Form1);
 void __fastcall TForm1::BitBtn2Click(TObject *Sender)
 {
  Edit1->Text = "0";
+ corr = 0;
+ TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings45.ini");
+  Ini->WriteString("Datchik", "Corr", Edit1->Text);
+  Ini->Free();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::BitBtn1Click(TObject *Sender)
 {
 Edit1->Text = FloatToStr(StrToFloat(STOsnIzmVel->Caption)*(-1));
+corr = StrToFloat(Edit1->Text);
+TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings45.ini");
+  Ini->WriteString("Datchik", "Corr", Edit1->Text);
+  Ini->Free();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit1Exit(TObject *Sender)
+{
+corr = StrToFloat(Edit1->Text);
+TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings45.ini");
+  Ini->WriteString("Datchik", "Corr", Edit1->Text);
+  Ini->Free();
+
 }
 //---------------------------------------------------------------------------
 

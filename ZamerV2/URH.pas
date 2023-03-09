@@ -443,6 +443,10 @@ begin
 end;
 
 procedure TFRH.command(b: Boolean);
+begin
+  FZamerv2.SendCommand(FZamerv2,b);
+end;
+{
 var
   interval: integer;
   fname: string;
@@ -481,7 +485,7 @@ begin
     QTemp.ExecSQL;
   end;
 end;
-
+ }
 procedure TFRH.Edit3Change(Sender: TObject);
 begin
   Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *

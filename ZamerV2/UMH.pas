@@ -548,11 +548,11 @@ begin
       QInsall.ExecSQL;
       if ResA[i].m < maxn then
       begin
-        if ResA[i].u>20 then
-         begin
+        if ResA[i].u > 20 then
+        begin
           maxni := i;
           maxn := ResA[i].m;
-         end;
+        end;
       end;
     end;
 
@@ -587,7 +587,10 @@ begin
 end;
 
 procedure TFMH.command(b: Boolean);
-var
+begin
+  FZamerv2.SendCommand(FZamerv2,b);
+end;
+{var
   interval: integer;
   fname: string;
 begin
@@ -625,7 +628,7 @@ begin
     QTemp.ExecSQL;
   end;
 
-end;
+end;}
 
 procedure TFMH.downstartExecute(Sender: TObject);
 begin
@@ -858,7 +861,7 @@ end;
 
 procedure TFMH.Button1Click(Sender: TObject);
 begin
- Fgraph.ShowModal;
+  FGraph.ShowModal;
 end;
 
 procedure TFMH.Button27Click(Sender: TObject);

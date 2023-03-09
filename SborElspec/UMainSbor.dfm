@@ -412,7 +412,6 @@ object Form1: TForm1
     Height = 117
     Anchors = [akLeft, akRight, akBottom]
     TabOrder = 1
-    ExplicitTop = 164
     DesignSize = (
       158
       117)
@@ -733,6 +732,7 @@ object Form1: TForm1
     Top = 124
   end
   object TComm: TTimer
+    Enabled = False
     OnTimer = TCommTimer
     Left = 76
     Top = 4

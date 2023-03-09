@@ -113,6 +113,10 @@ uses Uzv2Main, UAuto;
 
 procedure TFormHH.command(b: Boolean);
 begin
+  FZamerv2.SendCommand(FZamerv2,b);
+end;
+{
+begin
   if b then
   begin
     QTemp.Close;
@@ -130,7 +134,7 @@ begin
     QTemp.ExecSQL;
   end;
 end;
-
+}
 procedure TFormHH.loadgrids;
 var
   i, j, k: integer;

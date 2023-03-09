@@ -119,7 +119,6 @@ object Form1: TForm1
       Height = 148
       Align = alTop
       TabOrder = 0
-      ExplicitWidth = 436
       object Label3: TLabel
         Left = 8
         Top = 10
@@ -292,6 +291,7 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 6
         Text = '0'
+        OnExit = Edit1Exit
       end
       object BitBtn1: TBitBtn
         Left = 139
@@ -359,7 +359,7 @@ object Form1: TForm1
         OnClick = BitBtn1Click
       end
       object BitBtn2: TBitBtn
-        Left = 180
+        Left = 183
         Top = 35
         Width = 37
         Height = 36
@@ -432,9 +432,6 @@ object Form1: TForm1
       Align = alClient
       ScrollBars = ssBoth
       TabOrder = 1
-      ExplicitTop = 119
-      ExplicitWidth = 447
-      ExplicitHeight = 357
     end
   end
   object EServerAddress: TEdit

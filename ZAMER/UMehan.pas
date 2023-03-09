@@ -99,7 +99,7 @@ implementation
 
 {$R *.dfm}
 
-uses umain, UGraph;
+uses umain, UGraph, uzv2main;
 
 var
 
@@ -124,6 +124,10 @@ begin
 end;
 
 procedure TFMehan.CommandStart(c: Integer; n: string; fn: string);
+begin
+  FZamerv2.SendCommand(FZamerv2,b);
+end;
+{
 var
   s      : string;
   dectype: string;
@@ -131,7 +135,7 @@ begin
   QCommand.SQL.Clear;
   QCommand.SQL.Add
     ('insert into command (nomer, filename, command, dat, interval) values (');
-  {
+  /*
     #define SIMULATOR_DECODER             4
     #define USB_DECODER_T35               6
     #define USB_DECODER_T45               10
@@ -139,14 +143,14 @@ begin
   { if (FMAin.RadioButton1.Checked) then
     dectype := '10';
     if (FMAin.RadioButton2.Checked) then
-    dectype := '4'; }
+    dectype := '4'; */
   dectype := '10';
   QCommand.SQL.Add(Quotedstr(n) + ',' + Quotedstr(fn) + ',' + inttostr(c) + ','
     + dectype + ', ' + FMAin.Edit12.Text + ')');
   QCommand.ExecSQL;
   QCommand.Close;
 end;
-
+}
 procedure TFMehan.downstartExecute(Sender: TObject);
 begin
   Button37.Click;

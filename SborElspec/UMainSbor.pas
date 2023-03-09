@@ -15,6 +15,10 @@ uses
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client;
 
+CONST
+ WM_MESSAGE_START = WM_USER+1;
+ WM_MESSAGE_STOP = WM_USER+2;
+
 type
   TForm1 = class(TForm)
     GroupBox1: TGroupBox;
@@ -103,6 +107,8 @@ type
     procedure CheckBox3Click(Sender: TObject);
   private
     { Private declarations }
+    procedure GetSTART(var MessageData: TWMCopyData); message WM_MESSAGE_START;
+    procedure GetSTOP(var MessageData: TWMCopyData); message WM_MESSAGE_STOP;
   public
     { Public declarations }
     procedure saveini;
@@ -118,6 +124,7 @@ Const
   RazI = -2;
   RazP = -1;
 
+
 var
   prevstat         : Boolean;
   FBigLeft, FBigTop: Integer;
@@ -127,6 +134,27 @@ implementation
 {$R *.dfm}
 
 uses UBig;
+
+procedure TForm1.GetSTART(var MessageData: TWMCopyData);
+var
+ s:string;
+ begin
+    QT.Close;
+    QT.SQL.Clear;
+    QT.SQL.Add('truncate table zelspec');
+    QT.ExecSQL();
+    CheckBox2.Checked:=true;
+    MessageData.Result := 1;
+ end;
+
+procedure TForm1.GetSTOP(var MessageData: TWMCopyData);
+var
+ s:string;
+ begin
+     CheckBox2.Checked:=false;
+      MessageData.Result := 1;
+ end;
+
 
 procedure TForm1.saveini;
 var
@@ -229,6 +257,7 @@ end;
 
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
+  CheckBox2.Checked:=false;
   TUpdateForm.Enabled := false;
 end;
 
@@ -304,7 +333,7 @@ end;
 
 procedure TForm1.TCommTimer(Sender: TObject);
 begin
-  QComm.SQL.Clear;
+  {QComm.SQL.Clear;
   QComm.Open('select * from command where command =''10'' or command=''11''');
   if QComm.FieldByName('command').Asstring = '11' then // start
   begin
@@ -326,7 +355,7 @@ begin
     QT.SQL.Add('delete from command where command =''10'' or command=''11''');
     QT.ExecSQL;
   end;
-  QComm.Close;
+  QComm.Close;}
 end;
 
 procedure TForm1.TUpdateFormTimer(Sender: TObject);

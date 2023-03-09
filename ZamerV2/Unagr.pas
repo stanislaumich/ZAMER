@@ -236,6 +236,10 @@ begin
 end;
 
 procedure TFNagr.command(b: Boolean);
+begin
+  FZamerv2.SendCommand(FZamerv2,b);
+end;
+{
 var
   interval: integer;
   fname: string;
@@ -274,7 +278,7 @@ begin
     QTemp.ExecSQL;
   end;
 end;
-
+}
 procedure TFNagr.Edit3Change(Sender: TObject);
 begin
   Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *

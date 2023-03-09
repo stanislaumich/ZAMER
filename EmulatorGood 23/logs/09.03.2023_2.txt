@@ -1,0 +1,435 @@
+09.03.2023 09:56:21.934 - Запуск Modbus TCP/RTU Эмулятор
+09.03.2023 09:56:22.216 - TModbusTCPServer.Create
+09.03.2023 09:56:22.624 - TModbusTCPServer.Start
+09.03.2023 09:56:22.624 - TTCPAccept.Create IN, Port = 502
+09.03.2023 09:56:22.633 - TTCPAccept.Create OUT
+09.03.2023 09:56:22.633 - TTCPAccept.Execute IN
+09.03.2023 09:56:22.633 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:22.633 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:22.750 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:22.750 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:22.750 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:22.750 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:22.860 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:22.860 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:22.860 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:22.860 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:22.970 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:22.970 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:22.970 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:22.970 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.80 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.80 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.80 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.80 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.190 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.190 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.190 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.190 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.300 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.300 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.300 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.300 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.409 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.409 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.409 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.409 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.519 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.519 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.519 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.519 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.629 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.629 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.629 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.629 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.740 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.740 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.740 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.740 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.849 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.849 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.849 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.849 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.959 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.959 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:23.959 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:23.959 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.69 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.69 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.69 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.69 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.179 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.179 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.179 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.179 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.288 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.288 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.288 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.288 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.398 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.398 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.398 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.398 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.508 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.508 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.508 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.508 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.618 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.618 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.618 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.618 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.727 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.727 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.727 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.727 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.837 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.838 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.838 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.838 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.947 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.947 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:24.947 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:24.947 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.57 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.57 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.57 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.57 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.167 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.167 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.167 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.167 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.277 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.277 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.277 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.277 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.386 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.386 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.386 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.386 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.495 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.495 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.495 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.495 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.605 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.605 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.605 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.605 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.715 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.715 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.715 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.715 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.825 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.825 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.825 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.825 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.934 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.934 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:25.934 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:25.934 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.44 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.44 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.44 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.44 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.154 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.154 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.154 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.154 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.264 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.264 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.264 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.264 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.374 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.374 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.374 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.374 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.483 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.483 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.483 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.483 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.593 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.593 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.593 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.593 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.703 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.703 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.703 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.703 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.813 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.813 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.813 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.813 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.923 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.923 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:26.923 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:26.923 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.33 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.33 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.33 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.33 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.143 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.143 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.143 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.143 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.253 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.253 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.253 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.253 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.363 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.363 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.363 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.363 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.473 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.473 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.473 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.473 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.583 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.583 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.583 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.583 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.693 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.693 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.693 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.693 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.803 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.803 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.803 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.803 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.912 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.912 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:27.912 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:27.912 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.22 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.22 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.22 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.22 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.132 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.132 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.132 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.132 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.242 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.242 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.242 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.242 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.352 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.352 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.352 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.352 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.462 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.462 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.462 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.462 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.572 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.572 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.572 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.572 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.681 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.681 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.681 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.681 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.791 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.791 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.791 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.791 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.901 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.901 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:28.901 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:28.901 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.11 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.11 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.11 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.11 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.120 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.120 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.120 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.120 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.230 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.230 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.230 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.230 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.340 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.340 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.340 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.340 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.450 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.450 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.450 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.450 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.560 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.560 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.560 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.560 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.670 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.670 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.670 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.670 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.780 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.780 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.780 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.780 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.889 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.889 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.889 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.889 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.999 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.999 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:29.999 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:29.999 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.109 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.109 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.109 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.109 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.219 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.219 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.219 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.219 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.329 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.329 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.329 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.329 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.439 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.439 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.439 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.439 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.549 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.549 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.549 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.549 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.659 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.659 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.659 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.659 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.769 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.769 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.769 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.769 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.879 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.879 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.879 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.879 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.989 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.989 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:30.989 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:30.989 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.99 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.99 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.99 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.99 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.224 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.224 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.224 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.224 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.350 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.350 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.350 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.350 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.460 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.460 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.460 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.460 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.570 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.570 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.570 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.570 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.679 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.679 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.679 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.679 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.789 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.789 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.789 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.789 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.899 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.899 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:31.899 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:31.899 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.9 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.9 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.9 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.9 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.118 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.118 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.118 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.118 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.228 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.228 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.228 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.228 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.338 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.338 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.338 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.447 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.447 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.447 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.447 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.558 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.558 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.558 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.558 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.667 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.667 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.667 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.667 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.777 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.777 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.777 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.777 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.887 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.887 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.887 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.887 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.997 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.997 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:32.997 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:32.997 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.107 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.107 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.107 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.107 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.216 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.216 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.216 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.326 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.326 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.326 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.326 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.436 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.436 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.436 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.546 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.546 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.546 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.546 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.656 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.656 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.656 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.766 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.766 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.766 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.766 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.876 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.876 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.876 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.876 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.986 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.986 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:33.986 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:33.986 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:34.96 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:34.96 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:34.96 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:34.96 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:34.206 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:34.206 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:34.206 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:34.316 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:34.316 - TTCPAccept.InitSocket IN
+09.03.2023 09:56:34.316 - TTCPAccept.InitSocket - Failed to bind socket!
+09.03.2023 09:56:34.394 - TModbusTCPServer.Stop
+09.03.2023 09:56:34.394 - TTCPAccept.StopThread IN
+09.03.2023 09:56:34.425 - TTCPAccept.Execute OUT
+09.03.2023 09:56:34.425 - TTCPAccept.StopThread OUT
+09.03.2023 09:56:34.425 - TTCPAccept.Destroy IN
+09.03.2023 09:56:34.425 - TTCPAccept.Destroy OUT
+09.03.2023 09:56:36.449 - TModbusTCPServer.Stop
+09.03.2023 09:56:36.449 - TModbusTCPServer.Destroy
+09.03.2023 09:56:36.449 - Останов Modbus TCP/RTU Эмулятор

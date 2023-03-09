@@ -89,6 +89,10 @@ Uses uzv2Main, UAuto;
 
 procedure TFKZ.command(b: Boolean);
 begin
+  FZamerv2.SendCommand(FZamerv2,b);
+end;
+{
+begin
   interval := 50;
   fname := '1600';
   if b then
@@ -123,7 +127,7 @@ begin
     QTemp.ExecSQL;
   end;
 end;
-
+}
 procedure TFKZ.Edit2Change(Sender: TObject);
 begin
   enableclose := false;
