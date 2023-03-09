@@ -22,6 +22,36 @@ float corr;
 char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
 
 // ---------------------------------------------------------------------------
+
+void __fastcall TForm1::MyData(TMessage &Message) {
+	COPYDATASTRUCT* pCds;
+	String s;
+	pCds = (COPYDATASTRUCT*)Message.LParam;
+	char *request = new char[pCds->cbData];
+	strncpy(request, (char*)pCds->lpData, pCds->cbData);
+	ShowMessage(request);
+	if (request[0]=='1'){
+	 Qtemp->SQL->Clear();
+	 Qtemp->SQL->Add("Truncate table zamertmp");
+	 Qtemp->ExecSQL();
+	 Qtemp->Close();
+	 wr = 1; // lets write
+	 Panel3->Color = clRed;
+	 Panel3->Caption = "ÇÀÏÈÑÜ";
+	}
+	else{
+     QCommand->Close();
+	Qtemp->Close();
+	Qtemp->SQL->Clear();
+	Qtemp->SQL->Add("Delete from command where command in(0, 1)");
+	Qtemp->ExecSQL();
+	Qtemp->Close();
+	wr = 0; // do not write
+	Panel3->Color = clBtnFace;
+	Panel3->Caption = "ÏÐÎÑÒÎÉ";
+    }
+}
+
 void __fastcall TForm1::MyStart(TMessage &Message) {
 	Qtemp->SQL->Clear();
 	Qtemp->SQL->Add("Truncate table zamertmp");
@@ -762,43 +792,43 @@ void __fastcall TForm1::Button1Click(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
-/*
-	QCommand->Open("select * from command where command between 0 and 1");
-	if (QCommand->RecordCount != 0) {
-		int a = QCommand->FieldByName("command")->AsInteger;
-		if (a == 1) {
+	/*
+	 QCommand->Open("select * from command where command between 0 and 1");
+	 if (QCommand->RecordCount != 0) {
+	 int a = QCommand->FieldByName("command")->AsInteger;
+	 if (a == 1) {
 
-			QCommand->Close();
-			Qtemp->Close();
-			Qtemp->SQL->Clear();
-			Qtemp->SQL->Add("Delete from command where command in(0, 1)");
-			Qtemp->ExecSQL();
-			Qtemp->Close();
-			Qtemp->SQL->Clear();
-			Qtemp->SQL->Add("Truncate table zamertmp");
-			Qtemp->ExecSQL();
-			Qtemp->Close();
-			wr = 1; // lets write
+	 QCommand->Close();
+	 Qtemp->Close();
+	 Qtemp->SQL->Clear();
+	 Qtemp->SQL->Add("Delete from command where command in(0, 1)");
+	 Qtemp->ExecSQL();
+	 Qtemp->Close();
+	 Qtemp->SQL->Clear();
+	 Qtemp->SQL->Add("Truncate table zamertmp");
+	 Qtemp->ExecSQL();
+	 Qtemp->Close();
+	 wr = 1; // lets write
 
-			Panel3->Color = clRed;
-			Panel3->Caption = "ÇÀÏÈÑÜ";
-		}
-		else { // a = 0
+	 Panel3->Color = clRed;
+	 Panel3->Caption = "ÇÀÏÈÑÜ";
+	 }
+	 else { // a = 0
 
-			QCommand->Close();
+	 QCommand->Close();
 
-			Qtemp->Close();
-			Qtemp->SQL->Clear();
-			Qtemp->SQL->Add("Delete from command where command in(0, 1)");
-			Qtemp->ExecSQL();
-			Qtemp->Close();
-			wr = 0; // do not write
+	 Qtemp->Close();
+	 Qtemp->SQL->Clear();
+	 Qtemp->SQL->Add("Delete from command where command in(0, 1)");
+	 Qtemp->ExecSQL();
+	 Qtemp->Close();
+	 wr = 0; // do not write
 
-			Panel3->Color = clBtnFace;
-			Panel3->Caption = "";
-		}
-	}
- */
+	 Panel3->Color = clBtnFace;
+	 Panel3->Caption = "";
+	 }
+	 }
+	 */
 }
 
 // ---------------------------------------------------------------------------

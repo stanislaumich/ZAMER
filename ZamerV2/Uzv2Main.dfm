@@ -1488,6 +1488,15 @@ object FZamerV2: TFZamerV2
         TabOrder = 23
         OnClick = Button2Click
       end
+      object Button3: TButton
+        Left = 284
+        Top = 439
+        Width = 17
+        Height = 19
+        Caption = 'Button3'
+        TabOrder = 24
+        OnClick = Button3Click
+      end
     end
   end
   object Timer1000: TTimer

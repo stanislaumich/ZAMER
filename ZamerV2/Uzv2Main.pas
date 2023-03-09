@@ -89,6 +89,7 @@ type
         QUpdDvig: TFDQuery;
         Button1: TButton;
         Button2: TButton;
+    Button3: TButton;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
@@ -109,6 +110,7 @@ type
         procedure BitBtn2Click(Sender: TObject);
         procedure Button1Click(Sender: TObject);
         procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -124,6 +126,7 @@ type
         procedure FormReport;
         Procedure AddReportString(fn: string; s1, s2, s3: string);
         procedure SendCommand(Sender: TObject; b: Boolean);
+        procedure SendData(Sender: TObject; s:string);
     end;
 
 var
@@ -146,13 +149,54 @@ uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH;
 
 /// /////////////////////////////////////////////////////////////////////////////
 
+procedure TFZamerV2.SendData(Sender: TObject; s:string);
+ var
+   aCopyData: TCopyDataStruct;
+   hTargetWnd: HWND;
+   z1,z2:string;
+ begin
+      QTemp.Open('select value from zini where name=' +
+      Quotedstr('ElspecFormHeader'));
+    z1 := PWideChar(QTemp.FieldByName('value').Asstring);
+        QTemp.Open('select value from zini where name=' +
+      Quotedstr('T45FormHeader'));
+    z2 := PWideChar(QTemp.FieldByName('value').Asstring);
+   with aCopyData do
+   begin
+     dwData := 0;
+     cbData := StrLen(PChar(s))*2 + 1;
+     lpData := PChar(s);
+   end;
+
+  hTargetWnd := FindWindowEx(0, 0, nil, PChar(z1));
+   if hTargetWnd <> 0 then
+     SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle), Longint(@aCopyData))
+   else
+     ShowMessage('Не обнаружена программа сбора показаний ELSPEC');
+  hTargetWnd := FindWindowEx(0, 0, nil, PChar(z2));
+   if hTargetWnd <> 0 then
+     SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle), Longint(@aCopyData))
+   else
+     ShowMessage('Не обнаружена программа сбора показаний Т45');
+end;
+
+
 procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean);
-var
+{var
     CDS: TCopyDataStruct;
-    s: string;
-    z1, z2: PWideChar;
+    s: ansistring;
+    z1, z2: PWideChar;}
 begin
-    QTemp.Open('select value from zini where name=' +
+  if b then
+   begin
+    SendData(FZamerV2,'1 100');
+   end
+  else
+   begin
+    SendData(FZamerV2, '0 100');
+   end;
+
+   { QTemp.Open('select value from zini where name=' +
       Quotedstr('ElspecFormHeader'));
     z1 := PWideChar(QTemp.FieldByName('value').Asstring);
     QTemp.Open('select value from zini where name=' +
@@ -161,7 +205,7 @@ begin
     // Устанавливаем тип команды
     if b then
     begin
-        s := '1';
+        s := '1 100 200';
         CDS.dwData := WM_MESSAGE_START;
 
         CDS.cbData := Length(s) + 1;
@@ -182,7 +226,7 @@ begin
     end
     else
     begin
-        s := '0';
+        s := '0 100 200';
         CDS.dwData := WM_MESSAGE_STOP;
 
         CDS.cbData := Length(s) + 1;
@@ -201,7 +245,7 @@ begin
             FreeMem(CDS.lpData, CDS.cbData);
         end;
     end;
-
+  }
 end;
 
 Procedure TFZamerV2.AddReportString(fn: string; s1, s2, s3: string);
@@ -1509,6 +1553,14 @@ procedure TFZamerV2.Button2Click(Sender: TObject);
 begin
     SendCommand(FZamerV2, false);
 end;
+
+procedure TFZamerV2.Button3Click(Sender: TObject);
+var
+ s:string;
+ begin
+  s:='1 234';
+  sendData(FZamerV2,s);
+ end;
 
 procedure TFZamerV2.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin

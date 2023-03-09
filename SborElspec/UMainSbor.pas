@@ -109,6 +109,7 @@ type
     { Private declarations }
     procedure GetSTART(var MessageData: TWMCopyData); message WM_MESSAGE_START;
     procedure GetSTOP(var MessageData: TWMCopyData); message WM_MESSAGE_STOP;
+    procedure GetData(var MessageData: TWMCopyData); message WM_COPYDATA;
   public
     { Public declarations }
     procedure saveini;
@@ -128,7 +129,7 @@ Const
 var
   prevstat         : Boolean;
   FBigLeft, FBigTop: Integer;
-
+  sText: array[0..99] of Char;
 implementation
 
 {$R *.dfm}
@@ -137,13 +138,19 @@ uses UBig;
 
 procedure TForm1.GetSTART(var MessageData: TWMCopyData);
 var
- s:string;
+ s:ansistring;
  begin
     QT.Close;
     QT.SQL.Clear;
     QT.SQL.Add('truncate table zelspec');
     QT.ExecSQL();
     CheckBox2.Checked:=true;
+
+    SetLength(s, MessageData.CopyDataStruct.cbData+1);
+    CopyMemory(@S[1], MessageData.CopyDataStruct.lpData, MessageData.CopyDataStruct.cbData-1);
+    showmessage(s);
+    //s:=MessageData.CopyDataStruct.lpData;// pointer to my string zeroes
+    // CDS.cbData - длинна моей строки с нулем
     MessageData.Result := 1;
  end;
 
@@ -152,9 +159,29 @@ var
  s:string;
  begin
      CheckBox2.Checked:=false;
-      MessageData.Result := 1;
+     MessageData.Result := 1;
  end;
 
+
+ procedure TForm1.GetData(var MessageData: TWMCopyData);
+   var s:string;
+ begin
+  StrLCopy(sText, MessageData.CopyDataStruct.lpData, MessageData.CopyDataStruct.cbData);
+  s:=sText;
+  if s[1]='1' then
+  begin
+    //ShowMessage('1111111');
+    CheckBox2.Checked:=true;
+     MessageData.Result := 1;
+  end
+  else
+   begin
+    //ShowMessage('0000000');
+    CheckBox2.Checked:=false;
+     MessageData.Result := 1;
+   end;
+
+ end;
 
 procedure TForm1.saveini;
 var

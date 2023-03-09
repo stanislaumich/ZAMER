@@ -130,10 +130,11 @@ private: // User declarations
 	int DecoderType;
 
 	BEGIN_MESSAGE_MAP VCL_MESSAGE_HANDLER(WM_USER + 1, TMessage, MyStart)
-		VCL_MESSAGE_HANDLER(WM_USER + 2, TMessage, MyStop)
-		END_MESSAGE_MAP(TForm)
-		/* virtual void */ void __fastcall MyStart(TMessage & Message);
-	/* virtual void */ void __fastcall MyStop(TMessage & Message);
+		VCL_MESSAGE_HANDLER(WM_USER + 2, TMessage, MyStop) VCL_MESSAGE_HANDLER
+		(WM_COPYDATA, TMessage, MyData) END_MESSAGE_MAP(TForm)
+		void __fastcall MyStart(TMessage & Message);
+	void __fastcall MyStop(TMessage & Message);
+	void __fastcall MyData(TMessage & Message);
 
 public: // User declarations
 	__fastcall TForm1(TComponent* Owner);
