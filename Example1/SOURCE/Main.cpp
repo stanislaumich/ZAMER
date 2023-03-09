@@ -22,15 +22,31 @@ float corr;
 char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
 
 // ---------------------------------------------------------------------------
-void __fastcall TForm1::MyStart (TMessage &Message)
-{
-//Application->MessageBox("Right button clicked","Test",MB_OK);
+void __fastcall TForm1::MyStart(TMessage &Message) {
+	Qtemp->SQL->Clear();
+	Qtemp->SQL->Add("Truncate table zamertmp");
+	Qtemp->ExecSQL();
+	Qtemp->Close();
+	wr = 1; // lets write
+
+	Panel3->Color = clRed;
+	Panel3->Caption = "ЗАПИСЬ";
 }
 
-	void __fastcall TForm1::MyStop (TMessage &Message)
-	{
-      //Application->MessageBox("Right button clicked","Test",MB_OK);
-    }
+void __fastcall TForm1::MyStop(TMessage &Message) {
+	QCommand->Close();
+
+	Qtemp->Close();
+	Qtemp->SQL->Clear();
+	Qtemp->SQL->Add("Delete from command where command in(0, 1)");
+	Qtemp->ExecSQL();
+	Qtemp->Close();
+	wr = 0; // do not write
+
+	Panel3->Color = clBtnFace;
+	Panel3->Caption = "";
+}
+
 __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	EstIzm = false;
 	PDecoder = NULL;
@@ -43,30 +59,35 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	TRect *r = new TRect;
 	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
 		"\settings45.ini");
-	//GetWindowRect(this->Handle, r);
-	//int l = r->Left;
-	//int t = r->Top;
+	// GetWindowRect(this->Handle, r);
+	// int l = r->Left;
+	// int t = r->Top;
 	Form1->Left = Ini->ReadInteger("Position", "Left", 10);
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
 	corr = Ini->ReadFloat("Datchik", "Corr", 0);
 
 	int g = Ini->ReadInteger("FILTER", "Type", 6);
-	switch(g)
-	{
-		case 1: RadioButton1->Checked = true;
+	switch (g) {
+	case 1:
+		RadioButton1->Checked = true;
 		break;
-		case 2: RadioButton2->Checked = true;
+	case 2:
+		RadioButton2->Checked = true;
 		break;
-		case 3: RadioButton3->Checked = true;
+	case 3:
+		RadioButton3->Checked = true;
 		break;
-		case 4: RadioButton4->Checked = true;
+	case 4:
+		RadioButton4->Checked = true;
 		break;
-		case 5: RadioButton5->Checked = true;
+	case 5:
+		RadioButton5->Checked = true;
 		break;
-		case 6: RadioButton6->Checked = true;
+	case 6:
+		RadioButton6->Checked = true;
 		break;
-    }
+	}
 
 	Ini->Free();
 	wr = 0;
@@ -76,6 +97,12 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Qtemp->Close();
 	Qtemp->SQL->Clear();
 	Qtemp->SQL->Add("Delete from command where command between 0 and 1");
+	Qtemp->ExecSQL();
+	// T45FormHeader
+	Qtemp->Close();
+	Qtemp->SQL->Clear();
+	Qtemp->SQL->Add("Update zini set value='" + Form1->Caption +
+		"' where name='T45FormHeader'");
 	Qtemp->ExecSQL();
 
 }
@@ -213,21 +240,27 @@ void __fastcall TForm1::BDisconnectClick(TObject *Sender) {
 void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction & Action) {
 	BDisconnectClick(this);
 	Action = caFree;
-    TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
+	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
 		"\settings45.ini");
-	//GetWindowRect(this->Handle, r);
-	//int l = r->Left;
-	//int t = r->Top;
+	// GetWindowRect(this->Handle, r);
+	// int l = r->Left;
+	// int t = r->Top;
 	Ini->WriteInteger("Position", "Left", Form1->Left);
 	Ini->WriteInteger("Position", "Top", Form1->Top);
-	//int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
+	// int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
 	Ini->WriteFloat("Datchik", "Corr", corr);
-	if (RadioButton1->Checked) Ini->WriteInteger("FILTER", "Type", 1);
-	if (RadioButton2->Checked) Ini->WriteInteger("FILTER", "Type", 2);
-	if (RadioButton3->Checked) Ini->WriteInteger("FILTER", "Type", 3);
-	if (RadioButton4->Checked) Ini->WriteInteger("FILTER", "Type", 4);
-	if (RadioButton5->Checked) Ini->WriteInteger("FILTER", "Type", 5);
-	if (RadioButton6->Checked) Ini->WriteInteger("FILTER", "Type", 6);
+	if (RadioButton1->Checked)
+		Ini->WriteInteger("FILTER", "Type", 1);
+	if (RadioButton2->Checked)
+		Ini->WriteInteger("FILTER", "Type", 2);
+	if (RadioButton3->Checked)
+		Ini->WriteInteger("FILTER", "Type", 3);
+	if (RadioButton4->Checked)
+		Ini->WriteInteger("FILTER", "Type", 4);
+	if (RadioButton5->Checked)
+		Ini->WriteInteger("FILTER", "Type", 5);
+	if (RadioButton6->Checked)
+		Ini->WriteInteger("FILTER", "Type", 6);
 
 	Ini->Free();
 }
@@ -318,82 +351,85 @@ void __fastcall TForm1::BReadTemperatureClick(TObject *Sender) {
 	}
 }
 
-
-//-----------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------
 // Фильтры
-const int NUM_READ = 10;  // количество усреднений для средних арифм. фильтров
-
-
+const int NUM_READ = 10; // количество усреднений для средних арифм. фильтров
 
 // растянутое среднее арифметическое
 float midArifm2(float newVal) {
-  static byte counter = 0;     // счётчик
-  static float prevResult = 0; // хранит предыдущее готовое значение
-  static float sum = 0;  // сумма
-  sum += newVal;   // суммируем новое значение
-  counter++;       // счётчик++
-  if (counter == NUM_READ) {      // достигли кол-ва измерений
-    prevResult = sum / NUM_READ;  // считаем среднее
-    sum = 0;                      // обнуляем сумму
-    counter = 0;                  // сброс счётчика
-  }
-  return prevResult;
+	static byte counter = 0; // счётчик
+	static float prevResult = 0; // хранит предыдущее готовое значение
+	static float sum = 0; // сумма
+	sum += newVal; // суммируем новое значение
+	counter++; // счётчик++
+	if (counter == NUM_READ) { // достигли кол-ва измерений
+		prevResult = sum / NUM_READ; // считаем среднее
+		sum = 0; // обнуляем сумму
+		counter = 0; // сброс счётчика
+	}
+	return prevResult;
+}
+
+// -------------------------------------------------------------------------------
+float runMiddleArifmOptim(float newVal) {
+	static int t = 0;
+	static float vals[NUM_READ];
+	static float average = 0;
+	if (++t >= NUM_READ)
+		t = 0; // перемотка t
+	average -= vals[t]; // вычитаем старое
+	average += newVal; // прибавляем новое
+	vals[t] = newVal; // запоминаем в массив
+	return ((float)average / NUM_READ);
 }
 // -------------------------------------------------------------------------------
- float runMiddleArifmOptim(float newVal) {
-  static int t = 0;
-  static float vals[NUM_READ];
-  static float average = 0;
-  if (++t >= NUM_READ) t = 0; // перемотка t
-  average -= vals[t];         // вычитаем старое
-  average += newVal;          // прибавляем новое
-  vals[t] = newVal;           // запоминаем в массив
-  return ((float)average / NUM_READ);
-}
- //-------------------------------------------------------------------------------
- float k = 0.1;  // коэффициент фильтрации, 0.0-1.0
+float k = 0.1; // коэффициент фильтрации, 0.0-1.0
+
 // бегущее среднее
 float expRunningAverage(float newVal) {
-  static float filVal = 0;
-  filVal += (newVal - filVal) * k;
-  return filVal;
+	static float filVal = 0;
+	filVal += (newVal - filVal) * k;
+	return filVal;
 }
+
 // ------------------------------------------------------------------------------
 float expRunningAverageAdaptive(float newVal) {
-  static float filVal = 0;
-  float k;
-  // резкость фильтра зависит от модуля разности значений
-  if (abs(newVal - filVal) > 1.5) k = 0.9;
-  else k = 0.03;
+	static float filVal = 0;
+	float k;
+	// резкость фильтра зависит от модуля разности значений
+	if (abs(newVal - filVal) > 1.5)
+		k = 0.9;
+	else
+		k = 0.03;
 
-  filVal += (newVal - filVal) * k;
-  return filVal;
+	filVal += (newVal - filVal) * k;
+	return filVal;
 }
 // ------------------------------------------------------------------------------
 float dt = 0.02;
 float sigma_process = 3.0;
 float sigma_noise = 0.7;
+
 float ABfilter(float newVal) {
-  static float xk_1, vk_1, a, b;
-  static float xk, vk, rk;
-  static float xm;
-  float lambda = (float)sigma_process * dt * dt / sigma_noise;
-  float r = (4 + lambda - (float)sqrt(8 * lambda + lambda * lambda)) / 4;
-  a = (float)1 - r * r;
-  b = (float)2 * (2 - a) - 4 * (float)sqrt(1 - a);
-  xm = newVal;
-  xk = xk_1 + ((float) vk_1 * dt );
-  vk = vk_1;
-  rk = xm - xk;
-  xk += (float)a * rk;
-  vk += (float)( b * rk ) / dt;
-  xk_1 = xk;
-  vk_1 = vk;
-  return xk_1;
+	static float xk_1, vk_1, a, b;
+	static float xk, vk, rk;
+	static float xm;
+	float lambda = (float)sigma_process * dt * dt / sigma_noise;
+	float r = (4 + lambda - (float)sqrt(8 * lambda + lambda * lambda)) / 4;
+	a = (float)1 - r * r;
+	b = (float)2 * (2 - a) - 4 * (float)sqrt(1 - a);
+	xm = newVal;
+	xk = xk_1 + ((float) vk_1 * dt);
+	vk = vk_1;
+	rk = xm - xk;
+	xk += (float)a * rk;
+	vk += (float)(b * rk) / dt;
+	xk_1 = xk;
+	vk_1 = vk;
+	return xk_1;
 }
 
-
-//-----------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------
 // --------------------- Read all measured values
 void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	int Kod, i;
@@ -417,19 +453,23 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
 	Znachenie = Znachenie + corr;
 	if (RadioButton1->Checked)
-	 STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -2));
+		STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -2));
 	if (RadioButton2->Checked)
-	 STOsnIzmVel->Caption = FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -2));
-	 if (RadioButton3->Checked)
-	 STOsnIzmVel->Caption = FloatToStr(RoundTo(expRunningAverage(Znachenie), -2));
-	 if (RadioButton4->Checked)
-	 STOsnIzmVel->Caption = FloatToStr(RoundTo(expRunningAverageAdaptive(Znachenie), -2));
-     if (RadioButton5->Checked)
-	 STOsnIzmVel->Caption = FloatToStr(RoundTo(ABfilter(Znachenie), -2));
-	 if (RadioButton6->Checked)
-	 STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
+		STOsnIzmVel->Caption =
+			FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -2));
+	if (RadioButton3->Checked)
+		STOsnIzmVel->Caption =
+			FloatToStr(RoundTo(expRunningAverage(Znachenie), -2));
+	if (RadioButton4->Checked)
+		STOsnIzmVel->Caption =
+			FloatToStr(RoundTo(expRunningAverageAdaptive(Znachenie), -2));
+	if (RadioButton5->Checked)
+		STOsnIzmVel->Caption = FloatToStr(RoundTo(ABfilter(Znachenie), -2));
+	if (RadioButton6->Checked)
+		STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
 
-     if (STOsnIzmVel->Caption =="NAN") STOsnIzmVel->Caption = "0";
+	if (STOsnIzmVel->Caption == "NAN")
+		STOsnIzmVel->Caption = "0";
 
 	// ASCaption.sprintf (FormatOtobrajenia, Znachenie);
 	// ................... Formation of a line for displaying temperature
@@ -441,7 +481,8 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 		STTemper->Caption = FloatToStr(RoundTo(Znachenie, -2));
 		// ASCaption.sprintf ("% 4.1f", Znachenie);
 	}
-	if (STTemper->Caption == "NAN") STTemper->Caption = "0";
+	if (STTemper->Caption == "NAN")
+		STTemper->Caption = "0";
 	// ................... Formation of a line for displaying speed on the panel
 	Znachenie = POutputBuffer->Data.MD.RC.Skorost;
 	if (Znachenie < 1000) {
@@ -452,11 +493,13 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 		STSkorost->Caption = FloatToStr(RoundTo(Znachenie, -2));
 		// ASCaption.sprintf ("% 4.0f", Znachenie);
 	}
-	if (STSkorost->Caption == "NAN") STSkorost->Caption = "0";
+	if (STSkorost->Caption == "NAN")
+		STSkorost->Caption = "0";
 	// ................... Formation of a line to display power on the panel
 	Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
 	STMoschnost->Caption = FloatToStr(RoundTo(Znachenie, -2));
-	if (STMoschnost->Caption =="NAN") STMoschnost->Caption = "0";
+	if (STMoschnost->Caption == "NAN")
+		STMoschnost->Caption = "0";
 	// ASCaption.sprintf (FormatOtobrajenia, Znachenie);
 	// Memo2->Lines->Add(STOsnIzmVel->Caption + ";" + STSkorost->Caption + ";" +
 	// STMoschnost->Caption + ";");
@@ -717,7 +760,7 @@ void __fastcall TForm1::TimerMainTimer(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button1Click(TObject *Sender) {
-	//TimerMain->Enabled = !TimerMain->Enabled;
+	// TimerMain->Enabled = !TimerMain->Enabled;
 }
 // ---------------------------------------------------------------------------
 
@@ -728,31 +771,31 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
 		int a = QCommand->FieldByName("command")->AsInteger;
 		if (a == 1) {
 
-				QCommand->Close();
-				Qtemp->Close();
-				Qtemp->SQL->Clear();
-				Qtemp->SQL->Add("Delete from command where command in(0, 1)");
-				Qtemp->ExecSQL();
-				Qtemp->Close();
-				Qtemp->SQL->Clear();
-				Qtemp->SQL->Add("Truncate table zamertmp");
-				Qtemp->ExecSQL();
-				Qtemp->Close();
-				wr = 1; // lets write
+			QCommand->Close();
+			Qtemp->Close();
+			Qtemp->SQL->Clear();
+			Qtemp->SQL->Add("Delete from command where command in(0, 1)");
+			Qtemp->ExecSQL();
+			Qtemp->Close();
+			Qtemp->SQL->Clear();
+			Qtemp->SQL->Add("Truncate table zamertmp");
+			Qtemp->ExecSQL();
+			Qtemp->Close();
+			wr = 1; // lets write
 
 			Panel3->Color = clRed;
 			Panel3->Caption = "ЗАПИСЬ";
 		}
-		else{ // a = 0
+		else { // a = 0
 
 			QCommand->Close();
 
-				Qtemp->Close();
-				Qtemp->SQL->Clear();
-				Qtemp->SQL->Add("Delete from command where command in(0, 1)");
-				Qtemp->ExecSQL();
-				Qtemp->Close();
-				wr = 0; // do not write
+			Qtemp->Close();
+			Qtemp->SQL->Clear();
+			Qtemp->SQL->Add("Delete from command where command in(0, 1)");
+			Qtemp->ExecSQL();
+			Qtemp->Close();
+			wr = 0; // do not write
 
 			Panel3->Color = clBtnFace;
 			Panel3->Caption = "";
@@ -760,42 +803,41 @@ void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
 	}
 
 }
+
 // ---------------------------------------------------------------------------
-void __fastcall TForm1::TimerStartTimer(TObject *Sender)
-{
+void __fastcall TForm1::TimerStartTimer(TObject *Sender) {
 
-TimerStart->Enabled = false;
-BConnectClick(Form1);
+	TimerStart->Enabled = false;
+	BConnectClick(Form1);
 }
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
-void __fastcall TForm1::BitBtn2Click(TObject *Sender)
-{
- Edit1->Text = "0";
- corr = 0;
- TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings45.ini");
-  Ini->WriteString("Datchik", "Corr", Edit1->Text);
-  Ini->Free();
+void __fastcall TForm1::BitBtn2Click(TObject *Sender) {
+	Edit1->Text = "0";
+	corr = 0;
+	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
+		"\\settings45.ini");
+	Ini->WriteString("Datchik", "Corr", Edit1->Text);
+	Ini->Free();
 }
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
-void __fastcall TForm1::BitBtn1Click(TObject *Sender)
-{
-Edit1->Text = FloatToStr(StrToFloat(STOsnIzmVel->Caption)*(-1));
-corr = StrToFloat(Edit1->Text);
-TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings45.ini");
-  Ini->WriteString("Datchik", "Corr", Edit1->Text);
-  Ini->Free();
+void __fastcall TForm1::BitBtn1Click(TObject *Sender) {
+	Edit1->Text = FloatToStr(StrToFloat(STOsnIzmVel->Caption) * (-1));
+	corr = StrToFloat(Edit1->Text);
+	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
+		"\\settings45.ini");
+	Ini->WriteString("Datchik", "Corr", Edit1->Text);
+	Ini->Free();
 }
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
-void __fastcall TForm1::Edit1Exit(TObject *Sender)
-{
-corr = StrToFloat(Edit1->Text);
-TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) + "\\settings45.ini");
-  Ini->WriteString("Datchik", "Corr", Edit1->Text);
-  Ini->Free();
+void __fastcall TForm1::Edit1Exit(TObject *Sender) {
+	corr = StrToFloat(Edit1->Text);
+	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
+		"\\settings45.ini");
+	Ini->WriteString("Datchik", "Corr", Edit1->Text);
+	Ini->Free();
 
 }
-//---------------------------------------------------------------------------
-
+// ---------------------------------------------------------------------------

@@ -32,10 +32,8 @@
 
 // ---------------------------------------------------------------------------
 
-
- #define WM_MESSAGE_START WM_USER+1;
- #define WM_MESSAGE_STOP  WM_USER+2;
-
+#define WM_MESSAGE_START WM_USER+1;
+#define WM_MESSAGE_STOP  WM_USER+2;
 
 class TForm1 : public TForm {
 __published: // IDE-managed Components
@@ -131,23 +129,16 @@ private: // User declarations
 	char *FormatOtobrajenia;
 	int DecoderType;
 
-
-
-	BEGIN_MESSAGE_MAP
-	 VCL_MESSAGE_HANDLER(WM_USER+1, TMessage, MyStart)
-	 VCL_MESSAGE_HANDLER(WM_USER+2, TMessage, MyStop)
-	END_MESSAGE_MAP(TForm)
-	/*virtual void*/ void __fastcall MyStart (TMessage & Message);
-	/*virtual void*/ void __fastcall MyStop (TMessage & Message);
-
+	BEGIN_MESSAGE_MAP VCL_MESSAGE_HANDLER(WM_USER + 1, TMessage, MyStart)
+		VCL_MESSAGE_HANDLER(WM_USER + 2, TMessage, MyStop)
+		END_MESSAGE_MAP(TForm)
+		/* virtual void */ void __fastcall MyStart(TMessage & Message);
+	/* virtual void */ void __fastcall MyStop(TMessage & Message);
 
 public: // User declarations
 	__fastcall TForm1(TComponent* Owner);
 	void Pause(unsigned int Timeout);
 };
-
-
-
 
 // ---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;

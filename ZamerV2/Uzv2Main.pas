@@ -155,8 +155,9 @@ begin
     QTemp.Open('select value from zini where name=' +
       Quotedstr('ElspecFormHeader'));
     z1 := PWideChar(QTemp.FieldByName('value').Asstring);
-
-    z2 := z1;
+    QTemp.Open('select value from zini where name=' +
+      Quotedstr('T45FormHeader'));
+    z2 := PWideChar(QTemp.FieldByName('value').Asstring);
     // Устанавливаем тип команды
     if b then
     begin
