@@ -29,7 +29,7 @@ void __fastcall TForm1::MyData(TMessage &Message) {
 	pCds = (COPYDATASTRUCT*)Message.LParam;
 	char *request = new char[pCds->cbData];
 	strncpy(request, (char*)pCds->lpData, pCds->cbData);
-	ShowMessage(request);
+	//ShowMessage(request);
 	if (request[0] == '1') {
 		Qtemp->SQL->Clear();
 		Qtemp->SQL->Add("Truncate table zamertmp");
