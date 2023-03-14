@@ -35,7 +35,7 @@ void __fastcall TForm1::MyData(TMessage &Message) {
 	const AnsiString sTest = (char*)pCds->lpData;
 	char *request = new char[pCds->cbData];
 	strncpy(request, (char*)pCds->lpData, pCds->cbData);
-	ShowMessage(request);
+	//ShowMessage(request);
 	p1 = StrToInt(request[1]);
 	p2 = StrToInt(request[2]);
 	p3 = StrToInt(request[3]);
