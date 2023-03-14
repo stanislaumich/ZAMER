@@ -98,6 +98,10 @@ __published: // IDE-managed Components
 	TRadioButton *RadioButton4;
 	TRadioButton *RadioButton5;
 	TRadioButton *RadioButton6;
+	TEdit *ESpeed;
+	TLabel *Label2;
+	TLabel *Label8;
+	TEdit *EAvF;
 
 	void __fastcall BConnectClick(TObject *Sender);
 	void __fastcall BDisconnectClick(TObject *Sender);

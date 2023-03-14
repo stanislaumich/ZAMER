@@ -106,7 +106,7 @@ implementation
 
 {$R *.dfm}
 
-uses UGraph, Uzv2Main;
+uses UGraph, Uzv2Main, Usett;
 
 type
   Ur = record
@@ -588,7 +588,7 @@ end;
 
 procedure TFMH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b);
+  FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit7.Text);
 end;
 {var
   interval: integer;

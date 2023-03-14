@@ -125,7 +125,7 @@ type
         procedure enableispyt(f: Boolean);
         procedure FormReport;
         Procedure AddReportString(fn: string; s1, s2, s3: string);
-        procedure SendCommand(Sender: TObject; b: Boolean);
+        procedure SendCommand(Sender: TObject; b: Boolean; s:string);
         procedure SendData(Sender: TObject; s:string);
     end;
 
@@ -135,6 +135,9 @@ var
     cancloseapp: Boolean;
     m: set of byte;
 
+    messs:string;
+    pmes:pchar;
+    ames : array[1..10] of char;
     fstr: string;
 
 CONST
@@ -154,18 +157,24 @@ procedure TFZamerV2.SendData(Sender: TObject; s:string);
    aCopyData: TCopyDataStruct;
    hTargetWnd: HWND;
    z1,z2:string;
+   i:integer;
+   ss:ansistring;
  begin
       QTemp.Open('select value from zini where name=' +
       Quotedstr('ElspecFormHeader'));
     z1 := PWideChar(QTemp.FieldByName('value').Asstring);
+
         QTemp.Open('select value from zini where name=' +
       Quotedstr('T45FormHeader'));
     z2 := PWideChar(QTemp.FieldByName('value').Asstring);
+    //z2:= PWideChar('TST');
+   ss:=s;
    with aCopyData do
    begin
      dwData := 0;
-     cbData := StrLen(PChar(s))*2 + 1;
-     lpData := PChar(s);
+     pmes:= pchar(ss);
+     cbData := StrLen(pmes)*2 + 1;
+     lpData := pmes;
    end;
 
   hTargetWnd := FindWindowEx(0, 0, nil, PChar(z1));
@@ -181,19 +190,16 @@ procedure TFZamerV2.SendData(Sender: TObject; s:string);
 end;
 
 
-procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean);
-{var
-    CDS: TCopyDataStruct;
-    s: ansistring;
-    z1, z2: PWideChar;}
+procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean; s:string);
+
 begin
   if b then
    begin
-    SendData(FZamerV2,'1 100');
+    SendData(FZamerV2,'1100');
    end
   else
    begin
-    SendData(FZamerV2, '0 100');
+    SendData(FZamerV2, '0025');
    end;
 
    { QTemp.Open('select value from zini where name=' +
@@ -1546,12 +1552,12 @@ end;
 
 procedure TFZamerV2.Button1Click(Sender: TObject);
 begin
-    SendCommand(FZamerV2, True);
+    SendCommand(FZamerV2, True, Fsett.Edit6.Text);
 end;
 
 procedure TFZamerV2.Button2Click(Sender: TObject);
 begin
-    SendCommand(FZamerV2, false);
+    SendCommand(FZamerV2, false, Fsett.Edit6.Text);
 end;
 
 procedure TFZamerV2.Button3Click(Sender: TObject);

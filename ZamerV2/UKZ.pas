@@ -85,11 +85,11 @@ implementation
 
 {$R *.dfm}
 
-Uses uzv2Main, UAuto;
+Uses uzv2Main, UAuto, USett;
 
 procedure TFKZ.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b);
+  FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit6.Text);
 end;
 {
 begin

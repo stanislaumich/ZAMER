@@ -106,7 +106,7 @@ var
 
 implementation
 
-uses uzv2main;
+uses uzv2main, USett;
 {$R *.dfm}
 
 function emp(s: string): string;
@@ -237,7 +237,7 @@ end;
 
 procedure TFNagr.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b);
+  FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit6.Text);
 end;
 {
 var

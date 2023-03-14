@@ -47,6 +47,11 @@ type
     ListBox1: TListBox;
     Memo1: TMemo;
     Button3: TButton;
+    GroupBox6: TGroupBox;
+    Label7: TLabel;
+    Label8: TLabel;
+    Edit6: TEdit;
+    Edit7: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -116,6 +121,18 @@ begin
   QTemp.SQL.Clear;
   QTemp.SQL.Add('Update zini set value=' + Quotedstr(CombCom.Text) +
     ' where name=' + Quotedstr('ComPortU'));
+  QTemp.ExecSQL;
+
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit6.Text) +
+    ' where name=' + Quotedstr('AvgFactAll'));
+  QTemp.ExecSQL;
+
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('Update zini set value=' + Quotedstr(Edit7.Text) +
+    ' where name=' + Quotedstr('AvgFactMeh'));
   QTemp.ExecSQL;
 
   FSett.Close;
@@ -191,6 +208,13 @@ begin
   Edit5.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Open('Select value from zini where name=' + Quotedstr('ComPortU'));
   CombCom.Text := QTemp.FieldByName('value').Asstring;
+
+  QTemp.Open('Select value from zini where name=' + Quotedstr('AvgFactAll'));
+  Edit6.Text := QTemp.FieldByName('value').Asstring;
+
+  QTemp.Open('Select value from zini where name=' + Quotedstr('AvgFactMeh'));
+  Edit7.Text := QTemp.FieldByName('value').Asstring;
+
   ListBox1.Items.LoadFromFile(extractfilepath(application.exename) +
     'LIST.TXT');
 end;

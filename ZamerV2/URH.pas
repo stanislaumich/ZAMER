@@ -123,7 +123,7 @@ var
 
 implementation
 
-uses uzv2main;
+uses uzv2main, usett;
 {$R *.dfm}
 
 procedure TFRH.loadgrids;
@@ -444,7 +444,7 @@ end;
 
 procedure TFRH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b);
+  FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit6.Text);
 end;
 {
 var

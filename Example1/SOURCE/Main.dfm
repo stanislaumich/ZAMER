@@ -61,6 +61,7 @@ object Form1: TForm1
     Height = 17
     AutoSize = False
     Caption = 'Averaging factor'
+    Visible = False
   end
   object LProtocol: TLabel
     Left = 464
@@ -69,6 +70,20 @@ object Form1: TForm1
     Height = 17
     AutoSize = False
     Caption = 'Protocol'
+  end
+  object Label2: TLabel
+    Left = 448
+    Top = 428
+    Width = 101
+    Height = 13
+    Caption = #1047#1072#1084#1077#1088' '#1089#1082#1086#1088#1086#1089#1090#1080', '#1084#1089'.'
+  end
+  object Label8: TLabel
+    Left = 447
+    Top = 451
+    Width = 105
+    Height = 13
+    Caption = #1060#1072#1082#1090#1086#1088' '#1091#1089#1088#1077#1076#1085#1077#1085#1080#1103':'
   end
   object EComPortNumber: TEdit
     Left = 617
@@ -94,6 +109,7 @@ object Form1: TForm1
     Height = 21
     TabOrder = 17
     Text = '1'
+    Visible = False
   end
   object EPortNumber: TEdit
     Left = 617
@@ -603,6 +619,7 @@ object Form1: TForm1
     Position = 1
     TabOrder = 16
     Thousands = False
+    Visible = False
   end
   object CB_Protocol: TComboBox
     Left = 617
@@ -629,8 +646,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Memo2: TMemo
-    Left = 718
-    Top = 359
+    Left = 634
+    Top = 342
     Width = 270
     Height = 57
     Lines.Strings = (
@@ -688,6 +705,22 @@ object Form1: TForm1
     Checked = True
     TabOrder = 28
     TabStop = True
+  end
+  object ESpeed: TEdit
+    Left = 555
+    Top = 425
+    Width = 34
+    Height = 21
+    TabOrder = 29
+    Text = '500'
+  end
+  object EAvF: TEdit
+    Left = 556
+    Top = 448
+    Width = 33
+    Height = 21
+    TabOrder = 30
+    Text = '1'
   end
   object TimerMain: TTimer
     Interval = 50

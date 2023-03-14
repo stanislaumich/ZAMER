@@ -411,6 +411,44 @@ object FSett: TFSett
       OnClick = Button3Click
     end
   end
+  object GroupBox6: TGroupBox
+    Left = 720
+    Top = 136
+    Width = 161
+    Height = 109
+    Caption = #1044#1072#1090#1095#1080#1082' '#1058'45'
+    TabOrder = 7
+    object Label7: TLabel
+      Left = 8
+      Top = 17
+      Width = 141
+      Height = 13
+      Caption = #1060#1072#1082#1090#1086#1088' '#1091#1089#1088#1077#1076#1085#1077#1085#1080#1103' '#1086#1073#1097#1080#1081':'
+    end
+    object Label8: TLabel
+      Left = 8
+      Top = 64
+      Width = 151
+      Height = 13
+      Caption = #1060#1072#1082#1090#1086#1088' '#1091#1089#1088#1077#1076#1085#1077#1085#1080#1103' '#1052#1045#1061'.'#1061#1040#1056'.'
+    end
+    object Edit6: TEdit
+      Left = 44
+      Top = 36
+      Width = 57
+      Height = 21
+      TabOrder = 0
+      Text = '50'
+    end
+    object Edit7: TEdit
+      Left = 44
+      Top = 80
+      Width = 57
+      Height = 21
+      TabOrder = 1
+      Text = '10'
+    end
+  end
   object TabSotrud: TFDTable
     Connection = FZamerV2.FDC
     TableName = 'zsotr'

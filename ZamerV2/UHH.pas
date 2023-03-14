@@ -107,13 +107,13 @@ var
 
 implementation
 
-uses Uzv2Main, UAuto;
+uses Uzv2Main, UAuto, Usett;
 
 {$R *.dfm}
 
 procedure TFormHH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b);
+  FZamerv2.SendCommand(FZamerv2,b,FSett.Edit6.text);
 end;
 {
 begin

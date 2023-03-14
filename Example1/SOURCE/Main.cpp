@@ -17,6 +17,7 @@ float apower[1000];
 int acount;
 int wr;
 float corr;
+String oldA = "25";
 // ---------------------------------------------------------------------------
 // Array of formats for displaying the main measured value
 char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
@@ -26,27 +27,43 @@ char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
 void __fastcall TForm1::MyData(TMessage &Message) {
 	COPYDATASTRUCT* pCds;
 	String s;
+	int t;
 	pCds = (COPYDATASTRUCT*)Message.LParam;
+
+	t = pCds->cbData;
+	//s = IntToStr(t);
+	const AnsiString sTest = (char*)pCds->lpData;
 	char *request = new char[pCds->cbData];
 	strncpy(request, (char*)pCds->lpData, pCds->cbData);
-	//ShowMessage(request);
+	ShowMessage(request);
+
+    s =  IntToStr(StrToInt(request[1])*100+StrToInt(request[2])*10+StrToInt(request[3]));
+	Memo1->Lines->Add(request[0]);
+	Memo1->Lines->Add(request[1]);
+	Memo1->Lines->Add(request[2]);
+	Memo1->Lines->Add(request[3]);
 	if (request[0] == '1') {
 		Qtemp->SQL->Clear();
 		Qtemp->SQL->Add("Truncate table zamertmp");
 		Qtemp->ExecSQL();
 		Qtemp->Close();
+
+		oldA = EAvF->Text;
+
+		EAvF->Text = s;
+
+		BDisconnectClick(Form1);
+		BConnectClick(Form1);
+
 		wr = 1; // lets write
 		Panel3->Color = clRed;
 		Panel3->Caption = "ЗАПИСЬ";
 	}
-	else {
-		QCommand->Close();
-		Qtemp->Close();
-		Qtemp->SQL->Clear();
-		Qtemp->SQL->Add("Delete from command where command in(0, 1)");
-		Qtemp->ExecSQL();
-		Qtemp->Close();
+	if (request[0] == '0') {
 		wr = 0; // do not write
+		EAvF->Text = oldA;
+		BDisconnectClick(Form1);
+        BConnectClick(Form1);
 		Panel3->Color = clBtnFace;
 		Panel3->Caption = "ПРОСТОЙ";
 	}
@@ -90,7 +107,8 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Form1->Top = Ini->ReadInteger("Position", "Top", 10);
 	int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
 	corr = Ini->ReadFloat("Datchik", "Corr", 0);
-
+	EAvF->Text = Ini->ReadString("Datchik", "AVG", "1");
+    ESpeed->Text = Ini->ReadString("Datchik", "SPEED","500");
 	int g = Ini->ReadInteger("FILTER", "Type", 6);
 	switch (g) {
 	case 1:
@@ -149,9 +167,9 @@ void __fastcall TForm1::BConnectClick(TObject *Sender) {
 	BConnect->Enabled = false;
 	PSpecialParametrs = (struct _SpecialParametrs*) calloc
 		(sizeof(struct _SpecialParametrs), 1);
-	PSpecialParametrs->AveragingFactor = StrToInt(EAveragingFactor->Text);
+	PSpecialParametrs->AveragingFactor = StrToInt(EAvF->Text);//StrToInt(EAveragingFactor->Text);
 	// Data Averaging Coefficient
-	PSpecialParametrs->SpeedMeasurementPeriod = 10;
+	PSpecialParametrs->SpeedMeasurementPeriod = StrToInt(ESpeed->Text);
 	// Period of measurement of speed
 	PSpecialParametrs->ComPortNumber = StrToInt(EComPortNumber->Text);
 	PSpecialParametrs->MODBUS_DeviceAddress = StrToInt(EUnitNumber->Text);
@@ -266,12 +284,13 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction & Action) {
 	Action = caFree;
 	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
 		"\settings45.ini");
-	// GetWindowRect(this->Handle, r);
+	Memo2->Lines->SaveToFile("res.csv");
 	// int l = r->Left;
 	// int t = r->Top;
 	Ini->WriteInteger("Position", "Left", Form1->Left);
 	Ini->WriteInteger("Position", "Top", Form1->Top);
-	// int Ind = Ini->ReadInteger("DECODER", "Datchik", 7);
+	Ini->WriteString("Datchik", "AVG", EAvF->Text);
+	Ini->WriteString("Datchik", "SPEED", ESpeed->Text);
 	Ini->WriteFloat("Datchik", "Corr", corr);
 	if (RadioButton1->Checked)
 		Ini->WriteInteger("FILTER", "Type", 1);
@@ -399,12 +418,14 @@ float runMiddleArifmOptim(float newVal) {
 	static int t = 0;
 	static float vals[NUM_READ];
 	static float average = 0;
+
 	if (++t >= NUM_READ)
 		t = 0; // перемотка t
-	average -= vals[t]; // вычитаем старое
+        average -= vals[t]; // вычитаем старое
 	average += newVal; // прибавляем новое
 	vals[t] = newVal; // запоминаем в массив
 	return ((float)average / NUM_READ);
+
 }
 // -------------------------------------------------------------------------------
 float k = 0.1; // коэффициент фильтрации, 0.0-1.0
@@ -478,19 +499,24 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	Znachenie = Znachenie + corr;
 	if (RadioButton1->Checked)
 		STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -2));
-	if (RadioButton2->Checked)
+	if (RadioButton2->Checked){
 		STOsnIzmVel->Caption =
 			FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -2));
-	if (RadioButton3->Checked)
+	   Memo2->Lines->Add(FloatToStr(Znachenie)+" "+FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -2)));
+	}
+
+	if (RadioButton3->Checked){
 		STOsnIzmVel->Caption =
 			FloatToStr(RoundTo(expRunningAverage(Znachenie), -2));
+
+	}
 	if (RadioButton4->Checked)
 		STOsnIzmVel->Caption =
 			FloatToStr(RoundTo(expRunningAverageAdaptive(Znachenie), -2));
 	if (RadioButton5->Checked)
 		STOsnIzmVel->Caption = FloatToStr(RoundTo(ABfilter(Znachenie), -2));
 	if (RadioButton6->Checked)
-		STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -2));
+		STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -4));
 
 	if (STOsnIzmVel->Caption == "NAN")
 		STOsnIzmVel->Caption = "0";
