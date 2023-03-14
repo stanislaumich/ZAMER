@@ -27,7 +27,7 @@ char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
 void __fastcall TForm1::MyData(TMessage &Message) {
 	COPYDATASTRUCT* pCds;
 	String s;
-	int t;
+	int t,p1,p2,p3;
 	pCds = (COPYDATASTRUCT*)Message.LParam;
 
 	t = pCds->cbData;
@@ -36,12 +36,14 @@ void __fastcall TForm1::MyData(TMessage &Message) {
 	char *request = new char[pCds->cbData];
 	strncpy(request, (char*)pCds->lpData, pCds->cbData);
 	ShowMessage(request);
-
-    s =  IntToStr(StrToInt(request[1])*100+StrToInt(request[2])*10+StrToInt(request[3]));
-	Memo1->Lines->Add(request[0]);
-	Memo1->Lines->Add(request[1]);
-	Memo1->Lines->Add(request[2]);
-	Memo1->Lines->Add(request[3]);
+	p1 = StrToInt(request[1]);
+	p2 = StrToInt(request[2]);
+	p3 = StrToInt(request[3]);
+	s =  IntToStr(p1*100+p2*10+p3);
+	//Memo1->Lines->Add(request[0]);
+	//Memo1->Lines->Add(request[1]);
+	//Memo1->Lines->Add(request[2]);
+	//Memo1->Lines->Add(request[3]);
 	if (request[0] == '1') {
 		Qtemp->SQL->Clear();
 		Qtemp->SQL->Add("Truncate table zamertmp");

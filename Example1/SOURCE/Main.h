@@ -133,8 +133,9 @@ private: // User declarations
 	char *FormatOtobrajenia;
 	int DecoderType;
 
-	BEGIN_MESSAGE_MAP VCL_MESSAGE_HANDLER(WM_USER + 1, TMessage, MyStart)
-		VCL_MESSAGE_HANDLER(WM_USER + 2, TMessage, MyStop) VCL_MESSAGE_HANDLER
+	BEGIN_MESSAGE_MAP /*VCL_MESSAGE_HANDLER(WM_USER + 1, TMessage, MyStart)
+		VCL_MESSAGE_HANDLER(WM_USER + 2, TMessage, MyStop)*/
+		VCL_MESSAGE_HANDLER
 		(WM_COPYDATA, TMessage, MyData) END_MESSAGE_MAP(TForm)
 		void __fastcall MyStart(TMessage & Message);
 	void __fastcall MyStop(TMessage & Message);

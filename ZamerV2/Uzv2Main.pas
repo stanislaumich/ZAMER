@@ -193,65 +193,18 @@ end;
 procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean; s:string);
 
 begin
+
+  while length(s)<3 do s:='0'+s;
   if b then
    begin
-    SendData(FZamerV2,'1100');
+    SendData(FZamerV2,'1'+s);
    end
   else
    begin
-    SendData(FZamerV2, '0025');
+    SendData(FZamerV2, '0'+s);
    end;
 
-   { QTemp.Open('select value from zini where name=' +
-      Quotedstr('ElspecFormHeader'));
-    z1 := PWideChar(QTemp.FieldByName('value').Asstring);
-    QTemp.Open('select value from zini where name=' +
-      Quotedstr('T45FormHeader'));
-    z2 := PWideChar(QTemp.FieldByName('value').Asstring);
-    // Устанавливаем тип команды
-    if b then
-    begin
-        s := '1 100 200';
-        CDS.dwData := WM_MESSAGE_START;
 
-        CDS.cbData := Length(s) + 1;
-        GetMem(CDS.lpData, CDS.cbData);
-
-        try
-            // Копируем данные в буфер
-            StrPCopy(CDS.lpData, AnsiString(s));
-            // Отсылаем сообщение в окно с заголовком StringReceiver
-            SendMessage(FindWindow(nil, z1), WM_MESSAGE_START, Handle,
-              Integer(@CDS));
-            SendMessage(FindWindow(nil, z2), WM_MESSAGE_START, Handle,
-              Integer(@CDS));
-        finally
-            // Высвобождаем буфер
-            FreeMem(CDS.lpData, CDS.cbData);
-        end;
-    end
-    else
-    begin
-        s := '0 100 200';
-        CDS.dwData := WM_MESSAGE_STOP;
-
-        CDS.cbData := Length(s) + 1;
-        GetMem(CDS.lpData, CDS.cbData);
-
-        try
-            // Копируем данные в буфер
-            StrPCopy(CDS.lpData, AnsiString(s));
-            // Отсылаем сообщение в окно с заголовком StringReceiver
-            SendMessage(FindWindow(nil, z1), WM_MESSAGE_STOP, Handle,
-              Integer(@CDS));
-            SendMessage(FindWindow(nil, z2), WM_MESSAGE_STOP, Handle,
-              Integer(@CDS));
-        finally
-            // Высвобождаем буфер
-            FreeMem(CDS.lpData, CDS.cbData);
-        end;
-    end;
-  }
 end;
 
 Procedure TFZamerV2.AddReportString(fn: string; s1, s2, s3: string);
@@ -1557,7 +1510,7 @@ end;
 
 procedure TFZamerV2.Button2Click(Sender: TObject);
 begin
-    SendCommand(FZamerV2, false, Fsett.Edit6.Text);
+    SendCommand(FZamerV2, false, Fsett.Edit7.Text);
 end;
 
 procedure TFZamerV2.Button3Click(Sender: TObject);
