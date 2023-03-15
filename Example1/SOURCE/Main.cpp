@@ -18,6 +18,11 @@ int acount;
 int wr;
 float corr;
 String oldA = "25";
+float mySkorost;
+float myMoment;
+float koeff=30/3.14159265358979323846;
+float myMoshn=0;
+
 // ---------------------------------------------------------------------------
 // Array of formats for displaying the main measured value
 char *MasFormatovRas[4] = {"%4.0f", "%4.2f", "%4.1f", "%4.3f"};
@@ -148,7 +153,7 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 	Qtemp->SQL->Add("Update zini set value='" + Form1->Caption +
 		"' where name='T45FormHeader'");
 	Qtemp->ExecSQL();
-
+	Edit1->Text = FloatToStr(corr);
 }
 
 // --------------------- "Open" BUTTON
@@ -293,7 +298,7 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction & Action) {
 	Ini->WriteInteger("Position", "Top", Form1->Top);
 	Ini->WriteString("Datchik", "AVG", EAvF->Text);
 	Ini->WriteString("Datchik", "SPEED", ESpeed->Text);
-	Ini->WriteFloat("Datchik", "Corr", corr);
+	Ini->WriteString("Datchik", "Corr", Edit1->Text);
 	if (RadioButton1->Checked)
 		Ini->WriteInteger("FILTER", "Type", 1);
 	if (RadioButton2->Checked)
@@ -306,7 +311,7 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction & Action) {
 		Ini->WriteInteger("FILTER", "Type", 5);
 	if (RadioButton6->Checked)
 		Ini->WriteInteger("FILTER", "Type", 6);
-
+    //Ini->WriteInteger("FILTER", "Type", 6);
 	Ini->Free();
 }
 
@@ -499,6 +504,7 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	// ................... Formation of a line for displaying the main measurement value in the panel
 	Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
 	Znachenie = Znachenie + corr;
+	myMoment = Znachenie;
 	if (RadioButton1->Checked)
 		STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -2));
 	if (RadioButton2->Checked){
@@ -537,24 +543,30 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 		STTemper->Caption = "0";
 	// ................... Formation of a line for displaying speed on the panel
 	Znachenie = POutputBuffer->Data.MD.RC.Skorost;
+
 	if (Znachenie < 1000) {
 		STSkorost->Caption = FloatToStr(RoundTo(Znachenie, -2));
+		mySkorost = Znachenie;
 		// ASCaption.sprintf ("% 4.1f", Znachenie);
 	}
 	else {
 		STSkorost->Caption = FloatToStr(RoundTo(Znachenie, -2));
+		mySkorost = Znachenie;
 		// ASCaption.sprintf ("% 4.0f", Znachenie);
 	}
 	if (STSkorost->Caption == "NAN")
 		STSkorost->Caption = "0";
 	// ................... Formation of a line to display power on the panel
-	Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
+
+	//
+	Znachenie= abs(myMoment) * abs(mySkorost) / koeff;
+
+	//
+	//Znachenie = POutputBuffer->Data.MD.RC.Moschnost;
 	STMoschnost->Caption = FloatToStr(RoundTo(Znachenie, -2));
 	if (STMoschnost->Caption == "NAN")
 		STMoschnost->Caption = "0";
-	// ASCaption.sprintf (FormatOtobrajenia, Znachenie);
-	// Memo2->Lines->Add(STOsnIzmVel->Caption + ";" + STSkorost->Caption + ";" +
-	// STMoschnost->Caption + ";");
+
 }
 
 // --------------------- Reading decoder status messages
@@ -875,7 +887,7 @@ void __fastcall TForm1::BitBtn2Click(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::BitBtn1Click(TObject *Sender) {
-	Edit1->Text = FloatToStr(StrToFloat(STOsnIzmVel->Caption) * (-1));
+	Edit1->Text = FloatToStr(RoundTo(StrToFloat(STOsnIzmVel->Caption) * (-1),-3));
 	corr = StrToFloat(Edit1->Text);
 	TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
 		"\\settings45.ini");

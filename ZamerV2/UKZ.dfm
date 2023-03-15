@@ -294,6 +294,7 @@ object FKZ: TFKZ
       Height = 23
       Anchors = [akLeft, akBottom]
       Caption = #1054#1090#1089#1095#1077#1090#1086#1074':'
+      Visible = False
       ExplicitTop = 324
     end
     object Label15: TLabel
@@ -303,6 +304,7 @@ object FKZ: TFKZ
       Height = 23
       Anchors = [akLeft, akBottom]
       Caption = '0'
+      Visible = False
       ExplicitTop = 324
     end
     object Label16: TLabel

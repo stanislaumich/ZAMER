@@ -335,7 +335,9 @@ begin
   StringGrid1.Cells[4, 0] := 'М сред';
   StringGrid1.Cells[0, 2] := Label19.caption;
   StringGrid1.Cells[0, 1] := inttostr(Round(Strtoint(Label19.caption) / 3.8));
-
+  StringGrid1.Row:=1;
+  StringGrid1.Col:=1;
+  StringGrid1Click(FKZ);
 end;
 
 procedure TFKZ.FormClose(Sender: TObject; var Action: TCloseAction);

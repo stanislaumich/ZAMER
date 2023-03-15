@@ -1532,14 +1532,26 @@ begin
 end;
 
 procedure TFZamerV2.FormCreate(Sender: TObject);
-begin
-
-    QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
+var
+   p:textfile;
+   p1,p2:string;
+ begin
+    assignfile(p,Extractfilepath(paramstr(0))+'path.ini');
+    Reset(p);
+    ReadLn(p,p1);
+    Readln(p,p2);
+    Closefile(p);
+    ShellExecute(Handle, 'open', PWideChar(p1),
+      nil, nil, SW_SHOWNORMAL);
+    ShellExecute(Handle, 'open', PWideChar(p2),
+      nil, nil, SW_SHOWNORMAL);
+    {QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
     ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
       nil, nil, SW_SHOWNORMAL);
     QTemp.Open('select value from zini where name=' + Quotedstr('MNTPath'));
     ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
       nil, nil, SW_SHOWNORMAL);
+    }
     DateTimePicker1.Date := Date;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('Update version set maintotal=maintotal+1');
