@@ -954,6 +954,7 @@ end;
 procedure TFZamerV2.BitStartIspClick(Sender: TObject);
 var
     buttonSelected: Integer;
+    s:string;
 begin
     buttonSelected :=
       MessageDlg('¬се ли пол€ условий испытани€ заполнены верно?',
@@ -996,7 +997,9 @@ begin
             Qinsdvig.ParamByName('regim').Asstring := CombRegim.Text;
             Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
             Qinsdvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
-            Qinsdvig.ParamByName('TEMP').Asstring := EditTemp.Text;
+            s:= EditTemp.Text;
+            s:=StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+            Qinsdvig.ParamByName('TEMP').Asstring := s;
             Qinsdvig.ExecSQL;
             comboaddtext;
             FSopr.ComboBox9.Text := FSopr.ComboBox9.Items[0];

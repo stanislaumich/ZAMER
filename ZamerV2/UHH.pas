@@ -550,6 +550,7 @@ procedure TFormHH.TimWork1000Timer(Sender: TObject);
 var
   i: integer;
   errcnt, goodcnt: integer;
+  s:string;
 begin
   ProgressBar1.StepIt;
   times := times - 1;
@@ -599,8 +600,12 @@ begin
     Qsred.Open;
     StringGrid2.Cells[1, StringGrid2.row] :=
       floattostr(Qsred.FieldByName('u').AsFloat);
-    StringGrid2.Cells[2, StringGrid2.row] :=
-      floattostr(Qsred.FieldByName('i').AsFloat);
+
+    s:= floattostr(Qsred.FieldByName('i').AsFloat);
+    if pos(',',s)=0 then s:=s+',00';
+    
+    StringGrid2.Cells[2, StringGrid2.row] := s;//ток
+
     StringGrid2.Cells[3, StringGrid2.row] :=
       floattostr(Qsred.FieldByName('p').AsFloat);
     StringGrid2.Cells[4, StringGrid2.row] := Qsred.FieldByName('m').AsString;
