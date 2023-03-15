@@ -1,0 +1,37 @@
+15.03.2023 08:32:09.448 - Запуск Modbus TCP/RTU Эмулятор
+15.03.2023 08:32:09.765 - TModbusTCPServer.Create
+15.03.2023 08:32:10.57 - TModbusTCPServer.Start
+15.03.2023 08:32:10.57 - TTCPAccept.Create IN, Port = 502
+15.03.2023 08:32:10.57 - TTCPAccept.Create OUT
+15.03.2023 08:32:10.59 - TTCPAccept.Execute IN
+15.03.2023 08:32:10.59 - TTCPAccept.InitSocket IN
+15.03.2023 08:32:10.59 - TTCPAccept.InitSocket - OUT
+15.03.2023 08:32:24.713 - TModbusTCPServer.ClientConnectEvent
+15.03.2023 08:32:24.713 - TModbusTCPServer.AddClient
+15.03.2023 08:32:24.713 - TModbusTCPClient.Start
+15.03.2023 08:32:24.713 - TTCPAccept.InitSocket IN
+15.03.2023 08:53:26.459 - TModbusTCPServer.OnClientDisconnect
+15.03.2023 08:55:03.167 - TModbusTCPServer.ClientConnectEvent
+15.03.2023 08:55:03.183 - TModbusTCPServer.RemoveClient
+15.03.2023 08:55:07.943 - TModbusTCPServer.AddClient
+15.03.2023 08:55:07.943 - TModbusTCPClient.Start
+15.03.2023 08:55:07.943 - TTCPAccept.InitSocket IN
+15.03.2023 08:55:08.226 - TModbusTCPServer.OnClientDisconnect
+15.03.2023 08:55:11.415 - TModbusTCPServer.ClientConnectEvent
+15.03.2023 08:55:11.415 - TModbusTCPServer.RemoveClient
+15.03.2023 08:55:11.431 - TModbusTCPServer.AddClient
+15.03.2023 08:55:11.431 - TModbusTCPClient.Start
+15.03.2023 08:55:11.431 - TTCPAccept.InitSocket IN
+15.03.2023 08:55:26.23 - TModbusTCPServer.OnClientDisconnect
+15.03.2023 08:56:03.419 - TModbusTCPServer.ClientConnectEvent
+15.03.2023 08:56:03.419 - TModbusTCPServer.RemoveClient
+15.03.2023 08:56:04.292 - TModbusTCPServer.AddClient
+15.03.2023 08:56:04.292 - TModbusTCPClient.Start
+15.03.2023 08:56:04.292 - TTCPAccept.InitSocket IN
+15.03.2023 09:02:31.210 - TModbusTCPServer.OnClientDisconnect
+15.03.2023 09:51:29.200 - TModbusTCPServer.ClientConnectEvent
+15.03.2023 09:51:29.208 - TModbusTCPServer.RemoveClient
+15.03.2023 09:51:29.934 - TModbusTCPServer.AddClient
+15.03.2023 09:51:29.934 - TModbusTCPClient.Start
+15.03.2023 09:51:29.934 - TTCPAccept.InitSocket IN
+15.03.2023 09:51:55.486 - TModbusTCPServer.OnClientDisconnect
