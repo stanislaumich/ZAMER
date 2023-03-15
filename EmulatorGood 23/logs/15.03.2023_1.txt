@@ -35,3 +35,15 @@
 15.03.2023 09:51:29.934 - TModbusTCPClient.Start
 15.03.2023 09:51:29.934 - TTCPAccept.InitSocket IN
 15.03.2023 09:51:55.486 - TModbusTCPServer.OnClientDisconnect
+15.03.2023 10:10:01.356 - TModbusTCPServer.ClientConnectEvent
+15.03.2023 10:10:01.356 - TModbusTCPServer.RemoveClient
+15.03.2023 10:10:02.356 - TModbusTCPServer.AddClient
+15.03.2023 10:10:02.356 - TModbusTCPClient.Start
+15.03.2023 10:10:02.356 - TTCPAccept.InitSocket IN
+15.03.2023 10:10:47.20 - TModbusTCPServer.OnClientDisconnect
+15.03.2023 10:11:10.21 - TModbusTCPServer.ClientConnectEvent
+15.03.2023 10:11:10.21 - TModbusTCPServer.RemoveClient
+15.03.2023 10:11:11.128 - TModbusTCPServer.AddClient
+15.03.2023 10:11:11.128 - TModbusTCPClient.Start
+15.03.2023 10:11:11.128 - TTCPAccept.InitSocket IN
+15.03.2023 10:12:05.272 - TModbusTCPServer.OnClientDisconnect

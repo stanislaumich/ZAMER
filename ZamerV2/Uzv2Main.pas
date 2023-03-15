@@ -156,7 +156,7 @@ procedure TFZamerV2.SendData(Sender: TObject; s:string);
  var
    aCopyData: TCopyDataStruct;
    hTargetWnd: HWND;
-   z1,z2:string;
+   z1,z2,ts:string;
    i:integer;
    ss:ansistring;
  begin
@@ -167,13 +167,14 @@ procedure TFZamerV2.SendData(Sender: TObject; s:string);
         QTemp.Open('select value from zini where name=' +
       Quotedstr('T45FormHeader'));
     z2 := PWideChar(QTemp.FieldByName('value').Asstring);
-    //z2:= PWideChar('TST');
-   ss:=s;
+    ///////////////////////////////////////////////////
+    //z1:= PWideChar('TST');
+   ts:=s;
    with aCopyData do
    begin
      dwData := 0;
-     pmes:= pchar(ss);
-     cbData := StrLen(pmes)*2 + 1;
+     pmes:= pchar(ts);
+     cbData := StrLen(pmes) + 2;
      lpData := pmes;
    end;
 
@@ -182,6 +183,15 @@ procedure TFZamerV2.SendData(Sender: TObject; s:string);
      SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle), Longint(@aCopyData))
    else
      ShowMessage('Не обнаружена программа сбора показаний ELSPEC');
+     //////////////////////////////////////////////////////
+  ss:=s;
+   with aCopyData do
+   begin
+     dwData := 0;
+     pmes:= pchar(ss);
+     cbData := StrLen(pmes)*2 + 1;
+     lpData := pmes;
+   end;
   hTargetWnd := FindWindowEx(0, 0, nil, PChar(z2));
    if hTargetWnd <> 0 then
      SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle), Longint(@aCopyData))
