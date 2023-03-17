@@ -445,7 +445,7 @@ begin
       QInsAll.ParamByName('I1').AsFloat := QTemp2.FieldByName('i1').AsFloat;
       QInsAll.ParamByName('I2').AsFloat := QTemp2.FieldByName('i2').AsFloat;
       QInsAll.ParamByName('I3').AsFloat := QTemp2.FieldByName('i3').AsFloat;
-      QInsAll.ParamByName('P').AsFloat := QTemp2.FieldByName('p').AsFloat;
+      QInsAll.ParamByName('P').AsFloat := QTemp.FieldByName('POWER').AsFloat;
       QInsAll.ParamByName('ZP').AsFloat := StrToFloat(Label24.Caption);
       QInsAll.ParamByName('P1').AsFloat := QTemp2.FieldByName('p1').AsFloat;
       QInsAll.ParamByName('P2').AsFloat := QTemp2.FieldByName('p2').AsFloat;
