@@ -1254,6 +1254,10 @@ begin
           QTemp.FieldByName('t3').Asstring;
         Fnagr.StringGrid1.Cells[9, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('r').Asstring;
+        Fnagr.StringGrid1.Cells[10, QTemp.FieldByName('tip').AsInteger] :=
+          QTemp.FieldByName('otklonu').Asstring;
+        Fnagr.StringGrid1.Cells[11, QTemp.FieldByName('tip').AsInteger] :=
+          QTemp.FieldByName('otklonp').Asstring;
         QTemp.Next;
     end;
     // Загрузить прочие испытания

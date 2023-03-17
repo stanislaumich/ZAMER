@@ -74,10 +74,6 @@ type
     Label24: TLabel;
     Label27: TLabel;
     Label33: TLabel;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -188,6 +184,9 @@ begin
     QInssvod.ParamByName('edizmkorp').Asstring := ComboBox1.Text;
     QInssvod.ParamByName('edizmobm').Asstring := ComboBox2.Text;
     QInssvod.ParamByName('edizmispyt').Asstring := ComboBox3.Text;
+
+    QInssvod.ParamByName('otklonu').AsString := StringGrid1.cells[10, i];
+    QInssvod.ParamByName('otklonp').AsString := StringGrid1.cells[11, i];
 
     QInssvod.ExecSQL;
   end;
@@ -368,6 +367,8 @@ begin
   StringGrid1.cells[7, 0] := 'T2,C';
   StringGrid1.cells[8, 0] := 'T3,C';
   StringGrid1.cells[9, 0] := 'R';
+  StringGrid1.cells[10, 0] := 'U ошиб.(всего)';
+  StringGrid1.cells[11, 0] := 'P ошиб.(всего)';
   StringGrid1.cells[0, 1] := 'Без нагрузки';
   StringGrid1.cells[0, 2] := 'С нагрузкой';
 
@@ -402,7 +403,7 @@ end;
 
 procedure TFNagr.Timer1000Timer(Sender: TObject);
 var
-  acount1, acount2, ncnt, i: integer;
+  acount1, acount2, ncnt, i, errcnt, goodcnt: integer;
 begin
   ProgressBar1.StepIt;
   Timer1000.Tag := Timer1000.Tag + 1;
@@ -438,10 +439,14 @@ begin
       QInsAll.ParamByName('U1').AsFloat := QTemp2.FieldByName('U1').AsFloat;
       QInsAll.ParamByName('U2').AsFloat := QTemp2.FieldByName('U2').AsFloat;
       QInsAll.ParamByName('U3').AsFloat := QTemp2.FieldByName('U3').AsFloat;
+      QInsAll.ParamByName('ZU').AsFloat := StrToFloat(Label19.Caption);
+      QInsAll.ParamByName('U').AsFloat := QTemp2.FieldByName('U').AsFloat;
+
       QInsAll.ParamByName('I1').AsFloat := QTemp2.FieldByName('i1').AsFloat;
       QInsAll.ParamByName('I2').AsFloat := QTemp2.FieldByName('i2').AsFloat;
       QInsAll.ParamByName('I3').AsFloat := QTemp2.FieldByName('i3').AsFloat;
       QInsAll.ParamByName('P').AsFloat := QTemp2.FieldByName('p').AsFloat;
+      QInsAll.ParamByName('ZP').AsFloat := StrToFloat(Label24.Caption);
       QInsAll.ParamByName('P1').AsFloat := QTemp2.FieldByName('p1').AsFloat;
       QInsAll.ParamByName('P2').AsFloat := QTemp2.FieldByName('p2').AsFloat;
       QInsAll.ParamByName('P3').AsFloat := QTemp2.FieldByName('p3').AsFloat;
@@ -464,6 +469,8 @@ begin
     QSelectSred.Close;
     QSelectSred.ParamByName('nomer').Asstring := Nomer;
     QSelectSred.ParamByName('tip').Asinteger := StringGrid1.Row;
+    QSelectSred.ParamByName('du').AsFloat := StrToFloat(Edit2.Text);
+    QSelectSred.ParamByName('dp').AsFloat := StrToFloat(Label29.Caption);
     QSelectSred.Open;
     QInssvod.Close;
     QTemp.Close;
@@ -472,19 +479,43 @@ begin
       ' and tip=' + inttostr(StringGrid1.Row));
     QTemp.ExecSQL;
     StringGrid1.cells[1, StringGrid1.Row] :=
-      floattostr(simpleroundto((QSelectSred.FieldByName('su1').AsFloat +
-      QSelectSred.FieldByName('su2').AsFloat + QSelectSred.FieldByName('su3')
-      .AsFloat) / 3, RazU));
+    floattostr(simpleroundto(QSelectSred.FieldByName('u').AsFloat,RazU));
+
     StringGrid1.cells[2, StringGrid1.Row] :=
-      floattostr(simpleroundto((QSelectSred.FieldByName('si1').AsFloat +
-      QSelectSred.FieldByName('si2').AsFloat + QSelectSred.FieldByName('si3')
-      .AsFloat) / 3, RazI));
+    floattostr(simpleroundto(QSelectSred.FieldByName('i').AsFloat,RazI));
+
     StringGrid1.cells[3, StringGrid1.Row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP));
     StringGrid1.cells[4, StringGrid1.Row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN));
     StringGrid1.cells[5, StringGrid1.Row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
+
+   //-----------------------  u
+    QTemp.Open('select count(*) r from znagrevall where nomer=' + Quotedstr(Nomer) +
+      ' and tip=' + IntToStr(StringGrid1.Row) + ' and du>' + Edit2.Text);
+    errcnt := QTemp.FieldByName('r').Asinteger;
+    QTemp.Open('select count(*) r from znagrevall where nomer=' + Quotedstr(Nomer) +
+      ' and tip=' + IntToStr(StringGrid1.Row) + ' and du<=' + Edit2.Text);
+    goodcnt := QTemp.FieldByName('r').Asinteger;
+    StringGrid1.Cells[10, StringGrid1.row] :=
+      floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
+      inttostr(goodcnt + errcnt) + ')';
+   //-----------------------  p
+    QTemp.Open('select count(*) r from znagrevall where nomer=' + Quotedstr(Nomer) +
+      ' and tip=' + IntToStr(StringGrid1.Row) + ' and dp>' + Label29.Caption);
+    errcnt := QTemp.FieldByName('r').Asinteger;
+    QTemp.Open('select count(*) r from znagrevall where nomer=' + Quotedstr(Nomer) +
+      ' and tip=' + IntToStr(StringGrid1.Row) + ' and dp<=' + Label29.Caption);
+    goodcnt := QTemp.FieldByName('r').Asinteger;
+    StringGrid1.Cells[11, StringGrid1.row] :=
+      floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
+      inttostr(goodcnt + errcnt) + ')';
+
+   //
+
+
+
     BitBtn1.Enabled := true;
     if StringGrid1.Row < StringGrid1.RowCount - 2 then
       StringGrid1.Row := StringGrid1.Row + 1;

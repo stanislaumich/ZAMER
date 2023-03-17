@@ -582,6 +582,7 @@ begin
       QInsAll.ParamByName('FU').AsFloat := QTemp.FieldByName('u').AsFloat;
       QInsAll.ParamByName('FI').AsFloat := QTemp.FieldByName('i').AsFloat;
       QInsAll.ParamByName('FP').AsFloat := QTemp.FieldByName('p').AsFloat;
+
       QInsAll.ExecSQL;
       QTemp.Next;
     end;

@@ -216,7 +216,8 @@ object FNagr: TFNagr
       Top = 56
       Width = 1031
       Height = 129
-      ColCount = 10
+      Anchors = [akLeft, akTop, akRight]
+      ColCount = 12
       FixedCols = 0
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goColSizing, goEditing, goFixedRowDefAlign]
@@ -737,42 +738,6 @@ object FNagr: TFNagr
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object CheckBox1: TCheckBox
-      Left = 804
-      Top = 68
-      Width = 97
-      Height = 17
-      Caption = 'CheckBox1'
-      TabOrder = 0
-      Visible = False
-    end
-    object CheckBox2: TCheckBox
-      Left = 804
-      Top = 92
-      Width = 97
-      Height = 17
-      Caption = 'CheckBox2'
-      TabOrder = 1
-      Visible = False
-    end
-    object CheckBox3: TCheckBox
-      Left = 808
-      Top = 116
-      Width = 97
-      Height = 17
-      Caption = 'CheckBox3'
-      TabOrder = 2
-      Visible = False
-    end
-    object CheckBox4: TCheckBox
-      Left = 812
-      Top = 136
-      Width = 97
-      Height = 17
-      Caption = 'CheckBox4'
-      TabOrder = 3
-      Visible = False
-    end
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
@@ -800,12 +765,16 @@ object FNagr: TFNagr
       '   P, N, M, '
       '   T1, R, TIP, '
       '   DOP1, RKORP, ROBM, '
-      '   T2, T3, T, edizmispyt, edizmkorp, edizmobm) '
+      
+        '   T2, T3, T, edizmispyt, edizmkorp, edizmobm, otklonu, otklonp)' +
+        ' '
       'VALUES ( :NOMER, :U, :I, '
       '   :P, :N, :M, '
       '   :T1, :R, :TIP, '
       '   :DOP1, :RKORP, :ROBM, '
-      '   :T2, :T3, :T, :edizmispyt, :edizmkorp, :edizmobm )')
+      
+        '   :T2, :T3, :T, :edizmispyt, :edizmkorp, :edizmobm, :otklonu, :' +
+        'otklonp )')
     Left = 360
     Top = 336
     ParamData = <
@@ -880,6 +849,14 @@ object FNagr: TFNagr
       item
         Name = 'EDIZMOBM'
         ParamType = ptInput
+      end
+      item
+        Name = 'OTKLONU'
+        ParamType = ptInput
+      end
+      item
+        Name = 'OTKLONP'
+        ParamType = ptInput
       end>
   end
   object QInsAll: TFDQuery
@@ -890,7 +867,7 @@ object FNagr: TFNagr
       '   U3, I1, I2, '
       '   I3, P, M, '
       '   N, DOP1, TIP, '
-      '   NAGR,p1,p2,p3) '
+      '   NAGR,p1,p2,p3, u,zu,zp) '
       'VALUES ( :NOMER ,'
       ' :U1 ,'
       ' :U2 ,'
@@ -903,7 +880,7 @@ object FNagr: TFNagr
       ' :N ,'
       ' :DOP1,'
       ' :TIP ,'
-      ' :NAGR, :p1, :p2, :p3 )')
+      ' :NAGR, :p1, :p2, :p3,:u, :zu, :zp )')
     Left = 516
     Top = 336
     ParamData = <
@@ -970,6 +947,18 @@ object FNagr: TFNagr
       item
         Name = 'P3'
         ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ZU'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ZP'
+        ParamType = ptInput
       end>
   end
   object QSelectSred: TFDQuery
@@ -977,13 +966,11 @@ object FNagr: TFNagr
     SQL.Strings = (
       'SELECT'
       '    NOMER, '
-      '    avg(U1) su1, avg(U2) su2, avg(U3) su3,'
-      '    avg(I1) si1,avg(I2) si2, avg(I3) si3,'
-      
-        '    avg(P) sp,avg(M) sM, avg(N) sn --,    --0 mumax, 0 mpmax,avg' +
-        '(torq) t, avg(power) pow, avg(rot) r'
+      '    avg(u) u, avg(i) i,'
+      '    avg(P) sp,avg(M) sM, avg(N) sn '
       '    FROM ZAMER.ZNAGREVALL'
-      '    where nomer=:nomer and tip=:tip -- and pisp=:pisp '
+      '    where nomer=:nomer and tip=:tip '
+      '    and du<:du and dp<:dp '
       '    group by nomer, tip')
     Left = 436
     Top = 336
@@ -991,9 +978,18 @@ object FNagr: TFNagr
       item
         Name = 'NOMER'
         ParamType = ptInput
+        Value = Null
       end
       item
         Name = 'TIP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DU'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DP'
         ParamType = ptInput
       end>
   end

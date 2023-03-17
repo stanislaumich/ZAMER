@@ -1053,8 +1053,8 @@ object FZamerV2: TFZamerV2
         Text = 'CombTipDvig'
       end
       object EditNumDvig: TEdit
-        Left = 108
-        Top = 82
+        Left = 109
+        Top = 85
         Width = 233
         Height = 27
         Anchors = [akLeft, akTop, akRight]
