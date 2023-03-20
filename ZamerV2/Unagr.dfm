@@ -3,7 +3,7 @@ object FNagr: TFNagr
   Top = 0
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1085#1072#1075#1088#1077#1074#1072
   ClientHeight = 591
-  ClientWidth = 1035
+  ClientWidth = 1393
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,14 +17,14 @@ object FNagr: TFNagr
   OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
-    1035
+    1393
     591)
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1035
+    Width = 1393
     Height = 30
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
@@ -34,6 +34,7 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 1035
     object Label1: TLabel
       Left = 3
       Top = 2
@@ -80,7 +81,7 @@ object FNagr: TFNagr
   object GroupBox3: TGroupBox
     Left = 0
     Top = 200
-    Width = 1035
+    Width = 1393
     Height = 75
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
@@ -91,6 +92,7 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    ExplicitWidth = 1035
     object Label15: TLabel
       Left = 8
       Top = 32
@@ -163,7 +165,7 @@ object FNagr: TFNagr
   object GroupBox4: TGroupBox
     Left = 0
     Top = 275
-    Width = 1035
+    Width = 1393
     Height = 314
     Anchors = [akLeft, akTop, akRight, akBottom]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
@@ -174,8 +176,9 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    ExplicitWidth = 1035
     DesignSize = (
-      1035
+      1393
       314)
     object Label20: TLabel
       Left = 8
@@ -214,7 +217,7 @@ object FNagr: TFNagr
     object StringGrid1: TStringGrid
       Left = 2
       Top = 56
-      Width = 1031
+      Width = 1389
       Height = 129
       Anchors = [akLeft, akTop, akRight]
       ColCount = 12
@@ -223,9 +226,10 @@ object FNagr: TFNagr
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       OnKeyPress = StringGrid1KeyPress
+      ExplicitWidth = 1031
     end
     object BitBtn1: TBitBtn
-      Left = 597
+      Left = 830
       Top = 236
       Width = 155
       Height = 45
@@ -290,9 +294,10 @@ object FNagr: TFNagr
         9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 1
       OnClick = BitBtn1Click
+      ExplicitLeft = 597
     end
     object BitBtn2: TBitBtn
-      Left = 391
+      Left = 553
       Top = 236
       Width = 155
       Height = 45
@@ -357,15 +362,17 @@ object FNagr: TFNagr
         12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
       TabOrder = 2
       OnClick = BitBtn2Click
+      ExplicitLeft = 391
     end
     object ProgressBar1: TProgressBar
       Left = 2
       Top = 287
-      Width = 1031
+      Width = 1389
       Height = 25
       Align = alBottom
       Step = 1
       TabOrder = 3
+      ExplicitWidth = 1031
     end
     object Edit4: TEdit
       Left = 221
@@ -386,7 +393,7 @@ object FNagr: TFNagr
       OnChange = Edit5Change
     end
     object BitBtn10: TBitBtn
-      Left = 790
+      Left = 1105
       Top = 236
       Width = 242
       Height = 45
@@ -457,6 +464,7 @@ object FNagr: TFNagr
       ParentFont = False
       TabOrder = 6
       OnClick = BitBtn10Click
+      ExplicitLeft = 790
     end
     object ComboBox1: TComboBox
       Left = 280
@@ -487,7 +495,7 @@ object FNagr: TFNagr
   object GroupBox1: TGroupBox
     Left = 0
     Top = 30
-    Width = 1035
+    Width = 1393
     Height = 167
     Align = alTop
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1087#1088#1080#1073#1086#1088#1086#1074
@@ -498,6 +506,7 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    ExplicitWidth = 1035
     object Label2: TLabel
       Left = 46
       Top = 65

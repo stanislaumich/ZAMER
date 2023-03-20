@@ -94,6 +94,8 @@ type
   public
     procedure command(b: Boolean);
     procedure change(Sender: TObject);
+
+procedure auto(var stringgrid1:tstringgrid);
   end;
 
 var
@@ -313,7 +315,8 @@ end;
 procedure TFNagr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonselected: integer;
-
+  f:textfile;
+  i:integer;
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -334,6 +337,14 @@ begin
     ' where name=' + QuotedStr('pnag'));
   QTemp.ExecSQL;
 
+  assignfile(f,Extractfilepath(paramstr(0))+'nagr_width.txt');
+  Rewrite(f);
+  for i:= 0 to Stringgrid1.ColCount-1 do
+    begin
+      Writeln(f, Inttostr(Stringgrid1.ColWidths[i]));
+    end;
+  Closefile(f);
+
   if not enableclose then
   begin
     buttonselected := MessageDlg('Сохранить данные?', mtConfirmation,
@@ -352,10 +363,35 @@ begin
     CanClose := true;
 end;
 
+procedure TFNagr.auto(var stringgrid1:tstringgrid);
+var
+  x, y, w: integer;
+  s: string;
+  MaxWidth: integer;
+begin
+  with StringGrid1 do
+    //ClientHeight := DefaultRowHeight * RowCount + 5;
+    with StringGrid1 do
+    begin
+      for x := 0 to ColCount - 1 do
+      begin
+        MaxWidth := 0;
+        for y := 0 to RowCount - 1 do
+        begin
+          w := Canvas.TextWidth(Cells[x,y]);
+          if w > MaxWidth then
+            MaxWidth := w;
+        end;
+        ColWidths[x] := MaxWidth + 5;
+      end;
+    end;
+end;
+
 procedure TFNagr.FormCreate(Sender: TObject);
 var
   i, j: integer;
   s: string;
+  f:textfile;
 begin
   StringGrid1.cells[0, 0] := 'Нагрузка';
   StringGrid1.cells[1, 0] := 'U сред В.';
@@ -371,8 +407,24 @@ begin
   StringGrid1.cells[11, 0] := 'P ошиб.(всего)';
   StringGrid1.cells[0, 1] := 'Без нагрузки';
   StringGrid1.cells[0, 2] := 'С нагрузкой';
+  //auto(stringgrid1);
 
-  StringGrid1.DefaultColWidth := 100;
+  assignfile(f,Extractfilepath(paramstr(0))+'nagr_width.txt');
+  Reset(f);
+  for i:= 0 to Stringgrid1.ColCount-1 do
+    begin
+     Readln(f, s);
+     Stringgrid1.ColWidths[i]:=strtoint(s);
+    end;
+  Closefile(f);
+
+
+  //StringGrid1.DefaultColWidth := 100;
+  //StringGrid1.ColWidths[0]:= 150;
+  //StringGrid1.ColWidths[10]:= 150;
+  //StringGrid1.ColWidths[11]:= 150;
+
+
 
   QTemp.Open('select value from zini where name=' + QuotedStr('nagtime'));
   FNagr.Edit1.Text := QTemp.FieldByName('value').Asstring;
