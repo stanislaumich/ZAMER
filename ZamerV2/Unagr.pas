@@ -418,14 +418,6 @@ begin
     end;
   Closefile(f);
 
-
-  //StringGrid1.DefaultColWidth := 100;
-  //StringGrid1.ColWidths[0]:= 150;
-  //StringGrid1.ColWidths[10]:= 150;
-  //StringGrid1.ColWidths[11]:= 150;
-
-
-
   QTemp.Open('select value from zini where name=' + QuotedStr('nagtime'));
   FNagr.Edit1.Text := QTemp.FieldByName('value').Asstring;
   QTemp.Close;
