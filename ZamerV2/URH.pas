@@ -495,6 +495,8 @@ end;
 procedure TFRH.FormActivate(Sender: TObject);
 var
   i: integer;
+  f:textfile;
+  s:string;
 begin
   Label24.Caption := inttostr(round(Strtofloat(FZamerV2.CombPisp.text) * 1000));
   for i := 1 to 8 do
@@ -511,6 +513,17 @@ begin
   StringGrid2.Cells[5, 0] := 'M сред';
   StringGrid2.Cells[6, 0] := '▲Umax';
   StringGrid2.Cells[7, 0] := '▲Pmax';
+  StringGrid2.Cells[8, 0] := 'U ошиб.(всего)';
+  StringGrid2.Cells[9, 0] := 'P ошиб.(всего)';
+
+  assignfile(f,Extractfilepath(paramstr(0))+'RH_width.txt');
+  Reset(f);
+  for i:= 0 to Stringgrid2.ColCount-1 do
+    begin
+     Readln(f, s);
+     Stringgrid2.ColWidths[i]:=strtoint(s);
+    end;
+  Closefile(f);
 
   nomer := Label6.Caption;
   enableclose := true;
@@ -550,7 +563,17 @@ end;
 procedure TFRH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonSelected: integer;
+  i:integer;
+  f:textfile;
 begin
+  assignfile(f,Extractfilepath(paramstr(0))+'RH_width.txt');
+  Rewrite(f);
+  for i:= 0 to Stringgrid2.ColCount-1 do
+    begin
+      Writeln(f, Inttostr(Stringgrid2.ColWidths[i]));
+    end;
+  Closefile(f);
+
   CanClose := true;
   { if enableclose then
     CanClose := true
