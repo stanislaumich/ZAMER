@@ -121,9 +121,9 @@ var
   Activated: Boolean;
 
 Const
-  RazU = -1;
-  RazI = -2;
-  RazP = -1;
+  RazU = -3;
+  RazI = -3;
+  RazP = -3;
 
 
 var
@@ -387,8 +387,8 @@ end;
 
 procedure TForm1.TUpdateFormTimer(Sender: TObject);
 begin
-  Label4.Caption := FormatFloat('0.0', Simpleroundto(USred.Value, RazU));
-  Label5.Caption := FormatFloat('0.00', Simpleroundto(ISred.Value, RazI));
+  Label4.Caption := FormatFloat('0.00', Simpleroundto(USred.Value, RazU));
+  Label5.Caption := FormatFloat('0.000', Simpleroundto(ISred.Value, RazI));
   Label6.Caption := FormatFloat('0.0', Simpleroundto(PSred.Value, RazP));
   if CheckBox3.Checked then
   begin
@@ -398,13 +398,13 @@ begin
   end;
   if CheckBox1.Checked then
   begin
-    Label10.Caption := FormatFloat('0.0', Simpleroundto(U1.Value, RazU));
-    Label11.Caption := FormatFloat('0.0', Simpleroundto(U2.Value, RazU));
-    Label12.Caption := FormatFloat('0.0', Simpleroundto(U3.Value, RazU));
+    Label10.Caption := FormatFloat('0.00', Simpleroundto(U1.Value, RazU));
+    Label11.Caption := FormatFloat('0.00', Simpleroundto(U2.Value, RazU));
+    Label12.Caption := FormatFloat('0.00', Simpleroundto(U3.Value, RazU));
 
-    Label15.Caption := FormatFloat('0.00', Simpleroundto(I1.Value, RazI));
-    Label16.Caption := FormatFloat('0.00', Simpleroundto(I2.Value, RazI));
-    Label17.Caption := FormatFloat('0.00', Simpleroundto(I3.Value, RazI));
+    Label15.Caption := FormatFloat('0.000', Simpleroundto(I1.Value, RazI));
+    Label16.Caption := FormatFloat('0.000', Simpleroundto(I2.Value, RazI));
+    Label17.Caption := FormatFloat('0.000', Simpleroundto(I3.Value, RazI));
 
     Label18.Caption := FormatFloat('0.0', Simpleroundto(P1.Value, RazP));
     Label19.Caption := FormatFloat('0.0', Simpleroundto(P2.Value, RazP));

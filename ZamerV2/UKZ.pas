@@ -91,43 +91,7 @@ procedure TFKZ.command(b: Boolean);
 begin
   FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit6.Text);
 end;
-{
-begin
-  interval := 50;
-  fname := '1600';
-  if b then
-  begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
 
-    QTemp.SQL.Add
-      ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(Nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
-      inttostr(interval) + ')');
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(Nomer) + ' , 11)');
-    QTemp.ExecSQL;
-  end
-  else
-  begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add
-      ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(Nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
-      inttostr(interval) + ')');
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(Nomer) + ' , 10)');
-    QTemp.ExecSQL;
-  end;
-end;
-}
 procedure TFKZ.Edit2Change(Sender: TObject);
 begin
   enableclose := false;
@@ -218,12 +182,9 @@ end;
 
 // end f9
 procedure TFKZ.BitBtn9Click(Sender: TObject);
-// type
-// rec = record
-// u, i, p, u1, u2, u3, i1, i2, i3, p1, p2, p3, torq: single;
-// end;
+
 var
-  // a  : array [1 .. 1000] of rec;
+
   i: integer;
   max: integer;
   el, m45, ncnt: integer;
@@ -270,6 +231,7 @@ begin
     Qm.next;
     Qe.next;
     e := not Qe.eof and not Qm.eof;
+
   end;
 
   QTemp.Close;
@@ -294,9 +256,7 @@ begin
 
   QInsSvod.ParamByName('nomer').AsString := Nomer;
   QInsSvod.ParamByName('uisp').AsFloat := Strtofloat(Label13.caption);
-  // if stringgrid1.row=1 then
   QInsSvod.ParamByName('r').AsFloat := 0;
-  // SimpleRoundTo(Strtofloat(Edit2.text), RazR);
 
   QInsSvod.ParamByName('u').AsFloat :=
     SimpleRoundTo(QSelectsred.Fieldbyname('u').AsFloat, RazU);
@@ -314,7 +274,7 @@ begin
   Qe.Close;
   /// //////////////////////////////////////////////////////////////////////////
   BitBtn9.Enabled := false;
-  BitBtn8.Enabled := false;
+  BitBtn8.Enabled := True;
   StringGrid1.Enabled := True;
 end;
 

@@ -2,13 +2,13 @@ unit Uadd;
 
 interface // ------------------------------------------------------------------
  CONST
-    RazU = -1;
+    RazU = -2;
     RazP = -2;
     RazI = -3;
     RAZN = -1;
     RazM = -2;
     RazR = -1;
-    tRazU = '0.0';
+    tRazU = '0.00';
     tRazP = '0.00';
     tRazI = '0.000';
     tRAZN = '0.0';

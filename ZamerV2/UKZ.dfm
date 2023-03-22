@@ -2,7 +2,7 @@ object FKZ: TFKZ
   Left = 0
   Top = 0
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1082#1086#1088#1086#1090#1082#1086#1075#1086' '#1079#1072#1084#1099#1082#1072#1085#1080#1103
-  ClientHeight = 560
+  ClientHeight = 567
   ClientWidth = 520
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object FKZ: TFKZ
   OnHide = FormHide
   DesignSize = (
     520
-    560)
+    567)
   PixelsPerInch = 96
   TextHeight = 23
   object Panel1: TPanel
@@ -547,8 +547,8 @@ object FKZ: TFKZ
     OnClick = BitBtn10Click
   end
   object BitBtn12: TBitBtn
-    Left = 274
-    Top = 516
+    Left = 276
+    Top = 515
     Width = 244
     Height = 44
     Anchors = [akRight, akBottom]
@@ -735,7 +735,7 @@ object FKZ: TFKZ
     Connection = FZamerV2.FDC
     SQL.Strings = (
       'select '
-      'round(avg(u),1) u,round(avg(i),4) i, '
+      'round(avg(u),2) u,round(avg(i),3) i, '
       'round(avg(p),4) p, round(avg(torq),4) t'
       'from zkzall'
       'where nomer=:nomer'
