@@ -171,7 +171,7 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
-    ' and uisp=' + StringGrid1.Cells[0, StringGrid1.row]);
+    ' and uisp=' + label13.Caption);
   QTemp.ExecSQL;
   command(True);
   StringGrid1.Enabled := false;
