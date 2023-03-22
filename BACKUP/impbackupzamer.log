@@ -21,13 +21,13 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                        "ZAMER"
                                                             1 rows imported
 . . importing table                     "ZAMERTMP"
-                                                           61 rows imported
+                                                           80 rows imported
 . . importing table                       "ZDELTA"
                                                             6 rows imported
 . . importing table                     "ZDVIGALL"
                                                            21 rows imported
 . . importing table                      "ZELSPEC"
-                                                          449 rows imported
+                                                          993 rows imported
 . . importing table                   "ZELSPECTMP"
                                                             1 rows imported
 . . importing table                         "ZERR"
@@ -42,7 +42,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                         "ZINI"
                                                            60 rows imported
 . . importing table                       "ZKZALL"
-                                                          187 rows imported
+                                                          206 rows imported
 . . importing table                      "ZKZSVOD"
                                                            13 rows imported
 . . importing table                      "ZMEHALL"
