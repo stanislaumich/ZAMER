@@ -94,7 +94,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1037
     object Label1: TLabel
       Left = 3
       Top = 2
@@ -152,7 +151,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 1037
     object Label2: TLabel
       Left = 46
       Top = 65
@@ -408,7 +406,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitWidth = 1437
     object Label15: TLabel
       Left = 8
       Top = 32
@@ -686,7 +683,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 4
-    ExplicitWidth = 947
     DesignSize = (
       1167
       400)
@@ -707,7 +703,6 @@ object FRH: TFRH
       ParentFont = False
       TabOrder = 0
       OnClick = StringGrid2Click
-      ExplicitWidth = 752
     end
     object BitBtn1: TBitBtn
       Left = 12
@@ -1091,6 +1086,7 @@ object FRH: TFRH
       '    0 mumax, 0 mpmax,avg(torq) t, avg(power) pow, avg(rot) r'
       '    FROM ZAMER.ZRHALL'
       '    where nomer=:nomer and uisp=:uisp and pisp=:pisp '
+      '    and abs(du)<:du and abs(dp)<:dp'
       '    group by nomer, uisp, PISP'
       '    union all'
       '    SELECT'
@@ -1099,6 +1095,7 @@ object FRH: TFRH
       '    max(dumax) mumax, max(dpmax) mpmax, 0 t, 0 pow, 0 r'
       '    FROM ZAMER.ZRHALL'
       '    where nomer=:nomer and uisp=:uisp and pisp=:pisp'
+      '    and abs(du)<:du and abs(dp)<:dp'
       '    group by nomer, uisp, PISP'
       '    )group by nomer, uisp, PISP,t,r,pow'
       '    ) group by nomer, uisp')
@@ -1115,6 +1112,14 @@ object FRH: TFRH
       end
       item
         Name = 'PISP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DU'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DP'
         ParamType = ptInput
       end>
   end
@@ -1230,11 +1235,11 @@ object FRH: TFRH
       '   NOMER, UISP, USRED, '
       '   ISRED, PSRED, TIP, '
       '   TORQ, ROT, POWER, '
-      '   DUMAX, DPMAX, PISP, T1, T2, T3,r) '
+      '   DUMAX, DPMAX, PISP, T1, T2, T3,r, otklonu, otklonp) '
       'VALUES ( :NOMER, :UISP, :USRED, '
       '   :ISRED, :PSRED, :TIP, '
       '   :TORQ, :ROT, :POWER, '
-      '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3,:r )')
+      '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3,:r, :otklonu, :otklonp )')
     Left = 648
     Top = 361
     ParamData = <
@@ -1300,6 +1305,14 @@ object FRH: TFRH
       end
       item
         Name = 'R'
+        ParamType = ptInput
+      end
+      item
+        Name = 'OTKLONU'
+        ParamType = ptInput
+      end
+      item
+        Name = 'OTKLONP'
         ParamType = ptInput
       end>
   end

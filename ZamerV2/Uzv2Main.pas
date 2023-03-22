@@ -1413,6 +1413,9 @@ begin
         Frh.Stringgrid2.Cells[5, tip] := QTemp.FieldByName('torq').Asstring;
         Frh.Stringgrid2.Cells[6, tip] := QTemp.FieldByName('dumax').Asstring;
         Frh.Stringgrid2.Cells[7, tip] := QTemp.FieldByName('dpmax').Asstring;
+        Frh.Stringgrid2.Cells[8, tip] := QTemp.FieldByName('otklonu').Asstring;
+        Frh.Stringgrid2.Cells[9, tip] := QTemp.FieldByName('otklonp').Asstring;
+
         QTemp.Next;
         tip := tip + 1;
     end;

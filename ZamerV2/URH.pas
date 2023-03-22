@@ -620,7 +620,7 @@ end;
 
 procedure TFRH.Timer1000Timer(Sender: TObject);
 var
-  i: integer;
+  i, errcnt, goodcnt: integer;
   acount1, acount2, ncnt: integer;
 begin
   times := times - 1;
@@ -684,12 +684,41 @@ begin
       Qtemp2.Next;
     end;
 
+
+
+
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').AsString := nomer;
     Qselectsred.ParamByName('uisp').AsFloat := Strtofloat(Label19.Caption);
     Qselectsred.ParamByName('pisp').AsFloat := Strtofloat(Label24.Caption);
+    Qselectsred.ParamByName('du').AsFloat := Strtofloat(Edit2.Text);
+    Qselectsred.ParamByName('dp').AsFloat := Strtofloat(Label29.Caption);
     Qselectsred.Open;
     QInsSvod.Close;
+    //-----------------------  u
+    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(Nomer) +
+      ' and uisp=' + label19.caption + ' and du>' + Edit2.Text +' and pisp = ' +label24.caption);
+    errcnt := QTemp.FieldByName('r').Asinteger;
+    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(Nomer) +
+      ' and uisp=' + label19.caption + ' and du<=' + Edit2.Text +' and pisp = ' +label24.caption);
+    goodcnt := QTemp.FieldByName('r').Asinteger;
+    StringGrid2.Cells[8, StringGrid2.row] :=
+      floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
+      inttostr(goodcnt + errcnt) + ')';
+   //-----------------------  p
+    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(Nomer) +
+      ' and uisp=' + label19.caption + ' and dp>' + Label29.Caption +' and pisp = ' +label24.caption);
+    errcnt := QTemp.FieldByName('r').Asinteger;
+    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(Nomer) +
+      ' and uisp=' + label19.caption + ' and dp<=' + Label29.Caption +' and pisp = ' +label24.caption);
+    goodcnt := QTemp.FieldByName('r').Asinteger;
+    StringGrid2.Cells[9, StringGrid2.row] :=
+      floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
+      inttostr(goodcnt + errcnt) + ')';
+
+
+
+
     QTemp.Close;
     if Qselectsred.FieldByName('u').AsFloat <> 0 then
     begin
@@ -718,6 +747,9 @@ begin
         simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN);
       QInsSvod.ParamByName('power').AsFloat :=
         simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
+      QInsSvod.ParamByName('otklonu').AsString :=StringGrid2.Cells[8, StringGrid2.row];
+      QInsSvod.ParamByName('otklonp').AsString :=StringGrid2.Cells[9, StringGrid2.row];
+
       QInsSvod.ParamByName('tip').Asinteger := tipispyt;
       QInsSvod.ParamByName('t1').AsFloat := 0;
       QInsSvod.ParamByName('t2').AsFloat := 0;
@@ -739,6 +771,8 @@ begin
       Floattostr(simpleroundto(Qselectsred.FieldByName('umax').AsFloat, RazM));
     StringGrid2.Cells[7, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP));
+
+
 
     if StringGrid2.Cells[0, StringGrid2.row + 1] = '' then
     begin
