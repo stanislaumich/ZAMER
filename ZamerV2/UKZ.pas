@@ -170,6 +170,10 @@ begin
   QTemp.ExecSQL;
   QTemp.Close;
   QTemp.SQL.Clear;
+  QTemp.SQL.Add('truncate table zelspec');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
     ' and uisp=' + label13.Caption);
   QTemp.ExecSQL;
