@@ -674,11 +674,11 @@ object FKZ: TFKZ
       '   NOMER, UISP, U12,'
       '   U23, U31, I1,'
       '   I2, I3, P1,'
-      '   P2, P3, TORQ)'
+      '   P2, P3, TORQ, P)'
       'VALUES ( :NOMER, :UISP, :U12,'
       '   :U23, :U31, :I1,'
       '   :I2, :I3, :P1,'
-      '   :P2, :P3, :TORQ )')
+      '   :P2, :P3, :TORQ, :P )')
     Left = 400
     Top = 204
     ParamData = <
@@ -728,6 +728,10 @@ object FKZ: TFKZ
       end
       item
         Name = 'TORQ'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
         ParamType = ptInput
       end>
   end

@@ -185,3 +185,39 @@
 22.03.2023 12:04:26.85 - TModbusTCPClient.Start
 22.03.2023 12:04:26.85 - TTCPAccept.InitSocket IN
 22.03.2023 12:11:47.489 - TModbusTCPServer.OnClientDisconnect
+22.03.2023 15:10:40.51 - TModbusTCPServer.ClientConnectEvent
+22.03.2023 15:10:40.51 - TModbusTCPServer.RemoveClient
+22.03.2023 15:10:41.452 - TModbusTCPServer.AddClient
+22.03.2023 15:10:41.452 - TModbusTCPClient.Start
+22.03.2023 15:10:41.452 - TTCPAccept.InitSocket IN
+22.03.2023 15:10:43.782 - TModbusTCPServer.OnClientDisconnect
+22.03.2023 15:10:46.556 - TModbusTCPServer.ClientConnectEvent
+22.03.2023 15:10:46.556 - TModbusTCPServer.RemoveClient
+22.03.2023 15:10:46.558 - TModbusTCPServer.AddClient
+22.03.2023 15:10:46.558 - TModbusTCPClient.Start
+22.03.2023 15:10:46.558 - TTCPAccept.InitSocket IN
+22.03.2023 15:10:49.239 - TModbusTCPServer.OnClientDisconnect
+22.03.2023 15:10:53.715 - TModbusTCPServer.ClientConnectEvent
+22.03.2023 15:10:53.715 - TModbusTCPServer.RemoveClient
+22.03.2023 15:10:53.718 - TModbusTCPServer.AddClient
+22.03.2023 15:10:53.718 - TModbusTCPClient.Start
+22.03.2023 15:10:53.718 - TTCPAccept.InitSocket IN
+22.03.2023 15:10:57.688 - TModbusTCPServer.OnClientDisconnect
+22.03.2023 15:11:00.317 - TModbusTCPServer.ClientConnectEvent
+22.03.2023 15:11:00.317 - TModbusTCPServer.RemoveClient
+22.03.2023 15:11:00.318 - TModbusTCPServer.AddClient
+22.03.2023 15:11:00.318 - TModbusTCPClient.Start
+22.03.2023 15:11:00.318 - TTCPAccept.InitSocket IN
+22.03.2023 15:11:43.42 - TModbusTCPServer.OnClientDisconnect
+22.03.2023 15:25:18.556 - TModbusTCPServer.ClientConnectEvent
+22.03.2023 15:25:18.556 - TModbusTCPServer.RemoveClient
+22.03.2023 15:25:18.761 - TModbusTCPServer.AddClient
+22.03.2023 15:25:18.761 - TModbusTCPClient.Start
+22.03.2023 15:25:18.761 - TTCPAccept.InitSocket IN
+22.03.2023 15:26:58.602 - TModbusTCPServer.OnClientDisconnect
+22.03.2023 16:59:55.874 - TModbusTCPServer.Stop
+22.03.2023 16:59:55.874 - TTCPAccept.StopThread IN
+22.03.2023 16:59:55.874 - TTCPAccept.Execute OUT
+22.03.2023 16:59:55.879 - TTCPAccept.StopThread OUT
+22.03.2023 16:59:55.879 - TTCPAccept.Destroy IN
+22.03.2023 16:59:55.879 - TTCPAccept.Destroy OUT

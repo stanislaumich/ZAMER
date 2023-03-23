@@ -1497,6 +1497,15 @@ object FZamerV2: TFZamerV2
         TabOrder = 24
         OnClick = Button3Click
       end
+      object Panel3: TPanel
+        Left = 4
+        Top = 232
+        Width = 17
+        Height = 17
+        Color = clRed
+        ParentBackground = False
+        TabOrder = 25
+      end
     end
   end
   object Timer1000: TTimer

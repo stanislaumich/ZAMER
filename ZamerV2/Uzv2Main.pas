@@ -90,6 +90,7 @@ type
         Button1: TButton;
         Button2: TButton;
     Button3: TButton;
+    Panel3: TPanel;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);

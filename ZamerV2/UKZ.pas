@@ -158,12 +158,7 @@ end;
 procedure TFKZ.BitBtn8Click(Sender: TObject);
 
 begin
-  { if Edit2.text = '' then
-    begin
-    Showmessage('Не указано сопротивление!');
-    exit;
-    end;
-  }
+
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.Add('truncate table zamertmp');
@@ -186,7 +181,6 @@ begin
   enableclose := false;
 end;
 
-// end f9
 procedure TFKZ.BitBtn9Click(Sender: TObject);
 
 var
@@ -230,6 +224,8 @@ begin
       SimpleRoundTo(Qe.Fieldbyname('p1').AsFloat, RazP);
     QInsAll.ParamByName('P3').AsFloat :=
       SimpleRoundTo(Qe.Fieldbyname('p1').AsFloat, RazP);
+    QInsAll.ParamByName('P').AsFloat :=
+      SimpleRoundTo(Qe.Fieldbyname('p').AsFloat, RazP);
     QInsAll.ParamByName('torq').AsFloat :=
       SimpleRoundTo(Strtofloat(MyPoint(Qm.Fieldbyname('torq').AsString)), RazM);
     QInsAll.ExecSQL;
