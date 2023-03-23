@@ -40,7 +40,7 @@ EXP-00091: Exporting questionable statistics.
                                                             1 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                       ZAMERTMP
-                                                           50 rows exported
+                                                           52 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                         ZDELTA
                                                             6 rows exported
@@ -51,7 +51,7 @@ EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZELSPEC
-                                                           28 rows exported
+                                                           30 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                     ZELSPECTMP
                                                             1 rows exported
@@ -72,7 +72,7 @@ EXP-00091: Exporting questionable statistics.
 . . exporting table                           ZINI
                                                            60 rows exported
 . . exporting table                         ZKZALL
-                                                          216 rows exported
+                                                          190 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                        ZKZSVOD
