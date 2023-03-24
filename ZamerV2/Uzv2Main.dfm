@@ -1477,6 +1477,7 @@ object FZamerV2: TFZamerV2
         Height = 18
         Caption = 'Button1'
         TabOrder = 22
+        Visible = False
         OnClick = Button1Click
       end
       object Button2: TButton
@@ -1486,6 +1487,7 @@ object FZamerV2: TFZamerV2
         Height = 19
         Caption = 'Button2'
         TabOrder = 23
+        Visible = False
         OnClick = Button2Click
       end
       object Button3: TButton
@@ -1495,6 +1497,7 @@ object FZamerV2: TFZamerV2
         Height = 19
         Caption = 'Button3'
         TabOrder = 24
+        Visible = False
         OnClick = Button3Click
       end
       object Panel3: TPanel

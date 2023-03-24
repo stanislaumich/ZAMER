@@ -104,6 +104,10 @@ type
     procedure Timer1000Timer(Sender: TObject);
     procedure BitBtn10Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
+    procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -159,29 +163,7 @@ procedure TFRH.savegrids;
 var
   i, j, k: integer;
 begin
-  { QTEmp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('DELETE FROM ZAMER.ZGRIDS WHERE FORM='
-    + Quotedstr(FRH.Name) + ' and name=' + Quotedstr('StringGrid1'));
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into ZAMER.ZGRIDS (NAME, FORM, IROW, ICOL, VAL) VALUES(');
-    QTemp.SQL.Add(':NAME, :FORM, :IROW,:ICOL, :VAL)');
 
-    k                           := 13;
-    StringGrid1.RowCount        := k;
-    for i                       := 0 to k - 1 do
-    for j                     := 0 to 3 do
-    begin
-    QTemp.ParamByName('FORM').Asstring:= (FRH.Name);
-    QTemp.ParamByName('NAME').Asstring:= ('StringGrid1');
-    QTemp.ParamByName('IROW').AsInteger:= i;
-    QTemp.ParamByName('ICOL').AsInteger:= j;
-    QTemp.ParamByName('VAL').Asstring:=  StringGrid1.Cells[j, i];
-    QTemp.ExecSQL;
-    end;
-  }
 end;
 
 procedure TFRH.RadioButton1Click(Sender: TObject);
@@ -190,15 +172,7 @@ var
   cod: integer;
 
 begin
-  // for i := 0 to StringGrid2.colcount - 1 do
-  // for j := 1 to StringGrid2.RowCount - 1 do
-  // StringGrid2.Cells[i, j] := '';
-  { if StringGrid1.Cells[1, 1] = '' then
-    begin
-    Showmessage('Нет данных для испытания');
-    exit;
-    end;
-  }
+
   val(Label35.Caption, currentpower, cod);
 
   if cod = 0 then
@@ -232,15 +206,7 @@ var
   cod: integer;
 
 begin
-  // for i := 0 to StringGrid2.colcount - 1 do
-  // for j := 1 to StringGrid2.RowCount - 1 do
-  // StringGrid2.Cells[i, j] := '';
-  { if StringGrid1.Cells[1, 1] = '' then
-    begin
-    Showmessage('Нет данных для испытания');
-    exit;
-    end;
-  }
+
   val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
@@ -273,16 +239,7 @@ var
   cod: integer;
 
 begin
-  // for i := 0 to StringGrid2.colcount - 1 do
-  // for j := 1 to StringGrid2.RowCount - 1 do
-  // StringGrid2.Cells[i, j] := '';
-  {
-    if StringGrid1.Cells[1, 1] = '' then
-    begin
-    Showmessage('Нет данных для испытания');
-    exit;
-    end;
-  }
+
   val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
@@ -359,6 +316,7 @@ begin
 
     times := Strtoint(Edit1.text);
     BitBtn1.Enabled := false;
+    BitBtn2.Enabled := true;
     ProgressBar1.min := 0;
     ProgressBar1.max := times;
     ProgressBar1.Step := 1;
@@ -447,46 +405,6 @@ begin
   FZamerV2.SendCommand(FZamerV2, b, Fsett.Edit6.text);
 end;
 
-{
-  var
-  interval: integer;
-  fname: string;
-  begin
-  interval := 50;
-  fname := '1600';
-  if b then
-  begin
-  QTemp.Close;
-  QTemp.SQL.Clear;
-
-  QTemp.SQL.add
-  ('insert into command (nomer, filename,command, dat,interval) values(' +
-  Quotedstr(nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
-  inttostr(interval) + ')');
-  QTemp.ExecSQL;
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.add('insert into command (nomer, command) values(' +
-  Quotedstr(nomer) + ' , 11)');
-  QTemp.ExecSQL;
-  end
-  else
-  begin
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.add
-  ('insert into command (nomer, filename,command, dat,interval) values(' +
-  Quotedstr(nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
-  inttostr(interval) + ')');
-  QTemp.ExecSQL;
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.add('insert into command (nomer, command) values(' +
-  Quotedstr(nomer) + ' , 10)');
-  QTemp.ExecSQL;
-  end;
-  end;
-}
 procedure TFRH.Edit3Change(Sender: TObject);
 begin
   Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *
@@ -516,8 +434,8 @@ begin
   StringGrid2.Cells[7, 0] := '▲Pmax';
   StringGrid2.Cells[8, 0] := 'U ошиб.(всего)';
   StringGrid2.Cells[9, 0] := 'P ошиб.(всего)';
-
-  assignfile(f, Extractfilepath(paramstr(0)) + 'RH_width.txt');
+  {$i-}
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH2_width.txt');
   reset(f);
   for i := 0 to StringGrid2.colcount - 1 do
   begin
@@ -525,7 +443,15 @@ begin
     StringGrid2.ColWidths[i] := Strtoint(s);
   end;
   Closefile(f);
-
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH1_width.txt');
+  reset(f);
+  for i := 0 to StringGrid1.colcount - 1 do
+  begin
+    Readln(f, s);
+    StringGrid1.ColWidths[i] := Strtoint(s);
+  end;
+  Closefile(f);
+  {$i+}
   nomer := Label6.Caption;
   enableclose := true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('urh'));
@@ -567,14 +493,22 @@ var
   i: integer;
   f: textfile;
 begin
-  assignfile(f, Extractfilepath(paramstr(0)) + 'RH_width.txt');
+  {$i-}
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH2_width.txt');
   rewrite(f);
   for i := 0 to StringGrid2.colcount - 1 do
   begin
     Writeln(f, inttostr(StringGrid2.ColWidths[i]));
   end;
   Closefile(f);
-
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH1_width.txt');
+  rewrite(f);
+  for i := 0 to StringGrid1.colcount - 1 do
+  begin
+    Writeln(f, inttostr(StringGrid1.ColWidths[i]));
+  end;
+  Closefile(f);
+  {$i+}
   CanClose := true;
   { if enableclose then
     CanClose := true
@@ -598,10 +532,24 @@ begin
 end;
 
 procedure TFRH.FormCreate(Sender: TObject);
+var
+f:textfile;
+i:integer;
+s:string;
 begin
   ComboBox1.Items.LoadFromFile(Extractfilepath(application.exename) +
     'R_SoprotListRH.txt');
   ComboBox1.ItemIndex := 0;
+{  {$i-
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH_width.txt');
+  Reset(f);
+  for i := 0 to StringGrid1.ColCount - 1 do
+  begin
+    Readln(f, s);
+    StringGrid1.ColWidths[i] := Strtoint(s);
+  end;
+  Closefile(f);
+  {$i+}
 end;
 
 procedure TFRH.FormShow(Sender: TObject);
@@ -611,12 +559,44 @@ begin
   nomer := Label6.Caption;
 end;
 
+procedure TFRH.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+  with StringGrid1 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
+end;
+
 procedure TFRH.StringGrid2Click(Sender: TObject);
 begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
   Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
   Label19.Caption := Label33.Caption;
+end;
+
+procedure TFRH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+ with StringGrid2 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
 end;
 
 procedure TFRH.Timer1000Timer(Sender: TObject);
@@ -628,7 +608,7 @@ begin
   if times <= 0 then
   begin
     Timer1000.Enabled := false;
-    ProgressBar1.Stepit;
+    ProgressBar1.Position:=0;
     command(false);
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -642,7 +622,7 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
 
-    QTemp.Open('select * from zamertmp');
+    QTemp.Open('select * from zamertmp where rot<>0');
     QTemp.First;
     Qtemp2.Open('select * from zelspec');
     Qtemp2.First;

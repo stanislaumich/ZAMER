@@ -2,7 +2,7 @@ object FRH: TFRH
   Left = 0
   Top = 0
   Caption = #1056#1072#1073#1086#1095#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
-  ClientHeight = 744
+  ClientHeight = 754
   ClientWidth = 1443
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,12 +18,12 @@ object FRH: TFRH
   OnShow = FormShow
   DesignSize = (
     1443
-    744)
+    754)
   PixelsPerInch = 96
   TextHeight = 13
   object Label20: TLabel
     Left = 9
-    Top = 714
+    Top = 724
     Width = 58
     Height = 23
     Anchors = [akLeft, akBottom]
@@ -38,7 +38,7 @@ object FRH: TFRH
   end
   object Label25: TLabel
     Left = 147
-    Top = 714
+    Top = 724
     Width = 58
     Height = 23
     Anchors = [akLeft, akBottom]
@@ -53,7 +53,7 @@ object FRH: TFRH
   end
   object Label26: TLabel
     Left = 290
-    Top = 714
+    Top = 724
     Width = 58
     Height = 23
     Anchors = [akLeft, akBottom]
@@ -68,7 +68,7 @@ object FRH: TFRH
   end
   object Label27: TLabel
     Left = 426
-    Top = 714
+    Top = 724
     Width = 26
     Height = 23
     Anchors = [akLeft, akBottom]
@@ -512,6 +512,7 @@ object FRH: TFRH
       RowCount = 12
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnDrawCell = StringGrid1DrawCell
     end
     object RadioButton1: TRadioButton
       Left = 95
@@ -705,6 +706,7 @@ object FRH: TFRH
       ParentFont = False
       TabOrder = 0
       OnClick = StringGrid2Click
+      OnDrawCell = StringGrid2DrawCell
     end
     object BitBtn1: TBitBtn
       Left = 12
@@ -908,7 +910,7 @@ object FRH: TFRH
   end
   object Edit4: TEdit
     Left = 68
-    Top = 711
+    Top = 721
     Width = 69
     Height = 31
     Anchors = [akLeft, akBottom]
@@ -920,10 +922,11 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 5
     Text = '0'
+    ExplicitTop = 711
   end
   object Edit5: TEdit
     Left = 207
-    Top = 711
+    Top = 721
     Width = 70
     Height = 31
     Anchors = [akLeft, akBottom]
@@ -935,10 +938,11 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 6
     Text = '0'
+    ExplicitTop = 711
   end
   object Edit6: TEdit
     Left = 348
-    Top = 711
+    Top = 721
     Width = 69
     Height = 31
     Anchors = [akLeft, akBottom]
@@ -950,10 +954,11 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 7
     Text = '0'
+    ExplicitTop = 711
   end
   object Edit7: TEdit
     Left = 458
-    Top = 711
+    Top = 721
     Width = 71
     Height = 31
     Anchors = [akLeft, akBottom]
@@ -965,10 +970,11 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 8
     Text = '0'
+    ExplicitTop = 711
   end
   object BitBtn10: TBitBtn
-    Left = 764
-    Top = 709
+    Left = 1164
+    Top = 711
     Width = 273
     Height = 36
     Anchors = [akLeft, akBottom]
@@ -1042,13 +1048,14 @@ object FRH: TFRH
   object ProgressBar1: TProgressBar
     Left = 8
     Top = 681
-    Width = 1029
+    Width = 1435
     Height = 24
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 10
   end
   object ComboBox1: TComboBox
-    Left = 535
-    Top = 711
+    Left = 541
+    Top = 721
     Width = 106
     Height = 31
     Font.Charset = DEFAULT_CHARSET
