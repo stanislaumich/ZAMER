@@ -508,6 +508,7 @@ object FRH: TFRH
       Width = 266
       Height = 309
       ColCount = 4
+      DrawingStyle = gdsClassic
       RowCount = 12
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
@@ -694,6 +695,7 @@ object FRH: TFRH
       Anchors = [akLeft, akTop, akRight, akBottom]
       ColCount = 10
       DefaultColWidth = 90
+      DrawingStyle = gdsClassic
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -21

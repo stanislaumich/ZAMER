@@ -457,6 +457,7 @@ object FKZ: TFKZ
       Height = 178
       Anchors = [akLeft, akTop, akRight]
       DefaultColWidth = 95
+      DrawingStyle = gdsClassic
       FixedCols = 0
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goDrawFocusSelected, goColSizing, goEditing, goThumbTracking, goFixedRowDefAlign]
       TabOrder = 2

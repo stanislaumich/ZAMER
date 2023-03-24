@@ -444,48 +444,49 @@ end;
 
 procedure TFRH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit6.Text);
+  FZamerV2.SendCommand(FZamerV2, b, Fsett.Edit6.text);
 end;
+
 {
-var
+  var
   interval: integer;
   fname: string;
-begin
+  begin
   interval := 50;
   fname := '1600';
   if b then
   begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
+  QTemp.Close;
+  QTemp.SQL.Clear;
 
-    QTemp.SQL.add
-      ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
-      inttostr(interval) + ')');
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.add('insert into command (nomer, command) values(' +
-      Quotedstr(nomer) + ' , 11)');
-    QTemp.ExecSQL;
+  QTemp.SQL.add
+  ('insert into command (nomer, filename,command, dat,interval) values(' +
+  Quotedstr(nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
+  inttostr(interval) + ')');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.add('insert into command (nomer, command) values(' +
+  Quotedstr(nomer) + ' , 11)');
+  QTemp.ExecSQL;
   end
   else
   begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.add
-      ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
-      inttostr(interval) + ')');
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.add('insert into command (nomer, command) values(' +
-      Quotedstr(nomer) + ' , 10)');
-    QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.add
+  ('insert into command (nomer, filename,command, dat,interval) values(' +
+  Quotedstr(nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
+  inttostr(interval) + ')');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.add('insert into command (nomer, command) values(' +
+  Quotedstr(nomer) + ' , 10)');
+  QTemp.ExecSQL;
   end;
-end;
- }
+  end;
+}
 procedure TFRH.Edit3Change(Sender: TObject);
 begin
   Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *
@@ -495,8 +496,8 @@ end;
 procedure TFRH.FormActivate(Sender: TObject);
 var
   i: integer;
-  f:textfile;
-  s:string;
+  f: textfile;
+  s: string;
 begin
   Label24.Caption := inttostr(round(Strtofloat(FZamerV2.CombPisp.text) * 1000));
   for i := 1 to 8 do
@@ -516,13 +517,13 @@ begin
   StringGrid2.Cells[8, 0] := 'U ошиб.(всего)';
   StringGrid2.Cells[9, 0] := 'P ошиб.(всего)';
 
-  assignfile(f,Extractfilepath(paramstr(0))+'RH_width.txt');
-  Reset(f);
-  for i:= 0 to Stringgrid2.ColCount-1 do
-    begin
-     Readln(f, s);
-     Stringgrid2.ColWidths[i]:=strtoint(s);
-    end;
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH_width.txt');
+  reset(f);
+  for i := 0 to StringGrid2.colcount - 1 do
+  begin
+    Readln(f, s);
+    StringGrid2.ColWidths[i] := Strtoint(s);
+  end;
   Closefile(f);
 
   nomer := Label6.Caption;
@@ -563,15 +564,15 @@ end;
 procedure TFRH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonSelected: integer;
-  i:integer;
-  f:textfile;
+  i: integer;
+  f: textfile;
 begin
-  assignfile(f,Extractfilepath(paramstr(0))+'RH_width.txt');
-  Rewrite(f);
-  for i:= 0 to Stringgrid2.ColCount-1 do
-    begin
-      Writeln(f, Inttostr(Stringgrid2.ColWidths[i]));
-    end;
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH_width.txt');
+  rewrite(f);
+  for i := 0 to StringGrid2.colcount - 1 do
+  begin
+    Writeln(f, inttostr(StringGrid2.ColWidths[i]));
+  end;
   Closefile(f);
 
   CanClose := true;
@@ -598,7 +599,7 @@ end;
 
 procedure TFRH.FormCreate(Sender: TObject);
 begin
-  ComboBox1.Items.LoadFromFile(extractfilepath(application.exename) +
+  ComboBox1.Items.LoadFromFile(Extractfilepath(application.exename) +
     'R_SoprotListRH.txt');
   ComboBox1.ItemIndex := 0;
 end;
@@ -684,40 +685,38 @@ begin
       Qtemp2.Next;
     end;
 
-
-
-
     Qselectsred.Close;
     Qselectsred.ParamByName('nomer').AsString := nomer;
     Qselectsred.ParamByName('uisp').AsFloat := Strtofloat(Label19.Caption);
     Qselectsred.ParamByName('pisp').AsFloat := Strtofloat(Label24.Caption);
-    Qselectsred.ParamByName('du').AsFloat := Strtofloat(Edit2.Text);
+    Qselectsred.ParamByName('du').AsFloat := Strtofloat(Edit2.text);
     Qselectsred.ParamByName('dp').AsFloat := Strtofloat(Label29.Caption);
     Qselectsred.Open;
     QInsSvod.Close;
-    //-----------------------  u
-    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + label19.caption + ' and du>' + Edit2.Text +' and pisp = ' +label24.caption);
+    // -----------------------  u
+    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(nomer) +
+      ' and uisp=' + Label19.Caption + ' and du>' + Edit2.text + ' and pisp = '
+      + Label24.Caption);
     errcnt := QTemp.FieldByName('r').Asinteger;
-    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + label19.caption + ' and du<=' + Edit2.Text +' and pisp = ' +label24.caption);
+    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(nomer) +
+      ' and uisp=' + Label19.Caption + ' and du<=' + Edit2.text + ' and pisp = '
+      + Label24.Caption);
     goodcnt := QTemp.FieldByName('r').Asinteger;
     StringGrid2.Cells[8, StringGrid2.row] :=
-      floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
+      Floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
       inttostr(goodcnt + errcnt) + ')';
-   //-----------------------  p
-    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + label19.caption + ' and dp>' + Label29.Caption +' and pisp = ' +label24.caption);
+    // -----------------------  p
+    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(nomer) +
+      ' and uisp=' + Label19.Caption + ' and dp>' + Label29.Caption +
+      ' and pisp = ' + Label24.Caption);
     errcnt := QTemp.FieldByName('r').Asinteger;
-    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + label19.caption + ' and dp<=' + Label29.Caption +' and pisp = ' +label24.caption);
+    QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(nomer) +
+      ' and uisp=' + Label19.Caption + ' and dp<=' + Label29.Caption +
+      ' and pisp = ' + Label24.Caption);
     goodcnt := QTemp.FieldByName('r').Asinteger;
     StringGrid2.Cells[9, StringGrid2.row] :=
-      floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
+      Floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
       inttostr(goodcnt + errcnt) + ')';
-
-
-
 
     QTemp.Close;
     if Qselectsred.FieldByName('u').AsFloat <> 0 then
@@ -747,8 +746,10 @@ begin
         simpleroundto(Qselectsred.FieldByName('r').AsFloat, RazN);
       QInsSvod.ParamByName('power').AsFloat :=
         simpleroundto(Qselectsred.FieldByName('pow').AsFloat, RazP);
-      QInsSvod.ParamByName('otklonu').AsString :=StringGrid2.Cells[8, StringGrid2.row];
-      QInsSvod.ParamByName('otklonp').AsString :=StringGrid2.Cells[9, StringGrid2.row];
+      QInsSvod.ParamByName('otklonu').AsString := StringGrid2.Cells
+        [8, StringGrid2.row];
+      QInsSvod.ParamByName('otklonp').AsString := StringGrid2.Cells
+        [9, StringGrid2.row];
 
       QInsSvod.ParamByName('tip').Asinteger := tipispyt;
       QInsSvod.ParamByName('t1').AsFloat := 0;
@@ -771,8 +772,6 @@ begin
       Floattostr(simpleroundto(Qselectsred.FieldByName('umax').AsFloat, RazM));
     StringGrid2.Cells[7, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP));
-
-
 
     if StringGrid2.Cells[0, StringGrid2.row + 1] = '' then
     begin

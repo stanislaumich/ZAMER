@@ -588,47 +588,47 @@ end;
 
 procedure TFMH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit7.Text);
+  FZamerv2.SendCommand(FZamerv2, b, Fsett.Edit7.Text);
 end;
-{var
+{ var
   interval: integer;
   fname: string;
-begin
+  begin
   interval := 50;
   fname := '1600';
   if b then
   begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
+  QTemp.Close;
+  QTemp.SQL.Clear;
 
-    QTemp.SQL.Add
-      ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
-      inttostr(interval) + ')');
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(nomer) + ' , 11)');
-    QTemp.ExecSQL;
+  QTemp.SQL.Add
+  ('insert into command (nomer, filename,command, dat,interval) values(' +
+  Quotedstr(nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
+  inttostr(interval) + ')');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('insert into command (nomer, command) values(' +
+  Quotedstr(nomer) + ' , 11)');
+  QTemp.ExecSQL;
   end
   else
   begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add
-      ('insert into command (nomer, filename,command, dat,interval) values(' +
-      Quotedstr(nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
-      inttostr(interval) + ')');
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      Quotedstr(nomer) + ' , 10)');
-    QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add
+  ('insert into command (nomer, filename,command, dat,interval) values(' +
+  Quotedstr(nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
+  inttostr(interval) + ')');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('insert into command (nomer, command) values(' +
+  Quotedstr(nomer) + ' , 10)');
+  QTemp.ExecSQL;
   end;
 
-end;}
+  end; }
 
 procedure TFMH.downstartExecute(Sender: TObject);
 begin
@@ -848,14 +848,14 @@ begin
       end;
     /// ///////
 
-    FZamerV2.ImgSet(FZamerV2.Image6, true);
+    FZamerv2.ImgSet(FZamerv2.Image6, true);
     FMH.Close;
   end;
 end;
 
 procedure TFMH.BitBtn2Click(Sender: TObject);
 begin
-  FZamerV2.ImgSet(FZamerV2.Image6, false);
+  FZamerv2.ImgSet(FZamerv2.Image6, false);
   FMH.Close;
 end;
 

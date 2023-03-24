@@ -92,6 +92,7 @@ object FMH: TFMH
       ColCount = 4
       DefaultColWidth = 100
       DefaultRowHeight = 20
+      DrawingStyle = gdsClassic
       RowCount = 6
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
@@ -204,6 +205,7 @@ object FMH: TFMH
       ColCount = 4
       DefaultColWidth = 100
       DefaultRowHeight = 20
+      DrawingStyle = gdsClassic
       RowCount = 6
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0

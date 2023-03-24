@@ -223,6 +223,7 @@ object FormHH: TFormHH
       Width = 266
       Height = 338
       ColCount = 4
+      DrawingStyle = gdsClassic
       RowCount = 12
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
@@ -409,6 +410,7 @@ object FormHH: TFormHH
       Anchors = [akLeft, akTop, akRight]
       ColCount = 7
       DefaultColWidth = 100
+      DrawingStyle = gdsClassic
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19

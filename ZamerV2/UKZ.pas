@@ -89,7 +89,7 @@ Uses uzv2Main, UAuto, USett;
 
 procedure TFKZ.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit6.Text);
+  FZamerv2.SendCommand(FZamerv2, b, Fsett.Edit6.Text);
 end;
 
 procedure TFKZ.Edit2Change(Sender: TObject);
@@ -144,7 +144,7 @@ begin
   QTemp.SQL.Add(' where nomer=' + Quotedstr(Nomer) + ' and uisp=' +
     Label19.caption);
   QTemp.ExecSQL;
-  FZamerV2.ImgSet(FZamerV2.Image3, True);
+  FZamerv2.ImgSet(FZamerv2.Image3, True);
   enableclose := True;
   FKZ.Close;
 end;
@@ -172,7 +172,7 @@ begin
 
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zkzall where nomer=' + Quotedstr(Nomer) +
-    ' and uisp=' + label13.Caption);
+    ' and uisp=' + Label13.caption);
   QTemp.ExecSQL;
   command(True);
   StringGrid1.Enabled := false;
@@ -287,7 +287,7 @@ begin
   Edit1.Text := QTemp.Fieldbyname('value').AsString;
   Nomer := Label2.caption;
   TimerUp.Enabled := True;
-  Label19.caption := FZamerV2.CombUIsp.Text;
+  Label19.caption := FZamerv2.CombUIsp.Text;
 
   StringGrid1.RowCount := 6;
   StringGrid1.Cells[0, 0] := 'U кк';
@@ -297,8 +297,8 @@ begin
   StringGrid1.Cells[4, 0] := 'М сред';
   StringGrid1.Cells[0, 2] := Label19.caption;
   StringGrid1.Cells[0, 1] := inttostr(Round(Strtoint(Label19.caption) / 3.8));
-  StringGrid1.Row:=1;
-  StringGrid1.Col:=1;
+  StringGrid1.row := 1;
+  StringGrid1.Col := 1;
   StringGrid1Click(FKZ);
 end;
 

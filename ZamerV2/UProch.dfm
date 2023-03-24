@@ -496,6 +496,7 @@ object FProch: TFProch
       Align = alBottom
       ColCount = 19
       DefaultColWidth = 85
+      DrawingStyle = gdsClassic
       RowCount = 3
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
@@ -567,6 +568,7 @@ object FProch: TFProch
       Align = alBottom
       Color = clWhite
       ColCount = 9
+      DrawingStyle = gdsClassic
       RowCount = 3
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0

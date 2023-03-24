@@ -191,6 +191,7 @@ object FSopr: TFSopr
       Width = 570
       Height = 107
       ColCount = 4
+      DrawingStyle = gdsClassic
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goFixedRowDefAlign]
       TabOrder = 0

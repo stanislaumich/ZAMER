@@ -97,7 +97,7 @@ type
     procedure command(b: Boolean);
     procedure change(Sender: TObject);
 
-procedure auto(var stringgrid1:tstringgrid);
+    procedure auto(var StringGrid1: TStringGrid);
   end;
 
 var
@@ -134,7 +134,7 @@ end;
 
 procedure TFNagr.BitBtn10Click(Sender: TObject);
 var
-  i: integer;
+  i: Integer;
 begin
 
   if StringGrid1.cells[6, 1] = '' then
@@ -189,8 +189,8 @@ begin
     QInssvod.ParamByName('edizmobm').Asstring := ComboBox2.Text;
     QInssvod.ParamByName('edizmispyt').Asstring := ComboBox3.Text;
 
-    QInssvod.ParamByName('otklonu').AsString := StringGrid1.cells[10, i];
-    QInssvod.ParamByName('otklonp').AsString := StringGrid1.cells[11, i];
+    QInssvod.ParamByName('otklonu').Asstring := StringGrid1.cells[10, i];
+    QInssvod.ParamByName('otklonp').Asstring := StringGrid1.cells[11, i];
 
     QInssvod.ExecSQL;
   end;
@@ -223,7 +223,7 @@ end;
 
 procedure TFNagr.BitBtn2Click(Sender: TObject);
 var
-  buttonselected, i, j: integer;
+  buttonselected, i, j: Integer;
 begin
   buttonselected := MessageDlg('Очистить данные испытания?', mtConfirmation,
     [mbYes, mbNo], 0);
@@ -240,47 +240,48 @@ end;
 
 procedure TFNagr.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2,b, Fsett.Edit6.Text);
+  FZamerv2.SendCommand(FZamerv2, b, Fsett.Edit6.Text);
 end;
+
 {
-var
+  var
   interval: integer;
   fname: string;
-begin
+  begin
   interval := 50;
   fname := '1600';
   if b then
   begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
+  QTemp.Close;
+  QTemp.SQL.Clear;
 
-    QTemp.SQL.Add
-      ('insert into command (nomer, filename,command, dat,interval) values(' +
-      QuotedStr(Nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
-      inttostr(interval) + ')');
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      QuotedStr(Nomer) + ' , 11)');
-    QTemp.ExecSQL;
+  QTemp.SQL.Add
+  ('insert into command (nomer, filename,command, dat,interval) values(' +
+  QuotedStr(Nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
+  inttostr(interval) + ')');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('insert into command (nomer, command) values(' +
+  QuotedStr(Nomer) + ' , 11)');
+  QTemp.ExecSQL;
   end
   else
   begin
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add
-      ('insert into command (nomer, filename,command, dat,interval) values(' +
-      QuotedStr(Nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
-      inttostr(interval) + ')');
-    QTemp.ExecSQL;
-    QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('insert into command (nomer, command) values(' +
-      QuotedStr(Nomer) + ' , 10)');
-    QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add
+  ('insert into command (nomer, filename,command, dat,interval) values(' +
+  QuotedStr(Nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
+  inttostr(interval) + ')');
+  QTemp.ExecSQL;
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add('insert into command (nomer, command) values(' +
+  QuotedStr(Nomer) + ' , 10)');
+  QTemp.ExecSQL;
   end;
-end;
+  end;
 }
 procedure TFNagr.Edit3Change(Sender: TObject);
 begin
@@ -300,8 +301,8 @@ end;
 
 procedure TFNagr.FormActivate(Sender: TObject);
 begin
-  Label19.Caption := Fzamerv2.CombUisp.Text;
-  Label24.Caption := inttostr(round(strtofloat(Fzamerv2.CombPisp.Text) * 1000));
+  Label19.Caption := FZamerv2.CombUisp.Text;
+  Label24.Caption := inttostr(round(strtofloat(FZamerv2.CombPisp.Text) * 1000));
   Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
     myfloat(emp(Edit3.Text))));
   enableclose := true;
@@ -310,15 +311,15 @@ end;
 
 procedure TFNagr.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  Fzamerv2.ImgSet(Fzamerv2.Image4, true);
+  FZamerv2.ImgSet(FZamerv2.Image4, true);
   TimerUp.Enabled := false;
 end;
 
 procedure TFNagr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
-  buttonselected: integer;
-  f:textfile;
-  i:integer;
+  buttonselected: Integer;
+  f: textfile;
+  i: Integer;
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -339,12 +340,12 @@ begin
     ' where name=' + QuotedStr('pnag'));
   QTemp.ExecSQL;
 
-  assignfile(f,Extractfilepath(paramstr(0))+'nagr_width.txt');
+  assignfile(f, Extractfilepath(paramstr(0)) + 'nagr_width.txt');
   Rewrite(f);
-  for i:= 0 to Stringgrid1.ColCount-1 do
-    begin
-      Writeln(f, Inttostr(Stringgrid1.ColWidths[i]));
-    end;
+  for i := 0 to StringGrid1.ColCount - 1 do
+  begin
+    Writeln(f, inttostr(StringGrid1.ColWidths[i]));
+  end;
   Closefile(f);
 
   if not enableclose then
@@ -365,14 +366,14 @@ begin
     CanClose := true;
 end;
 
-procedure TFNagr.auto(var stringgrid1:tstringgrid);
+procedure TFNagr.auto(var StringGrid1: TStringGrid);
 var
-  x, y, w: integer;
+  x, y, w: Integer;
   s: string;
-  MaxWidth: integer;
+  MaxWidth: Integer;
 begin
   with StringGrid1 do
-    //ClientHeight := DefaultRowHeight * RowCount + 5;
+    // ClientHeight := DefaultRowHeight * RowCount + 5;
     with StringGrid1 do
     begin
       for x := 0 to ColCount - 1 do
@@ -380,7 +381,7 @@ begin
         MaxWidth := 0;
         for y := 0 to RowCount - 1 do
         begin
-          w := Canvas.TextWidth(Cells[x,y]);
+          w := Canvas.TextWidth(cells[x, y]);
           if w > MaxWidth then
             MaxWidth := w;
         end;
@@ -391,34 +392,34 @@ end;
 
 procedure TFNagr.FormCreate(Sender: TObject);
 var
-  i, j: integer;
+  i, j: Integer;
   s: string;
-  f:textfile;
+  f: textfile;
 begin
   StringGrid1.cells[0, 0] := 'Нагрузка';
-  StringGrid1.cells[1, 0] := ' U ср.'+#13+'  В.';
-  StringGrid1.cells[2, 0] := ' I ср.'+#13+'  А.';
-  StringGrid1.cells[3, 0] := ' P сумм.'+#13+'  Вт.';
-  StringGrid1.cells[4, 0] := ' N ср.'+#13+'  об.мин';
-  StringGrid1.cells[5, 0] := ' М ср.'+#13+'  Нм';
-  StringGrid1.cells[6, 0] := ' T1,'+#13+'  C';
-  StringGrid1.cells[7, 0] := ' T2,'+#13+'  C';
-  StringGrid1.cells[8, 0] := ' T3,'+#13+'  C';
+  StringGrid1.cells[1, 0] := ' U ср.' + #13 + '  В.';
+  StringGrid1.cells[2, 0] := ' I ср.' + #13 + '  А.';
+  StringGrid1.cells[3, 0] := ' P сумм.' + #13 + '  Вт.';
+  StringGrid1.cells[4, 0] := ' N ср.' + #13 + '  об.мин';
+  StringGrid1.cells[5, 0] := ' М ср.' + #13 + '  Нм';
+  StringGrid1.cells[6, 0] := ' T1,' + #13 + '  C';
+  StringGrid1.cells[7, 0] := ' T2,' + #13 + '  C';
+  StringGrid1.cells[8, 0] := ' T3,' + #13 + '  C';
   StringGrid1.cells[9, 0] := 'R';
-  StringGrid1.cells[10, 0] := 'U ошиб.'+#13+'(всего)';
-  StringGrid1.cells[11, 0] := 'P ошиб.'+#13+'(всего)';
+  StringGrid1.cells[10, 0] := 'U ошиб.' + #13 + '(всего)';
+  StringGrid1.cells[11, 0] := 'P ошиб.' + #13 + '(всего)';
   StringGrid1.cells[0, 1] := 'Без нагрузки';
   StringGrid1.cells[0, 2] := 'С нагрузкой';
-  //auto(stringgrid1);
-  Stringgrid1.RowHeights[0]:=48;
+  // auto(stringgrid1);
+  StringGrid1.RowHeights[0] := 48;
 
-  assignfile(f,Extractfilepath(paramstr(0))+'nagr_width.txt');
+  assignfile(f, Extractfilepath(paramstr(0)) + 'nagr_width.txt');
   Reset(f);
-  for i:= 0 to Stringgrid1.ColCount-1 do
-    begin
-     Readln(f, s);
-     Stringgrid1.ColWidths[i]:=strtoint(s);
-    end;
+  for i := 0 to StringGrid1.ColCount - 1 do
+  begin
+    Readln(f, s);
+    StringGrid1.ColWidths[i] := Strtoint(s);
+  end;
   Closefile(f);
 
   QTemp.Open('select value from zini where name=' + QuotedStr('nagtime'));
@@ -448,16 +449,17 @@ procedure TFNagr.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
 var
   s: string;
 begin
-  //if not (gdFixed in State) then
-  //if arow=0 then canvas.Brush.Color:=clred;
+  // if not (gdFixed in State) then
+  // if arow=0 then canvas.Brush.Color:=clred;
 
   with StringGrid1 do
   begin
-   if arow=0 then canvas.Brush.Color:=fsett.Panel1.Color;
-    Canvas.Brush.Style:= bsSolid;
-    s:= Cells[ACol,ARow];
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
     Canvas.FillRect(Rect);
-    Canvas.TextRect(Rect,s,[tfWordBreak]);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
 end;
 
@@ -468,7 +470,7 @@ end;
 
 procedure TFNagr.Timer1000Timer(Sender: TObject);
 var
-  acount1, acount2, ncnt, i, errcnt, goodcnt: integer;
+  acount1, acount2, ncnt, i, errcnt, goodcnt: Integer;
 begin
   ProgressBar1.StepIt;
   Timer1000.Tag := Timer1000.Tag + 1;
@@ -504,14 +506,14 @@ begin
       QInsAll.ParamByName('U1').AsFloat := QTemp2.FieldByName('U1').AsFloat;
       QInsAll.ParamByName('U2').AsFloat := QTemp2.FieldByName('U2').AsFloat;
       QInsAll.ParamByName('U3').AsFloat := QTemp2.FieldByName('U3').AsFloat;
-      QInsAll.ParamByName('ZU').AsFloat := StrToFloat(Label19.Caption);
+      QInsAll.ParamByName('ZU').AsFloat := strtofloat(Label19.Caption);
       QInsAll.ParamByName('U').AsFloat := QTemp2.FieldByName('U').AsFloat;
 
       QInsAll.ParamByName('I1').AsFloat := QTemp2.FieldByName('i1').AsFloat;
       QInsAll.ParamByName('I2').AsFloat := QTemp2.FieldByName('i2').AsFloat;
       QInsAll.ParamByName('I3').AsFloat := QTemp2.FieldByName('i3').AsFloat;
       QInsAll.ParamByName('P').AsFloat := QTemp.FieldByName('POWER').AsFloat;
-      QInsAll.ParamByName('ZP').AsFloat := StrToFloat(Label24.Caption);
+      QInsAll.ParamByName('ZP').AsFloat := strtofloat(Label24.Caption);
       QInsAll.ParamByName('P1').AsFloat := QTemp2.FieldByName('p1').AsFloat;
       QInsAll.ParamByName('P2').AsFloat := QTemp2.FieldByName('p2').AsFloat;
       QInsAll.ParamByName('P3').AsFloat := QTemp2.FieldByName('p3').AsFloat;
@@ -534,10 +536,11 @@ begin
     QSelectSred.Close;
     QSelectSred.ParamByName('nomer').Asstring := Nomer;
     QSelectSred.ParamByName('tip').Asinteger := StringGrid1.Row;
-    QSelectSred.ParamByName('du').AsFloat := StrToFloat(Edit2.Text);
-    if StringGrid1.Row = 1 then  QSelectSred.ParamByName('dp').AsFloat := 100000
-     else
-    QSelectSred.ParamByName('dp').AsFloat := StrToFloat(Label29.Caption);
+    QSelectSred.ParamByName('du').AsFloat := strtofloat(Edit2.Text);
+    if StringGrid1.Row = 1 then
+      QSelectSred.ParamByName('dp').AsFloat := 100000
+    else
+      QSelectSred.ParamByName('dp').AsFloat := strtofloat(Label29.Caption);
     QSelectSred.Open;
     QInssvod.Close;
     QTemp.Close;
@@ -546,10 +549,10 @@ begin
       ' and tip=' + inttostr(StringGrid1.Row));
     QTemp.ExecSQL;
     StringGrid1.cells[1, StringGrid1.Row] :=
-    floattostr(simpleroundto(QSelectSred.FieldByName('u').AsFloat,RazU));
+      floattostr(simpleroundto(QSelectSred.FieldByName('u').AsFloat, RazU));
 
     StringGrid1.cells[2, StringGrid1.Row] :=
-    floattostr(simpleroundto(QSelectSred.FieldByName('i').AsFloat,RazI));
+      floattostr(simpleroundto(QSelectSred.FieldByName('i').AsFloat, RazI));
 
     StringGrid1.cells[3, StringGrid1.Row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP));
@@ -558,30 +561,32 @@ begin
     StringGrid1.cells[5, StringGrid1.Row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
 
-   //-----------------------  u
-    QTemp.Open('select count(*) r from znagrevall where nomer=' + Quotedstr(Nomer) +
-      ' and tip=' + IntToStr(StringGrid1.Row) + ' and du>' + Edit2.Text);
+    // -----------------------  u
+    QTemp.Open('select count(*) r from znagrevall where nomer=' +
+      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and du>' +
+      Edit2.Text);
     errcnt := QTemp.FieldByName('r').Asinteger;
-    QTemp.Open('select count(*) r from znagrevall where nomer=' + Quotedstr(Nomer) +
-      ' and tip=' + IntToStr(StringGrid1.Row) + ' and du<=' + Edit2.Text);
+    QTemp.Open('select count(*) r from znagrevall where nomer=' +
+      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and du<=' +
+      Edit2.Text);
     goodcnt := QTemp.FieldByName('r').Asinteger;
-    StringGrid1.Cells[10, StringGrid1.row] :=
+    StringGrid1.cells[10, StringGrid1.Row] :=
       floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
       inttostr(goodcnt + errcnt) + ')';
-   //-----------------------  p
-    QTemp.Open('select count(*) r from znagrevall where nomer=' + Quotedstr(Nomer) +
-      ' and tip=' + IntToStr(StringGrid1.Row) + ' and dp>' + Label29.Caption);
+    // -----------------------  p
+    QTemp.Open('select count(*) r from znagrevall where nomer=' +
+      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and dp>' +
+      Label29.Caption);
     errcnt := QTemp.FieldByName('r').Asinteger;
-    QTemp.Open('select count(*) r from znagrevall where nomer=' + Quotedstr(Nomer) +
-      ' and tip=' + IntToStr(StringGrid1.Row) + ' and dp<=' + Label29.Caption);
+    QTemp.Open('select count(*) r from znagrevall where nomer=' +
+      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and dp<=' +
+      Label29.Caption);
     goodcnt := QTemp.FieldByName('r').Asinteger;
-    StringGrid1.Cells[11, StringGrid1.row] :=
+    StringGrid1.cells[11, StringGrid1.Row] :=
       floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
       inttostr(goodcnt + errcnt) + ')';
 
-   //
-
-
+    //
 
     BitBtn1.Enabled := true;
     if StringGrid1.Row < StringGrid1.RowCount - 2 then
@@ -593,7 +598,7 @@ end;
 procedure TFNagr.TimerUpTimer(Sender: TObject);
 var
   pt, p: single;
-  cod1, cod2: integer;
+  cod1, cod2: Integer;
 begin
 
   QUp.Close;
@@ -607,15 +612,15 @@ begin
   // if checkbox1.checked  then
   begin
     if emp(Edit2.Text) = '0' then
-      Edit2.font.color := clRed
+      Edit2.font.Color := clRed
     else
-      Edit2.font.color := clBlack;
+      Edit2.font.Color := clBlack;
 
     if ABS(QUp.FieldByName('U').AsFloat - strtofloat(Label19.Caption)) >
       strtofloat(trim(emp(Edit2.Text))) then
-      Label9.font.color := clRed
+      Label9.font.Color := clRed
     else
-      Label9.font.color := clGreen;
+      Label9.font.Color := clGreen;
     Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
   end;
   // if checkbox2.checked  then
@@ -623,9 +628,9 @@ begin
 
     if ABS(QUp.FieldByName('Pt').AsFloat - strtofloat(Label24.Caption)) >
       strtofloat(Label29.Caption) then
-      Label14.font.color := clRed
+      Label14.font.Color := clRed
     else
-      Label14.font.color := clGreen;
+      Label14.font.Color := clGreen;
   end;
   // if checkbox3.checked  then
   begin

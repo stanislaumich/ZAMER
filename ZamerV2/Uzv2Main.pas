@@ -89,8 +89,8 @@ type
         QUpdDvig: TFDQuery;
         Button1: TButton;
         Button2: TButton;
-    Button3: TButton;
-    Panel3: TPanel;
+        Button3: TButton;
+        Panel3: TPanel;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
@@ -111,7 +111,7 @@ type
         procedure BitBtn2Click(Sender: TObject);
         procedure Button1Click(Sender: TObject);
         procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+        procedure Button3Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -126,8 +126,8 @@ type
         procedure enableispyt(f: Boolean);
         procedure FormReport;
         Procedure AddReportString(fn: string; s1, s2, s3: string);
-        procedure SendCommand(Sender: TObject; b: Boolean; s:string);
-        procedure SendData(Sender: TObject; s:string);
+        procedure SendCommand(Sender: TObject; b: Boolean; s: string);
+        procedure SendData(Sender: TObject; s: string);
     end;
 
 var
@@ -136,9 +136,9 @@ var
     cancloseapp: Boolean;
     m: set of byte;
 
-    messs:string;
-    pmes:pchar;
-    ames : array[1..10] of char;
+    messs: string;
+    pmes: pchar;
+    ames: array [1 .. 10] of char;
     fstr: string;
 
 CONST
@@ -153,68 +153,69 @@ uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH;
 
 /// /////////////////////////////////////////////////////////////////////////////
 
-procedure TFZamerV2.SendData(Sender: TObject; s:string);
- var
-   aCopyData: TCopyDataStruct;
-   hTargetWnd: HWND;
-   z1,z2,ts:string;
-   i:integer;
-   ss:ansistring;
- begin
-      QTemp.Open('select value from zini where name=' +
+procedure TFZamerV2.SendData(Sender: TObject; s: string);
+var
+    aCopyData: TCopyDataStruct;
+    hTargetWnd: HWND;
+    z1, z2, ts: string;
+    i: integer;
+    ss: ansistring;
+begin
+    QTemp.Open('select value from zini where name=' +
       Quotedstr('ElspecFormHeader'));
     z1 := PWideChar(QTemp.FieldByName('value').Asstring);
 
-        QTemp.Open('select value from zini where name=' +
+    QTemp.Open('select value from zini where name=' +
       Quotedstr('T45FormHeader'));
     z2 := PWideChar(QTemp.FieldByName('value').Asstring);
-    ///////////////////////////////////////////////////
-    //z1:= PWideChar('TST');
-   ts:=s;
-   with aCopyData do
-   begin
-     dwData := 0;
-     pmes:= pchar(ts);
-     cbData := StrLen(pmes) + 2;
-     lpData := pmes;
-   end;
+    /// ////////////////////////////////////////////////
+    // z1:= PWideChar('TST');
+    ts := s;
+    with aCopyData do
+    begin
+        dwData := 0;
+        pmes := pchar(ts);
+        cbData := StrLen(pmes) + 2;
+        lpData := pmes;
+    end;
 
-  hTargetWnd := FindWindowEx(0, 0, nil, PChar(z1));
-   if hTargetWnd <> 0 then
-     SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle), Longint(@aCopyData))
-   else
-     ShowMessage('Не обнаружена программа сбора показаний ELSPEC');
-     //////////////////////////////////////////////////////
-  ss:=s;
-   with aCopyData do
-   begin
-     dwData := 0;
-     pmes:= pchar(ss);
-     cbData := StrLen(pmes)*2 + 1;
-     lpData := pmes;
-   end;
-  hTargetWnd := FindWindowEx(0, 0, nil, PChar(z2));
-   if hTargetWnd <> 0 then
-     SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle), Longint(@aCopyData))
-   else
-     ShowMessage('Не обнаружена программа сбора показаний Т45');
+    hTargetWnd := FindWindowEx(0, 0, nil, pchar(z1));
+    if hTargetWnd <> 0 then
+        SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle),
+          Longint(@aCopyData))
+    else
+        ShowMessage('Не обнаружена программа сбора показаний ELSPEC');
+    /// ///////////////////////////////////////////////////
+    ss := s;
+    with aCopyData do
+    begin
+        dwData := 0;
+        pmes := pchar(ss);
+        cbData := StrLen(pmes) * 2 + 1;
+        lpData := pmes;
+    end;
+    hTargetWnd := FindWindowEx(0, 0, nil, pchar(z2));
+    if hTargetWnd <> 0 then
+        SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle),
+          Longint(@aCopyData))
+    else
+        ShowMessage('Не обнаружена программа сбора показаний Т45');
 end;
 
-
-procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean; s:string);
+procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean; s: string);
 
 begin
 
-  while length(s)<3 do s:='0'+s;
-  if b then
-   begin
-    SendData(FZamerV2,'1'+s);
-   end
-  else
-   begin
-    SendData(FZamerV2, '0'+s);
-   end;
-
+    while length(s) < 3 do
+        s := '0' + s;
+    if b then
+    begin
+        SendData(FZamerV2, '1' + s);
+    end
+    else
+    begin
+        SendData(FZamerV2, '0' + s);
+    end;
 
 end;
 
@@ -247,7 +248,7 @@ const
 var
     WordApp: OLEVariant;
     SearchString, ReplaceString: string;
-    i, j: Integer;
+    i, j: integer;
     Blank: string;
     ReportPath, fn: string;
     ans: array [0 .. 2] of string;
@@ -701,7 +702,7 @@ end;
 
 procedure TFZamerV2.comboaddtext;
 var
-    i: Integer;
+    i: integer;
 begin
     for i := 0 to FZamerV2.ComponentCount - 1 do
     begin
@@ -716,7 +717,7 @@ end;
 
 procedure TFZamerV2.savecombo;
 var
-    i, j: Integer;
+    i, j: integer;
 begin
     for i := 0 to FZamerV2.ComponentCount - 1 do
     begin
@@ -748,7 +749,7 @@ end;
 
 procedure TFZamerV2.restorecombo;
 var
-    i: Integer;
+    i: integer;
 begin
     for i := 0 to FZamerV2.ComponentCount - 1 do
     begin
@@ -797,7 +798,7 @@ end;
 procedure TFZamerV2.saveini;
 var
     i: tinifile;
-    t: Integer;
+    t: integer;
 begin
     try
         i := tinifile.Create(Extractfilepath(paramstr(0)) + 'ZAMERV2.INI');
@@ -954,8 +955,8 @@ end;
 
 procedure TFZamerV2.BitStartIspClick(Sender: TObject);
 var
-    buttonSelected: Integer;
-    s:string;
+    buttonSelected: integer;
+    s: string;
 begin
     buttonSelected :=
       MessageDlg('Все ли поля условий испытания заполнены верно?',
@@ -998,8 +999,8 @@ begin
             Qinsdvig.ParamByName('regim').Asstring := CombRegim.Text;
             Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
             Qinsdvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
-            s:= EditTemp.Text;
-            s:=StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+            s := EditTemp.Text;
+            s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
             Qinsdvig.ParamByName('TEMP').Asstring := s;
             Qinsdvig.ExecSQL;
             comboaddtext;
@@ -1074,7 +1075,7 @@ end;
 procedure TFZamerV2.LoadIspyt(nomer: string);
 var
     s: string;
-    tip, i, j: Integer;
+    tip, i, j: integer;
 begin
     // двигатель целиком
     QTemp.Close;
@@ -1493,7 +1494,7 @@ end;
 
 procedure TFZamerV2.BitArcClick(Sender: TObject);
 var
-    i: Integer;
+    i: integer;
 begin
     i := Farc.ShowModal;
     if i = mrOk then
@@ -1526,21 +1527,21 @@ end;
 
 procedure TFZamerV2.Button1Click(Sender: TObject);
 begin
-    SendCommand(FZamerV2, True, Fsett.Edit6.Text);
+    SendCommand(FZamerV2, True, FSett.Edit6.Text);
 end;
 
 procedure TFZamerV2.Button2Click(Sender: TObject);
 begin
-    SendCommand(FZamerV2, false, Fsett.Edit7.Text);
+    SendCommand(FZamerV2, false, FSett.Edit7.Text);
 end;
 
 procedure TFZamerV2.Button3Click(Sender: TObject);
 var
- s:string;
- begin
-  s:='1 234';
-  sendData(FZamerV2,s);
- end;
+    s: string;
+begin
+    s := '1 234';
+    SendData(FZamerV2, s);
+end;
 
 procedure TFZamerV2.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
@@ -1554,23 +1555,21 @@ end;
 
 procedure TFZamerV2.FormCreate(Sender: TObject);
 var
-   p:textfile;
-   p1,p2:string;
- begin
-    assignfile(p,Extractfilepath(paramstr(0))+'path.ini');
+    p: textfile;
+    p1, p2: string;
+begin
+    AssignFile(p, Extractfilepath(paramstr(0)) + 'path.ini');
     Reset(p);
-    ReadLn(p,p1);
-    Readln(p,p2);
+    ReadLn(p, p1);
+    ReadLn(p, p2);
     Closefile(p);
-    ShellExecute(Handle, 'open', PWideChar(p1),
+    ShellExecute(Handle, 'open', PWideChar(p1), nil, nil, SW_SHOWNORMAL);
+    ShellExecute(Handle, 'open', PWideChar(p2), nil, nil, SW_SHOWNORMAL);
+    { QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
+      ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
       nil, nil, SW_SHOWNORMAL);
-    ShellExecute(Handle, 'open', PWideChar(p2),
-      nil, nil, SW_SHOWNORMAL);
-    {QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
-    ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
-      nil, nil, SW_SHOWNORMAL);
-    QTemp.Open('select value from zini where name=' + Quotedstr('MNTPath'));
-    ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
+      QTemp.Open('select value from zini where name=' + Quotedstr('MNTPath'));
+      ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
       nil, nil, SW_SHOWNORMAL);
     }
     DateTimePicker1.Date := Date;
