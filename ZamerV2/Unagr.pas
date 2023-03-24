@@ -453,7 +453,7 @@ begin
 
   with StringGrid1 do
   begin
-   if arow=0 then canvas.Brush.Color:=clGray;
+   if arow=0 then canvas.Brush.Color:=fsett.Panel1.Color;
     Canvas.Brush.Style:= bsSolid;
     s:= Cells[ACol,ARow];
     Canvas.FillRect(Rect);

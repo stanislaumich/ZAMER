@@ -449,6 +449,33 @@ object FSett: TFSett
       Text = '10'
     end
   end
+  object GroupBox7: TGroupBox
+    Left = 720
+    Top = 248
+    Width = 161
+    Height = 101
+    Caption = #1062#1074#1077#1090' '#1096#1072#1087#1082#1080' '#1090#1072#1073#1083#1080#1094
+    TabOrder = 8
+    object Button4: TButton
+      Left = 12
+      Top = 56
+      Width = 133
+      Height = 25
+      Caption = #1042#1099#1073#1088#1072#1090#1100
+      TabOrder = 0
+      OnClick = Button4Click
+    end
+    object Panel1: TPanel
+      Left = 12
+      Top = 20
+      Width = 133
+      Height = 25
+      Caption = #1062#1042#1045#1058' '#1064#1040#1055#1050#1048
+      Color = clActiveBorder
+      ParentBackground = False
+      TabOrder = 1
+    end
+  end
   object TabSotrud: TFDTable
     Connection = FZamerV2.FDC
     TableName = 'zsotr'
@@ -481,5 +508,9 @@ object FSett: TFSett
     Connection = FZamerV2.FDC
     Left = 648
     Top = 84
+  end
+  object ColorDialog1: TColorDialog
+    Left = 191
+    Top = 31
   end
 end

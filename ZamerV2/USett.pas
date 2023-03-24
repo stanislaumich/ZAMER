@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, Vcl.Grids, Vcl.DBGrids, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.Buttons, ShellAPI;
+  Vcl.Buttons, ShellAPI, Vcl.ExtCtrls;
 
 type
   TFSett = class(TForm)
@@ -52,6 +52,10 @@ type
     Label8: TLabel;
     Edit6: TEdit;
     Edit7: TEdit;
+    GroupBox7: TGroupBox;
+    Button4: TButton;
+    Panel1: TPanel;
+    ColorDialog1: TColorDialog;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -61,6 +65,7 @@ type
     procedure BitBtn4Click(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -84,6 +89,7 @@ begin
   rewrite(f);
   Writeln(f, Edit1.Text);
   Writeln(f, Edit2.Text);
+  Writeln(f,Inttostr(Panel1.Color));
   Closefile(f);
 
   { QTemp.Close;
@@ -171,6 +177,14 @@ begin
   Memo1.lines.savetofile(fname);
 end;
 
+procedure TFSett.Button4Click(Sender: TObject);
+begin
+ If ColorDialog1.Execute() then
+  begin
+    Panel1.Color:=ColorDialog1.Color;
+  end;
+end;
+
 procedure TFSett.FormCreate(Sender: TObject);
 var
   f: textfile;
@@ -185,6 +199,8 @@ begin
     Edit1.Text := s;
     Readln(f, s);
     Edit2.Text := s;
+    ReadLn(f,s);
+    Panel1.Color:=StrToInt(s);
     Closefile(f);
   end
   else

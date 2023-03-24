@@ -1502,7 +1502,7 @@ object FZamerV2: TFZamerV2
         Top = 232
         Width = 17
         Height = 17
-        Color = clBlue
+        Color = clYellow
         ParentBackground = False
         TabOrder = 25
       end
