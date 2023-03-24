@@ -6,13 +6,13 @@ interface // ------------------------------------------------------------------
     RazP = -2;
     RazI = -3;
     RAZN = -1;
-    RazM = -2;
+    RazM = -1;
     RazR = -1;
     tRazU = '0.00';
     tRazP = '0.00';
     tRazI = '0.000';
     tRAZN = '0.0';
-    tRazM = '0.00';
+    tRazM = '0.0';
     tRazR = '0.0';
 
 function myformat(s:string; f:double ):string;

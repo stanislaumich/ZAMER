@@ -2,7 +2,7 @@ object FKZ: TFKZ
   Left = 0
   Top = 0
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1082#1086#1088#1086#1090#1082#1086#1075#1086' '#1079#1072#1084#1099#1082#1072#1085#1080#1103
-  ClientHeight = 567
+  ClientHeight = 548
   ClientWidth = 520
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object FKZ: TFKZ
   OnHide = FormHide
   DesignSize = (
     520
-    567)
+    548)
   PixelsPerInch = 96
   TextHeight = 23
   object Panel1: TPanel
@@ -281,15 +281,15 @@ object FKZ: TFKZ
     Left = 0
     Top = 235
     Width = 517
-    Height = 280
+    Height = 254
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 2
     DesignSize = (
       517
-      280)
+      254)
     object Label14: TLabel
       Left = 8
-      Top = 252
+      Top = 226
       Width = 87
       Height = 23
       Anchors = [akLeft, akBottom]
@@ -299,7 +299,7 @@ object FKZ: TFKZ
     end
     object Label15: TLabel
       Left = 101
-      Top = 252
+      Top = 226
       Width = 10
       Height = 23
       Anchors = [akLeft, akBottom]
@@ -316,10 +316,10 @@ object FKZ: TFKZ
     end
     object BitBtn8: TBitBtn
       Left = 220
-      Top = 229
+      Top = 213
       Width = 138
-      Height = 48
-      Anchors = [akRight, akBottom]
+      Height = 36
+      Anchors = [akTop, akRight]
       Caption = #1057#1090#1072#1088#1090' F5'
       Enabled = False
       Glyph.Data = {
@@ -384,10 +384,10 @@ object FKZ: TFKZ
     end
     object BitBtn9: TBitBtn
       Left = 364
-      Top = 228
+      Top = 213
       Width = 150
-      Height = 49
-      Anchors = [akRight, akBottom]
+      Height = 36
+      Anchors = [akTop, akRight]
       Caption = #1057#1090#1086#1087' F9'
       Enabled = False
       Glyph.Data = {
@@ -480,9 +480,9 @@ object FKZ: TFKZ
     end
   end
   object BitBtn10: TBitBtn
-    Left = 0
-    Top = 516
-    Width = 155
+    Left = 8
+    Top = 498
+    Width = 147
     Height = 44
     Anchors = [akRight]
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
@@ -548,8 +548,8 @@ object FKZ: TFKZ
   end
   object BitBtn12: TBitBtn
     Left = 276
-    Top = 515
-    Width = 244
+    Top = 496
+    Width = 236
     Height = 44
     Anchors = [akRight, akBottom]
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100

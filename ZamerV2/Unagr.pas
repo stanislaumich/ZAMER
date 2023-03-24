@@ -89,6 +89,8 @@ type
     procedure Edit5Change(Sender: TObject);
     procedure StringGrid1KeyPress(Sender: TObject; var Key: Char);
     procedure BitBtn2Click(Sender: TObject);
+    procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -394,20 +396,21 @@ var
   f:textfile;
 begin
   StringGrid1.cells[0, 0] := 'Нагрузка';
-  StringGrid1.cells[1, 0] := 'U сред В.';
-  StringGrid1.cells[2, 0] := 'I сред А.';
-  StringGrid1.cells[3, 0] := 'P сред Вт.';
-  StringGrid1.cells[4, 0] := 'N сред об.мин';
-  StringGrid1.cells[5, 0] := 'М сред Нм';
-  StringGrid1.cells[6, 0] := 'T1,C';
-  StringGrid1.cells[7, 0] := 'T2,C';
-  StringGrid1.cells[8, 0] := 'T3,C';
+  StringGrid1.cells[1, 0] := ' U ср.'+#13+'  В.';
+  StringGrid1.cells[2, 0] := ' I ср.'+#13+'  А.';
+  StringGrid1.cells[3, 0] := ' P ср.'+#13+'  Вт.';
+  StringGrid1.cells[4, 0] := ' N ср.'+#13+'  об.мин';
+  StringGrid1.cells[5, 0] := ' М ср.'+#13+'  Нм';
+  StringGrid1.cells[6, 0] := ' T1,'+#13+'  C';
+  StringGrid1.cells[7, 0] := ' T2,'+#13+'  C';
+  StringGrid1.cells[8, 0] := ' T3,'+#13+'  C';
   StringGrid1.cells[9, 0] := 'R';
-  StringGrid1.cells[10, 0] := 'U ошиб.(всего)';
-  StringGrid1.cells[11, 0] := 'P ошиб.(всего)';
+  StringGrid1.cells[10, 0] := 'U ошиб.'+#13+'(всего)';
+  StringGrid1.cells[11, 0] := 'P ошиб.'+#13+'(всего)';
   StringGrid1.cells[0, 1] := 'Без нагрузки';
   StringGrid1.cells[0, 2] := 'С нагрузкой';
   //auto(stringgrid1);
+  Stringgrid1.RowHeights[0]:=48;
 
   assignfile(f,Extractfilepath(paramstr(0))+'nagr_width.txt');
   Reset(f);
@@ -438,6 +441,24 @@ end;
 procedure TFNagr.FormShow(Sender: TObject);
 begin
   TimerUp.Enabled := true;
+end;
+
+procedure TFNagr.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+  //if not (gdFixed in State) then
+  if arow=0 then canvas.Brush.Color:=clred;
+  
+  with StringGrid1 do
+  begin
+   if arow=0 then canvas.Brush.Color:=clGray;
+    Canvas.Brush.Style:= bsSolid;
+    s:= Cells[ACol,ARow];
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect,s,[tfWordBreak]);
+  end;
 end;
 
 procedure TFNagr.StringGrid1KeyPress(Sender: TObject; var Key: Char);

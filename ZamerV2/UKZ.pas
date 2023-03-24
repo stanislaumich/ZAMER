@@ -252,7 +252,7 @@ begin
   StringGrid1.Cells[2, StringGrid1.row] :=
     FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('i').AsFloat, RazI));
   StringGrid1.Cells[3, StringGrid1.row] :=
-    FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('p').AsFloat, RazP));
+    FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('p').AsFloat, -2));
   StringGrid1.Cells[4, StringGrid1.row] :=
     FloatToStr(SimpleRoundTo(QSelectsred.Fieldbyname('t').AsFloat, RazM));
 
@@ -265,7 +265,7 @@ begin
   QInsSvod.ParamByName('i').AsFloat :=
     SimpleRoundTo(QSelectsred.Fieldbyname('i').AsFloat, RazI);
   QInsSvod.ParamByName('p').AsFloat :=
-    SimpleRoundTo(QSelectsred.Fieldbyname('p').AsFloat, RazP);
+    SimpleRoundTo(QSelectsred.Fieldbyname('p').AsFloat, -2);
   QInsSvod.ParamByName('m').AsFloat :=
     SimpleRoundTo(QSelectsred.Fieldbyname('t').AsFloat, RazM);
   QInsSvod.ParamByName('tmp').AsFloat := 0;

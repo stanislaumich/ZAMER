@@ -115,7 +115,6 @@ __published: // IDE-managed Components
 	void __fastcall CBDecoderTypeChange(TObject *Sender);
 	void __fastcall TimerMainTimer(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall TimerCommandTimer(TObject *Sender);
 	void __fastcall TimerStartTimer(TObject *Sender);
 	void __fastcall BitBtn2Click(TObject *Sender);
 	void __fastcall BitBtn1Click(TObject *Sender);

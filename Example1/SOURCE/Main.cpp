@@ -19,7 +19,7 @@ int wr;
 float corr;
 String oldA = "25";
 float mySkorost;
-float myMoment;
+float myMoment, myMomentPrev;
 float koeff=30/3.14159265358979323846;
 float myMoshn=0;
 
@@ -154,6 +154,7 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 		"' where name='T45FormHeader'");
 	Qtemp->ExecSQL();
 	Edit1->Text = FloatToStr(corr);
+	myMomentPrev = 0;
 }
 
 // --------------------- "Open" BUTTON
@@ -237,13 +238,14 @@ void __fastcall TForm1::BConnectClick(TObject *Sender) {
 		break;
 	case 1:
 	case 4:
-	case 7:
+	//case 7:
 	case 10:
 	case 14:
 		Index = 1;
 		break;
 	case 2:
 	case 5:
+    case 7:
 	case 8:
 	case 11:
 	case 13:
@@ -504,25 +506,28 @@ void __fastcall TForm1::BReadComplexClick(TObject *Sender) {
 	// ................... Formation of a line for displaying the main measurement value in the panel
 	Znachenie = POutputBuffer->Data.MD.RC.OsnIzmVel;
 	Znachenie = Znachenie + corr;
+
+
+	//myMoment = (myMomentPrev + Znachenie ) / 2;
 	myMoment = Znachenie;
+	//myMoment = Znachenie;
 	if (RadioButton1->Checked)
-		STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -2));
+		STOsnIzmVel->Caption = FloatToStr(RoundTo(midArifm2(Znachenie), -4));
 	if (RadioButton2->Checked){
 		STOsnIzmVel->Caption =
-			FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -2));
-	   Memo2->Lines->Add(FloatToStr(Znachenie)+" "+FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -2)));
+			FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -4));
+	   Memo2->Lines->Add(FloatToStr(Znachenie)+" "+FloatToStr(RoundTo(runMiddleArifmOptim(Znachenie), -4)));
 	}
 
 	if (RadioButton3->Checked){
 		STOsnIzmVel->Caption =
-			FloatToStr(RoundTo(expRunningAverage(Znachenie), -2));
-
+			FloatToStr(RoundTo(expRunningAverage(Znachenie), -4));
 	}
 	if (RadioButton4->Checked)
 		STOsnIzmVel->Caption =
-			FloatToStr(RoundTo(expRunningAverageAdaptive(Znachenie), -2));
+			FloatToStr(RoundTo(expRunningAverageAdaptive(Znachenie), -4));
 	if (RadioButton5->Checked)
-		STOsnIzmVel->Caption = FloatToStr(RoundTo(ABfilter(Znachenie), -2));
+		STOsnIzmVel->Caption = FloatToStr(RoundTo(ABfilter(Znachenie), -4));
 	if (RadioButton6->Checked)
 		STOsnIzmVel->Caption = FloatToStr(RoundTo(Znachenie, -4));
 
@@ -828,47 +833,6 @@ void __fastcall TForm1::Button1Click(TObject *Sender) {
 }
 // ---------------------------------------------------------------------------
 
-void __fastcall TForm1::TimerCommandTimer(TObject *Sender) {
-	/*
-	 QCommand->Open("select * from command where command between 0 and 1");
-	 if (QCommand->RecordCount != 0) {
-	 int a = QCommand->FieldByName("command")->AsInteger;
-	 if (a == 1) {
-
-	 QCommand->Close();
-	 Qtemp->Close();
-	 Qtemp->SQL->Clear();
-	 Qtemp->SQL->Add("Delete from command where command in(0, 1)");
-	 Qtemp->ExecSQL();
-	 Qtemp->Close();
-	 Qtemp->SQL->Clear();
-	 Qtemp->SQL->Add("Truncate table zamertmp");
-	 Qtemp->ExecSQL();
-	 Qtemp->Close();
-	 wr = 1; // lets write
-
-	 Panel3->Color = clRed;
-	 Panel3->Caption = "ÇÀÏÈÑÜ";
-	 }
-	 else { // a = 0
-
-	 QCommand->Close();
-
-	 Qtemp->Close();
-	 Qtemp->SQL->Clear();
-	 Qtemp->SQL->Add("Delete from command where command in(0, 1)");
-	 Qtemp->ExecSQL();
-	 Qtemp->Close();
-	 wr = 0; // do not write
-
-	 Panel3->Color = clBtnFace;
-	 Panel3->Caption = "";
-	 }
-	 }
-	 */
-}
-
-// ---------------------------------------------------------------------------
 void __fastcall TForm1::TimerStartTimer(TObject *Sender) {
 
 	TimerStart->Enabled = false;

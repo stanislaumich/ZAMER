@@ -731,7 +731,6 @@ object Form1: TForm1
   object TimerCommand: TTimer
     Enabled = False
     Interval = 500
-    OnTimer = TimerCommandTimer
     Left = 168
     Top = 204
   end

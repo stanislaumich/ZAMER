@@ -34,7 +34,6 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1035
     object Label1: TLabel
       Left = 3
       Top = 2
@@ -92,7 +91,6 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 1035
     object Label15: TLabel
       Left = 8
       Top = 32
@@ -176,7 +174,6 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitWidth = 1035
     DesignSize = (
       1393
       314)
@@ -215,18 +212,20 @@ object FNagr: TFNagr
       Caption = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103':'
     end
     object StringGrid1: TStringGrid
-      Left = 2
-      Top = 56
+      Left = 1
+      Top = 57
       Width = 1389
       Height = 129
       Anchors = [akLeft, akTop, akRight]
       ColCount = 12
+      DefaultColAlignment = taCenter
+      FixedColor = clGray
       FixedCols = 0
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnDrawCell = StringGrid1DrawCell
       OnKeyPress = StringGrid1KeyPress
-      ExplicitWidth = 1031
     end
     object BitBtn1: TBitBtn
       Left = 830
@@ -294,7 +293,6 @@ object FNagr: TFNagr
         9E3CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       TabOrder = 1
       OnClick = BitBtn1Click
-      ExplicitLeft = 597
     end
     object BitBtn2: TBitBtn
       Left = 553
@@ -362,7 +360,6 @@ object FNagr: TFNagr
         12F31C12F31C12F31C12F31C12F31D14F3150FF56E6BF7FFFFFF}
       TabOrder = 2
       OnClick = BitBtn2Click
-      ExplicitLeft = 391
     end
     object ProgressBar1: TProgressBar
       Left = 2
@@ -372,7 +369,6 @@ object FNagr: TFNagr
       Align = alBottom
       Step = 1
       TabOrder = 3
-      ExplicitWidth = 1031
     end
     object Edit4: TEdit
       Left = 221
@@ -464,7 +460,6 @@ object FNagr: TFNagr
       ParentFont = False
       TabOrder = 6
       OnClick = BitBtn10Click
-      ExplicitLeft = 790
     end
     object ComboBox1: TComboBox
       Left = 280
@@ -506,7 +501,6 @@ object FNagr: TFNagr
     Font.Style = []
     ParentFont = False
     TabOrder = 3
-    ExplicitWidth = 1035
     object Label2: TLabel
       Left = 46
       Top = 65
