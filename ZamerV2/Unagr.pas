@@ -398,7 +398,7 @@ begin
   StringGrid1.cells[0, 0] := 'Нагрузка';
   StringGrid1.cells[1, 0] := ' U ср.'+#13+'  В.';
   StringGrid1.cells[2, 0] := ' I ср.'+#13+'  А.';
-  StringGrid1.cells[3, 0] := ' P ср.'+#13+'  Вт.';
+  StringGrid1.cells[3, 0] := ' P сумм.'+#13+'  Вт.';
   StringGrid1.cells[4, 0] := ' N ср.'+#13+'  об.мин';
   StringGrid1.cells[5, 0] := ' М ср.'+#13+'  Нм';
   StringGrid1.cells[6, 0] := ' T1,'+#13+'  C';

@@ -219,6 +219,7 @@ object FNagr: TFNagr
       Anchors = [akLeft, akTop, akRight]
       ColCount = 12
       DefaultColAlignment = taCenter
+      DrawingStyle = gdsClassic
       FixedColor = clGray
       FixedCols = 0
       RowCount = 4
