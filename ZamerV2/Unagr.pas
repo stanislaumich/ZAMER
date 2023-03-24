@@ -449,8 +449,8 @@ var
   s: string;
 begin
   //if not (gdFixed in State) then
-  if arow=0 then canvas.Brush.Color:=clred;
-  
+  //if arow=0 then canvas.Brush.Color:=clred;
+
   with StringGrid1 do
   begin
    if arow=0 then canvas.Brush.Color:=clGray;
@@ -535,6 +535,8 @@ begin
     QSelectSred.ParamByName('nomer').Asstring := Nomer;
     QSelectSred.ParamByName('tip').Asinteger := StringGrid1.Row;
     QSelectSred.ParamByName('du').AsFloat := StrToFloat(Edit2.Text);
+    if StringGrid1.Row = 1 then  QSelectSred.ParamByName('dp').AsFloat := 100000
+     else
     QSelectSred.ParamByName('dp').AsFloat := StrToFloat(Label29.Caption);
     QSelectSred.Open;
     QInssvod.Close;
