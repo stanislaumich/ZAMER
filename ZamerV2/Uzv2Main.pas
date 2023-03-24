@@ -1260,6 +1260,8 @@ begin
           QTemp.FieldByName('otklonu').Asstring;
         Fnagr.StringGrid1.Cells[11, QTemp.FieldByName('tip').AsInteger] :=
           QTemp.FieldByName('otklonp').Asstring;
+        Fnagr.StringGrid1.Cells[12, QTemp.FieldByName('tip').AsInteger] :=
+          QTemp.FieldByName('pm').Asstring;
         QTemp.Next;
     end;
     // Загрузить прочие испытания

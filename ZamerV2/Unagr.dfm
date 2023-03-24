@@ -217,7 +217,7 @@ object FNagr: TFNagr
       Width = 1389
       Height = 129
       Anchors = [akLeft, akTop, akRight]
-      ColCount = 12
+      ColCount = 13
       DefaultColAlignment = taCenter
       DrawingStyle = gdsClassic
       FixedColor = clGray
@@ -770,15 +770,15 @@ object FNagr: TFNagr
       '   T1, R, TIP, '
       '   DOP1, RKORP, ROBM, '
       
-        '   T2, T3, T, edizmispyt, edizmkorp, edizmobm, otklonu, otklonp)' +
-        ' '
+        '   T2, T3, T, edizmispyt, edizmkorp, edizmobm, otklonu, otklonp,' +
+        ' pm) '
       'VALUES ( :NOMER, :U, :I, '
       '   :P, :N, :M, '
       '   :T1, :R, :TIP, '
       '   :DOP1, :RKORP, :ROBM, '
       
         '   :T2, :T3, :T, :edizmispyt, :edizmkorp, :edizmobm, :otklonu, :' +
-        'otklonp )')
+        'otklonp, :pm )')
     Left = 360
     Top = 336
     ParamData = <
@@ -861,6 +861,10 @@ object FNagr: TFNagr
       item
         Name = 'OTKLONP'
         ParamType = ptInput
+      end
+      item
+        Name = 'PM'
+        ParamType = ptInput
       end>
   end
   object QInsAll: TFDQuery
@@ -871,7 +875,7 @@ object FNagr: TFNagr
       '   U3, I1, I2, '
       '   I3, P, M, '
       '   N, DOP1, TIP, '
-      '   NAGR,p1,p2,p3, u,zu,zp) '
+      '   NAGR,p1,p2,p3, u,zu,zp, pm) '
       'VALUES ( :NOMER ,'
       ' :U1 ,'
       ' :U2 ,'
@@ -884,7 +888,7 @@ object FNagr: TFNagr
       ' :N ,'
       ' :DOP1,'
       ' :TIP ,'
-      ' :NAGR, :p1, :p2, :p3,:u, :zu, :zp )')
+      ' :NAGR, :p1, :p2, :p3,:u, :zu, :zp, :pm )')
     Left = 516
     Top = 336
     ParamData = <
@@ -963,6 +967,10 @@ object FNagr: TFNagr
       item
         Name = 'ZP'
         ParamType = ptInput
+      end
+      item
+        Name = 'PM'
+        ParamType = ptInput
       end>
   end
   object QSelectSred: TFDQuery
@@ -971,7 +979,8 @@ object FNagr: TFNagr
       'SELECT'
       '    NOMER, '
       '    avg(u) u, avg(i) i,'
-      '    avg(P) sp,avg(M) sM, avg(N) sn '
+      '    avg(P) sp,avg(M) sM, avg(N) sn,'
+      '    avg(pm) pm '
       '    FROM ZAMER.ZNAGREVALL'
       '    where nomer=:nomer and tip=:tip '
       '    and du<:du and dp<:dp '
@@ -1029,5 +1038,9 @@ object FNagr: TFNagr
     Connection = FZamerV2.FDC
     Left = 640
     Top = 343
+  end
+  object SavePictureDialog1: TSavePictureDialog
+    Left = 956
+    Top = 427
   end
 end

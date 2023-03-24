@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, ustr, uadd, System.Actions,
-  Vcl.ActnList, math;
+  Vcl.ActnList, math, Vcl.ExtDlgs;
 
 type
   TFNagr = class(TForm)
@@ -74,6 +74,7 @@ type
     Label24: TLabel;
     Label27: TLabel;
     Label33: TLabel;
+    SavePictureDialog1: TSavePictureDialog;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -161,8 +162,10 @@ begin
     QInssvod.ParamByName('u').AsFloat := myfloat(StringGrid1.cells[1, i]);
     QInssvod.ParamByName('i').AsFloat := myfloat(StringGrid1.cells[2, i]);
     QInssvod.ParamByName('p').AsFloat := myfloat(StringGrid1.cells[3, i]);
+    QInssvod.ParamByName('pm').AsFloat := myfloat(StringGrid1.cells[12, i]);
     QInssvod.ParamByName('n').AsFloat := myfloat(StringGrid1.cells[4, i]);
     QInssvod.ParamByName('m').AsFloat := myfloat(StringGrid1.cells[5, i]);
+
     QInssvod.ParamByName('dop1').AsFloat := 0;
     QInssvod.ParamByName('t').AsFloat := 0;
     QInssvod.ParamByName('robm').AsFloat :=
@@ -408,6 +411,7 @@ begin
   StringGrid1.cells[9, 0] := 'R';
   StringGrid1.cells[10, 0] := 'U ошиб.' + #13 + '(всего)';
   StringGrid1.cells[11, 0] := 'P ошиб.' + #13 + '(всего)';
+  StringGrid1.cells[12, 0] := 'P мех.' + #13 + ' ';
   StringGrid1.cells[0, 1] := 'Без нагрузки';
   StringGrid1.cells[0, 2] := 'С нагрузкой';
   // auto(stringgrid1);
@@ -512,7 +516,10 @@ begin
       QInsAll.ParamByName('I1').AsFloat := QTemp2.FieldByName('i1').AsFloat;
       QInsAll.ParamByName('I2').AsFloat := QTemp2.FieldByName('i2').AsFloat;
       QInsAll.ParamByName('I3').AsFloat := QTemp2.FieldByName('i3').AsFloat;
-      QInsAll.ParamByName('P').AsFloat := QTemp.FieldByName('POWER').AsFloat;
+
+      QInsAll.ParamByName('Pm').AsFloat := QTemp.FieldByName('POWER').AsFloat;
+      QInsAll.ParamByName('P').AsFloat := QTemp2.FieldByName('P').AsFloat;
+
       QInsAll.ParamByName('ZP').AsFloat := strtofloat(Label24.Caption);
       QInsAll.ParamByName('P1').AsFloat := QTemp2.FieldByName('p1').AsFloat;
       QInsAll.ParamByName('P2').AsFloat := QTemp2.FieldByName('p2').AsFloat;
@@ -538,7 +545,7 @@ begin
     QSelectSred.ParamByName('tip').Asinteger := StringGrid1.Row;
     QSelectSred.ParamByName('du').AsFloat := strtofloat(Edit2.Text);
     if StringGrid1.Row = 1 then
-      QSelectSred.ParamByName('dp').AsFloat := 100000
+      QSelectSred.ParamByName('dp').AsFloat := 10000000
     else
       QSelectSred.ParamByName('dp').AsFloat := strtofloat(Label29.Caption);
     QSelectSred.Open;
@@ -560,7 +567,8 @@ begin
       floattostr(simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN));
     StringGrid1.cells[5, StringGrid1.Row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
-
+    StringGrid1.cells[12, StringGrid1.Row] :=
+      floattostr(simpleroundto(QSelectSred.FieldByName('pm').AsFloat, RazM));
     // -----------------------  u
     QTemp.Open('select count(*) r from znagrevall where nomer=' +
       QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and du>' +
