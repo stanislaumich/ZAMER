@@ -89,6 +89,10 @@ type
         procedure RadioButton5Click(Sender: TObject);
         procedure RadioButton6Click(Sender: TObject);
         procedure BitBtn3Click(Sender: TObject);
+    procedure StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
+    procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
     private
         { Private declarations }
     public
@@ -182,11 +186,49 @@ begin
 
 end;
 
+procedure TFormHH.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+  // if not (gdFixed in State) then
+  // if arow=0 then canvas.Brush.Color:=clred;
+
+  with StringGrid1 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
+end;
+
 procedure TFormHH.StringGrid2Click(Sender: TObject);
 begin
     if StringGrid2.row = StringGrid2.RowCount - 1 then
         StringGrid2.row := StringGrid2.row - 1;
     Label26.Caption := StringGrid2.Cells[0, StringGrid2.row];
+end;
+
+procedure TFormHH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+  // if not (gdFixed in State) then
+  // if arow=0 then canvas.Brush.Color:=clred;
+
+  with StringGrid2 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
 end;
 
 procedure TFormHH.Action1Execute(Sender: TObject);

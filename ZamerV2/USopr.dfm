@@ -195,6 +195,7 @@ object FSopr: TFSopr
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnDrawCell = StringGrid3DrawCell
       OnKeyPress = StringGrid3KeyPress
     end
     object ComboBox9: TComboBox

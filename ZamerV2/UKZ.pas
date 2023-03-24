@@ -69,6 +69,8 @@ type
     procedure BitBtn10Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure Edit2Change(Sender: TObject);
+    procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -358,6 +360,24 @@ begin
   end;
 end;
 
+procedure TFKZ.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+  // if not (gdFixed in State) then
+  // if arow=0 then canvas.Brush.Color:=clred;
+
+  with StringGrid1 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
+end;
 procedure TFKZ.TimerUpTimer(Sender: TObject);
 begin
   QUp.Close;

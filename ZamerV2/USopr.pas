@@ -71,6 +71,8 @@ type
     procedure Edit2Click(Sender: TObject);
     procedure Edit13Click(Sender: TObject);
     procedure Edit16Click(Sender: TObject);
+    procedure StringGrid3DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -85,7 +87,7 @@ implementation
 
 {$R *.dfm}
 
-Uses Uzv2Main, uhh;
+Uses Uzv2Main, uhh, Usett;
 
 procedure TFSopr.BitBtn1Click(Sender: TObject);
 var
@@ -327,6 +329,25 @@ end;
 procedure TFSopr.RadioButton3Click(Sender: TObject);
 begin
   enableclose := false;
+end;
+
+procedure TFSopr.StringGrid3DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+  // if not (gdFixed in State) then
+  // if arow=0 then canvas.Brush.Color:=clred;
+
+  with StringGrid3 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
 end;
 
 procedure TFSopr.StringGrid3KeyPress(Sender: TObject; var Key: Char);

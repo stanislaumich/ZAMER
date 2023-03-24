@@ -462,6 +462,7 @@ object FKZ: TFKZ
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goDrawFocusSelected, goColSizing, goEditing, goThumbTracking, goFixedRowDefAlign]
       TabOrder = 2
       OnClick = StringGrid1Click
+      OnDrawCell = StringGrid1DrawCell
     end
     object Edit2: TEdit
       Left = 41
