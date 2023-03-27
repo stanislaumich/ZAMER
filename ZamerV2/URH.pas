@@ -108,6 +108,7 @@ type
       Rect: TRect; State: TGridDrawState);
     procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
+    procedure StringGrid1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -124,7 +125,7 @@ var
   tipispyt: integer;
   currentpower: single;
   times: integer;
-
+  ccol : integer;
 implementation
 
 uses uzv2main, usett;
@@ -559,6 +560,17 @@ begin
   nomer := Label6.Caption;
 end;
 
+procedure TFRH.StringGrid1Click(Sender: TObject);
+begin
+ ccol:=Stringgrid1.Col;
+ Stringgrid1.Repaint;
+ case ccol of
+  1: RadioButton1.Checked:=true;
+  2: RadioButton2.Checked:=true;
+  3: RadioButton3.Checked:=true;
+  end;
+end;
+
 procedure TFRH.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 var
@@ -570,8 +582,10 @@ begin
       Canvas.Brush.Color := Fsett.Panel1.Color;
     Canvas.Brush.Style := bsSolid;
     s := cells[ACol, ARow];
+    if (ACol = ccol)and (ccol>0) and (arow>0) then Canvas.Brush.Color:=clGreen;
     Canvas.FillRect(Rect);
     Canvas.TextRect(Rect, s, [tfWordBreak]);
+
   end;
 end;
 

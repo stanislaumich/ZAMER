@@ -512,10 +512,11 @@ object FRH: TFRH
       RowCount = 12
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnClick = StringGrid1Click
       OnDrawCell = StringGrid1DrawCell
     end
     object RadioButton1: TRadioButton
-      Left = 95
+      Left = 78
       Top = 343
       Width = 13
       Height = 17
@@ -523,7 +524,7 @@ object FRH: TFRH
       OnClick = RadioButton1Click
     end
     object RadioButton2: TRadioButton
-      Left = 159
+      Left = 135
       Top = 343
       Width = 21
       Height = 17
@@ -531,7 +532,7 @@ object FRH: TFRH
       OnClick = RadioButton2Click
     end
     object RadioButton3: TRadioButton
-      Left = 224
+      Left = 192
       Top = 343
       Width = 20
       Height = 17

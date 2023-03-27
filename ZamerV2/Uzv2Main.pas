@@ -1370,16 +1370,22 @@ begin
             begin
                 Frh.Radiobutton1Click(Frh);
                 Frh.radiobutton1.Checked := True;
+                Frh.stringgrid1.col:=1;
+                frh.stringgrid1.OnClick(frh);
             end;
         2:
             begin
                 Frh.Radiobutton2Click(Frh);
                 Frh.radiobutton2.Checked := True;
+                Frh.stringgrid1.col:=2;
+                frh.stringgrid1.OnClick(frh);
             end;
         3:
             begin
                 Frh.Radiobutton3Click(Frh);
                 Frh.radiobutton3.Checked := True;
+                Frh.stringgrid1.col:=3;
+                frh.stringgrid1.OnClick(frh);
             end;
     end;
     tip := 1;
