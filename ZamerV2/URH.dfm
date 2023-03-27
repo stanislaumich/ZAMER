@@ -922,7 +922,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 5
     Text = '0'
-    ExplicitTop = 711
   end
   object Edit5: TEdit
     Left = 207
@@ -938,7 +937,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 6
     Text = '0'
-    ExplicitTop = 711
   end
   object Edit6: TEdit
     Left = 348
@@ -954,7 +952,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 7
     Text = '0'
-    ExplicitTop = 711
   end
   object Edit7: TEdit
     Left = 458
@@ -970,7 +967,6 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 8
     Text = '0'
-    ExplicitTop = 711
   end
   object BitBtn10: TBitBtn
     Left = 1164

@@ -610,6 +610,13 @@ begin
     Timer1000.Enabled := false;
     ProgressBar1.Position:=0;
     command(false);
+
+    QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('delete from zamertmp where rot = 0 and torq = 0 and power = 0');
+    QTemp.ExecSQL;
+    QTemp.Close;
+
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.Open('select count(*) cnt from zamertmp');
