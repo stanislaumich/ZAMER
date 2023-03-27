@@ -80,3 +80,12 @@
 27.03.2023 14:46:32.293 - TModbusTCPClient.Start
 27.03.2023 14:46:32.293 - TTCPAccept.InitSocket IN
 27.03.2023 14:46:52.587 - TModbusTCPServer.OnClientDisconnect
+27.03.2023 15:18:28.449 - TModbusTCPServer.Stop
+27.03.2023 15:18:28.449 - TTCPAccept.StopThread IN
+27.03.2023 15:18:28.450 - TTCPAccept.Execute OUT
+27.03.2023 15:18:28.450 - TTCPAccept.StopThread OUT
+27.03.2023 15:18:28.450 - TTCPAccept.Destroy IN
+27.03.2023 15:18:28.450 - TTCPAccept.Destroy OUT
+27.03.2023 15:18:29.690 - TModbusTCPServer.Stop
+27.03.2023 15:18:29.690 - TModbusTCPServer.Destroy
+27.03.2023 15:18:29.695 - Останов Modbus TCP/RTU Эмулятор
