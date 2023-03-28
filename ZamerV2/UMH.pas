@@ -87,6 +87,10 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure StringGrid7DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
+    procedure StringGrid8DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -191,6 +195,11 @@ begin
   // начинаем обсчеты
   Memo1.lines.Add('Запрос из Т45');
   QTemp.Close;
+    QTemp.SQL.Clear;
+    QTemp.SQL.Add('delete from zamertmp where rot = 0 and torq = 0 and power = 0');
+    QTemp.ExecSQL;
+    QTemp.Close;
+  QTemp.Close;
   QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date ' +
     Quotedstr('1970-01-01') + ') * 86400 + to_number(TO_CHAR(ts,' +
     Quotedstr(fstr) + ')) - to_number(to_char(ts,' + Quotedstr('SS') + ')) t ' +
@@ -281,7 +290,12 @@ begin
         Memo1.lines.Add('found');
       end;
     end;
-    maxn := 0;
+    //---
+
+  end;
+
+   //--
+  maxn := 0;
     for i := 1 to ResN do
     begin
       Memo1.lines.Add(gets(ResA[i]));
@@ -306,7 +320,7 @@ begin
     StringGrid7.cells[1, row] := floattostr(SimpleRoundTo(ResA[maxni].u, RazU));
     StringGrid7.cells[2, row] := floattostr(SimpleRoundTo(ResA[maxni].m, RazM));
     StringGrid7.cells[3, row] := floattostr(SimpleRoundTo(ResA[maxni].n, RazN));
-    Memo1.lines.Add('Вставка в итоговую таблицу');
+    Memo1.lines.Add('Вставка в итоговую таблицу ok');
 
     QInsSvod.Close;
     QInsSvod.ParamByName('nomer').AsString := nomer;
@@ -319,8 +333,10 @@ begin
     QInsSvod.ExecSQL;
 
     Memo1.lines.Add('Все завершено');
+    Memo1.lines.savetofile('resMH');
 
-  end;
+   //--
+
 
   QTemp.Close;
   Button27.Enabled := true;
@@ -941,6 +957,41 @@ end;
 procedure TFMH.FormHide(Sender: TObject);
 begin
   TimerUp.Enabled := false;
+end;
+
+procedure TFMH.StringGrid7DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+  with StringGrid7 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    if (ARow = Stringgrid7.row) and (acol>0) and (arow>0) then Canvas.Brush.Color:=Fsett.Panel2.Color;
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
+end;
+
+
+procedure TFMH.StringGrid8DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+var
+  s: string;
+begin
+  with StringGrid8 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    if (ARow = Stringgrid8.row) and (acol>0) and (arow>0) then Canvas.Brush.Color:=Fsett.Panel2.Color;
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
 end;
 
 end.

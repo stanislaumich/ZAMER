@@ -96,6 +96,7 @@ object FMH: TFMH
       RowCount = 6
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
+      OnDrawCell = StringGrid7DrawCell
     end
     object Button27: TButton
       Left = 442
@@ -199,7 +200,7 @@ object FMH: TFMH
       161)
     object StringGrid8: TStringGrid
       Left = 3
-      Top = 24
+      Top = 25
       Width = 414
       Height = 133
       ColCount = 4
@@ -209,6 +210,7 @@ object FMH: TFMH
       RowCount = 6
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
+      OnDrawCell = StringGrid8DrawCell
     end
     object Button37: TButton
       Left = 442

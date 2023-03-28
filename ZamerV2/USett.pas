@@ -56,6 +56,9 @@ type
         Button4: TButton;
         Panel1: TPanel;
         ColorDialog1: TColorDialog;
+    GroupBox8: TGroupBox;
+    Button5: TButton;
+    Panel2: TPanel;
         procedure Button1Click(Sender: TObject);
         procedure Button2Click(Sender: TObject);
         procedure BitBtn1Click(Sender: TObject);
@@ -66,6 +69,7 @@ type
         procedure ListBox1Click(Sender: TObject);
         procedure Button3Click(Sender: TObject);
         procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -90,6 +94,7 @@ begin
     Writeln(f, Edit1.Text);
     Writeln(f, Edit2.Text);
     Writeln(f, Inttostr(Panel1.Color));
+    Writeln(f, Inttostr(Panel2.Color));
     Closefile(f);
 
     { QTemp.Close;
@@ -187,6 +192,15 @@ begin
     end;
 end;
 
+procedure TFSett.Button5Click(Sender: TObject);
+begin
+    If ColorDialog1.Execute() then
+    begin
+        Panel2.Color := ColorDialog1.Color;
+        Panel2.Repaint;
+    end;
+end;
+
 procedure TFSett.FormCreate(Sender: TObject);
 var
     f: textfile;
@@ -203,6 +217,8 @@ begin
         Edit2.Text := s;
         Readln(f, s);
         Panel1.Color := StrToInt(s);
+        Readln(f, s);
+        Panel2.Color := StrToInt(s);
         Closefile(f);
     end
     else

@@ -412,8 +412,8 @@ object FSett: TFSett
     end
   end
   object GroupBox6: TGroupBox
-    Left = 720
-    Top = 136
+    Left = 717
+    Top = 55
     Width = 161
     Height = 109
     Caption = #1044#1072#1090#1095#1080#1082' '#1058'45'
@@ -450,10 +450,10 @@ object FSett: TFSett
     end
   end
   object GroupBox7: TGroupBox
-    Left = 720
-    Top = 248
+    Left = 719
+    Top = 170
     Width = 161
-    Height = 101
+    Height = 89
     Caption = #1062#1074#1077#1090' '#1096#1072#1087#1082#1080' '#1090#1072#1073#1083#1080#1094
     TabOrder = 8
     object Button4: TButton
@@ -472,6 +472,33 @@ object FSett: TFSett
       Height = 25
       Caption = #1062#1042#1045#1058' '#1064#1040#1055#1050#1048
       Color = clActiveBorder
+      ParentBackground = False
+      TabOrder = 1
+    end
+  end
+  object GroupBox8: TGroupBox
+    Left = 719
+    Top = 265
+    Width = 161
+    Height = 97
+    Caption = #1062#1074#1077#1090' '#1074#1099#1076#1077#1083#1077#1085#1080#1103
+    TabOrder = 9
+    object Button5: TButton
+      Left = 12
+      Top = 55
+      Width = 133
+      Height = 25
+      Caption = #1042#1099#1073#1088#1072#1090#1100
+      TabOrder = 0
+      OnClick = Button5Click
+    end
+    object Panel2: TPanel
+      Left = 12
+      Top = 20
+      Width = 133
+      Height = 29
+      Caption = #1042#1067#1044#1045#1051#1045#1053#1048#1045
+      Color = clActiveCaption
       ParentBackground = False
       TabOrder = 1
     end
