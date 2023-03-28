@@ -367,6 +367,16 @@ begin
         QTemp.SQL.Add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
           ' and uisp=' + Label26.Caption);
         QTemp.ExecSQL;
+
+            QTemp.Close;
+            QTemp.SQL.Clear;
+            QTemp.SQL.add('truncate table zamertmp');
+            QTemp.ExecSQL;
+            QTemp.Close;
+            QTemp.SQL.Clear;
+            QTemp.SQL.add('truncate table zelspec');
+            QTemp.ExecSQL;
+
         ProgressBar1.min := 0;
         ProgressBar1.max := times;
         ProgressBar1.Step := 1;
@@ -612,6 +622,7 @@ begin
     begin
         TimWork1000.Enabled := false;
         command(false);
+
         QTemp.Close;
         QTemp.SQL.Clear;
         QTemp.Open('select * from zelspec');
