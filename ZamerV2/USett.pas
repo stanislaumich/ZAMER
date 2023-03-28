@@ -70,6 +70,8 @@ type
         procedure Button3Click(Sender: TObject);
         procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Panel1Click(Sender: TObject);
+    procedure Panel2Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -259,6 +261,16 @@ begin
     delete(fname, 1, pos(';', fname));
     fname := extractfilepath(application.exename) + fname;
     Memo1.lines.LoadFromFile(fname);
+end;
+
+procedure TFSett.Panel1Click(Sender: TObject);
+begin
+ Button4.Click;
+end;
+
+procedure TFSett.Panel2Click(Sender: TObject);
+begin
+ Button5.Click;
 end;
 
 end.

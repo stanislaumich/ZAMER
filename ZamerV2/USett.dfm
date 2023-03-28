@@ -474,6 +474,7 @@ object FSett: TFSett
       Color = clActiveBorder
       ParentBackground = False
       TabOrder = 1
+      OnClick = Panel1Click
     end
   end
   object GroupBox8: TGroupBox
@@ -501,6 +502,7 @@ object FSett: TFSett
       Color = clActiveCaption
       ParentBackground = False
       TabOrder = 1
+      OnClick = Panel2Click
     end
   end
   object TabSotrud: TFDTable

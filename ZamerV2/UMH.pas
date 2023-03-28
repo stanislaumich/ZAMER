@@ -318,7 +318,7 @@ begin
     end;
 
     StringGrid7.cells[1, row] := floattostr(SimpleRoundTo(ResA[maxni].u, RazU));
-    StringGrid7.cells[2, row] := floattostr(SimpleRoundTo(ResA[maxni].m, RazM));
+    StringGrid7.cells[2, row] := floattostr(SimpleRoundTo(ResA[maxni].m, -2));
     StringGrid7.cells[3, row] := floattostr(SimpleRoundTo(ResA[maxni].n, RazN));
     Memo1.lines.Add('Вставка в итоговую таблицу ok');
 
@@ -553,12 +553,12 @@ begin
       Memo1.lines.Add(gets(ResA[i]));
       QInsall.Close;
       QInsall.ParamByName('nomer').AsString := nomer;
-      QInsall.ParamByName('usred').AsFloat := ResA[i].u;
+      QInsall.ParamByName('usred').AsFloat := SimpleRoundTo(ResA[i].u, RazU);
       QInsall.ParamByName('u12').AsFloat := 0;
       QInsall.ParamByName('u23').AsFloat := 0;
       QInsall.ParamByName('u31').AsFloat := 0;
-      QInsall.ParamByName('torq').AsFloat := ResA[i].m;
-      QInsall.ParamByName('rot').AsFloat := ResA[i].n;
+      QInsall.ParamByName('torq').AsFloat := SimpleRoundTo(ResA[i].m,-2);
+      QInsall.ParamByName('rot').AsFloat := SimpleRoundTo(ResA[i].n,RazN);
       QInsall.ParamByName('tip').AsInteger := curr;
       QInsall.ParamByName('numisp').AsInteger := row;
       QInsall.ExecSQL;
@@ -573,7 +573,7 @@ begin
     end;
 
     StringGrid8.cells[1, row] := floattostr(SimpleRoundTo(ResA[maxni].u, RazU));
-    StringGrid8.cells[2, row] := floattostr(SimpleRoundTo(ResA[maxni].m, RazM));
+    StringGrid8.cells[2, row] := floattostr(SimpleRoundTo(ResA[maxni].m, -2));
     StringGrid8.cells[3, row] := floattostr(SimpleRoundTo(ResA[maxni].n, RazN));
     Memo1.lines.Add('Вставка в итоговую таблицу');
 
@@ -606,45 +606,7 @@ procedure TFMH.command(b: Boolean);
 begin
   FZamerv2.SendCommand(FZamerv2, b, Fsett.Edit7.Text);
 end;
-{ var
-  interval: integer;
-  fname: string;
-  begin
-  interval := 50;
-  fname := '1600';
-  if b then
-  begin
-  QTemp.Close;
-  QTemp.SQL.Clear;
 
-  QTemp.SQL.Add
-  ('insert into command (nomer, filename,command, dat,interval) values(' +
-  Quotedstr(nomer) + ' ,' + fname + ', 1, ' + '4' + ',' +
-  inttostr(interval) + ')');
-  QTemp.ExecSQL;
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('insert into command (nomer, command) values(' +
-  Quotedstr(nomer) + ' , 11)');
-  QTemp.ExecSQL;
-  end
-  else
-  begin
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add
-  ('insert into command (nomer, filename,command, dat,interval) values(' +
-  Quotedstr(nomer) + ' ,' + fname + ', 0, ' + '4' + ',' +
-  inttostr(interval) + ')');
-  QTemp.ExecSQL;
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('insert into command (nomer, command) values(' +
-  Quotedstr(nomer) + ' , 10)');
-  QTemp.ExecSQL;
-  end;
-
-  end; }
 
 procedure TFMH.downstartExecute(Sender: TObject);
 begin
@@ -704,63 +666,6 @@ var
   // r: single;
   buttonSelected: integer;
 begin
-
-  // find for max and min
-  {
-    buttonSelected := MessageDlg('Найти максимальные и минимальные моменты?',
-    mtConfirmation, mbYesNo, 0);
-    if buttonSelected = mrYes then
-    begin
-    // max
-    j     := 1;
-    for i := 1 to 5 do
-    begin
-    if StringGrid7.cells[2, i] <> '' then
-    begin
-    if strtofloat(StringGrid7.cells[2, i]) >
-    strtofloat(StringGrid7.cells[2, j]) then
-    j := i;
-    end;
-    end;
-    StringGrid7.row := j;
-    case j of
-    1:
-    CheckBox1.Checked := true;
-    2:
-    CheckBox2.Checked := true;
-    3:
-    CheckBox3.Checked := true;
-    4:
-    CheckBox4.Checked := true;
-    5:
-    CheckBox5.Checked := true;
-    end;
-    // min
-    j     := 1;
-    for i := 1 to 5 do
-    begin
-    if StringGrid8.cells[2, i] <> '' then
-    begin
-    if strtofloat(StringGrid8.cells[2, i]) <
-    strtofloat(StringGrid8.cells[2, j]) then
-    j := i;
-    end;
-    end;
-    StringGrid8.row := j;
-    case j of
-    1:
-    CheckBox6.Checked := true;
-    2:
-    CheckBox7.Checked := true;
-    3:
-    CheckBox8.Checked := true;
-    4:
-    CheckBox9.Checked := true;
-    5:
-    CheckBox10.Checked := true;
-    end;
-    end;
-  }
   // ask me to save data and save
   buttonSelected :=
     MessageDlg('Правильно ли выделены максимальные и минимальные моменты?',
