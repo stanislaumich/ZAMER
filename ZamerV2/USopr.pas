@@ -91,7 +91,7 @@ Uses Uzv2Main, uhh, Usett;
 
 procedure TFSopr.BitBtn1Click(Sender: TObject);
 var
-  buttonSelected, i, j: integer;
+  buttonSelected, i, j: Integer;
 begin
   buttonSelected := MessageDlg('Действительно очистить все поля?',
     mtConfirmation, [mbYes, mbNo], 0);
@@ -123,7 +123,7 @@ end;
 
 procedure TFSopr.BitBtn5Click(Sender: TObject);
 var
-  i, j: integer;
+  i, j: Integer;
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -183,8 +183,8 @@ end;
 
 procedure TFSopr.Button50Click(Sender: TObject);
 var
-  i, j: integer;
-  buttonSelected: integer;
+  i, j: Integer;
+  buttonSelected: Integer;
 begin
   buttonSelected := MessageDlg('Действительно очистить таблицу?',
     mtConfirmation, [mbYes, mbNo], 0);
@@ -265,7 +265,7 @@ end;
 
 procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
-  buttonSelected: integer;
+  buttonSelected: Integer;
 begin
 
   if enableclose then
@@ -288,7 +288,7 @@ end;
 
 procedure TFSopr.FormCreate(Sender: TObject);
 var
-  i, j: integer;
+  i, j: Integer;
 begin
   StringGrid3.cells[0, 1] := 'Изм. 1';
   StringGrid3.cells[0, 2] := 'Изм. 2';

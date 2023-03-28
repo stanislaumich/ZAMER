@@ -345,7 +345,7 @@ object FARC: TFARC
   end
   object DSSpis: TDataSource
     DataSet = QuerySpis
-    Left = 72
+    Left = 96
     Top = 52
   end
   object QuerySpis: TFDQuery

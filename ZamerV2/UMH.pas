@@ -132,15 +132,15 @@ var
   Uo: Ur;
   Ro: Rr;
   ResO: Resr;
-  Un, Rn, ResN: integer;
+  Un, Rn, ResN: Integer;
 
   amax, amin: array [1 .. 5, 1 .. 1000] of R;
-  cmax, cmin: array [1 .. 5] of integer;
-  count, num, curr, row: integer;
+  cmax, cmin: array [1 .. 5] of Integer;
+  count, num, curr, row: Integer;
 
-function GetNObor(t: double; max: integer): integer;
+function GetNObor(t: double; max: Integer): Integer;
 var
-  i, res: integer;
+  i, res: Integer;
   prev: double;
 begin
   prev := 1000000;
@@ -154,9 +154,9 @@ begin
   GetNObor := res;
 end;
 
-function GetNU(t: double; max: integer): integer;
+function GetNU(t: double; max: Integer): Integer;
 var
-  i, res: integer;
+  i, res: Integer;
   prev: double;
 begin
   prev := 1000000;
@@ -178,9 +178,9 @@ end;
 procedure TFMH.Button32Click(Sender: TObject);
 
 var
-  t, i, maxni: integer;
+  t, i, maxni: Integer;
   f, maxn: double;
-  fnd: integer;
+  fnd: Integer;
 begin
   Timer1000.Enabled := false;
   command(false);
@@ -195,10 +195,11 @@ begin
   // начинаем обсчеты
   Memo1.lines.Add('Запрос из Т45');
   QTemp.Close;
-    QTemp.SQL.Clear;
-    QTemp.SQL.Add('delete from zamertmp where rot = 0 and torq = 0 and power = 0');
-    QTemp.ExecSQL;
-    QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.Add
+    ('delete from zamertmp where rot = 0 and torq = 0 and power = 0');
+  QTemp.ExecSQL;
+  QTemp.Close;
   QTemp.Close;
   QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date ' +
     Quotedstr('1970-01-01') + ') * 86400 + to_number(TO_CHAR(ts,' +
@@ -290,53 +291,52 @@ begin
         Memo1.lines.Add('found');
       end;
     end;
-    //---
+    // ---
 
   end;
 
-   //--
+  // --
   maxn := 0;
-    for i := 1 to ResN do
+  for i := 1 to ResN do
+  begin
+    Memo1.lines.Add(gets(ResA[i]));
+    QInsall.Close;
+    QInsall.ParamByName('nomer').AsString := nomer;
+    QInsall.ParamByName('usred').AsFloat := ResA[i].u;
+    QInsall.ParamByName('u12').AsFloat := 0;
+    QInsall.ParamByName('u23').AsFloat := 0;
+    QInsall.ParamByName('u31').AsFloat := 0;
+    QInsall.ParamByName('torq').AsFloat := ResA[i].m;
+    QInsall.ParamByName('rot').AsFloat := ResA[i].n;
+    QInsall.ParamByName('tip').AsInteger := curr;
+    QInsall.ParamByName('numisp').AsInteger := row;
+    QInsall.ExecSQL;
+    if ResA[i].m > maxn then
     begin
-      Memo1.lines.Add(gets(ResA[i]));
-      QInsall.Close;
-      QInsall.ParamByName('nomer').AsString := nomer;
-      QInsall.ParamByName('usred').AsFloat := ResA[i].u;
-      QInsall.ParamByName('u12').AsFloat := 0;
-      QInsall.ParamByName('u23').AsFloat := 0;
-      QInsall.ParamByName('u31').AsFloat := 0;
-      QInsall.ParamByName('torq').AsFloat := ResA[i].m;
-      QInsall.ParamByName('rot').AsFloat := ResA[i].n;
-      QInsall.ParamByName('tip').AsInteger := curr;
-      QInsall.ParamByName('numisp').AsInteger := row;
-      QInsall.ExecSQL;
-      if ResA[i].m > maxn then
-      begin
-        maxni := i;
-        maxn := ResA[i].m;
-      end;
+      maxni := i;
+      maxn := ResA[i].m;
     end;
+  end;
 
-    StringGrid7.cells[1, row] := floattostr(SimpleRoundTo(ResA[maxni].u, RazU));
-    StringGrid7.cells[2, row] := floattostr(SimpleRoundTo(ResA[maxni].m, -2));
-    StringGrid7.cells[3, row] := floattostr(SimpleRoundTo(ResA[maxni].n, RazN));
-    Memo1.lines.Add('Вставка в итоговую таблицу ok');
+  StringGrid7.cells[1, row] := floattostr(SimpleRoundTo(ResA[maxni].u, RazU));
+  StringGrid7.cells[2, row] := floattostr(SimpleRoundTo(ResA[maxni].m, -2));
+  StringGrid7.cells[3, row] := floattostr(SimpleRoundTo(ResA[maxni].n, RazN));
+  Memo1.lines.Add('Вставка в итоговую таблицу ok');
 
-    QInsSvod.Close;
-    QInsSvod.ParamByName('nomer').AsString := nomer;
-    QInsSvod.ParamByName('u').AsFloat := ResA[maxni].u;
-    QInsSvod.ParamByName('torq').AsFloat := ResA[maxni].m;
-    QInsSvod.ParamByName('rot').AsFloat := ResA[maxni].n;
-    QInsSvod.ParamByName('tip').AsInteger := 1;
-    QInsSvod.ParamByName('numisp').AsInteger := row;
-    QInsSvod.ParamByName('checked').AsInteger := 0;
-    QInsSvod.ExecSQL;
+  QInsSvod.Close;
+  QInsSvod.ParamByName('nomer').AsString := nomer;
+  QInsSvod.ParamByName('u').AsFloat := ResA[maxni].u;
+  QInsSvod.ParamByName('torq').AsFloat := ResA[maxni].m;
+  QInsSvod.ParamByName('rot').AsFloat := ResA[maxni].n;
+  QInsSvod.ParamByName('tip').AsInteger := 1;
+  QInsSvod.ParamByName('numisp').AsInteger := row;
+  QInsSvod.ParamByName('checked').AsInteger := 0;
+  QInsSvod.ExecSQL;
 
-    Memo1.lines.Add('Все завершено');
-    Memo1.lines.savetofile('resMH');
+  Memo1.lines.Add('Все завершено');
+  Memo1.lines.savetofile('resMH');
 
-   //--
-
+  // --
 
   QTemp.Close;
   Button27.Enabled := true;
@@ -351,9 +351,9 @@ end;
 procedure TFMH.Button37Click(Sender: TObject);
 var
   tr: R;
-  t, i, maxni: integer;
+  t, i, maxni: Integer;
   f, maxn: double;
-  fnd: integer;
+  fnd: Integer;
 begin // start
 
   tr.u1 := 0;
@@ -393,9 +393,9 @@ end;
 
 procedure TFMH.Button42Click(Sender: TObject);
 var
-  t, i, maxni: integer;
+  t, i, maxni: Integer;
   f, maxn: double;
-  fnd: integer;
+  fnd: Integer;
 begin
 
   Timer1000.Enabled := false;
@@ -557,8 +557,8 @@ begin
       QInsall.ParamByName('u12').AsFloat := 0;
       QInsall.ParamByName('u23').AsFloat := 0;
       QInsall.ParamByName('u31').AsFloat := 0;
-      QInsall.ParamByName('torq').AsFloat := SimpleRoundTo(ResA[i].m,-2);
-      QInsall.ParamByName('rot').AsFloat := SimpleRoundTo(ResA[i].n,RazN);
+      QInsall.ParamByName('torq').AsFloat := SimpleRoundTo(ResA[i].m, -2);
+      QInsall.ParamByName('rot').AsFloat := SimpleRoundTo(ResA[i].n, RazN);
       QInsall.ParamByName('tip').AsInteger := curr;
       QInsall.ParamByName('numisp').AsInteger := row;
       QInsall.ExecSQL;
@@ -606,7 +606,6 @@ procedure TFMH.command(b: Boolean);
 begin
   FZamerv2.SendCommand(FZamerv2, b, Fsett.Edit7.Text);
 end;
-
 
 procedure TFMH.downstartExecute(Sender: TObject);
 begin
@@ -662,9 +661,9 @@ end;
 
 procedure TFMH.BitBtn1Click(Sender: TObject);
 var
-  i, j: integer;
+  i, j: Integer;
   // r: single;
-  buttonSelected: integer;
+  buttonSelected: Integer;
 begin
   // ask me to save data and save
   buttonSelected :=
@@ -787,7 +786,7 @@ end;
 
 procedure TFMH.Button27Click(Sender: TObject);
 var
-  i: integer;
+  i: Integer;
   tr: R;
 begin // start
 
@@ -830,7 +829,7 @@ end;
 
 procedure TFMH.FormActivate(Sender: TObject);
 var
-  i: integer;
+  i: Integer;
 begin
   nomer := Label13.Caption;
   TimerUp.Enabled := true;
@@ -875,12 +874,12 @@ begin
       Canvas.Brush.Color := Fsett.Panel1.Color;
     Canvas.Brush.Style := bsSolid;
     s := cells[ACol, ARow];
-    if (ARow = Stringgrid7.row) and (acol>0) and (arow>0) then Canvas.Brush.Color:=Fsett.Panel2.Color;
+    if (ARow = StringGrid7.row) and (ACol > 0) and (ARow > 0) then
+      Canvas.Brush.Color := Fsett.Panel2.Color;
     Canvas.FillRect(Rect);
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
 end;
-
 
 procedure TFMH.StringGrid8DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
@@ -893,7 +892,8 @@ begin
       Canvas.Brush.Color := Fsett.Panel1.Color;
     Canvas.Brush.Style := bsSolid;
     s := cells[ACol, ARow];
-    if (ARow = Stringgrid8.row) and (acol>0) and (arow>0) then Canvas.Brush.Color:=Fsett.Panel2.Color;
+    if (ARow = StringGrid8.row) and (ACol > 0) and (ARow > 0) then
+      Canvas.Brush.Color := Fsett.Panel2.Color;
     Canvas.FillRect(Rect);
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;

@@ -453,7 +453,7 @@ object FSett: TFSett
     Left = 719
     Top = 170
     Width = 161
-    Height = 89
+    Height = 52
     Caption = #1062#1074#1077#1090' '#1096#1072#1087#1082#1080' '#1090#1072#1073#1083#1080#1094
     TabOrder = 8
     object Button4: TButton
@@ -463,6 +463,7 @@ object FSett: TFSett
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100
       TabOrder = 0
+      Visible = False
       OnClick = Button4Click
     end
     object Panel1: TPanel
@@ -479,9 +480,9 @@ object FSett: TFSett
   end
   object GroupBox8: TGroupBox
     Left = 719
-    Top = 265
+    Top = 228
     Width = 161
-    Height = 97
+    Height = 57
     Caption = #1062#1074#1077#1090' '#1074#1099#1076#1077#1083#1077#1085#1080#1103
     TabOrder = 9
     object Button5: TButton
@@ -491,6 +492,7 @@ object FSett: TFSett
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100
       TabOrder = 0
+      Visible = False
       OnClick = Button5Click
     end
     object Panel2: TPanel
@@ -522,7 +524,6 @@ object FSett: TFSett
     Top = 56
   end
   object TablStend: TFDTable
-    Active = True
     IndexFieldNames = 'NAME'
     Connection = FZamerV2.FDC
     TableName = 'Zstend'

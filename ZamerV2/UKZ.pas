@@ -80,7 +80,7 @@ type
 var
   FKZ: TFKZ;
   enableclose: Boolean;
-  interval: integer;
+  interval: Integer;
   fname: string;
 
 implementation
@@ -111,7 +111,7 @@ end;
 
 procedure TFKZ.BitBtn10Click(Sender: TObject);
 var
-  i, j: integer;
+  i, j: Integer;
 begin
   for i := 1 to StringGrid1.ColCount - 1 do
     for j := 1 to StringGrid1.RowCount - 1 do
@@ -123,7 +123,7 @@ end;
 procedure TFKZ.BitBtn12Click(Sender: TObject);
 var
   s: string;
-  cod: integer;
+  cod: Integer;
   f: Real;
 begin
   QTemp.Close;
@@ -187,9 +187,9 @@ procedure TFKZ.BitBtn9Click(Sender: TObject);
 
 var
 
-  i: integer;
-  max: integer;
-  el, m45, ncnt: integer;
+  i: Integer;
+  max: Integer;
+  el, m45, ncnt: Integer;
   e: Boolean;
 begin
   command(false);
@@ -311,7 +311,7 @@ end;
 
 procedure TFKZ.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
-  buttonSelected: integer;
+  buttonSelected: Integer;
 begin
   if enableclose then
     CanClose := True
@@ -373,11 +373,12 @@ begin
     if ARow = 0 then
       Canvas.Brush.Color := Fsett.Panel1.Color;
     Canvas.Brush.Style := bsSolid;
-    s := cells[ACol, ARow];
+    s := Cells[ACol, ARow];
     Canvas.FillRect(Rect);
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
 end;
+
 procedure TFKZ.TimerUpTimer(Sender: TObject);
 begin
   QUp.Close;

@@ -122,10 +122,11 @@ var
   FRH: TFRH;
   enableclose: Boolean;
   nomer: string;
-  tipispyt: integer;
+  tipispyt: Integer;
   currentpower: single;
-  times: integer;
-  ccol : integer;
+  times: Integer;
+  ccol: Integer;
+
 implementation
 
 uses uzv2main, usett;
@@ -133,7 +134,7 @@ uses uzv2main, usett;
 
 procedure TFRH.loadgrids;
 var
-  i, j, k: integer;
+  i, j, k: Integer;
 begin
   QTemp.Open('SELECT NAME, FORM, IROW, ICOL, VAL FROM ZAMER.ZGRIDS WHERE FORM='
     + Quotedstr(FRH.Name) + ' and name=' + Quotedstr('StringGrid1'));
@@ -162,15 +163,15 @@ end;
 
 procedure TFRH.savegrids;
 var
-  i, j, k: integer;
+  i, j, k: Integer;
 begin
 
 end;
 
 procedure TFRH.RadioButton1Click(Sender: TObject);
 var
-  i, j: integer;
-  cod: integer;
+  i, j: Integer;
+  cod: Integer;
 
 begin
 
@@ -203,8 +204,8 @@ end;
 
 procedure TFRH.RadioButton2Click(Sender: TObject);
 var
-  i, j: integer;
-  cod: integer;
+  i, j: Integer;
+  cod: Integer;
 
 begin
 
@@ -236,8 +237,8 @@ end;
 
 procedure TFRH.RadioButton3Click(Sender: TObject);
 var
-  i, j: integer;
-  cod: integer;
+  i, j: Integer;
+  cod: Integer;
 
 begin
 
@@ -270,7 +271,7 @@ end;
 procedure TFRH.BitBtn5Click(Sender: TObject);
 
 var
-  i, j: integer;
+  i, j: Integer;
   f: textfile;
   s: string;
 begin
@@ -354,7 +355,7 @@ end;
 
 procedure TFRH.BitBtn3Click(Sender: TObject);
 var
-  i, j, buttonSelected: integer;
+  i, j, buttonSelected: Integer;
 begin
   buttonSelected := MessageDlg('Действительно очистить все замеры?',
     mtConfirmation, mbYesNo, 0);
@@ -382,7 +383,7 @@ end;
 
 procedure TFRH.BitBtn4Click(Sender: TObject);
 var
-  i, j: integer;
+  i, j: Integer;
   f: textfile;
   s: string;
 begin
@@ -414,7 +415,7 @@ end;
 
 procedure TFRH.FormActivate(Sender: TObject);
 var
-  i: integer;
+  i: Integer;
   f: textfile;
   s: string;
 begin
@@ -435,7 +436,7 @@ begin
   StringGrid2.Cells[7, 0] := '▲Pmax';
   StringGrid2.Cells[8, 0] := 'U ошиб.(всего)';
   StringGrid2.Cells[9, 0] := 'P ошиб.(всего)';
-  {$i-}
+{$I-}
   assignfile(f, Extractfilepath(paramstr(0)) + 'RH2_width.txt');
   reset(f);
   for i := 0 to StringGrid2.colcount - 1 do
@@ -452,7 +453,7 @@ begin
     StringGrid1.ColWidths[i] := Strtoint(s);
   end;
   Closefile(f);
-  {$i+}
+{$I+}
   nomer := Label6.Caption;
   enableclose := true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('urh'));
@@ -490,11 +491,11 @@ end;
 
 procedure TFRH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
-  buttonSelected: integer;
-  i: integer;
+  buttonSelected: Integer;
+  i: Integer;
   f: textfile;
 begin
-  {$i-}
+{$I-}
   assignfile(f, Extractfilepath(paramstr(0)) + 'RH2_width.txt');
   rewrite(f);
   for i := 0 to StringGrid2.colcount - 1 do
@@ -509,7 +510,7 @@ begin
     Writeln(f, inttostr(StringGrid1.ColWidths[i]));
   end;
   Closefile(f);
-  {$i+}
+{$I+}
   CanClose := true;
   { if enableclose then
     CanClose := true
@@ -534,23 +535,23 @@ end;
 
 procedure TFRH.FormCreate(Sender: TObject);
 var
-f:textfile;
-i:integer;
-s:string;
+  f: textfile;
+  i: Integer;
+  s: string;
 begin
   ComboBox1.Items.LoadFromFile(Extractfilepath(application.exename) +
     'R_SoprotListRH.txt');
   ComboBox1.ItemIndex := 0;
-{  {$i-
-  assignfile(f, Extractfilepath(paramstr(0)) + 'RH_width.txt');
-  Reset(f);
-  for i := 0 to StringGrid1.ColCount - 1 do
-  begin
+  { {$i-
+    assignfile(f, Extractfilepath(paramstr(0)) + 'RH_width.txt');
+    Reset(f);
+    for i := 0 to StringGrid1.ColCount - 1 do
+    begin
     Readln(f, s);
     StringGrid1.ColWidths[i] := Strtoint(s);
-  end;
-  Closefile(f);
-  {$i+}
+    end;
+    Closefile(f);
+    {$i+ }
 end;
 
 procedure TFRH.FormShow(Sender: TObject);
@@ -562,12 +563,15 @@ end;
 
 procedure TFRH.StringGrid1Click(Sender: TObject);
 begin
- ccol:=Stringgrid1.Col;
- Stringgrid1.Repaint;
- case ccol of
-  1: RadioButton1.Checked:=true;
-  2: RadioButton2.Checked:=true;
-  3: RadioButton3.Checked:=true;
+  ccol := StringGrid1.Col;
+  StringGrid1.Repaint;
+  case ccol of
+    1:
+      RadioButton1.Checked := true;
+    2:
+      RadioButton2.Checked := true;
+    3:
+      RadioButton3.Checked := true;
   end;
 end;
 
@@ -581,8 +585,9 @@ begin
     if ARow = 0 then
       Canvas.Brush.Color := Fsett.Panel1.Color;
     Canvas.Brush.Style := bsSolid;
-    s := cells[ACol, ARow];
-    if (ACol = ccol)and (ccol>0) and (arow>0) then Canvas.Brush.Color:=clGreen;
+    s := Cells[ACol, ARow];
+    if (ACol = ccol) and (ccol > 0) and (ARow > 0) then
+      Canvas.Brush.Color := clGreen;
     Canvas.FillRect(Rect);
     Canvas.TextRect(Rect, s, [tfWordBreak]);
 
@@ -602,12 +607,12 @@ procedure TFRH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
 var
   s: string;
 begin
- with StringGrid2 do
+  with StringGrid2 do
   begin
     if ARow = 0 then
       Canvas.Brush.Color := Fsett.Panel1.Color;
     Canvas.Brush.Style := bsSolid;
-    s := cells[ACol, ARow];
+    s := Cells[ACol, ARow];
     Canvas.FillRect(Rect);
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
@@ -615,19 +620,20 @@ end;
 
 procedure TFRH.Timer1000Timer(Sender: TObject);
 var
-  i, errcnt, goodcnt: integer;
-  acount1, acount2, ncnt: integer;
+  i, errcnt, goodcnt: Integer;
+  acount1, acount2, ncnt: Integer;
 begin
   times := times - 1;
   if times <= 0 then
   begin
     Timer1000.Enabled := false;
-    ProgressBar1.Position:=0;
+    ProgressBar1.Position := 0;
     command(false);
 
     QTemp.Close;
     QTemp.SQL.Clear;
-    QTemp.SQL.Add('delete from zamertmp where rot = 0 and torq = 0 and power = 0');
+    QTemp.SQL.add
+      ('delete from zamertmp where rot = 0 and torq = 0 and power = 0');
     QTemp.ExecSQL;
     QTemp.Close;
 
@@ -797,7 +803,7 @@ end;
 procedure TFRH.TimerUpTimer(Sender: TObject);
 var
   pt, p: single;
-  cod1, cod2: integer;
+  cod1, cod2: Integer;
 begin
   QUp.Close;
   QUp.Open();
