@@ -690,8 +690,8 @@ object FRH: TFRH
       1167
       400)
     object StringGrid2: TStringGrid
-      Left = 3
-      Top = 24
+      Left = 6
+      Top = 28
       Width = 1158
       Height = 309
       Anchors = [akLeft, akTop, akRight, akBottom]

@@ -92,6 +92,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
+    procedure StringGrid1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -448,9 +449,29 @@ begin
   TimerUp.Enabled := true;
 end;
 
+procedure TFNagr.StringGrid1Click(Sender: TObject);
+begin
+ StringGrid1.Repaint;
+end;
+
 procedure TFNagr.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 var
+  s: string;
+begin
+  with StringGrid1 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := cells[ACol, ARow];
+    if (ARow = StringGrid1.row) and (ACol > 0) and (ARow > 0) then
+      Canvas.Brush.Color := Fsett.Panel2.Color;
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
+end;
+  {var
   s: string;
 begin
   // if not (gdFixed in State) then
@@ -466,7 +487,7 @@ begin
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
 end;
-
+}
 procedure TFNagr.StringGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
   enableclose := false;

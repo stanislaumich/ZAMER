@@ -225,6 +225,7 @@ object FNagr: TFNagr
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnClick = StringGrid1Click
       OnDrawCell = StringGrid1DrawCell
       OnKeyPress = StringGrid1KeyPress
     end

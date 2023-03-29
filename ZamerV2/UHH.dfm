@@ -227,6 +227,7 @@ object FormHH: TFormHH
       RowCount = 12
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnClick = StringGrid1Click
       OnDrawCell = StringGrid1DrawCell
     end
     object RadioButton1: TRadioButton

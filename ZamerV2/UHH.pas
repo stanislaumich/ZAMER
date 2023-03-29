@@ -93,6 +93,7 @@ type
       Rect: TRect; State: TGridDrawState);
     procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
+    procedure StringGrid1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -108,7 +109,7 @@ var
   tipispyt: Integer;
   times: Integer;
   enableclose: Boolean;
-
+  ccol : integer;
 implementation
 
 uses Uzv2Main, UAuto, Usett;
@@ -182,9 +183,42 @@ begin
 
 end;
 
+procedure TFormHH.StringGrid1Click(Sender: TObject);
+begin
+  ccol := StringGrid1.Col;
+  StringGrid1.Repaint;
+  case ccol of
+    1:
+      RadioButton1.Checked := true;
+    2:
+      RadioButton2.Checked := true;
+    3:
+      RadioButton3.Checked := true;
+  end;
+end;
+
 procedure TFormHH.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
-var
+
+  var
+  s: string;
+begin
+  with StringGrid1 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+    Canvas.Brush.Style := bsSolid;
+    s := Cells[ACol, ARow];
+    if (ACol = ccol) and (ccol > 0) and (ARow > 0) then
+      Canvas.Brush.Color := clGreen;
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+
+  end;
+end;
+
+
+  {var
   s: string;
 begin
   // if not (gdFixed in State) then
@@ -200,17 +234,34 @@ begin
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
 end;
-
+}
 procedure TFormHH.StringGrid2Click(Sender: TObject);
 begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
   Label26.Caption := StringGrid2.Cells[0, StringGrid2.row];
+  Stringgrid2.repaint;
 end;
 
 procedure TFormHH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
-var
+ var
+  s: string;
+begin
+  with StringGrid2 do
+  begin
+    if ARow = 0 then
+      Canvas.Brush.Color := Fsett.Panel1.Color;
+
+    Canvas.Brush.Style := bsSolid;
+     if (ARow = StringGrid2.row) and (ACol > 0) and (ARow > 0) then
+      Canvas.Brush.Color := Fsett.Panel2.Color;
+    s := Cells[ACol, ARow];
+    Canvas.FillRect(Rect);
+    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  end;
+end;
+{  var
   s: string;
 begin
   // if not (gdFixed in State) then
@@ -226,7 +277,7 @@ begin
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
 end;
-
+}
 procedure TFormHH.Action1Execute(Sender: TObject);
 begin
   BitStart.Click;
