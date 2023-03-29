@@ -179,7 +179,7 @@ begin
 
   if cod = 0 then
   begin
-    StringGrid2.RowCount := 2;
+    StringGrid2.RowCount := 3;
     for i := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.Cells[1, i] <> '' then
       begin
@@ -188,9 +188,8 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[1, i])));
       end;
-    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
-    for i := 0 to stringgrid2.ColCount-1 do
-     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
+    StringGrid2.RowCount := StringGrid2.RowCount - 1;
+
     StringGrid2.row := 1;
     tipispyt := 1;
     Label19.Caption := Label33.Caption;
@@ -214,7 +213,7 @@ begin
   val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
-    StringGrid2.RowCount := 2;
+    StringGrid2.RowCount := 3;
     for i := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.Cells[2, i] <> '' then
       begin
@@ -223,9 +222,8 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[2, i])));
       end;
-    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
-    for i := 0 to stringgrid2.ColCount-1 do
-     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
+      StringGrid2.RowCount := StringGrid2.RowCount - 1;
+
     StringGrid2.row := 1;
     tipispyt := 2;
     Label19.Caption := Label33.Caption;
@@ -243,13 +241,11 @@ procedure TFRH.RadioButton3Click(Sender: TObject);
 var
   i, j: Integer;
   cod: Integer;
-
 begin
-
   val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
-    StringGrid2.RowCount := 2;
+    StringGrid2.RowCount := 3;
     for i := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.Cells[3, i] <> '' then
       begin
@@ -258,9 +254,8 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[3, i])));
       end;
-    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
-    for i := 0 to stringgrid2.ColCount-1 do
-     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
+      StringGrid2.RowCount := StringGrid2.RowCount - 1;
+
     StringGrid2.row := 1;
     tipispyt := 3;
     Label19.Caption := Label33.Caption;
@@ -606,8 +601,8 @@ end;
 
 procedure TFRH.StringGrid2Click(Sender: TObject);
 begin
-  if StringGrid2.row = StringGrid2.RowCount - 1 then
-    StringGrid2.row := StringGrid2.row - 1;
+  //if StringGrid2.row = StringGrid2.RowCount - 1 then
+  //  StringGrid2.row := StringGrid2.row - 1;
   Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
   Label19.Caption := Label33.Caption;
 end;

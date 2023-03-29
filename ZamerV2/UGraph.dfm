@@ -2,7 +2,7 @@ object Fgraph: TFgraph
   Left = 0
   Top = 0
   Caption = 'Fgraph'
-  ClientHeight = 639
+  ClientHeight = 651
   ClientWidth = 1076
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,12 +15,12 @@ object Fgraph: TFgraph
   OnCreate = FormCreate
   DesignSize = (
     1076
-    639)
+    651)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 81
-    Top = 599
+    Left = 57
+    Top = 563
     Width = 122
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -33,8 +33,8 @@ object Fgraph: TFgraph
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 209
-    Top = 599
+    Left = 185
+    Top = 563
     Width = 15
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -47,8 +47,8 @@ object Fgraph: TFgraph
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 296
-    Top = 599
+    Left = 269
+    Top = 563
     Width = 106
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -61,8 +61,8 @@ object Fgraph: TFgraph
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 408
-    Top = 599
+    Left = 381
+    Top = 563
     Width = 15
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -75,8 +75,8 @@ object Fgraph: TFgraph
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 615
-    Top = 599
+    Left = 381
+    Top = 598
     Width = 15
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -89,8 +89,8 @@ object Fgraph: TFgraph
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 489
-    Top = 599
+    Left = 255
+    Top = 598
     Width = 120
     Height = 29
     Anchors = [akLeft, akBottom]
@@ -103,16 +103,16 @@ object Fgraph: TFgraph
     ParentFont = False
   end
   object Label7: TLabel
-    Left = 697
-    Top = 586
+    Left = 753
+    Top = 606
     Width = 49
     Height = 13
     Anchors = [akRight, akBottom]
     Caption = #1058#1086#1083#1097#1080#1085#1072':'
   end
   object Label8: TLabel
-    Left = 677
-    Top = 610
+    Left = 733
+    Top = 630
     Width = 49
     Height = 13
     Anchors = [akRight, akBottom]
@@ -122,7 +122,7 @@ object Fgraph: TFgraph
     Left = 0
     Top = 0
     Width = 1076
-    Height = 577
+    Height = 557
     Legend.Alignment = laLeft
     Title.Font.Height = -41
     Title.Text.Strings = (
@@ -175,8 +175,8 @@ object Fgraph: TFgraph
     end
   end
   object Button4: TButton
-    Left = 0
-    Top = 599
+    Left = 993
+    Top = 563
     Width = 75
     Height = 31
     Anchors = [akLeft, akBottom]
@@ -185,8 +185,8 @@ object Fgraph: TFgraph
     OnClick = Button4Click
   end
   object BitBtn1: TBitBtn
-    Left = 788
-    Top = 588
+    Left = 869
+    Top = 603
     Width = 199
     Height = 44
     Anchors = [akRight, akBottom]
@@ -258,8 +258,8 @@ object Fgraph: TFgraph
     OnClick = BitBtn1Click
   end
   object Edit1: TEdit
-    Left = 752
-    Top = 583
+    Left = 808
+    Top = 603
     Width = 30
     Height = 21
     Anchors = [akRight, akBottom]
@@ -267,8 +267,8 @@ object Fgraph: TFgraph
     Text = '6'
   end
   object UpDown1: TUpDown
-    Left = 765
-    Top = 607
+    Left = 821
+    Top = 627
     Width = 16
     Height = 21
     Anchors = [akRight, akBottom]
@@ -278,8 +278,8 @@ object Fgraph: TFgraph
     OnClick = UpDown1Click
   end
   object Edit2: TEdit
-    Left = 732
-    Top = 607
+    Left = 788
+    Top = 627
     Width = 33
     Height = 21
     Anchors = [akRight, akBottom]

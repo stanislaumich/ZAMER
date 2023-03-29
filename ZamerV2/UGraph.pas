@@ -113,9 +113,9 @@ begin
     begin
       Series3.AddXY(i, tsred, '', clGreen);
       Label2.Caption := Floattostr(i);
-      Label4.Caption := Floattostr(Chart1.Series[0].YValue[i]);
+      Label4.Caption := Floattostr(simpleroundto(Chart1.Series[0].YValue[i],-2));
       Label5.Caption :=
-        Floattostr(Simpleroundto(Chart1.Series[1].YValue[i], -2))
+        Floattostr(Simpleroundto(Chart1.Series[1].YValue[i] * mas, -2))
     end
     else
       Series3.AddXY(i, tsred, '', clred);
@@ -125,9 +125,9 @@ procedure TFgraph.Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
   ValueIndex: Integer; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   Label2.Caption := Floattostr(Series.XValue[ValueIndex]);
-  Label4.Caption := Floattostr(Chart1.Series[0].YValue[ValueIndex]);
+  Label4.Caption := Floattostr(Simpleroundto(Chart1.Series[0].YValue[ValueIndex],-2));
   Label5.Caption :=
-    Floattostr(Simpleroundto(Chart1.Series[1].YValue[ValueIndex], -2))
+    Floattostr(Simpleroundto(Chart1.Series[1].YValue[ValueIndex] * mas, -2))
 end;
 
 procedure TFgraph.FormClose(Sender: TObject; var Action: TCloseAction);

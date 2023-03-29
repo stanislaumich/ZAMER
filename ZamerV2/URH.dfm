@@ -505,7 +505,7 @@ object FRH: TFRH
       WordWrap = True
     end
     object StringGrid1: TStringGrid
-      Left = 4
+      Left = 3
       Top = 28
       Width = 266
       Height = 309

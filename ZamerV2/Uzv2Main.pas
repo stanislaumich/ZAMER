@@ -1329,12 +1329,17 @@ begin
     ' order by pisp desc');
   FZamerV2.ImgSet(FZamerV2.Image5, QTemp.RecordCount <> 0);
 
+  //Frh.Radiobutton3Click(Frh);
+  //Frh.Radiobutton2Click(Frh);
+  //Frh.Radiobutton1Click(Frh);
+  Frh.Stringgrid2.rowcount := QTemp.RecordCount + 1;
   tip := QTemp.FieldByName('tip').AsInteger;
   case tip of
     1:
       begin
-        Frh.Radiobutton1Click(Frh);
+        //
         Frh.radiobutton1.Checked := True;
+        Frh.Radiobutton1Click(Frh);
         Frh.StringGrid1.col := 1;
         Frh.StringGrid1.OnClick(Frh);
       end;
@@ -1354,7 +1359,11 @@ begin
       end;
   end;
   tip := 1;
-  Frh.Stringgrid2.rowcount := QTemp.RecordCount + 2;
+
+
+    //Frh.Stringgrid2.rowcount := QTemp.RecordCount + 1;
+
+
   if QTemp.FieldByName('t1').Asstring = '' then
     Frh.Edit4.Text := '0'
   else
@@ -1378,7 +1387,7 @@ begin
   Frh.Edit7.Text := QTemp.FieldByName('r').Asstring;
 
   Frh.ComboBox1.Text := QTemp.FieldByName('edizm').Asstring;
-  while not(QTemp.Eof) do
+  while (not(QTemp.Eof)) do
   begin
     Frh.Stringgrid2.Cells[0, tip] := QTemp.FieldByName('pisp').Asstring;
     Frh.Stringgrid2.Cells[1, tip] := QTemp.FieldByName('usred').Asstring;
@@ -1390,7 +1399,6 @@ begin
     Frh.Stringgrid2.Cells[7, tip] := QTemp.FieldByName('dpmax').Asstring;
     Frh.Stringgrid2.Cells[8, tip] := QTemp.FieldByName('otklonu').Asstring;
     Frh.Stringgrid2.Cells[9, tip] := QTemp.FieldByName('otklonp').Asstring;
-
     QTemp.Next;
     tip := tip + 1;
   end;
