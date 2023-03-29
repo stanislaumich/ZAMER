@@ -465,6 +465,10 @@ begin
   loadgrids;
   // Label22.Caption := 'X';
   Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.text) * 1000);
+
+  Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
+    myfloat(emp(Edit3.Text))));
+
 end;
 
 procedure TFRH.FormClose(Sender: TObject; var Action: TCloseAction);
