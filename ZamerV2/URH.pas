@@ -188,7 +188,9 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[1, i])));
       end;
-    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to stringgrid2.ColCount-1 do
+     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 1;
     Label19.Caption := Label33.Caption;
@@ -221,7 +223,9 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[2, i])));
       end;
-    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to stringgrid2.ColCount-1 do
+     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 2;
     Label19.Caption := Label33.Caption;
@@ -254,7 +258,9 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[3, i])));
       end;
-    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to stringgrid2.ColCount-1 do
+     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 3;
     Label19.Caption := Label33.Caption;

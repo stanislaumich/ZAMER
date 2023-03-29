@@ -526,7 +526,9 @@ begin
           floattostr(round(currentvolt / 100 *
           strtoint(StringGrid1.Cells[1, i])));
       end;
-    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to stringgrid2.ColCount-1 do
+     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 1;
     // установите напряжение
@@ -566,7 +568,9 @@ begin
           floattostr(round(currentvolt / 100 *
           strtoint(StringGrid1.Cells[2, i])));
       end;
-    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to stringgrid2.ColCount-1 do
+     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 2;
     // установите напряжение
@@ -605,7 +609,9 @@ begin
           floattostr(round(currentvolt / 100 *
           strtoint(StringGrid1.Cells[3, i])));
       end;
-    StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to stringgrid2.ColCount-1 do
+     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 3;
     // установите напряжение

@@ -151,6 +151,8 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    ExplicitLeft = -44
+    ExplicitTop = 33
     object Label2: TLabel
       Left = 46
       Top = 65
@@ -165,8 +167,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 563
-      Top = 100
+      Left = 607
+      Top = 102
       Width = 84
       Height = 29
       Caption = #1058#1086#1082' '#1040'.:'
@@ -178,8 +180,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 468
-      Top = 131
+      Left = 512
+      Top = 133
       Width = 179
       Height = 29
       Caption = #1069#1083'. '#1084#1086#1097#1085'. '#1042#1090'.:'
@@ -191,8 +193,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 475
-      Top = 30
+      Left = 519
+      Top = 32
       Width = 172
       Height = 29
       Caption = #1052#1086#1084#1077#1085#1090' '#1053'*'#1084'.:'
@@ -204,8 +206,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 525
-      Top = 65
+      Left = 569
+      Top = 67
       Width = 122
       Height = 29
       Caption = #1054#1073'./'#1084#1080#1085'.:'
@@ -244,8 +246,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label10: TLabel
-      Left = 653
-      Top = 100
+      Left = 697
+      Top = 102
       Width = 128
       Height = 33
       AutoSize = False
@@ -258,8 +260,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 653
-      Top = 131
+      Left = 697
+      Top = 133
       Width = 141
       Height = 33
       AutoSize = False
@@ -272,8 +274,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label12: TLabel
-      Left = 653
-      Top = 32
+      Left = 697
+      Top = 34
       Width = 82
       Height = 33
       AutoSize = False
@@ -286,8 +288,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label13: TLabel
-      Left = 653
-      Top = 65
+      Left = 697
+      Top = 67
       Width = 99
       Height = 33
       AutoSize = False
@@ -366,8 +368,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label21: TLabel
-      Left = 810
-      Top = 32
+      Left = 854
+      Top = 34
       Width = 106
       Height = 29
       Caption = #1050#1055#1044', %:'
@@ -379,8 +381,8 @@ object FRH: TFRH
       ParentFont = False
     end
     object Label22: TLabel
-      Left = 922
-      Top = 32
+      Left = 966
+      Top = 34
       Width = 16
       Height = 29
       Caption = 'X'
