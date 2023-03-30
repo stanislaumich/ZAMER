@@ -151,8 +151,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitLeft = -44
-    ExplicitTop = 33
     object Label2: TLabel
       Left = 46
       Top = 65
@@ -523,6 +521,7 @@ object FRH: TFRH
       Width = 13
       Height = 17
       TabOrder = 1
+      Visible = False
       OnClick = RadioButton1Click
     end
     object RadioButton2: TRadioButton
@@ -531,6 +530,7 @@ object FRH: TFRH
       Width = 21
       Height = 17
       TabOrder = 2
+      Visible = False
       OnClick = RadioButton2Click
     end
     object RadioButton3: TRadioButton
@@ -539,6 +539,7 @@ object FRH: TFRH
       Width = 20
       Height = 17
       TabOrder = 3
+      Visible = False
       OnClick = RadioButton3Click
     end
     object BitBtn4: TBitBtn
@@ -692,7 +693,7 @@ object FRH: TFRH
       1167
       400)
     object StringGrid2: TStringGrid
-      Left = 6
+      Left = 3
       Top = 28
       Width = 1158
       Height = 309
@@ -1243,11 +1244,13 @@ object FRH: TFRH
       '   NOMER, UISP, USRED, '
       '   ISRED, PSRED, TIP, '
       '   TORQ, ROT, POWER, '
-      '   DUMAX, DPMAX, PISP, T1, T2, T3,r, otklonu, otklonp) '
+      '   DUMAX, DPMAX, PISP, T1, T2, T3,r, otklonu, otklonp, nr) '
       'VALUES ( :NOMER, :UISP, :USRED, '
       '   :ISRED, :PSRED, :TIP, '
       '   :TORQ, :ROT, :POWER, '
-      '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3,:r, :otklonu, :otklonp )')
+      
+        '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3,:r, :otklonu, :otklonp, ' +
+        ':nr)')
     Left = 648
     Top = 361
     ParamData = <
@@ -1321,6 +1324,10 @@ object FRH: TFRH
       end
       item
         Name = 'OTKLONP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NR'
         ParamType = ptInput
       end>
   end

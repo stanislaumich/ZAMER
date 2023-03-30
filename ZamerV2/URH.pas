@@ -179,7 +179,7 @@ begin
 
   if cod = 0 then
   begin
-    StringGrid2.RowCount := 3;
+    StringGrid2.RowCount := 2;
     for i := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.Cells[1, i] <> '' then
       begin
@@ -213,7 +213,7 @@ begin
   val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
-    StringGrid2.RowCount := 3;
+    StringGrid2.RowCount := 2;
     for i := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.Cells[2, i] <> '' then
       begin
@@ -245,7 +245,7 @@ begin
   val(Label35.Caption, currentpower, cod);
   if cod = 0 then
   begin
-    StringGrid2.RowCount := 3;
+    StringGrid2.RowCount := 2;
     for i := 1 to StringGrid1.RowCount - 1 do
       if StringGrid1.Cells[3, i] <> '' then
       begin
@@ -421,54 +421,21 @@ var
   s: string;
 begin
   Label24.Caption := inttostr(round(Strtofloat(FZamerV2.CombPisp.text) * 1000));
-  for i := 1 to 8 do
-    StringGrid1.Cells[0, i] := inttostr(i);
-  StringGrid1.Cells[0, 0] := '№';
-  StringGrid1.Cells[1, 0] := 'Вар. 1';
-  StringGrid1.Cells[2, 0] := 'Вар. 2';
-  StringGrid1.Cells[3, 0] := 'Вар. 3';
-  StringGrid2.Cells[0, 0] := 'Нагр.';
-  StringGrid2.Cells[1, 0] := 'U сред';
-  StringGrid2.Cells[2, 0] := 'I сред';
-  StringGrid2.Cells[3, 0] := 'P сред';
-  StringGrid2.Cells[4, 0] := 'N сред';
-  StringGrid2.Cells[5, 0] := 'M сред';
-  StringGrid2.Cells[6, 0] := '▲Umax';
-  StringGrid2.Cells[7, 0] := '▲Pmax';
-  StringGrid2.Cells[8, 0] := 'U ошиб.(всего)';
-  StringGrid2.Cells[9, 0] := 'P ошиб.(всего)';
-{$I-}
-  assignfile(f, Extractfilepath(paramstr(0)) + 'RH2_width.txt');
-  reset(f);
-  for i := 0 to StringGrid2.colcount - 1 do
-  begin
-    Readln(f, s);
-    StringGrid2.ColWidths[i] := Strtoint(s);
-  end;
-  Closefile(f);
-  assignfile(f, Extractfilepath(paramstr(0)) + 'RH1_width.txt');
-  reset(f);
-  for i := 0 to StringGrid1.colcount - 1 do
-  begin
-    Readln(f, s);
-    StringGrid1.ColWidths[i] := Strtoint(s);
-  end;
-  Closefile(f);
-{$I+}
-  nomer := Label6.Caption;
-  enableclose := true;
-  QTemp.Open('select * from zdelta where name=' + Quotedstr('urh'));
-  Edit2.text := QTemp.FieldByName('value').AsString;
-  QTemp.Open('select * from zdelta where name=' + Quotedstr('prh'));
-  Edit3.text := QTemp.FieldByName('value').AsString;
-  QTemp.Open('select * from zini where name=' + Quotedstr('rhtime'));
-  Edit1.text := QTemp.FieldByName('value').AsString;
-  loadgrids;
-  // Label22.Caption := 'X';
-  Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.text) * 1000);
-
+    Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.text) * 1000);
   Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
     myfloat(emp(Edit3.Text))));
+
+
+ for i := 1 to StringGrid1.RowCount - 1 do
+      if StringGrid1.Cells[1, i] <> '' then
+      if i<Stringgrid2.rowcount then
+      begin
+        //StringGrid2.RowCount := StringGrid2.RowCount + 1;
+        StringGrid2.Cells[0, i] :=
+          Floattostr(round(Strtofloat(Label35.Caption) / 100 *
+          Strtoint(StringGrid1.Cells[1, i])));
+      end;
+
 
 end;
 
@@ -547,16 +514,51 @@ begin
   ComboBox1.Items.LoadFromFile(Extractfilepath(application.exename) +
     'R_SoprotListRH.txt');
   ComboBox1.ItemIndex := 0;
-  { {$i-
-    assignfile(f, Extractfilepath(paramstr(0)) + 'RH_width.txt');
-    Reset(f);
-    for i := 0 to StringGrid1.ColCount - 1 do
-    begin
+
+  for i := 1 to 8 do
+    StringGrid1.Cells[0, i] := inttostr(i);
+  StringGrid1.Cells[0, 0] := '№';
+  StringGrid1.Cells[1, 0] := 'Вар. 1';
+  StringGrid1.Cells[2, 0] := 'Вар. 2';
+  StringGrid1.Cells[3, 0] := 'Вар. 3';
+  StringGrid2.Cells[0, 0] := 'Нагр.';
+  StringGrid2.Cells[1, 0] := 'U сред';
+  StringGrid2.Cells[2, 0] := 'I сред';
+  StringGrid2.Cells[3, 0] := 'P сред';
+  StringGrid2.Cells[4, 0] := 'N сред';
+  StringGrid2.Cells[5, 0] := 'M сред';
+  StringGrid2.Cells[6, 0] := '▲Umax';
+  StringGrid2.Cells[7, 0] := '▲Pmax';
+  StringGrid2.Cells[8, 0] := 'U ошиб.(всего)';
+  StringGrid2.Cells[9, 0] := 'P ошиб.(всего)';
+{$I-}
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH2_width.txt');
+  reset(f);
+  for i := 0 to StringGrid2.colcount - 1 do
+  begin
+    Readln(f, s);
+    StringGrid2.ColWidths[i] := Strtoint(s);
+  end;
+  Closefile(f);
+  assignfile(f, Extractfilepath(paramstr(0)) + 'RH1_width.txt');
+  reset(f);
+  for i := 0 to StringGrid1.colcount - 1 do
+  begin
     Readln(f, s);
     StringGrid1.ColWidths[i] := Strtoint(s);
-    end;
-    Closefile(f);
-    {$i+ }
+  end;
+  Closefile(f);
+{$I+}
+  nomer := Label6.Caption;
+  enableclose := true;
+  QTemp.Open('select * from zdelta where name=' + Quotedstr('urh'));
+  Edit2.text := QTemp.FieldByName('value').AsString;
+  QTemp.Open('select * from zdelta where name=' + Quotedstr('prh'));
+  Edit3.text := QTemp.FieldByName('value').AsString;
+  QTemp.Open('select * from zini where name=' + Quotedstr('rhtime'));
+  Edit1.text := QTemp.FieldByName('value').AsString;
+  loadgrids;
+
 end;
 
 procedure TFRH.FormShow(Sender: TObject);
@@ -625,7 +627,7 @@ end;
 
 procedure TFRH.Timer1000Timer(Sender: TObject);
 var
-  i, errcnt, goodcnt: Integer;
+  i, errcnt, goodcnt, nr: Integer;
   acount1, acount2, ncnt: Integer;
 begin
   times := times - 1;
@@ -762,7 +764,7 @@ begin
         [8, StringGrid2.row];
       QInsSvod.ParamByName('otklonp').AsString := StringGrid2.Cells
         [9, StringGrid2.row];
-
+      QInsSvod.ParamByName('nr').Asinteger := Stringgrid2.Rowcount-1;
       QInsSvod.ParamByName('tip').Asinteger := tipispyt;
       QInsSvod.ParamByName('t1').AsFloat := 0;
       QInsSvod.ParamByName('t2').AsFloat := 0;
@@ -785,7 +787,7 @@ begin
     StringGrid2.Cells[7, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP));
 
-    if StringGrid2.Cells[0, StringGrid2.row + 1] = '' then
+    if StringGrid2.row = StringGrid2.rowcount-1 then
     begin
       BitBtn1.Enabled := true;
       BitBtn2.Enabled := true;

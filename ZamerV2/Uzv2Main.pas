@@ -1043,7 +1043,7 @@ end;
 procedure TFZamerV2.LoadIspyt(nomer: string);
 var
   s: string;
-  tip, i, j: integer;
+  tip, i, j, nr: integer;
 begin
   // двигатель целиком
   QTemp.Close;
@@ -1318,10 +1318,13 @@ begin
   end;
 
   // загрузить рабочую характеристику
+
+
+
   for i := 0 to Frh.Stringgrid2.colcount - 1 do
     for j := 1 to Frh.Stringgrid2.rowcount - 1 do
       Frh.Stringgrid2.Cells[i, j] := '';
-  Frh.Stringgrid2.rowcount := 2;
+  //Frh.Stringgrid2.rowcount := 2;
 
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -1332,8 +1335,9 @@ begin
   //Frh.Radiobutton3Click(Frh);
   //Frh.Radiobutton2Click(Frh);
   //Frh.Radiobutton1Click(Frh);
-  Frh.Stringgrid2.rowcount := QTemp.RecordCount + 1;
+  Frh.Stringgrid2.rowcount := QTemp.FieldByName('nr').AsInteger + 1;
   tip := QTemp.FieldByName('tip').AsInteger;
+  nr := QTemp.FieldByName('nr').AsInteger;
   case tip of
     1:
       begin
@@ -1358,7 +1362,7 @@ begin
         Frh.StringGrid1.OnClick(Frh);
       end;
   end;
-  tip := 1;
+
 
 
     //Frh.Stringgrid2.rowcount := QTemp.RecordCount + 1;
@@ -1386,8 +1390,11 @@ begin
   Frh.Edit6.Text := QTemp.FieldByName('t3').Asstring;
   Frh.Edit7.Text := QTemp.FieldByName('r').Asstring;
 
+  tip := 1;
   Frh.ComboBox1.Text := QTemp.FieldByName('edizm').Asstring;
+  Frh.Stringgrid2.Rowcount:=nr+1;
   while (not(QTemp.Eof)) do
+  if tip<Frh.Stringgrid2.Rowcount then
   begin
     Frh.Stringgrid2.Cells[0, tip] := QTemp.FieldByName('pisp').Asstring;
     Frh.Stringgrid2.Cells[1, tip] := QTemp.FieldByName('usred').Asstring;
@@ -1402,6 +1409,9 @@ begin
     QTemp.Next;
     tip := tip + 1;
   end;
+
+
+
   // загрузить механическую характеристику
 
   QTemp.Close;
