@@ -302,6 +302,8 @@ begin
   QTemp.SQL.add(',t2= ' + Quotedstr(Edit5.text));
   QTemp.SQL.add(',t3= ' + Quotedstr(Edit6.text));
   QTemp.SQL.add(',r= ' + Quotedstr(Edit7.text));
+  QTemp.SQL.add(',nr= ' + Inttostr(Stringgrid2.rowcount-1));
+  QTemp.SQL.add(',tip= ' + inttostr(Stringgrid1.col));
   QTemp.SQL.add(',edizm= ' + Quotedstr(ComboBox1.text));
   QTemp.SQL.add(' where nomer= ' + Quotedstr(nomer));
   QTemp.ExecSQL;

@@ -219,7 +219,7 @@ begin
     Panel1.Color := StrToInt(s);
     Readln(f, s);
     Panel2.Color := StrToInt(s);
-    Closefile(f);
+
   end
   else
   begin
@@ -227,6 +227,7 @@ begin
     Edit1.Text := s;
     Edit2.Text := s;
   end;
+  Closefile(f);
 {$I+}
   {
     QTemp.Open('Select value from zini where name=' + Quotedstr('UIPPath'));
