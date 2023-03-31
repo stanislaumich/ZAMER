@@ -118,6 +118,13 @@ object Fgraph: TFgraph
     Anchors = [akRight, akBottom]
     Caption = #1052#1072#1089#1096#1090#1072#1073':'
   end
+  object Label9: TLabel
+    Left = 16
+    Top = 616
+    Width = 31
+    Height = 13
+    Caption = 'Label9'
+  end
   object Chart1: TChart
     Left = 0
     Top = 0
@@ -141,6 +148,7 @@ object Fgraph: TFgraph
     ColorPaletteIndex = 13
     object Series1: TFastLineSeries
       Selected.Hover.Visible = True
+      Marks.Visible = True
       Title = #1052#1086#1084#1077#1085#1090
       LinePen.Color = 10708548
       LinePen.Width = 5

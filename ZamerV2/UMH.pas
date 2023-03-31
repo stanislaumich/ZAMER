@@ -72,6 +72,7 @@ type
     CheckBox10: TCheckBox;
     Memo1: TMemo;
     Qi: TFDQuery;
+    QSelSred: TFDQuery;
     procedure TimerUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -592,6 +593,13 @@ begin
   end;
 
   QTemp.Close;
+
+  Qselsred.Close;
+  Qselsred.open;
+  stringgrid8.cells[1,stringgrid8.row] :=qselsred.fieldbyname('u').asstring;
+  qselsred.close;
+
+
   Button37.Enabled := true;
   Button27.Enabled := true;
   Button42.Enabled := false;

@@ -34,6 +34,7 @@ type
     QTemp: TFDQuery;
     ActionList1: TActionList;
     Action1: TAction;
+    Label9: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Chart1ClickSeries(Sender: TCustomChart; Series: TChartSeries;
@@ -87,11 +88,18 @@ begin
   Label4.Caption := '0';
   Label5.Caption := '0';
   QTemp.Close;
-  // QTemp.Open
-  // ('select to_number(torq) torq, to_number(rot) rot from zamertmp order by ID');
-  QTemp.Open('select m torq, n rot from zumsvod order by ID');
+  QTemp.SQL.clear;
+  QTemp.SQL.add('delete from zamertmp where rot=0 and torq=0 and power=0');
+  QTemp.EXECSQL;
+
+  QTemp.Close;
+  QTemp.SQL.clear;
+   QTemp.Open('select to_number(torq) torq, to_number(rot) rot from zamertmp order by ID');
+  //QTemp.Open('select m torq, n rot from zumsvod order by ID');
   tmax := round(QTemp.fieldbyname('torq').asfloat);
   tmin := round(QTemp.fieldbyname('torq').asfloat);
+  label9.caption:=floattostr(tmin);
+  imin :=0;
   While not QTemp.Eof do
   begin
     Series1.AddXY(i, QTemp.fieldbyname('torq').asfloat, '', clGreen);
@@ -108,6 +116,7 @@ begin
     cnt := cnt + 1;
   end;
   tsred := ((tmax + tmin) div 2);
+
   for i := 0 to cnt - 1 do
     if i = imin then
     begin

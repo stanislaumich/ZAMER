@@ -813,8 +813,8 @@ object FMH: TFMH
       'VALUES ( :NOMER, :U, :TORQ, '
       '   :ROT, :TIP, :NUMISP, '
       '   :CHECKED )')
-    Left = 118
-    Top = 400
+    Left = 178
+    Top = 404
     ParamData = <
       item
         Name = 'NOMER'
@@ -885,7 +885,14 @@ object FMH: TFMH
   end
   object Qi: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 224
-    Top = 423
+    Left = 268
+    Top = 399
+  end
+  object QSelSred: TFDQuery
+    Connection = FZamerV2.FDC
+    SQL.Strings = (
+      'select round(avg(u),2) u from zelspec')
+    Left = 236
+    Top = 435
   end
 end
