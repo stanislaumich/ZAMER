@@ -43,6 +43,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure UpDown1Click(Sender: TObject; Button: TUDBtnType);
     procedure BitBtn1Click(Sender: TObject);
+    procedure Chart1MouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
   private
     { Private declarations }
   public
@@ -138,6 +140,17 @@ begin
   Label5.Caption :=
     Floattostr(Simpleroundto(Chart1.Series[1].YValue[ValueIndex] * mas, -2))
 end;
+
+procedure TFgraph.Chart1MouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+var
+      SeriesIndex: Integer;
+    begin
+      SeriesIndex := Series1.Clicked(X, Y);
+      Chart1.ShowHint := SeriesIndex <> -1;
+      if Chart1.ShowHint then
+          Chart1.Hint:='Y='+FormatFloat('#.00',Series1.YValue[SeriesIndex]) + ' Legend: '+Series1.ValueMarkText[SeriesIndex];
+    end;
 
 procedure TFgraph.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

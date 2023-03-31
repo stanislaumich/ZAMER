@@ -149,7 +149,7 @@ implementation
 
 {$R *.dfm}
 
-uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH;
+uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH, UGRAPHN;
 
 /// /////////////////////////////////////////////////////////////////////////////
 
@@ -1518,7 +1518,7 @@ end;
 
 procedure TFZamerV2.Button1Click(Sender: TObject);
 begin
-  SendCommand(FZamerV2, True, FSett.Edit6.Text);
+ FGraphN.show;
 end;
 
 procedure TFZamerV2.Button2Click(Sender: TObject);

@@ -73,6 +73,7 @@ type
     Memo1: TMemo;
     Qi: TFDQuery;
     QSelSred: TFDQuery;
+    Button2: TButton;
     procedure TimerUpTimer(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -92,6 +93,7 @@ type
       Rect: TRect; State: TGridDrawState);
     procedure StringGrid8DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -111,7 +113,7 @@ implementation
 
 {$R *.dfm}
 
-uses UGraph, Uzv2Main, Usett;
+uses UGraph, Uzv2Main, Usett, UGRAPHN;
 
 type
   Ur = record
@@ -833,6 +835,11 @@ begin // start
   upstop.Enabled := true;
   Button32.Enabled := true;
   Button37.Enabled := false;
+end;
+
+procedure TFMH.Button2Click(Sender: TObject);
+begin
+ FGraphN.show;
 end;
 
 procedure TFMH.FormActivate(Sender: TObject);

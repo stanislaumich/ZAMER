@@ -139,6 +139,7 @@ object Fgraph: TFgraph
     Align = alTop
     TabOrder = 0
     Anchors = [akLeft, akTop, akRight, akBottom]
+    OnMouseMove = Chart1MouseMove
     DefaultCanvas = 'TGDIPlusCanvas'
     PrintMargins = (
       15
@@ -148,7 +149,6 @@ object Fgraph: TFgraph
     ColorPaletteIndex = 13
     object Series1: TFastLineSeries
       Selected.Hover.Visible = True
-      Marks.Visible = True
       Title = #1052#1086#1084#1077#1085#1090
       LinePen.Color = 10708548
       LinePen.Width = 5
