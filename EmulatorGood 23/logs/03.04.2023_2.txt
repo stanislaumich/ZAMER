@@ -1,0 +1,14 @@
+03.04.2023 08:07:35.911 - Запуск Modbus TCP/RTU Эмулятор
+03.04.2023 08:07:36.755 - TModbusTCPServer.Create
+03.04.2023 08:07:37.130 - TModbusTCPServer.Start
+03.04.2023 08:07:37.130 - TTCPAccept.Create IN, Port = 502
+03.04.2023 08:07:37.130 - TTCPAccept.Create OUT
+03.04.2023 08:07:37.130 - TTCPAccept.Execute IN
+03.04.2023 08:07:37.130 - TTCPAccept.InitSocket IN
+03.04.2023 08:07:37.130 - TTCPAccept.InitSocket - OUT
+03.04.2023 16:58:42.913 - TModbusTCPServer.Stop
+03.04.2023 16:58:42.913 - TTCPAccept.StopThread IN
+03.04.2023 16:58:42.913 - TTCPAccept.Execute OUT
+03.04.2023 16:58:42.913 - TTCPAccept.StopThread OUT
+03.04.2023 16:58:42.913 - TTCPAccept.Destroy IN
+03.04.2023 16:58:42.913 - TTCPAccept.Destroy OUT

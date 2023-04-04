@@ -119,8 +119,8 @@ object Fgraph: TFgraph
     Caption = #1052#1072#1089#1096#1090#1072#1073':'
   end
   object Label9: TLabel
-    Left = 16
-    Top = 616
+    Left = 57
+    Top = 598
     Width = 31
     Height = 13
     Caption = 'Label9'

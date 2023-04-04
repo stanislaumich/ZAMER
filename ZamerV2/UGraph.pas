@@ -56,6 +56,9 @@ var
   i, cnt: Integer;
   tsred: Integer;
   mas: Integer;
+  ar:array[0..1000] of double;
+
+
 
 implementation
 
@@ -63,7 +66,47 @@ uses umh;
 {$R *.dfm}
 
 procedure TFgraph.BitBtn1Click(Sender: TObject);
+var
+ i, maxi, ri, N, b,e, c:integer;
+ tf:double;
+ gf, pf:double;
+ ar:array[1..1000] of double;
 begin
+  QTemp.Close;
+  QTemp.SQL.Clear;
+  QTemp.SQL.add('select * from zelspec order by ts');
+  gf:=Strtofloat(label9.caption);
+  QTemp.Open;
+  i:=0;
+  pf:=1000000;
+  while not(Qtemp.eof) do
+   begin
+   i:=i+1;
+   ar[i]:=QTemp.FieldByName('u').asFloat;
+   if pf>abs(Qtemp.FieldByName('ts').AsFloat-gf) then
+      begin
+       ri:=i;
+       pf:= abs(Qtemp.FieldByName('ts').AsFloat-gf);
+      end;
+   Qtemp.Next;
+   end;
+  maxi:=i;
+  N:=3;
+  b:=ri-N;
+  if b<1 then b:=1;
+  e:=ri+N;
+  If e>maxi then e:=maxi;
+  pf:=0;
+  c:=0;
+  for I := b to e do
+     begin
+       pf:=pf+ar[i];
+       c:=c+1;
+     end;
+  pf:=pf/c;
+
+  FMH.Stringgrid8.Cells[1, FMH.Stringgrid8.row] := floattostr(simpleroundto(pf,-2));
+
   FMH.Stringgrid8.Cells[2, FMH.Stringgrid8.row] := Label4.Caption;
   FMH.Stringgrid8.Cells[3, FMH.Stringgrid8.row] := Label5.Caption;
   Fgraph.Close;
@@ -96,7 +139,7 @@ begin
 
   QTemp.Close;
   QTemp.SQL.clear;
-   QTemp.Open('select to_number(torq) torq, to_number(rot) rot from zamertmp order by ID');
+   QTemp.Open('select to_number(torq) torq, to_number(rot) rot, ts from zamertmp order by ID');
   //QTemp.Open('select m torq, n rot from zumsvod order by ID');
   tmax := round(QTemp.fieldbyname('torq').asfloat);
   tmin := round(QTemp.fieldbyname('torq').asfloat);
@@ -106,12 +149,14 @@ begin
   begin
     Series1.AddXY(i, QTemp.fieldbyname('torq').asfloat, '', clGreen);
     Series2.AddXY(i, QTemp.fieldbyname('rot').asfloat / mas, '', clred);
+    ar[i]:= QTemp.fieldbyname('ts').asfloat;
     if tmax < QTemp.fieldbyname('torq').asfloat then
       tmax := round(QTemp.fieldbyname('torq').asfloat);
     if tmin > QTemp.fieldbyname('torq').asfloat then
     begin
       tmin := round(QTemp.fieldbyname('torq').asfloat);
       imin := i;
+      label9.caption:=Floattostr(ar[i]);
     end;
     QTemp.Next;
     i := i + step;
@@ -126,7 +171,8 @@ begin
       Label2.Caption := Floattostr(i);
       Label4.Caption := Floattostr(simpleroundto(Chart1.Series[0].YValue[i],-2));
       Label5.Caption :=
-        Floattostr(Simpleroundto(Chart1.Series[1].YValue[i] * mas, -2))
+        Floattostr(Simpleroundto(Chart1.Series[1].YValue[i] * mas, -2)) ;
+      label9.caption:=Floattostr(ar[i]);
     end
     else
       Series3.AddXY(i, tsred, '', clred);
@@ -138,7 +184,8 @@ begin
   Label2.Caption := Floattostr(Series.XValue[ValueIndex]);
   Label4.Caption := Floattostr(Simpleroundto(Chart1.Series[0].YValue[ValueIndex],-2));
   Label5.Caption :=
-    Floattostr(Simpleroundto(Chart1.Series[1].YValue[ValueIndex] * mas, -2))
+    Floattostr(Simpleroundto(Chart1.Series[1].YValue[ValueIndex] * mas, -2));
+    label9.caption:=Floattostr(ar[ValueIndex]);
 end;
 
 procedure TFgraph.Chart1MouseMove(Sender: TObject; Shift: TShiftState; X,
