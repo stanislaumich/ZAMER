@@ -1232,14 +1232,15 @@ begin
     QTemp.Next;
   end;
   // Загрузить прочие испытания
-  QTemp.Close;
+  {QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.Open('select * from zproch where nomer=' + Quotedstr(nomer));
   FZamerV2.ImgSet(FZamerV2.Image7, QTemp.RecordCount <> 0);
-  //
+  }//
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.Open('select * from zproch where nomer=' + Quotedstr(nomer));
+    FZamerV2.ImgSet(FZamerV2.Image7, QTemp.RecordCount <> 0);
   if QTemp.FieldByName('eprochu').Asstring = '' then
     Fproch.Edit1.Text := '380'
   else
