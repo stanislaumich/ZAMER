@@ -27,6 +27,9 @@
         <Projects Include="TST\TST.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="SborCP8507\SborCP8507.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -107,14 +110,23 @@
     <Target Name="TST:Make">
         <MSBuild Projects="TST\TST.dproj" Targets="Make"/>
     </Target>
+    <Target Name="SborCP8507">
+        <MSBuild Projects="SborCP8507\SborCP8507.dproj"/>
+    </Target>
+    <Target Name="SborCP8507:Clean">
+        <MSBuild Projects="SborCP8507\SborCP8507.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SborCP8507:Make">
+        <MSBuild Projects="SborCP8507\SborCP8507.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="T45;TABLES;UPDATER;SborELSPEC;RegU;ZamerV2;SborT45;TST"/>
+        <CallTarget Targets="T45;TABLES;UPDATER;SborELSPEC;RegU;ZamerV2;SborT45;TST;SborCP8507"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="T45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean;RegU:Clean;ZamerV2:Clean;SborT45:Clean;TST:Clean"/>
+        <CallTarget Targets="T45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean;RegU:Clean;ZamerV2:Clean;SborT45:Clean;TST:Clean;SborCP8507:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="T45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make;RegU:Make;ZamerV2:Make;SborT45:Make;TST:Make"/>
+        <CallTarget Targets="T45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make;RegU:Make;ZamerV2:Make;SborT45:Make;TST:Make;SborCP8507:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
