@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 10
   Top = 10
   BorderIcons = [biSystemMenu, biMinimize]
-  Caption = #1057#1073#1086#1088' ELSPEC'
+  Caption = #1057#1073#1086#1088' 8507'
   ClientHeight = 320
   ClientWidth = 164
   Color = clBtnFace
@@ -521,7 +521,7 @@ object Form1: TForm1
     object USred: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 104
+      RegisterIndex = 112
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -541,7 +541,7 @@ object Form1: TForm1
     object PSred: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 92
+      RegisterIndex = 84
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -551,7 +551,7 @@ object Form1: TForm1
     object U1: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3511
+      RegisterIndex = 24
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -561,7 +561,7 @@ object Form1: TForm1
     object U2: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3513
+      RegisterIndex = 28
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -571,7 +571,7 @@ object Form1: TForm1
     object U3: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3515
+      RegisterIndex = 32
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -581,7 +581,7 @@ object Form1: TForm1
     object I1: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3521
+      RegisterIndex = 12
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -591,7 +591,7 @@ object Form1: TForm1
     object I2: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3523
+      RegisterIndex = 16
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -601,7 +601,7 @@ object Form1: TForm1
     object I3: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3525
+      RegisterIndex = 20
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -611,7 +611,7 @@ object Form1: TForm1
     object P1: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3427
+      RegisterIndex = 36
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -621,7 +621,7 @@ object Form1: TForm1
     object P2: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3429
+      RegisterIndex = 40
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
@@ -631,7 +631,7 @@ object Form1: TForm1
     object P3: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
-      RegisterIndex = 3431
+      RegisterIndex = 44
       ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
