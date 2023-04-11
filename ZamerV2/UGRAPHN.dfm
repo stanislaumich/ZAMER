@@ -14,11 +14,15 @@ object FGraphn: TFGraphn
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
-    Left = 16
-    Top = 16
-    Width = 821
+    Left = 0
+    Top = 0
+    Width = 853
     Height = 433
+    Align = alTop
     OnMouseMove = Image1MouseMove
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 821
   end
   object Button1: TButton
     Left = 36
@@ -35,7 +39,7 @@ object FGraphn: TFGraphn
     Width = 121
     Height = 21
     TabOrder = 1
-    Text = 'Edit1'
+    Text = '1'
   end
   object Edit2: TEdit
     Left = 236
@@ -43,6 +47,11 @@ object FGraphn: TFGraphn
     Width = 121
     Height = 21
     TabOrder = 2
-    Text = 'Edit2'
+    Text = '1'
+  end
+  object QTemp: TFDQuery
+    Connection = FZamerV2.FDC
+    Left = 508
+    Top = 120
   end
 end

@@ -5,8 +5,8 @@ ORACLE instance started.
 
 Total System Global Area 1071333376 bytes                                       
 Fixed Size                  1388352 bytes                                       
-Variable Size             662700224 bytes                                       
-Database Buffers          402653184 bytes                                       
+Variable Size             629145792 bytes                                       
+Database Buffers          436207616 bytes                                       
 Redo Buffers                4591616 bytes                                       
 Database mounted.
 Database opened.
@@ -20,8 +20,8 @@ ORACLE instance started.
 
 Total System Global Area 1071333376 bytes                                       
 Fixed Size                  1388352 bytes                                       
-Variable Size             662700224 bytes                                       
-Database Buffers          402653184 bytes                                       
+Variable Size             629145792 bytes                                       
+Database Buffers          436207616 bytes                                       
 Redo Buffers                4591616 bytes                                       
 Database mounted.
 Database opened.

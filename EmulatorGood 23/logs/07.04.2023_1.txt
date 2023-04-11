@@ -6,3 +6,9 @@
 07.04.2023 08:03:32.642 - TTCPAccept.Execute IN
 07.04.2023 08:03:32.642 - TTCPAccept.InitSocket IN
 07.04.2023 08:03:32.685 - TTCPAccept.InitSocket - OUT
+07.04.2023 16:58:53.19 - TModbusTCPServer.Stop
+07.04.2023 16:58:53.19 - TTCPAccept.StopThread IN
+07.04.2023 16:58:53.20 - TTCPAccept.Execute OUT
+07.04.2023 16:58:53.21 - TTCPAccept.StopThread OUT
+07.04.2023 16:58:53.21 - TTCPAccept.Destroy IN
+07.04.2023 16:58:53.21 - TTCPAccept.Destroy OUT

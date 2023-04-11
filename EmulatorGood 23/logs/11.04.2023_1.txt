@@ -1,0 +1,8 @@
+11.04.2023 09:17:25.702 - Запуск Modbus TCP/RTU Эмулятор
+11.04.2023 09:17:26.370 - TModbusTCPServer.Create
+11.04.2023 09:17:27.76 - TModbusTCPServer.Start
+11.04.2023 09:17:27.76 - TTCPAccept.Create IN, Port = 502
+11.04.2023 09:17:27.78 - TTCPAccept.Create OUT
+11.04.2023 09:17:27.806 - TTCPAccept.Execute IN
+11.04.2023 09:17:27.806 - TTCPAccept.InitSocket IN
+11.04.2023 09:17:27.825 - TTCPAccept.InitSocket - OUT
