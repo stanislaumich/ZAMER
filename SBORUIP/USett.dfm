@@ -56,7 +56,7 @@ object FSett: TFSett
       Width = 121
       Height = 21
       TabOrder = 0
-      Text = 'Edit1'
+      Text = '127.0.0.1'
     end
     object Edit2: TEdit
       Left = 194
@@ -64,7 +64,7 @@ object FSett: TFSett
       Width = 39
       Height = 21
       TabOrder = 1
-      Text = 'Edit2'
+      Text = '502'
     end
     object Edit3: TEdit
       Left = 269
@@ -72,7 +72,7 @@ object FSett: TFSett
       Width = 44
       Height = 21
       TabOrder = 2
-      Text = 'Edit3'
+      Text = '159'
     end
     object DBGrid3: TDBGrid
       Left = 2
@@ -119,6 +119,14 @@ object FSett: TFSett
           FieldName = 'ID'
           Visible = True
         end>
+    end
+    object BitBtn1: TBitBtn
+      Left = 324
+      Top = 151
+      Width = 129
+      Height = 25
+      Caption = #1040#1082#1090#1080#1074#1080#1088#1086#1074#1072#1090#1100
+      TabOrder = 4
     end
   end
   object GroupBox2: TGroupBox
@@ -306,7 +314,6 @@ object FSett: TFSett
     Height = 149
     Anchors = [akLeft, akTop, akBottom]
     TabOrder = 3
-    ExplicitHeight = 250
     object Label4: TLabel
       Left = 48
       Top = 2

@@ -3,7 +3,7 @@ object FMain: TFMain
   Top = 0
   BorderIcons = []
   Caption = #1057#1073#1086#1088' UIP'
-  ClientHeight = 266
+  ClientHeight = 645
   ClientWidth = 183
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -130,12 +130,13 @@ object FMain: TFMain
     Left = 0
     Top = 69
     Width = 183
-    Height = 178
+    Height = 557
     Align = alClient
     TabOrder = 2
+    ExplicitTop = 65
     DesignSize = (
       183
-      178)
+      557)
     object Label1: TLabel
       Left = 54
       Top = 0
@@ -219,7 +220,7 @@ object FMain: TFMain
     end
     object BitBtn1: TBitBtn
       Left = 4
-      Top = 132
+      Top = 511
       Width = 173
       Height = 40
       Anchors = [akLeft, akRight, akBottom]
@@ -289,11 +290,22 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 0
       OnClick = BitBtn1Click
+      ExplicitTop = 132
+    end
+    object BitBtn3: TBitBtn
+      Left = 4
+      Top = 135
+      Width = 173
+      Height = 25
+      Anchors = [akLeft, akTop, akRight]
+      Caption = #1057#1086#1077#1076#1080#1085#1080#1090#1100
+      TabOrder = 1
+      OnClick = BitBtn3Click
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 247
+    Top = 626
     Width = 183
     Height = 19
     Panels = <
@@ -301,6 +313,7 @@ object FMain: TFMain
         Text = '0.0.0.0'
         Width = 50
       end>
+    ExplicitTop = 247
   end
   object ConLite: TFDConnection
     Params.Strings = (
@@ -309,24 +322,60 @@ object FMain: TFMain
       'LockingMode=Normal')
     Connected = True
     LoginPrompt = False
-    Left = 8
-    Top = 42
+    Left = 20
+    Top = 326
   end
   object QLite: TFDQuery
     Connection = ConLite
-    Left = 44
-    Top = 46
+    Left = 64
+    Top = 326
   end
   object QIni: TFDQuery
     Connection = ConLite
     SQL.Strings = (
       'select * from ini where name=:name')
-    Left = 132
-    Top = 38
+    Left = 108
+    Top = 326
     ParamData = <
       item
         Name = 'NAME'
         ParamType = ptInput
       end>
+  end
+  object KRTCPConnector1: TKRTCPConnector
+    IP = '127.0.0.1'
+    ConnectTimeout = 300
+    Left = 36
+    Top = 385
+  end
+  object KRModbusMaster1: TKRModbusMaster
+    Connector = KRTCPConnector1
+    CheckID = False
+    Left = 36
+    Top = 437
+  end
+  object KRModbusClient1: TKRModbusClient
+    Modbus = KRModbusMaster1
+    Addres = 159
+    BatchUpdates = <>
+    Left = 36
+    Top = 489
+    object U: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3529
+      ArrayLen = 4
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+      OnValUpdated = UValUpdated
+    end
+  end
+  object TUpd: TTimer
+    Interval = 100
+    OnTimer = TUpdTimer
+    Left = 108
+    Top = 269
   end
 end

@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.Buttons;
 
 type
   TFSett = class(TForm)
@@ -43,6 +43,7 @@ type
     Label13: TLabel;
     Label14: TLabel;
     Label15: TLabel;
+    BitBtn1: TBitBtn;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
