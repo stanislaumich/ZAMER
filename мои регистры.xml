@@ -51,7 +51,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.usred</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>490</Value>
+				<Value>494.577362060547</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -97,7 +97,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.psred</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>1.70000004768372</Value>
+				<Value>1600</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -120,7 +120,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.u12</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>495</Value>
+				<Value>494.40625</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -166,7 +166,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.u31</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>495.868469238281</Value>
+				<Value>493.998870849609</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -189,7 +189,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.i1</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>6.90000009536743</Value>
+				<Value>7.09999990463257</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -212,7 +212,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.i2</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>7.05703067779541</Value>
+				<Value>6.93492889404297</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -235,7 +235,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.i3</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>7.03846073150635</Value>
+				<Value>7.09999990463257</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -258,7 +258,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.p1</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>1.39041829109192</Value>
+				<Value>1700</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -281,7 +281,7 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.p2</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>1.70000004768372</Value>
+				<Value>1700</Value>
 				<DefValue>0</DefValue>
 			</Register>
 			<Register>
@@ -304,8 +304,92 @@
 				<Period>10</Period>
 				<RegFullName>Сервер.Устройство.p3</RegFullName>
 				<RegsCount>2</RegsCount>
-				<Value>1.70000004768372</Value>
+				<Value>1641.38745117188</Value>
 				<DefValue>0</DefValue>
+			</Register>
+			<Register>
+				<Name>T1</Name>
+				<Addr>2048</Addr>
+				<BitAddr>0</BitAddr>
+				<vType>4</vType>
+				<Description>
+				</Description>
+				<mSpace>1</mSpace>
+				<ConstGroupName>
+				</ConstGroupName>
+				<Group>
+				</Group>
+				<WorkType>2</WorkType>
+				<DataFormat>6</DataFormat>
+				<Percent>0</Percent>
+				<Period>100</Period>
+				<RegFullName>Сервер.Устройство.T1</RegFullName>
+				<RegsCount>2</RegsCount>
+				<Value>5</Value>
+				<DefValue>5</DefValue>
+			</Register>
+			<Register>
+				<Name>T2</Name>
+				<Addr>2052</Addr>
+				<BitAddr>0</BitAddr>
+				<vType>4</vType>
+				<Description>
+				</Description>
+				<mSpace>1</mSpace>
+				<ConstGroupName>
+				</ConstGroupName>
+				<Group>
+				</Group>
+				<WorkType>2</WorkType>
+				<DataFormat>6</DataFormat>
+				<Percent>0</Percent>
+				<Period>100</Period>
+				<RegFullName>Сервер.Устройство.T2</RegFullName>
+				<RegsCount>2</RegsCount>
+				<Value>6</Value>
+				<DefValue>6</DefValue>
+			</Register>
+			<Register>
+				<Name>T3</Name>
+				<Addr>2056</Addr>
+				<BitAddr>0</BitAddr>
+				<vType>4</vType>
+				<Description>
+				</Description>
+				<mSpace>1</mSpace>
+				<ConstGroupName>
+				</ConstGroupName>
+				<Group>
+				</Group>
+				<WorkType>2</WorkType>
+				<DataFormat>6</DataFormat>
+				<Percent>0</Percent>
+				<Period>100</Period>
+				<RegFullName>Сервер.Устройство.T3</RegFullName>
+				<RegsCount>2</RegsCount>
+				<Value>7</Value>
+				<DefValue>7</DefValue>
+			</Register>
+			<Register>
+				<Name>T4</Name>
+				<Addr>2060</Addr>
+				<BitAddr>0</BitAddr>
+				<vType>4</vType>
+				<Description>
+				</Description>
+				<mSpace>1</mSpace>
+				<ConstGroupName>
+				</ConstGroupName>
+				<Group>
+				</Group>
+				<WorkType>2</WorkType>
+				<DataFormat>6</DataFormat>
+				<Percent>0</Percent>
+				<Period>100</Period>
+				<RegFullName>Сервер.Устройство.T4</RegFullName>
+				<RegsCount>2</RegsCount>
+				<Value>8</Value>
+				<DefValue>8</DefValue>
 			</Register>
 		</Device>
 	</Server>

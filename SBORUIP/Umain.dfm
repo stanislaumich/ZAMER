@@ -2,9 +2,10 @@ object FMain: TFMain
   Left = 0
   Top = 0
   BorderIcons = []
+  BorderStyle = bsNone
   Caption = #1057#1073#1086#1088' UIP'
-  ClientHeight = 645
-  ClientWidth = 183
+  ClientHeight = 299
+  ClientWidth = 187
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlue
@@ -20,7 +21,7 @@ object FMain: TFMain
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 183
+    Width = 187
     Height = 34
     Align = alTop
     Alignment = taLeftJustify
@@ -34,11 +35,14 @@ object FMain: TFMain
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
+    OnMouseDown = Panel1MouseDown
+    OnMouseEnter = Panel1MouseEnter
+    OnMouseLeave = Panel1MouseLeave
     DesignSize = (
-      183
+      187
       34)
     object BitBtn2: TBitBtn
-      Left = 150
+      Left = 154
       Top = 4
       Width = 29
       Height = 27
@@ -107,8 +111,8 @@ object FMain: TFMain
   object Panel2: TPanel
     Left = 0
     Top = 34
-    Width = 183
-    Height = 35
+    Width = 187
+    Height = 39
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -118,25 +122,25 @@ object FMain: TFMain
     ParentFont = False
     TabOrder = 1
     object CheckBox1: TCheckBox
-      Left = 12
-      Top = 8
-      Width = 149
-      Height = 17
+      Left = 4
+      Top = 3
+      Width = 177
+      Height = 30
       Caption = #1054#1089#1090#1072#1085#1086#1074#1083#1077#1085
       TabOrder = 0
+      OnClick = CheckBox1Click
     end
   end
   object Panel3: TPanel
     Left = 0
-    Top = 69
-    Width = 183
-    Height = 557
+    Top = 73
+    Width = 187
+    Height = 207
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 65
     DesignSize = (
-      183
-      557)
+      187
+      207)
     object Label1: TLabel
       Left = 54
       Top = 0
@@ -220,8 +224,8 @@ object FMain: TFMain
     end
     object BitBtn1: TBitBtn
       Left = 4
-      Top = 511
-      Width = 173
+      Top = 161
+      Width = 177
       Height = 40
       Anchors = [akLeft, akRight, akBottom]
       Caption = #1043#1083#1072#1074#1085#1086#1077' '#1086#1082#1085#1086
@@ -290,12 +294,11 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 0
       OnClick = BitBtn1Click
-      ExplicitTop = 132
     end
     object BitBtn3: TBitBtn
       Left = 4
       Top = 135
-      Width = 173
+      Width = 177
       Height = 25
       Anchors = [akLeft, akTop, akRight]
       Caption = #1057#1086#1077#1076#1080#1085#1080#1090#1100
@@ -305,22 +308,20 @@ object FMain: TFMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 626
-    Width = 183
+    Top = 280
+    Width = 187
     Height = 19
     Panels = <
       item
         Text = '0.0.0.0'
         Width = 50
       end>
-    ExplicitTop = 247
   end
   object ConLite: TFDConnection
     Params.Strings = (
       'DriverID=SQLite'
       'Database=S:\ZAMER\SBORUIP\Win32\Debug\SborUIP.sqlite'
       'LockingMode=Normal')
-    Connected = True
     LoginPrompt = False
     Left = 20
     Top = 326
@@ -342,40 +343,339 @@ object FMain: TFMain
         ParamType = ptInput
       end>
   end
+  object TUpd: TTimer
+    Interval = 100
+    OnTimer = TUpdTimer
+    Left = 120
+    Top = 69
+  end
   object KRTCPConnector1: TKRTCPConnector
     IP = '127.0.0.1'
-    ConnectTimeout = 300
-    Left = 36
+    Port = 0
+    Left = 32
     Top = 385
   end
   object KRModbusMaster1: TKRModbusMaster
     Connector = KRTCPConnector1
     CheckID = False
-    Left = 36
-    Top = 437
+    Left = 32
+    Top = 433
   end
   object KRModbusClient1: TKRModbusClient
     Modbus = KRModbusMaster1
     Addres = 159
     BatchUpdates = <>
-    Left = 36
-    Top = 489
+    Left = 28
+    Top = 485
     object U: TKRMBRegister
       ReadFunction = mbrfReadInputRegisters
       MCVarType = MCT_SINGLE
       RegisterIndex = 3529
-      ArrayLen = 4
       AskLimit = 5
       HighWordFirst = True
       HighDWordFirst = True
       Interval = 50
-      OnValUpdated = UValUpdated
+      OnReadCallBack = UReadCallBack
+    end
+    object I: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3531
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+      OnReadCallBack = IReadCallBack
+    end
+    object P: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3439
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+      OnReadCallBack = PReadCallBack
+    end
+    object U1: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3511
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object U2: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3513
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object U3: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 3513
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object I1: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object I2: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object I3: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object P1: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object P2: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object P3: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+      Interval = 50
+    end
+    object T1: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 2048
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+    end
+    object T2: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 2052
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+    end
+    object T3: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 2056
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
+    end
+    object T4: TKRMBRegister
+      ReadFunction = mbrfReadInputRegisters
+      MCVarType = MCT_SINGLE
+      RegisterIndex = 2060
+      AskLimit = 5
+      HighWordFirst = True
+      HighDWordFirst = True
     end
   end
-  object TUpd: TTimer
-    Interval = 100
-    OnTimer = TUpdTimer
-    Left = 108
-    Top = 269
+  object QTemp: TFDQuery
+    Connection = ConLite
+    Left = 84
+    Top = 117
+  end
+  object QtmpUpd: TFDQuery
+    Connection = ConOra
+    SQL.Strings = (
+      'UPDATE ZAMER.ZELSPECTMP'
+      'SET    ID  = 0,'
+      '       U   = :U,'
+      '       I   = :I,'
+      '       P   = :P,'
+      '       U1  = :U1,'
+      '       U2  = :U2,'
+      '       U3  = :U3,'
+      '       I1  = :I1,'
+      '       I2  = :I2,'
+      '       I3  = :I3,'
+      '       DOP = :DOP,'
+      '       P1  = :P1,'
+      '       P2  = :P2,'
+      '       P3  = :P3,'
+      '       KPD = 0')
+    Left = 130
+    Top = 115
+    ParamData = <
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P3'
+        ParamType = ptInput
+      end>
+  end
+  object ConOra: TFDConnection
+    Params.Strings = (
+      'DriverID=Ora'
+      'ApplicationName=SBorUIP'
+      'Database=XE'
+      'Password=zamer'
+      'User_Name=zamer')
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    Connected = True
+    LoginPrompt = False
+    Left = 84
+    Top = 69
+  end
+  object QTempIns: TFDQuery
+    Connection = ConOra
+    SQL.Strings = (
+      
+        'INSERT INTO ZAMER.ZELSPEC (ID, U, I, P, U1, U2,U3, I1, I2, I3, D' +
+        'OP, p1, p2, p3) '
+      
+        'VALUES ( :ID ,:U ,:I ,:P ,:U1,:U2,:U3,:I1,:I2,:I3, :DOP, :p1,:p2' +
+        ',:p3)')
+    Left = 84
+    Top = 165
+    ParamData = <
+      item
+        Name = 'ID'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'U3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'I3'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DOP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P1'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P2'
+        ParamType = ptInput
+      end
+      item
+        Name = 'P3'
+        ParamType = ptInput
+      end>
+  end
+  object QTempOra: TFDQuery
+    Connection = ConOra
+    Left = 136
+    Top = 165
+  end
+  object Tstart: TTimer
+    OnTimer = TstartTimer
+    Left = 52
+    Top = 241
   end
 end

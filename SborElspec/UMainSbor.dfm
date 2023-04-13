@@ -22,8 +22,8 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
-    Left = 2
-    Top = 3
+    Left = 4
+    Top = 4
     Width = 158
     Height = 134
     Anchors = [akLeft, akTop, akRight, akBottom]
@@ -642,8 +642,8 @@ object Form1: TForm1
   object TUpdateForm: TTimer
     Interval = 100
     OnTimer = TUpdateFormTimer
-    Left = 100
-    Top = 236
+    Left = 28
+    Top = 252
   end
   object FDC: TFDConnection
     Params.Strings = (
