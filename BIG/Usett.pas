@@ -9,7 +9,8 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.Oracle,
   FireDAC.Phys.OracleDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
+  FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids,
+  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons;
 
 type
  vr = record
@@ -30,10 +31,12 @@ type
     Panel1: TPanel;
     Button1: TButton;
     ColorDialog1: TColorDialog;
-    Edit1: TEdit;
+    DBEdit1: TDBEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure Button1Click(Sender: TObject);
+    procedure DBGrid1CellClick(Column: TColumn);
+    procedure DBEdit1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -51,9 +54,22 @@ procedure TFSett.Button1Click(Sender: TObject);
 begin
  If ColorDialog1.Execute() then
   begin
-    Edit1.Text:=Inttostr(ColorDialog1.Color);
+    FDTable1.Edit;
+    dbEdit1.Text:=Inttostr(ColorDialog1.Color);
     Panel1.Font.Color:=ColorDialog1.Color;
+
+    FDTable1.Post;
   end;
+end;
+
+procedure TFSett.DBEdit1Click(Sender: TObject);
+begin
+DbEdit1.Text:=Dbedit1.Text;
+end;
+
+procedure TFSett.DBGrid1CellClick(Column: TColumn);
+begin
+ Panel1.Font.Color:=FDTable1.FieldByName('COLOR').AsLargeInt;
 end;
 
 procedure TFSett.FormCloseQuery(Sender: TObject; var CanClose: Boolean);

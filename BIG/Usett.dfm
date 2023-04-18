@@ -29,6 +29,7 @@ object FSett: TFSett
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnCellClick = DBGrid1CellClick
     Columns = <
       item
         Expanded = False
@@ -102,13 +103,15 @@ object FSett: TFSett
     TabOrder = 2
     OnClick = Button1Click
   end
-  object Edit1: TEdit
-    Left = 328
-    Top = 155
-    Width = 121
+  object DBEdit1: TDBEdit
+    Left = 320
+    Top = 156
+    Width = 73
     Height = 21
+    DataField = 'COLOR'
+    DataSource = DataSource1
     TabOrder = 3
-    Text = '0'
+    OnClick = DBEdit1Click
   end
   object FDC: TFDConnection
     Params.Strings = (
