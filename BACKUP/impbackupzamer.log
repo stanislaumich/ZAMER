@@ -1,81 +1,84 @@
 
-Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - Production
+Соединен с: Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
 
-Export file created by EXPORT:V11.02.00 via conventional path
-import done in CL8MSWIN1251 character set and AL16UTF16 NCHAR character set
-import server uses AL32UTF8 character set (possible charset conversion)
-. . importing table                    "AZAMERTMP"
-                                                          161 rows imported
-. . importing table                      "COMMAND"
-                                                            0 rows imported
-. . importing table                        "GRIDS"
-                                                            7 rows imported
-. . importing table                          "INI"
-                                                           14 rows imported
-. . importing table                        "NOMER"
-                                                            1 rows imported
-. . importing table                        "STEND"
-                                                            5 rows imported
-. . importing table                      "VERSION"
-                                                            1 rows imported
-. . importing table                        "ZAMER"
-                                                            1 rows imported
-. . importing table                     "ZAMERTMP"
-                                                           81 rows imported
-. . importing table                       "ZDELTA"
-                                                            6 rows imported
-. . importing table                     "ZDVIGALL"
-                                                           22 rows imported
-. . importing table                      "ZELSPEC"
-                                                           55 rows imported
-. . importing table                   "ZELSPECTMP"
-                                                            1 rows imported
-. . importing table                         "ZERR"
-                                                            3 rows imported
-. . importing table                       "ZGRIDS"
-                                                           94 rows imported
-. . importing table                       "ZHHALL"
+Экспоpт-файл создан EXPORT:V11.02.00 чеpез обычный маpшpут
+импорт выполнен в кодировке CL8MSWIN1251 и AL16UTF16 кодировке NCHAR
+импортирующий сервер использует кодировку AL32UTF8 (возможно перекодирование)
+. . импортируемая таблица                    "AZAMERTMP"
+импортировано                                                           161 строк
+. . импортируемая таблица                      "COMMAND"
+импортировано                                                             0 строк
+. . импортируемая таблица                        "GRIDS"
+импортировано                                                             7 строк
+. . импортируемая таблица                          "INI"
+импортировано                                                            14 строк
+. . импортируемая таблица                        "NOMER"
+импортировано                                                             1 строк
+. . импортируемая таблица                        "STEND"
+импортировано                                                             5 строк
+. . импортируемая таблица                      "VERSION"
+импортировано                                                             1 строк
+. . импортируемая таблица                        "ZAMER"
+импортировано                                                             1 строк
+. . импортируемая таблица                     "ZAMERTMP"
+импортировано                                                            80 строк
+. . импортируемая таблица                         "ZBIG"
+импортировано                                                             6 строк
+. . импортируемая таблица                       "ZDELTA"
+импортировано                                                             6 строк
+. . импортируемая таблица                     "ZDVIGALL"
+импортировано                                                            22 строк
+. . импортируемая таблица                      "ZELSPEC"
+импортировано                                                            46 строк
+. . импортируемая таблица                   "ZELSPECTMP"
+импортировано                                                             1 строк
+. . импортируемая таблица                         "ZERR"
+импортировано                                                             3 строк
+. . импортируемая таблица                       "ZGRIDS"
+импортировано                                                            94 строк
+. . импортируемая таблица                       "ZHHALL"
 ...
-                                                         3917 rows imported
-. . importing table                      "ZHHSVOD"
-                                                           50 rows imported
-. . importing table                         "ZINI"
-                                                           63 rows imported
-. . importing table                       "ZKZALL"
-                                                          190 rows imported
-. . importing table                      "ZKZSVOD"
-                                                           13 rows imported
-. . importing table                      "ZMEHALL"
-                                                          198 rows imported
-. . importing table                     "ZMEHSVOD"
-                                                            4 rows imported
-. . importing table                       "ZMLAST"
-                                                           71 rows imported
-. . importing table                   "ZNAGREVALL"
-                                                          616 rows imported
-. . importing table                  "ZNAGREVSVOD"
-                                                           16 rows imported
-. . importing table                       "ZPROCH"
-                                                            3 rows imported
-. . importing table                       "ZRHALL"
-                                                          489 rows imported
-. . importing table                      "ZRHSVOD"
-                                                           12 rows imported
-. . importing table                      "ZSOPROT"
-                                                           13 rows imported
-. . importing table                        "ZSOTR"
-                                                            2 rows imported
-. . importing table                       "ZSTEND"
-                                                            5 rows imported
-. . importing table                       "ZTABLE"
-                                                           20 rows imported
-. . importing table                       "ZULAST"
-                                                           42 rows imported
-. . importing table                      "ZUMSVOD"
-                                                           42 rows imported
-. . importing table                       "ZVIBRO"
-                                                          108 rows imported
-. . importing table                        "ZZVUK"
-                                                           48 rows imported
-About to enable constraints...
-Import terminated successfully without warnings.
+импортировано                                                          3908 строк
+. . импортируемая таблица                      "ZHHSVOD"
+импортировано                                                            50 строк
+. . импортируемая таблица                         "ZINI"
+импортировано                                                            67 строк
+. . импортируемая таблица                       "ZKZALL"
+импортировано                                                           190 строк
+. . импортируемая таблица                      "ZKZSVOD"
+импортировано                                                            13 строк
+. . импортируемая таблица                      "ZMEHALL"
+импортировано                                                           198 строк
+. . импортируемая таблица                     "ZMEHSVOD"
+импортировано                                                             4 строк
+. . импортируемая таблица                       "ZMLAST"
+импортировано                                                            72 строк
+. . импортируемая таблица                   "ZNAGREVALL"
+импортировано                                                           616 строк
+. . импортируемая таблица                  "ZNAGREVSVOD"
+импортировано                                                            16 строк
+. . импортируемая таблица                       "ZPROCH"
+импортировано                                                             3 строк
+. . импортируемая таблица                       "ZRHALL"
+импортировано                                                           489 строк
+. . импортируемая таблица                      "ZRHSVOD"
+импортировано                                                            12 строк
+. . импортируемая таблица                      "ZSOPROT"
+импортировано                                                            13 строк
+. . импортируемая таблица                        "ZSOTR"
+импортировано                                                             2 строк
+. . импортируемая таблица                       "ZSTEND"
+импортировано                                                             5 строк
+. . импортируемая таблица                       "ZTABLE"
+импортировано                                                            20 строк
+. . импортируемая таблица                       "ZULAST"
+импортировано                                                            41 строк
+. . импортируемая таблица                      "ZUMSVOD"
+импортировано                                                            41 строк
+. . импортируемая таблица                       "ZVIBRO"
+импортировано                                                           108 строк
+. . импортируемая таблица                        "ZZVUK"
+импортировано                                                            48 строк
+Готовится включение ограничений...
+Импорт завершен успешно без предупреждений.
