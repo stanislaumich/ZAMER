@@ -113,6 +113,15 @@ object FSett: TFSett
     TabOrder = 3
     OnClick = DBEdit1Click
   end
+  object Button2: TButton
+    Left = 404
+    Top = 156
+    Width = 105
+    Height = 49
+    Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+    TabOrder = 4
+    OnClick = Button2Click
+  end
   object FDC: TFDConnection
     Params.Strings = (
       'DriverID=Ora'

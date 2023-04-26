@@ -32,15 +32,18 @@ type
     Button1: TButton;
     ColorDialog1: TColorDialog;
     DBEdit1: TDBEdit;
+    Button2: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure Button1Click(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBEdit1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
       u,i,p,m,n,pw:vr;
+      Procedure fill;
   end;
 
 var
@@ -60,6 +63,85 @@ begin
 
     FDTable1.Post;
   end;
+end;
+
+procedure TFSett.Fill;
+
+begin
+
+QTemp.Open('select * from zbig where name='+Quotedstr('U'));
+u.name:='u';
+u.color:=QTemp.FieldByName('color').AsInteger;
+u.sz:=QTemp.FieldByName('sz').AsInteger;
+u.x:=QTemp.FieldByName('x').AsInteger;
+u.y:=QTemp.FieldByName('y').AsInteger;
+u.before:=QTemp.FieldByName('before').AsString;
+u.after:=QTemp.FieldByName('after').AsString;
+QTemp.Close;
+QTemp.SQL.Clear;
+
+QTemp.Open('select * from zbig where name='+Quotedstr('I'));
+i.name:='i';
+i.color:=QTemp.FieldByName('color').AsInteger;
+i.sz:=QTemp.FieldByName('sz').AsInteger;
+i.x:=QTemp.FieldByName('x').AsInteger;
+i.y:=QTemp.FieldByName('y').AsInteger;
+i.before:=QTemp.FieldByName('before').AsString;
+i.after:=QTemp.FieldByName('after').AsString;
+QTemp.Close;
+QTemp.SQL.Clear;
+
+QTemp.Open('select * from zbig where name='+Quotedstr('P'));
+p.name:='p';
+p.color:=QTemp.FieldByName('color').AsInteger;
+p.sz:=QTemp.FieldByName('sz').AsInteger;
+p.x:=QTemp.FieldByName('x').AsInteger;
+p.y:=QTemp.FieldByName('y').AsInteger;
+p.before:=QTemp.FieldByName('before').AsString;
+p.after:=QTemp.FieldByName('after').AsString;
+QTemp.Close;
+QTemp.SQL.Clear;
+
+QTemp.Open('select * from zbig where name='+Quotedstr('M'));
+m.name:='m';
+m.color:=QTemp.FieldByName('color').AsInteger;
+m.sz:=QTemp.FieldByName('sz').AsInteger;
+m.x:=QTemp.FieldByName('x').AsInteger;
+m.y:=QTemp.FieldByName('y').AsInteger;
+m.before:=QTemp.FieldByName('before').AsString;
+m.after:=QTemp.FieldByName('after').AsString;
+QTemp.Close;
+QTemp.SQL.Clear;
+
+QTemp.Open('select * from zbig where name='+Quotedstr('N'));
+n.name:='n';
+n.color:=QTemp.FieldByName('color').AsInteger;
+n.sz:=QTemp.FieldByName('sz').AsInteger;
+n.x:=QTemp.FieldByName('x').AsInteger;
+n.y:=QTemp.FieldByName('y').AsInteger;
+n.before:=QTemp.FieldByName('before').AsString;
+n.after:=QTemp.FieldByName('after').AsString;
+QTemp.Close;
+QTemp.SQL.Clear;
+
+QTemp.Open('select * from zbig where name='+Quotedstr('Pw'));
+pw.name:='pw';
+pw.color:=QTemp.FieldByName('color').AsInteger;
+pw.sz:=QTemp.FieldByName('sz').AsInteger;
+pw.x:=QTemp.FieldByName('x').AsInteger;
+pw.y:=QTemp.FieldByName('y').AsInteger;
+pw.before:=QTemp.FieldByName('before').AsString;
+pw.after:=QTemp.FieldByName('after').AsString;
+QTemp.Close;
+QTemp.SQL.Clear;
+
+
+end;
+
+procedure TFSett.Button2Click(Sender: TObject);
+begin
+ Fill;
+ FMain.Button1.Click;
 end;
 
 procedure TFSett.DBEdit1Click(Sender: TObject);

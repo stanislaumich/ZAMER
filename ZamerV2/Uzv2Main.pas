@@ -236,6 +236,13 @@ begin
   Closefile(f);
 end;
 
+function isemptyfloat(f:string;s:string):string;
+ begin
+  if trim(s)='' then
+   isemptyfloat:='' else
+  isemptyfloat:= myformat(f, strtofloat(s))
+ end;
+
 procedure TFZamerV2.FormReport;
 const
   wdFindContinue = 1;
@@ -274,18 +281,7 @@ var
 begin
   FrepP.Label1.Caption := 'Создание документа';
   FrepP.Show;
-  // ****************
-  { Qtemp.Close;
-    Qtemp.Open('select * from ini where name=' + Quotedstr('set_yes'));
-    ans[1] := Qtemp.FieldByName('value').Asstring;
-    Qtemp.Close;
-    Qtemp.Open('select * from ini where name=' + Quotedstr('set_no'));
-    ans[2] := Qtemp.FieldByName('value').Asstring;
-    Qtemp.Close;
-    Qtemp.Open('select * from ini where name=' + Quotedstr('set_un'));
-    ans[0] := Qtemp.FieldByName('value').Asstring;
-  }
-  // *****************
+
   Blank := Extractfilepath(paramstr(0)) + 'REPORT\BLANK.docx';
   ReportPath := Extractfilepath(paramstr(0)) + 'REPORT';
   fn := ReportPath + '\' + nomer + '.csv';
@@ -376,15 +372,15 @@ begin
     wrepl('rizolob', FSopr.Edit16.Text);
     AddReportString(fn, '1', 'rizolob', FSopr.Edit16.Text);
 
-    wrepl('tempersopr1', myformat('0.0', strtofloat(FSopr.Edit8.Text)));
-    wrepl('tempersopr2', myformat('0.0', strtofloat(FSopr.Edit1.Text)));
-    wrepl('tempersopr3', myformat('0.0', strtofloat(FSopr.Edit2.Text)));
+    wrepl('tempersopr1', isemptyfloat('0.0',FSopr.Edit8.Text));
+    wrepl('tempersopr2', isemptyfloat('0.0',FSopr.Edit1.Text));
+    wrepl('tempersopr3', isemptyfloat('0.0',FSopr.Edit2.Text));
     AddReportString(fn, '1', 'tempersopr1',
-      myformat('0.0', strtofloat(FSopr.Edit8.Text)));
+      isemptyfloat('0.0',FSopr.Edit8.Text));
     AddReportString(fn, '1', 'tempersopr2',
-      myformat('0.0', strtofloat(FSopr.Edit1.Text)));
+      isemptyfloat('0.0',FSopr.Edit1.Text));
     AddReportString(fn, '1', 'tempersopr3',
-      myformat('0.0', strtofloat(FSopr.Edit2.Text)));
+      isemptyfloat('0.0',FSopr.Edit2.Text));
 
     if FSopr.radiobutton1.Checked then
       wrepl('bolt', 'ВЫДЕРЖАЛ');
@@ -455,29 +451,29 @@ begin
     FrepP.Label1.Caption := 'Нагрев';
     wrepl('stred4', Fnagr.ComboBox3.Text);
     AddReportString(fn, '1', 'stred4', Fnagr.ComboBox3.Text);
-    wrepl('N11x', myformat('0.00', strtofloat(Fnagr.StringGrid1.Cells[2, 1])));
-    wrepl('N21x', myformat('0.00', strtofloat(Fnagr.StringGrid1.Cells[2, 2])));
+    wrepl('N11x', isemptyfloat('0.00',Fnagr.StringGrid1.Cells[2, 1]));
+    wrepl('N21x', isemptyfloat('0.00',Fnagr.StringGrid1.Cells[2, 2]));
     // i
-    wrepl('N12x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[3, 1])));
-    wrepl('N22x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[3, 2])));
+    wrepl('N12x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[3, 1]));
+    wrepl('N22x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[3, 2]));
     // p
-    wrepl('N13x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[4, 1])));
-    wrepl('N23x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[4, 2])));
+    wrepl('N13x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[4, 1]));
+    wrepl('N23x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[4, 2]));
     // n
-    wrepl('N14x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[5, 1])));
-    wrepl('N24x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[5, 2])));
+    wrepl('N14x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[5, 1]));
+    wrepl('N24x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[5, 2]));
     // m
-    wrepl('N15x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[6, 1])));
-    wrepl('N25x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[6, 2])));
+    wrepl('N15x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[6, 1]));
+    wrepl('N25x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[6, 2]));
     // t1
-    wrepl('N16x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[7, 1])));
-    wrepl('N26x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[7, 2])));
+    wrepl('N16x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[7, 1]));
+    wrepl('N26x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[7, 2]));
     // t2
-    wrepl('N17x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[8, 1])));
-    wrepl('N27x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[8, 2])));
+    wrepl('N17x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[8, 1]));
+    wrepl('N27x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[8, 2]));
     // t3
-    wrepl('N18x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[9, 1])));
-    wrepl('N28x', myformat('0.0', strtofloat(Fnagr.StringGrid1.Cells[9, 2])));
+    wrepl('N18x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[9, 1]));
+    wrepl('N28x', isemptyfloat('0.0',Fnagr.StringGrid1.Cells[9, 2]));
     // r
     if Fnagr.Edit4.Text <> '0' then
       wrepl('N31x', Fnagr.Edit4.Text)
@@ -566,27 +562,27 @@ begin
     for i := 1 to 10 do
     begin
       ts := myzero(Frh.Stringgrid2.Cells[1, i]);
-      wrepl('u' + inttostr(i) + 'rh', myformat(tRazU, strtofloat(ts)));
+      wrepl('u' + inttostr(i) + 'rh', isemptyfloat(tRazU, (ts)));
     end;
     for i := 1 to 10 do
     begin
       ts := myzero(Frh.Stringgrid2.Cells[2, i]);
-      wrepl('i' + inttostr(i) + 'rh', myformat(tRazI, strtofloat(ts)));
+      wrepl('i' + inttostr(i) + 'rh', isemptyfloat(tRazI, (ts)));
     end;
     for i := 1 to 10 do
     begin
       ts := myzero(Frh.Stringgrid2.Cells[3, i]);
-      wrepl('p' + inttostr(i) + 'rh', myformat(tRazP, strtofloat(ts)));
+      wrepl('p' + inttostr(i) + 'rh', isemptyfloat(tRazP, (ts)));
     end;
     for i := 1 to 10 do
     begin
       ts := myzero(Frh.Stringgrid2.Cells[4, i]);
-      wrepl('rot' + inttostr(i) + 'rh', myformat(tRAZN, strtofloat(ts)));
+      wrepl('rot' + inttostr(i) + 'rh', isemptyfloat(tRAZN, (ts)));
     end;
     for i := 1 to 10 do
     begin
       ts := myzero(Frh.Stringgrid2.Cells[5, i]);
-      wrepl('torq' + inttostr(i) + 'rh', myformat(tRazR, strtofloat(ts)));
+      wrepl('torq' + inttostr(i) + 'rh', isemptyfloat(tRazR, (ts)));
     end;
 
     // Механическая характеристика
