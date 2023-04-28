@@ -237,30 +237,30 @@ object FormReg: TFormReg
   end
   object Button2: TButton
     Left = 704
-    Top = 46
+    Top = 32
     Width = 75
     Height = 25
-    Caption = 'Send 3'
+    Caption = 'Send 0'
     Enabled = False
     TabOrder = 8
     OnClick = Button2Click
   end
   object Button3: TButton
     Left = 704
-    Top = 75
+    Top = 56
     Width = 75
     Height = 25
-    Caption = 'Send 4'
+    Caption = 'Send 1'
     Enabled = False
     TabOrder = 9
     OnClick = Button3Click
   end
   object Button4: TButton
     Left = 704
-    Top = 101
+    Top = 80
     Width = 75
     Height = 25
-    Caption = 'Send 5'
+    Caption = 'Send 2'
     Enabled = False
     TabOrder = 10
     OnClick = Button4Click
@@ -283,9 +283,18 @@ object FormReg: TFormReg
     TabOrder = 12
     OnClick = Button6Click
   end
+  object Button7: TButton
+    Left = 704
+    Top = 104
+    Width = 74
+    Height = 26
+    Caption = 'Send 3'
+    TabOrder = 13
+    OnClick = Button7Click
+  end
   object Com: TComPort
     BaudRate = br115200
-    Port = 'COM7'
+    Port = 'COM6'
     Parity.Bits = prNone
     StopBits = sbOneStopBit
     DataBits = dbEight

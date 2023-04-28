@@ -31,6 +31,7 @@ type
     Button6: TButton;
     ComLed1: TComLed;
     Com: TComPort;
+    Button7: TButton;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -41,6 +42,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure ComRxChar(Sender: TObject; Count: Integer);
+    procedure Button7Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -98,22 +100,18 @@ procedure TFormReg.Button2Click(Sender: TObject);
 var
  i:integer;
 begin
-  Com.WriteStr('3');
+  Com.WriteStr('0');
 end;
 
 
 procedure TFormReg.Button3Click(Sender: TObject);
  begin
-
-  preparepacket;
-  Com.WriteStr('7'+#10);
+  Com.WriteStr('1');
 end;
 
 procedure TFormReg.Button4Click(Sender: TObject);
 begin
-
-  preparepacket;
-  Com.WriteStr('8'+#20);
+  Com.WriteStr('2');
 end;
 
 procedure TFormReg.Button5Click(Sender: TObject);
@@ -124,6 +122,11 @@ end;
 procedure TFormReg.Button6Click(Sender: TObject);
 begin
  Memo1.Lines.Clear;
+end;
+
+procedure TFormReg.Button7Click(Sender: TObject);
+begin
+  Com.WriteStr('3');
 end;
 
 procedure TFormReg.ComRxChar(Sender: TObject; Count: Integer);
