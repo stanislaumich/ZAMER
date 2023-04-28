@@ -20,8 +20,7 @@
 #define pindown 2
 #define speed 115200
 
-const int len = 10;
-/*static*/ byte dataArray[len];
+int inChar;
 
 void upoff(){
  digitalWrite(pinup,HIGH);
@@ -59,11 +58,10 @@ void setup() {
 
 void loop() {
 
-if (Serial.available() > 0) {
-    Serial.readBytes(dataArray, len);
-    }
-
-  switch (dataArray[0]) {
+if (Serial.available()) {
+ inChar = Serial.read();
+}
+  switch (inChar) {
   case 48:  upon();Serial.print("0");break;
   case 49:  downon();Serial.print("1");break;
   case 50:  upoff();Serial.print("2");break;
