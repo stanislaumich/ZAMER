@@ -35,9 +35,9 @@ void downon(){
  digitalWrite(pindown,LOW);
 }
 
-void sendpacket(){
-   Serial.write(dataArray,len);
-}
+//void sendpacket(){
+//   Serial.write(dataArray,len);/
+//}
 
 void setup() {  
   Serial.begin(speed);
@@ -62,13 +62,13 @@ if (Serial.available()) {
  inChar = Serial.read();
 }
   switch (inChar) {
-  case 48:  upon();Serial.print("0");break;
-  case 49:  downon();Serial.print("1");break;
-  case 50:  upoff();Serial.print("2");break;
-  case 51:  downoff();Serial.print("3");break;
+  case 48:  upon();Serial.print("0");inChar = 255;break;
+  case 49:  downon();Serial.print("1");inChar = 255;break;
+  case 50:  upoff();Serial.print("2");inChar = 255;break;
+  case 51:  downoff();Serial.print("3");inChar = 255;break;
   }
   // очищаем чобы не слал постоянно а ждал запроса
-  dataArray[0]=255;
+  //dataArray[0]=255;
 
 
 
