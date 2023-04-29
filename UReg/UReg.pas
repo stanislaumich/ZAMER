@@ -31,6 +31,7 @@ type
     Up: TAction;
     Down: TAction;
     Stop: TAction;
+    CheckBox1: TCheckBox;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure ComRxChar(Sender: TObject; Count: Integer);
     procedure Button7Click(Sender: TObject);
@@ -41,6 +42,7 @@ type
     procedure UpExecute(Sender: TObject);
     procedure DownExecute(Sender: TObject);
     procedure StopExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,7 +54,7 @@ type
 var
   FormReg: TFormReg;
   ComStr:string;
-
+  act : integer;
 const
  plen = 20;// длина пакета
 
@@ -89,23 +91,35 @@ end;
 procedure TFormReg.BitBtn2Click(Sender: TObject);
 begin
   Com.WriteStr('0');
-  Com.WriteStr('2');
+  if act<>2 then
+   begin
+    Com.WriteStr('2');
+    act := 2;
+   end
+    else act:=0;
 end;
 
 procedure TFormReg.BitBtn3Click(Sender: TObject);
 begin
   Com.WriteStr('0');
-  Com.WriteStr('1');
+  if act<>1 then
+   begin
+    Com.WriteStr('1');
+    act:=1;
+   end
+    else act:=0;
 end;
 
 procedure TFormReg.BitBtn4Click(Sender: TObject);
 begin
   Com.WriteStr('0');
+  act:=0;
 end;
 
 procedure TFormReg.Button7Click(Sender: TObject);
 begin
   Com.WriteStr('3');
+  act:=3;
 end;
 
 procedure TFormReg.ComRxChar(Sender: TObject; Count: Integer);
@@ -131,6 +145,11 @@ end;
 procedure TFormReg.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   Com.Close;
+end;
+
+procedure TFormReg.FormCreate(Sender: TObject);
+begin
+act:=0;
 end;
 
 end.

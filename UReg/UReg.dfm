@@ -12,6 +12,7 @@ object FormReg: TFormReg
   Font.Style = []
   OldCreateOrder = False
   OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -409,6 +410,14 @@ object FormReg: TFormReg
     TabOrder = 8
     OnClick = BitBtn4Click
   end
+  object CheckBox1: TCheckBox
+    Left = 8
+    Top = 68
+    Width = 97
+    Height = 17
+    Caption = #1040#1074#1090#1086#1089#1090#1072#1088#1090
+    TabOrder = 9
+  end
   object Com: TComPort
     BaudRate = br115200
     Port = 'COM6'
@@ -429,8 +438,8 @@ object FormReg: TFormReg
     Top = 8
   end
   object ActionList1: TActionList
-    Left = 20
-    Top = 72
+    Left = 588
+    Top = 136
     object Up: TAction
       Caption = 'Up'
       ShortCut = 115
