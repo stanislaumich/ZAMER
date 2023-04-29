@@ -63,8 +63,8 @@ if (Serial.available()) {
 }
   switch (inChar) {
   case 48:  upoff();downoff();Serial.print("0");inChar = 255;break;
-  case 49:  downon();Serial.print("1");inChar = 255;break;
-  case 50:  upon();Serial.print("2");inChar = 255;break;
+  case 49:  upoff();downon();Serial.print("1");inChar = 255;break;
+  case 50:  downoff();upon();Serial.print("2");inChar = 255;break;
   case 51:  Serial.print("3");inChar = 255;break;
   }
   // очищаем чобы не слал постоянно а ждал запроса
