@@ -609,6 +609,8 @@ begin
   //  StringGrid2.row := StringGrid2.row - 1;
   Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
   Label19.Caption := Label33.Caption;
+    Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *
+    myfloat(emp(Edit3.text))));
 end;
 
 procedure TFRH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -803,6 +805,8 @@ begin
       BitBtn3.Enabled := true;
       BitBtn1.Enabled := true;
       Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
+        Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *
+    myfloat(emp(Edit3.text))));
     end;
   end
   else
