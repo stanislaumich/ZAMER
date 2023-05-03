@@ -80,6 +80,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure StringGrid1KeyPress(Sender: TObject; var Key: Char);
+    procedure StringGrid2KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -288,6 +290,35 @@ begin
     StringGrid1.ColWidths[i] := 50;
   StringGrid1.ColWidths[0] := 85;
 
+end;
+
+procedure TFProch.StringGrid1KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = #13) then
+   begin
+    if (StringGrid1.Col < StringGrid1.Colcount - 1) then
+     StringGrid1.Col := StringGrid1.Col + 1
+    else
+     begin
+      StringGrid1.Col :=1;
+      if stringgrid1.row=1 then stringgrid1.row:=2;
+     end;
+   end;
+
+end;
+
+procedure TFProch.StringGrid2KeyPress(Sender: TObject; var Key: Char);
+begin
+   if (Key = #13) then
+    begin
+     if (StringGrid2.Col < StringGrid2.Colcount - 1) then
+      StringGrid2.Col := StringGrid2.Col + 1
+     else
+      begin
+        StringGrid2.Col :=1;
+      if stringgrid2.row=1 then stringgrid2.row:=2;
+      end;
+    end;
 end;
 
 end.
