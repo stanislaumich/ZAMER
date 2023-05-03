@@ -1156,7 +1156,7 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.Open('select * from zkzsvod where nomer=' + Quotedstr(nomer) +
-    ' order by uisp desc');
+    ' order by uisp');
   FZamerV2.ImgSet(FZamerV2.Image3, QTemp.RecordCount <> 0);
 
   FKZ.StringGrid1.row := 1;

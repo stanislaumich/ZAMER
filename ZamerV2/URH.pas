@@ -822,7 +822,6 @@ begin
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
   Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);
 
-  // if checkbox1.checked  then
   begin
     if ABS(QUp.FieldByName('U').AsFloat - Strtofloat(Label19.Caption)) >
       Strtofloat(emp(trim(Edit2.text))) then
@@ -831,7 +830,7 @@ begin
       Label9.Font.Color := clGreen;
     Label9.Caption := myformat(trazu, QUp.FieldByName('U').AsFloat);
   end;
-  // if checkbox2.checked  then
+
   begin
 
     if ABS(QUp.FieldByName('Pt').AsFloat - Strtofloat(Label24.Caption)) >
@@ -840,16 +839,14 @@ begin
     else
       Label14.Font.Color := clGreen;
   end;
-  // if checkbox3.checked  then
+
   begin
     Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
   end;
   // кпд
-  // if checkbox4.checked  then
+
   begin
 
-    // val(MyComma(QUp.FieldByName('P').AsString), p, cod1);
-    // val(MyComma(QUp.FieldByName('Pt').AsString), pt, cod2);
     cod1 := 0;
     cod2 := 0;
     try

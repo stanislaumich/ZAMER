@@ -508,6 +508,7 @@ object FSett: TFSett
     end
   end
   object TabSotrud: TFDTable
+    Active = True
     Connection = FZamerV2.FDC
     TableName = 'zsotr'
     Left = 44
@@ -524,6 +525,7 @@ object FSett: TFSett
     Top = 56
   end
   object TablStend: TFDTable
+    Active = True
     IndexFieldNames = 'NAME'
     Connection = FZamerV2.FDC
     TableName = 'Zstend'
