@@ -730,6 +730,7 @@ begin
     if StringGrid2.row < StringGrid2.RowCount - 2 then
       StringGrid2.row := StringGrid2.row + 1;
     BitStart.Enabled := true;
+    Progressbar1.Position:=0;
   end;
 
 end;
