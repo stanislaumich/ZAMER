@@ -842,7 +842,6 @@ begin
   end;
   // if checkbox3.checked  then
   begin
-
     Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
   end;
   // кпд

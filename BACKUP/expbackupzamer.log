@@ -1,163 +1,165 @@
 
-Соединен с: Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - Production
-With the Partitioning, OLAP, Data Mining and Real Application Testing options
-Экспорт сделан с код.таблицами CL8MSWIN1251 и AL16UTF16 NCHAR
-сервер использует кодировку AL32UTF8 (возможно перекодирование)
+Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - Production
+Export done in CL8MSWIN1251 character set and AL16UTF16 NCHAR character set
+server uses AL32UTF8 character set (possible charset conversion)
 
-Готовится экспорт указанных пользователей  ...
-. экспортируются pre-schema процедурные объекты и действия
-. экспортируются имена библиотек внешних функций для пользователя ZAMER 
-. экспортируются синонимы типа PUBLIC
-. экспортируются синонимы закрытого типа
-. экспортируются определения типов объектов для пользователя ZAMER 
-Готовится экспорт объектов ZAMER ...
-. экспорт связей базы данных
-. экспорт порядковых номеров
-. экспорт определений кластеров
-Готовится экспорт таблиц ZAMER чеpез обычный маpшpут ...
-. . экспорт таблицы                   ATMPZAMERTMP
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                      AZAMERTMP
-                                                          161 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                          GRIDS
-                                                            7 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                            INI
-                                                           14 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                          NOMER
-                                                            1 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                          STEND
-                                                            5 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                        VERSION
-                                                            1 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                          ZAMER
-                                                            1 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                       ZAMERTMP
-                                                           80 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                           ZBIG
-                                                            6 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZDELTA
-                                                            6 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                       ZDVIGALL
-                                                           22 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                        ZELSPEC
-                                                           46 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                     ZELSPECTMP
-                                                            1 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                           ZERR
-                                                            3 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZGRIDS
-                                                           94 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZHHALL
-...
-                                                         3908 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                        ZHHSVOD
-                                                           50 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                           ZINI
-                                                           67 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZKZALL
-                                                          190 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                        ZKZSVOD
-                                                           13 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                        ZMEHALL
-                                                          198 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                       ZMEHSVOD
-                                                            4 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZMLAST
-                                                           72 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                     ZNAGREVALL
-                                                          616 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                    ZNAGREVSVOD
-                                                           16 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZPROCH
-                                                            3 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZRHALL
-                                                          489 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                        ZRHSVOD
-                                                           12 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                        ZSOPROT
-                                                           13 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                          ZSOTR
-                                                            2 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZSTEND
-                                                            5 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZTABLE
-                                                           20 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZULAST
-                                                           41 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                        ZUMSVOD
-                                                           41 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                         ZVIBRO
-                                                          108 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. . экспорт таблицы                          ZZVUK
-                                                           48 строк экспортировано
-EXP-00091: Экспортируется недостоверная статистика
-EXP-00091: Экспортируется недостоверная статистика
-. экспорт синонимов
-. экспорт представлений
-. экспорт хранимых процедур
-. экспортируются операторы
-. экспорт ссылочных ограничений целостности
-. экспорт триггеров
-. экспортируются индексные типы
-. экспортируются битовые, функциональные и расширяемые индексы
-. экспорт посттабличных действий
-. экспорт материализованных представлений
-. экспорт журналов снимков
-. экспорт очередей заданий
-. экспорт обновл.групп и потомков
-. экспортируются размерности
-. экспортируются post-schema процедурные объекты и действия
-. экспорт статистики
-Экспорт завершен успешно с предупреждениями.
+About to export specified users ...
+. exporting pre-schema procedural objects and actions
+. exporting foreign function library names for user ZAMER 
+. exporting PUBLIC type synonyms
+. exporting private type synonyms
+. exporting object type definitions for user ZAMER 
+About to export ZAMER's objects ...
+. exporting database links
+. exporting sequence numbers
+. exporting cluster definitions
+. about to export ZAMER's tables via Conventional Path ...
+. . exporting table                   ATMPZAMERTMP
+EXP-00091: Exporting questionable statistics.
+. . exporting table                      AZAMERTMP
+                                                          161 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        COMMAND
+                                                            0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                          GRIDS
+                                                            7 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                            INI
+                                                           14 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                          NOMER
+                                                            1 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                          STEND
+                                                            5 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        VERSION
+                                                            1 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                          ZAMER
+                                                            1 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       ZAMERTMP
+                                                          241 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                           ZBIG
+                                                            6 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZDELTA
+                                                            6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       ZDVIGALL
+                                                           24 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        ZELSPEC
+                                                          140 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     ZELSPECTMP
+                                                            1 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                           ZERR
+                                                            3 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZGRIDS
+                                                           94 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZHHALL
+......
+                                                         6825 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        ZHHSVOD
+                                                           70 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                           ZINI
+                                                           71 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZKZALL
+                                                          241 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        ZKZSVOD
+                                                           15 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        ZMEHALL
+                                                          198 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       ZMEHSVOD
+                                                            4 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZMLAST
+                                                           72 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     ZNAGREVALL
+                                                          787 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                    ZNAGREVSVOD
+                                                           20 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZPROCH
+                                                            3 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZRHALL
+                                                          769 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        ZRHSVOD
+                                                           13 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        ZSOPROT
+                                                           14 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                          ZSOTR
+                                                            2 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZSTEND
+                                                            5 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZTABLE
+                                                           20 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZULAST
+                                                           41 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        ZUMSVOD
+                                                           41 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         ZVIBRO
+                                                          108 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                          ZZVUK
+                                                           48 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. exporting synonyms
+. exporting views
+. exporting stored procedures
+. exporting operators
+. exporting referential integrity constraints
+. exporting triggers
+. exporting indextypes
+. exporting bitmap, functional and extensible indexes
+. exporting posttables actions
+. exporting materialized views
+. exporting snapshot logs
+. exporting job queues
+. exporting refresh groups and children
+. exporting dimensions
+. exporting post-schema procedural objects and actions
+. exporting statistics
+Export terminated successfully with warnings.
