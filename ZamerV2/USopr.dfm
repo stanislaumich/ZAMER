@@ -116,7 +116,7 @@ object FSopr: TFSopr
     Width = 591
     Height = 30
     Align = alTop
-    TabOrder = 0
+    TabOrder = 5
     object Label1: TLabel
       Left = 3
       Top = 2
@@ -138,7 +138,7 @@ object FSopr: TFSopr
     Width = 77
     Height = 31
     Hint = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072' '#1086#1082#1088' '#1089#1088#1077#1076#1099' '#1057#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1077
-    TabOrder = 1
+    TabOrder = 0
     OnChange = Edit8Change
     OnClick = Edit8Click
   end
@@ -147,7 +147,7 @@ object FSopr: TFSopr
     Top = 73
     Width = 257
     Height = 31
-    TabOrder = 2
+    TabOrder = 3
     OnChange = ComboBox7Change
     Items.Strings = (
       #1047#1074#1077#1079#1076#1072
@@ -158,7 +158,7 @@ object FSopr: TFSopr
     Top = 106
     Width = 224
     Height = 31
-    TabOrder = 3
+    TabOrder = 4
     OnChange = ComboBox8Change
     Items.Strings = (
       '1'
@@ -177,7 +177,7 @@ object FSopr: TFSopr
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 6
     object Label37: TLabel
       Left = 16
       Top = 32
@@ -194,7 +194,7 @@ object FSopr: TFSopr
       DrawingStyle = gdsClassic
       RowCount = 4
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goFixedRowDefAlign]
-      TabOrder = 0
+      TabOrder = 1
       OnDrawCell = StringGrid3DrawCell
       OnKeyPress = StringGrid3KeyPress
     end
@@ -209,7 +209,7 @@ object FSopr: TFSopr
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
       OnChange = ComboBox9Change
     end
   end
@@ -225,7 +225,7 @@ object FSopr: TFSopr
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 7
     object Label38: TLabel
       Left = 9
       Top = 26
@@ -273,7 +273,7 @@ object FSopr: TFSopr
     end
     object Edit13: TEdit
       Left = 375
-      Top = 57
+      Top = 55
       Width = 58
       Height = 31
       Hint = #1057#1086#1087#1088' '#1080#1079#1086#1083
@@ -358,7 +358,7 @@ object FSopr: TFSopr
       FFFFFFE3E2F9A3A1E87675DA7674D88282D8FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 6
+    TabOrder = 12
     OnClick = BitBtn1Click
   end
   object BitBtn5: TBitBtn
@@ -431,7 +431,7 @@ object FSopr: TFSopr
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 11
     OnClick = BitBtn5Click
   end
   object RadioGroup1: TRadioGroup
@@ -439,7 +439,7 @@ object FSopr: TFSopr
     Top = 528
     Width = 573
     Height = 33
-    TabOrder = 8
+    TabOrder = 13
   end
   object RadioButton1: TRadioButton
     Left = 14
@@ -447,7 +447,7 @@ object FSopr: TFSopr
     Width = 151
     Height = 17
     Caption = #1057#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
-    TabOrder = 9
+    TabOrder = 8
     OnClick = RadioButton1Click
   end
   object RadioButton2: TRadioButton
@@ -456,7 +456,7 @@ object FSopr: TFSopr
     Width = 171
     Height = 17
     Caption = #1053#1077' '#1089#1086#1086#1090#1074#1077#1090#1089#1090#1074#1091#1077#1090
-    TabOrder = 10
+    TabOrder = 9
     OnClick = RadioButton2Click
   end
   object RadioButton3: TRadioButton
@@ -466,7 +466,7 @@ object FSopr: TFSopr
     Height = 17
     Caption = #1053#1077' '#1080#1079#1084#1077#1088#1103#1083#1086#1089#1100
     Checked = True
-    TabOrder = 11
+    TabOrder = 10
     TabStop = True
     OnClick = RadioButton3Click
   end
@@ -475,7 +475,7 @@ object FSopr: TFSopr
     Top = 36
     Width = 77
     Height = 31
-    TabOrder = 12
+    TabOrder = 1
     OnClick = Edit1Click
   end
   object Edit2: TEdit
@@ -483,7 +483,7 @@ object FSopr: TFSopr
     Top = 36
     Width = 77
     Height = 31
-    TabOrder = 13
+    TabOrder = 2
     OnClick = Edit2Click
   end
   object QTemp: TFDQuery

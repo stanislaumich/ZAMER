@@ -175,7 +175,7 @@ begin
     end;
   end;
   QSoprot.ExecSQL;
-  ShowMessage('Данные сохранены успешно!');
+  //ShowMessage('Данные сохранены успешно!');
   enableclose := true;
   FZamerV2.ImgSet(FZamerV2.Image1, true);
   FSopr.Close;
