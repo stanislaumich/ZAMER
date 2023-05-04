@@ -21,7 +21,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                        "ZAMER"
                                                             1 rows imported
 . . importing table                     "ZAMERTMP"
-                                                          241 rows imported
+                                                          354 rows imported
 . . importing table                         "ZBIG"
                                                             6 rows imported
 . . importing table                       "ZDELTA"
@@ -29,7 +29,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                     "ZDVIGALL"
                                                            24 rows imported
 . . importing table                      "ZELSPEC"
-                                                          140 rows imported
+                                                          204 rows imported
 . . importing table                   "ZELSPECTMP"
                                                             1 rows imported
 . . importing table                         "ZERR"
@@ -48,21 +48,22 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                      "ZKZSVOD"
                                                            15 rows imported
 . . importing table                      "ZMEHALL"
-                                                          198 rows imported
+                                                          615 rows imported
 . . importing table                     "ZMEHSVOD"
-                                                            4 rows imported
+                                                           10 rows imported
 . . importing table                       "ZMLAST"
-                                                           72 rows imported
+                                                          354 rows imported
 . . importing table                   "ZNAGREVALL"
                                                           787 rows imported
 . . importing table                  "ZNAGREVSVOD"
                                                            20 rows imported
 . . importing table                       "ZPROCH"
-                                                            3 rows imported
+                                                            4 rows imported
 . . importing table                       "ZRHALL"
-                                                          769 rows imported
+.
+                                                         1321 rows imported
 . . importing table                      "ZRHSVOD"
-                                                           13 rows imported
+                                                           18 rows imported
 . . importing table                      "ZSOPROT"
                                                            14 rows imported
 . . importing table                        "ZSOTR"
@@ -72,12 +73,12 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                       "ZTABLE"
                                                            20 rows imported
 . . importing table                       "ZULAST"
-                                                           41 rows imported
+                                                          204 rows imported
 . . importing table                      "ZUMSVOD"
-                                                           41 rows imported
+                                                          204 rows imported
 . . importing table                       "ZVIBRO"
-                                                          108 rows imported
+                                                          144 rows imported
 . . importing table                        "ZZVUK"
-                                                           48 rows imported
+                                                           64 rows imported
 About to enable constraints...
 Import terminated successfully without warnings.

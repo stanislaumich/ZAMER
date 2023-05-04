@@ -222,7 +222,7 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[2, i])));
       end;
-      StringGrid2.RowCount := StringGrid2.RowCount - 1;
+    StringGrid2.RowCount := StringGrid2.RowCount - 1;
 
     StringGrid2.row := 1;
     tipispyt := 2;
@@ -254,7 +254,7 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[3, i])));
       end;
-      StringGrid2.RowCount := StringGrid2.RowCount - 1;
+    StringGrid2.RowCount := StringGrid2.RowCount - 1;
 
     StringGrid2.row := 1;
     tipispyt := 3;
@@ -302,8 +302,8 @@ begin
   QTemp.SQL.add(',t2= ' + Quotedstr(Edit5.text));
   QTemp.SQL.add(',t3= ' + Quotedstr(Edit6.text));
   QTemp.SQL.add(',r= ' + Quotedstr(Edit7.text));
-  QTemp.SQL.add(',nr= ' + Inttostr(Stringgrid2.rowcount-1));
-  QTemp.SQL.add(',tip= ' + inttostr(Stringgrid1.col));
+  QTemp.SQL.add(',nr= ' + Inttostr(StringGrid2.RowCount - 1));
+  QTemp.SQL.add(',tip= ' + Inttostr(StringGrid1.col));
   QTemp.SQL.add(',edizm= ' + Quotedstr(ComboBox1.text));
   QTemp.SQL.add(' where nomer= ' + Quotedstr(nomer));
   QTemp.ExecSQL;
@@ -412,7 +412,7 @@ end;
 
 procedure TFRH.Edit3Change(Sender: TObject);
 begin
-  Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *
+  Label29.Caption := Inttostr(round(Strtofloat(Label24.Caption) / 100 *
     myfloat(emp(Edit3.text))));
 end;
 
@@ -422,22 +422,20 @@ var
   f: textfile;
   s: string;
 begin
-  Label24.Caption := inttostr(round(Strtofloat(FZamerV2.CombPisp.text) * 1000));
-    Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.text) * 1000);
-  Label29.Caption := inttostr(round(strtofloat(Label24.Caption) / 100 *
-    myfloat(emp(Edit3.Text))));
+  Label24.Caption := Inttostr(round(Strtofloat(FZamerV2.CombPisp.text) * 1000));
+  Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.text) * 1000);
+  Label29.Caption := Inttostr(round(Strtofloat(Label24.Caption) / 100 *
+    myfloat(emp(Edit3.text))));
 
-
- for i := 1 to StringGrid1.RowCount - 1 do
-      if StringGrid1.Cells[1, i] <> '' then
-      if i<Stringgrid2.rowcount then
+  for i := 1 to StringGrid1.RowCount - 1 do
+    if StringGrid1.Cells[1, i] <> '' then
+      if i < StringGrid2.RowCount then
       begin
-        //StringGrid2.RowCount := StringGrid2.RowCount + 1;
+        // StringGrid2.RowCount := StringGrid2.RowCount + 1;
         StringGrid2.Cells[0, i] :=
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[1, i])));
       end;
-
 
 end;
 
@@ -474,14 +472,14 @@ begin
   rewrite(f);
   for i := 0 to StringGrid2.colcount - 1 do
   begin
-    Writeln(f, inttostr(StringGrid2.ColWidths[i]));
+    Writeln(f, Inttostr(StringGrid2.ColWidths[i]));
   end;
   Closefile(f);
   assignfile(f, Extractfilepath(paramstr(0)) + 'RH1_width.txt');
   rewrite(f);
   for i := 0 to StringGrid1.colcount - 1 do
   begin
-    Writeln(f, inttostr(StringGrid1.ColWidths[i]));
+    Writeln(f, Inttostr(StringGrid1.ColWidths[i]));
   end;
   Closefile(f);
 {$I+}
@@ -518,7 +516,7 @@ begin
   ComboBox1.ItemIndex := 0;
 
   for i := 1 to 8 do
-    StringGrid1.Cells[0, i] := inttostr(i);
+    StringGrid1.Cells[0, i] := Inttostr(i);
   StringGrid1.Cells[0, 0] := '№';
   StringGrid1.Cells[1, 0] := 'Вар. 1';
   StringGrid1.Cells[2, 0] := 'Вар. 2';
@@ -572,7 +570,7 @@ end;
 
 procedure TFRH.StringGrid1Click(Sender: TObject);
 begin
-  ccol := StringGrid1.Col;
+  ccol := StringGrid1.col;
   StringGrid1.Repaint;
   case ccol of
     1:
@@ -605,11 +603,11 @@ end;
 
 procedure TFRH.StringGrid2Click(Sender: TObject);
 begin
-  //if StringGrid2.row = StringGrid2.RowCount - 1 then
-  //  StringGrid2.row := StringGrid2.row - 1;
+  // if StringGrid2.row = StringGrid2.RowCount - 1 then
+  // StringGrid2.row := StringGrid2.row - 1;
   Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
   Label19.Caption := Label33.Caption;
-    Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *
+  Label29.Caption := Inttostr(round(Strtofloat(Label24.Caption) / 100 *
     myfloat(emp(Edit3.text))));
 end;
 
@@ -722,7 +720,7 @@ begin
     goodcnt := QTemp.FieldByName('r').Asinteger;
     StringGrid2.Cells[8, StringGrid2.row] :=
       Floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
-      inttostr(goodcnt + errcnt) + ')';
+      Inttostr(goodcnt + errcnt) + ')';
     // -----------------------  p
     QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(nomer) +
       ' and uisp=' + Label19.Caption + ' and dp>' + Label29.Caption +
@@ -734,7 +732,7 @@ begin
     goodcnt := QTemp.FieldByName('r').Asinteger;
     StringGrid2.Cells[9, StringGrid2.row] :=
       Floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
-      inttostr(goodcnt + errcnt) + ')';
+      Inttostr(goodcnt + errcnt) + ')';
 
     QTemp.Close;
     if Qselectsred.FieldByName('u').AsFloat <> 0 then
@@ -768,7 +766,7 @@ begin
         [8, StringGrid2.row];
       QInsSvod.ParamByName('otklonp').AsString := StringGrid2.Cells
         [9, StringGrid2.row];
-      QInsSvod.ParamByName('nr').Asinteger := Stringgrid2.Rowcount-1;
+      QInsSvod.ParamByName('nr').Asinteger := StringGrid2.RowCount - 1;
       QInsSvod.ParamByName('tip').Asinteger := tipispyt;
       QInsSvod.ParamByName('t1').AsFloat := 0;
       QInsSvod.ParamByName('t2').AsFloat := 0;
@@ -791,7 +789,7 @@ begin
     StringGrid2.Cells[7, StringGrid2.row] :=
       Floattostr(simpleroundto(Qselectsred.FieldByName('pmax').AsFloat, RazP));
 
-    if StringGrid2.row = StringGrid2.rowcount-1 then
+    if StringGrid2.row = StringGrid2.RowCount - 1 then
     begin
       BitBtn1.Enabled := true;
       BitBtn2.Enabled := true;
@@ -805,8 +803,9 @@ begin
       BitBtn3.Enabled := true;
       BitBtn1.Enabled := true;
       Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
-        Label29.Caption := inttostr(round(Strtofloat(Label24.Caption) / 100 *
-    myfloat(emp(Edit3.text))));
+      Label29.Caption :=
+        Inttostr(round(Strtofloat(Label24.Caption) / 100 *
+        myfloat(emp(Edit3.text))));
     end;
   end
   else
@@ -876,7 +875,7 @@ begin
     else
     begin
       if p <> 0 then
-        Label22.Caption := inttostr(round(pt / p * 100))
+        Label22.Caption := Inttostr(round(pt / p * 100))
       else
         Label22.Caption := 'X';
     end;

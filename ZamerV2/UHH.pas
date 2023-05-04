@@ -109,7 +109,8 @@ var
   tipispyt: Integer;
   times: Integer;
   enableclose: Boolean;
-  ccol : integer;
+  ccol: Integer;
+
 implementation
 
 uses Uzv2Main, UAuto, Usett;
@@ -200,13 +201,13 @@ end;
 procedure TFormHH.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 
-  var
+var
   s: string;
 begin
   with StringGrid1 do
   begin
     if ARow = 0 then
-      Canvas.Brush.Color := Fsett.Panel1.Color;
+      Canvas.Brush.Color := FSett.Panel1.Color;
     Canvas.Brush.Style := bsSolid;
     s := Cells[ACol, ARow];
     if (ACol = ccol) and (ccol > 0) and (ARow > 0) then
@@ -217,66 +218,66 @@ begin
   end;
 end;
 
-
-  {var
+{ var
   s: string;
-begin
+  begin
   // if not (gdFixed in State) then
   // if arow=0 then canvas.Brush.Color:=clred;
 
   with StringGrid1 do
   begin
-    if ARow = 0 then
-      Canvas.Brush.Color := FSett.Panel1.Color;
-    Canvas.Brush.Style := bsSolid;
-    s := Cells[ACol, ARow];
-    Canvas.FillRect(Rect);
-    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  if ARow = 0 then
+  Canvas.Brush.Color := FSett.Panel1.Color;
+  Canvas.Brush.Style := bsSolid;
+  s := Cells[ACol, ARow];
+  Canvas.FillRect(Rect);
+  Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
-end;
+  end;
 }
 procedure TFormHH.StringGrid2Click(Sender: TObject);
 begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
     StringGrid2.row := StringGrid2.row - 1;
   Label26.Caption := StringGrid2.Cells[0, StringGrid2.row];
-  Stringgrid2.repaint;
+  StringGrid2.Repaint;
 end;
 
 procedure TFormHH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
- var
+var
   s: string;
 begin
   with StringGrid2 do
   begin
     if ARow = 0 then
-      Canvas.Brush.Color := Fsett.Panel1.Color;
+      Canvas.Brush.Color := FSett.Panel1.Color;
 
     Canvas.Brush.Style := bsSolid;
-     if (ARow = StringGrid2.row) and (ACol > 0) and (ARow > 0) then
-      Canvas.Brush.Color := Fsett.Panel2.Color;
+    if (ARow = StringGrid2.row) and (ACol > 0) and (ARow > 0) then
+      Canvas.Brush.Color := FSett.Panel2.Color;
     s := Cells[ACol, ARow];
     Canvas.FillRect(Rect);
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
 end;
-{  var
+
+{ var
   s: string;
-begin
+  begin
   // if not (gdFixed in State) then
   // if arow=0 then canvas.Brush.Color:=clred;
 
   with StringGrid2 do
   begin
-    if ARow = 0 then
-      Canvas.Brush.Color := FSett.Panel1.Color;
-    Canvas.Brush.Style := bsSolid;
-    s := Cells[ACol, ARow];
-    Canvas.FillRect(Rect);
-    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  if ARow = 0 then
+  Canvas.Brush.Color := FSett.Panel1.Color;
+  Canvas.Brush.Style := bsSolid;
+  s := Cells[ACol, ARow];
+  Canvas.FillRect(Rect);
+  Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
-end;
+  end;
 }
 procedure TFormHH.Action1Execute(Sender: TObject);
 begin
@@ -526,9 +527,9 @@ begin
           floattostr(round(currentvolt / 100 *
           strtoint(StringGrid1.Cells[1, i])));
       end;
-    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
-    for i := 0 to stringgrid2.ColCount-1 do
-     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
+    // StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to StringGrid2.colcount - 1 do
+      StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 1;
     // установите напряжение
@@ -568,9 +569,9 @@ begin
           floattostr(round(currentvolt / 100 *
           strtoint(StringGrid1.Cells[2, i])));
       end;
-    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
-    for i := 0 to stringgrid2.ColCount-1 do
-     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
+    // StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to StringGrid2.colcount - 1 do
+      StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 2;
     // установите напряжение
@@ -609,9 +610,9 @@ begin
           floattostr(round(currentvolt / 100 *
           strtoint(StringGrid1.Cells[3, i])));
       end;
-    //StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
-    for i := 0 to stringgrid2.ColCount-1 do
-     StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
+    // StringGrid2.Cells[0, StringGrid2.RowCount - 1] := '';
+    for i := 0 to StringGrid2.colcount - 1 do
+      StringGrid2.Cells[i, StringGrid2.RowCount - 1] := '';
     StringGrid2.row := 1;
     tipispyt := 3;
     // установите напряжение
@@ -730,7 +731,7 @@ begin
     if StringGrid2.row < StringGrid2.RowCount - 2 then
       StringGrid2.row := StringGrid2.row + 1;
     BitStart.Enabled := true;
-    Progressbar1.Position:=0;
+    ProgressBar1.Position := 0;
   end;
 
 end;

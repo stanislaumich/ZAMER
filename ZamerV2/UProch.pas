@@ -295,30 +295,36 @@ end;
 procedure TFProch.StringGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
   if (Key = #13) then
-   begin
+  begin
     if (StringGrid1.Col < StringGrid1.Colcount - 1) then
-     StringGrid1.Col := StringGrid1.Col + 1
+      StringGrid1.Col := StringGrid1.Col + 1
     else
-     begin
-      StringGrid1.Col :=1;
-      if stringgrid1.row=1 then stringgrid1.row:=2;
-     end;
-   end;
+    begin
+      StringGrid1.Col := 1;
+      if StringGrid1.row = 1 then
+        StringGrid1.row := 2
+      else
+        StringGrid1.row := 1;
+    end;
+  end;
 
 end;
 
 procedure TFProch.StringGrid2KeyPress(Sender: TObject; var Key: Char);
 begin
-   if (Key = #13) then
-    begin
-     if (StringGrid2.Col < StringGrid2.Colcount - 1) then
+  if (Key = #13) then
+  begin
+    if (StringGrid2.Col < StringGrid2.Colcount - 1) then
       StringGrid2.Col := StringGrid2.Col + 1
-     else
-      begin
-        StringGrid2.Col :=1;
-      if stringgrid2.row=1 then stringgrid2.row:=2;
-      end;
+    else
+    begin
+      StringGrid2.Col := 1;
+      if StringGrid2.row = 1 then
+        StringGrid2.row := 2
+      else
+        StringGrid2.row := 1;
     end;
+  end;
 end;
 
 end.

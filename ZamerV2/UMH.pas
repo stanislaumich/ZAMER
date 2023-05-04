@@ -596,11 +596,10 @@ begin
 
   QTemp.Close;
 
-  Qselsred.Close;
-  Qselsred.open;
-  stringgrid8.cells[1,stringgrid8.row] :=qselsred.fieldbyname('u').asstring;
-  qselsred.close;
-
+  QSelSred.Close;
+  QSelSred.Open;
+  StringGrid8.cells[1, StringGrid8.row] := QSelSred.FieldByName('u').AsString;
+  QSelSred.Close;
 
   Button37.Enabled := true;
   Button27.Enabled := true;
@@ -839,7 +838,7 @@ end;
 
 procedure TFMH.Button2Click(Sender: TObject);
 begin
- FGraphN.show;
+  FGraphN.show;
 end;
 
 procedure TFMH.FormActivate(Sender: TObject);

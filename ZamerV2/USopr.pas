@@ -48,8 +48,8 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
+    BitBtn2: TBitBtn;
+    ComboBox1: TComboBox;
     procedure Button50Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid3KeyPress(Sender: TObject; var Key: Char);
@@ -73,6 +73,7 @@ type
     procedure Edit16Click(Sender: TObject);
     procedure StringGrid3DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -82,7 +83,7 @@ type
 var
   FSopr: TFSopr;
   enableclose: Boolean;
-
+  errm:boolean;
 implementation
 
 {$R *.dfm}
@@ -121,10 +122,53 @@ begin
 
 end;
 
+procedure TFSopr.BitBtn2Click(Sender: TObject);
+var
+  vsred: real;
+  otkl05: real;
+  i, j: Integer;
+  err: array [1 .. 3] of Boolean;
+  s: string;
+begin
+  for i := 1 to 3 do
+    err[i] := false;
+  // --- по каждому столбцу
+  for j := 1 to 3 do
+  begin
+    // --- по каждой строке в столбце
+    vsred := 0;
+    for i := 1 to 3 do
+      vsred := vsred + strtofloat(StringGrid3.cells[j, i]);
+    vsred := vsred / 3;
+    otkl05 := vsred / 200;
+    for i := 1 to 3 do
+      if abs(vsred - strtofloat(StringGrid3.cells[j, i])) > otkl05 then
+        err[j] := true;
+    // ---
+  end;
+  // --- анализ результата
+  s := 'Столбцы с превышением: ';
+  if (err[1]) or (err[2]) or (err[3]) then
+  begin
+    if err[1] then
+      s := s + '1 ';
+    if err[2] then
+      s := s + '2 ';
+    if err[3] then
+      s := s + '3 ';
+    errm:=true;
+    ShowMessage(s);
+  end
+  else Stringgrid3.cells[0,0]:='OK';
+end;
+
 procedure TFSopr.BitBtn5Click(Sender: TObject);
 var
   i, j: Integer;
 begin
+  BitBtn2.Click;
+  if errm then begin errm:=false; exit; end;
+
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.add('delete from ZSOPROT where nomer=' + Quotedstr(Label6.Caption));
@@ -141,7 +185,7 @@ begin
     QSoprot.ParamByName('PHAS').Asstring := ComboBox7.Text;
     QSoprot.ParamByName('SOED').Asstring := ComboBox8.Text;
     QSoprot.ParamByName('SOPRED').Asstring := ComboBox9.Text;
-    QSoprot.ParamByName('IZOLED').Asstring := ComboBox10.Text;
+    QSoprot.ParamByName('IZOLED').Asstring := ComboBox10.Text+' '+ComboBox1.Text;
     QSoprot.ParamByName('IZOLKORP').AsFloat := myfloat(Edit13.Text);
     QSoprot.ParamByName('IZOLOBMOT').AsFloat := myfloat(Edit16.Text);
 
@@ -175,7 +219,7 @@ begin
     end;
   end;
   QSoprot.ExecSQL;
-  //ShowMessage('Данные сохранены успешно!');
+  // ShowMessage('Данные сохранены успешно!');
   enableclose := true;
   FZamerV2.ImgSet(FZamerV2.Image1, true);
   FSopr.Close;
@@ -296,17 +340,18 @@ begin
   StringGrid3.cells[1, 0] := 'U1-U2(U-V)/гл.*';
   StringGrid3.cells[2, 0] := 'V1-V2(V-W)/всп.*';
   StringGrid3.cells[3, 0] := 'W1-W2(W-U)';
-
+  errm:=false;
   ComboBox9.Items.Clear;
   ComboBox10.Items.Clear;
   ComboBox9.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
     'R_SoprotListUP.txt');
   ComboBox10.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
     'R_SoprotListDown.txt');
-  // ComboBox9.Text  := ComboBox9.Items[0];
-  // ComboBox10.Text := ComboBox10.Items[0];
+  ComboBox1.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +
+    'R_SoprotListDown.txt');
   ComboBox9.ItemIndex := 0;
   ComboBox10.ItemIndex := 0;
+  ComboBox1.ItemIndex := 0;
   for i := 1 to 3 do
     for j := 1 to 3 do
     begin

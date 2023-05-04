@@ -358,7 +358,7 @@ begin
     Label13.caption := StringGrid1.Cells[0, StringGrid1.row];
     BitBtn8.Enabled := True;
   end;
- Stringgrid1.repaint;
+  StringGrid1.repaint;
 end;
 
 procedure TFKZ.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -371,7 +371,7 @@ begin
     if ARow = 0 then
       Canvas.Brush.Color := Fsett.Panel1.Color;
     Canvas.Brush.Style := bsSolid;
-    s := cells[ACol, ARow];
+    s := Cells[ACol, ARow];
     if (ARow = StringGrid1.row) and (ACol > 0) and (ARow > 0) then
       Canvas.Brush.Color := Fsett.Panel2.Color;
     Canvas.FillRect(Rect);
@@ -379,22 +379,22 @@ begin
   end;
 end;
 
-  {var
+{ var
   s: string;
-begin
+  begin
   // if not (gdFixed in State) then
   // if arow=0 then canvas.Brush.Color:=clred;
 
   with StringGrid1 do
   begin
-    if ARow = 0 then
-      Canvas.Brush.Color := Fsett.Panel1.Color;
-    Canvas.Brush.Style := bsSolid;
-    s := Cells[ACol, ARow];
-    Canvas.FillRect(Rect);
-    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  if ARow = 0 then
+  Canvas.Brush.Color := Fsett.Panel1.Color;
+  Canvas.Brush.Style := bsSolid;
+  s := Cells[ACol, ARow];
+  Canvas.FillRect(Rect);
+  Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
-end;
+  end;
 }
 procedure TFKZ.TimerUpTimer(Sender: TObject);
 begin
