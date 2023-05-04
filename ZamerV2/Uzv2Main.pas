@@ -247,6 +247,11 @@ begin
         isemptyfloat := myformat(f, strtofloat(s))
 end;
 
+function ztoemp(s:string):string;
+begin
+  if s= '0' then ztoemp:='' else ztoemp:=s;
+end;
+
 procedure TFZamerV2.FormReport;
 const
     wdFindContinue = 1;
@@ -372,8 +377,12 @@ begin
         AddReportString(fn, '1', 'fprizn', FSopr.ComboBox8.Text);
         wrepl('stred1', FSopr.ComboBox9.Text);
         AddReportString(fn, '1', 'stred1', FSopr.ComboBox9.Text);
-        wrepl('rizoled', FSopr.ComboBox10.Text);
-        AddReportString(fn, '1', 'rizoled', FSopr.ComboBox10.Text);
+
+        wrepl('rizoled1', FSopr.ComboBox10.Text);
+        AddReportString(fn, '1', 'rizoled1', FSopr.ComboBox10.Text);
+        wrepl('rizoled2', FSopr.ComboBox1.Text);
+        AddReportString(fn, '1', 'rizoled2', FSopr.ComboBox1.Text);
+
         wrepl('rizolvk', FSopr.Edit13.Text);
         AddReportString(fn, '1', 'rizolvk', FSopr.Edit13.Text);
         wrepl('rizolob', FSopr.Edit16.Text);
@@ -427,7 +436,7 @@ begin
         end;
         for i := 1 to 12 do
         begin
-            wrepl('R' + inttostr(i) + 'hh', (FormHH.Stringgrid2.Cells[5, i]));
+            wrepl('R' + inttostr(i) + 'hh', ztoemp(FormHH.Stringgrid2.Cells[5, i]));
             AddReportString(fn, '1', 'r' + inttostr(i) + 'hh',
               FormHH.Stringgrid2.Cells[5, i]);
         end;
@@ -435,7 +444,7 @@ begin
         // короткое замыкание
         FrepP.Label1.Caption := 'Короткое замыкание';
 
-        wrepl('stred3', FKZ.ComboBox1.Text);
+        wrepl('stred3', FKZ.Edit2.Text+' '+FKZ.ComboBox1.Text);
         AddReportString(fn, '1', 'stred3', FKZ.ComboBox1.Text);
         for i := 1 to 5 do
             for j := 1 to 4 do
@@ -493,6 +502,8 @@ begin
             wrepl('N32x', ''); // R obm
         wrepl('RNAG1', 'НЕИЗВЕСТНО');
         wrepl('stred5', Fnagr.ComboBox3.Text); //
+
+
         // прочие характеристики
         FrepP.Label1.Caption := 'Прочие характеристики';
         for j := 1 to 18 do
@@ -515,44 +526,45 @@ begin
         wrepl('tmpr', Fproch.Edit3.Text);
         wrepl('davl', Fproch.Edit5.Text);
         wrepl('vlag', Fproch.Edit4.Text);
+        wrepl('upri', Fproch.Edit1.Text);
         // галочки
 
         if Fproch.radiobutton1.Checked then
-            wrepl('epr', ans[1]);
+            wrepl('epr', 'ВЫДЕРЖАЛ');
         if Fproch.radiobutton2.Checked then
-            wrepl('epr', ans[2]);
+            wrepl('epr', 'НЕ ВЫДЕРЖАЛ');
         if Fproch.radiobutton3.Checked then
-            wrepl('epr', ans[0]);
+            wrepl('epr', 'НЕ ПРОВОДИЛОСЬ');
         if Fproch.radiobutton4.Checked then
-            wrepl('ipc', ans[1]);
+            wrepl('ipc', 'ВЫДЕРЖАЛ');
         if Fproch.radiobutton5.Checked then
-            wrepl('ipc', ans[2]);
+            wrepl('ipc', 'НЕ ВЫДЕРЖАЛ');
         if Fproch.radiobutton6.Checked then
-            wrepl('ipc', ans[0]);
+            wrepl('ipc', 'НЕ ПРОВОДИЛОСЬ');
         if Fproch.RadioButton7.Checked then
-            wrepl('ipt', ans[1]);
+            wrepl('ipt', 'ВЫДЕРЖАЛ');
         if Fproch.RadioButton8.Checked then
-            wrepl('ipt', ans[2]);
+            wrepl('ipt', 'НЕ ВЫДЕРЖАЛ');
         if Fproch.RadioButton9.Checked then
-            wrepl('ipt', ans[0]);
+            wrepl('ipt', 'НЕ ПРОВОДИЛОСЬ');
         if Fproch.RadioButton10.Checked then
-            wrepl('triz', ans[1]);
+            wrepl('triz', 'ВЫДЕРЖАЛ');
         if Fproch.RadioButton11.Checked then
-            wrepl('triz', ans[2]);
+            wrepl('triz', 'НЕ ВЫДЕРЖАЛ');
         if Fproch.RadioButton12.Checked then
-            wrepl('triz', ans[0]);
+            wrepl('triz', 'НЕ ПРОВОДИЛОСЬ');
         if Fproch.RadioButton13.Checked then
-            wrepl('u074', ans[1]);
+            wrepl('u074', 'ВЫДЕРЖАЛ');
         if Fproch.RadioButton14.Checked then
-            wrepl('u074', ans[2]);
+            wrepl('u074', 'НЕ ВЫДЕРЖАЛ');
         if Fproch.RadioButton15.Checked then
-            wrepl('u074', ans[0]);
+            wrepl('u074', 'НЕ ПРОВОДИЛОСЬ');
         if Fproch.RadioButton16.Checked then
-            wrepl('u113', ans[1]);
+            wrepl('u113', 'ВЫДЕРЖАЛ');
         if Fproch.RadioButton17.Checked then
-            wrepl('u113', ans[2]);
+            wrepl('u113', 'НЕ ВЫДЕРЖАЛ');
         if Fproch.RadioButton18.Checked then
-            wrepl('u113', ans[0]);
+            wrepl('u113', 'НЕ ПРОВОДИЛОСЬ');
         {
           tRazU = '0.0';
           tRazP = '0.00';

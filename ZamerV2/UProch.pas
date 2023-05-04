@@ -100,9 +100,10 @@ uses Uzv2Main;
 
 procedure TFProch.BitBtn1Click(Sender: TObject);
 var
-  i, j, inq: Integer;
+  i, j: Integer;
   cod, errx, erry, errx1, erry1: Integer;
   s: string;
+  inq:real;
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -178,6 +179,7 @@ begin
       Qinsvibro.PaRAMByName('y').AsInteger := j;
       Qinsvibro.PaRAMByName('nomer').Asstring := Label6.Caption;
       s := StringGrid1.cells[j, i];
+      s := StringReplace(s, ',', '.', [rfReplaceAll]);
       val(s, inq, cod);
       if cod <> 0 then
       begin
@@ -185,7 +187,7 @@ begin
         errx := i;
         erry := j;
       end;
-      Qinsvibro.PaRAMByName('val').AsInteger := inq;
+      Qinsvibro.PaRAMByName('val').AsFloat := inq;
       Qinsvibro.ExecSQL;
     end;
   if (errx <> 0) then
@@ -209,6 +211,7 @@ begin
       QInsZvuk.PaRAMByName('y').AsInteger := j;
       QInsZvuk.PaRAMByName('nomer').Asstring := Label6.Caption;
       s := StringGrid2.cells[j, i];
+      s := StringReplace(s, ',', '.', [rfReplaceAll]);
       val(s, inq, cod);
       if cod <> 0 then
       begin
@@ -216,7 +219,7 @@ begin
         errx1 := i;
         erry1 := j;
       end;
-      QInsZvuk.PaRAMByName('val').AsInteger := inq;
+      QInsZvuk.PaRAMByName('val').AsFloat := inq;
       QInsZvuk.ExecSQL;
     end;
   if (errx1 <> 0) then
