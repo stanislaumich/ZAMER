@@ -728,14 +728,16 @@ object FMH: TFMH
     Height = 153
     ScrollBars = ssBoth
     TabOrder = 9
+    Visible = False
   end
   object Button2: TButton
-    Left = 592
-    Top = 148
+    Left = 593
+    Top = 146
     Width = 181
     Height = 21
     Caption = 'Button2'
     TabOrder = 10
+    Visible = False
     OnClick = Button2Click
   end
   object TimerUp: TTimer
