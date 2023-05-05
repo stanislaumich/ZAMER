@@ -500,6 +500,7 @@ object FProch: TFProch
       RowCount = 3
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnKeyPress = StringGrid1KeyPress
     end
     object Panel1: TPanel
       Left = 89
@@ -572,6 +573,7 @@ object FProch: TFProch
       RowCount = 3
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
       TabOrder = 0
+      OnKeyPress = StringGrid2KeyPress
     end
     object Edit3: TEdit
       Left = 163

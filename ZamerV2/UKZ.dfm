@@ -2,7 +2,7 @@ object FKZ: TFKZ
   Left = 0
   Top = 0
   Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1082#1086#1088#1086#1090#1082#1086#1075#1086' '#1079#1072#1084#1099#1082#1072#1085#1080#1103
-  ClientHeight = 548
+  ClientHeight = 569
   ClientWidth = 520
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object FKZ: TFKZ
   OnHide = FormHide
   DesignSize = (
     520
-    548)
+    569)
   PixelsPerInch = 96
   TextHeight = 23
   object Panel1: TPanel
@@ -281,15 +281,15 @@ object FKZ: TFKZ
     Left = 0
     Top = 235
     Width = 517
-    Height = 254
+    Height = 278
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     TabOrder = 2
     DesignSize = (
       517
-      254)
+      278)
     object Label14: TLabel
       Left = 8
-      Top = 226
+      Top = 250
       Width = 87
       Height = 23
       Anchors = [akLeft, akBottom]
@@ -299,7 +299,7 @@ object FKZ: TFKZ
     end
     object Label15: TLabel
       Left = 101
-      Top = 226
+      Top = 250
       Width = 10
       Height = 23
       Anchors = [akLeft, akBottom]
@@ -483,7 +483,7 @@ object FKZ: TFKZ
   end
   object BitBtn10: TBitBtn
     Left = 8
-    Top = 498
+    Top = 518
     Width = 147
     Height = 44
     Anchors = [akRight]
@@ -547,10 +547,11 @@ object FKZ: TFKZ
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     TabOrder = 3
     OnClick = BitBtn10Click
+    ExplicitTop = 498
   end
   object BitBtn12: TBitBtn
     Left = 276
-    Top = 496
+    Top = 517
     Width = 236
     Height = 44
     Anchors = [akRight, akBottom]
@@ -615,6 +616,7 @@ object FKZ: TFKZ
     TabOrder = 4
     WordWrap = True
     OnClick = BitBtn12Click
+    ExplicitTop = 496
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC

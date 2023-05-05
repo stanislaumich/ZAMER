@@ -451,7 +451,7 @@ end;
 
 procedure TFNagr.StringGrid1Click(Sender: TObject);
 begin
- StringGrid1.Repaint;
+  StringGrid1.Repaint;
 end;
 
 procedure TFNagr.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -471,22 +471,23 @@ begin
     Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
 end;
-  {var
+
+{ var
   s: string;
-begin
+  begin
   // if not (gdFixed in State) then
   // if arow=0 then canvas.Brush.Color:=clred;
 
   with StringGrid1 do
   begin
-    if ARow = 0 then
-      Canvas.Brush.Color := Fsett.Panel1.Color;
-    Canvas.Brush.Style := bsSolid;
-    s := cells[ACol, ARow];
-    Canvas.FillRect(Rect);
-    Canvas.TextRect(Rect, s, [tfWordBreak]);
+  if ARow = 0 then
+  Canvas.Brush.Color := Fsett.Panel1.Color;
+  Canvas.Brush.Style := bsSolid;
+  s := cells[ACol, ARow];
+  Canvas.FillRect(Rect);
+  Canvas.TextRect(Rect, s, [tfWordBreak]);
   end;
-end;
+  end;
 }
 procedure TFNagr.StringGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
@@ -518,7 +519,7 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from znagrevall where nomer=' + QuotedStr(Nomer) +
-      ' and tip=' + inttostr(StringGrid1.Row));
+      ' and tip=' + inttostr(StringGrid1.row));
     QTemp.ExecSQL;
 
     QTemp.Open('select * from zamertmp');
@@ -552,7 +553,7 @@ begin
         simpleroundto(strtofloat(MyPoint(QTemp.FieldByName('rot')
         .Asstring)), RazN);
       QInsAll.ParamByName('DOP1').AsFloat := 0;
-      QInsAll.ParamByName('Tip').AsFloat := StringGrid1.Row;
+      QInsAll.ParamByName('Tip').AsFloat := StringGrid1.row;
       QInsAll.ParamByName('nagr').AsFloat := 0;
       QInsAll.ExecSQL;
       QTemp.Next;
@@ -563,9 +564,9 @@ begin
     ///
     QSelectSred.Close;
     QSelectSred.ParamByName('nomer').Asstring := Nomer;
-    QSelectSred.ParamByName('tip').Asinteger := StringGrid1.Row;
+    QSelectSred.ParamByName('tip').Asinteger := StringGrid1.row;
     QSelectSred.ParamByName('du').AsFloat := strtofloat(Edit2.Text);
-    if StringGrid1.Row = 1 then
+    if StringGrid1.row = 1 then
       QSelectSred.ParamByName('dp').AsFloat := 10000000
     else
       QSelectSred.ParamByName('dp').AsFloat := strtofloat(Label29.Caption);
@@ -574,52 +575,52 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from znagrevsvod where nomer=' + QuotedStr(Nomer) +
-      ' and tip=' + inttostr(StringGrid1.Row));
+      ' and tip=' + inttostr(StringGrid1.row));
     QTemp.ExecSQL;
-    StringGrid1.cells[1, StringGrid1.Row] :=
+    StringGrid1.cells[1, StringGrid1.row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('u').AsFloat, RazU));
 
-    StringGrid1.cells[2, StringGrid1.Row] :=
+    StringGrid1.cells[2, StringGrid1.row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('i').AsFloat, RazI));
 
-    StringGrid1.cells[3, StringGrid1.Row] :=
+    StringGrid1.cells[3, StringGrid1.row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sp').AsFloat, RazP));
-    StringGrid1.cells[4, StringGrid1.Row] :=
+    StringGrid1.cells[4, StringGrid1.row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sn').AsFloat, RazN));
-    StringGrid1.cells[5, StringGrid1.Row] :=
+    StringGrid1.cells[5, StringGrid1.row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('sm').AsFloat, RazM));
-    StringGrid1.cells[12, StringGrid1.Row] :=
+    StringGrid1.cells[12, StringGrid1.row] :=
       floattostr(simpleroundto(QSelectSred.FieldByName('pm').AsFloat, RazM));
     // -----------------------  u
     QTemp.Open('select count(*) r from znagrevall where nomer=' +
-      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and du>' +
+      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.row) + ' and du>' +
       Edit2.Text);
     errcnt := QTemp.FieldByName('r').Asinteger;
     QTemp.Open('select count(*) r from znagrevall where nomer=' +
-      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and du<=' +
+      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.row) + ' and du<=' +
       Edit2.Text);
     goodcnt := QTemp.FieldByName('r').Asinteger;
-    StringGrid1.cells[10, StringGrid1.Row] :=
+    StringGrid1.cells[10, StringGrid1.row] :=
       floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
       inttostr(goodcnt + errcnt) + ')';
     // -----------------------  p
     QTemp.Open('select count(*) r from znagrevall where nomer=' +
-      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and dp>' +
+      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.row) + ' and dp>' +
       Label29.Caption);
     errcnt := QTemp.FieldByName('r').Asinteger;
     QTemp.Open('select count(*) r from znagrevall where nomer=' +
-      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.Row) + ' and dp<=' +
+      QuotedStr(Nomer) + ' and tip=' + inttostr(StringGrid1.row) + ' and dp<=' +
       Label29.Caption);
     goodcnt := QTemp.FieldByName('r').Asinteger;
-    StringGrid1.cells[11, StringGrid1.Row] :=
+    StringGrid1.cells[11, StringGrid1.row] :=
       floattostr(simpleroundto(errcnt / (goodcnt + errcnt) * 100, 0)) + '% (' +
       inttostr(goodcnt + errcnt) + ')';
 
     //
 
     BitBtn1.Enabled := true;
-    if StringGrid1.Row < StringGrid1.RowCount - 2 then
-      StringGrid1.Row := StringGrid1.Row + 1;
+    if StringGrid1.row < StringGrid1.RowCount - 2 then
+      StringGrid1.row := StringGrid1.row + 1;
   end;
 
 end;

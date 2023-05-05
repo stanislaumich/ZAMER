@@ -80,6 +80,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure StringGrid1KeyPress(Sender: TObject; var Key: Char);
+    procedure StringGrid2KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -98,9 +100,10 @@ uses Uzv2Main;
 
 procedure TFProch.BitBtn1Click(Sender: TObject);
 var
-  i, j, inq: Integer;
+  i, j: Integer;
   cod, errx, erry, errx1, erry1: Integer;
   s: string;
+  inq:real;
 begin
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -176,6 +179,7 @@ begin
       Qinsvibro.PaRAMByName('y').AsInteger := j;
       Qinsvibro.PaRAMByName('nomer').Asstring := Label6.Caption;
       s := StringGrid1.cells[j, i];
+      s := StringReplace(s, ',', '.', [rfReplaceAll]);
       val(s, inq, cod);
       if cod <> 0 then
       begin
@@ -183,7 +187,7 @@ begin
         errx := i;
         erry := j;
       end;
-      Qinsvibro.PaRAMByName('val').AsInteger := inq;
+      Qinsvibro.PaRAMByName('val').AsFloat := inq;
       Qinsvibro.ExecSQL;
     end;
   if (errx <> 0) then
@@ -207,6 +211,7 @@ begin
       QInsZvuk.PaRAMByName('y').AsInteger := j;
       QInsZvuk.PaRAMByName('nomer').Asstring := Label6.Caption;
       s := StringGrid2.cells[j, i];
+      s := StringReplace(s, ',', '.', [rfReplaceAll]);
       val(s, inq, cod);
       if cod <> 0 then
       begin
@@ -214,7 +219,7 @@ begin
         errx1 := i;
         erry1 := j;
       end;
-      QInsZvuk.PaRAMByName('val').AsInteger := inq;
+      QInsZvuk.PaRAMByName('val').AsFloat := inq;
       QInsZvuk.ExecSQL;
     end;
   if (errx1 <> 0) then
@@ -288,6 +293,41 @@ begin
     StringGrid1.ColWidths[i] := 50;
   StringGrid1.ColWidths[0] := 85;
 
+end;
+
+procedure TFProch.StringGrid1KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = #13) then
+  begin
+    if (StringGrid1.Col < StringGrid1.Colcount - 1) then
+      StringGrid1.Col := StringGrid1.Col + 1
+    else
+    begin
+      StringGrid1.Col := 1;
+      if StringGrid1.row = 1 then
+        StringGrid1.row := 2
+      else
+        StringGrid1.row := 1;
+    end;
+  end;
+
+end;
+
+procedure TFProch.StringGrid2KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = #13) then
+  begin
+    if (StringGrid2.Col < StringGrid2.Colcount - 1) then
+      StringGrid2.Col := StringGrid2.Col + 1
+    else
+    begin
+      StringGrid2.Col := 1;
+      if StringGrid2.row = 1 then
+        StringGrid2.row := 2
+      else
+        StringGrid2.row := 1;
+    end;
+  end;
 end;
 
 end.

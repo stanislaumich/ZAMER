@@ -57,7 +57,6 @@ object FormHH: TFormHH
     Top = 215
     Width = 261
     Height = 57
-    Anchors = [akLeft, akBottom]
     Caption = 
       #1055#1088#1080' '#1079#1072#1087#1086#1083#1085#1077#1085#1080#1080' '#1090#1072#1073#1083#1080#1094#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081' '#1079#1085#1072#1095#1077#1085#1080#1103' '#1074#1099#1093#1086#1076#1103#1097#1080#1077' '#1079#1072' '#1087#1088#1077#1076#1077#1083#1099' '#1076 +
       #1080#1072#1087#1072#1079#1086#1085#1072' '#1086#1090#1073#1088#1072#1089#1099#1074#1072#1102#1090#1089#1103
@@ -130,7 +129,6 @@ object FormHH: TFormHH
     Top = 207
     Width = 561
     Height = 101
-    Anchors = [akLeft, akBottom]
     Caption = #1048#1089#1087#1099#1090#1072#1085#1080#1077' '#1084#1077#1078#1074#1080#1090#1082#1086#1074#1086#1081' '#1080#1079#1086#1083#1103#1094#1080#1080
     TabOrder = 1
     object Label14: TLabel
@@ -208,7 +206,7 @@ object FormHH: TFormHH
     Top = 314
     Width = 273
     Height = 403
-    Anchors = [akLeft, akBottom]
+    Anchors = [akLeft, akTop, akBottom]
     Caption = #1042#1099#1073#1086#1088' '#1074#1072#1088#1080#1072#1085#1090#1072' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -217,16 +215,20 @@ object FormHH: TFormHH
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    DesignSize = (
+      273
+      403)
     object StringGrid1: TStringGrid
       Left = 3
       Top = 28
       Width = 266
       Height = 338
+      Anchors = [akLeft, akTop, akBottom]
       ColCount = 4
       DrawingStyle = gdsClassic
       RowCount = 12
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goFixedRowDefAlign]
-      TabOrder = 0
+      TabOrder = 2
       OnClick = StringGrid1Click
       OnDrawCell = StringGrid1DrawCell
     end
@@ -235,7 +237,8 @@ object FormHH: TFormHH
       Top = 372
       Width = 13
       Height = 17
-      TabOrder = 1
+      Anchors = [akLeft, akBottom]
+      TabOrder = 3
       OnClick = RadioButton1Click
     end
     object RadioButton2: TRadioButton
@@ -243,7 +246,8 @@ object FormHH: TFormHH
       Top = 372
       Width = 21
       Height = 17
-      TabOrder = 2
+      Anchors = [akLeft, akBottom]
+      TabOrder = 4
       OnClick = RadioButton2Click
     end
     object RadioButton3: TRadioButton
@@ -251,7 +255,8 @@ object FormHH: TFormHH
       Top = 372
       Width = 20
       Height = 17
-      TabOrder = 3
+      Anchors = [akLeft, akBottom]
+      TabOrder = 5
       OnClick = RadioButton3Click
     end
     object BitBtn1: TBitBtn
@@ -260,6 +265,7 @@ object FormHH: TFormHH
       Width = 32
       Height = 32
       Hint = #1047#1072#1075#1088#1091#1079#1080#1090#1100' '#1089' '#1076#1080#1089#1082#1072
+      Anchors = [akLeft, akBottom]
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
@@ -317,7 +323,7 @@ object FormHH: TFormHH
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3920CF38F0CFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-      TabOrder = 4
+      TabOrder = 0
       OnClick = BitBtn1Click
     end
     object BitBtn3: TBitBtn
@@ -326,6 +332,7 @@ object FormHH: TFormHH
       Width = 32
       Height = 32
       Hint = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1085#1072' '#1076#1080#1089#1082
+      Anchors = [akLeft, akBottom]
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
@@ -383,7 +390,7 @@ object FormHH: TFormHH
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFEDA429EC9E20EDAC3BE99E2EE69929E49128E08C27DC8524D88021D4
         7B20CE6E13C76110FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-      TabOrder = 5
+      TabOrder = 1
       OnClick = BitBtn3Click
     end
   end
@@ -392,7 +399,7 @@ object FormHH: TFormHH
     Top = 314
     Width = 768
     Height = 392
-    Anchors = [akLeft, akBottom]
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -409,7 +416,7 @@ object FormHH: TFormHH
       Top = 28
       Width = 762
       Height = 337
-      Anchors = [akLeft, akTop, akRight]
+      Anchors = [akLeft, akTop, akRight, akBottom]
       ColCount = 7
       DefaultColWidth = 100
       DrawingStyle = gdsClassic
@@ -420,7 +427,7 @@ object FormHH: TFormHH
       Font.Style = []
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goDrawFocusSelected, goColSizing, goEditing, goFixedRowDefAlign]
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 1
       OnClick = StringGrid2Click
       OnDrawCell = StringGrid2DrawCell
     end
@@ -429,8 +436,8 @@ object FormHH: TFormHH
       Top = 368
       Width = 762
       Height = 21
-      Anchors = [akLeft, akTop, akRight]
-      TabOrder = 1
+      Anchors = [akLeft, akRight, akBottom]
+      TabOrder = 0
     end
   end
   object BitStart: TBitBtn
@@ -497,7 +504,7 @@ object FormHH: TFormHH
       EEDFD4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFE7D3C5C49271A65D2C97410AA15111A1511197410AA65D2CC4
       9271E7D3C5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 4
+    TabOrder = 7
     OnClick = BitStartClick
   end
   object BitSave: TBitBtn
@@ -564,7 +571,7 @@ object FormHH: TFormHH
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 5
+    TabOrder = 8
     OnClick = BitSaveClick
   end
   object BitClear: TBitBtn
@@ -640,7 +647,7 @@ object FormHH: TFormHH
     Width = 865
     Height = 176
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1076#1072#1090#1095#1080#1082#1086#1074
-    TabOrder = 7
+    TabOrder = 5
     DesignSize = (
       865
       176)
@@ -831,7 +838,8 @@ object FormHH: TFormHH
         1C37F71725F4E3E2FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE7
         E6FE716FF95157F76370F85D65F84444F5FFFFFFFFFFFFFFFFFF}
-      TabOrder = 0
+      TabOrder = 2
+      TabStop = False
       OnClick = BitBtn1Click
     end
     object Edit2: TEdit
@@ -849,7 +857,7 @@ object FormHH: TFormHH
       Width = 70
       Height = 33
       Anchors = [akTop, akRight]
-      TabOrder = 2
+      TabOrder = 0
       Text = '15'
     end
   end
@@ -858,7 +866,7 @@ object FormHH: TFormHH
     Top = 275
     Width = 76
     Height = 33
-    TabOrder = 8
+    TabOrder = 4
     Text = #1052#1054#1084
   end
   object TimUp: TTimer
