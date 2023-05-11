@@ -3,24 +3,41 @@
 /* описание пакета
 0 - тип управления - 1 - контроллер, 2-2 компьютер, 3 - вырубить все реле, 4 - врубить реле минус, 
     5 - врубить реле плюс, 6 -получить состояние контроллера
-1 - 
-2 - 
-3 - 
-4 - 
-
-5 - 
-6 - 
-
-7 - 
-8 - 
-9 - 
-10- 
+ 
 */
 #define pinup 3
 #define pindown 2
 #define speed 115200
+#define pinbeep 4
+
 
 int inChar;
+
+void beep(int t1,int t2){
+  #ifdef pinbeep
+   unsigned long h;
+   h=millis();
+   while (millis()-h<(unsigned int)(t1)){
+    digitalWrite(pinbeep,HIGH);
+    delayMicroseconds(t2);
+    digitalWrite(pinbeep,LOW);
+    delayMicroseconds(t2);
+   }
+   digitalWrite(pinbeep,LOW);
+  #endif
+ }
+void shortbeep(void){
+  beep(50,100);
+ }
+void longbeep(void){
+  beep(250,1000);
+ }
+void dshortbeep(void){
+  shortbeep();
+  delay(50);
+  shortbeep(); 
+ } 
+
 
 void upoff(){
  digitalWrite(pinup,HIGH);
@@ -35,25 +52,14 @@ void downon(){
  digitalWrite(pindown,LOW);
 }
 
-//void sendpacket(){
-//   Serial.write(dataArray,len);/
-//}
-
 void setup() {  
   Serial.begin(speed);
   pinMode(pinup,OUTPUT);
   upoff();  
   pinMode(pindown,OUTPUT);
   downoff();
-  /*
-  upon();
-  delay(1000);
-  downon();
-  delay(1000);
-  upoff();
-  delay(1000);
-  downoff();
-  */
+  pinMode(pinbeep,OUTPUT);
+  beep(250,1000);
 }
 
 void loop() {
@@ -65,7 +71,7 @@ if (Serial.available()) {
   case 48:  upoff();downoff();Serial.print("0");inChar = 255;break;
   case 49:  upoff();downon();Serial.print("1");inChar = 255;break;
   case 50:  downoff();upon();Serial.print("2");inChar = 255;break;
-  case 51:  Serial.print("3");inChar = 255;break;
+  case 51:  longbeep();Serial.print("3");inChar = 255;break;
   }
   // очищаем чобы не слал постоянно а ждал запроса
   //dataArray[0]=255;
