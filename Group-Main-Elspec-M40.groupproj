@@ -3,16 +3,10 @@
         <ProjectGuid>{6C4216F5-A9D3-4672-ABFA-5D096037749C}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="M45ORIG\SOURCE\T45.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="Tables\TABLES.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UPDATER\UPDATER.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="SborElspec\SborELSPEC.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UReg\RegU.dproj">
@@ -22,12 +16,6 @@
             <Dependencies/>
         </Projects>
         <Projects Include="Example1\SOURCE\SborT45.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="TST\TST.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="CP8507\Sbor8507.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="SBORUIP\SborUIP.dproj">
@@ -44,15 +32,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="T45">
-        <MSBuild Projects="M45ORIG\SOURCE\T45.cbproj"/>
-    </Target>
-    <Target Name="T45:Clean">
-        <MSBuild Projects="M45ORIG\SOURCE\T45.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="T45:Make">
-        <MSBuild Projects="M45ORIG\SOURCE\T45.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="TABLES">
         <MSBuild Projects="Tables\TABLES.dproj"/>
     </Target>
@@ -70,15 +49,6 @@
     </Target>
     <Target Name="UPDATER:Make">
         <MSBuild Projects="UPDATER\UPDATER.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="SborELSPEC">
-        <MSBuild Projects="SborElspec\SborELSPEC.dproj"/>
-    </Target>
-    <Target Name="SborELSPEC:Clean">
-        <MSBuild Projects="SborElspec\SborELSPEC.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="SborELSPEC:Make">
-        <MSBuild Projects="SborElspec\SborELSPEC.dproj" Targets="Make"/>
     </Target>
     <Target Name="RegU">
         <MSBuild Projects="UReg\RegU.dproj"/>
@@ -107,24 +77,6 @@
     <Target Name="SborT45:Make">
         <MSBuild Projects="Example1\SOURCE\SborT45.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="TST">
-        <MSBuild Projects="TST\TST.dproj"/>
-    </Target>
-    <Target Name="TST:Clean">
-        <MSBuild Projects="TST\TST.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="TST:Make">
-        <MSBuild Projects="TST\TST.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="Sbor8507">
-        <MSBuild Projects="CP8507\Sbor8507.dproj"/>
-    </Target>
-    <Target Name="Sbor8507:Clean">
-        <MSBuild Projects="CP8507\Sbor8507.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Sbor8507:Make">
-        <MSBuild Projects="CP8507\Sbor8507.dproj" Targets="Make"/>
-    </Target>
     <Target Name="SborUIP">
         <MSBuild Projects="SBORUIP\SborUIP.dproj"/>
     </Target>
@@ -144,13 +96,13 @@
         <MSBuild Projects="BIG\BIG.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="T45;TABLES;UPDATER;SborELSPEC;RegU;ZamerV2;SborT45;TST;Sbor8507;SborUIP;BIG"/>
+        <CallTarget Targets="TABLES;UPDATER;RegU;ZamerV2;SborT45;SborUIP;BIG"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="T45:Clean;TABLES:Clean;UPDATER:Clean;SborELSPEC:Clean;RegU:Clean;ZamerV2:Clean;SborT45:Clean;TST:Clean;Sbor8507:Clean;SborUIP:Clean;BIG:Clean"/>
+        <CallTarget Targets="TABLES:Clean;UPDATER:Clean;RegU:Clean;ZamerV2:Clean;SborT45:Clean;SborUIP:Clean;BIG:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="T45:Make;TABLES:Make;UPDATER:Make;SborELSPEC:Make;RegU:Make;ZamerV2:Make;SborT45:Make;TST:Make;Sbor8507:Make;SborUIP:Make;BIG:Make"/>
+        <CallTarget Targets="TABLES:Make;UPDATER:Make;RegU:Make;ZamerV2:Make;SborT45:Make;SborUIP:Make;BIG:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
