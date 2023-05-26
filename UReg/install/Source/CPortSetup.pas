@@ -1,16 +1,15 @@
+(* *****************************************************
+  * ComPort Library ver. 4.11                          *
+  *   for Delphi 5, 6, 7, 2007-2010,XE  and            *
+  * written by Dejan Crnila, 1998 - 2002               *
+  * maintained by Lars B. Dybdahl, 2003                *
+  *  and Warren Postma, 2008                           *
+  *                                                    *
+  * Fixed up for Delphi 2009 by W.Postma.  Oct 2008    *
+  * More like completely rewritten, actually.          *
+  **************************************************** *)
 
-(******************************************************
- * ComPort Library ver. 4.11                          *
- *   for Delphi 5, 6, 7, 2007-2010,XE  and            *
- * written by Dejan Crnila, 1998 - 2002               *
- * maintained by Lars B. Dybdahl, 2003                *
- *  and Warren Postma, 2008                           *
- *                                                    *
- * Fixed up for Delphi 2009 by W.Postma.  Oct 2008    *
- * More like completely rewritten, actually.          *
- *****************************************************)
-
-  { Communications Port Setup Options Form }
+{ Communications Port Setup Options Form }
 
 unit CPortSetup;
 

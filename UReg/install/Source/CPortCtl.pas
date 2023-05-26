@@ -1,26 +1,26 @@
-(******************************************************
- * ComPort Library ver. 4.11                          *
- *   for Delphi 5, 6, 7, 2007-2010,XE  and            *
- *   C++ Builder 3, 4, 5, 6                           *
- * written by Dejan Crnila, 1998 - 2002               *
- * maintained by Lars B. Dybdahl, 2003                *
- * Homepage: http://comport.sf.net/                   *
- *                                                    *
- * Brian Gochnauer Oct 2010                           *
- *     Removed ansi references for backward compat    *
- *     Made unicode ready                             *
- *****************************************************)
+(* *****************************************************
+  * ComPort Library ver. 4.11                          *
+  *   for Delphi 5, 6, 7, 2007-2010,XE  and            *
+  *   C++ Builder 3, 4, 5, 6                           *
+  * written by Dejan Crnila, 1998 - 2002               *
+  * maintained by Lars B. Dybdahl, 2003                *
+  * Homepage: http://comport.sf.net/                   *
+  *                                                    *
+  * Brian Gochnauer Oct 2010                           *
+  *     Removed ansi references for backward compat    *
+  *     Made unicode ready                             *
+  **************************************************** *)
 
-{Met wijziging door mij aangebracht, zie:
-- TAdvanceCaret
+{ Met wijziging door mij aangebracht, zie:
+  - TAdvanceCaret
   acPage: clear screen added
-- procedure TCustomComTerminal.AdvanceCaret(Kind: TAdvanceCaret);
+  - procedure TCustomComTerminal.AdvanceCaret(Kind: TAdvanceCaret);
   commando newpage toegevoegd
-- procedure TCustomComTerminal.SetAttributes(AParams: TStrings);
+  - procedure TCustomComTerminal.SetAttributes(AParams: TStrings);
   30 ... 49 for foreground and background colors
-- function TCustomComTerminal.GetCharAttr: TComTermChar;
+  - function TCustomComTerminal.GetCharAttr: TComTermChar;
   Colorchanging made possible
-- procedure TCustomComTerminal.PutChar(Ch: Char);
+  - procedure TCustomComTerminal.PutChar(Ch: Char);
   splitsing between linefeed and newpage
 }
 unit CPortCtl;
@@ -35,8 +35,8 @@ uses
 
 type
   // property types
-  TComProperty = (cpNone, cpPort, cpBaudRate, cpDataBits, cpStopBits,
-    cpParity, cpFlowControl);
+  TComProperty = (cpNone, cpPort, cpBaudRate, cpDataBits, cpStopBits, cpParity,
+    cpFlowControl);
 
   // assistant class for TComComboBox, TComRadioGroup controls
   TComSelect = class
@@ -82,7 +82,8 @@ type
     procedure SetComProperty(const Value: TComProperty);
     procedure SetText(const Value: string);
   protected
-    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
+    procedure Notification(AComponent: TComponent;
+      Operation: TOperation); override;
     procedure Change; override;
   public
     constructor Create(AOwner: TComponent); override;
@@ -91,8 +92,10 @@ type
     procedure UpdateSettings;
   published
     property ComPort: TCustomComPort read GetComPort write SetComPort;
-    property ComProperty: TComProperty read GetComProperty write SetComProperty default cpNone;
-    property AutoApply: Boolean read GetAutoApply write SetAutoApply default False;
+    property ComProperty: TComProperty read GetComProperty write SetComProperty
+      default cpNone;
+    property AutoApply: Boolean read GetAutoApply write SetAutoApply
+      default False;
     property Text: string read GetText write SetText;
     property Style;
     property Color;
@@ -159,7 +162,8 @@ type
     procedure SetComPort(const Value: TCustomComPort);
     procedure SetComProperty(const Value: TComProperty);
   protected
-    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
+    procedure Notification(AComponent: TComponent;
+      Operation: TOperation); override;
     procedure Click; override;
   public
     constructor Create(AOwner: TComponent); override;
@@ -168,8 +172,10 @@ type
     procedure UpdateSettings;
   published
     property ComPort: TCustomComPort read GetComPort write SetComPort;
-    property ComProperty: TComProperty read GetComProperty write SetComProperty default cpNone;
-    property AutoApply: Boolean read GetAutoApply write SetAutoApply default False;
+    property ComProperty: TComProperty read GetComProperty write SetComProperty
+      default cpNone;
+    property AutoApply: Boolean read GetAutoApply write SetAutoApply
+      default False;
     property Align;
     property Caption;
     property Color;
@@ -226,7 +232,7 @@ type
     lkPurpleLight, lkBulb, lkCustom);
   TComLedSignal = (lsConn, lsCTS, lsDSR, lsRLSD, lsRing, lsRx, lsTx);
   TLedState = (lsOff, lsOn);
-  TComLedGlyphs = array[TLedState] of TLedBitmap;
+  TComLedGlyphs = array [TLedState] of TLedBitmap;
   TLedStateEvent = procedure(Sender: TObject; AState: TLedState) of object;
 
   // led control that shows the state of serial signals
@@ -260,9 +266,11 @@ type
     function IsStateOn: Boolean;
   protected
     procedure Paint; override;
-    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
+    procedure Notification(AComponent: TComponent;
+      Operation: TOperation); override;
     procedure DoChange(AState: TLedState); dynamic;
-    procedure CMEnabledChanged(var Message: TMessage); message CM_ENABLEDCHANGED;
+    procedure CMEnabledChanged(var Message: TMessage);
+      message CM_ENABLEDCHANGED;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -271,12 +279,13 @@ type
     property LedSignal: TComLedSignal read FLedSignal write SetLedSignal;
     // kind property must be published before GlyphOn, GlyphOff
     property Kind: TLedKind read FKind write SetKind;
-    property GlyphOn: TLedBitmap index 0
-      read GetGlyph write SetGlyph stored StoredGlyph;
-    property GlyphOff: TLedBitmap index 1
-      read GetGlyph write SetGlyph stored StoredGlyph;
+    property GlyphOn: TLedBitmap index 0 read GetGlyph write SetGlyph
+      stored StoredGlyph;
+    property GlyphOff: TLedBitmap index 1 read GetGlyph write SetGlyph
+      stored StoredGlyph;
     property State: TLedState read FState write SetState default lsOff;
-    property RingDuration: Integer read GetRingDuration write SetRingDuration default 1000;
+    property RingDuration: Integer read GetRingDuration write SetRingDuration
+      default 1000;
     property Align;
     property DragCursor;
     property DragMode;
@@ -311,7 +320,7 @@ type
 {$ENDIF}
   end;
 
-  TCustomComTerminal = class;  // forward declaration
+  TCustomComTerminal = class; // forward declaration
 
   // terminal character
   TComTermChar = record
@@ -348,9 +357,10 @@ type
   // terminal types
   TTermEmulation = (teVT100orANSI, teVT52, teNone);
   TTermCaret = (tcBlock, tcUnderline, tcNone);
-  TAdvanceCaret = (acChar, acReturn, acLineFeed, acReverseLineFeed,
-    acTab, acBackspace, acPage);
+  TAdvanceCaret = (acChar, acReturn, acLineFeed, acReverseLineFeed, acTab,
+    acBackspace, acPage);
   TArrowKeys = (akTerminal, akWindows);
+
   TTermAttributes = record
     FrontColor: TColor;
     BackColor: TColor;
@@ -358,12 +368,15 @@ type
     AltIntensity: Boolean;
     Underline: Boolean;
   end;
+
   TTermMode = record
     Keys: TArrowKeys;
   end;
 
-  TEscapeEvent = procedure(Sender: TObject; var EscapeCodes: TEscapeCodes) of object;
-  TUnhandledEvent = procedure(Sender: TObject; Code: TEscapeCode; Data: string) of object;
+  TEscapeEvent = procedure(Sender: TObject; var EscapeCodes: TEscapeCodes)
+    of object;
+  TUnhandledEvent = procedure(Sender: TObject; Code: TEscapeCode; Data: string)
+    of object;
   TStrRecvEvent = procedure(Sender: TObject; var Str: string) of object;
   TChScreenEvent = procedure(Sender: TObject; Ch: Char) of object;
 
@@ -449,7 +462,8 @@ type
     procedure WMGetDlgCode(var Message: TWMGetDlgCode); message WM_GETDLGCODE;
     procedure WMHScroll(var Message: TWMHScroll); message WM_HSCROLL;
     procedure WMKillFocus(var Message: TWMSetFocus); message WM_KILLFOCUS;
-    procedure WMLButtonDown(var Message: TWMLButtonDown); message WM_LBUTTONDOWN;
+    procedure WMLButtonDown(var Message: TWMLButtonDown);
+      message WM_LBUTTONDOWN;
     procedure WMSetFocus(var Message: TWMSetFocus); message WM_SETFOCUS;
     procedure WMSize(var Msg: TWMSize); message WM_SIZE;
     procedure WMVScroll(var Message: TWMVScroll); message WM_VSCROLL;
@@ -460,7 +474,8 @@ type
     procedure KeyDown(var Key: Word; Shift: TShiftState); override;
     procedure KeyPress(var Key: Char); override;
     procedure Loaded; override;
-    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
+    procedure Notification(AComponent: TComponent;
+      Operation: TOperation); override;
     procedure Paint; override;
     procedure DoChar(Ch: Char); dynamic;
     procedure DoGetEscapeCodes(var EscapeCodes: TEscapeCodes); dynamic;
@@ -471,19 +486,23 @@ type
     destructor Destroy; override;
     procedure ClearScreen;
     procedure MoveCaret(AColumn, ARow: Integer);
-    procedure Write(const Buffer:string; Size: Integer);
+    procedure Write(const Buffer: string; Size: Integer);
     procedure WriteStr(const Str: string);
     procedure WriteEscCode(ACode: TEscapeCode; AParams: TStrings);
     procedure LoadFromStream(Stream: TStream);
     procedure SaveToStream(Stream: TStream);
     procedure SelectFont;
     procedure ShowSetupDialog;
-    property AltColor: TColor read FAltColor write SetAltColor default $00A6A6A6;
+    property AltColor: TColor read FAltColor write SetAltColor
+      default $00A6A6A6;
     property AppendLF: Boolean read FAppendLF write FAppendLF default False;
-    property ArrowKeys: TArrowKeys read FArrowKeys write FArrowKeys default akTerminal;
-    property BorderStyle: TBorderStyle read FBorderStyle write SetBorderStyle default bsSingle;
+    property ArrowKeys: TArrowKeys read FArrowKeys write FArrowKeys
+      default akTerminal;
+    property BorderStyle: TBorderStyle read FBorderStyle write SetBorderStyle
+      default bsSingle;
     property Caret: TTermCaret read FCaret write SetCaret default tcBlock;
-    property Connected: Boolean read GetConnected write SetConnected stored False;
+    property Connected: Boolean read GetConnected write SetConnected
+      stored False;
     property ComPort: TCustomComPort read FComPort write SetComPort;
     property Columns: Integer read FColumns write SetColumns default 80;
     property Emulation: TTermEmulation read FEmulation write SetEmulation;
@@ -492,17 +511,18 @@ type
     property LocalEcho: Boolean read FLocalEcho write FLocalEcho default False;
     property SendLF: Boolean read FSendLF write FSendLF default False;
     property ScrollBars: TScrollStyle read FScrollBars write SetScrollBars;
-    property SmoothScroll: Boolean read FSmoothScroll write FSmoothScroll default False;
+    property SmoothScroll: Boolean read FSmoothScroll write FSmoothScroll
+      default False;
     property Rows: Integer read FRows write SetRows default 24;
     property WantTab: Boolean read FWantTab write FWantTab default False;
     property WrapLines: Boolean read FWrapLines write FWrapLines default False;
     property OnChar: TChScreenEvent read FOnChar write FOnChar;
-    property OnGetEscapeCodes: TEscapeEvent
-      read FOnGetEscapeCodes write FOnGetEscapeCodes;
-    property OnStrRecieved: TStrRecvEvent
-      read FOnStrRecieved write FOnStrRecieved;
-    property OnUnhandledCode: TUnhandledEvent
-      read FOnUnhandledCode write FOnUnhandledCode;
+    property OnGetEscapeCodes: TEscapeEvent read FOnGetEscapeCodes
+      write FOnGetEscapeCodes;
+    property OnStrRecieved: TStrRecvEvent read FOnStrRecieved
+      write FOnStrRecieved;
+    property OnUnhandledCode: TUnhandledEvent read FOnUnhandledCode
+      write FOnUnhandledCode;
   end;
 
   // publish properties
@@ -593,9 +613,9 @@ implementation
 uses
   SysUtils, Dialogs, CPortTrmSet;
 
-(*****************************************
- * auxilary functions                    *
- *****************************************)
+(* ****************************************
+  * auxilary functions                    *
+  **************************************** *)
 
 function Min(A, B: Integer): Integer;
 begin
@@ -613,9 +633,9 @@ begin
     Result := B;
 end;
 
-(*****************************************
- * TComSelect class                      *
- *****************************************)
+(* ****************************************
+  * TComSelect class                      *
+  **************************************** *)
 
 // select baud rate property
 procedure TComSelect.SelectBaudRate;
@@ -679,12 +699,18 @@ procedure TComSelect.SetComProperty(const Value: TComProperty);
 begin
   FComProperty := Value;
   case FComProperty of
-    cpPort: SelectPort;
-    cpBaudRate: SelectBaudRate;
-    cpDataBits: SelectDataBits;
-    cpStopBits: SelectStopBits;
-    cpParity: SelectParity;
-    cpFlowControl: SelectFlowControl;
+    cpPort:
+      SelectPort;
+    cpBaudRate:
+      SelectBaudRate;
+    cpDataBits:
+      SelectDataBits;
+    cpStopBits:
+      SelectStopBits;
+    cpParity:
+      SelectParity;
+    cpFlowControl:
+      SelectFlowControl;
   else
     Items.Clear;
   end;
@@ -694,12 +720,18 @@ end;
 procedure TComSelect.Change(const Text: string);
 begin
   case FComProperty of
-    cpPort: FPort := Text;
-    cpBaudRate: FBaudRate := StrToBaudRate(Text);
-    cpDataBits: FDataBits := StrToDataBits(Text);
-    cpStopBits: FStopBits := StrToStopBits(Text);
-    cpParity: FParity := StrToParity(Text);
-    cpFlowControl: FFlowControl := StrToFlowControl(Text);
+    cpPort:
+      FPort := Text;
+    cpBaudRate:
+      FBaudRate := StrToBaudRate(Text);
+    cpDataBits:
+      FDataBits := StrToDataBits(Text);
+    cpStopBits:
+      FStopBits := StrToStopBits(Text);
+    cpParity:
+      FParity := StrToParity(Text);
+    cpFlowControl:
+      FFlowControl := StrToFlowControl(Text);
   end;
   if FAutoApply then
     ApplySettings;
@@ -713,12 +745,18 @@ begin
     with FComPort do
     begin
       case FComProperty of
-        cpPort: Port := FPort;
-        cpBaudRate: BaudRate := FBaudRate;
-        cpDataBits: DataBits := FDataBits;
-        cpStopBits: StopBits := FStopBits;
-        cpParity: Parity.Bits := FParity;
-        cpFlowControl: FlowControl.FlowControl := FFlowControl;
+        cpPort:
+          Port := FPort;
+        cpBaudRate:
+          BaudRate := FBaudRate;
+        cpDataBits:
+          DataBits := FDataBits;
+        cpStopBits:
+          StopBits := FStopBits;
+        cpParity:
+          Parity.Bits := FParity;
+        cpFlowControl:
+          FlowControl.FlowControl := FFlowControl;
       end;
     end;
   end;
@@ -731,47 +769,48 @@ begin
     with FComPort do
       case FComProperty of
         cpPort:
-        begin
-          ItemIndex := Items.IndexOf(Port);
-          if ItemIndex > -1 then
-            FPort := Items[ItemIndex];
-        end;
+          begin
+            ItemIndex := Items.IndexOf(Port);
+            if ItemIndex > -1 then
+              FPort := Items[ItemIndex];
+          end;
         cpBaudRate:
-        begin
-          ItemIndex := Items.IndexOf(BaudRateToStr(BaudRate));
-          if ItemIndex > -1 then
-            FBaudRate := StrToBaudRate(Items[ItemIndex]);
-        end;
+          begin
+            ItemIndex := Items.IndexOf(BaudRateToStr(BaudRate));
+            if ItemIndex > -1 then
+              FBaudRate := StrToBaudRate(Items[ItemIndex]);
+          end;
         cpDataBits:
-        begin
-          ItemIndex := Items.IndexOf(DataBitsToStr(DataBits));
-          if ItemIndex > -1 then
-            FDataBits := StrToDataBits(Items[ItemIndex]);
-        end;
+          begin
+            ItemIndex := Items.IndexOf(DataBitsToStr(DataBits));
+            if ItemIndex > -1 then
+              FDataBits := StrToDataBits(Items[ItemIndex]);
+          end;
         cpStopBits:
-        begin
-          ItemIndex := Items.IndexOf(StopBitsToStr(StopBits));
-          if ItemIndex > -1 then
-            FStopBits := StrToStopBits(Items[ItemIndex]);
-        end;
+          begin
+            ItemIndex := Items.IndexOf(StopBitsToStr(StopBits));
+            if ItemIndex > -1 then
+              FStopBits := StrToStopBits(Items[ItemIndex]);
+          end;
         cpParity:
-        begin
-          ItemIndex := Items.IndexOf(ParityToStr(Parity.Bits));
-          if ItemIndex > -1 then
-            FParity := StrToParity(Items[ItemIndex]);
-        end;
+          begin
+            ItemIndex := Items.IndexOf(ParityToStr(Parity.Bits));
+            if ItemIndex > -1 then
+              FParity := StrToParity(Items[ItemIndex]);
+          end;
         cpFlowControl:
-        begin
-          ItemIndex := Items.IndexOf(FlowControlToStr(FlowControl.FlowControl));
-          if ItemIndex > -1 then
-            FFlowControl := StrToFlowControl(Items[ItemIndex]);
-        end;
+          begin
+            ItemIndex :=
+              Items.IndexOf(FlowControlToStr(FlowControl.FlowControl));
+            if ItemIndex > -1 then
+              FFlowControl := StrToFlowControl(Items[ItemIndex]);
+          end;
       end;
 end;
 
-(*****************************************
- * TComComboBox control                  *
- *****************************************)
+(* ****************************************
+  * TComComboBox control                  *
+  **************************************** *)
 
 // create control
 constructor TComComboBox.Create(AOwner: TComponent);
@@ -890,9 +929,9 @@ begin
   Result := FComSelect.ComProperty;
 end;
 
-(*****************************************
- * TRadioGroup control                   *
- *****************************************)
+(* ****************************************
+  * TRadioGroup control                   *
+  **************************************** *)
 
 // create control
 constructor TComRadioGroup.Create(AOwner: TComponent);
@@ -1006,9 +1045,9 @@ begin
   Result := FComSelect.ComProperty;
 end;
 
-(*****************************************
- * TComLed control                       *
- *****************************************)
+(* ****************************************
+  * TComLed control                       *
+  **************************************** *)
 
 // create control
 constructor TComLed.Create(AOwner: TComponent);
@@ -1055,8 +1094,7 @@ begin
 end;
 
 // remove ComPort if being destroyed
-procedure TComLed.Notification(AComponent: TComponent;
-  Operation: TOperation);
+procedure TComLed.Notification(AComponent: TComponent; Operation: TOperation);
 begin
   inherited Notification(AComponent, Operation);
   if (Operation = opRemove) and (AComponent = FComPort) then
@@ -1091,10 +1129,10 @@ end;
 
 procedure TComLed.SelectLedBitmap(const LedKind: TLedKind);
 const
-  OnBitmaps: array[TLedKind] of string = ('LEDREDON', 'LEDGREENON', 'LEDBLUEON',
-    'LEDYELLOWON', 'LEDPURPLEON', 'LEDBULBON', '');
-  OffBitmaps: array[TLedKind] of string = ('LEDREDOFF', 'LEDGREENOFF',
-    'LEDBLUEOFF', 'LEDYELLOWOFF', 'LEDPURPLEOFF', 'LEDBULBOFF' ,'');
+  OnBitmaps: array [TLedKind] of string = ('LEDREDON', 'LEDGREENON',
+    'LEDBLUEON', 'LEDYELLOWON', 'LEDPURPLEON', 'LEDBULBON', '');
+  OffBitmaps: array [TLedKind] of string = ('LEDREDOFF', 'LEDGREENOFF',
+    'LEDBLUEOFF', 'LEDYELLOWOFF', 'LEDPURPLEOFF', 'LEDBULBOFF', '');
 begin
   if LedKind <> lkCustom then
   begin
@@ -1109,8 +1147,10 @@ var
   Rect: TRect;
 begin
   Rect := GetClientRect;
-  Result.x := Rect.Left + Max(0, (Rect.Right - Rect.Left - FGlyphs[FState].Width) div 2);
-  Result.y := Rect.Top + Max(0, (Rect.Bottom - Rect.Top - FGlyphs[FState].Height) div 2);
+  Result.x := Rect.Left +
+    Max(0, (Rect.Right - Rect.Left - FGlyphs[FState].Width) div 2);
+  Result.y := Rect.Top +
+    Max(0, (Rect.Bottom - Rect.Top - FGlyphs[FState].Height) div 2);
 end;
 
 // change led state on signal change
@@ -1134,13 +1174,20 @@ end;
 function TComLed.IsStateOn: Boolean;
 begin
   case FLedSignal of
-    lsCTS: Result := (csCTS in FComPort.Signals);
-    lsDSR: Result := (csDSR in FComPort.Signals);
-    lsRLSD: Result := (csRLSD in FComPort.Signals);
-    lsRing: Result := False;
-    lsTx: Result := False;
-    lsRx: Result := False;
-    lsConn: Result := (FComPort <> nil) and (FComPort.Connected);
+    lsCTS:
+      Result := (csCTS in FComPort.Signals);
+    lsDSR:
+      Result := (csDSR in FComPort.Signals);
+    lsRLSD:
+      Result := (csRLSD in FComPort.Signals);
+    lsRing:
+      Result := False;
+    lsTx:
+      Result := False;
+    lsRx:
+      Result := False;
+    lsConn:
+      Result := (FComPort <> nil) and (FComPort.Connected);
   else
     Result := False;
   end;
@@ -1150,7 +1197,7 @@ end;
 procedure TComLed.SetStateInternal(const Value: TLedState);
 begin
   FState := Value;
-  if not (csLoading in ComponentState) then
+  if not(csLoading in ComponentState) then
     DoChange(FState);
   Invalidate;
 end;
@@ -1178,8 +1225,8 @@ begin
     begin
       FComPort.FreeNotification(Self);
       FComPort.RegisterLink(FComLink);
-      if (FComPort.Connected) and (not (csDesigning in ComponentState))
-          and (not (csLoading in ComponentState)) then
+      if (FComPort.Connected) and (not(csDesigning in ComponentState)) and
+        (not(csLoading in ComponentState)) then
         if IsStateOn then
           SetStateInternal(lsOn)
         else
@@ -1212,13 +1259,20 @@ begin
     FComLink.OnRx := nil;
     FComLink.OnConn := nil;
     case FLedSignal of
-      lsCTS: FComLink.OnCTSChange := SignalChange;
-      lsDSR: FComLink.OnDSRChange := SignalChange;
-      lsRLSD: FComLink.OnRLSDChange := SignalChange;
-      lsRing: FComLink.OnRing := RingDetect;
-      lsTx: FComLink.OnTx := SignalChange;
-      lsRx: FComLink.OnRx := SignalChange;
-      lsConn: FComLink.OnConn := SignalChange;
+      lsCTS:
+        FComLink.OnCTSChange := SignalChange;
+      lsDSR:
+        FComLink.OnDSRChange := SignalChange;
+      lsRLSD:
+        FComLink.OnRLSDChange := SignalChange;
+      lsRing:
+        FComLink.OnRing := RingDetect;
+      lsTx:
+        FComLink.OnTx := SignalChange;
+      lsRx:
+        FComLink.OnRx := SignalChange;
+      lsConn:
+        FComLink.OnConn := SignalChange;
     end;
   end;
 end;
@@ -1226,8 +1280,10 @@ end;
 function TComLed.GetGlyph(const Index: Integer): TLedBitmap;
 begin
   case Index of
-    0: Result := FGlyphs[lsOn];
-    1: Result := FGlyphs[lsOff];
+    0:
+      Result := FGlyphs[lsOn];
+    1:
+      Result := FGlyphs[lsOff];
   else
     Result := nil;
   end;
@@ -1241,8 +1297,10 @@ begin
     Value.TransparentMode := tmAuto;
     Value.Transparent := True;
     case Index of
-      0: FGlyphs[lsOn].Assign(Value);
-      1: FGlyphs[lsOff].Assign(Value);
+      0:
+        FGlyphs[lsOn].Assign(Value);
+      1:
+        FGlyphs[lsOff].Assign(Value);
     end;
     Invalidate;
   end;
@@ -1275,9 +1333,9 @@ begin
   FRingTimer.Interval := Value;
 end;
 
-(*****************************************
- * TComTermBuffer class                  *
- *****************************************)
+(* ****************************************
+  * TComTermBuffer class                  *
+  **************************************** *)
 
 // create class
 constructor TComTermBuffer.Create(AOwner: TCustomComTerminal);
@@ -1298,15 +1356,12 @@ begin
 end;
 
 // put char in buffer
-procedure TComTermBuffer.SetChar(Column, Row: Integer;
-  TermChar: TComTermChar);
+procedure TComTermBuffer.SetChar(Column, Row: Integer; TermChar: TComTermChar);
 var
   Address: Integer;
 begin
   Address := (Row - 1) * FOwner.Columns + Column - 1;
-  Move(
-    TermChar,
-    Pointer(Integer(FBuffer) + (SizeOf(TComTermChar) * Address))^,
+  Move(TermChar, Pointer(Integer(FBuffer) + (SizeOf(TComTermChar) * Address))^,
     SizeOf(TComTermChar));
 end;
 
@@ -1316,9 +1371,7 @@ var
   Address: Integer;
 begin
   Address := (Row - 1) * FOwner.Columns + Column - 1;
-  Move(
-    Pointer(Integer(FBuffer) + (SizeOf(TComTermChar) * Address))^,
-    Result,
+  Move(Pointer(Integer(FBuffer) + (SizeOf(TComTermChar) * Address))^, Result,
     SizeOf(TComTermChar));
 end;
 
@@ -1330,11 +1383,12 @@ var
   ScrollRect: TRect;
 begin
   BytesToMove := (FOwner.Rows - 1) * FOwner.Columns * SizeOf(TComTermChar);
-  SourceAddr := Pointer(Integer(FBuffer) + FOwner.Columns * SizeOf(TComTermChar));
+  SourceAddr := Pointer(Integer(FBuffer) + FOwner.Columns *
+    SizeOf(TComTermChar));
   // scroll in buffer
   Move(SourceAddr^, FBuffer^, BytesToMove);
-  SourceAddr := Pointer(Integer(FBuffer) +
-    (FOwner.Rows - 1) * FOwner.Columns * SizeOf(TComTermChar));
+  SourceAddr := Pointer(Integer(FBuffer) + (FOwner.Rows - 1) * FOwner.Columns *
+    SizeOf(TComTermChar));
   FillChar(SourceAddr^, FOwner.Columns * SizeOf(TComTermChar), 0);
   // calculate scrolling rectangle
   with ScrollRect do
@@ -1350,8 +1404,8 @@ begin
     FOwner.Invalidate
   else
 {$ENDIF}
-    ScrollWindowEx(FOwner.Handle, 0, -FOwner.FFontHeight,
-      @ScrollRect, nil, 0, nil, SW_INVALIDATE or SW_ERASE);
+    ScrollWindowEx(FOwner.Handle, 0, -FOwner.FFontHeight, @ScrollRect, nil, 0,
+      nil, SW_INVALIDATE or SW_ERASE);
 end;
 
 // scroll up one line
@@ -1380,8 +1434,8 @@ begin
     FOwner.Invalidate
   else
 {$ENDIF}
-    ScrollWindowEx(FOwner.Handle, 0, FOwner.FFontHeight,
-      @ScrollRect, nil, 0, nil, SW_INVALIDATE or SW_ERASE);
+    ScrollWindowEx(FOwner.Handle, 0, FOwner.FFontHeight, @ScrollRect, nil, 0,
+      nil, SW_INVALIDATE or SW_ERASE);
 end;
 
 // erase line
@@ -1392,8 +1446,8 @@ var
 begin
   // in memory
   BytesToDelete := (FOwner.Columns - Column + 1) * SizeOf(TComTermChar);
-  SourceAddr := Pointer(Integer(FBuffer) +
-    ((Row - 1) * FOwner.Columns + Column - 1) * SizeOf(TComTermChar));
+  SourceAddr := Pointer(Integer(FBuffer) + ((Row - 1) * FOwner.Columns + Column
+    - 1) * SizeOf(TComTermChar));
   FillChar(SourceAddr^, BytesToDelete, 0);
   // on screen
 {$IFDEF DELPHI_4_OR_HIGHER}
@@ -1411,10 +1465,10 @@ var
   SourceAddr: Pointer;
 begin
   // in memory
-  BytesToDelete := (FOwner.Columns - Column + 1 +
-    (FOwner.Rows - Row) * FOwner.Columns) * SizeOf(TComTermChar);
-  SourceAddr := Pointer(Integer(FBuffer) +
-    ((Row - 1) * FOwner.Columns + Column - 1) * SizeOf(TComTermChar));
+  BytesToDelete := (FOwner.Columns - Column + 1 + (FOwner.Rows - Row) *
+    FOwner.Columns) * SizeOf(TComTermChar);
+  SourceAddr := Pointer(Integer(FBuffer) + ((Row - 1) * FOwner.Columns + Column
+    - 1) * SizeOf(TComTermChar));
   FillChar(SourceAddr^, BytesToDelete, 0);
   // on screen
 {$IFDEF DELPHI_4_OR_HIGHER}
@@ -1503,9 +1557,9 @@ begin
 end;
 
 // get last character in buffer
-(*****************************************
- * TComCustomTerminal control            *
- *****************************************)
+(* ****************************************
+  * TComCustomTerminal control            *
+  **************************************** *)
 
 // create control
 constructor TCustomComTerminal.Create(AOwner: TComponent);
@@ -1553,28 +1607,26 @@ end;
 procedure TCustomComTerminal.MoveCaret(AColumn, ARow: Integer);
 begin
   if AColumn > FColumns then
-    FCaretPos.X := FColumns
+    FCaretPos.x := FColumns
+  else if AColumn < 1 then
+    FCaretPos.x := 1
   else
-    if AColumn < 1 then
-      FCaretPos.X := 1
-    else
-      FCaretPos.X := AColumn;
+    FCaretPos.x := AColumn;
 
   if ARow > FRows then
-    FCaretPos.Y := FRows
+    FCaretPos.y := FRows
+  else if ARow < 1 then
+    FCaretPos.y := 1
   else
-    if ARow < 1 then
-      FCaretPos.Y := 1
-    else
-      FCaretPos.Y := ARow;
+    FCaretPos.y := ARow;
 
   if FCaretCreated then
-    SetCaretPos((FCaretPos.X - FTopLeft.X) * FFontWidth,
-      (FCaretPos.Y - FTopLeft.Y) * FFontHeight + FFontHeight - FCaretHeight);
+    SetCaretPos((FCaretPos.x - FTopLeft.x) * FFontWidth,
+      (FCaretPos.y - FTopLeft.y) * FFontHeight + FFontHeight - FCaretHeight);
 end;
 
 // write data to screen
-procedure TCustomComTerminal.Write(const Buffer:string; Size: Integer);
+procedure TCustomComTerminal.Write(const Buffer: string; Size: Integer);
 var
   I: Integer;
   Res: TEscapeResult;
@@ -1594,7 +1646,7 @@ begin
         if Res = erCode then
         begin
           if not PutEscapeCode(FEscapeCodes.Code, FEscapeCodes.Params) then
-             DoUnhandledCode(FEscapeCodes.Code, FEscapeCodes.Data);
+            DoUnhandledCode(FEscapeCodes.Code, FEscapeCodes.Data);
           FEscapeCodes.Params.Clear;
         end;
       end
@@ -1766,6 +1818,7 @@ begin
 end;
 
 {$IFDEF DELPHI_4_OR_HIGHER}
+
 // set size to fit whole terminal screen
 function TCustomComTerminal.CanAutoSize(var NewWidth,
   NewHeight: Integer): Boolean;
@@ -1782,7 +1835,7 @@ begin
         Border := SM_CXEDGE
       else
         Border := SM_CXBORDER;
-      NewWidth := NewWidth + 2 * GetSystemMetrics(BORDER);
+      NewWidth := NewWidth + 2 * GetSystemMetrics(Border);
     end;
   end;
   if Align in [alNone, alTop, alBottom] then
@@ -1803,7 +1856,7 @@ end;
 // set control parameters
 procedure TCustomComTerminal.CreateParams(var Params: TCreateParams);
 const
-  BorderStyles: array[TBorderStyle] of DWORD = (0, WS_BORDER);
+  BorderStyles: array [TBorderStyle] of DWORD = (0, WS_BORDER);
 begin
   inherited CreateParams(Params);
   with Params do
@@ -1828,11 +1881,16 @@ var
 begin
   inherited KeyDown(Key, Shift);
   case Key of
-    VK_UP: Code := ecCursorUp;
-    VK_DOWN: Code := ecCursorDown;
-    VK_LEFT: Code := ecCursorLeft;
-    VK_RIGHT: Code := ecCursorRight;
-    VK_HOME: Code := ecCursorHome;
+    VK_UP:
+      Code := ecCursorUp;
+    VK_DOWN:
+      Code := ecCursorDown;
+    VK_LEFT:
+      Code := ecCursorLeft;
+    VK_RIGHT:
+      Code := ecCursorRight;
+    VK_HOME:
+      Code := ecCursorHome;
   else
     Code := ecUnknown;
   end;
@@ -1846,10 +1904,14 @@ begin
   end
   else
     case Code of
-      ecCursorUp: SendCode(ecAppCursorUp, nil);
-      ecCursorDown: SendCode(ecAppCursorDown, nil);
-      ecCursorLeft: SendCode(ecAppCursorLeft, nil);
-      ecCursorRight: SendCode(ecAppCursorRight, nil);
+      ecCursorUp:
+        SendCode(ecAppCursorUp, nil);
+      ecCursorDown:
+        SendCode(ecAppCursorDown, nil);
+      ecCursorLeft:
+        SendCode(ecAppCursorLeft, nil);
+      ecCursorRight:
+        SendCode(ecAppCursorRight, nil);
     end;
 end;
 
@@ -1864,7 +1926,7 @@ procedure TCustomComTerminal.Loaded;
 begin
   inherited Loaded;
   CreateEscapeCodes;
-  if not (csDesigning in ComponentState) then
+  if not(csDesigning in ComponentState) then
     FBuffer.Init;
 end;
 
@@ -1879,20 +1941,20 @@ end;
 // paint characters
 procedure TCustomComTerminal.PaintTerminal(Rect: TRect);
 var
-  I, J, X, Y: Integer;
+  I, J, x, y: Integer;
   Ch: TComTermChar;
 begin
-  if (Rect.Bottom + FTopLeft.Y - 1) > FRows then
+  if (Rect.Bottom + FTopLeft.y - 1) > FRows then
     Dec(Rect.Bottom);
-  if (Rect.Right + FTopLeft.X - 1) > FColumns then
+  if (Rect.Right + FTopLeft.x - 1) > FColumns then
     Dec(Rect.Right);
   for J := Rect.Top to Rect.Bottom do
   begin
-    Y := J + FTopLeft.Y - 1;
+    y := J + FTopLeft.y - 1;
     for I := Rect.Left to Rect.Right do
     begin
-      X := I + FTopLeft.X - 1;
-      Ch := FBuffer.GetChar(X, Y);
+      x := I + FTopLeft.x - 1;
+      Ch := FBuffer.GetChar(x, y);
       if Ch.Ch <> Chr(0) then
         DrawChar(I, J, Ch);
     end;
@@ -1918,7 +1980,7 @@ begin
     PaintDesign
   else
   begin
-    MoveCaret(FCaretPos.X, FCaretPos.Y);
+    MoveCaret(FCaretPos.x, FCaretPos.y);
     // don't paint whole screen, but only the invalidated portion
     ARect.Left := Canvas.ClipRect.Left div FFontWidth + 1;
     ARect.Right := Min(Canvas.ClipRect.Right div FFontWidth + 1, FColumns);
@@ -1934,9 +1996,8 @@ begin
   FCaretHeight := 0;
   if FCaret = tcBlock then
     FCaretHeight := FFontHeight
-  else
-    if FCaret = tcUnderline then
-      FCaretHeight := FFontHeight div 8;
+  else if FCaret = tcUnderline then
+    FCaretHeight := FFontHeight div 8;
   if FCaretHeight > 0 then
   begin
     CreateCaret(Handle, 0, FFontWidth, FCaretHeight);
@@ -1952,8 +2013,7 @@ begin
 end;
 
 // draw one character on screen, but do not put it in buffer
-procedure TCustomComTerminal.DrawChar(AColumn, ARow: Integer;
-  Ch: TComTermChar);
+procedure TCustomComTerminal.DrawChar(AColumn, ARow: Integer; Ch: TComTermChar);
 var
   OldBackColor, OldFrontColor: Integer;
 begin
@@ -1978,46 +2038,48 @@ begin
   case Kind of
     acChar:
       begin
-        if FCaretPos.X = FColumns then
+        if FCaretPos.x = FColumns then
         begin
           if FWrapLines then
-            if FCaretPos.Y = FRows then
+            if FCaretPos.y = FRows then
             begin
               FBuffer.ScrollDown;
-              MoveCaret(1, FCaretPos.Y);
+              MoveCaret(1, FCaretPos.y);
             end
             else
-              MoveCaret(1, FCaretPos.Y + 1)
+              MoveCaret(1, FCaretPos.y + 1)
         end
         else
-          MoveCaret(FCaretPos.X + 1, FCaretPos.Y);
+          MoveCaret(FCaretPos.x + 1, FCaretPos.y);
       end;
-    acReturn: MoveCaret(1, FCaretPos.Y);
+    acReturn:
+      MoveCaret(1, FCaretPos.y);
     acLineFeed:
       begin
-        if FCaretPos.Y = FRows then
+        if FCaretPos.y = FRows then
           FBuffer.ScrollDown
         else
-          MoveCaret(FCaretPos.X, FCaretPos.Y + 1);
+          MoveCaret(FCaretPos.x, FCaretPos.y + 1);
       end;
     acReverseLineFeed:
       begin
-        if FCaretPos.Y = 1 then
+        if FCaretPos.y = 1 then
           FBuffer.ScrollUp
         else
-          MoveCaret(FCaretPos.X, FCaretPos.Y - 1);
+          MoveCaret(FCaretPos.x, FCaretPos.y - 1);
       end;
-    acBackSpace: MoveCaret(FCaretPos.X - 1, FCaretPos.Y);
+    acBackspace:
+      MoveCaret(FCaretPos.x - 1, FCaretPos.y);
     acTab:
       begin
-        I := FBuffer.NextTab(FCaretPos.X + 1);
+        I := FBuffer.NextTab(FCaretPos.x + 1);
         if I > 0 then
-          MoveCaret(I, FCaretPos.Y);
+          MoveCaret(I, FCaretPos.y);
       end;
     // NEW: pagecommando: scherm schoonmaken
     acPage:
       ClearScreen;
-    //ENDNEW
+    // ENDNEW
   end;
 end;
 
@@ -2042,35 +2104,62 @@ begin
   begin
     Value := FEscapeCodes.GetParam(I, AParams);
     case Value of
-      0:  AllOff;
-      1:  FTermAttr.AltIntensity := True;
-      4:  FTermAttr.Underline := True;
-      7:  FTermAttr.Invert := True;
-      21: FTermAttr.AltIntensity := False;
-      24: FTermAttr.Underline := False;
-      27: FTermAttr.Invert := False;
+      0:
+        AllOff;
+      1:
+        FTermAttr.AltIntensity := True;
+      4:
+        FTermAttr.Underline := True;
+      7:
+        FTermAttr.Invert := True;
+      21:
+        FTermAttr.AltIntensity := False;
+      24:
+        FTermAttr.Underline := False;
+      27:
+        FTermAttr.Invert := False;
       // NEW forground colors
-      30: FTermAttr.FrontColor := clBlack;
-      31: FTermAttr.FrontColor := clRed;
-      32: FTermAttr.FrontColor := clGreen;
-      33: FTermAttr.FrontColor := clYellow;
-      34: FTermAttr.FrontColor := clBlue;
-      35: FTermAttr.FrontColor := clPurple;         // Official Magenta
-      36: FTermAttr.FrontColor := $0080FF;          // Orange, official Cyan
-      37: FTermAttr.FrontColor := clWhite;
-      38: FTermAttr.FrontColor := clMaroon;         // Not official
-      39: FTermAttr.FrontColor := clGray;           // Not official
+      30:
+        FTermAttr.FrontColor := clBlack;
+      31:
+        FTermAttr.FrontColor := clRed;
+      32:
+        FTermAttr.FrontColor := clGreen;
+      33:
+        FTermAttr.FrontColor := clYellow;
+      34:
+        FTermAttr.FrontColor := clBlue;
+      35:
+        FTermAttr.FrontColor := clPurple; // Official Magenta
+      36:
+        FTermAttr.FrontColor := $0080FF; // Orange, official Cyan
+      37:
+        FTermAttr.FrontColor := clWhite;
+      38:
+        FTermAttr.FrontColor := clMaroon; // Not official
+      39:
+        FTermAttr.FrontColor := clGray; // Not official
       // NEW background colors
-      40: FTermAttr.BackColor := clBlack;
-      41: FTermAttr.BackColor := clRed;
-      42: FTermAttr.BackColor := clGreen;
-      43: FTermAttr.BackColor := clYellow;
-      44: FTermAttr.BackColor := clBlue;
-      45: FTermAttr.BackColor := clPurple;         // Magenta
-      46: FTermAttr.BackColor := $0080FF;          // now Orange, Cyan
-      47: FTermAttr.BackColor := clWhite;
-      48: FTermAttr.BackColor := clMaroon;         // Not official
-      49: FTermAttr.BackColor := clGray;           // Not official
+      40:
+        FTermAttr.BackColor := clBlack;
+      41:
+        FTermAttr.BackColor := clRed;
+      42:
+        FTermAttr.BackColor := clGreen;
+      43:
+        FTermAttr.BackColor := clYellow;
+      44:
+        FTermAttr.BackColor := clBlue;
+      45:
+        FTermAttr.BackColor := clPurple; // Magenta
+      46:
+        FTermAttr.BackColor := $0080FF; // now Orange, Cyan
+      47:
+        FTermAttr.BackColor := clWhite;
+      48:
+        FTermAttr.BackColor := clMaroon; // Not official
+      49:
+        FTermAttr.BackColor := clGray; // Not official
       // NEW end
     end;
   end;
@@ -2102,10 +2191,10 @@ procedure TCustomComTerminal.InvalidatePortion(ARect: TRect);
 var
   Rect: TRect;
 begin
-  Rect.Left := Max((ARect.Left - FTopLeft.X) * FFontWidth, 0);
-  Rect.Right := Max((ARect.Right - FTopLeft.X + 1) * FFontWidth, 0);
-  Rect.Top := Max((ARect.Top - FTopLeft.Y) * FFontHeight, 0);
-  Rect.Bottom := Max((ARect.Bottom - FTopLeft.Y + 1) * FFontHeight, 0);
+  Rect.Left := Max((ARect.Left - FTopLeft.x) * FFontWidth, 0);
+  Rect.Right := Max((ARect.Right - FTopLeft.x + 1) * FFontWidth, 0);
+  Rect.Top := Max((ARect.Top - FTopLeft.y) * FFontHeight, 0);
+  Rect.Bottom := Max((ARect.Bottom - FTopLeft.y + 1) * FFontHeight, 0);
   InvalidateRect(Handle, @Rect, True);
 end;
 
@@ -2116,8 +2205,7 @@ var
   CellSize, OldPos, APos, Dx, Dy: Integer;
 begin
   if (ScrollCode = SB_ENDSCROLL) or
-    ((ScrollCode = SB_THUMBTRACK) and not FSmoothScroll)
-  then
+    ((ScrollCode = SB_THUMBTRACK) and not FSmoothScroll) then
     Exit;
   if ScrollBar = SB_HORZ then
     CellSize := FFontWidth
@@ -2126,23 +2214,28 @@ begin
   APos := GetScrollPos(Handle, ScrollBar);
   OldPos := APos;
   case ScrollCode of
-    SB_LINEUP: Dec(APos);
-    SB_LINEDOWN: Inc(APos);
-    SB_PAGEUP: Dec(APos, ClientHeight div CellSize);
-    SB_PAGEDOWN: Inc(APos, ClientHeight div CellSize);
-    SB_THUMBPOSITION,
-    SB_THUMBTRACK: APos := Pos;
+    SB_LINEUP:
+      Dec(APos);
+    SB_LINEDOWN:
+      Inc(APos);
+    SB_PAGEUP:
+      Dec(APos, ClientHeight div CellSize);
+    SB_PAGEDOWN:
+      Inc(APos, ClientHeight div CellSize);
+    SB_THUMBPOSITION, SB_THUMBTRACK:
+      APos := Pos;
   end;
   SetScrollPos(Handle, ScrollBar, APos, True);
   APos := GetScrollPos(Handle, ScrollBar);
   if ScrollBar = SB_HORZ then
   begin
-    FTopLeft.X := APos + 1;
+    FTopLeft.x := APos + 1;
     Dx := (OldPos - APos) * FFontWidth;
     Dy := 0;
-  end else
+  end
+  else
   begin
-    FTopLeft.Y := APos + 1;
+    FTopLeft.y := APos + 1;
     Dx := 0;
     Dy := (OldPos - APos) * FFontHeight;
   end;
@@ -2159,13 +2252,13 @@ procedure TCustomComTerminal.UpdateScrollPos;
 begin
   if FScrollBars in [ssBoth, ssHorizontal] then
   begin
-    FTopLeft.X := GetScrollPos(Handle, SB_HORZ) + 1;
-    SetScrollPos(Handle, SB_HORZ, FTopLeft.X - 1, True);
+    FTopLeft.x := GetScrollPos(Handle, SB_HORZ) + 1;
+    SetScrollPos(Handle, SB_HORZ, FTopLeft.x - 1, True);
   end;
   if FScrollBars in [ssBoth, ssVertical] then
   begin
-    FTopLeft.Y := GetScrollPos(Handle, SB_VERT) + 1;
-    SetScrollPos(Handle, SB_VERT, FTopLeft.Y - 1, True);
+    FTopLeft.y := GetScrollPos(Handle, SB_VERT) + 1;
+    SetScrollPos(Handle, SB_VERT, FTopLeft.y - 1, True);
   end;
 end;
 
@@ -2195,7 +2288,7 @@ var
     SetScrollRange(Handle, Code, 0, Max - 1, False);
   end;
 
-  // set horizontal range
+// set horizontal range
   procedure SetHorzRange;
   var
     Max: Integer;
@@ -2214,7 +2307,7 @@ var
     end;
   end;
 
-  // set vertical range
+// set vertical range
   procedure SetVertRange;
   var
     Max, ARows: Integer;
@@ -2223,7 +2316,7 @@ var
     begin
       ARows := AHeight div FFontHeight;
       if ARows >= FRows then
-        SetRange(SB_VERT, 1)  // screen is high enough, hide scroll bar
+        SetRange(SB_VERT, 1) // screen is high enough, hide scroll bar
       else
       begin
         Max := FRows - (ARows - 1);
@@ -2310,65 +2403,95 @@ begin
 end;
 
 // send escape code to port
-procedure TCustomComTerminal.SendCodeNoEcho(Code: TEscapeCode; AParams: TStrings);
+procedure TCustomComTerminal.SendCodeNoEcho(Code: TEscapeCode;
+  AParams: TStrings);
 begin
   if (FComPort <> nil) and (FComPort.Connected) and (FEscapeCodes <> nil) then
     FComPort.WriteStr(FEscapeCodes.EscCodeToStr(Code, AParams));
 end;
 
 // process escape code on screen
-function TCustomComTerminal.PutEscapeCode(ACode: TEscapeCode; AParams: TStrings): Boolean;
+function TCustomComTerminal.PutEscapeCode(ACode: TEscapeCode;
+  AParams: TStrings): Boolean;
 begin
   Result := True;
   with FEscapeCodes do
     case ACode of
-      ecCursorUp,
-      ecAppCursorUp: MoveCaret(FCaretPos.X, FCaretPos.Y - GetParam(1, AParams));
-      ecCursorDown: MoveCaret(FCaretPos.X, FCaretPos.Y + GetParam(1, AParams));
-      ecCursorRight: MoveCaret(FCaretPos.X + GetParam(1, AParams), FCaretPos.Y);
-      ecCursorLeft: MoveCaret(FCaretPos.X - GetParam(1, AParams), FCaretPos.Y);
-      ecCursorHome,
-      ecCursorMove: MoveCaret(GetParam(2, AParams), GetParam(1, AParams));
-      ecReverseLineFeed: AdvanceCaret(acReverseLineFeed);
-      ecEraseLineFrom: FBuffer.EraseLine(FCaretPos.X, FCaretPos.Y);
-      ecEraseScreenFrom: FBuffer.EraseScreen(FCaretPos.X, FCaretPos.Y);
-      ecEraseScreen: begin FBuffer.EraseScreen(1, 1); MoveCaret(1, 1) end;
+      ecCursorUp, ecAppCursorUp:
+        MoveCaret(FCaretPos.x, FCaretPos.y - GetParam(1, AParams));
+      ecCursorDown:
+        MoveCaret(FCaretPos.x, FCaretPos.y + GetParam(1, AParams));
+      ecCursorRight:
+        MoveCaret(FCaretPos.x + GetParam(1, AParams), FCaretPos.y);
+      ecCursorLeft:
+        MoveCaret(FCaretPos.x - GetParam(1, AParams), FCaretPos.y);
+      ecCursorHome, ecCursorMove:
+        MoveCaret(GetParam(2, AParams), GetParam(1, AParams));
+      ecReverseLineFeed:
+        AdvanceCaret(acReverseLineFeed);
+      ecEraseLineFrom:
+        FBuffer.EraseLine(FCaretPos.x, FCaretPos.y);
+      ecEraseScreenFrom:
+        FBuffer.EraseScreen(FCaretPos.x, FCaretPos.y);
+      ecEraseScreen:
+        begin
+          FBuffer.EraseScreen(1, 1);
+          MoveCaret(1, 1)
+        end;
       ecEraseLine:
-      begin
-        FBuffer.EraseLine(1, FCaretPos.Y);
-        MoveCaret(1, FCaretPos.Y)
-      end;
+        begin
+          FBuffer.EraseLine(1, FCaretPos.y);
+          MoveCaret(1, FCaretPos.y)
+        end;
       ecIdentify:
-      begin
-        AParams.Clear;
-        AParams.Add('2');
-        SendCodeNoEcho(ecIdentResponse, AParams);
-      end;
-      ecSetTab: FBuffer.SetTab(FCaretPos.X, True);
-      ecClearTab: FBuffer.SetTab(FCaretPos.X, False);
-      ecClearAllTabs: FBuffer.ClearAllTabs;
-      ecAttributes: SetAttributes(AParams);
-      ecSetMode: SetMode(AParams, True);
-      ecResetMode: SetMode(AParams, False);
-      ecReset:
-      begin
-        AParams.Clear;
-        AParams.Add('0');
+        begin
+          AParams.Clear;
+          AParams.Add('2');
+          SendCodeNoEcho(ecIdentResponse, AParams);
+        end;
+      ecSetTab:
+        FBuffer.SetTab(FCaretPos.x, True);
+      ecClearTab:
+        FBuffer.SetTab(FCaretPos.x, False);
+      ecClearAllTabs:
+        FBuffer.ClearAllTabs;
+      ecAttributes:
         SetAttributes(AParams);
-      end;
-      ecSaveCaret: SaveCaretPos;
-      ecRestoreCaret: RestoreCaretPos;
-      ecSaveCaretAndAttr: begin SaveCaretPos; SaveAttr; end;
-      ecRestoreCaretAndAttr: begin RestoreCaretPos; RestoreAttr; end;
+      ecSetMode:
+        SetMode(AParams, True);
+      ecResetMode:
+        SetMode(AParams, False);
+      ecReset:
+        begin
+          AParams.Clear;
+          AParams.Add('0');
+          SetAttributes(AParams);
+        end;
+      ecSaveCaret:
+        SaveCaretPos;
+      ecRestoreCaret:
+        RestoreCaretPos;
+      ecSaveCaretAndAttr:
+        begin
+          SaveCaretPos;
+          SaveAttr;
+        end;
+      ecRestoreCaretAndAttr:
+        begin
+          RestoreCaretPos;
+          RestoreAttr;
+        end;
       ecQueryCursorPos:
-      begin
-        AParams.Clear;
-        AParams.Add(IntToStr(FCaretPos.Y));
-        AParams.Add(IntToStr(FCaretPos.X));
-        SendCodeNoEcho(ecReportCursorPos, AParams);
-      end;
-      ecQueryDevice: SendCodeNoEcho(ecReportDeviceOK, nil);
-      ecTest: PerformTest('E');
+        begin
+          AParams.Clear;
+          AParams.Add(IntToStr(FCaretPos.y));
+          AParams.Add(IntToStr(FCaretPos.x));
+          SendCodeNoEcho(ecReportCursorPos, AParams);
+        end;
+      ecQueryDevice:
+        SendCodeNoEcho(ecReportDeviceOK, nil);
+      ecTest:
+        PerformTest('E');
     else
       Result := False;
     end;
@@ -2399,8 +2522,7 @@ begin
 end;
 
 // get custom escape codes processor
-procedure TCustomComTerminal.DoGetEscapeCodes(
-  var EscapeCodes: TEscapeCodes);
+procedure TCustomComTerminal.DoGetEscapeCodes(var EscapeCodes: TEscapeCodes);
 begin
   if Assigned(FOnGetEscapeCodes) then
     FOnGetEscapeCodes(Self, EscapeCodes);
@@ -2414,8 +2536,7 @@ begin
 end;
 
 // let application handle unhandled escape code
-procedure TCustomComTerminal.DoUnhandledCode(Code: TEscapeCode;
-  Data: string);
+procedure TCustomComTerminal.DoUnhandledCode(Code: TEscapeCode; Data: string);
 begin
   if Assigned(FOnUnhandledCode) then
     FOnUnhandledCode(Self, Code, Data);
@@ -2427,8 +2548,10 @@ begin
   if csDesigning in ComponentState then
     Exit;
   case FEmulation of
-    teVT52: FEscapeCodes := TEscapeCodesVT52.Create;
-    teVT100orANSI: FEscapeCodes := TEscapeCodesVT100.Create;
+    teVT52:
+      FEscapeCodes := TEscapeCodesVT52.Create;
+    teVT100orANSI:
+      FEscapeCodes := TEscapeCodesVT100.Create;
   else
     begin
       FEscapeCodes := nil;
@@ -2462,13 +2585,12 @@ begin
   // NEW made changes to solve colorchanging problem
   if FTermAttr.AltIntensity then
     Result.FrontColor := FAltColor
+  else if FTermAttr.Invert then
+    // Result.FrontColor := Color
+    Result.FrontColor := FTermAttr.BackColor
   else
-    if FTermAttr.Invert then
-      // Result.FrontColor := Color
-      Result.FrontColor := FTermAttr.BackColor
-    else
-      // Result.BackColor := Font.Color;
-      Result.FrontColor := FTermAttr.FrontColor;
+    // Result.BackColor := Font.Color;
+    Result.FrontColor := FTermAttr.FrontColor;
   if FTermAttr.Invert then
     // Result.BackColor := Font.Color
     Result.BackColor := FTermAttr.FrontColor
@@ -2487,22 +2609,27 @@ var
 
 begin
   case Ch of
-    #8: AdvanceCaret(acBackspace);
-    #9: AdvanceCaret(acTab);
-// ORIGINAL
-//    #10, #12: AdvanceCaret(acLineFeed);
-// NEW, difference between LF en Page
-    #10: AdvanceCaret(acLineFeed);
-    #12: AdvanceCaret(acPage);               {Page commando}
-// END NEW
-    #13: AdvanceCaret(acReturn);
-    #32..#255:
+    #8:
+      AdvanceCaret(acBackspace);
+    #9:
+      AdvanceCaret(acTab);
+    // ORIGINAL
+    // #10, #12: AdvanceCaret(acLineFeed);
+    // NEW, difference between LF en Page
+    #10:
+      AdvanceCaret(acLineFeed);
+    #12:
+      AdvanceCaret(acPage); { Page commando }
+    // END NEW
+    #13:
+      AdvanceCaret(acReturn);
+    #32 .. #255:
       begin
         TermCh := GetCharAttr;
         TermCh.Ch := Ch;
-        FBuffer.SetChar(FCaretPos.X, FCaretPos.Y, TermCh);
-        DrawChar(FCaretPos.X - FTopLeft.X + 1,
-          FCaretPos.Y - FTopLeft.Y + 1, TermCh);
+        FBuffer.SetChar(FCaretPos.x, FCaretPos.y, TermCh);
+        DrawChar(FCaretPos.x - FTopLeft.x + 1, FCaretPos.y - FTopLeft.y +
+          1, TermCh);
         AdvanceCaret(acChar);
       end;
   end;
@@ -2513,14 +2640,14 @@ end;
 procedure TCustomComTerminal.InitCaret;
 begin
   CreateTerminalCaret;
-  MoveCaret(FCaretPos.X, FCaretPos.Y);
+  MoveCaret(FCaretPos.x, FCaretPos.y);
   ShowCaret;
 end;
 
 // restore caret position
 procedure TCustomComTerminal.RestoreCaretPos;
 begin
-  MoveCaret(FSaveCaret.X, FSaveCaret.Y);
+  MoveCaret(FSaveCaret.x, FSaveCaret.y);
 end;
 
 // save caret position
@@ -2541,10 +2668,11 @@ begin
   FSaveAttr := FTermAttr;
 end;
 
-procedure TCustomComTerminal.RxBuf(Sender: TObject; const Buffer;  Count: Integer);
+procedure TCustomComTerminal.RxBuf(Sender: TObject; const Buffer;
+  Count: Integer);
 var
   Str: String;
-  sa : Ansistring;
+  sa: Ansistring;
 
   // append line feeds to carriage return
   procedure AppendLineFeeds;
@@ -2560,14 +2688,14 @@ var
     end;
   end;
 
-  // convert to 7 bit data
+// convert to 7 bit data
   procedure Force7BitData;
   var
     I: Integer;
   begin
     SetLength(Str, Count);
     for I := 1 to Length(Str) do
-      Str[I] := Char(Byte(Sa[I]) and $0FFFFFFF);
+      Str[I] := Char(Byte(sa[I]) and $0FFFFFFF);
   end;
 
   procedure Force8BitData;
@@ -2576,17 +2704,18 @@ var
   begin
     SetLength(Str, Count);
     for I := 1 to Length(Str) do
-      Str[I] := Char(Byte(Sa[I]));
+      Str[I] := Char(Byte(sa[I]));
   end;
 
 begin
-  SetLength(sa,count);
-  Move(Buffer, Sa[1], Count);
-//  Move(Buffer, Str[1], Count);
-//  Str := AnsiString(sa);
+  SetLength(sa, Count);
+  Move(Buffer, sa[1], Count);
+  // Move(Buffer, Str[1], Count);
+  // Str := AnsiString(sa);
   if FForce7Bit then
     Force7BitData
-  else Force8BitData;
+  else
+    Force8BitData;
   if FAppendLF then
     AppendLineFeeds;
   StringReceived(Str);
@@ -2632,7 +2761,8 @@ begin
     AdjustSize;
 {$ENDIF}
     UpdateScrollRange;
-    if not ((csLoading in ComponentState) or (csDesigning in ComponentState)) then
+    if not((csLoading in ComponentState) or (csDesigning in ComponentState))
+    then
     begin
       FBuffer.Init;
       Invalidate;
@@ -2649,7 +2779,8 @@ begin
     AdjustSize;
 {$ENDIF}
     UpdateScrollRange;
-    if not ((csLoading in ComponentState) or (csDesigning in ComponentState)) then
+    if not((csLoading in ComponentState) or (csDesigning in ComponentState))
+    then
     begin
       FBuffer.Init;
       Invalidate;
@@ -2662,7 +2793,7 @@ begin
   if FEmulation <> Value then
   begin
     FEmulation := Value;
-    if not (csLoading in ComponentState) then
+    if not(csLoading in ComponentState) then
     begin
       FEscapeCodes.Free;
       CreateEscapeCodes;
@@ -2709,13 +2840,15 @@ begin
 end;
 
 initialization
-  // initialize default terminal font
-  ComTerminalFont := TFont.Create;
-  ComTerminalFont.Name := 'Fixedsys';
-  ComTerminalFont.Color := clWhite;
-  ComTerminalFont.Size := 9;
+
+// initialize default terminal font
+ComTerminalFont := TFont.Create;
+ComTerminalFont.Name := 'Fixedsys';
+ComTerminalFont.Color := clWhite;
+ComTerminalFont.Size := 9;
 
 finalization
-  ComTerminalFont.Free;
+
+ComTerminalFont.Free;
 
 end.

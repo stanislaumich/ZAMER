@@ -1,86 +1,83 @@
-(******************************************************
- * ComPort Library ver. 4.11                          *
- *   for Delphi 5, 6, 7, 2007-2010,XE  and            *
- *   C++ Builder 3, 4, 5, 6                           *
- * written by Dejan Crnila, 1998 - 2002               *
- * maintained by Lars B. Dybdahl, 2003                *
- * Homepage: http://comport.sf.net/                   *
- *                                                    *
- * Brian Gochnauer Oct 2010                           *
- *     Removed ansi references for backward compat    *
- *     Made unicode ready                             *
- *****************************************************)
-
+(* *****************************************************
+  * ComPort Library ver. 4.11                          *
+  *   for Delphi 5, 6, 7, 2007-2010,XE  and            *
+  *   C++ Builder 3, 4, 5, 6                           *
+  * written by Dejan Crnila, 1998 - 2002               *
+  * maintained by Lars B. Dybdahl, 2003                *
+  * Homepage: http://comport.sf.net/                   *
+  *                                                    *
+  * Brian Gochnauer Oct 2010                           *
+  *     Removed ansi references for backward compat    *
+  *     Made unicode ready                             *
+  **************************************************** *)
 
 unit CPort;
 {$Warnings OFF}
 {$I CPort.inc}
-{.$DEFINE No_Dialogs} //removes forms setup/config code
+
+{ .$DEFINE No_Dialogs } // removes forms setup/config code
 interface
 
 uses
   Windows, Messages, Classes, SysUtils, IniFiles, Registry;
 
 type
-  TComExceptions = ( CE_OpenFailed      ,    CE_WriteFailed     ,
-                        CE_ReadFailed      ,    CE_InvalidAsync    ,
-                        CE_PurgeFailed     ,    CE_AsyncCheck      ,
-                        CE_SetStateFailed  ,    CE_TimeoutsFailed  ,
-                        CE_SetupComFailed  ,    CE_ClearComFailed  ,
-                        CE_ModemStatFailed ,    CE_EscapeComFailed ,
-                        CE_TransmitFailed  ,    CE_ConnChangeProp  ,
-                        CE_EnumPortsFailed ,    CE_StoreFailed     ,
-                        CE_LoadFailed      ,    CE_RegFailed       ,
-                        CE_LedStateFailed  ,    CE_ThreadCreated   ,
-                        CE_WaitFailed      ,    CE_HasLink         ,
-                        CE_RegError        ,    CEPortNotOpen     );
-
-
-
+  TComExceptions = (CE_OpenFailed, CE_WriteFailed, CE_ReadFailed,
+    CE_InvalidAsync, CE_PurgeFailed, CE_AsyncCheck, CE_SetStateFailed,
+    CE_TimeoutsFailed, CE_SetupComFailed, CE_ClearComFailed, CE_ModemStatFailed,
+    CE_EscapeComFailed, CE_TransmitFailed, CE_ConnChangeProp,
+    CE_EnumPortsFailed, CE_StoreFailed, CE_LoadFailed, CE_RegFailed,
+    CE_LedStateFailed, CE_ThreadCreated, CE_WaitFailed, CE_HasLink, CE_RegError,
+    CEPortNotOpen);
 
   // various types
   TPort = string;
-  TBaudRate = (brCustom, br110, br300, br600, br1200, br2400, br4800, br9600, br14400,
-                br19200, br38400, br56000, br57600, br115200, br128000, br256000);
+  TBaudRate = (brCustom, br110, br300, br600, br1200, br2400, br4800, br9600,
+    br14400, br19200, br38400, br56000, br57600, br115200, br128000, br256000);
   TStopBits = (sbOneStopBit, sbOne5StopBits, sbTwoStopBits);
   TDataBits = (dbFive, dbSix, dbSeven, dbEight);
   TParityBits = (prNone, prOdd, prEven, prMark, prSpace);
   TDTRFlowControl = (dtrDisable, dtrEnable, dtrHandshake);
   TRTSFlowControl = (rtsDisable, rtsEnable, rtsHandshake, rtsToggle);
   TFlowControl = (fcHardware, fcSoftware, fcNone, fcCustom);
-  TComEvent = (evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR, evError, evRLSD, evRx80Full);
+  TComEvent = (evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR,
+    evError, evRLSD, evRx80Full);
   TComEvents = set of TComEvent;
   TComSignal = (csCTS, csDSR, csRing, csRLSD);
   TComSignals = set of TComSignal;
-  TComError = (ceFrame, ceRxParity, ceOverrun, ceBreak, ceIO, ceMode, ceRxOver, ceTxFull);
+  TComError = (ceFrame, ceRxParity, ceOverrun, ceBreak, ceIO, ceMode, ceRxOver,
+    ceTxFull);
   TComErrors = set of TComError;
   TSyncMethod = (smThreadSync, smWindowSync, smNone);
   TStoreType = (stRegistry, stIniFile);
-  TStoredProp = (spBasic, spFlowControl, spBuffer, spTimeouts, spParity, spOthers);
+  TStoredProp = (spBasic, spFlowControl, spBuffer, spTimeouts, spParity,
+    spOthers);
   TStoredProps = set of TStoredProp;
-  TComLinkEvent = (leConn, leCTS, leDSR, leRLSD, leRing, leRx, leTx, leTxEmpty, leRxFlag);
+  TComLinkEvent = (leConn, leCTS, leDSR, leRLSD, leRing, leRx, leTx, leTxEmpty,
+    leRxFlag);
   TRxCharEvent = procedure(Sender: TObject; Count: Integer) of object;
-  TRxBufEvent = procedure(Sender: TObject; const Buffer; Count: Integer) of object;
+  TRxBufEvent = procedure(Sender: TObject; const Buffer; Count: Integer)
+    of object;
   TComErrorEvent = procedure(Sender: TObject; Errors: TComErrors) of object;
   TComSignalEvent = procedure(Sender: TObject; OnOff: Boolean) of object;
-  TComExceptionEvent = procedure(Sender:TObject;
-                          TComException:TComExceptions; ComportMessage:String;
-                          WinError:Int64; WinMessage:String) of object;
+  TComExceptionEvent = procedure(Sender: TObject; TComException: TComExceptions;
+    ComportMessage: String; WinError: Int64; WinMessage: String) of object;
 
   // types for asynchronous calls
   TOperationKind = (okWrite, okRead);
+
   TAsync = record
     Overlapped: TOverlapped;
     Kind: TOperationKind;
     Data: Pointer;
     Size: Integer;
   end;
+
   PAsync = ^TAsync;
 
-  {$IFNDEF Unicode}
+{$IFNDEF Unicode}
   UnicodeString = Widestring;
-  {$ENDIF}
-
+{$ENDIF}
   // TComPort component and asistant classes
   TCustomComPort = class; // forward declaration
 
@@ -106,7 +103,8 @@ type
     property OnRxFlag: TNotifyEvent read FOnRxFlag write FOnRxFlag;
     property OnCTSChange: TComSignalEvent read FOnCTSChange write FOnCTSChange;
     property OnDSRChange: TComSignalEvent read FOnDSRChange write FOnDSRChange;
-    property OnRLSDChange: TComSignalEvent read FOnRLSDChange write FOnRLSDChange;
+    property OnRLSDChange: TComSignalEvent read FOnRLSDChange
+      write FOnRLSDChange;
     property OnRing: TNotifyEvent read FOnRing write FOnRing;
     property OnTx: TComSignalEvent read FOnTx write FOnTx;
     property OnRx: TComSignalEvent read FOnRx write FOnRx;
@@ -150,13 +148,16 @@ type
     constructor Create;
     property ComPort: TCustomComPort read FComPort;
   published
-    property ReadInterval: Integer read FReadInterval write SetReadInterval default -1;
-    property ReadTotalMultiplier: Integer read FReadTotalM write SetReadTotalM default 0;
-    property ReadTotalConstant: Integer read FReadTotalC write SetReadTotalC default 0;
-    property WriteTotalMultiplier: Integer
-      read FWriteTotalM write SetWriteTotalM default 100;
-    property WriteTotalConstant: Integer
-      read FWriteTotalC write SetWriteTotalC default 1000;
+    property ReadInterval: Integer read FReadInterval write SetReadInterval
+      default -1;
+    property ReadTotalMultiplier: Integer read FReadTotalM write SetReadTotalM
+      default 0;
+    property ReadTotalConstant: Integer read FReadTotalC write SetReadTotalC
+      default 0;
+    property WriteTotalMultiplier: Integer read FWriteTotalM
+      write SetWriteTotalM default 100;
+    property WriteTotalConstant: Integer read FWriteTotalC write SetWriteTotalC
+      default 1000;
   end;
 
   // flow control settings
@@ -168,7 +169,7 @@ type
     FControlDTR: TDTRFlowControl;
     FControlRTS: TRTSFlowControl;
     FXonXoffOut: Boolean;
-    FXonXoffIn:  Boolean;
+    FXonXoffIn: Boolean;
     FDSRSensitivity: Boolean;
     FTxContinueOnXoff: Boolean;
     FXonChar: Char;
@@ -192,17 +193,18 @@ type
     constructor Create;
     property ComPort: TCustomComPort read FComPort;
   published
-    property FlowControl: TFlowControl read GetFlowControl write SetFlowControl stored False;
+    property FlowControl: TFlowControl read GetFlowControl write SetFlowControl
+      stored False;
     property OutCTSFlow: Boolean read FOutCTSFlow write SetOutCTSFlow;
     property OutDSRFlow: Boolean read FOutDSRFlow write SetOutDSRFlow;
     property ControlDTR: TDTRFlowControl read FControlDTR write SetControlDTR;
     property ControlRTS: TRTSFlowControl read FControlRTS write SetControlRTS;
     property XonXoffOut: Boolean read FXonXoffOut write SetXonXoffOut;
-    property XonXoffIn:  Boolean read FXonXoffIn write SetXonXoffIn;
-    property DSRSensitivity: Boolean
-      read FDSRSensitivity write SetDSRSensitivity default False;
-    property TxContinueOnXoff: Boolean
-      read FTxContinueOnXoff write SetTxContinueOnXoff default False;
+    property XonXoffIn: Boolean read FXonXoffIn write SetXonXoffIn;
+    property DSRSensitivity: Boolean read FDSRSensitivity
+      write SetDSRSensitivity default False;
+    property TxContinueOnXoff: Boolean read FTxContinueOnXoff
+      write SetTxContinueOnXoff default False;
     property XonChar: Char read FXonChar write SetXonChar default #17;
     property XoffChar: Char read FXoffChar write SetXoffChar default #19;
   end;
@@ -229,7 +231,8 @@ type
     property Bits: TParityBits read FBits write SetBits;
     property Check: Boolean read FCheck write SetCheck default False;
     property Replace: Boolean read FReplace write SetReplace default False;
-    property ReplaceChar: Char read FReplaceChar write SetReplaceChar default #0;
+    property ReplaceChar: Char read FReplaceChar write SetReplaceChar
+      default #0;
   end;
 
   // buffer size settings
@@ -248,7 +251,8 @@ type
     property ComPort: TCustomComPort read FComPort;
   published
     property InputSize: Integer read FInputSize write SetInputSize default 1024;
-    property OutputSize: Integer read FOutputSize write SetOutputSize default 1024;
+    property OutputSize: Integer read FOutputSize write SetOutputSize
+      default 1024;
   end;
 
   // main component
@@ -292,9 +296,9 @@ type
     FOnAfterClose: TNotifyEvent;
     FOnBeforeOpen: TNotifyEvent;
     FOnBeforeClose: TNotifyEvent;
-    FOnRx80Full : TNotifyEvent;
-    FOnException :TComExceptionEvent;
-    FCodePage   : Cardinal;
+    FOnRx80Full: TNotifyEvent;
+    FOnException: TComExceptionEvent;
+    FCodePage: Cardinal;
     function GetTriggersOnRxChar: Boolean;
     procedure SetTriggersOnRxChar(const Value: Boolean);
     procedure SetConnected(const Value: Boolean);
@@ -331,7 +335,7 @@ type
     procedure CallError;
     procedure CallRLSDChange;
     procedure CallRx80Full;
-    procedure CallException(AnException: Word; const WinError: Int64 =0);
+    procedure CallException(AnException: Word; const WinError: Int64 = 0);
   protected
     procedure Loaded; override;
     procedure DoAfterClose; dynamic;
@@ -368,7 +372,7 @@ type
     procedure LoadSettings(StoreType: TStoreType; LoadFrom: string);
     procedure Open;
     procedure Close;
-    {$IFNDEF No_Dialogs}procedure ShowSetupDialog;{$ENDIF}
+{$IFNDEF No_Dialogs} procedure ShowSetupDialog; {$ENDIF}
     function InputCount: Integer;
     function OutputCount: Integer;
     function Signals: TComSignals;
@@ -381,45 +385,57 @@ type
     function LastErrors: TComErrors;
 
     function Write(const Buffer; Count: Integer): Integer;
-    function WriteStr( Str: string): Integer;
+    function WriteStr(Str: string): Integer;
     function Read(var Buffer; Count: Integer): Integer;
     function ReadStr(var Str: string; Count: Integer): Integer;
-    function WriteAsync(const Buffer; Count: Integer;  var AsyncPtr: PAsync): Integer;
+    function WriteAsync(const Buffer; Count: Integer;
+      var AsyncPtr: PAsync): Integer;
     function WriteStrAsync(var Str: string; var AsyncPtr: PAsync): Integer;
-    function ReadAsync(var Buffer; Count: Integer;   var AsyncPtr: PAsync): Integer;
-    function ReadStrAsync(var Str: Ansistring; Count: Integer;  var AsyncPtr: PAsync): Integer;
-    function WriteUnicodeString(const Str: Unicodestring): Integer;
+    function ReadAsync(var Buffer; Count: Integer;
+      var AsyncPtr: PAsync): Integer;
+    function ReadStrAsync(var Str: Ansistring; Count: Integer;
+      var AsyncPtr: PAsync): Integer;
+    function WriteUnicodeString(const Str: UnicodeString): Integer;
     function ReadUnicodeString(var Str: UnicodeString; Count: Integer): Integer;
 
     function WaitForAsync(var AsyncPtr: PAsync): Integer;
     function IsAsyncCompleted(AsyncPtr: PAsync): Boolean;
-    procedure WaitForEvent(var Events: TComEvents; StopEvent: THandle;      Timeout: Integer);
+    procedure WaitForEvent(var Events: TComEvents; StopEvent: THandle;
+      Timeout: Integer);
     procedure AbortAllAsync;
     procedure TransmitChar(Ch: Char);
     procedure RegisterLink(AComLink: TComLink);
     procedure UnRegisterLink(AComLink: TComLink);
     property Handle: THandle read FHandle;
-    property TriggersOnRxChar: Boolean read GetTriggersOnRxChar write SetTriggersOnRxChar;
-    property EventThreadPriority: TThreadPriority  read FEventThreadPriority write SetEventThreadPriority;
+    property TriggersOnRxChar: Boolean read GetTriggersOnRxChar
+      write SetTriggersOnRxChar;
+    property EventThreadPriority: TThreadPriority read FEventThreadPriority
+      write SetEventThreadPriority;
     property StoredProps: TStoredProps read FStoredProps write FStoredProps;
-    property Connected: Boolean read FConnected write SetConnected default False;
+    property Connected: Boolean read FConnected write SetConnected
+      default False;
     property BaudRate: TBaudRate read FBaudRate write SetBaudRate;
-    property CustomBaudRate: Integer    read FCustomBaudRate write SetCustomBaudRate;
+    property CustomBaudRate: Integer read FCustomBaudRate
+      write SetCustomBaudRate;
     property Port: TPort read FPort write SetPort;
     property Parity: TComParity read FParity write SetParity;
     property StopBits: TStopBits read FStopBits write SetStopBits;
     property DataBits: TDataBits read FDataBits write SetDataBits;
-    property DiscardNull: Boolean read FDiscardNull write SetDiscardNull default False;
+    property DiscardNull: Boolean read FDiscardNull write SetDiscardNull
+      default False;
     property EventChar: Char read FEventChar write SetEventChar default #0;
     property Events: TComEvents read FEvents write FEvents;
     property Buffer: TComBuffer read FBuffer write SetBuffer;
-    property FlowControl: TComFlowControl  read FFlowControl write SetFlowControl;
+    property FlowControl: TComFlowControl read FFlowControl
+      write SetFlowControl;
     property Timeouts: TComTimeouts read FTimeouts write SetTimeouts;
-    property SyncMethod: TSyncMethod read FSyncMethod write SetSyncMethod default smThreadSync;
+    property SyncMethod: TSyncMethod read FSyncMethod write SetSyncMethod
+      default smThreadSync;
     property OnAfterOpen: TNotifyEvent read FOnAfterOpen write FOnAfterOpen;
     property OnAfterClose: TNotifyEvent read FOnAfterClose write FOnAfterClose;
     property OnBeforeOpen: TNotifyEvent read FOnBeforeOpen write FOnBeforeOpen;
-    property OnBeforeClose: TNotifyEvent   read FOnBeforeClose write FOnBeforeClose;
+    property OnBeforeClose: TNotifyEvent read FOnBeforeClose
+      write FOnBeforeClose;
     property OnRxChar: TRxCharEvent read FOnRxChar write FOnRxChar;
     property OnRxBuf: TRxBufEvent read FOnRxBuf write FOnRxBuf;
     property OnTxEmpty: TNotifyEvent read FOnTxEmpty write FOnTxEmpty;
@@ -427,11 +443,13 @@ type
     property OnRing: TNotifyEvent read FOnRing write FOnRing;
     property OnCTSChange: TComSignalEvent read FOnCTSChange write FOnCTSChange;
     property OnDSRChange: TComSignalEvent read FOnDSRChange write FOnDSRChange;
-    property OnRLSDChange: TComSignalEvent  read FOnRLSDChange write FOnRLSDChange;
+    property OnRLSDChange: TComSignalEvent read FOnRLSDChange
+      write FOnRLSDChange;
     property OnRxFlag: TNotifyEvent read FOnRxFlag write FOnRxFlag;
     property OnError: TComErrorEvent read FOnError write FOnError;
     property OnRx80Full: TNotifyEvent read FOnRx80Full write FOnRx80Full;
-    property OnException: TComExceptionEvent read FOnException write FOnException;
+    property OnException: TComExceptionEvent read FOnException
+      write FOnException;
     // Translate strings between ANSI charsets
     property CodePage: Cardinal read FCodePage write FCodePage default 0;
   end;
@@ -504,7 +522,8 @@ type
     procedure EmptyBuffer;
     function ValidStop: Boolean;
   protected
-    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
+    procedure Notification(AComponent: TComponent;
+      Operation: TOperation); override;
     procedure DoDiscard(const Str: string); dynamic;
     procedure DoPacket(const Str: string); dynamic;
     procedure DoCustomStart(const Str: string; var Pos: Integer); dynamic;
@@ -518,16 +537,21 @@ type
   published
     procedure ResetBuffer;
     property ComPort: TCustomComPort read FComPort write SetComPort;
-    property CaseInsensitive: Boolean read FCaseInsensitive write SetCaseInsensitive default False;
-    property IncludeStrings: Boolean read FIncludeStrings write FIncludeStrings default False;
-    property MaxBufferSize: Integer read FMaxBufferSize write FMaxBufferSize default 1024;
+    property CaseInsensitive: Boolean read FCaseInsensitive
+      write SetCaseInsensitive default False;
+    property IncludeStrings: Boolean read FIncludeStrings write FIncludeStrings
+      default False;
+    property MaxBufferSize: Integer read FMaxBufferSize write FMaxBufferSize
+      default 1024;
     property StartString: string read FStartString write SetStartString;
     property StopString: string read FStopString write SetStopString;
     property Size: Integer read FSize write SetSize default 0;
     property OnDiscard: TComStrEvent read FOnDiscard write FOnDiscard;
     property OnPacket: TComStrEvent read FOnPacket write FOnPacket;
-    property OnCustomStart: TCustPacketEvent read FOnCustomStart write FOnCustomStart;
-    property OnCustomStop: TCustPacketEvent read FOnCustomStop write FOnCustomStop;
+    property OnCustomStart: TCustPacketEvent read FOnCustomStart
+      write FOnCustomStart;
+    property OnCustomStop: TCustPacketEvent read FOnCustomStop
+      write FOnCustomStop;
   end;
 
   // com port stream
@@ -553,7 +577,7 @@ type
     property Code: Integer read FCode write FCode;
   end;
 
-// aditional procedures
+  // aditional procedures
 procedure InitAsync(var AsyncPtr: PAsync);
 procedure DoneAsync(var AsyncPtr: PAsync);
 procedure EnumComPorts(Ports: TStrings);
@@ -569,153 +593,162 @@ function StopBitsToStr(StopBits: TStopBits): string;
 function DataBitsToStr(DataBits: TDataBits): string;
 function ParityToStr(Parity: TParityBits): string;
 function FlowControlToStr(FlowControl: TFlowControl): string;
-function ComErrorsToStr(Errors:TComErrors):String;
+function ComErrorsToStr(Errors: TComErrors): String;
 
 const
   // infinite wait
   WaitInfinite = Integer(INFINITE);
 
   // error codes
-  CError_OpenFailed      = 1;
-  CError_WriteFailed     = 2;
-  CError_ReadFailed      = 3;
-  CError_InvalidAsync    = 4;
-  CError_PurgeFailed     = 5;
-  CError_AsyncCheck      = 6;
-  CError_SetStateFailed  = 7;
-  CError_TimeoutsFailed  = 8;
-  CError_SetupComFailed  = 9;
-  CError_ClearComFailed  = 10;
+  CError_OpenFailed = 1;
+  CError_WriteFailed = 2;
+  CError_ReadFailed = 3;
+  CError_InvalidAsync = 4;
+  CError_PurgeFailed = 5;
+  CError_AsyncCheck = 6;
+  CError_SetStateFailed = 7;
+  CError_TimeoutsFailed = 8;
+  CError_SetupComFailed = 9;
+  CError_ClearComFailed = 10;
   CError_ModemStatFailed = 11;
   CError_EscapeComFailed = 12;
-  CError_TransmitFailed  = 13;
-  CError_ConnChangeProp  = 14;
+  CError_TransmitFailed = 13;
+  CError_ConnChangeProp = 14;
   CError_EnumPortsFailed = 15;
-  CError_StoreFailed     = 16;
-  CError_LoadFailed      = 17;
-  CError_RegFailed       = 18;
-  CError_LedStateFailed  = 19;
-  CError_ThreadCreated   = 20;
-  CError_WaitFailed      = 21;
-  CError_HasLink         = 22;
-  CError_RegError        = 23;
-  CError_PortNotOpen     = 24;
+  CError_StoreFailed = 16;
+  CError_LoadFailed = 17;
+  CError_RegFailed = 18;
+  CError_LedStateFailed = 19;
+  CError_ThreadCreated = 20;
+  CError_WaitFailed = 21;
+  CError_HasLink = 22;
+  CError_RegError = 23;
+  CError_PortNotOpen = 24;
 
 implementation
 
 uses
-  {$IFNDEF No_Dialogs}  CPortSetup, {$ENDIF}
-   Controls, Forms, WinSpool;
+{$IFNDEF No_Dialogs} CPortSetup, {$ENDIF}
+  Controls, Forms, WinSpool;
 
 var
   // error messages
-  ComErrorMessages: array[1..24] of widestring;
+  ComErrorMessages: array [1 .. 24] of Widestring;
 
 const
   // auxilary constants used not defined in windows.pas
-  dcb_Binary           = $00000001;
-  dcb_Parity           = $00000002;
-  dcb_OutxCTSFlow      = $00000004;
-  dcb_OutxDSRFlow      = $00000008;
-  dcb_DTRControl       = $00000030;
-  dcb_DSRSensivity     = $00000040;
+  dcb_Binary = $00000001;
+  dcb_Parity = $00000002;
+  dcb_OutxCTSFlow = $00000004;
+  dcb_OutxDSRFlow = $00000008;
+  dcb_DTRControl = $00000030;
+  dcb_DSRSensivity = $00000040;
   dcb_TxContinueOnXoff = $00000080;
-  dcb_OutX             = $00000100;
-  dcb_InX              = $00000200;
-  dcb_ErrorChar        = $00000400;
-  dcb_Null             = $00000800;
-  dcb_RTSControl       = $00003000;
-  dcb_AbortOnError     = $00004000;
+  dcb_OutX = $00000100;
+  dcb_InX = $00000200;
+  dcb_ErrorChar = $00000400;
+  dcb_Null = $00000800;
+  dcb_RTSControl = $00003000;
+  dcb_AbortOnError = $00004000;
 
   // com port window message
-  CM_COMPORT           = WM_USER + 1;
+  CM_COMPORT = WM_USER + 1;
 
-(*****************************************
- * auxilary functions and procedures     *
- *****************************************)
-function ComErrorsToStr(Errors:TComErrors):String;
-  procedure e(msg:String);
+  (* ****************************************
+    * auxilary functions and procedures     *
+    **************************************** *)
+function ComErrorsToStr(Errors: TComErrors): String;
+  procedure e(msg: String);
   begin
-     if result='' then
-        result := msg
-     else
-        result := result+','+msg;
+    if result = '' then
+      result := msg
+    else
+      result := result + ',' + msg;
   end;
+
 begin
-   result := '';
-   if ceFrame    in Errors then e('Frame');
-   if ceRxParity in Errors then e('Parity');
-   if ceOverrun  in Errors then e('Overrun');
-   if ceBreak    in Errors then e('Break');
-   if ceIO       in Errors then e('IO');
-   if ceMode     in Errors then e('Mode');
-   if ceRxOver   in Errors then e('RxOver');
-   if ceTxFull   in Errors then e('TxFull');
-   if result = '' then
-      result := '<Ok>'
-   else
-      result := '<ComError:'+result+'>';
+  result := '';
+  if ceFrame in Errors then
+    e('Frame');
+  if ceRxParity in Errors then
+    e('Parity');
+  if ceOverrun in Errors then
+    e('Overrun');
+  if ceBreak in Errors then
+    e('Break');
+  if ceIO in Errors then
+    e('IO');
+  if ceMode in Errors then
+    e('Mode');
+  if ceRxOver in Errors then
+    e('RxOver');
+  if ceTxFull in Errors then
+    e('TxFull');
+  if result = '' then
+    result := '<Ok>'
+  else
+    result := '<ComError:' + result + '>';
 end;
 
 // converts TComEvents type to Integer
 function EventsToInt(const Events: TComEvents): Integer;
 begin
-  Result := 0;
+  result := 0;
   if evRxChar in Events then
-    Result := Result or EV_RXCHAR;
+    result := result or EV_RXCHAR;
   if evRxFlag in Events then
-    Result := Result or EV_RXFLAG;
+    result := result or EV_RXFLAG;
   if evTxEmpty in Events then
-    Result := Result or EV_TXEMPTY;
+    result := result or EV_TXEMPTY;
   if evRing in Events then
-    Result := Result or EV_RING;
+    result := result or EV_RING;
   if evCTS in Events then
-    Result := Result or EV_CTS;
+    result := result or EV_CTS;
   if evDSR in Events then
-    Result := Result or EV_DSR;
+    result := result or EV_DSR;
   if evRLSD in Events then
-    Result := Result or EV_RLSD;
+    result := result or EV_RLSD;
   if evError in Events then
-    Result := Result or EV_ERR;
+    result := result or EV_ERR;
   if evBreak in Events then
-    Result := Result or EV_BREAK;
+    result := result or EV_BREAK;
   if evRx80Full in Events then
-    Result := Result or EV_RX80FULL;
+    result := result or EV_RX80FULL;
 end;
 
 function IntToEvents(Mask: Integer): TComEvents;
 begin
-  Result := [];
+  result := [];
   if (EV_RXCHAR and Mask) <> 0 then
-    Result := Result + [evRxChar];
+    result := result + [evRxChar];
   if (EV_TXEMPTY and Mask) <> 0 then
-    Result := Result + [evTxEmpty];
+    result := result + [evTxEmpty];
   if (EV_BREAK and Mask) <> 0 then
-    Result := Result + [evBreak];
+    result := result + [evBreak];
   if (EV_RING and Mask) <> 0 then
-    Result := Result + [evRing];
+    result := result + [evRing];
   if (EV_CTS and Mask) <> 0 then
-    Result := Result + [evCTS];
+    result := result + [evCTS];
   if (EV_DSR and Mask) <> 0 then
-    Result := Result + [evDSR];
+    result := result + [evDSR];
   if (EV_RXFLAG and Mask) <> 0 then
-    Result := Result + [evRxFlag];
+    result := result + [evRxFlag];
   if (EV_RLSD and Mask) <> 0 then
-    Result := Result + [evRLSD];
+    result := result + [evRLSD];
   if (EV_ERR and Mask) <> 0 then
-    Result := Result + [evError];
+    result := result + [evError];
   if (EV_RX80FULL and Mask) <> 0 then
-    Result := Result + [evRx80Full];
+    result := result + [evRx80Full];
 end;
 
-(*****************************************
- * TComThread class                      *
- *****************************************)
+(* ****************************************
+  * TComThread class                      *
+  **************************************** *)
 
 // create thread
 constructor TComThread.Create(AComPort: TCustomComPort);
 begin
-  inherited Create(false);
+  inherited Create(False);
   FStopEvent := CreateEvent(nil, True, False, nil);
   FComPort := AComPort;
   // set thread priority
@@ -723,7 +756,7 @@ begin
   // select which events are monitored
   SetCommMask(FComPort.Handle, EventsToInt(FComPort.Events));
   // execute thread
-  //{$IFDEF Unicode}Start;  {$ELSE}  Resume;  {$ENDIF}
+  // {$IFDEF Unicode}Start;  {$ELSE}  Resume;  {$ENDIF}
 end;
 
 // destroy thread
@@ -736,7 +769,7 @@ end;
 // thread action
 procedure TComThread.Execute;
 var
-  EventHandles: array[0..1] of THandle;
+  EventHandles: array [0 .. 1] of THandle;
   Overlapped: TOverlapped;
   Signaled, BytesTrans, Mask: DWORD;
 begin
@@ -749,9 +782,8 @@ begin
     WaitCommEvent(FComPort.Handle, Mask, @Overlapped);
     Signaled := WaitForMultipleObjects(2, @EventHandles, False, INFINITE);
     // if event occurs, dispatch it
-    if (Signaled = WAIT_OBJECT_0 + 1)
-      and GetOverlappedResult(FComPort.Handle, Overlapped, BytesTrans, False)
-    then
+    if (Signaled = WAIT_OBJECT_0 + 1) and GetOverlappedResult(FComPort.Handle,
+      Overlapped, BytesTrans, False) then
     begin
       FEvents := IntToEvents(Mask);
       DispatchComMsg;
@@ -775,9 +807,12 @@ end;
 procedure TComThread.DispatchComMsg;
 begin
   case FComPort.SyncMethod of
-    smThreadSync: Synchronize(DoEvents); // call events in main thread
-    smWindowSync: SendEvents; // call events in thread that opened the port
-    smNone:       DoEvents; // call events inside monitoring thread
+    smThreadSync:
+      Synchronize(DoEvents); // call events in main thread
+    smWindowSync:
+      SendEvents; // call events in thread that opened the port
+    smNone:
+      DoEvents; // call events inside monitoring thread
   end;
 end;
 
@@ -831,9 +866,9 @@ begin
     FComPort.CallRx80Full;
 end;
 
-(*****************************************
- * TComTimeouts class                    *
- *****************************************)
+(* ****************************************
+  * TComTimeouts class                    *
+  **************************************** *)
 
 // create class
 constructor TComTimeouts.Create;
@@ -852,10 +887,10 @@ begin
     with TComTimeouts(Dest) do
     begin
       FReadInterval := Self.ReadInterval;
-      FReadTotalM   := Self.ReadTotalMultiplier;
-      FReadTotalC   := Self.ReadTotalConstant;
-      FWriteTotalM  := Self.WriteTotalMultiplier;
-      FWriteTotalC  := Self.WriteTotalConstant;
+      FReadTotalM := Self.ReadTotalMultiplier;
+      FReadTotalC := Self.ReadTotalConstant;
+      FWriteTotalM := Self.WriteTotalMultiplier;
+      FWriteTotalC := Self.WriteTotalConstant;
     end
   end
   else
@@ -924,9 +959,9 @@ begin
   end;
 end;
 
-(*****************************************
- * TComFlowControl class                 *
- *****************************************)
+(* ****************************************
+  * TComFlowControl class                 *
+  **************************************** *)
 
 // create class
 constructor TComFlowControl.Create;
@@ -943,16 +978,16 @@ begin
   begin
     with TComFlowControl(Dest) do
     begin
-      FOutCTSFlow       := Self.OutCTSFlow;
-      FOutDSRFlow       := Self.OutDSRFlow;
-      FControlDTR       := Self.ControlDTR;
-      FControlRTS       := Self.ControlRTS;
-      FXonXoffOut       := Self.XonXoffOut;
-      FXonXoffIn        := Self.XonXoffIn;
+      FOutCTSFlow := Self.OutCTSFlow;
+      FOutDSRFlow := Self.OutDSRFlow;
+      FControlDTR := Self.ControlDTR;
+      FControlRTS := Self.ControlRTS;
+      FXonXoffOut := Self.XonXoffOut;
+      FXonXoffIn := Self.XonXoffIn;
       FTxContinueOnXoff := Self.TxContinueOnXoff;
-      FDSRSensitivity   := Self.DSRSensitivity;
-      FXonChar          := Self.XonChar;
-      FXoffChar         := Self.XoffChar;
+      FDSRSensitivity := Self.DSRSensitivity;
+      FXonChar := Self.XonChar;
+      FXoffChar := Self.XoffChar;
     end
   end
   else
@@ -1078,22 +1113,17 @@ end;
 // get common flow control
 function TComFlowControl.GetFlowControl: TFlowControl;
 begin
-  if (FControlRTS = rtsHandshake) and (FOutCTSFlow)
-    and (not FXonXoffIn) and (not FXonXoffOut)
-  then
-    Result := fcHardware
+  if (FControlRTS = rtsHandshake) and (FOutCTSFlow) and (not FXonXoffIn) and
+    (not FXonXoffOut) then
+    result := fcHardware
+  else if (FControlRTS = rtsDisable) and (not FOutCTSFlow) and (FXonXoffIn) and
+    (FXonXoffOut) then
+    result := fcSoftware
+  else if (FControlRTS = rtsDisable) and (not FOutCTSFlow) and (not FXonXoffIn)
+    and (not FXonXoffOut) then
+    result := fcNone
   else
-    if (FControlRTS = rtsDisable) and (not FOutCTSFlow)
-      and (FXonXoffIn) and (FXonXoffOut)
-    then
-      Result := fcSoftware
-    else
-      if (FControlRTS = rtsDisable) and (not FOutCTSFlow)
-        and (not FXonXoffIn) and (not FXonXoffOut)
-      then
-        Result := fcNone
-      else
-        Result := fcCustom;
+    result := fcCustom;
 end;
 
 // set common flow control
@@ -1107,24 +1137,24 @@ begin
     FXonXoffOut := False;
     case Value of
       fcHardware:
-      begin
-        FControlRTS := rtsHandshake;
-        FOutCTSFlow := True;
-      end;
+        begin
+          FControlRTS := rtsHandshake;
+          FOutCTSFlow := True;
+        end;
       fcSoftware:
-      begin
-        FXonXoffIn := True;
-        FXonXoffOut := True;
-      end;
+        begin
+          FXonXoffIn := True;
+          FXonXoffOut := True;
+        end;
     end;
   end;
   if FComPort <> nil then
     FComPort.ApplyDCB;
 end;
 
-(*****************************************
- * TComParity class                      *
- *****************************************)
+(* ****************************************
+  * TComParity class                      *
+  **************************************** *)
 
 // create class
 constructor TComParity.Create;
@@ -1140,9 +1170,9 @@ begin
   begin
     with TComParity(Dest) do
     begin
-      FBits        := Self.Bits;
-      FCheck       := Self.Check;
-      FReplace     := Self.Replace;
+      FBits := Self.Bits;
+      FCheck := Self.Check;
+      FReplace := Self.Replace;
       FReplaceChar := Self.ReplaceChar;
     end
   end
@@ -1200,9 +1230,9 @@ begin
   end;
 end;
 
-(*****************************************
- * TComBuffer class                      *
- *****************************************)
+(* ****************************************
+  * TComBuffer class                      *
+  **************************************** *)
 
 // create class
 constructor TComBuffer.Create;
@@ -1219,8 +1249,8 @@ begin
   begin
     with TComBuffer(Dest) do
     begin
-      FOutputSize  := Self.OutputSize;
-      FInputSize   := Self.InputSize;
+      FOutputSize := Self.OutputSize;
+      FInputSize := Self.InputSize;
     end
   end
   else
@@ -1259,9 +1289,9 @@ begin
   end;
 end;
 
-(*****************************************
- * TCustomComPort component              *
- *****************************************)
+(* ****************************************
+  * TCustomComPort component              *
+  **************************************** *)
 
 // create component
 constructor TCustomComPort.Create(AOwner: TComponent);
@@ -1277,8 +1307,8 @@ begin
   FPort := 'COM1';
   FStopBits := sbOneStopBit;
   FDataBits := dbEight;
-  FEvents := [evRxChar, evTxEmpty, evRxFlag, evRing, evBreak,
-             evCTS, evDSR, evError, evRLSD, evRx80Full];
+  FEvents := [evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR,
+    evError, evRLSD, evRx80Full];
   FHandle := INVALID_HANDLE_VALUE;
   FStoredProps := [spBasic];
   FParity := TComParity.Create;
@@ -1289,7 +1319,7 @@ begin
   FTimeouts.SetComPort(Self);
   FBuffer := TComBuffer.Create;
   FBuffer.SetComPort(Self);
-  FCodePage := CP_ACP;//0; // uses default system codepage
+  FCodePage := CP_ACP; // 0; // uses default system codepage
 end;
 
 // destroy component
@@ -1304,35 +1334,39 @@ begin
   FLinks.Free;
 end;
 
-//Handle Exceptions
-procedure  TCustomComPort.CallException(AnException:Word; const WinError:Int64 =0);
-var winmessage:string;
+// Handle Exceptions
+procedure TCustomComPort.CallException(AnException: Word;
+  const WinError: Int64 = 0);
+var
+  WinMessage: string;
 begin
   if Assigned(FOnException) then
   begin
-    if WinError > 0 then //get windows error string
-    try  Win32Check(winerror = 0);  except on E:Exception do WinMessage:=e.message; end;
-    FOnException(self,TComExceptions(AnException),ComErrorMessages[AnException],WinError, WinMessage);
+    if WinError > 0 then // get windows error string
+      try
+        Win32Check(WinError = 0);
+      except
+        on e: Exception do
+          WinMessage := e.Message;
+      end;
+    FOnException(Self, TComExceptions(AnException),
+      ComErrorMessages[AnException], WinError, WinMessage);
   end
-    else
-      if WinError > 0 then raise EComPort.Create(AnException, WinError)
-       else raise EComPort.CreateNoWinCode(AnException);
+  else if WinError > 0 then
+    raise EComPort.Create(AnException, WinError)
+  else
+    raise EComPort.CreateNoWinCode(AnException);
 
 end;
+
 // create handle to serial port
 procedure TCustomComPort.CreateHandle;
 begin
-  FHandle := CreateFile(
-    PChar('\\.\' + FPort),
-    GENERIC_READ or GENERIC_WRITE,
-    0,
-    nil,
-    OPEN_EXISTING,
-    FILE_FLAG_OVERLAPPED,
-    0);
+  FHandle := CreateFile(PChar('\\.\' + FPort), GENERIC_READ or GENERIC_WRITE, 0,
+    nil, OPEN_EXISTING, FILE_FLAG_OVERLAPPED, 0);
 
   if FHandle = INVALID_HANDLE_VALUE then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_OpenFailed, GetLastError);
 end;
 
@@ -1342,7 +1376,7 @@ begin
   if FHandle <> INVALID_HANDLE_VALUE then
   begin
     if CloseHandle(FHandle) then
-    FHandle := INVALID_HANDLE_VALUE;
+      FHandle := INVALID_HANDLE_VALUE;
   end;
 end;
 
@@ -1350,7 +1384,7 @@ procedure TCustomComPort.Loaded;
 begin
   inherited Loaded;
   // open port if Connected is True at design-time
-  if FConnected and not (csDesigning in ComponentState) then
+  if FConnected and not(csDesigning in ComponentState) then
   begin
     FConnected := False;
     try
@@ -1365,28 +1399,38 @@ end;
 procedure TCustomComPort.WindowMethod(var Message: TMessage);
 begin
   with Message do
-    if Msg = CM_COMPORT then
+    if msg = CM_COMPORT then
       try
         if InSendMessage then
           ReplyMessage(0);
         if FConnected then
           case wParam of
-            EV_RXCHAR:   CallRxChar;
-            EV_TXEMPTY:  CallTxEmpty;
-            EV_BREAK:    CallBreak;
-            EV_RING:     CallRing;
-            EV_CTS:      CallCTSChange;
-            EV_DSR:      CallDSRChange;
-            EV_RXFLAG:   CallRxFlag;
-            EV_RLSD:     CallRLSDChange;
-            EV_ERR:      CallError;
-            EV_RX80FULL: CallRx80Full;
+            EV_RXCHAR:
+              CallRxChar;
+            EV_TXEMPTY:
+              CallTxEmpty;
+            EV_BREAK:
+              CallBreak;
+            EV_RING:
+              CallRing;
+            EV_CTS:
+              CallCTSChange;
+            EV_DSR:
+              CallDSRChange;
+            EV_RXFLAG:
+              CallRxFlag;
+            EV_RLSD:
+              CallRLSDChange;
+            EV_ERR:
+              CallError;
+            EV_RX80FULL:
+              CallRx80Full;
           end
       except
         Application.HandleException(Self);
       end
     else
-      Result := DefWindowProc(FWindow, Msg, wParam, lParam);
+      result := DefWindowProc(FWindow, msg, wParam, lParam);
 end;
 
 // prevent from applying changes at runtime
@@ -1410,7 +1454,7 @@ end;
 procedure TCustomComPort.Open;
 begin
   // if already connected, do nothing
-  if not FConnected and not (csDesigning in ComponentState) then
+  if not FConnected and not(csDesigning in ComponentState) then
   begin
     CallBeforeOpen;
     // open port
@@ -1432,11 +1476,11 @@ begin
     begin
       if (FSyncMethod = smWindowSync) then
 {$IFDEF DELPHI_6_OR_HIGHER}
-  {$WARN SYMBOL_DEPRECATED OFF}
+{$WARN SYMBOL_DEPRECATED OFF}
 {$ENDIF}
         FWindow := AllocateHWnd(WindowMethod);
 {$IFDEF DELPHI_6_OR_HIGHER}
-  {$WARN SYMBOL_DEPRECATED ON}
+{$WARN SYMBOL_DEPRECATED ON}
 {$ENDIF}
       FEventThread := TComThread.Create(Self);
       FThreadCreated := True;
@@ -1450,7 +1494,7 @@ end;
 procedure TCustomComPort.Close;
 begin
   // if already closed, do nothing
-  if FConnected and not (csDesigning in ComponentState) then
+  if FConnected and not(csDesigning in ComponentState) then
   begin
     CallBeforeClose;
     // abort all pending operations
@@ -1462,11 +1506,11 @@ begin
       FThreadCreated := False;
       if FSyncMethod = smWindowSync then
 {$IFDEF DELPHI_6_OR_HIGHER}
-  {$WARN SYMBOL_DEPRECATED OFF}
+{$WARN SYMBOL_DEPRECATED OFF}
 {$ENDIF}
         DeallocateHWnd(FWindow);
 {$IFDEF DELPHI_6_OR_HIGHER}
-  {$WARN SYMBOL_DEPRECATED ON}
+{$WARN SYMBOL_DEPRECATED ON}
 {$ENDIF}
     end;
     // close port
@@ -1480,24 +1524,19 @@ end;
 // apply port properties
 procedure TCustomComPort.ApplyDCB;
 const
-  CParityBits: array[TParityBits] of Integer =
-    (NOPARITY, ODDPARITY, EVENPARITY, MARKPARITY, SPACEPARITY);
-  CStopBits: array[TStopBits] of Integer =
-    (ONESTOPBIT, ONE5STOPBITS, TWOSTOPBITS);
-  CBaudRate: array[TBaudRate] of Integer =
-    (0, CBR_110, CBR_300, CBR_600, CBR_1200, CBR_2400, CBR_4800, CBR_9600,
-     CBR_14400, CBR_19200, CBR_38400, CBR_56000, CBR_57600, CBR_115200,
-     CBR_128000, CBR_256000);
-  CDataBits: array[TDataBits] of Integer = (5, 6, 7, 8);
-  CControlRTS: array[TRTSFlowControl] of Integer =
-    (RTS_CONTROL_DISABLE shl 12,
-     RTS_CONTROL_ENABLE shl 12,
-     RTS_CONTROL_HANDSHAKE shl 12,
-     RTS_CONTROL_TOGGLE shl 12);
-  CControlDTR: array[TDTRFlowControl] of Integer =
-    (DTR_CONTROL_DISABLE shl 4,
-     DTR_CONTROL_ENABLE shl 4,
-     DTR_CONTROL_HANDSHAKE shl 4);
+  CParityBits: array [TParityBits] of Integer = (NOPARITY, ODDPARITY,
+    EVENPARITY, MARKPARITY, SPACEPARITY);
+  CStopBits: array [TStopBits] of Integer = (ONESTOPBIT, ONE5STOPBITS,
+    TWOSTOPBITS);
+  CBaudRate: array [TBaudRate] of Integer = (0, CBR_110, CBR_300, CBR_600,
+    CBR_1200, CBR_2400, CBR_4800, CBR_9600, CBR_14400, CBR_19200, CBR_38400,
+    CBR_56000, CBR_57600, CBR_115200, CBR_128000, CBR_256000);
+  CDataBits: array [TDataBits] of Integer = (5, 6, 7, 8);
+  CControlRTS: array [TRTSFlowControl] of Integer = (RTS_CONTROL_DISABLE shl 12,
+    RTS_CONTROL_ENABLE shl 12, RTS_CONTROL_HANDSHAKE shl 12,
+    RTS_CONTROL_TOGGLE shl 12);
+  CControlDTR: array [TDTRFlowControl] of Integer = (DTR_CONTROL_DISABLE shl 4,
+    DTR_CONTROL_ENABLE shl 4, DTR_CONTROL_HANDSHAKE shl 4);
 
 var
   DCB: TDCB;
@@ -1505,7 +1544,7 @@ var
 begin
   // if not connected or inside BeginUpdate/EndUpdate block, do nothing
   if FConnected and (FUpdateCount = 0) and
-    not ((csDesigning in ComponentState) or (csLoading in ComponentState)) then
+    not((csDesigning in ComponentState) or (csLoading in ComponentState)) then
   begin
     DCB.DCBlength := SizeOf(TDCB);
     DCB.XonLim := FBuffer.InputSize div 4;
@@ -1524,8 +1563,8 @@ begin
         DCB.Flags := DCB.Flags or dcb_OutxCTSFlow;
       if OutDSRFlow then
         DCB.Flags := DCB.Flags or dcb_OutxDSRFlow;
-      DCB.Flags := DCB.Flags or CControlDTR[ControlDTR]
-        or CControlRTS[ControlRTS];
+      DCB.Flags := DCB.Flags or CControlDTR[ControlDTR] or
+        CControlRTS[ControlRTS];
       if XonXoffOut then
         DCB.Flags := DCB.Flags or dcb_OutX;
       if XonXoffIn then
@@ -1556,7 +1595,7 @@ begin
 
     // apply settings
     if not SetCommState(FHandle, DCB) then
-      //raise EComPort.Create
+      // raise EComPort.Create
       CallException(CError_SetStateFailed, GetLastError);
   end;
 end;
@@ -1569,25 +1608,29 @@ var
   function GetTOValue(const Value: Integer): DWORD;
   begin
     if Value = -1 then
-      Result := MAXDWORD
+      result := MAXDWORD
     else
-      Result := Value;
+      result := Value;
   end;
 
 begin
   // if not connected or inside BeginUpdate/EndUpdate block, do nothing
   if FConnected and (FUpdateCount = 0) and
-    not ((csDesigning in ComponentState) or (csLoading in ComponentState)) then
+    not((csDesigning in ComponentState) or (csLoading in ComponentState)) then
   begin
     Timeouts.ReadIntervalTimeout := GetTOValue(FTimeouts.ReadInterval);
-    Timeouts.ReadTotalTimeoutMultiplier := GetTOValue(FTimeouts.ReadTotalMultiplier);
-    Timeouts.ReadTotalTimeoutConstant := GetTOValue(FTimeouts.ReadTotalConstant);
-    Timeouts.WriteTotalTimeoutMultiplier := GetTOValue(FTimeouts.WriteTotalMultiplier);
-    Timeouts.WriteTotalTimeoutConstant := GetTOValue(FTimeouts.WriteTotalConstant);
+    Timeouts.ReadTotalTimeoutMultiplier :=
+      GetTOValue(FTimeouts.ReadTotalMultiplier);
+    Timeouts.ReadTotalTimeoutConstant :=
+      GetTOValue(FTimeouts.ReadTotalConstant);
+    Timeouts.WriteTotalTimeoutMultiplier :=
+      GetTOValue(FTimeouts.WriteTotalMultiplier);
+    Timeouts.WriteTotalTimeoutConstant :=
+      GetTOValue(FTimeouts.WriteTotalConstant);
 
     // apply settings
     if not SetCommTimeouts(FHandle, Timeouts) then
-      //raise EComPort.Create
+      // raise EComPort.Create
       CallException(CError_TimeoutsFailed, GetLastError);
   end;
 end;
@@ -1597,11 +1640,10 @@ procedure TCustomComPort.ApplyBuffer;
 begin
   // if not connected or inside BeginUpdate/EndUpdate block, do nothing
   if FConnected and (FUpdateCount = 0) and
-      not ((csDesigning in ComponentState) or (csLoading in ComponentState))
-  then
-    //apply settings
+    not((csDesigning in ComponentState) or (csLoading in ComponentState)) then
+    // apply settings
     if not SetupComm(FHandle, FBuffer.InputSize, FBuffer.OutputSize) then
-      //raise EComPort.Create
+      // raise EComPort.Create
       CallException(CError_SetupComFailed, GetLastError);
 end;
 
@@ -1620,9 +1662,9 @@ var
   ComStat: TComStat;
 begin
   if not ClearCommError(FHandle, Errors, @ComStat) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_ClearComFailed, GetLastError);
-  Result := ComStat.cbInQue;
+  result := ComStat.cbInQue;
 end;
 
 // get number of bytes in output buffer
@@ -1632,9 +1674,9 @@ var
   ComStat: TComStat;
 begin
   if not ClearCommError(FHandle, Errors, @ComStat) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_ClearComFailed, GetLastError);
-  Result := ComStat.cbOutQue;
+  result := ComStat.cbOutQue;
 end;
 
 // get signals which are in high state
@@ -1643,18 +1685,18 @@ var
   Status: DWORD;
 begin
   if not GetCommModemStatus(FHandle, Status) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_ModemStatFailed, GetLastError);
-  Result := [];
+  result := [];
 
   if (MS_CTS_ON and Status) <> 0 then
-    Result := Result + [csCTS];
+    result := result + [csCTS];
   if (MS_DSR_ON and Status) <> 0 then
-    Result := Result + [csDSR];
+    result := result + [csDSR];
   if (MS_RING_ON and Status) <> 0 then
-    Result := Result + [csRing];
+    result := result + [csRing];
   if (MS_RLSD_ON and Status) <> 0 then
-    Result := Result + [csRLSD];
+    result := result + [csRLSD];
 end;
 
 // get port state flags
@@ -1664,9 +1706,9 @@ var
   ComStat: TComStat;
 begin
   if not ClearCommError(FHandle, Errors, @ComStat) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_ClearComFailed, GetLastError);
-  Result := ComStat.Flags;
+  result := ComStat.Flags;
 end;
 
 // set hardware line break
@@ -1675,12 +1717,12 @@ var
   Act: Integer;
 begin
   if OnOff then
-    Act := Windows.SETBREAK
+    Act := Windows.SetBreak
   else
     Act := Windows.CLRBREAK;
 
   if not EscapeCommFunction(FHandle, Act) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_EscapeComFailed, GetLastError);
 end;
 
@@ -1690,12 +1732,12 @@ var
   Act: DWORD;
 begin
   if OnOff then
-    Act := Windows.SETDTR
+    Act := Windows.SetDTR
   else
     Act := Windows.CLRDTR;
 
   if not EscapeCommFunction(FHandle, Act) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_EscapeComFailed, GetLastError);
 end;
 
@@ -1705,12 +1747,12 @@ var
   Act: DWORD;
 begin
   if OnOff then
-    Act := Windows.SETRTS
+    Act := Windows.SetRTS
   else
     Act := Windows.CLRRTS;
 
   if not EscapeCommFunction(FHandle, Act) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_EscapeComFailed, GetLastError);
 end;
 
@@ -1725,7 +1767,7 @@ begin
     Act := Windows.SETXOFF;
 
   if not EscapeCommFunction(FHandle, Act) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_EscapeComFailed, GetLastError);
 end;
 
@@ -1741,7 +1783,7 @@ begin
     Flag := Flag or PURGE_TXCLEAR;
 
   if not PurgeComm(FHandle, Flag) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_PurgeFailed, GetLastError);
 end;
 
@@ -1752,30 +1794,31 @@ var
   ComStat: TComStat;
 begin
   if not ClearCommError(FHandle, Errors, @ComStat) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_ClearComFailed, GetLastError);
-  Result := [];
+  result := [];
 
   if (CE_FRAME and Errors) <> 0 then
-    Result := Result + [ceFrame];
+    result := result + [ceFrame];
   if ((CE_RXPARITY and Errors) <> 0) and FParity.Check then // get around a bug
-    Result := Result + [ceRxParity];
+    result := result + [ceRxParity];
   if (CE_OVERRUN and Errors) <> 0 then
-    Result := Result + [ceOverrun];
+    result := result + [ceOverrun];
   if (CE_RXOVER and Errors) <> 0 then
-    Result := Result + [ceRxOver];
+    result := result + [ceRxOver];
   if (CE_TXFULL and Errors) <> 0 then
-    Result := Result + [ceTxFull];
+    result := result + [ceTxFull];
   if (CE_BREAK and Errors) <> 0 then
-    Result := Result + [ceBreak];
+    result := result + [ceBreak];
   if (CE_IOE and Errors) <> 0 then
-    Result := Result + [ceIO];
+    result := result + [ceIO];
   if (CE_MODE and Errors) <> 0 then
-    Result := Result + [ceMode];
+    result := result + [ceMode];
 end;
 
 // prepare PAsync variable for read/write operation
-procedure PrepareAsync(AKind: TOperationKind; const Buffer; Count: Integer; AsyncPtr: PAsync);
+procedure PrepareAsync(AKind: TOperationKind; const Buffer; Count: Integer;
+  AsyncPtr: PAsync);
 begin
   with AsyncPtr^ do
   begin
@@ -1789,28 +1832,29 @@ begin
 end;
 
 // perform asynchronous write operation
-function TCustomComPort.WriteAsync(const Buffer; Count: Integer; var AsyncPtr: PAsync): Integer;
+function TCustomComPort.WriteAsync(const Buffer; Count: Integer;
+  var AsyncPtr: PAsync): Integer;
 var
   Success: Boolean;
   BytesTrans: DWORD;
 begin
   if AsyncPtr = nil then
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_InvalidAsync);
   if FHandle = INVALID_HANDLE_VALUE then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_PortNotOpen, -24);
   PrepareAsync(okWrite, Buffer, Count, AsyncPtr);
 
-  Success := WriteFile(FHandle, Buffer, Count, BytesTrans, @AsyncPtr^.Overlapped)
-    or (GetLastError = ERROR_IO_PENDING);
+  Success := WriteFile(FHandle, Buffer, Count, BytesTrans,
+    @AsyncPtr^.Overlapped) or (GetLastError = ERROR_IO_PENDING);
 
   if not Success then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_WriteFailed, GetLastError);
 
   SendSignalToLink(leTx, True);
-  Result := BytesTrans;
+  result := BytesTrans;
 end;
 
 // perform synchronous write operation
@@ -1821,31 +1865,37 @@ begin
   InitAsync(AsyncPtr);
   try
     WriteAsync(Buffer, Count, AsyncPtr);
-    Result := WaitForAsync(AsyncPtr);
+    result := WaitForAsync(AsyncPtr);
   finally
     DoneAsync(AsyncPtr);
   end;
 end;
 
 // perform asynchronous write operation
-function TCustomComPort.WriteStrAsync(var Str: string; var AsyncPtr: PAsync): Integer;
-var sa : Ansistring; var i:integer;
+function TCustomComPort.WriteStrAsync(var Str: string;
+  var AsyncPtr: PAsync): Integer;
+var
+  sa: Ansistring;
+var
+  i: Integer;
 begin
   if Length(Str) > 0 then
   begin
-    setlength(sa,length(str));
-    {$IFDEF Unicode}
-    if length(sa)>0 then
+    setlength(sa, Length(Str));
+{$IFDEF Unicode}
+    if Length(sa) > 0 then
     begin
-      for i := 1 to length(str) do sa[i] := ansichar(byte(str[i]));
-      move(sa[1],str[1],length(sa));
+      for i := 1 to Length(Str) do
+        sa[i] := AnsiChar(byte(Str[i]));
+      Move(sa[1], Str[1], Length(sa));
     end;
-    {$ENDIF}
-    Result := WriteAsync(Str[1], Length(Str), AsyncPtr)
+{$ENDIF}
+    result := WriteAsync(Str[1], Length(Str), AsyncPtr)
   end
   else
-    Result := 0;
+    result := 0;
 end;
+
 // perform synchronous write operation
 function TCustomComPort.WriteStr(Str: string): Integer;
 var
@@ -1854,65 +1904,71 @@ begin
   InitAsync(AsyncPtr);
   try
     WriteStrAsync(Str, AsyncPtr);
-    Result := WaitForAsync(AsyncPtr);
+    result := WaitForAsync(AsyncPtr);
   finally
     DoneAsync(AsyncPtr);
   end;
 end;
-//Pierre Yager - includes codepage converstion of strings being sent
-function TCustomComPort.WriteUnicodeString(const Str: Unicodestring): Integer;
+
+// Pierre Yager - includes codepage converstion of strings being sent
+function TCustomComPort.WriteUnicodeString(const Str: UnicodeString): Integer;
 var
   l: Integer;
-  rb: AnsiString;
+  rb: Ansistring;
 begin
-  l := WideCharToMultiByte(FCodePage, 0, PWideChar(Str), Length(Str), nil, 0, nil, nil);
-  SetLength(rb, l);
-  WideCharToMultiByte(FCodePage, 0, PWideChar(Str), Length(Str), PAnsiChar(rb), l, nil, nil);
-  Result := WriteStr(string(rb));
+  l := WideCharToMultiByte(FCodePage, 0, PWideChar(Str), Length(Str), nil, 0,
+    nil, nil);
+  setlength(rb, l);
+  WideCharToMultiByte(FCodePage, 0, PWideChar(Str), Length(Str), PAnsiChar(rb),
+    l, nil, nil);
+  result := WriteStr(string(rb));
 end;
 
-//Pierre Yager - includes codepage converstion of strings received
-function TCustomComPort.ReadUnicodeString(var Str: UnicodeString; Count: Integer): Integer;
+// Pierre Yager - includes codepage converstion of strings received
+function TCustomComPort.ReadUnicodeString(var Str: UnicodeString;
+  Count: Integer): Integer;
 var
-  rb: AnsiString;
+  rb: Ansistring;
   l: Integer;
   AsyncPtr: PAsync;
 begin
   InitAsync(AsyncPtr);
   try
-    setLength(rb,count);
-    Result := ReadAsync(rb[1], Count, AsyncPtr);  //  ReadStr(s, Count);
-    //{$IFDEF Unicode}rb := UTF8Encode(s);{$ELSE} rb := s;  {$ENDIF}
+    setlength(rb, Count);
+    result := ReadAsync(rb[1], Count, AsyncPtr); // ReadStr(s, Count);
+    // {$IFDEF Unicode}rb := UTF8Encode(s);{$ELSE} rb := s;  {$ENDIF}
     l := MultiByteToWideChar(FCodePage, 0, PAnsiChar(rb), Length(rb), nil, 0);
-    SetLength(Str, l);
-    Result := MultiByteToWideChar(FCodePage, 0, PAnsiChar(rb), Length(rb), PWideChar(Str), l);
+    setlength(Str, l);
+    result := MultiByteToWideChar(FCodePage, 0, PAnsiChar(rb), Length(rb),
+      PWideChar(Str), l);
   finally
     DoneAsync(AsyncPtr);
   end;
 end;
 
 // perform asynchronous read operation
-function TCustomComPort.ReadAsync(var Buffer; Count: Integer; var AsyncPtr: PAsync): Integer;
+function TCustomComPort.ReadAsync(var Buffer; Count: Integer;
+  var AsyncPtr: PAsync): Integer;
 var
   Success: Boolean;
   BytesTrans: DWORD;
 begin
   if AsyncPtr = nil then
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_InvalidAsync);
   AsyncPtr^.Kind := okRead;
   if FHandle = INVALID_HANDLE_VALUE then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_PortNotOpen, -24);
 
   Success := ReadFile(FHandle, Buffer, Count, BytesTrans, @AsyncPtr^.Overlapped)
     or (GetLastError = ERROR_IO_PENDING);
 
   if not Success then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_ReadFailed, GetLastError);
 
-  Result := BytesTrans;
+  result := BytesTrans;
 end;
 
 // perform synchronous read operation
@@ -1923,41 +1979,43 @@ begin
   InitAsync(AsyncPtr);
   try
     ReadAsync(Buffer, Count, AsyncPtr);
-    Result := WaitForAsync(AsyncPtr);
+    result := WaitForAsync(AsyncPtr);
   finally
     DoneAsync(AsyncPtr);
   end;
 end;
 
 // perform asynchronous read operation
-function TCustomComPort.ReadStrAsync(var Str: Ansistring; Count: Integer; var AsyncPtr: PAsync): Integer;
+function TCustomComPort.ReadStrAsync(var Str: Ansistring; Count: Integer;
+  var AsyncPtr: PAsync): Integer;
 begin
-  setlength(str,count);
+  setlength(Str, Count);
   if Count > 0 then
-    Result := ReadAsync(str[1], Count, AsyncPtr)
+    result := ReadAsync(Str[1], Count, AsyncPtr)
   else
-    Result := 0;
+    result := 0;
 end;
 
 // perform synchronous read operation
 function TCustomComPort.ReadStr(var Str: string; Count: Integer): Integer;
 var
   AsyncPtr: PAsync;
-  sa :ansistring;
-  i : integer;
+  sa: Ansistring;
+  i: Integer;
 begin
   InitAsync(AsyncPtr);
   try
     ReadStrAsync(sa, Count, AsyncPtr);
-    Result := WaitForAsync(AsyncPtr);
-    SetLength(sa, Result);
-    SetLength(str, Result);
-    {$IFDEF Unicode}
-      if length(sa)>0 then
-      for i := 1 to length(sa) do str[i] := char(byte(sa[i]))
-    {$ELSE}
-      str := sa;
-    {$ENDIF}
+    result := WaitForAsync(AsyncPtr);
+    setlength(sa, result);
+    setlength(Str, result);
+{$IFDEF Unicode}
+    if Length(sa) > 0 then
+      for i := 1 to Length(sa) do
+        Str[i] := Char(byte(sa[i]))
+{$ELSE}
+    Str := sa;
+{$ENDIF}
   finally
     DoneAsync(AsyncPtr);
   end;
@@ -1965,10 +2023,12 @@ end;
 
 function ErrorCode(AsyncPtr: PAsync): Integer;
 begin
-  Result := 0;
+  result := 0;
   case AsyncPtr^.Kind of
-    okWrite: Result := CError_WriteFailed;
-    okRead:  Result := CError_ReadFailed;
+    okWrite:
+      result := CError_WriteFailed;
+    okRead:
+      result := CError_ReadFailed;
   end;
 end;
 
@@ -1979,31 +2039,30 @@ var
   Success: Boolean;
 begin
   if AsyncPtr = nil then
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_InvalidAsync);
 
   Signaled := WaitForSingleObject(AsyncPtr^.Overlapped.hEvent, INFINITE);
   Success := (Signaled = WAIT_OBJECT_0) and
-      (GetOverlappedResult(FHandle, AsyncPtr^.Overlapped, BytesTrans, False));
+    (GetOverlappedResult(FHandle, AsyncPtr^.Overlapped, BytesTrans, False));
 
   if not Success then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(ErrorCode(AsyncPtr), GetLastError);
 
   if (AsyncPtr^.Kind = okRead) and (InputCount = 0) then
     SendSignalToLink(leRx, False)
-  else
-    if AsyncPtr^.Data <> nil then
-      TxNotifyLink(AsyncPtr^.Data^, AsyncPtr^.Size);
+  else if AsyncPtr^.Data <> nil then
+    TxNotifyLink(AsyncPtr^.Data^, AsyncPtr^.Size);
 
-  Result := BytesTrans;
+  result := BytesTrans;
 end;
 
 // abort all asynchronous operations
 procedure TCustomComPort.AbortAllAsync;
 begin
   if not PurgeComm(FHandle, PURGE_TXABORT or PURGE_RXABORT) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_PurgeFailed, GetLastError);
 end;
 
@@ -2013,13 +2072,15 @@ var
   BytesTrans: DWORD;
 begin
   if AsyncPtr = nil then
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_InvalidAsync);
 
-  Result := GetOverlappedResult(FHandle, AsyncPtr^.Overlapped, BytesTrans, False);
-  if not Result then
-    if (GetLastError <> ERROR_IO_PENDING) and (GetLastError <> ERROR_IO_INCOMPLETE) then
-      //raise EComPort.Create
+  result := GetOverlappedResult(FHandle, AsyncPtr^.Overlapped,
+    BytesTrans, False);
+  if not result then
+    if (GetLastError <> ERROR_IO_PENDING) and
+      (GetLastError <> ERROR_IO_INCOMPLETE) then
+      // raise EComPort.Create
       CallException(CError_AsyncCheck, GetLastError);
 end;
 
@@ -2031,11 +2092,11 @@ var
   Mask: DWORD;
   Success: Boolean;
   Signaled, EventHandleCount: Integer;
-  EventHandles: array[0..1] of THandle;
+  EventHandles: array [0 .. 1] of THandle;
 begin
   // cannot call method if event thread is running
   if FThreadCreated then
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_ThreadCreated);
 
   FillChar(Overlapped, SizeOf(TOverlapped), 0);
@@ -2058,13 +2119,13 @@ begin
     begin
       Signaled := WaitForMultipleObjects(EventHandleCount, @EventHandles,
         False, Timeout);
-      Success := (Signaled = WAIT_OBJECT_0)
-        or (Signaled = WAIT_OBJECT_0 + 1) or (Signaled = WAIT_TIMEOUT);
+      Success := (Signaled = WAIT_OBJECT_0) or (Signaled = WAIT_OBJECT_0 + 1) or
+        (Signaled = WAIT_TIMEOUT);
       SetCommMask(FHandle, 0);
     end;
 
     if not Success then
-      //raise EComPort.Create
+      // raise EComPort.Create
       CallException(CError_WaitFailed, GetLastError);
 
     Events := IntToEvents(Mask);
@@ -2077,12 +2138,13 @@ end;
 procedure TCustomComPort.TransmitChar(Ch: Char);
 begin
   if not TransmitCommChar(FHandle, AnsiChar(Ch)) then
-    //raise EComPort.Create
+    // raise EComPort.Create
     CallException(CError_TransmitFailed, GetLastError);
 end;
 
 // show port setup dialog
 {$IFNDEF No_Dialogs}
+
 procedure TCustomComPort.ShowSetupDialog;
 begin
   EditComPort(Self);
@@ -2093,67 +2155,67 @@ end;
 function BoolToStr(const Value: Boolean): string;
 begin
   if Value then
-    Result := 'Yes'
+    result := 'Yes'
   else
-    Result := 'No';
+    result := 'No';
 end;
 
 function StrToBool(const Value: string): Boolean;
 begin
   if UpperCase(Value) = 'YES' then
-    Result := True
+    result := True
   else
-    Result := False;
+    result := False;
 end;
 
 function DTRToStr(DTRFlowControl: TDTRFlowControl): string;
 const
-  DTRStrings: array[TDTRFlowControl] of string = ('Disable', 'Enable',
+  DTRStrings: array [TDTRFlowControl] of string = ('Disable', 'Enable',
     'Handshake');
 begin
-  Result := DTRStrings[DTRFlowControl];
+  result := DTRStrings[DTRFlowControl];
 end;
 
 function RTSToStr(RTSFlowControl: TRTSFlowControl): string;
 const
-  RTSStrings: array[TRTSFlowControl] of string = ('Disable', 'Enable',
+  RTSStrings: array [TRTSFlowControl] of string = ('Disable', 'Enable',
     'Handshake', 'Toggle');
 begin
-  Result := RTSStrings[RTSFlowControl];
+  result := RTSStrings[RTSFlowControl];
 end;
 
 function StrToRTS(Str: string): TRTSFlowControl;
 var
-  I: TRTSFlowControl;
+  i: TRTSFlowControl;
 begin
-  I := Low(TRTSFlowControl);
-  while (I <= High(TRTSFlowControl)) do
+  i := Low(TRTSFlowControl);
+  while (i <= High(TRTSFlowControl)) do
   begin
-    if UpperCase(Str) = UpperCase(RTSToStr(I)) then
+    if UpperCase(Str) = UpperCase(RTSToStr(i)) then
       Break;
-    I := Succ(I);
+    i := Succ(i);
   end;
-  if I > High(TRTSFlowControl) then
-    Result := rtsDisable
+  if i > High(TRTSFlowControl) then
+    result := rtsDisable
   else
-    Result := I;
+    result := i;
 end;
 
 function StrToDTR(Str: string): TDTRFlowControl;
 var
-  I: TDTRFlowControl;
+  i: TDTRFlowControl;
 begin
-  I := Low(TDTRFlowControl);
-  while (I <= High(TDTRFlowControl)) do
+  i := Low(TDTRFlowControl);
+  while (i <= High(TDTRFlowControl)) do
   begin
-    if UpperCase(Str) = UpperCase(DTRToStr(I)) then
+    if UpperCase(Str) = UpperCase(DTRToStr(i)) then
       Break;
-    I := Succ(I);
+    i := Succ(i);
   end;
-  if I > High(TDTRFlowControl) then
-    Result := dtrDisable
+  if i > High(TDTRFlowControl) then
+    result := dtrDisable
   else
-    Result := I;
+    result := i;
 end;
 
 function StrToChar(Str: string): Char;
@@ -2169,24 +2231,24 @@ begin
       except
         A := 0;
       end;
-      Result := Chr(Byte(A));
+      result := Chr(byte(A));
     end
     else
-      Result := Str[1];
+      result := Str[1];
   end
   else
-    Result := #0;
+    result := #0;
 end;
 
 function CharToStr(Ch: Char): string;
 begin
-  {$IFDEF Unicode}
-  if CharInSet(ch,[#33..#127]) then
-  {$ELSE}
-  if Ch in [#33..#127] then {$ENDIF}
-    Result := Ch
+{$IFDEF Unicode}
+  if CharInSet(Ch, [#33 .. #127]) then
+{$ELSE}
+  if Ch in [#33 .. #127] then {$ENDIF}
+    result := Ch
   else
-    Result := '#' + IntToStr(Ord(Ch));
+    result := '#' + IntToStr(Ord(Ch));
 end;
 
 // store settings to ini file
@@ -2201,7 +2263,8 @@ begin
     IniFile.WriteString(Name, 'StopBits', StopBitsToStr(StopBits));
     IniFile.WriteString(Name, 'DataBits', DataBitsToStr(DataBits));
     IniFile.WriteString(Name, 'Parity', ParityToStr(Parity.Bits));
-    IniFile.WriteString(Name, 'FlowControl', FlowControlToStr(FlowControl.FlowControl));
+    IniFile.WriteString(Name, 'FlowControl',
+      FlowControlToStr(FlowControl.FlowControl));
   end;
   if spOthers in FStoredProps then
   begin
@@ -2212,7 +2275,8 @@ begin
   begin
     IniFile.WriteString(Name, 'Parity.Check', BoolToStr(Parity.Check));
     IniFile.WriteString(Name, 'Parity.Replace', BoolToStr(Parity.Replace));
-    IniFile.WriteString(Name, 'Parity.ReplaceChar', CharToStr(Parity.ReplaceChar));
+    IniFile.WriteString(Name, 'Parity.ReplaceChar',
+      CharToStr(Parity.ReplaceChar));
   end;
   if spBuffer in FStoredProps then
   begin
@@ -2222,23 +2286,37 @@ begin
   if spTimeouts in FStoredProps then
   begin
     IniFile.WriteInteger(Name, 'Timeouts.ReadInterval', Timeouts.ReadInterval);
-    IniFile.WriteInteger(Name, 'Timeouts.ReadTotalConstant', Timeouts.ReadTotalConstant);
-    IniFile.WriteInteger(Name, 'Timeouts.ReadTotalMultiplier', Timeouts.ReadTotalMultiplier);
-    IniFile.WriteInteger(Name, 'Timeouts.WriteTotalConstant', Timeouts.WriteTotalConstant);
-    IniFile.WriteInteger(Name, 'Timeouts.WriteTotalMultiplier', Timeouts.WriteTotalMultiplier);
+    IniFile.WriteInteger(Name, 'Timeouts.ReadTotalConstant',
+      Timeouts.ReadTotalConstant);
+    IniFile.WriteInteger(Name, 'Timeouts.ReadTotalMultiplier',
+      Timeouts.ReadTotalMultiplier);
+    IniFile.WriteInteger(Name, 'Timeouts.WriteTotalConstant',
+      Timeouts.WriteTotalConstant);
+    IniFile.WriteInteger(Name, 'Timeouts.WriteTotalMultiplier',
+      Timeouts.WriteTotalMultiplier);
   end;
   if spFlowControl in FStoredProps then
   begin
-    IniFile.WriteString(Name, 'FlowControl.ControlRTS', RTSToStr(FlowControl.ControlRTS));
-    IniFile.WriteString(Name, 'FlowControl.ControlDTR', DTRToStr(FlowControl.ControlDTR));
-    IniFile.WriteString(Name, 'FlowControl.DSRSensitivity', BoolToStr(FlowControl.DSRSensitivity));
-    IniFile.WriteString(Name, 'FlowControl.OutCTSFlow', BoolToStr(FlowControl.OutCTSFlow));
-    IniFile.WriteString(Name, 'FlowControl.OutDSRFlow', BoolToStr(FlowControl.OutDSRFlow));
-    IniFile.WriteString(Name, 'FlowControl.TxContinueOnXoff', BoolToStr(FlowControl.TxContinueOnXoff));
-    IniFile.WriteString(Name, 'FlowControl.XonXoffIn', BoolToStr(FlowControl.XonXoffIn));
-    IniFile.WriteString(Name, 'FlowControl.XonXoffOut', BoolToStr(FlowControl.XonXoffOut));
-    IniFile.WriteString(Name, 'FlowControl.XoffChar', CharToStr(FlowControl.XoffChar));
-    IniFile.WriteString(Name, 'FlowControl.XonChar', CharToStr(FlowControl.XonChar));
+    IniFile.WriteString(Name, 'FlowControl.ControlRTS',
+      RTSToStr(FlowControl.ControlRTS));
+    IniFile.WriteString(Name, 'FlowControl.ControlDTR',
+      DTRToStr(FlowControl.ControlDTR));
+    IniFile.WriteString(Name, 'FlowControl.DSRSensitivity',
+      BoolToStr(FlowControl.DSRSensitivity));
+    IniFile.WriteString(Name, 'FlowControl.OutCTSFlow',
+      BoolToStr(FlowControl.OutCTSFlow));
+    IniFile.WriteString(Name, 'FlowControl.OutDSRFlow',
+      BoolToStr(FlowControl.OutDSRFlow));
+    IniFile.WriteString(Name, 'FlowControl.TxContinueOnXoff',
+      BoolToStr(FlowControl.TxContinueOnXoff));
+    IniFile.WriteString(Name, 'FlowControl.XonXoffIn',
+      BoolToStr(FlowControl.XonXoffIn));
+    IniFile.WriteString(Name, 'FlowControl.XonXoffOut',
+      BoolToStr(FlowControl.XonXoffOut));
+    IniFile.WriteString(Name, 'FlowControl.XoffChar',
+      CharToStr(FlowControl.XoffChar));
+    IniFile.WriteString(Name, 'FlowControl.XonChar',
+      CharToStr(FlowControl.XonChar));
   end;
 end;
 
@@ -2276,20 +2354,28 @@ begin
   begin
     Reg.WriteInteger('Timeouts.ReadInterval', Timeouts.ReadInterval);
     Reg.WriteInteger('Timeouts.ReadTotalConstant', Timeouts.ReadTotalConstant);
-    Reg.WriteInteger('Timeouts.ReadTotalMultiplier', Timeouts.ReadTotalMultiplier);
-    Reg.WriteInteger('Timeouts.WriteTotalConstant', Timeouts.WriteTotalConstant);
-    Reg.WriteInteger('Timeouts.WriteTotalMultiplier', Timeouts.WriteTotalMultiplier);
+    Reg.WriteInteger('Timeouts.ReadTotalMultiplier',
+      Timeouts.ReadTotalMultiplier);
+    Reg.WriteInteger('Timeouts.WriteTotalConstant',
+      Timeouts.WriteTotalConstant);
+    Reg.WriteInteger('Timeouts.WriteTotalMultiplier',
+      Timeouts.WriteTotalMultiplier);
   end;
   if spFlowControl in FStoredProps then
   begin
     Reg.WriteString('FlowControl.ControlRTS', RTSToStr(FlowControl.ControlRTS));
     Reg.WriteString('FlowControl.ControlDTR', DTRToStr(FlowControl.ControlDTR));
-    Reg.WriteString('FlowControl.DSRSensitivity', BoolToStr(FlowControl.DSRSensitivity));
-    Reg.WriteString('FlowControl.OutCTSFlow', BoolToStr(FlowControl.OutCTSFlow));
-    Reg.WriteString('FlowControl.OutDSRFlow', BoolToStr(FlowControl.OutDSRFlow));
-    Reg.WriteString('FlowControl.TxContinueOnXoff', BoolToStr(FlowControl.TxContinueOnXoff));
+    Reg.WriteString('FlowControl.DSRSensitivity',
+      BoolToStr(FlowControl.DSRSensitivity));
+    Reg.WriteString('FlowControl.OutCTSFlow',
+      BoolToStr(FlowControl.OutCTSFlow));
+    Reg.WriteString('FlowControl.OutDSRFlow',
+      BoolToStr(FlowControl.OutDSRFlow));
+    Reg.WriteString('FlowControl.TxContinueOnXoff',
+      BoolToStr(FlowControl.TxContinueOnXoff));
     Reg.WriteString('FlowControl.XonXoffIn', BoolToStr(FlowControl.XonXoffIn));
-    Reg.WriteString('FlowControl.XonXoffOut', BoolToStr(FlowControl.XonXoffOut));
+    Reg.WriteString('FlowControl.XonXoffOut',
+      BoolToStr(FlowControl.XonXoffOut));
     Reg.WriteString('FlowControl.XoffChar', CharToStr(FlowControl.XoffChar));
     Reg.WriteString('FlowControl.XonChar', CharToStr(FlowControl.XonChar));
   end;
@@ -2301,51 +2387,89 @@ begin
   if spBasic in FStoredProps then
   begin
     Port := IniFile.ReadString(Name, 'Port', Port);
-    BaudRate := StrToBaudRate(IniFile.ReadString(Name, 'BaudRate', BaudRateToStr(BaudRate)));
+    BaudRate := StrToBaudRate(IniFile.ReadString(Name, 'BaudRate',
+      BaudRateToStr(BaudRate)));
     if BaudRate = brCustom then
       CustomBaudRate := IniFile.ReadInteger(Name, 'CustomBaudRate', 9600);
-    StopBits := StrToStopBits(IniFile.ReadString(Name, 'StopBits', StopBitsToStr(StopBits)));
-    DataBits := StrToDataBits(IniFile.ReadString(Name, 'DataBits', DataBitsToStr(DataBits)));
-    Parity.Bits := StrToParity(IniFile.ReadString(Name, 'Parity', ParityToStr(Parity.Bits)));
-    FlowControl.FlowControl := StrToFlowControl(
-      IniFile.ReadString(Name, 'FlowControl', FlowControlToStr(FlowControl.FlowControl)));
+    StopBits := StrToStopBits(IniFile.ReadString(Name, 'StopBits',
+      StopBitsToStr(StopBits)));
+    DataBits := StrToDataBits(IniFile.ReadString(Name, 'DataBits',
+      DataBitsToStr(DataBits)));
+    Parity.Bits := StrToParity(IniFile.ReadString(Name, 'Parity',
+      ParityToStr(Parity.Bits)));
+    FlowControl.FlowControl :=
+      StrToFlowControl(IniFile.ReadString(Name, 'FlowControl',
+      FlowControlToStr(FlowControl.FlowControl)));
   end;
   if spOthers in FStoredProps then
   begin
-    EventChar := StrToChar(IniFile.ReadString(Name, 'EventChar', CharToStr(EventChar)));
-    DiscardNull := StrToBool(IniFile.ReadString(Name, 'DiscardNull', BoolToStr(DiscardNull)));
+    EventChar := StrToChar(IniFile.ReadString(Name, 'EventChar',
+      CharToStr(EventChar)));
+    DiscardNull := StrToBool(IniFile.ReadString(Name, 'DiscardNull',
+      BoolToStr(DiscardNull)));
   end;
   if spParity in FStoredProps then
   begin
-    Parity.Check := StrToBool(IniFile.ReadString(Name, 'Parity.Check', BoolToStr(Parity.Check)));
-    Parity.Replace := StrToBool(IniFile.ReadString(Name, 'Parity.Replace', BoolToStr(Parity.Replace)));
-    Parity.ReplaceChar := StrToChar(IniFile.ReadString(Name, 'Parity.ReplaceChar', CharToStr(Parity.ReplaceChar)));
+    Parity.Check := StrToBool(IniFile.ReadString(Name, 'Parity.Check',
+      BoolToStr(Parity.Check)));
+    Parity.Replace := StrToBool(IniFile.ReadString(Name, 'Parity.Replace',
+      BoolToStr(Parity.Replace)));
+    Parity.ReplaceChar :=
+      StrToChar(IniFile.ReadString(Name, 'Parity.ReplaceChar',
+      CharToStr(Parity.ReplaceChar)));
   end;
   if spBuffer in FStoredProps then
   begin
-    Buffer.OutputSize := IniFile.ReadInteger(Name, 'Buffer.OutputSize', Buffer.OutputSize);
-    Buffer.InputSize := IniFile.ReadInteger(Name, 'Buffer.InputSize', Buffer.InputSize);
+    Buffer.OutputSize := IniFile.ReadInteger(Name, 'Buffer.OutputSize',
+      Buffer.OutputSize);
+    Buffer.InputSize := IniFile.ReadInteger(Name, 'Buffer.InputSize',
+      Buffer.InputSize);
   end;
   if spTimeouts in FStoredProps then
   begin
-    Timeouts.ReadInterval := IniFile.ReadInteger(Name, 'Timeouts.ReadInterval', Timeouts.ReadInterval);
-    Timeouts.ReadTotalConstant := IniFile.ReadInteger(Name, 'Timeouts.ReadTotalConstant', Timeouts.ReadTotalConstant);
-    Timeouts.ReadTotalMultiplier := IniFile.ReadInteger(Name, 'Timeouts.ReadTotalMultiplier', Timeouts.ReadTotalMultiplier);
-    Timeouts.WriteTotalConstant := IniFile.ReadInteger(Name, 'Timeouts.WriteTotalConstant', Timeouts.WriteTotalConstant);
-    Timeouts.WriteTotalMultiplier := IniFile.ReadInteger(Name, 'Timeouts.WriteTotalMultiplier', Timeouts.WriteTotalMultiplier);
+    Timeouts.ReadInterval := IniFile.ReadInteger(Name, 'Timeouts.ReadInterval',
+      Timeouts.ReadInterval);
+    Timeouts.ReadTotalConstant := IniFile.ReadInteger(Name,
+      'Timeouts.ReadTotalConstant', Timeouts.ReadTotalConstant);
+    Timeouts.ReadTotalMultiplier := IniFile.ReadInteger(Name,
+      'Timeouts.ReadTotalMultiplier', Timeouts.ReadTotalMultiplier);
+    Timeouts.WriteTotalConstant := IniFile.ReadInteger(Name,
+      'Timeouts.WriteTotalConstant', Timeouts.WriteTotalConstant);
+    Timeouts.WriteTotalMultiplier := IniFile.ReadInteger(Name,
+      'Timeouts.WriteTotalMultiplier', Timeouts.WriteTotalMultiplier);
   end;
   if spFlowControl in FStoredProps then
   begin
-    FlowControl.ControlRTS := StrToRTS(IniFile.ReadString(Name, 'FlowControl.ControlRTS', RTSToStr(FlowControl.ControlRTS)));
-    FlowControl.ControlDTR := StrToDTR(IniFile.ReadString(Name, 'FlowControl.ControlDTR', DTRToStr(FlowControl.ControlDTR)));
-    FlowControl.DSRSensitivity := StrToBool(IniFile.ReadString(Name, 'FlowControl.DSRSensitivity', BoolToStr(FlowControl.DSRSensitivity)));
-    FlowControl.OutCTSFlow := StrToBool(IniFile.ReadString(Name, 'FlowControl.OutCTSFlow', BoolToStr(FlowControl.OutCTSFlow)));
-    FlowControl.OutDSRFlow := StrToBool(IniFile.ReadString(Name, 'FlowControl.OutDSRFlow', BoolToStr(FlowControl.OutCTSFlow)));
-    FlowControl.TxContinueOnXoff := StrToBool(IniFile.ReadString(Name, 'FlowControl.TxContinueOnXoff', BoolToStr(FlowControl.TxContinueOnXoff)));
-    FlowControl.XonXoffIn := StrToBool(IniFile.ReadString(Name, 'FlowControl.XonXoffIn', BoolToStr(FlowControl.XonXoffIn)));
-    FlowControl.XonXoffOut := StrToBool(IniFile.ReadString(Name, 'FlowControl.XonXoffOut', BoolToStr(FlowControl.XonXoffOut)));
-    FlowControl.XoffChar := StrToChar(IniFile.ReadString(Name, 'FlowControl.XoffChar', CharToStr(FlowControl.XoffChar)));
-    FlowControl.XonChar := StrToChar(IniFile.ReadString(Name, 'FlowControl.XonChar', CharToStr(FlowControl.XonChar)));
+    FlowControl.ControlRTS :=
+      StrToRTS(IniFile.ReadString(Name, 'FlowControl.ControlRTS',
+      RTSToStr(FlowControl.ControlRTS)));
+    FlowControl.ControlDTR :=
+      StrToDTR(IniFile.ReadString(Name, 'FlowControl.ControlDTR',
+      DTRToStr(FlowControl.ControlDTR)));
+    FlowControl.DSRSensitivity :=
+      StrToBool(IniFile.ReadString(Name, 'FlowControl.DSRSensitivity',
+      BoolToStr(FlowControl.DSRSensitivity)));
+    FlowControl.OutCTSFlow :=
+      StrToBool(IniFile.ReadString(Name, 'FlowControl.OutCTSFlow',
+      BoolToStr(FlowControl.OutCTSFlow)));
+    FlowControl.OutDSRFlow :=
+      StrToBool(IniFile.ReadString(Name, 'FlowControl.OutDSRFlow',
+      BoolToStr(FlowControl.OutCTSFlow)));
+    FlowControl.TxContinueOnXoff :=
+      StrToBool(IniFile.ReadString(Name, 'FlowControl.TxContinueOnXoff',
+      BoolToStr(FlowControl.TxContinueOnXoff)));
+    FlowControl.XonXoffIn :=
+      StrToBool(IniFile.ReadString(Name, 'FlowControl.XonXoffIn',
+      BoolToStr(FlowControl.XonXoffIn)));
+    FlowControl.XonXoffOut :=
+      StrToBool(IniFile.ReadString(Name, 'FlowControl.XonXoffOut',
+      BoolToStr(FlowControl.XonXoffOut)));
+    FlowControl.XoffChar :=
+      StrToChar(IniFile.ReadString(Name, 'FlowControl.XoffChar',
+      CharToStr(FlowControl.XoffChar)));
+    FlowControl.XonChar :=
+      StrToChar(IniFile.ReadString(Name, 'FlowControl.XonChar',
+      CharToStr(FlowControl.XonChar)));
   end;
 end;
 
@@ -2383,20 +2507,30 @@ begin
   begin
     Timeouts.ReadInterval := Reg.ReadInteger('Timeouts.ReadInterval');
     Timeouts.ReadTotalConstant := Reg.ReadInteger('Timeouts.ReadTotalConstant');
-    Timeouts.ReadTotalMultiplier := Reg.ReadInteger('Timeouts.ReadTotalMultiplier');
-    Timeouts.WriteTotalConstant := Reg.ReadInteger('Timeouts.WriteTotalConstant');
-    Timeouts.WriteTotalMultiplier := Reg.ReadInteger('Timeouts.WriteTotalMultiplier');
+    Timeouts.ReadTotalMultiplier :=
+      Reg.ReadInteger('Timeouts.ReadTotalMultiplier');
+    Timeouts.WriteTotalConstant :=
+      Reg.ReadInteger('Timeouts.WriteTotalConstant');
+    Timeouts.WriteTotalMultiplier :=
+      Reg.ReadInteger('Timeouts.WriteTotalMultiplier');
   end;
   if spFlowControl in FStoredProps then
   begin
-    FlowControl.ControlRTS := StrToRTS(Reg.ReadString('FlowControl.ControlRTS'));
-    FlowControl.ControlDTR := StrToDTR(Reg.ReadString('FlowControl.ControlDTR'));
-    FlowControl.DSRSensitivity := StrToBool(Reg.ReadString('FlowControl.DSRSensitivity'));
-    FlowControl.OutCTSFlow := StrToBool(Reg.ReadString('FlowControl.OutCTSFlow'));
-    FlowControl.OutDSRFlow := StrToBool(Reg.ReadString('FlowControl.OutDSRFlow'));
-    FlowControl.TxContinueOnXoff := StrToBool(Reg.ReadString('FlowControl.TxContinueOnXoff'));
+    FlowControl.ControlRTS :=
+      StrToRTS(Reg.ReadString('FlowControl.ControlRTS'));
+    FlowControl.ControlDTR :=
+      StrToDTR(Reg.ReadString('FlowControl.ControlDTR'));
+    FlowControl.DSRSensitivity :=
+      StrToBool(Reg.ReadString('FlowControl.DSRSensitivity'));
+    FlowControl.OutCTSFlow :=
+      StrToBool(Reg.ReadString('FlowControl.OutCTSFlow'));
+    FlowControl.OutDSRFlow :=
+      StrToBool(Reg.ReadString('FlowControl.OutDSRFlow'));
+    FlowControl.TxContinueOnXoff :=
+      StrToBool(Reg.ReadString('FlowControl.TxContinueOnXoff'));
     FlowControl.XonXoffIn := StrToBool(Reg.ReadString('FlowControl.XonXoffIn'));
-    FlowControl.XonXoffOut := StrToBool(Reg.ReadString('FlowControl.XonXoffOut'));
+    FlowControl.XonXoffOut :=
+      StrToBool(Reg.ReadString('FlowControl.XonXoffOut'));
     FlowControl.XoffChar := StrToChar(Reg.ReadString('FlowControl.XoffChar'));
     FlowControl.XonChar := StrToChar(Reg.ReadString('FlowControl.XonChar'));
   end;
@@ -2405,19 +2539,18 @@ end;
 // initialize registry
 procedure SetRegistry(Reg: TRegistry; Key: string; Name: string);
 var
-  I: Integer;
+  i: Integer;
   Temp: string;
 begin
-  I := Pos('\', Key);
-  if I > 0 then
+  i := Pos('\', Key);
+  if i > 0 then
   begin
-    Temp := Copy(Key, 1, I - 1);
+    Temp := Copy(Key, 1, i - 1);
     if UpperCase(Temp) = 'HKEY_LOCAL_MACHINE' then
       Reg.RootKey := HKEY_LOCAL_MACHINE
-    else
-      if UpperCase(Temp) = 'HKEY_CURRENT_USER' then
-        Reg.RootKey := HKEY_CURRENT_USER;
-    Key := Copy(Key, I + 1, Length(Key) - I);
+    else if UpperCase(Temp) = 'HKEY_CURRENT_USER' then
+      Reg.RootKey := HKEY_CURRENT_USER;
+    Key := Copy(Key, i + 1, Length(Key) - i);
     if Key[Length(Key)] <> '\' then
       Key := Key + '\';
     Key := Key + Name;
@@ -2441,7 +2574,8 @@ begin
       finally
         Reg.Free;
       end
-    end else
+    end
+    else
     begin
       IniFile := TIniFile.Create(StoreTo);
       try
@@ -2451,7 +2585,7 @@ begin
       end
     end;
   except
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_StoreFailed);
   end;
 end;
@@ -2474,7 +2608,8 @@ begin
         finally
           Reg.Free;
         end
-      end else
+      end
+      else
       begin
         IniFile := TIniFile.Create(LoadFrom);
         try
@@ -2487,7 +2622,7 @@ begin
       EndUpdate;
     end;
   except
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_LoadFailed);
   end;
 end;
@@ -2496,7 +2631,7 @@ end;
 procedure TCustomComPort.RegisterLink(AComLink: TComLink);
 begin
   if FLinks.IndexOf(Pointer(AComLink)) > -1 then
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_RegFailed)
   else
     FLinks.Add(Pointer(AComLink));
@@ -2507,7 +2642,7 @@ end;
 procedure TCustomComPort.UnRegisterLink(AComLink: TComLink);
 begin
   if FLinks.IndexOf(Pointer(AComLink)) = -1 then
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_RegFailed)
   else
     FLinks.Remove(Pointer(AComLink));
@@ -2560,8 +2695,8 @@ end;
 
 procedure TCustomComPort.DoTxEmpty;
 begin
-  if Assigned(FOnTxEmpty)
-    then FOnTxEmpty(Self);
+  if Assigned(FOnTxEmpty) then
+    FOnTxEmpty(Self);
 end;
 
 procedure TCustomComPort.DoRing;
@@ -2615,7 +2750,8 @@ begin
     CallCTSChange;
     CallDSRChange;
     CallRLSDChange;
-  end else
+  end
+  else
   begin
     SendSignalToLink(leCTS, False);
     SendSignalToLink(leDSR, False);
@@ -2721,11 +2857,11 @@ var
     DoRxBuf(P^, Count);
   end;
 
-  // check if any component is linked, to OnRxChar event
+// check if any component is linked, to OnRxChar event
   procedure CheckLinks;
-  {$WARNINGS OFF}
+{$WARNINGS OFF}
   var
-    I: Integer;
+    i: Integer;
     P: Pointer;
     ComLink: TComLink;
     ReadFromBuffer: Boolean;
@@ -2736,9 +2872,9 @@ var
       ReadFromBuffer := False;
       try
         // cycle through links
-        for I := 0 to FLinks.Count - 1 do
+        for i := 0 to FLinks.Count - 1 do
         begin
-          ComLink := TComLink(FLinks[I]);
+          ComLink := TComLink(FLinks[i]);
           if Assigned(ComLink.OnRxBuf) then
           begin
             // link to OnRxChar event found
@@ -2794,30 +2930,30 @@ end;
 // returns true if it has least one component linked to OnRxBuf event
 function TCustomComPort.HasLink: Boolean;
 var
-  I: Integer;
+  i: Integer;
   ComLink: TComLink;
 begin
-  Result := False;
+  result := False;
   // examine links
   if FLinks.Count > 0 then
-    for I := 0 to FLinks.Count - 1 do
+    for i := 0 to FLinks.Count - 1 do
     begin
-      ComLink := TComLink(FLinks[I]);
+      ComLink := TComLink(FLinks[i]);
       if Assigned(ComLink.OnRxBuf) then
-        Result := True;
+        result := True;
     end;
 end;
 
 // send TxBuf notify to link
 procedure TCustomComPort.TxNotifyLink(const Buffer; Count: Integer);
 var
-  I: Integer;
+  i: Integer;
   ComLink: TComLink;
 begin
   if (FLinks.Count > 0) then
-    for I := 0 to FLinks.Count - 1 do
+    for i := 0 to FLinks.Count - 1 do
     begin
-      ComLink := TComLink(FLinks[I]);
+      ComLink := TComLink(FLinks[i]);
       if Assigned(ComLink.OnTxBuf) then
         ComLink.OnTxBuf(Self, Buffer, Count);
     end;
@@ -2826,19 +2962,22 @@ end;
 // send event notification to link
 procedure TCustomComPort.NotifyLink(FLinkEvent: TComLinkEvent);
 var
-  I: Integer;
+  i: Integer;
   ComLink: TComLink;
   Event: TNotifyEvent;
 begin
   if (FLinks.Count > 0) then
-    for I := 0 to FLinks.Count - 1 do
+    for i := 0 to FLinks.Count - 1 do
     begin
-      ComLink := TComLink(FLinks[I]);
+      ComLink := TComLink(FLinks[i]);
       Event := nil;
       case FLinkEvent of
-        leRing: Event := ComLink.OnRing;
-        leTxEmpty: Event := ComLink.OnTxEmpty;
-        leRxFlag: Event := ComLink.OnRxFlag;
+        leRing:
+          Event := ComLink.OnRing;
+        leTxEmpty:
+          Event := ComLink.OnTxEmpty;
+        leRxFlag:
+          Event := ComLink.OnRxFlag;
       end;
       if Assigned(Event) then
         Event(Self);
@@ -2846,25 +2985,32 @@ begin
 end;
 
 // send signal to linked components
-procedure TCustomComPort.SendSignalToLink(Signal: TComLinkEvent; OnOff: Boolean);
+procedure TCustomComPort.SendSignalToLink(Signal: TComLinkEvent;
+  OnOff: Boolean);
 var
-  I: Integer;
+  i: Integer;
   ComLink: TComLink;
   SignalEvent: TComSignalEvent;
 begin
   if (FLinks.Count > 0) then
     // cycle through links
-    for I := 0 to FLinks.Count - 1 do
+    for i := 0 to FLinks.Count - 1 do
     begin
-      ComLink := TComLink(FLinks[I]);
+      ComLink := TComLink(FLinks[i]);
       SignalEvent := nil;
       case Signal of
-        leCTS: SignalEvent := ComLink.OnCTSChange;
-        leDSR: SignalEvent := ComLink.OnDSRChange;
-        leRLSD: SignalEvent := ComLink.OnRLSDChange;
-        leTx: SignalEvent := ComLink.OnTx;
-        leRx: SignalEvent := ComLink.OnRx;
-        leConn: SignalEvent := ComLink.OnConn;
+        leCTS:
+          SignalEvent := ComLink.OnCTSChange;
+        leDSR:
+          SignalEvent := ComLink.OnDSRChange;
+        leRLSD:
+          SignalEvent := ComLink.OnRLSDChange;
+        leTx:
+          SignalEvent := ComLink.OnTx;
+        leRx:
+          SignalEvent := ComLink.OnRx;
+        leConn:
+          SignalEvent := ComLink.OnConn;
       end;
       // if linked, trigger event
       if Assigned(SignalEvent) then
@@ -2875,7 +3021,7 @@ end;
 // set connected property, same as Open/Close methods
 procedure TCustomComPort.SetConnected(const Value: Boolean);
 begin
-  if not ((csDesigning in ComponentState) or (csLoading in ComponentState)) then
+  if not((csDesigning in ComponentState) or (csLoading in ComponentState)) then
   begin
     if Value <> FConnected then
       if Value then
@@ -2946,7 +3092,7 @@ begin
   if Value <> FPort then
   begin
     FPort := Value;
-    if FConnected and not ((csDesigning in ComponentState) or
+    if FConnected and not((csDesigning in ComponentState) or
       (csLoading in ComponentState)) then
     begin
       Close;
@@ -2970,10 +3116,9 @@ procedure TCustomComPort.SetSyncMethod(const Value: TSyncMethod);
 begin
   if Value <> FSyncMethod then
   begin
-    if FConnected and not ((csDesigning in ComponentState) or
-      (csLoading in ComponentState))
-    then
-      //raise EComPort.CreateNoWinCode
+    if FConnected and not((csDesigning in ComponentState) or
+      (csLoading in ComponentState)) then
+      // raise EComPort.CreateNoWinCode
       CallException(CError_ConnChangeProp)
     else
       FSyncMethod := Value;
@@ -2984,7 +3129,7 @@ end;
 procedure TCustomComPort.SetTriggersOnRxChar(const Value: Boolean);
 begin
   if FHasLink then
-    //raise EComPort.CreateNoWinCode
+    // raise EComPort.CreateNoWinCode
     CallException(CError_HasLink);
   FTriggersOnRxChar := Value;
 end;
@@ -2994,10 +3139,9 @@ procedure TCustomComPort.SetEventThreadPriority(const Value: TThreadPriority);
 begin
   if Value <> FEventThreadPriority then
   begin
-    if FConnected and not ((csDesigning in ComponentState) or
-      (csLoading in ComponentState))
-    then
-      //raise EComPort.CreateNoWinCode
+    if FConnected and not((csDesigning in ComponentState) or
+      (csLoading in ComponentState)) then
+      // raise EComPort.CreateNoWinCode
       CallException(CError_ConnChangeProp)
     else
       FEventThreadPriority := Value;
@@ -3007,7 +3151,7 @@ end;
 // returns true if RxChar is triggered when data arrives input buffer
 function TCustomComPort.GetTriggersOnRxChar: Boolean;
 begin
-  Result := FTriggersOnRxChar and (not FHasLink);
+  result := FTriggersOnRxChar and (not FHasLink);
 end;
 
 // set flow control
@@ -3038,9 +3182,9 @@ begin
   ApplyBuffer;
 end;
 
-(*****************************************
- * TComDataPacket component              *
- *****************************************)
+(* ****************************************
+  * TComDataPacket component              *
+  **************************************** *)
 
 // create component
 constructor TComDataPacket.Create(AOwner: TComponent);
@@ -3095,8 +3239,7 @@ begin
 end;
 
 // call OnCustomStart
-procedure TComDataPacket.DoCustomStart(const Str: string;
-  var Pos: Integer);
+procedure TComDataPacket.DoCustomStart(const Str: string; var Pos: Integer);
 begin
   if Assigned(FOnCustomStart) then
     FOnCustomStart(Self, Str, Pos);
@@ -3130,9 +3273,9 @@ end;
 function TComDataPacket.Upper(const Str: string): string;
 begin
   if FCaseInsensitive then
-    Result := UpperCase(Str)
+    result := UpperCase(Str)
   else
-    Result := Str;
+    result := Str;
 end;
 
 // split buffer in packets
@@ -3196,36 +3339,35 @@ procedure TComDataPacket.HandleBuffer;
       CutSize := Found;
       FInPacket := False;
     end
-    else
-      if Found = -1 then
+    else if Found = -1 then
+    begin
+      Len := Length(Buffer);
+      if (FSize > 0) and (Len >= FSize) then
       begin
-        Len := Length(Buffer);
-        if (FSize > 0) and (Len >= FSize) then
+        // size stop condition detected
+        FInPacket := False;
+        CutSize := FSize;
+      end
+      else
+      begin
+        Len := Length(FStartString);
+        Found := Pos(Upper(FStopString),
+          Upper(Copy(Buffer, Len + 1, Length(Buffer) - Len)));
+        if Found > 0 then
         begin
-          // size stop condition detected
+          // stop string stop condition detected
+          CutSize := Found + Length(FStopString) + Len - 1;
           FInPacket := False;
-          CutSize := FSize;
-        end
-        else
-        begin
-          Len := Length(FStartString);
-          Found := Pos(Upper(FStopString),
-            Upper(Copy(Buffer, Len + 1, Length(Buffer) - Len)));
-          if Found > 0 then
-          begin
-            // stop string stop condition detected
-            CutSize := Found + Length(FStopString) + Len - 1;
-            FInPacket := False;
-          end;
         end;
       end;
+    end;
     if not FInPacket then
       FormPacket(CutSize); // create packet
   end;
 
   function IsBufferTooLarge: Boolean;
   begin
-    Result := (Length(Buffer) >= FMaxBufferSize) and (FMaxBufferSize > 0);
+    result := (Length(Buffer) >= FMaxBufferSize) and (FMaxBufferSize > 0);
   end;
 
 begin
@@ -3247,8 +3389,8 @@ end;
 // is stop condition valid?
 function TComDataPacket.ValidStop: Boolean;
 begin
-  Result := (FSize > 0) or (Length(FStopString) > 0)
-    or (Assigned(FOnCustomStop));
+  result := (FSize > 0) or (Length(FStopString) > 0) or
+    (Assigned(FOnCustomStop));
 end;
 
 // receive data
@@ -3258,16 +3400,19 @@ begin
 end;
 
 procedure TComDataPacket.RxBuf(Sender: TObject; const Buffer; Count: Integer);
-var sa:AnsiString; Str: string;
-      i:integer;
+var
+  sa: Ansistring;
+  Str: string;
+  i: Integer;
 begin
-  SetLength(Str, Count);
-  SetLength(Sa, Count);
-  Move(Buffer, Sa[1], Count);
-  {$IFDEF Unicode}
-  if length(sa)>0 then
-    for i := 1 to length(sa) do str[i] := char(byte(sa[i]));
-  {$ELSE}  str := sa;  {$ENDIF}
+  setlength(Str, Count);
+  setlength(sa, Count);
+  Move(Buffer, sa[1], Count);
+{$IFDEF Unicode}
+  if Length(sa) > 0 then
+    for i := 1 to Length(sa) do
+      Str[i] := Char(byte(sa[i]));
+{$ELSE} Str := sa; {$ENDIF}
   AddData(Str);
 end;
 
@@ -3307,7 +3452,7 @@ begin
   if FCaseInsensitive <> Value then
   begin
     FCaseInsensitive := Value;
-    if not (csLoading in ComponentState) then
+    if not(csLoading in ComponentState) then
       EmptyBuffer;
   end;
 end;
@@ -3318,7 +3463,7 @@ begin
   if FSize <> Value then
   begin
     FSize := Value;
-    if not (csLoading in ComponentState) then
+    if not(csLoading in ComponentState) then
       EmptyBuffer;
   end;
 end;
@@ -3329,7 +3474,7 @@ begin
   if FStartString <> Value then
   begin
     FStartString := Value;
-    if not (csLoading in ComponentState) then
+    if not(csLoading in ComponentState) then
       EmptyBuffer;
   end;
 end;
@@ -3340,14 +3485,14 @@ begin
   if FStopString <> Value then
   begin
     FStopString := Value;
-    if not (csLoading in ComponentState) then
+    if not(csLoading in ComponentState) then
       EmptyBuffer;
   end;
 end;
 
-(*****************************************
- * EComPort exception                    *
- *****************************************)
+(* ****************************************
+  * EComPort exception                    *
+  **************************************** *)
 
 // create stream
 constructor TComStream.Create(AComPort: TCustomComPort);
@@ -3371,12 +3516,12 @@ end;
 // seek always to 0
 function TComStream.Seek(Offset: Integer; Origin: Word): Longint;
 begin
-  Result := 0;
+  result := 0;
 end;
 
-(*****************************************
- * EComPort exception                    *
- *****************************************)
+(* ****************************************
+  * EComPort exception                    *
+  **************************************** *)
 
 // create exception with windows error code
 constructor EComPort.Create(ACode: Integer; AWinCode: Integer);
@@ -3394,9 +3539,9 @@ begin
   inherited Create(ComErrorMessages[ACode]);
 end;
 
-(*****************************************
- * other procedures/functions            *
- *****************************************)
+(* ****************************************
+  * other procedures/functions            *
+  **************************************** *)
 
 // initialization of PAsync variables used in asynchronous calls
 procedure InitAsync(var AsyncPtr: PAsync);
@@ -3432,17 +3577,13 @@ var
   ValueLen, DataLen, ValueType: DWORD;
   TmpPorts: TStringList;
 begin
-  ErrCode := RegOpenKeyEx(
-    HKEY_LOCAL_MACHINE,
-    'HARDWARE\DEVICEMAP\SERIALCOMM',
-    0,
-    KEY_READ,
-    KeyHandle);
+  ErrCode := RegOpenKeyEx(HKEY_LOCAL_MACHINE, 'HARDWARE\DEVICEMAP\SERIALCOMM',
+    0, KEY_READ, KeyHandle);
 
   if ErrCode <> ERROR_SUCCESS then
   begin
-    //raise EComPort.Create(CError_RegError, ErrCode);
-    exit;
+    // raise EComPort.Create(CError_RegError, ErrCode);
+    Exit;
   end;
 
   TmpPorts := TStringList.Create;
@@ -3451,33 +3592,27 @@ begin
     repeat
       ValueLen := 256;
       DataLen := 256;
-      SetLength(ValueName, ValueLen);
-      SetLength(Data, DataLen);
-      ErrCode := RegEnumValue(
-        KeyHandle,
-        Index,
-        PChar(ValueName),
-        {$IFDEF DELPHI_4_OR_HIGHER}
+      setlength(ValueName, ValueLen);
+      setlength(Data, DataLen);
+      ErrCode := RegEnumValue(KeyHandle, Index, PChar(ValueName),
+{$IFDEF DELPHI_4_OR_HIGHER}
         Cardinal(ValueLen),
-        {$ELSE}
+{$ELSE}
         ValueLen,
-          {$ENDIF}
-        nil,
-        @ValueType,
-        PByte(PChar(Data)),
-        @DataLen);
+{$ENDIF}
+        nil, @ValueType, PByte(PChar(Data)), @DataLen);
 
       if ErrCode = ERROR_SUCCESS then
       begin
-        SetLength(Data, DataLen - 1);
+        setlength(Data, DataLen - 1);
         TmpPorts.Add(Data);
         Inc(Index);
       end
-      else
-        if ErrCode <> ERROR_NO_MORE_ITEMS then break;
-          //raise EComPort.Create(CError_RegError, ErrCode);
+      else if ErrCode <> ERROR_NO_MORE_ITEMS then
+        Break;
+      // raise EComPort.Create(CError_RegError, ErrCode);
 
-    until (ErrCode <> ERROR_SUCCESS) ;
+    until (ErrCode <> ERROR_SUCCESS);
 
     TmpPorts.Sort;
     Ports.Assign(TmpPorts);
@@ -3491,162 +3626,162 @@ end;
 // string to baud rate
 function StrToBaudRate(Str: string): TBaudRate;
 var
-  I: TBaudRate;
+  i: TBaudRate;
 begin
-  I := Low(TBaudRate);
-  while (I <= High(TBaudRate)) do
+  i := Low(TBaudRate);
+  while (i <= High(TBaudRate)) do
   begin
-    if UpperCase(Str) = UpperCase(BaudRateToStr(TBaudRate(I))) then
+    if UpperCase(Str) = UpperCase(BaudRateToStr(TBaudRate(i))) then
       Break;
-    I := Succ(I);
+    i := Succ(i);
   end;
-  if I > High(TBaudRate) then
-    Result := br9600
+  if i > High(TBaudRate) then
+    result := br9600
   else
-    Result := I;
+    result := i;
 end;
 
 // string to stop bits
 function StrToStopBits(Str: string): TStopBits;
 var
-  I: TStopBits;
+  i: TStopBits;
 begin
-  I := Low(TStopBits);
-  while (I <= High(TStopBits)) do
+  i := Low(TStopBits);
+  while (i <= High(TStopBits)) do
   begin
-    if UpperCase(Str) = UpperCase(StopBitsToStr(TStopBits(I))) then
+    if UpperCase(Str) = UpperCase(StopBitsToStr(TStopBits(i))) then
       Break;
-    I := Succ(I);
+    i := Succ(i);
   end;
-  if I > High(TStopBits) then
-    Result := sbOneStopBit
+  if i > High(TStopBits) then
+    result := sbOneStopBit
   else
-    Result := I;
+    result := i;
 end;
 
 // string to data bits
 function StrToDataBits(Str: string): TDataBits;
 var
-  I: TDataBits;
+  i: TDataBits;
 begin
-  I := Low(TDataBits);
-  while (I <= High(TDataBits)) do
+  i := Low(TDataBits);
+  while (i <= High(TDataBits)) do
   begin
-    if UpperCase(Str) = UpperCase(DataBitsToStr(I)) then
+    if UpperCase(Str) = UpperCase(DataBitsToStr(i)) then
       Break;
-    I := Succ(I);
+    i := Succ(i);
   end;
-  if I > High(TDataBits) then
-    Result := dbEight
+  if i > High(TDataBits) then
+    result := dbEight
   else
-    Result := I;
+    result := i;
 end;
 
 // string to parity
 function StrToParity(Str: string): TParityBits;
 var
-  I: TParityBits;
+  i: TParityBits;
 begin
-  I := Low(TParityBits);
-  while (I <= High(TParityBits)) do
+  i := Low(TParityBits);
+  while (i <= High(TParityBits)) do
   begin
-    if UpperCase(Str) = UpperCase(ParityToStr(I)) then
+    if UpperCase(Str) = UpperCase(ParityToStr(i)) then
       Break;
-    I := Succ(I);
+    i := Succ(i);
   end;
-  if I > High(TParityBits) then
-    Result := prNone
+  if i > High(TParityBits) then
+    result := prNone
   else
-    Result := I;
+    result := i;
 end;
 
 // string to flow control
 function StrToFlowControl(Str: string): TFlowControl;
 var
-  I: TFlowControl;
+  i: TFlowControl;
 begin
-  I := Low(TFlowControl);
-  while (I <= High(TFlowControl)) do
+  i := Low(TFlowControl);
+  while (i <= High(TFlowControl)) do
   begin
-    if UpperCase(Str) = UpperCase(FlowControlToStr(I)) then
+    if UpperCase(Str) = UpperCase(FlowControlToStr(i)) then
       Break;
-    I := Succ(I);
+    i := Succ(i);
   end;
-  if I > High(TFlowControl) then
-    Result := fcCustom
+  if i > High(TFlowControl) then
+    result := fcCustom
   else
-    Result := I;
+    result := i;
 end;
 
 // baud rate to string
 function BaudRateToStr(BaudRate: TBaudRate): string;
 const
-  BaudRateStrings: array[TBaudRate] of string = ('Custom', '110', '300', '600',
+  BaudRateStrings: array [TBaudRate] of string = ('Custom', '110', '300', '600',
     '1200', '2400', '4800', '9600', '14400', '19200', '38400', '56000', '57600',
     '115200', '128000', '256000');
 begin
-  Result := BaudRateStrings[BaudRate];
+  result := BaudRateStrings[BaudRate];
 end;
 
 // stop bits to string
 function StopBitsToStr(StopBits: TStopBits): string;
 const
-  StopBitsStrings: array[TStopBits] of string = ('1', '1.5', '2');
+  StopBitsStrings: array [TStopBits] of string = ('1', '1.5', '2');
 begin
-  Result := StopBitsStrings[StopBits];
+  result := StopBitsStrings[StopBits];
 end;
 
 // data bits to string
 function DataBitsToStr(DataBits: TDataBits): string;
 const
-  DataBitsStrings: array[TDataBits] of string = ('5', '6', '7', '8');
+  DataBitsStrings: array [TDataBits] of string = ('5', '6', '7', '8');
 begin
-  Result := DataBitsStrings[DataBits];
+  result := DataBitsStrings[DataBits];
 end;
 
 // parity to string
 function ParityToStr(Parity: TParityBits): string;
 const
-  ParityBitsStrings: array[TParityBits] of string = ('None', 'Odd', 'Even',
+  ParityBitsStrings: array [TParityBits] of string = ('None', 'Odd', 'Even',
     'Mark', 'Space');
 begin
-  Result := ParityBitsStrings[Parity];
+  result := ParityBitsStrings[Parity];
 end;
 
 // flow control to string
 function FlowControlToStr(FlowControl: TFlowControl): string;
 const
-  FlowControlStrings: array[TFlowControl] of string = ('Hardware',
-    'Software', 'None', 'Custom');
+  FlowControlStrings: array [TFlowControl] of string = ('Hardware', 'Software',
+    'None', 'Custom');
 begin
-  Result := FlowControlStrings[FlowControl];
+  result := FlowControlStrings[FlowControl];
 end;
 
 initialization
-  ComErrorMessages[1]:='Unable to open com port';
-  ComErrorMessages[2]:='WriteFile function failed';
-  ComErrorMessages[3]:='ReadFile function failed';
-  ComErrorMessages[4]:='Invalid Async parameter';
-  ComErrorMessages[5]:='PurgeComm function failed';
-  ComErrorMessages[6]:='Unable to get async status';
-  ComErrorMessages[7]:='SetCommState function failed';
-  ComErrorMessages[8]:='SetCommTimeouts failed';
-  ComErrorMessages[9]:='SetupComm function failed';
-  ComErrorMessages[10]:='ClearCommError function failed';
-  ComErrorMessages[11]:='GetCommModemStatus function failed';
-  ComErrorMessages[12]:='EscapeCommFunction function failed';
-  ComErrorMessages[13]:='TransmitCommChar function failed';
-  ComErrorMessages[14]:='Cannot set property while connected';
-  ComErrorMessages[15]:='EnumPorts function failed';
-  ComErrorMessages[16]:='Failed to store settings';
-  ComErrorMessages[17]:='Failed to load settings';
-  ComErrorMessages[18]:='Link (un)registration failed';
-  ComErrorMessages[19]:='Cannot change led state if ComPort is selected';
-  ComErrorMessages[20]:='Cannot wait for event if event thread is created';
-  ComErrorMessages[21]:='WaitForEvent method failed';
-  ComErrorMessages[22]:='A component is linked to OnRxBuf event';
-  ComErrorMessages[23]:='Registry error';
-  ComErrorMessages[24]:='Port Not Open';//  CError_PortNotOpen
 
+ComErrorMessages[1] := 'Unable to open com port';
+ComErrorMessages[2] := 'WriteFile function failed';
+ComErrorMessages[3] := 'ReadFile function failed';
+ComErrorMessages[4] := 'Invalid Async parameter';
+ComErrorMessages[5] := 'PurgeComm function failed';
+ComErrorMessages[6] := 'Unable to get async status';
+ComErrorMessages[7] := 'SetCommState function failed';
+ComErrorMessages[8] := 'SetCommTimeouts failed';
+ComErrorMessages[9] := 'SetupComm function failed';
+ComErrorMessages[10] := 'ClearCommError function failed';
+ComErrorMessages[11] := 'GetCommModemStatus function failed';
+ComErrorMessages[12] := 'EscapeCommFunction function failed';
+ComErrorMessages[13] := 'TransmitCommChar function failed';
+ComErrorMessages[14] := 'Cannot set property while connected';
+ComErrorMessages[15] := 'EnumPorts function failed';
+ComErrorMessages[16] := 'Failed to store settings';
+ComErrorMessages[17] := 'Failed to load settings';
+ComErrorMessages[18] := 'Link (un)registration failed';
+ComErrorMessages[19] := 'Cannot change led state if ComPort is selected';
+ComErrorMessages[20] := 'Cannot wait for event if event thread is created';
+ComErrorMessages[21] := 'WaitForEvent method failed';
+ComErrorMessages[22] := 'A component is linked to OnRxBuf event';
+ComErrorMessages[23] := 'Registry error';
+ComErrorMessages[24] := 'Port Not Open'; // CError_PortNotOpen
 
 end.

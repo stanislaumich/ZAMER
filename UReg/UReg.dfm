@@ -45,9 +45,9 @@ object FormReg: TFormReg
   object Label8: TLabel
     Left = 543
     Top = 79
-    Width = 83
+    Width = 17
     Height = 39
-    Caption = '381'
+    Caption = '0'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -32
@@ -83,6 +83,20 @@ object FormReg: TFormReg
     Width = 6
     Height = 13
     Caption = '0'
+  end
+  object Label4: TLabel
+    Left = 248
+    Top = 8
+    Width = 73
+    Height = 13
+    Caption = #1052#1080#1082#1088#1086#1096#1072#1075', '#1084#1089':'
+  end
+  object Label5: TLabel
+    Left = 381
+    Top = 8
+    Width = 82
+    Height = 13
+    Caption = #1059#1089#1087#1086#1082#1086#1077#1085#1080#1077', '#1084#1089':'
   end
   object ComboBox1: TComboBox
     Left = 43
@@ -421,14 +435,6 @@ object FormReg: TFormReg
     TabOrder = 6
     OnClick = BitBtn4Click
   end
-  object CheckBox1: TCheckBox
-    Left = 264
-    Top = 7
-    Width = 77
-    Height = 17
-    Caption = #1040#1074#1090#1086#1089#1090#1072#1088#1090
-    TabOrder = 7
-  end
   object BitBtn5: TBitBtn
     Left = 4
     Top = 68
@@ -499,8 +505,34 @@ object FormReg: TFormReg
       FFFFFFFF7F7BF93F3BF44642F54642F54642F54642F54642F54642F54642F546
       42F5413DF4807BF9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 7
     OnClick = BitBtn5Click
+  end
+  object Edit2: TEdit
+    Left = 324
+    Top = 5
+    Width = 45
+    Height = 21
+    TabOrder = 8
+    Text = '300'
+  end
+  object Edit3: TEdit
+    Left = 472
+    Top = 5
+    Width = 45
+    Height = 21
+    TabOrder = 9
+    Text = '200'
+  end
+  object Button1: TButton
+    Left = 120
+    Top = 96
+    Width = 41
+    Height = 21
+    Caption = 'Button1'
+    TabOrder = 10
+    Visible = False
+    OnClick = Button1Click
   end
   object Com: TComPort
     BaudRate = br115200
@@ -518,8 +550,8 @@ object FormReg: TFormReg
     StoredProps = [spBasic]
     TriggersOnRxChar = True
     OnRxChar = ComRxChar
-    Left = 588
-    Top = 8
+    Left = 384
+    Top = 136
   end
   object ActionList1: TActionList
     Left = 588
@@ -556,11 +588,12 @@ object FormReg: TFormReg
   object Query1: TFDQuery
     Connection = FDC
     SQL.Strings = (
-      'select U from zelspectmp')
+      'select round(U) u from zelspectmp')
     Left = 20
     Top = 140
   end
   object Timer1: TTimer
+    Enabled = False
     Interval = 200
     OnTimer = Timer1Timer
     Left = 460
@@ -585,5 +618,16 @@ object FormReg: TFormReg
       'truncate table command')
     Left = 156
     Top = 144
+  end
+  object Timer3: TTimer
+    Enabled = False
+    Left = 548
+    Top = 140
+  end
+  object Timer4: TTimer
+    Interval = 50
+    OnTimer = Timer4Timer
+    Left = 304
+    Top = 140
   end
 end
