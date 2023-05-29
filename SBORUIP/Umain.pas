@@ -13,7 +13,7 @@ uses
   FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
   FireDAC.DApt, FireDAC.Comp.DataSet, KRComponentCollection, KRVariables,
   KRModbusClient, KRModbusMaster, KRConnector, KRTCPConnector, Math,
-  FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef;
+  FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, CPortCtl, CPort;
 
  CONST
   RAZU = -2;FormatU = '0.00';
@@ -64,6 +64,20 @@ type
     T4: TKRMBRegister;
     QTempOra: TFDQuery;
     Tstart: TTimer;
+    Label7: TLabel;
+    Edit1: TEdit;
+    Label8: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    CheckBox2: TCheckBox;
+    ComLed1: TComLed;
+    ComPort1: TComPort;
+    ComComboBox1: TComComboBox;
+    Button7: TButton;
 
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -85,6 +99,7 @@ type
     procedure Panel1MouseLeave(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure TstartTimer(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
   private
    procedure GetData(var MessageData: TWMCopyData); message WM_COPYDATA;
   public
@@ -326,6 +341,11 @@ begin
   KRModbusMaster1.Active           := True;
   KRModbusClient1.Active           := True;
   Activated                        := True;
+end;
+
+procedure TFMain.Button7Click(Sender: TObject);
+begin
+ComPort1.ShowSetupDialog;
 end;
 
 procedure TFMain.CheckBox1Click(Sender: TObject);

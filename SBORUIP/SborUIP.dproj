@@ -106,6 +106,17 @@
             <Form>FSett</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="install\Source\CPortCtl.pas"/>
+        <DCCReference Include="install\Source\CPort.pas"/>
+        <DCCReference Include="install\Source\CPortSetup.pas">
+            <Form>ComSetupFrm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="install\Source\CPortEsc.pas"/>
+        <DCCReference Include="install\Source\CPortTrmSet.pas">
+            <Form>ComTrmSetForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -128,6 +139,12 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Win32\Release\SborUIP.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>SborUIP.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\SborUIP.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>SborUIP.exe</RemoteName>
