@@ -83,7 +83,8 @@ type
 var
   FSopr: TFSopr;
   enableclose: Boolean;
-  errm:boolean;
+  errm: Boolean;
+
 implementation
 
 {$R *.dfm}
@@ -131,6 +132,14 @@ var
   s: string;
 begin
   for i := 1 to 3 do
+    for j := 1 to 3 do
+      if StringGrid3.cells[i, j] = '' then
+        StringGrid3.cells[i, j] := '0'
+      else
+        StringGrid3.cells[i, j] := StringReplace(StringGrid3.cells[i, j], '.',
+          ',', [rfReplaceAll, rfIgnoreCase]);
+
+  for i := 1 to 3 do
     err[i] := false;
   // --- по каждому столбцу
   for j := 1 to 3 do
@@ -138,7 +147,8 @@ begin
     // --- по каждой строке в столбце
     vsred := 0;
     for i := 1 to 3 do
-      vsred := vsred + strtofloat(StringGrid3.cells[j, i]);
+      vsred := vsred + strtofloat(StringReplace(StringGrid3.cells[j, i], '.',
+        ',', [rfReplaceAll, rfIgnoreCase]));
     vsred := vsred / 3;
     otkl05 := vsred / 200;
     for i := 1 to 3 do
@@ -156,10 +166,11 @@ begin
       s := s + '2 ';
     if err[3] then
       s := s + '3 ';
-    errm:=true;
+    errm := true;
     ShowMessage(s);
   end
-  else Stringgrid3.cells[0,0]:='OK';
+  else
+    StringGrid3.cells[0, 0] := 'OK';
 end;
 
 procedure TFSopr.BitBtn5Click(Sender: TObject);
@@ -167,7 +178,11 @@ var
   i, j: Integer;
 begin
   BitBtn2.Click;
-  if errm then begin errm:=false; exit; end;
+  if errm then
+  begin
+    errm := false;
+    exit;
+  end;
 
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -185,7 +200,8 @@ begin
     QSoprot.ParamByName('PHAS').Asstring := ComboBox7.Text;
     QSoprot.ParamByName('SOED').Asstring := ComboBox8.Text;
     QSoprot.ParamByName('SOPRED').Asstring := ComboBox9.Text;
-    QSoprot.ParamByName('IZOLED').Asstring := ComboBox10.Text+' '+ComboBox1.Text;
+    QSoprot.ParamByName('IZOLED').Asstring := ComboBox10.Text + ' ' +
+      ComboBox1.Text;
     QSoprot.ParamByName('IZOLKORP').AsFloat := myfloat(Edit13.Text);
     QSoprot.ParamByName('IZOLOBMOT').AsFloat := myfloat(Edit16.Text);
 
@@ -199,7 +215,10 @@ begin
     for i := 1 to 3 do
       for j := 1 to 3 do
         if StringGrid3.cells[i, j] = '' then
-          StringGrid3.cells[i, j] := '0';
+          StringGrid3.cells[i, j] := '0'
+        else
+          StringGrid3.cells[i, j] := StringReplace(StringGrid3.cells[i, j], '.',
+            ',', [rfReplaceAll, rfIgnoreCase]);
 
     QSoprot.ParamByName('IZM1U1U2').AsFloat := myfloat(StringGrid3.cells[1, 1]);
     QSoprot.ParamByName('IZM2U1U2').AsFloat := myfloat(StringGrid3.cells[1, 2]);
@@ -264,7 +283,7 @@ end;
 procedure TFSopr.ComboBox9Change(Sender: TObject);
 begin
   enableclose := false;
-  formhh.Combobox1.Text := ComboBox9.Text;
+  formhh.ComboBox1.Text := ComboBox9.Text;
 end;
 
 procedure TFSopr.Edit13Change(Sender: TObject);
@@ -340,7 +359,7 @@ begin
   StringGrid3.cells[1, 0] := 'U1-U2(U-V)/гл.*';
   StringGrid3.cells[2, 0] := 'V1-V2(V-W)/всп.*';
   StringGrid3.cells[3, 0] := 'W1-W2(W-U)';
-  errm:=false;
+  errm := false;
   ComboBox9.Items.Clear;
   ComboBox10.Items.Clear;
   ComboBox9.Items.LoadFromFile(ExtractFilepath(Application.ExeName) +

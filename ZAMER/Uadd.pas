@@ -1,21 +1,22 @@
 unit Uadd;
 
 interface // ------------------------------------------------------------------
- CONST
-    RazU = -2;
-    RazP = -2;
-    RazI = -3;
-    RAZN = -1;
-    RazM = -1;
-    RazR = -1;
-    tRazU = '0.00';
-    tRazP = '0.00';
-    tRazI = '0.000';
-    tRAZN = '0.0';
-    tRazM = '0.0';
-    tRazR = '0.0';
 
-function myformat(s:string; f:double ):string;
+CONST
+  RazU = -2;
+  RazP = -2;
+  RazI = -3;
+  RAZN = -1;
+  RazM = -1;
+  RazR = -1;
+  tRazU = '0.00';
+  tRazP = '0.00';
+  tRazI = '0.000';
+  tRAZN = '0.0';
+  tRazM = '0.0';
+  tRazR = '0.0';
+
+function myformat(s: string; f: double): string;
 function myfloat(s: string): double;
 function min(a: Integer; b: Integer): Integer;
 function maxI(a: Integer; b: Integer): Integer;
@@ -24,63 +25,67 @@ function Point(s: string): string;
 function Comma(s: string): string;
 function NVLToZero(s: string): string;
 function NVLToEmp(s: string): string;
-function addzeroend(sin:string;n:integer):string;
-function MyPoint(s:string):string;
-function MyComma(s:string):string;
-function myZero(s:string):string;
-function emp(s:string):string;
+function addzeroend(sin: string; n: Integer): string;
+function MyPoint(s: string): string;
+function MyComma(s: string): string;
+function myZero(s: string): string;
+function emp(s: string): string;
+
 implementation // --------------------------------------------------------------
 
-uses System.SysUtils,ustr;
-function emp(s:string):string;
- begin
-   try
-    emp:=floattostr(strtofloat(s));
-   except
-    on e:exception do
-     begin
-       e:=nil;
-       emp:='0';
-     end;
-   end;
- end;
+uses System.SysUtils, ustr;
 
-function myZero(s:string):string;
- begin
-  if trim(s)='' then
-   myzero:='0' else myZero:=trim(s);
- end;
-
-function MyPoint(s:string):string;
+function emp(s: string): string;
 begin
-  MyPoint:=StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
+  try
+    emp := floattostr(strtofloat(s));
+  except
+    on e: exception do
+    begin
+      e := nil;
+      emp := '0';
+    end;
+  end;
 end;
 
-function MyComma(s:string):string;
+function myZero(s: string): string;
 begin
-  MyComma:=StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
-end;
-
-function addzeroend(sin:string;n:integer):string;
-var
- i:integer;
- s:string;
-begin
- if pos(',',sin)=0
-  then
-   begin
-    s:=sin+',';
-    for i:=1 to n do s:=s+'0';
-   end
+  if trim(s) = '' then
+    myZero := '0'
   else
-   begin
-    s:=sin;
-   end;
- addzeroend:=s;
+    myZero := trim(s);
+end;
+
+function MyPoint(s: string): string;
+begin
+  MyPoint := StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
+end;
+
+function MyComma(s: string): string;
+begin
+  MyComma := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+end;
+
+function addzeroend(sin: string; n: Integer): string;
+var
+  i: Integer;
+  s: string;
+begin
+  if pos(',', sin) = 0 then
+  begin
+    s := sin + ',';
+    for i := 1 to n do
+      s := s + '0';
+  end
+  else
+  begin
+    s := sin;
+  end;
+  addzeroend := s;
 end;
 
 {
-ShowMessage('##### : '+FormatFloat('#####', float));
+  ShowMessage('##### : '+FormatFloat('#####', float));
   ShowMessage('00000 : '+FormatFloat('00000', float));
   ShowMessage('0     : '+FormatFloat('0'    , float));
   ShowMessage('#,##0 : '+FormatFloat('#,##0', float));
@@ -96,18 +101,18 @@ ShowMessage('##### : '+FormatFloat('#####', float));
   ShowMessage('0.0000000E+00 : '+FormatFloat('0.0000000E+00', float));
   ShowMessage('0.0000000E-00 : '+FormatFloat('0.0000000E-00', float));
   ShowMessage('#.#######E-## : '+FormatFloat('#.#######E-##', float));
-  }
-function myformat(s:string; f:double ):string;
- begin
-   myformat:=FormatFloat(s,f);//
- end;
+}
+function myformat(s: string; f: double): string;
+begin
+  myformat := FormatFloat(s, f); //
+end;
 
 function myfloat(s: string): double;
 var
   v: Integer;
   f: double;
 begin
-  s:=StringReplace(s, ',', '.',[rfReplaceAll, rfIgnoreCase]);
+  s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
   val(s, f, v);
   if v = 0 then
     myfloat := f

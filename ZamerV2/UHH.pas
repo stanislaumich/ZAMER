@@ -110,6 +110,7 @@ var
   times: Integer;
   enableclose: Boolean;
   ccol: Integer;
+  fl: string;
 
 implementation
 
@@ -292,7 +293,8 @@ var
 begin
   If OpenDialog1.Execute then
   begin
-    assignfile(f, OpenDialog1.filename);
+    fl := OpenDialog1.Filename;
+    assignfile(f, OpenDialog1.Filename);
     reset(f);
     for i := 1 to 3 do
       for j := 1 to 12 do
@@ -302,7 +304,6 @@ begin
       end;
     Closefile(f);
   end;
-
 end;
 
 procedure TFormHH.BitBtn3Click(Sender: TObject);
@@ -313,7 +314,8 @@ var
 begin
   if SaveDialog1.Execute then
   begin
-    assignfile(f, SaveDialog1.filename);
+    fl := OpenDialog1.Filename;
+    assignfile(f, SaveDialog1.Filename);
     rewrite(f);
     for i := 1 to 3 do
       for j := 1 to 12 do
@@ -436,12 +438,36 @@ begin
 end;
 
 procedure TFormHH.FormActivate(Sender: TObject);
+var
+  i, j: Integer;
+  f: textfile;
+  s: string;
 begin
   enableclose := true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('uhh'));
   Edit2.text := QTemp.FieldByName('value').AsString;
   QTemp.Open('select * from zini where name=' + Quotedstr('hhtime'));
   Edit1.text := QTemp.FieldByName('value').AsString;
+  QTemp.Open('select * from zini where name=' + Quotedstr('hhfile'));
+  if QTemp.FieldByName('value').AsString = '' then
+  begin
+    QTemp.ExecSQL('delete from zini where name=' + Quotedstr('hhfile'));
+    QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
+      Quotedstr('hhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
+      Quotedstr('') + ')');
+  end
+  else
+  begin
+   assignfile(f, QTemp.FieldByName('value').AsString);
+    reset(f);
+    for i := 1 to 3 do
+      for j := 1 to 12 do
+      begin
+        Readln(f, s);
+        StringGrid1.Cells[i, j] := s;
+      end;
+    Closefile(f);
+  end;
 end;
 
 procedure TFormHH.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -465,6 +491,9 @@ begin
     if buttonSelected = mrCancel then
       CanClose := false;
   end;
+
+  QTemp.ExecSQL('update zini set value = ' + Quotedstr(fl) +
+    ' where name=' + Quotedstr('hhfile'));
 
 end;
 

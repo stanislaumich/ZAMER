@@ -247,9 +247,12 @@ begin
         isemptyfloat := myformat(f, strtofloat(s))
 end;
 
-function ztoemp(s:string):string;
+function ztoemp(s: string): string;
 begin
-  if s= '0' then ztoemp:='' else ztoemp:=s;
+    if s = '0' then
+        ztoemp := ''
+    else
+        ztoemp := s;
 end;
 
 procedure TFZamerV2.FormReport;
@@ -436,7 +439,8 @@ begin
         end;
         for i := 1 to 12 do
         begin
-            wrepl('R' + inttostr(i) + 'hh', ztoemp(FormHH.Stringgrid2.Cells[5, i]));
+            wrepl('R' + inttostr(i) + 'hh',
+              ztoemp(FormHH.Stringgrid2.Cells[5, i]));
             AddReportString(fn, '1', 'r' + inttostr(i) + 'hh',
               FormHH.Stringgrid2.Cells[5, i]);
         end;
@@ -444,7 +448,7 @@ begin
         // короткое замыкание
         FrepP.Label1.Caption := 'Короткое замыкание';
 
-        wrepl('stred3', FKZ.Edit2.Text+' '+FKZ.ComboBox1.Text);
+        wrepl('stred3', FKZ.Edit2.Text + ' ' + FKZ.ComboBox1.Text);
         AddReportString(fn, '1', 'stred3', FKZ.ComboBox1.Text);
         for i := 1 to 5 do
             for j := 1 to 4 do
@@ -502,7 +506,6 @@ begin
             wrepl('N32x', ''); // R obm
         wrepl('RNAG1', 'НЕИЗВЕСТНО');
         wrepl('stred5', Fnagr.ComboBox3.Text); //
-
 
         // прочие характеристики
         FrepP.Label1.Caption := 'Прочие характеристики';
@@ -885,34 +888,10 @@ begin
 end;
 
 procedure TFZamerV2.BitBtn2Click(Sender: TObject);
+var
+    s: string;
 begin
-    {
 
-      UPDATE ZAMER.ZDVIGALL
-      SET    DATA    = :DATA,
-      TIPDV   = :TIPDV,
-      NOMDV   = :NOMDV,
-      POLUS   = :POLUS,
-      UNOM    = :UNOM,
-      UISP    = :UISP,
-      PNOM    = :PNOM,
-      HUMID   = :HUMID,
-      PRESSUR = :PRESSUR,
-      ENERGO  = :ENERGO,
-      STENDN  = :STENDN,
-      STENDA  = :STENDA,
-      DOP1    = :DOP1,
-      READY   = :READY,
-      NOMER   = :NOMER,
-      ISPOLN  = :ISPOLN,
-      FIO     = :FIO,
-      REGIM   = :REGIM,
-      PISP    = :PISP,
-      POLNOM  = :POLNOM,
-      POLISP  = :POLISP,
-      TEMP    = :TEMP
-      WHERE  NOMER   = :NOMER
-      ; }
     QUpdDvig.Close;
     QUpdDvig.ParamByName('DATA').AsDate := DateTimePicker1.Date;
     QUpdDvig.ParamByName('TIPDV').Asstring := CombTipDvig.Text;
@@ -923,7 +902,9 @@ begin
     QUpdDvig.ParamByName('PNOM').AsFloat := strtofloat(Comma(CombPNom.Text));
     QUpdDvig.ParamByName('PISP').AsFloat := strtofloat(Comma(CombPIsp.Text));
     QUpdDvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
-    QUpdDvig.ParamByName('PRESSUR').AsFloat := strtofloat(EditPress.Text);
+    s := EditPress.Text;
+    s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+    QUpdDvig.ParamByName('PRESSUR').Asstring := s;
     QUpdDvig.ParamByName('ENERGO').Asstring := CombEnergo.Text;
     QUpdDvig.ParamByName('STENDN').Asstring := CombStend.Text;
     QUpdDvig.ParamByName('STENDA').Asstring := Label19.Caption;
@@ -941,7 +922,9 @@ begin
     QUpdDvig.ParamByName('regim').Asstring := CombRegim.Text;
     QUpdDvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
     QUpdDvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
-    QUpdDvig.ParamByName('TEMP').Asstring := EditTemp.Text;
+    s := EditTemp.Text;
+    s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+    QUpdDvig.ParamByName('TEMP').Asstring := s;
     QUpdDvig.ExecSQL;
     ShowMessage('Данные двигателя изменены успешно');
 end;
@@ -973,8 +956,9 @@ begin
             Qinsdvig.ParamByName('PISP').AsFloat :=
               strtofloat(Comma(CombPIsp.Text));
             Qinsdvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
-            Qinsdvig.ParamByName('PRESSUR').AsFloat :=
-              strtofloat(EditPress.Text);
+            s := EditPress.Text;
+            s := StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
+            Qinsdvig.ParamByName('PRESSUR').AsFloat := strtofloat(s);
             Qinsdvig.ParamByName('ENERGO').Asstring := CombEnergo.Text;
             Qinsdvig.ParamByName('STENDN').Asstring := CombStend.Text;
             Qinsdvig.ParamByName('STENDA').Asstring := Label19.Caption;
@@ -1160,13 +1144,13 @@ begin
     FSopr.ComboBox7.Text := QTemp.FieldByName('PHAS').Asstring;
     FSopr.ComboBox8.Text := QTemp.FieldByName('SOED').Asstring;
     FSopr.ComboBox9.Text := QTemp.FieldByName('SOPRED').Asstring;
-    s:=QTemp.FieldByName('IZOLED').Asstring;
-    s1:= s;
-    delete(s1,pos(' ', s1),length(s1));
-    s2:=s;
-    delete(s2,1,pos(' ',s2));
+    s := QTemp.FieldByName('IZOLED').Asstring;
+    s1 := s;
+    delete(s1, pos(' ', s1), length(s1));
+    s2 := s;
+    delete(s2, 1, pos(' ', s2));
     FSopr.ComboBox10.Text := s1;
-    FSopr.ComboBox1.Text  := s2;
+    FSopr.ComboBox1.Text := s2;
     FSopr.Edit13.Text := QTemp.FieldByName('IZOLKORP').Asstring;
     FSopr.Edit16.Text := QTemp.FieldByName('IZOLOBMOT').Asstring;
     FSopr.StringGrid3.Cells[1, 1] := QTemp.FieldByName('IZM1U1U2').Asstring;

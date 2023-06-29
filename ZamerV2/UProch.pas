@@ -103,7 +103,7 @@ var
   i, j: Integer;
   cod, errx, erry, errx1, erry1: Integer;
   s: string;
-  inq:real;
+  inq: real;
 begin
   QTemp.Close;
   QTemp.SQL.Clear;

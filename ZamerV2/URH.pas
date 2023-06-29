@@ -820,7 +820,8 @@ begin
   QUp.Close;
   QUp.Open();
 
-  Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
+  //Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
+  Label13.Caption := myformat('0', QUp.FieldByName('N').AsFloat);
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
   Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);
