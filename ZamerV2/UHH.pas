@@ -458,7 +458,7 @@ begin
   end
   else
   begin
-   assignfile(f, QTemp.FieldByName('value').AsString);
+    assignfile(f, QTemp.FieldByName('value').AsString);
     reset(f);
     for i := 1 to 3 do
       for j := 1 to 12 do
@@ -492,8 +492,8 @@ begin
       CanClose := false;
   end;
 
-  QTemp.ExecSQL('update zini set value = ' + Quotedstr(fl) +
-    ' where name=' + Quotedstr('hhfile'));
+  QTemp.ExecSQL('update zini set value = ' + Quotedstr(fl) + ' where name=' +
+    Quotedstr('hhfile'));
 
 end;
 

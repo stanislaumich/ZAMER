@@ -126,6 +126,7 @@ var
   currentpower: single;
   times: Integer;
   ccol: Integer;
+  fl: string;
 
 implementation
 
@@ -418,7 +419,7 @@ end;
 
 procedure TFRH.FormActivate(Sender: TObject);
 var
-  i: Integer;
+  i, j: Integer;
   f: textfile;
   s: string;
 begin
@@ -436,7 +437,26 @@ begin
           Floattostr(round(Strtofloat(Label35.Caption) / 100 *
           Strtoint(StringGrid1.Cells[1, i])));
       end;
-
+  QTemp.Open('select * from zini where name=' + Quotedstr('rhfile'));
+  if QTemp.FieldByName('value').AsString = '' then
+  begin
+    QTemp.ExecSQL('delete from zini where name=' + Quotedstr('rhfile'));
+    QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
+      Quotedstr('rhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
+      Quotedstr('') + ')');
+  end
+  else
+  begin
+    assignfile(f, QTemp.FieldByName('value').AsString);
+    reset(f);
+    for i := 1 to 3 do
+      for j := 1 to 12 do
+      begin
+        Readln(f, s);
+        StringGrid1.Cells[i, j] := s;
+      end;
+    Closefile(f);
+  end;
 end;
 
 procedure TFRH.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -484,25 +504,8 @@ begin
   Closefile(f);
 {$I+}
   CanClose := true;
-  { if enableclose then
-    CanClose := true
-    else
-    begin
-    buttonSelected :=
-    MessageDlg
-    ('У вас есть несохраненная работа, она может быть утеряна, сохранить результаты?',
-    mtConfirmation, [mbYes, mbNo, MbCancel], 0);
-    if buttonSelected = mrYes then
-    begin
-    BitBtn10.Click;
-    CanClose := true;
-    end;
-    if buttonSelected = mrNo then
-    CanClose := true;
-    if buttonSelected = mrCancel then
-    CanClose := false;
-    end;
-  }
+  QTemp.ExecSQL('update zini set value = ' + Quotedstr(fl) + ' where name=' +
+    Quotedstr('rhfile'))
 end;
 
 procedure TFRH.FormCreate(Sender: TObject);
@@ -820,7 +823,7 @@ begin
   QUp.Close;
   QUp.Open();
 
-  //Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
+  // Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
   Label13.Caption := myformat('0', QUp.FieldByName('N').AsFloat);
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
@@ -845,7 +848,8 @@ begin
   end;
 
   begin
-    Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
+    // Label14.Caption := myformat(trazm, QUp.FieldByName('Pt').AsFloat);
+    Label14.Caption := myformat('0', QUp.FieldByName('Pt').AsFloat);
   end;
   // кпд
 
