@@ -901,7 +901,9 @@ begin
     QUpdDvig.ParamByName('UISP').AsInteger := strtoint(CombUisp.Text);
     QUpdDvig.ParamByName('PNOM').AsFloat := strtofloat(Comma(CombPNom.Text));
     QUpdDvig.ParamByName('PISP').AsFloat := strtofloat(Comma(CombPIsp.Text));
-    QUpdDvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
+    s := EditHumi.Text;
+    s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+    QUpdDvig.ParamByName('HUMID').AsString := s;
     s := EditPress.Text;
     s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
     QUpdDvig.ParamByName('PRESSUR').Asstring := s;
