@@ -3,7 +3,7 @@ object FRH: TFRH
   Top = 0
   Caption = #1056#1072#1073#1086#1095#1072#1103' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1072
   ClientHeight = 754
-  ClientWidth = 1443
+  ClientWidth = 1200
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object FRH: TFRH
   OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
-    1443
+    1200
     754)
   PixelsPerInch = 96
   TextHeight = 13
@@ -84,7 +84,7 @@ object FRH: TFRH
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1443
+    Width = 1200
     Height = 30
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
@@ -94,6 +94,7 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 1443
     object Label1: TLabel
       Left = 3
       Top = 2
@@ -140,7 +141,7 @@ object FRH: TFRH
   object GroupBox1: TGroupBox
     Left = 0
     Top = 30
-    Width = 1443
+    Width = 1200
     Height = 167
     Align = alTop
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1103' '#1087#1088#1080#1073#1086#1088#1086#1074
@@ -151,6 +152,7 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    ExplicitWidth = 1443
     object Label2: TLabel
       Left = 46
       Top = 65
@@ -395,7 +397,7 @@ object FRH: TFRH
   object GroupBox3: TGroupBox
     Left = 0
     Top = 203
-    Width = 1843
+    Width = 1600
     Height = 75
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
@@ -406,6 +408,7 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    ExplicitWidth = 1843
     object Label15: TLabel
       Left = 8
       Top = 32
@@ -678,7 +681,7 @@ object FRH: TFRH
   object GroupBox4: TGroupBox
     Left = 276
     Top = 275
-    Width = 1167
+    Width = 924
     Height = 400
     Anchors = [akLeft, akTop, akRight]
     Caption = #1055#1088#1086#1074#1077#1076#1077#1085#1080#1077' '#1080#1089#1087#1099#1090#1072#1085#1080#1081
@@ -689,13 +692,14 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 4
+    ExplicitWidth = 1167
     DesignSize = (
-      1167
+      924
       400)
     object StringGrid2: TStringGrid
       Left = 3
       Top = 28
-      Width = 1158
+      Width = 915
       Height = 309
       Anchors = [akLeft, akTop, akRight, akBottom]
       ColCount = 10
@@ -711,6 +715,7 @@ object FRH: TFRH
       TabOrder = 0
       OnClick = StringGrid2Click
       OnDrawCell = StringGrid2DrawCell
+      ExplicitWidth = 1158
     end
     object BitBtn1: TBitBtn
       Left = 12
@@ -926,6 +931,7 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 5
     Text = '0'
+    OnKeyPress = Edit4KeyPress
   end
   object Edit5: TEdit
     Left = 207
@@ -941,6 +947,7 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 6
     Text = '0'
+    OnKeyPress = Edit5KeyPress
   end
   object Edit6: TEdit
     Left = 348
@@ -956,6 +963,7 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 7
     Text = '0'
+    OnKeyPress = Edit6KeyPress
   end
   object Edit7: TEdit
     Left = 458
@@ -971,13 +979,14 @@ object FRH: TFRH
     ParentFont = False
     TabOrder = 8
     Text = '0'
+    OnKeyPress = Edit7KeyPress
   end
   object BitBtn10: TBitBtn
-    Left = 1164
-    Top = 711
+    Left = 927
+    Top = 710
     Width = 273
     Height = 36
-    Anchors = [akLeft, akBottom]
+    Anchors = [akRight, akBottom]
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080' '#1079#1072#1082#1088#1099#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -1048,10 +1057,11 @@ object FRH: TFRH
   object ProgressBar1: TProgressBar
     Left = 8
     Top = 681
-    Width = 1435
+    Width = 1192
     Height = 24
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 10
+    ExplicitWidth = 1435
   end
   object ComboBox1: TComboBox
     Left = 541

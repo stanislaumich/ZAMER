@@ -951,11 +951,19 @@ begin
             Qinsdvig.ParamByName('POLUS').Asstring := CombPolIsp.Text;
             Qinsdvig.ParamByName('UNOM').AsInteger := strtoint(CombUnom.Text);
             Qinsdvig.ParamByName('UISP').AsInteger := strtoint(CombUisp.Text);
+            try
             Qinsdvig.ParamByName('PNOM').AsFloat :=
               strtofloat(Comma(CombPNom.Text));
             Qinsdvig.ParamByName('PISP').AsFloat :=
               strtofloat(Comma(CombPIsp.Text));
             Qinsdvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
+            except
+             on E:exception do
+              begin
+                //E:=NIL;
+                ShowMessage('Ошибка тут');
+              end;
+            end;
             s := EditPress.Text;
             s := StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
             Qinsdvig.ParamByName('PRESSUR').AsFloat := strtofloat(s);
@@ -1379,9 +1387,6 @@ begin
             end;
     end;
 
-
-
-    // Frh.Stringgrid2.rowcount := QTemp.RecordCount + 1;
 
     if QTemp.FieldByName('t1').Asstring = '' then
         Frh.Edit4.Text := '0'

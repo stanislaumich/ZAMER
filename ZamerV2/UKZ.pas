@@ -130,8 +130,9 @@ begin
   QTemp.SQL.Clear;
   if Edit2.Text = '' then
   begin
-    ShowMessage('Необходимо указать сопротивление для сохранения!');
-    exit;
+    Edit2.Text := '0';
+    //ShowMessage('Необходимо указать сопротивление для сохранения!');
+    //exit;
   end;
   s := Edit2.Text;
   s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);

@@ -212,7 +212,7 @@ object FNagr: TFNagr
       Caption = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103':'
     end
     object StringGrid1: TStringGrid
-      Left = 1
+      Left = 2
       Top = 57
       Width = 1389
       Height = 129
@@ -1043,5 +1043,9 @@ object FNagr: TFNagr
   object SavePictureDialog1: TSavePictureDialog
     Left = 956
     Top = 427
+  end
+  object PrintDialog1: TPrintDialog
+    Left = 1232
+    Top = 535
   end
 end

@@ -109,6 +109,10 @@ type
     procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure StringGrid1Click(Sender: TObject);
+    procedure Edit4KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit5KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit6KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit7KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -293,8 +297,18 @@ end;
 
 /// ///////////////////////////////////
 procedure TFRH.BitBtn10Click(Sender: TObject);
+var
+ s:string;
 begin
   // обновить температуры
+  s := Edit4.Text;
+  Edit4.Text := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+  s := Edit5.Text;
+  Edit5.Text := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+  s := Edit6.Text;
+  Edit6.Text := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+  s := Edit7.Text;
+  Edit7.Text := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
 
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -415,6 +429,30 @@ procedure TFRH.Edit3Change(Sender: TObject);
 begin
   Label29.Caption := Inttostr(round(Strtofloat(Label24.Caption) / 100 *
     myfloat(emp(Edit3.text))));
+end;
+
+procedure TFRH.Edit4KeyPress(Sender: TObject; var Key: Char);
+begin
+ if key=#13 then
+   Edit5.SetFocus;
+end;
+
+procedure TFRH.Edit5KeyPress(Sender: TObject; var Key: Char);
+begin
+  if key=#13 then
+   Edit6.SetFocus;
+end;
+
+procedure TFRH.Edit6KeyPress(Sender: TObject; var Key: Char);
+begin
+ if key=#13 then
+   Edit7.SetFocus;
+end;
+
+procedure TFRH.Edit7KeyPress(Sender: TObject; var Key: Char);
+begin
+ if key=#13 then
+   Bitbtn10.SetFocus;
 end;
 
 procedure TFRH.FormActivate(Sender: TObject);

@@ -75,6 +75,7 @@ type
     Label27: TLabel;
     Label33: TLabel;
     SavePictureDialog1: TSavePictureDialog;
+    PrintDialog1: TPrintDialog;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -354,8 +355,8 @@ begin
 
   if not enableclose then
   begin
-    buttonselected := MessageDlg('Сохранить данные?', mtConfirmation,
-      [mbYes, mbNo, mbCancel], 0);
+    buttonselected := mrYes;//MessageDlg('Сохранить данные?', mtConfirmation,
+      //[mbYes, mbNo, mbCancel], 0);
     if buttonselected = mrYes then
     begin
       BitBtn10.Click;
@@ -492,6 +493,15 @@ end;
 procedure TFNagr.StringGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
   enableclose := false;
+    if (stringgrid1.col = 8) and (stringgrid1.row = 1) then
+    begin
+     stringgrid1.Col:=6;
+     stringgrid1.row:=2;
+    end
+   else
+  if stringgrid1.col in [6,7]  then
+  stringgrid1.Col:=stringgrid1.col+1;
+
 end;
 
 procedure TFNagr.Timer1000Timer(Sender: TObject);
@@ -634,7 +644,7 @@ begin
   QUp.Close;
   QUp.Open();
 
-  Label13.Caption := myformat(trazn, QUp.FieldByName('N').AsFloat);
+  Label13.Caption := myformat({trazn}'0', QUp.FieldByName('N').AsFloat);
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
   Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);
