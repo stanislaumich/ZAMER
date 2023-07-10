@@ -368,9 +368,9 @@ begin
         FrepP.Label1.Caption := 'Сопротивление';
         for i := 1 to 3 do
             for j := 1 to 3 do
-            begin
+            begin // isemptyfloat(tRazI, (ts))     ts := myzero(Frh.Stringgrid2.Cells[4, i]);
                 wrepl('st' + inttostr(i) + inttostr(j),
-                  FSopr.StringGrid3.Cells[j, i]);
+                  isemptyfloat('0.0000', FSopr.StringGrid3.Cells[j, i]));
                 AddReportString(fn, '1', 'st' + inttostr(i) + inttostr(j),
                   FSopr.StringGrid3.Cells[j, i]);
             end;
@@ -425,9 +425,10 @@ begin
             AddReportString(fn, '1', 'u' + inttostr(i) + 'hh',
               FormHH.Stringgrid2.Cells[1, i]);
         end;
-        for i := 1 to 12 do
+        for i := 1 to 12 do // isemptyfloat(tRazI, (ts))     ts := myzero(Frh.Stringgrid2.Cells[4, i]);
         begin
-            wrepl('i' + inttostr(i) + 'hh', FormHH.Stringgrid2.Cells[2, i]);
+            ts := FormHH.Stringgrid2.Cells[2, i];
+            wrepl('i' + inttostr(i) + 'hh', isemptyfloat(tRazI, (ts)));
             AddReportString(fn, '1', 'i' + inttostr(i) + 'hh',
               FormHH.Stringgrid2.Cells[2, i]);
         end;
@@ -448,7 +449,7 @@ begin
         // короткое замыкание
         FrepP.Label1.Caption := 'Короткое замыкание';
 
-        wrepl('stred3', FKZ.Edit2.Text + ' ' + FKZ.ComboBox1.Text);
+        wrepl('stred3', isemptyfloat('0.0000', FKZ.Edit2.Text) + ' ' + FKZ.ComboBox1.Text);
         AddReportString(fn, '1', 'stred3', FKZ.ComboBox1.Text);
         for i := 1 to 5 do
             for j := 1 to 4 do
@@ -471,12 +472,17 @@ begin
         // Нагрев
         FrepP.Label1.Caption := 'Нагрев';
         wrepl('stred4', Fnagr.ComboBox3.Text);
+        // isemptyfloat(tRazI, (ts))     ts := myzero(Frh.Stringgrid2.Cells[4, i]);
         AddReportString(fn, '1', 'stred4', Fnagr.ComboBox3.Text);
-        wrepl('N11x', isemptyfloat('0.00', Fnagr.StringGrid1.Cells[2, 1]));
-        wrepl('N21x', isemptyfloat('0.00', Fnagr.StringGrid1.Cells[2, 2]));
+        ts := myzero(Fnagr.StringGrid1.Cells[2, 1]);
+        wrepl('N11x', isemptyfloat('0.000', ts));
+        ts := myzero(Fnagr.StringGrid1.Cells[2, 2]);
+        wrepl('N21x', isemptyfloat('0.000', ts));
         // i
-        wrepl('N12x', isemptyfloat('0.0', Fnagr.StringGrid1.Cells[3, 1]));
-        wrepl('N22x', isemptyfloat('0.0', Fnagr.StringGrid1.Cells[3, 2]));
+        ts := myzero(Fnagr.StringGrid1.Cells[3, 1]);
+        wrepl('N12x', isemptyfloat(tRazP, ts));
+        ts := myzero(Fnagr.StringGrid1.Cells[3, 2]);
+        wrepl('N22x', isemptyfloat(tRazP, ts));
         // p
         wrepl('N13x', isemptyfloat('0.0', Fnagr.StringGrid1.Cells[4, 1]));
         wrepl('N23x', isemptyfloat('0.0', Fnagr.StringGrid1.Cells[4, 2]));
@@ -493,8 +499,9 @@ begin
         wrepl('N17x', isemptyfloat('0.0', Fnagr.StringGrid1.Cells[8, 1]));
         wrepl('N27x', isemptyfloat('0.0', Fnagr.StringGrid1.Cells[8, 2]));
         // t3
-        wrepl('N18x', isemptyfloat('0.0', Fnagr.StringGrid1.Cells[9, 1]));
-        wrepl('N28x', isemptyfloat('0.0', Fnagr.StringGrid1.Cells[9, 2]));
+        // isemptyfloat(tRazI, (ts))     ts := myzero(Frh.Stringgrid2.Cells[4, i]);
+        wrepl('N18x', isemptyfloat('0.0000', Fnagr.StringGrid1.Cells[9, 1]));
+        wrepl('N28x', isemptyfloat('0.0000', Fnagr.StringGrid1.Cells[9, 2]));
         // r
         if Fnagr.Edit4.Text <> '0' then
             wrepl('N31x', Fnagr.Edit4.Text)
