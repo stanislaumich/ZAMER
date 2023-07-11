@@ -86,6 +86,7 @@ type
     Label22: TLabel;
     Label30: TLabel;
     ComboBox1: TComboBox;
+    Label31: TLabel;
     procedure Action1Execute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);

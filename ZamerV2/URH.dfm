@@ -81,6 +81,13 @@ object FRH: TFRH
     ParentFont = False
     ExplicitTop = 687
   end
+  object Label31: TLabel
+    Left = 8
+    Top = 711
+    Width = 101
+    Height = 13
+    Caption = #1048#1079#1084#1077#1088#1077#1085#1080#1103' '#1087#1086#1089#1083#1077' '#1056#1061
+  end
   object Panel1: TPanel
     Left = 0
     Top = 0
@@ -94,7 +101,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1443
     object Label1: TLabel
       Left = 3
       Top = 2
@@ -152,7 +158,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 1443
     object Label2: TLabel
       Left = 46
       Top = 65
@@ -408,7 +413,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitWidth = 1843
     object Label15: TLabel
       Left = 8
       Top = 32
@@ -692,7 +696,6 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 4
-    ExplicitWidth = 1167
     DesignSize = (
       924
       400)
@@ -715,7 +718,6 @@ object FRH: TFRH
       TabOrder = 0
       OnClick = StringGrid2Click
       OnDrawCell = StringGrid2DrawCell
-      ExplicitWidth = 1158
     end
     object BitBtn1: TBitBtn
       Left = 12
@@ -1061,7 +1063,6 @@ object FRH: TFRH
     Height = 24
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 10
-    ExplicitWidth = 1435
   end
   object ComboBox1: TComboBox
     Left = 541
