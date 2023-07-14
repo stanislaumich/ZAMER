@@ -244,6 +244,9 @@ begin
     if trim(s) = '' then
         isemptyfloat := ''
     else
+      if strtofloat(s) = 0
+           then isemptyfloat := ''
+         else
         isemptyfloat := myformat(f, strtofloat(s))
 end;
 
