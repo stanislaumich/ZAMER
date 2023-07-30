@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../../../microcontrollers/D1-mini/TestGyverWeb"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"name": "nanohc12test",
+			"path": "../../../microcontrollers/NANO328/nanohc12test"
+		}
+	],
+	"settings": {}
+}
