@@ -38,8 +38,6 @@ object FMain: TFMain
     OnMouseDown = Panel1MouseDown
     OnMouseEnter = Panel1MouseEnter
     OnMouseLeave = Panel1MouseLeave
-    ExplicitTop = -3
-    ExplicitWidth = 627
     DesignSize = (
       625
       34)
@@ -108,7 +106,6 @@ object FMain: TFMain
         65F36465F36465F36465F26464F26464F26160F29797F7FFFFFF}
       TabOrder = 0
       OnClick = BitBtn2Click
-      ExplicitLeft = 154
     end
   end
   object Panel2: TPanel
@@ -124,7 +121,6 @@ object FMain: TFMain
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 187
     object ComLed1: TComLed
       Left = 594
       Top = 6
@@ -133,6 +129,13 @@ object FMain: TFMain
       ComPort = ComPort1
       LedSignal = lsConn
       Kind = lkRedLight
+    end
+    object Label9: TLabel
+      Left = 386
+      Top = 7
+      Width = 14
+      Height = 25
+      Caption = #1042
     end
     object CheckBox1: TCheckBox
       Left = 4
@@ -155,13 +158,39 @@ object FMain: TFMain
       TabOrder = 1
     end
     object Button7: TButton
-      Left = 316
-      Top = 12
+      Left = 4
+      Top = -10
       Width = 25
       Height = 21
       Caption = 'Button7'
       TabOrder = 2
       OnClick = Button7Click
+    end
+    object RadioButton1: TRadioButton
+      Left = 216
+      Top = 12
+      Width = 49
+      Height = 17
+      Caption = 'S1'
+      Checked = True
+      TabOrder = 3
+      TabStop = True
+    end
+    object RadioButton2: TRadioButton
+      Left = 271
+      Top = 12
+      Width = 50
+      Height = 17
+      Caption = 'S3'
+      TabOrder = 4
+    end
+    object Edit2: TEdit
+      Left = 323
+      Top = 4
+      Width = 62
+      Height = 33
+      TabOrder = 5
+      Text = 'Edit2'
     end
   end
   object Panel3: TPanel
@@ -171,8 +200,6 @@ object FMain: TFMain
     Height = 257
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 822
-    ExplicitHeight = 321
     DesignSize = (
       625
       257)
@@ -355,8 +382,6 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 0
       OnClick = BitBtn1Click
-      ExplicitTop = 161
-      ExplicitWidth = 177
     end
     object BitBtn3: TBitBtn
       Left = 4
@@ -367,8 +392,6 @@ object FMain: TFMain
       Caption = #1057#1086#1077#1076#1080#1085#1080#1090#1100
       TabOrder = 1
       OnClick = BitBtn3Click
-      ExplicitTop = 135
-      ExplicitWidth = 177
     end
     object Edit1: TEdit
       Left = 407
@@ -452,8 +475,6 @@ object FMain: TFMain
         Text = '0.0.0.0'
         Width = 50
       end>
-    ExplicitTop = 280
-    ExplicitWidth = 187
   end
   object Button4: TButton
     Left = 217
@@ -873,7 +894,7 @@ object FMain: TFMain
     FlowControl.XonXoffIn = False
     StoredProps = [spBasic]
     TriggersOnRxChar = True
-    Left = 460
-    Top = 38
+    Left = 128
+    Top = 258
   end
 end

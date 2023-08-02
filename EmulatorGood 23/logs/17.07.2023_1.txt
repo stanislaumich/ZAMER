@@ -1,0 +1,14 @@
+17.07.2023 09:35:49.521 - Запуск Modbus TCP/RTU Эмулятор
+17.07.2023 09:35:49.812 - TModbusTCPServer.Create
+17.07.2023 09:35:50.146 - TModbusTCPServer.Start
+17.07.2023 09:35:50.146 - TTCPAccept.Create IN, Port = 502
+17.07.2023 09:35:50.147 - TTCPAccept.Create OUT
+17.07.2023 09:35:50.147 - TTCPAccept.Execute IN
+17.07.2023 09:35:50.147 - TTCPAccept.InitSocket IN
+17.07.2023 09:35:50.154 - TTCPAccept.InitSocket - OUT
+17.07.2023 16:58:09.893 - TModbusTCPServer.Stop
+17.07.2023 16:58:09.893 - TTCPAccept.StopThread IN
+17.07.2023 16:58:09.929 - TTCPAccept.Execute OUT
+17.07.2023 16:58:09.934 - TTCPAccept.StopThread OUT
+17.07.2023 16:58:09.934 - TTCPAccept.Destroy IN
+17.07.2023 16:58:09.934 - TTCPAccept.Destroy OUT

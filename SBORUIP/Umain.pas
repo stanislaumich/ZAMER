@@ -78,6 +78,10 @@ type
     ComPort1: TComPort;
     ComComboBox1: TComComboBox;
     Button7: TButton;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    Edit2: TEdit;
+    Label9: TLabel;
 
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
