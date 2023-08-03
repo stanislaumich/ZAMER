@@ -997,8 +997,8 @@ begin
             Qinsdvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
             Qinsdvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
             s := EditTemp.Text;
-            s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
-            Qinsdvig.ParamByName('TEMP').Asstring := s;
+            s := StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
+            Qinsdvig.ParamByName('TEMP').AsFloat := strtofloat(s);
             Qinsdvig.ExecSQL;
             comboaddtext;
             FSopr.ComboBox9.Text := FSopr.ComboBox9.Items[0];
