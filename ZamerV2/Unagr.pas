@@ -493,6 +493,8 @@ end;
 procedure TFNagr.StringGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
   enableclose := false;
+  if key=#13 then
+   begin
     if (stringgrid1.col = 8) and (stringgrid1.row = 1) then
     begin
      stringgrid1.Col:=6;
@@ -501,7 +503,7 @@ begin
    else
   if stringgrid1.col in [6,7]  then
   stringgrid1.Col:=stringgrid1.col+1;
-
+  end;
 end;
 
 procedure TFNagr.Timer1000Timer(Sender: TObject);

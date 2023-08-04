@@ -676,8 +676,8 @@ object FRH: TFRH
       924
       400)
     object StringGrid2: TStringGrid
-      Left = 3
-      Top = 28
+      Left = -97
+      Top = 77
       Width = 915
       Height = 309
       Anchors = [akLeft, akTop, akRight, akBottom]
@@ -1065,11 +1065,11 @@ object FRH: TFRH
     Connection = FZamerV2.FDC
     SQL.Strings = (
       'select'
-      'nomer, uisp, sum(u) u, sum(i) i,sum(p) p, sum(umax) umax, '
+      'ns, nomer, uisp, sum(u) u, sum(i) i,sum(p) p, sum(umax) umax, '
       'sum(pmax) pmax, sum(t) t, sum(r) r, sum (pow) pow'
       'from('
       'select'
-      'NOMER, UISP,'
+      'ns, NOMER, UISP,'
       'sum(u) u,sum(i) i,sum(p) p,'
       'round(sum(mumax),1) umax,'
       'round(sum(mpmax),3) pmax,'
@@ -1077,26 +1077,26 @@ object FRH: TFRH
       'from'
       '('
       'SELECT'
-      '    NOMER, UISP,PISP,'
+      '    ns,NOMER, UISP,PISP,'
       '    avg(u) u,    avg(i) i,    avg(p) p,'
       '    0 mumax, 0 mpmax,avg(torq) t, avg(power) pow, avg(rot) r'
       '    FROM ZAMER.ZRHALL'
       '    where nomer=:nomer and uisp=:uisp and pisp=:pisp '
       '    and abs(du)<:du and abs(dp)<:dp'
-      '    group by nomer, uisp, PISP'
+      '    group by nomer, uisp, PISP, ns'
       '    union all'
       '    SELECT'
-      '    nomer,  UISP,PISP,'
+      '    ns, nomer,  UISP,PISP,'
       '    0 u,     0 i,     0 p, '
       '    max(dumax) mumax, max(dpmax) mpmax, 0 t, 0 pow, 0 r'
       '    FROM ZAMER.ZRHALL'
       '    where nomer=:nomer and uisp=:uisp and pisp=:pisp'
       '    and abs(du)<:du and abs(dp)<:dp'
-      '    group by nomer, uisp, PISP'
-      '    )group by nomer, uisp, PISP,t,r,pow'
-      '    ) group by nomer, uisp')
-    Left = 471
-    Top = 361
+      '    group by nomer, uisp, PISP, ns'
+      '    )group by nomer, uisp, PISP,t,r,pow, ns'
+      '    ) group by nomer, uisp, ns')
+    Left = 443
+    Top = 445
     ParamData = <
       item
         Name = 'NOMER'
@@ -1128,15 +1128,15 @@ object FRH: TFRH
       '   I2, I3, P1, '
       '   P2, P3, TORQ, '
       '   POWER, ROT, DUMAX, '
-      '   DPMAX, PISP, u, i, p) '
+      '   DPMAX, PISP, u, i, p, ns) '
       'VALUES (    :NOMER, :UISP, :U12, '
       '   :U23, :U31, :I1, '
       '   :I2, :I3, :P1, '
       '   :P2, :P3, :TORQ, '
       '   :POWER, :ROT, :DUMAX, '
-      '   :DPMAX, :PISP, :u, :i, :p )')
-    Left = 572
-    Top = 357
+      '   :DPMAX, :PISP, :u, :i, :p, :ns)')
+    Left = 296
+    Top = 445
     ParamData = <
       item
         Name = 'NOMER'
@@ -1217,12 +1217,16 @@ object FRH: TFRH
       item
         Name = 'P'
         ParamType = ptInput
+      end
+      item
+        Name = 'NS'
+        ParamType = ptInput
       end>
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 412
-    Top = 433
+    Left = 292
+    Top = 501
   end
   object QInsSvod: TFDQuery
     Connection = FZamerV2.FDC
@@ -1231,15 +1235,15 @@ object FRH: TFRH
       '   NOMER, UISP, USRED, '
       '   ISRED, PSRED, TIP, '
       '   TORQ, ROT, POWER, '
-      '   DUMAX, DPMAX, PISP, T1, T2, T3,r, otklonu, otklonp, nr) '
+      '   DUMAX, DPMAX, PISP, T1, T2, T3,r, otklonu, otklonp, nr, ns) '
       'VALUES ( :NOMER, :UISP, :USRED, '
       '   :ISRED, :PSRED, :TIP, '
       '   :TORQ, :ROT, :POWER, '
       
         '   :DUMAX, :DPMAX, :PISP, :T1, :T2, :T3,:r, :otklonu, :otklonp, ' +
-        ':nr)')
-    Left = 648
-    Top = 361
+        ':nr, :ns)')
+    Left = 348
+    Top = 445
     ParamData = <
       item
         Name = 'NOMER'
@@ -1316,6 +1320,10 @@ object FRH: TFRH
       item
         Name = 'NR'
         ParamType = ptInput
+      end
+      item
+        Name = 'NS'
+        ParamType = ptInput
       end>
   end
   object ActionList1: TActionList
@@ -1369,7 +1377,7 @@ object FRH: TFRH
   end
   object Qtemp2: TFDQuery
     Connection = FZamerV2.FDC
-    Left = 468
-    Top = 434
+    Left = 352
+    Top = 502
   end
 end
