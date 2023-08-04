@@ -368,9 +368,9 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add
-      ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL,EDIZM, perc)');
+      ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL,EDIZM, perc, ns)');
     QTemp.SQL.Add
-      (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm, :perc)');
+      (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm, :perc, :ns)');
     QTemp.ParamByName('nomer').AsString := Nomer;
     QTemp.ParamByName('uisp').AsString := StringGrid2.Cells[0, i];
     QTemp.ParamByName('usred').AsFloat :=
@@ -397,6 +397,7 @@ begin
     QTemp.ParamByName('edizm').AsString := ComboBox1.text;
     QTemp.ParamByName('perc').Asinteger :=
       round(strtoint(StringGrid2.Cells[0, i]) / strtoint(Label7.Caption) * 100);
+    QTemp.ParamByName('ns').AsInteger := i;
     QTemp.ExecSQL;
   end;
   enableclose := true;
@@ -723,7 +724,7 @@ begin
       QInsAll.ParamByName('FU').AsFloat := QTemp.FieldByName('u').AsFloat;
       QInsAll.ParamByName('FI').AsFloat := QTemp.FieldByName('i').AsFloat;
       QInsAll.ParamByName('FP').AsFloat := QTemp.FieldByName('p').AsFloat;
-
+      QInsAll.ParamByName('ns').Asinteger := Stringgrid2.row;
       QInsAll.ExecSQL;
       QTemp.Next;
     end;
@@ -731,7 +732,7 @@ begin
       ' and uisp=' + Label26.Caption + ' and dumax>' + Edit2.text);
     errcnt := QTemp.FieldByName('r').Asinteger;
     QTemp.Open('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label26.Caption + ' and dumax<=' + Edit2.text);
+      ' and uisp=' + Label26.Caption + ' and dumax<=' + Edit2.text+' and ns='+inttostr(Stringgrid2.row));
 
     goodcnt := QTemp.FieldByName('r').Asinteger;
     Qsred.Close;
@@ -739,6 +740,7 @@ begin
     Qsred.ParamByName('nomer').AsString := Nomer;
     Qsred.ParamByName('uisp').AsFloat := Strtofloat(Label26.Caption);
     Qsred.ParamByName('delta').AsFloat := myfloat(Edit2.text);
+    Qsred.ParamByName('ns').Asinteger := Stringgrid2.row;
     Qsred.Open;
     StringGrid2.Cells[1, StringGrid2.row] :=
       floattostr(Qsred.FieldByName('u').AsFloat);

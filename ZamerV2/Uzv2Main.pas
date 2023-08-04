@@ -1103,7 +1103,7 @@ begin
     // загрузить Холостой ход если есть
     QTemp.Close;
     QTemp.Open('select * from zhhsvod where nomer=' + Quotedstr(nomer) +
-      ' order by uisp desc');
+      ' order by ns');
     ImgSet(Image2, QTemp.RecordCount <> 0);
     tip := QTemp.FieldByName('tip').AsInteger;
     case tip of
