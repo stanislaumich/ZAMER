@@ -11,6 +11,7 @@ object FormHH: TFormHH
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  ShowHint = True
   OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -260,8 +261,8 @@ object FormHH: TFormHH
       OnClick = RadioButton3Click
     end
     object BitBtn1: TBitBtn
-      Left = 8
-      Top = 367
+      Left = 7
+      Top = 368
       Width = 32
       Height = 32
       Hint = #1047#1072#1075#1088#1091#1079#1080#1090#1100' '#1089' '#1076#1080#1089#1082#1072
@@ -309,6 +310,8 @@ object FormHH: TFormHH
         2311242526272807070711010101011A111B1C1D1E1F20210707111111111111
         121314151617181907070707070707070707070E0F1007070707070707070809
         07070A0B0C0D0707070707070707070702030405060707070707}
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 0
       OnClick = BitBtn1Click
     end
@@ -362,6 +365,8 @@ object FormHH: TFormHH
         0101010101012B2C2D110D2324012525252525252501262728110A1E1F010101
         0101010101012021221118191A0101010101010101011B1C1D11121314010101
         0101010101011516171102030405060708090A0B0C0D0E0F1011}
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 1
       OnClick = BitBtn3Click
     end
