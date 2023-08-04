@@ -314,10 +314,10 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.add('update zrhsvod set ');
-  QTemp.SQL.add('t1= ' + Quotedstr(Edit4.text));
-  QTemp.SQL.add(',t2= ' + Quotedstr(Edit5.text));
-  QTemp.SQL.add(',t3= ' + Quotedstr(Edit6.text));
-  QTemp.SQL.add(',r= ' + Quotedstr(Edit7.text));
+  QTemp.SQL.add('t1= ' +Edit4.text);
+  QTemp.SQL.add(',t2= ' +Edit5.text);
+  QTemp.SQL.add(',t3= ' + Edit6.text);
+  QTemp.SQL.add(',r= ' + Edit7.text);
   QTemp.SQL.add(',nr= ' + Inttostr(StringGrid2.RowCount - 1));
   QTemp.SQL.add(',tip= ' + Inttostr(StringGrid1.col));
   QTemp.SQL.add(',edizm= ' + Quotedstr(ComboBox1.text));
