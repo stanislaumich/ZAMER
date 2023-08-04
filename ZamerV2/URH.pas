@@ -325,8 +325,6 @@ begin
   QTemp.ExecSQL;
   FZamerV2.ImgSet(FZamerV2.Image5, true);
   enableclose := true;
-  // canclose:=true;
-
   FRH.Close;
 end;
 

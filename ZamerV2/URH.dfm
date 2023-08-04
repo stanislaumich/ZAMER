@@ -672,15 +672,12 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 4
-    DesignSize = (
-      924
-      400)
     object StringGrid2: TStringGrid
-      Left = -97
-      Top = 77
-      Width = 915
+      Left = 2
+      Top = 25
+      Width = 920
       Height = 309
-      Anchors = [akLeft, akTop, akRight, akBottom]
+      Align = alTop
       ColCount = 10
       DefaultColWidth = 90
       DrawingStyle = gdsClassic
@@ -694,6 +691,9 @@ object FRH: TFRH
       TabOrder = 0
       OnClick = StringGrid2Click
       OnDrawCell = StringGrid2DrawCell
+      ExplicitLeft = 6
+      ExplicitTop = 28
+      ExplicitWidth = 915
     end
     object BitBtn1: TBitBtn
       Left = 12
