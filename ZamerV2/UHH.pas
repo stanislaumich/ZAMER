@@ -325,6 +325,7 @@ begin
         s := StringGrid1.Cells[i, j];
         Writeln(f, s);
       end;
+      label9.caption:=fl;
     Closefile(f);
   end;
 end;
@@ -496,7 +497,7 @@ begin
       CanClose := false;
   end;
 
-  QTemp.ExecSQL('update zini set value = ' + Quotedstr(fl) + ' where name=' +
+  QTemp.ExecSQL('update zini set value = ' + Quotedstr(label9.caption) + ' where name=' +
     Quotedstr('hhfile'));
 
 end;
