@@ -1073,6 +1073,8 @@ procedure TFZamerV2.LoadIspyt(nomer: string);
 var
     s, s1, s2: string;
     tip, i, j, nr: integer;
+    f:textfile;
+    flf:string;
 begin
     // двигатель целиком
     QTemp.Close;
@@ -1105,6 +1107,21 @@ begin
     QTemp.Open('select * from zhhsvod where nomer=' + Quotedstr(nomer) +
       ' order by ns');
     ImgSet(Image2, QTemp.RecordCount <> 0);
+    if QTemp.FieldByName('fn').Asstring<>''  then
+     begin
+    flf := QTemp.FieldByName('fn').Asstring;;
+    formhh.Label9.Caption:=fl;
+    assignfile(f, flf);
+    reset(f);
+    for i := 1 to 3 do
+      for j := 1 to 12 do
+      begin
+        Readln(f, s);
+        formhh.StringGrid1.Cells[i, j] := s;
+      end;
+    Closefile(f);
+    end;
+
     tip := QTemp.FieldByName('tip').AsInteger;
     case tip of
         1:
