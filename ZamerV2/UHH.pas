@@ -69,6 +69,7 @@ type
     BitBtn3: TBitBtn;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
+    Label9: TLabel;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -294,6 +295,7 @@ begin
   If OpenDialog1.Execute then
   begin
     fl := OpenDialog1.Filename;
+    Label9.Caption:=fl;
     assignfile(f, OpenDialog1.Filename);
     reset(f);
     for i := 1 to 3 do
@@ -368,9 +370,9 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add
-      ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL,EDIZM, perc, ns)');
+      ('INSERT INTO ZAMER.ZHHSVOD (NOMER, UISP, USRED, ISRED, PSRED, TIP, DUMAX, R, OTKLON, VIZOL,EDIZM, perc, ns, fn)');
     QTemp.SQL.Add
-      (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm, :perc, :ns)');
+      (' VALUES ( :NOMER, :UISP, :USRED, :ISRED, :PSRED, :TIP, :DUMAX, :R, :OTKLON, :VIZOL,:edizm, :perc, :ns, :fn)');
     QTemp.ParamByName('nomer').AsString := Nomer;
     QTemp.ParamByName('uisp').AsString := StringGrid2.Cells[0, i];
     QTemp.ParamByName('usred').AsFloat :=
@@ -398,6 +400,7 @@ begin
     QTemp.ParamByName('perc').Asinteger :=
       round(strtoint(StringGrid2.Cells[0, i]) / strtoint(Label7.Caption) * 100);
     QTemp.ParamByName('ns').AsInteger := i;
+    QTemp.ParamByName('fn').AsString := Label9.Caption;
     QTemp.ExecSQL;
   end;
   enableclose := true;
@@ -725,6 +728,7 @@ begin
       QInsAll.ParamByName('FI').AsFloat := QTemp.FieldByName('i').AsFloat;
       QInsAll.ParamByName('FP').AsFloat := QTemp.FieldByName('p').AsFloat;
       QInsAll.ParamByName('ns').Asinteger := Stringgrid2.row;
+
       QInsAll.ExecSQL;
       QTemp.Next;
     end;

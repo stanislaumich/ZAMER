@@ -76,6 +76,13 @@ object FormHH: TFormHH
     Height = 25
     Caption = #1045#1076'. '#1080#1079#1084'. '#1089#1086#1087#1088#1086#1090#1080#1074#1083'.:'
   end
+  object Label9: TLabel
+    Left = 280
+    Top = 708
+    Width = 7
+    Height = 25
+    Visible = False
+  end
   object Panel2: TPanel
     Left = 0
     Top = 0
