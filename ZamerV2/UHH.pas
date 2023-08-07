@@ -729,7 +729,7 @@ begin
       QTemp.Next;
     end;
     QTemp.Open('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label26.Caption + ' and dumax>' + Edit2.text);
+      ' and uisp=' + Label26.Caption + ' and dumax>' + Edit2.text+' and ns='+inttostr(Stringgrid2.row));
     errcnt := QTemp.FieldByName('r').Asinteger;
     QTemp.Open('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
       ' and uisp=' + Label26.Caption + ' and dumax<=' + Edit2.text+' and ns='+inttostr(Stringgrid2.row));

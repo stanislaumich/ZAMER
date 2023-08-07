@@ -134,3 +134,9 @@
 04.08.2023 15:30:48.805 - TModbusTCPClient.Start
 04.08.2023 15:30:48.805 - TTCPAccept.InitSocket IN
 04.08.2023 15:31:02.317 - TModbusTCPServer.OnClientDisconnect
+04.08.2023 16:59:17.715 - TModbusTCPServer.Stop
+04.08.2023 16:59:17.715 - TTCPAccept.StopThread IN
+04.08.2023 16:59:17.716 - TTCPAccept.Execute OUT
+04.08.2023 16:59:17.718 - TTCPAccept.StopThread OUT
+04.08.2023 16:59:17.718 - TTCPAccept.Destroy IN
+04.08.2023 16:59:17.718 - TTCPAccept.Destroy OUT

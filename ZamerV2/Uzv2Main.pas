@@ -1266,12 +1266,7 @@ begin
           QTemp.FieldByName('pm').Asstring;
         QTemp.Next;
     end;
-    // Загрузить прочие испытания
-    { QTemp.Close;
-      QTemp.SQL.Clear;
-      QTemp.Open('select * from zproch where nomer=' + Quotedstr(nomer));
-      FZamerV2.ImgSet(FZamerV2.Image7, QTemp.RecordCount <> 0);
-    }//
+
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.Open('select * from zproch where nomer=' + Quotedstr(nomer));
@@ -1368,9 +1363,6 @@ begin
       ' order by pisp desc');
     FZamerV2.ImgSet(FZamerV2.Image5, QTemp.RecordCount <> 0);
 
-    // Frh.Radiobutton3Click(Frh);
-    // Frh.Radiobutton2Click(Frh);
-    // Frh.Radiobutton1Click(Frh);
     Frh.Stringgrid2.rowcount := QTemp.FieldByName('nr').AsInteger + 1;
     tip := QTemp.FieldByName('tip').AsInteger;
     nr := QTemp.FieldByName('nr').AsInteger;
