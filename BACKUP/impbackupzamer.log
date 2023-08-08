@@ -29,7 +29,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                     "ZDVIGALL"
                                                            30 rows imported
 . . importing table                      "ZELSPEC"
-                                                          139 rows imported
+                                                          138 rows imported
 . . importing table                   "ZELSPECTMP"
                                                             1 rows imported
 . . importing table                         "ZERR"
@@ -56,9 +56,9 @@ import server uses AL32UTF8 character set (possible charset conversion)
                                                           147 rows imported
 . . importing table                   "ZNAGREVALL"
 .
-                                                         1676 rows imported
+                                                         1972 rows imported
 . . importing table                  "ZNAGREVSVOD"
-                                                           28 rows imported
+                                                           30 rows imported
 . . importing table                       "ZPROCH"
                                                             6 rows imported
 . . importing table                       "ZRHALL"

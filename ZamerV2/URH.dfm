@@ -83,7 +83,7 @@ object FRH: TFRH
   end
   object Label31: TLabel
     Left = 8
-    Top = 711
+    Top = 705
     Width = 101
     Height = 13
     Caption = #1048#1079#1084#1077#1088#1077#1085#1080#1103' '#1087#1086#1089#1083#1077' '#1056#1061
@@ -672,6 +672,18 @@ object FRH: TFRH
     Font.Style = []
     ParentFont = False
     TabOrder = 4
+    object Label36: TLabel
+      Left = 4
+      Top = 340
+      Width = 3
+      Height = 13
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
     object StringGrid2: TStringGrid
       Left = 2
       Top = 25
@@ -691,15 +703,12 @@ object FRH: TFRH
       TabOrder = 0
       OnClick = StringGrid2Click
       OnDrawCell = StringGrid2DrawCell
-      ExplicitLeft = 6
-      ExplicitTop = 28
-      ExplicitWidth = 915
     end
     object BitBtn1: TBitBtn
       Left = 12
-      Top = 344
+      Top = 356
       Width = 169
-      Height = 53
+      Height = 41
       Caption = #1064#1072#1075' F5'
       Enabled = False
       Glyph.Data = {
@@ -764,9 +773,9 @@ object FRH: TFRH
     end
     object BitBtn2: TBitBtn
       Left = 192
-      Top = 344
+      Top = 356
       Width = 141
-      Height = 53
+      Height = 41
       Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100
       Enabled = False
       Glyph.Data = {
@@ -830,9 +839,9 @@ object FRH: TFRH
     end
     object BitBtn3: TBitBtn
       Left = 341
-      Top = 343
+      Top = 356
       Width = 134
-      Height = 54
+      Height = 41
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100

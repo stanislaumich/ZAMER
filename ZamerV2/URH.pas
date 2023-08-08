@@ -87,6 +87,7 @@ type
     Label30: TLabel;
     ComboBox1: TComboBox;
     Label31: TLabel;
+    Label36: TLabel;
     procedure Action1Execute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -321,6 +322,7 @@ begin
   QTemp.SQL.add(',nr= ' + Inttostr(StringGrid2.RowCount - 1));
   QTemp.SQL.add(',tip= ' + Inttostr(StringGrid1.col));
   QTemp.SQL.add(',edizm= ' + Quotedstr(ComboBox1.text));
+  QTemp.SQL.add(',fn= ' + Quotedstr(label36.caption));
   QTemp.SQL.add(' where nomer= ' + Quotedstr(nomer));
   QTemp.ExecSQL;
   FZamerV2.ImgSet(FZamerV2.Image5, true);
@@ -407,6 +409,7 @@ begin
   If OpenDialog1.Execute then
   begin
     assignfile(f, OpenDialog1.filename);
+    label36.caption:=OpenDialog1.filename;
     reset(f);
     for i := 1 to 3 do
       for j := 1 to 12 do
@@ -477,14 +480,15 @@ begin
   QTemp.Open('select * from zini where name=' + Quotedstr('rhfile'));
   if QTemp.FieldByName('value').AsString = '' then
   begin
-    QTemp.ExecSQL('delete from zini where name=' + Quotedstr('rhfile'));
-    QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
-      Quotedstr('rhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
-      Quotedstr('') + ')');
+    //QTemp.ExecSQL('delete from zini where name=' + Quotedstr('rhfile'));
+    //QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
+    //  Quotedstr('rhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
+    //  Quotedstr('') + ')');
   end
   else
   begin
     assignfile(f, QTemp.FieldByName('value').AsString);
+    label36.caption:= QTemp.FieldByName('value').AsString;
     reset(f);
     for i := 1 to 3 do
       for j := 1 to 12 do
@@ -541,7 +545,7 @@ begin
   Closefile(f);
 {$I+}
   CanClose := true;
-  QTemp.ExecSQL('update zini set value = ' + Quotedstr(fl) + ' where name=' +
+  QTemp.ExecSQL('update zini set value = ' + Quotedstr(label36.caption) + ' where name=' +
     Quotedstr('rhfile'))
 end;
 
@@ -735,7 +739,7 @@ begin
       QinsAll.ParamByName('power').AsFloat :=
         simpleroundto(Strtofloat(MyPoint(QTemp.FieldByName('power')
         .AsString)), RazP);
-
+      QinsAll.ParamByName('NS').AsInteger := stringgrid2.Row;
       QinsAll.ExecSQL;
       QTemp.Next;
       Qtemp2.Next;
@@ -808,6 +812,7 @@ begin
         [9, StringGrid2.row];
       QInsSvod.ParamByName('nr').Asinteger := StringGrid2.RowCount - 1;
       QInsSvod.ParamByName('tip').Asinteger := tipispyt;
+      QInsSvod.ParamByName('ns').Asinteger := Stringgrid2.row;
       QInsSvod.ParamByName('t1').AsFloat := 0;
       QInsSvod.ParamByName('t2').AsFloat := 0;
       QInsSvod.ParamByName('t3').AsFloat := 0;
