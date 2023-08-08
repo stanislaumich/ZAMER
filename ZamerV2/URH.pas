@@ -783,7 +783,7 @@ begin
     begin
       QTemp.SQL.Clear;
       QTemp.SQL.add('delete from zrhsvod where nomer=' + Quotedstr(nomer) +
-        ' and uisp=' + Label19.Caption + ' and pisp=' + Point(Label24.Caption));
+        ' and uisp=' + Label19.Caption + ' and pisp=' + Point(Label24.Caption) + ' and ns='+inttostr(Stringgrid2.row));
       QTemp.ExecSQL;
 
       QInsSvod.ParamByName('nomer').AsString :=

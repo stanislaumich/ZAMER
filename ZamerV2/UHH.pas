@@ -465,13 +465,12 @@ begin
   QTemp.Open('select * from zini where name=' + Quotedstr('hhfile'));
   if QTemp.FieldByName('value').AsString = '' then
   begin
-    //QTemp.ExecSQL('delete from zini where name=' + Quotedstr('hhfile'));
-    //QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
-    //  Quotedstr('hhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
-    //  Quotedstr('') + ')');
+
   end
   else
   begin
+    if FileExists(QTemp.FieldByName('value').AsString) then
+     begin
     assignfile(f, QTemp.FieldByName('value').AsString);
     reset(f);
     for i := 1 to 3 do
@@ -482,7 +481,7 @@ begin
       end;
     Closefile(f);
     Label9.Caption:=QTemp.FieldByName('value').AsString;
-    //Radiobutton1Click(Formhh);
+    end;
   end;
 end;
 
