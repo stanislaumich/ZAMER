@@ -424,6 +424,8 @@ begin
         AddReportString(fn, '1', 'stred2', FormHH.ComboBox1.Text);
         for i := 1 to 12 do
         begin
+            if length(FormHH.Stringgrid2.Cells[1, i])=5 then FormHH.Stringgrid2.Cells[1, i]:=FormHH.Stringgrid2.Cells[1, i]+'0';
+
             wrepl('u' + inttostr(i) + 'hh', FormHH.Stringgrid2.Cells[1, i]);
             AddReportString(fn, '1', 'u' + inttostr(i) + 'hh',
               FormHH.Stringgrid2.Cells[1, i]);
@@ -437,6 +439,9 @@ begin
         end;
         for i := 1 to 12 do
         begin
+            if (length(FormHH.Stringgrid2.Cells[3, i])-1)=
+            (pos(',',FormHH.Stringgrid2.Cells[3, i])) then
+            FormHH.Stringgrid2.Cells[3, i]:=FormHH.Stringgrid2.Cells[3, i]+'0';
             wrepl('p' + inttostr(i) + 'hh', FormHH.Stringgrid2.Cells[3, i]);
             AddReportString(fn, '1', 'p' + inttostr(i) + 'hh',
               FormHH.Stringgrid2.Cells[3, i]);
