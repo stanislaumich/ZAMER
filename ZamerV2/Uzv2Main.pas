@@ -935,7 +935,7 @@ begin
     QUpdDvig.ParamByName('POLNom').Asstring := CombPolNom.Text;
     QUpdDvig.ParamByName('POLIsp').Asstring := CombPolIsp.Text;
     s := EditTemp.Text;
-    s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
+    s := StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
     QUpdDvig.ParamByName('TEMP').AsFloat := strtofloat(s);
     QUpdDvig.ExecSQL;
     ShowMessage('Данные двигателя изменены успешно');
