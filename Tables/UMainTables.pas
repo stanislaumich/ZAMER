@@ -9,8 +9,8 @@ uses
     FireDAC.Stan.Option,
     FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
     FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
-    Data.DB, Uni, Vcl.Grids, Vcl.DBGrids, MemDS, DBAccess, FireDAC.Comp.Client,
-    Vcl.ExtCtrls, Vcl.StdCtrls, UniProvider, OracleUniProvider, Vcl.Buttons,
+    Data.DB, {Uni,} Vcl.Grids, Vcl.DBGrids, {MemDS,} {DBAccess,} FireDAC.Comp.Client,
+    Vcl.ExtCtrls, Vcl.StdCtrls, {UniProvider,} {OracleUniProvider,} Vcl.Buttons,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, FireDAC.Comp.DataSet;
 

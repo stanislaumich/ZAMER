@@ -70,6 +70,7 @@ type
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
     Label9: TLabel;
+    //tipispyt: Integer;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -95,6 +96,8 @@ type
     procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure StringGrid1Click(Sender: TObject);
+
+   procedure Preparesg2(t:integer);
   private
     { Private declarations }
   public
@@ -102,6 +105,7 @@ type
     procedure loadgrids;
     procedure savegrids;
     procedure command(b: Boolean);
+    procedure setispyt(t: Integer);
   end;
 
 var
@@ -118,6 +122,11 @@ implementation
 uses Uzv2Main, UAuto, Usett;
 
 {$R *.dfm}
+procedure TFormHH.setispyt(t: Integer);
+ begin
+  tipispyt:=t;
+ end;
+
 
 procedure TFormHH.command(b: Boolean);
 begin
@@ -366,7 +375,7 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zhhsvod where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + StringGrid2.Cells[0, i]);
+      {' and uisp=' + StringGrid2.Cells[0, i]+}' and ns='+inttostr(i));
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -456,10 +465,10 @@ begin
   QTemp.Open('select * from zini where name=' + Quotedstr('hhfile'));
   if QTemp.FieldByName('value').AsString = '' then
   begin
-    QTemp.ExecSQL('delete from zini where name=' + Quotedstr('hhfile'));
-    QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
-      Quotedstr('hhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
-      Quotedstr('') + ')');
+    //QTemp.ExecSQL('delete from zini where name=' + Quotedstr('hhfile'));
+    //QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
+    //  Quotedstr('hhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
+    //  Quotedstr('') + ')');
   end
   else
   begin
@@ -472,6 +481,8 @@ begin
         StringGrid1.Cells[i, j] := s;
       end;
     Closefile(f);
+    Label9.Caption:=QTemp.FieldByName('value').AsString;
+    //Radiobutton1Click(Formhh);
   end;
 end;
 
@@ -503,11 +514,32 @@ begin
 end;
 
 procedure TFormHH.FormCreate(Sender: TObject);
+var
+f:textfile;
+i,j:integer;
+s:string;
 begin
   loadgrids;
   ComboBox1.Items.LoadFromFile(extractfilepath(application.exename) +
     'R_SoprotListHH.txt');
   ComboBox1.ItemIndex := 0;
+  QTemp.Open('select * from zini where name=' +  Quotedstr('hhfile'));
+  label9.caption:=QTemp.FieldByName('value').Asstring;
+  if Label9.Caption<>'' then
+   begin
+  fl := label9.caption;
+    assignfile(f, fl);
+    reset(f);
+    for i := 1 to 3 do
+      for j := 1 to 12 do
+      begin
+        Readln(f, s);
+        StringGrid1.Cells[i, j] := s;
+      end;
+    Closefile(f);
+
+  //RadioButton1Click(Formhh);
+   end;
 end;
 
 procedure TFormHH.FormHide(Sender: TObject);
@@ -532,6 +564,15 @@ procedure TFormHH.FormShow(Sender: TObject);
 begin
   TimUp.Enabled := true;
 end;
+
+procedure TFormhh.Preparesg2(t:integer);
+var
+  i, j: Integer;
+  cod: Integer;
+ begin
+
+
+ end;
 
 procedure TFormHH.RadioButton1Click(Sender: TObject);
 var

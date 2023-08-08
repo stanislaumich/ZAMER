@@ -79,9 +79,14 @@ object FormHH: TFormHH
   object Label9: TLabel
     Left = 280
     Top = 708
-    Width = 7
-    Height = 25
-    Visible = False
+    Width = 3
+    Height = 13
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Panel2: TPanel
     Left = 0

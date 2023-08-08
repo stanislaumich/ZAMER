@@ -1106,11 +1106,12 @@ begin
     QTemp.Close;
     QTemp.Open('select * from zhhsvod where nomer=' + Quotedstr(nomer) +
       ' order by ns');
+    //formhh.label9.Caption:=Qtemp.FieldByName('fn').Asstring;
     ImgSet(Image2, QTemp.RecordCount <> 0);
     if QTemp.FieldByName('fn').Asstring<>''  then
      begin
     flf := QTemp.FieldByName('fn').Asstring;;
-    formhh.Label9.Caption:=fl;
+    formhh.Label9.Caption:=flf;
     assignfile(f, flf);
     reset(f);
     for i := 1 to 3 do
@@ -1123,15 +1124,26 @@ begin
     end;
 
     tip := QTemp.FieldByName('tip').AsInteger;
-    case tip of
+   { case tip of
         1:
             begin
                 FormHH.Radiobutton1Click(FormHH);
                 FormHH.radiobutton1.Checked := True;
             end;
         2:
-            begin
-                FormHH.Radiobutton2Click(FormHH);
+            begin}
+                //FormHH.Radiobutton2Click(FormHH);
+                formhh.Stringgrid2.rowcount:=13;
+                for i:=1 to 12 do
+                 formhh.Stringgrid2.cells[0,i]:=formhh.stringgrid1.cells[tip,i];
+                formhh.setispyt(tip);
+            case tip of
+            1: FormHH.radiobutton1.Checked := True;
+            2: FormHH.radiobutton2.Checked := True;
+            3: FormHH.radiobutton3.Checked := True;
+            end;
+       {
+
                 FormHH.radiobutton2.Checked := True;
             end;
         3:
@@ -1140,7 +1152,7 @@ begin
                 FormHH.radiobutton3.Checked := True;
             end;
     end;
-
+     }
     tip := 1;
     FormHH.Stringgrid2.rowcount := QTemp.RecordCount + 2;
     FormHH.ComboBox1.Text := QTemp.FieldByName('edizm').Asstring;
@@ -1604,13 +1616,6 @@ begin
     Closefile(p);
     ShellExecute(Handle, 'open', PWideChar(p1), nil, nil, SW_SHOWNORMAL);
     ShellExecute(Handle, 'open', PWideChar(p2), nil, nil, SW_SHOWNORMAL);
-    { QTemp.Open('select value from zini where name=' + Quotedstr('UIPPath'));
-      ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
-      nil, nil, SW_SHOWNORMAL);
-      QTemp.Open('select value from zini where name=' + Quotedstr('MNTPath'));
-      ShellExecute(Handle, 'open', PWideChar(QTemp.FieldByName('value').Asstring),
-      nil, nil, SW_SHOWNORMAL);
-    }
     DateTimePicker1.Date := Date;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('Update version set maintotal=maintotal+1');
