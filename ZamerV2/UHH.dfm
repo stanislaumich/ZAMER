@@ -975,7 +975,7 @@ object FormHH: TFormHH
     SQL.Strings = (
       'select '
       
-        'round(avg(fu),1) u, round(avg(fi),2) i, round(avg(fp),1) p, max(' +
+        'round(avg(fu),1) u, round(avg(fi),3) i, round(avg(fp),1) p, max(' +
         'dumax) m'
       'from zhhall'
       'where'
@@ -989,6 +989,7 @@ object FormHH: TFormHH
       item
         Name = 'NOMER'
         ParamType = ptInput
+        Value = Null
       end
       item
         Name = 'UISP'

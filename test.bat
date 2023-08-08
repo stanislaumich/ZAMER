@@ -1,0 +1,2 @@
+systeminfo >> test.txt
+pause
