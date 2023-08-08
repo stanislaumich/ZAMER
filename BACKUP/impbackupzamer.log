@@ -29,7 +29,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                     "ZDVIGALL"
                                                            30 rows imported
 . . importing table                      "ZELSPEC"
-                                                          138 rows imported
+                                                          139 rows imported
 . . importing table                   "ZELSPECTMP"
                                                             1 rows imported
 . . importing table                         "ZERR"
@@ -38,9 +38,9 @@ import server uses AL32UTF8 character set (possible charset conversion)
                                                            94 rows imported
 . . importing table                       "ZHHALL"
 .............
-                                                        13781 rows imported
+                                                        13780 rows imported
 . . importing table                      "ZHHSVOD"
-                                                          120 rows imported
+                                                          121 rows imported
 . . importing table                         "ZINI"
                                                            90 rows imported
 . . importing table                       "ZKZALL"
@@ -62,10 +62,10 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table                       "ZPROCH"
                                                             6 rows imported
 . . importing table                       "ZRHALL"
-....
-                                                         4662 rows imported
+.....
+                                                         5495 rows imported
 . . importing table                      "ZRHSVOD"
-                                                           42 rows imported
+                                                           48 rows imported
 . . importing table                      "ZSOPROT"
                                                            19 rows imported
 . . importing table                        "ZSOTR"
