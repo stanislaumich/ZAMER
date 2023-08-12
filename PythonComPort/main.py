@@ -8,23 +8,20 @@ def start(name):
     port = "COM1"  # Replace with the appropriate COM port name
     baudrate = 57600  # Replace with the desired baud rate
     ser = serial.Serial(port, baudrate=baudrate, timeout=0.1)
-    b1 = bytes([0xFF, 0x02, 0x41, 0x03])#73 = 49 A = 65
+    b1 = bytes([0xFF, 0x02, 0x4A, 0x03,0xFF,0x02,0x4A,0x03])#73 = 49 A = 65
     #bi = bytes([73])
-    for i in range(5):
+    for i in range(1):
         ser.write(b1)
 
     print("Serial sent, waiting")
     # Perform operations on the COM port
-    for i in range(1):
-        data = ser.read(10)  # Read 10 bytes from the COM port
+    for i in range(2):
+        data = ser.read(14)  # Read 10 bytes from the COM port
         print(data)
 
     if ser.is_open:
         ser.close()
         print("Serial connection closed.")
-
-
-
 
 
 
