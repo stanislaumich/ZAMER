@@ -24,10 +24,6 @@ float myMoment, myMomentPrev;
 float koeff=30/3.14159265358979323846;
 float myMoshn=0;
 
-
-// Для Билдера № 6
-//const char *sbuf;
-// Для RAD 2009-2010-XE
 const wchar_t *sbuf;
 
 HANDLE        handle;
@@ -40,7 +36,7 @@ char in[7] ;
 int nn=0;
 
 unsigned char out[4]={0xff,0x02,0x4a,0x03};
-char ch[16] ="0123456789ABCDEF";
+char ch[7] ="0123456";
 
 
 
@@ -912,7 +908,7 @@ handle=CreateFile(sbuf,GENERIC_READ|GENERIC_WRITE,0,NULL,OPEN_EXISTING,0,NULL);
     dcb.fAbortOnError = FALSE;
     dcb.ByteSize     = 8;
     dcb.Parity       = NOPARITY;
-	dcb.StopBits     = 1;
+	dcb.StopBits     = 0;
   SetCommState(handle,&dcb);
   PurgeComm(handle,PURGE_RXCLEAR);
   PurgeComm(handle,PURGE_TXCLEAR);

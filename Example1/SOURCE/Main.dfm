@@ -128,7 +128,6 @@ object Form1: TForm1
     Height = 384
     Align = alLeft
     TabOrder = 0
-    ExplicitHeight = 471
     object Label9: TLabel
       Left = 13
       Top = 299
