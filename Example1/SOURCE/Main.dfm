@@ -12,6 +12,7 @@ object Form1: TForm1
   Font.Style = []
   OldCreateOrder = False
   OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object LPortNumber: TLabel
@@ -145,9 +146,9 @@ object Form1: TForm1
     object Label11: TLabel
       Left = 84
       Top = 331
-      Width = 64
+      Width = 10
       Height = 19
-      Caption = 'Label11'
+      Caption = '0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
@@ -482,6 +483,16 @@ object Form1: TForm1
       Height = 21
       TabOrder = 2
       Text = 'ComboBox1'
+      Items.Strings = (
+        'COM1'
+        'COM2'
+        'COM3'
+        'COM4'
+        'COM5'
+        'COM6'
+        'COM7'
+        'COM8'
+        'COM9')
     end
     object Button2: TButton
       Left = 199

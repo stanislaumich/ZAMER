@@ -330,7 +330,7 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction & Action) {
 		Ini->WriteInteger("FILTER", "Type", 5);
 	if (RadioButton6->Checked)
 		Ini->WriteInteger("FILTER", "Type", 6);
-    //Ini->WriteInteger("FILTER", "Type", 6);
+    Ini->WriteString("TESA", "Port", ComboBox1->Text);
 	Ini->Free();
 }
 
@@ -892,7 +892,7 @@ void __fastcall TForm1::Edit1Exit(TObject *Sender) {
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
- String s = "COM3";
+ String s = ComboBox1->Text;"COM3";
  sbuf = s.t_str();
 handle=CreateFile(sbuf,GENERIC_READ|GENERIC_WRITE,0,NULL,OPEN_EXISTING,0,NULL);
  SetupComm(handle,100,100);
@@ -934,11 +934,28 @@ ClearCommError(handle,&temp,&ComState); // опрос состояния буфера приема
   if (ComState.cbInQue>0)                    // контроль количества байт в буфере
 	  {ReadFile(handle, in, 7, &numbytes_ok, &Overlap); //считывание 1 байта в in
 	  }
+  if (in[0]==0x15){
+   Label11->Caption = "ОШИБКА";
+   Memo1->Lines->Add("ОШИБКА");
+  }
+  else
+  {
   String d = in;
   d = d.Delete(1, 1);
   d = d.Delete(d.Length(), 1);
   Label11->Caption = d;
   Memo1->Lines->Add(d);
+  }
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+TIniFile *Ini = new TIniFile(ExtractFilePath(ParamStr(0)) +
+		"\settings45.ini");
+	ComboBox1->Text = Ini->ReadString("TESA", "Port", "COM1");
+	Ini->Free();
 }
 //---------------------------------------------------------------------------
 
