@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = #1057#1073#1086#1088' '#1087#1086#1082#1072#1079#1072#1085#1080#1081' '#1058'45'
-  ClientHeight = 471
-  ClientWidth = 745
+  ClientHeight = 384
+  ClientWidth = 434
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -125,9 +125,37 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 433
-    Height = 471
+    Height = 384
     Align = alLeft
     TabOrder = 0
+    ExplicitHeight = 471
+    object Label9: TLabel
+      Left = 13
+      Top = 299
+      Width = 29
+      Height = 13
+      Caption = #1055#1086#1088#1090':'
+    end
+    object Label10: TLabel
+      Left = 12
+      Top = 336
+      Width = 59
+      Height = 13
+      Caption = #1055#1088#1086#1095#1080#1090#1072#1085#1086':'
+    end
+    object Label11: TLabel
+      Left = 84
+      Top = 331
+      Width = 64
+      Height = 19
+      Caption = 'Label11'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object Panel2: TPanel
       Left = 1
       Top = 1
@@ -444,10 +472,52 @@ object Form1: TForm1
       Left = 1
       Top = 149
       Width = 431
-      Height = 321
-      Align = alClient
+      Height = 140
       ScrollBars = ssBoth
       TabOrder = 1
+    end
+    object ComboBox1: TComboBox
+      Left = 48
+      Top = 296
+      Width = 145
+      Height = 21
+      TabOrder = 2
+      Text = 'ComboBox1'
+    end
+    object Button2: TButton
+      Left = 199
+      Top = 295
+      Width = 75
+      Height = 25
+      Caption = #1054#1090#1082#1088#1099#1090#1100
+      TabOrder = 3
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Left = 276
+      Top = 295
+      Width = 75
+      Height = 25
+      Caption = #1047#1072#1082#1088#1099#1090#1100
+      TabOrder = 4
+      OnClick = Button3Click
+    end
+    object Button4: TButton
+      Left = 351
+      Top = 295
+      Width = 75
+      Height = 25
+      Caption = #1063#1080#1090#1072#1090#1100
+      TabOrder = 5
+      OnClick = Button4Click
+    end
+    object CheckBox1: TCheckBox
+      Left = 12
+      Top = 356
+      Width = 97
+      Height = 17
+      Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100
+      TabOrder = 6
     end
   end
   object EServerAddress: TEdit
@@ -725,14 +795,14 @@ object Form1: TForm1
   object TimerMain: TTimer
     Interval = 50
     OnTimer = TimerMainTimer
-    Left = 96
-    Top = 204
+    Left = 88
+    Top = 188
   end
   object TimerCommand: TTimer
     Enabled = False
     Interval = 500
-    Left = 168
-    Top = 204
+    Left = 184
+    Top = 184
   end
   object FDC: TFDConnection
     Params.Strings = (
@@ -748,15 +818,15 @@ object Form1: TForm1
     Connected = True
     LoginPrompt = False
     Left = 24
-    Top = 292
+    Top = 236
   end
   object QCommand: TFDQuery
     Connection = FDC
     ResourceOptions.AssignedValues = [rvCmdExecMode]
     SQL.Strings = (
       'select * from command where command between 0 and 1')
-    Left = 72
-    Top = 292
+    Left = 60
+    Top = 236
   end
   object QUpd: TFDQuery
     Connection = FDC
@@ -766,8 +836,8 @@ object Form1: TForm1
       'SET    TORQ  = :TORQ,'
       '       ROT   = :ROT,'
       '       POWER = :POWER')
-    Left = 152
-    Top = 292
+    Left = 132
+    Top = 236
     ParamData = <
       item
         Name = 'TORQ'
@@ -785,8 +855,8 @@ object Form1: TForm1
   object Qtemp: TFDQuery
     Connection = FDC
     ResourceOptions.AssignedValues = [rvCmdExecMode]
-    Left = 212
-    Top = 292
+    Left = 184
+    Top = 236
   end
   object QIns: TFDQuery
     Connection = FDC
@@ -794,8 +864,8 @@ object Form1: TForm1
     SQL.Strings = (
       'INSERT INTO ZAMER.ZAMERTMP (TORQ, ROT, POWER) '
       'VALUES ( :TORQ , :ROT , :POWER  )')
-    Left = 284
-    Top = 292
+    Left = 272
+    Top = 240
     ParamData = <
       item
         Name = 'TORQ'

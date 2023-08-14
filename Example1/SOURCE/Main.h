@@ -102,6 +102,14 @@ __published: // IDE-managed Components
 	TLabel *Label2;
 	TLabel *Label8;
 	TEdit *EAvF;
+	TLabel *Label9;
+	TComboBox *ComboBox1;
+	TButton *Button2;
+	TButton *Button3;
+	TLabel *Label10;
+	TLabel *Label11;
+	TButton *Button4;
+	TCheckBox *CheckBox1;
 
 	void __fastcall BConnectClick(TObject *Sender);
 	void __fastcall BDisconnectClick(TObject *Sender);
@@ -119,6 +127,9 @@ __published: // IDE-managed Components
 	void __fastcall BitBtn2Click(TObject *Sender);
 	void __fastcall BitBtn1Click(TObject *Sender);
 	void __fastcall Edit1Exit(TObject *Sender);
+	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall Button4Click(TObject *Sender);
 
 private: // User declarations
 	int ClientID;

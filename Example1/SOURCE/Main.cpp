@@ -5,6 +5,7 @@
 #include "Main.h"
 #include <Math.hpp>
 #include <math.h>
+//#include "mserial.h"
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -22,6 +23,26 @@ float mySkorost;
 float myMoment, myMomentPrev;
 float koeff=30/3.14159265358979323846;
 float myMoshn=0;
+
+
+// Для Билдера № 6
+//const char *sbuf;
+// Для RAD 2009-2010-XE
+const wchar_t *sbuf;
+
+HANDLE        handle;
+COMMTIMEOUTS  CommTimeOuts;
+DCB           dcb;
+DWORD         numbytes, numbytes_ok, temp;
+COMSTAT       ComState;
+OVERLAPPED    Overlap;
+char in[7] ;
+int nn=0;
+
+unsigned char out[4]={0xff,0x02,0x4a,0x03};
+char ch[16] ="0123456789ABCDEF";
+
+
 
 // ---------------------------------------------------------------------------
 // Array of formats for displaying the main measured value
@@ -825,6 +846,7 @@ void __fastcall TForm1::TimerMainTimer(TObject *Sender) {
 		QIns->ParamByName("POWER")->AsFloat = p;
 		QIns->ExecSQL();
 	}
+	if (handle) Button4Click(Form1);
 }
 // ---------------------------------------------------------------------------
 
@@ -869,3 +891,58 @@ void __fastcall TForm1::Edit1Exit(TObject *Sender) {
 
 }
 // ---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+ String s = "COM3";
+ sbuf = s.t_str();
+handle=CreateFile(sbuf,GENERIC_READ|GENERIC_WRITE,0,NULL,OPEN_EXISTING,0,NULL);
+ SetupComm(handle,100,100);
+  GetCommState(handle,&dcb);
+    dcb.BaudRate     = CBR_57600;//CBR_2400;  //  CBR_4800; CBR_9600;
+    dcb.fBinary      = TRUE;
+    dcb.fOutxCtsFlow = FALSE;
+    dcb.fOutxDsrFlow = FALSE;
+    dcb.fDtrControl  = DTR_CONTROL_DISABLE;
+    dcb.fDsrSensitivity = FALSE;
+    dcb.fNull        = FALSE;
+    dcb.fRtsControl  = RTS_CONTROL_DISABLE;
+    dcb.fAbortOnError = FALSE;
+    dcb.ByteSize     = 8;
+    dcb.Parity       = NOPARITY;
+	dcb.StopBits     = 1;
+  SetCommState(handle,&dcb);
+  PurgeComm(handle,PURGE_RXCLEAR);
+  PurgeComm(handle,PURGE_TXCLEAR);
+
+
+
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+  if (handle) {CloseHandle(handle);handle = 0; Label11->Caption = "0";}
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button4Click(TObject *Sender)
+{
+ClearCommError(handle,&temp,&ComState);
+		WriteFile(handle, out, 4, &numbytes_ok, &Overlap); // выдача байта из out
+ClearCommError(handle,&temp,&ComState); // опрос состояния буфера приема
+  if (ComState.cbInQue>0)                    // контроль количества байт в буфере
+	  {ReadFile(handle, in, 7, &numbytes_ok, &Overlap); //считывание 1 байта в in
+	  }
+  String d = in;
+  d = d.Delete(1, 1);
+  d = d.Delete(d.Length(), 1);
+  Label11->Caption = d;
+  Memo1->Lines->Add(d);
+}
+//---------------------------------------------------------------------------
+
