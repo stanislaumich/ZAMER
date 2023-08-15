@@ -35,7 +35,7 @@ OVERLAPPED    Overlap;
 char in[7] ;
 int nn=0;
 
-unsigned char out[4]={0xff,0x02,0x4a,0x03};
+unsigned char out[5]={0x00,0xff,0x02,0x4a,0x03};
 char ch[7] ="0123456";
 
 
@@ -929,7 +929,7 @@ void __fastcall TForm1::Button3Click(TObject *Sender)
 void __fastcall TForm1::Button4Click(TObject *Sender)
 {
 ClearCommError(handle,&temp,&ComState);
-		WriteFile(handle, out, 4, &numbytes_ok, &Overlap); // выдача байта из out
+		WriteFile(handle, out, 5, &numbytes_ok, &Overlap); // выдача байта из out
 ClearCommError(handle,&temp,&ComState); // опрос состояния буфера приема
   if (ComState.cbInQue>0)                    // контроль количества байт в буфере
 	  {ReadFile(handle, in, 7, &numbytes_ok, &Overlap); //считывание 1 байта в in
