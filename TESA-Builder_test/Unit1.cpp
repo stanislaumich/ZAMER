@@ -20,12 +20,27 @@ OVERLAPPED Overlap;
 char in[7];
 int nn = 0;
 
+int t = 15;
+
 unsigned char out[5] = {0xff, 0x02, 0x4A, 0x03};
+unsigned char outget1[1] = {0xff};
+unsigned char outget2[1] = {0x02};
+unsigned char outget3[1] = {0x4A};
+unsigned char outget4[1] = {0x03};
 unsigned char outstart[4] = {0x02, 0x41, 0x03};
 unsigned char outstart1[1] = {0xFF};
 unsigned char outstart2[1] = {0x02};
 unsigned char outstart3[1] = {0x41};
 unsigned char outstart4[1] = {0x03};
+unsigned char outclose[5] = {0xff, 0x02, 0x4A, 0x03};
+unsigned char outcl1[1] = {0xff};
+unsigned char outcl2[1] = {0x02};
+unsigned char outgetl3[1] = {0x4A};
+unsigned char outgetl4[1] = {0x03};
+
+
+
+
 char ch[8] = "0123456";
 
 TForm1 *Form1;
@@ -50,14 +65,14 @@ void __fastcall TForm1::ReadClick(TObject *Sender) {
 	//WriteFile(handle, outstart1, 1, &numbytes_ok, &Overlap);
 	//WriteFile(handle, outstart, 3, &numbytes_ok, &Overlap); // выдача байта из out
 
-	int t = 15;
-	WriteFile(handle, outstart1, 1, &numbytes_ok, &Overlap); // выдача байта из out
+
+	WriteFile(handle, outget1, 1, &numbytes_ok, &Overlap); // выдача байта из out
 	Sleep(t);
-	WriteFile(handle, outstart2, 1, &numbytes_ok, &Overlap);
+	WriteFile(handle, outget2, 1, &numbytes_ok, &Overlap);
 	Sleep(t);
-	WriteFile(handle, outstart3, 1, &numbytes_ok, &Overlap);
+	WriteFile(handle, outget3, 1, &numbytes_ok, &Overlap);
     Sleep(t);
-	WriteFile(handle, outstart4, 1, &numbytes_ok, &Overlap);
+	WriteFile(handle, outget4, 1, &numbytes_ok, &Overlap);
 
 
 	ClearCommError(handle, &temp, &ComState); // опрос состояния буфера приема
@@ -82,6 +97,16 @@ void __fastcall TForm1::ReadClick(TObject *Sender) {
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::CloseClick(TObject *Sender) {
 	if (handle) {
+		WriteFile(handle, outcl1, 1, &numbytes_ok, &Overlap); // выдача байта из out
+	Sleep(t);
+	WriteFile(handle, outcl2, 1, &numbytes_ok, &Overlap);
+	Sleep(t);
+	WriteFile(handle, outcl3, 1, &numbytes_ok, &Overlap);
+	Sleep(t);
+	WriteFile(handle, outcl4, 1, &numbytes_ok, &Overlap);
+
+
+
 		CloseHandle(handle);
 		handle = 0;
 		Label1->Caption = "0";
@@ -125,14 +150,13 @@ void __fastcall TForm1::OpenClick(TObject *Sender) {
 
 	PurgeComm(handle, PURGE_RXCLEAR);
 	PurgeComm(handle, PURGE_TXCLEAR);
-	int t = 15;
 	//ClearCommError(handle, &temp, &ComState);
 	WriteFile(handle, outstart1, 1, &numbytes_ok, &Overlap); // выдача байта из out
 	Sleep(t);
 	WriteFile(handle, outstart2, 1, &numbytes_ok, &Overlap);
 	Sleep(t);
 	WriteFile(handle, outstart3, 1, &numbytes_ok, &Overlap);
-    Sleep(t);
+	Sleep(t);
 	WriteFile(handle, outstart4, 1, &numbytes_ok, &Overlap);
 	//if (ComState.cbInQue > 0) // контроль количества байт в буфере
 	//{
