@@ -8,6 +8,7 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
+
 const wchar_t *sbuf;
 
 HANDLE handle;
@@ -19,7 +20,12 @@ OVERLAPPED Overlap;
 char in[7];
 int nn = 0;
 
-unsigned char out[5] = {0xff, 0x02, 0x44, 0x03};
+unsigned char out[5] = {0xff, 0x02, 0x4A, 0x03};
+unsigned char outstart[4] = {0x02, 0x41, 0x03};
+unsigned char outstart1[1] = {0xFF};
+unsigned char outstart2[1] = {0x02};
+unsigned char outstart3[1] = {0x41};
+unsigned char outstart4[1] = {0x03};
 char ch[8] = "0123456";
 
 TForm1 *Form1;
@@ -41,7 +47,19 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::ReadClick(TObject *Sender) {
 	ClearCommError(handle, &temp, &ComState);
-	WriteFile(handle, out, 4, &numbytes_ok, &Overlap); // выдача байта из out
+	//WriteFile(handle, outstart1, 1, &numbytes_ok, &Overlap);
+	//WriteFile(handle, outstart, 3, &numbytes_ok, &Overlap); // выдача байта из out
+
+	int t = 15;
+	WriteFile(handle, outstart1, 1, &numbytes_ok, &Overlap); // выдача байта из out
+	Sleep(t);
+	WriteFile(handle, outstart2, 1, &numbytes_ok, &Overlap);
+	Sleep(t);
+	WriteFile(handle, outstart3, 1, &numbytes_ok, &Overlap);
+    Sleep(t);
+	WriteFile(handle, outstart4, 1, &numbytes_ok, &Overlap);
+
+
 	ClearCommError(handle, &temp, &ComState); // опрос состояния буфера приема
 	if (ComState.cbInQue > 0) // контроль количества байт в буфере
 	{
@@ -73,11 +91,22 @@ void __fastcall TForm1::CloseClick(TObject *Sender) {
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::OpenClick(TObject *Sender) {
-	String s = ComboBox1->Text;
+
+
+	String s = "\\\\.\\COM1";//ComboBox1->Text;
 	sbuf = s.t_str();
 	handle = CreateFile(sbuf, GENERIC_READ | GENERIC_WRITE, 0, NULL,
-		OPEN_EXISTING, 0, NULL);
-	SetupComm(handle, 100, 100);
+		OPEN_EXISTING, FILE_FLAG_OVERLAPPED, NULL);
+    SetupComm(handle,1,1);
+    COMMTIMEOUTS CommTimeOuts;
+	CommTimeOuts.ReadIntervalTimeout = 50;
+	CommTimeOuts.ReadTotalTimeoutMultiplier = 10;
+	CommTimeOuts.ReadTotalTimeoutConstant = 5;
+	CommTimeOuts.WriteTotalTimeoutMultiplier = 20;
+	CommTimeOuts.WriteTotalTimeoutConstant = 5;
+	SetCommTimeouts(handle, &CommTimeOuts);
+
+
 	GetCommState(handle, &dcb);
 	dcb.BaudRate = CBR_57600; // CBR_2400;  //  CBR_4800; CBR_9600;
 	dcb.fBinary = TRUE;
@@ -92,9 +121,24 @@ void __fastcall TForm1::OpenClick(TObject *Sender) {
 	dcb.Parity = NOPARITY;
 	dcb.StopBits = 0;// 0=1, 1=1.5, 2=2
 	SetCommState(handle, &dcb);
+
+
 	PurgeComm(handle, PURGE_RXCLEAR);
 	PurgeComm(handle, PURGE_TXCLEAR);
-
+	int t = 15;
+	//ClearCommError(handle, &temp, &ComState);
+	WriteFile(handle, outstart1, 1, &numbytes_ok, &Overlap); // выдача байта из out
+	Sleep(t);
+	WriteFile(handle, outstart2, 1, &numbytes_ok, &Overlap);
+	Sleep(t);
+	WriteFile(handle, outstart3, 1, &numbytes_ok, &Overlap);
+    Sleep(t);
+	WriteFile(handle, outstart4, 1, &numbytes_ok, &Overlap);
+	//if (ComState.cbInQue > 0) // контроль количества байт в буфере
+	//{
+	//	ReadFile(handle, in, 7, &numbytes_ok, &Overlap);
+	//}
+	//ClearCommError(handle, &temp, &ComState);
 }
 
 // ---------------------------------------------------------------------------
@@ -122,3 +166,10 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action) {
 	 */
 }
 // ---------------------------------------------------------------------------
+
+
+
+
+
+
+

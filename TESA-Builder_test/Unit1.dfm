@@ -56,10 +56,11 @@ object Form1: TForm1
     OnClick = CloseClick
   end
   object Memo1: TMemo
-    Left = 4
-    Top = 4
+    Left = 0
+    Top = 0
     Width = 329
-    Height = 329
+    Height = 337
+    Align = alLeft
     TabOrder = 3
   end
   object ComboBox1: TComboBox
