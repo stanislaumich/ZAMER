@@ -110,6 +110,8 @@ __published: // IDE-managed Components
 	TLabel *Label11;
 	TButton *Button4;
 	TCheckBox *CheckBox1;
+	TTimer *Timer1;
+	TCheckBox *CheckBox2;
 
 	void __fastcall BConnectClick(TObject *Sender);
 	void __fastcall BDisconnectClick(TObject *Sender);
@@ -131,6 +133,8 @@ __published: // IDE-managed Components
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall Timer1Timer(TObject *Sender);
+	void __fastcall CheckBox2Click(TObject *Sender);
 
 private: // User declarations
 	int ClientID;

@@ -482,7 +482,7 @@ object Form1: TForm1
       Width = 145
       Height = 21
       TabOrder = 2
-      Text = 'ComboBox1'
+      Text = 'COM1'
       Items.Strings = (
         'COM1'
         'COM2'
@@ -528,6 +528,15 @@ object Form1: TForm1
       Height = 17
       Caption = #1048#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100
       TabOrder = 6
+    end
+    object CheckBox2: TCheckBox
+      Left = 140
+      Top = 356
+      Width = 97
+      Height = 17
+      Caption = #1054#1090#1086#1073#1088#1072#1078#1072#1090#1100
+      TabOrder = 7
+      OnClick = CheckBox2Click
     end
   end
   object EServerAddress: TEdit
@@ -895,5 +904,12 @@ object Form1: TForm1
     OnTimer = TimerStartTimer
     Left = 368
     Top = 200
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 1300
+    OnTimer = Timer1Timer
+    Left = 352
+    Top = 332
   end
 end
