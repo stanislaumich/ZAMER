@@ -21,8 +21,6 @@ __published: // IDE-managed Components
 	TTimer *Timer1;
 	TButton *Button1;
 	TButton *Button2;
-
-	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall ReadClick(TObject *Sender);
 	void __fastcall CloseClick(TObject *Sender);
 	void __fastcall OpenClick(TObject *Sender);
@@ -30,9 +28,6 @@ __published: // IDE-managed Components
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-
-
-
 
 private: // User declarations
 public: // User declarations

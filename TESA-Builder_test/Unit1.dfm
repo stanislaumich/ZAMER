@@ -12,7 +12,6 @@ object Form1: TForm1
   Font.Style = []
   OldCreateOrder = False
   OnClose = FormClose
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -91,7 +90,6 @@ object Form1: TForm1
   end
   object Timer1: TTimer
     Enabled = False
-    Interval = 100
     OnTimer = Timer1Timer
     Left = 440
     Top = 68
