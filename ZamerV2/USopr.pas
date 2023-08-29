@@ -330,6 +330,8 @@ procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonSelected: Integer;
 begin
+CanClose := true;
+{
 
   if enableclose then
     CanClose := true
@@ -347,6 +349,7 @@ begin
     if buttonSelected = mrCancel then
       CanClose := false;
   end;
+  }
 end;
 
 procedure TFSopr.FormCreate(Sender: TObject);
