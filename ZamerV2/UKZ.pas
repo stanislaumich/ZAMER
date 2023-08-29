@@ -131,8 +131,8 @@ begin
   if Edit2.Text = '' then
   begin
     Edit2.Text := '0';
-    //ShowMessage('Необходимо указать сопротивление для сохранения!');
-    //exit;
+    // ShowMessage('Необходимо указать сопротивление для сохранения!');
+    // exit;
   end;
   s := Edit2.Text;
   s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);

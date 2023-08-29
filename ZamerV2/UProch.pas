@@ -109,7 +109,7 @@ begin
   QTemp.SQL.Clear;
   QTemp.SQL.Add('delete from zproch where nomer=' + Quotedstr(Label6.Caption));
   QTemp.ExecSQL;
-  if (Edit1.Text = '0') {or (Edit2.Text = '0')} then
+  if (Edit1.Text = '0') { or (Edit2.Text = '0') } then
   begin
     ShowMessage('Ќапр€жение рано нулю, нужно исправить');
     Exit;

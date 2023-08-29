@@ -300,7 +300,7 @@ end;
 /// ///////////////////////////////////
 procedure TFRH.BitBtn10Click(Sender: TObject);
 var
- s:string;
+  s: string;
 begin
   // обновить температуры
   s := Edit4.Text;
@@ -315,14 +315,14 @@ begin
   QTemp.Close;
   QTemp.SQL.Clear;
   QTemp.SQL.add('update zrhsvod set ');
-  QTemp.SQL.add('t1= ' +Edit4.text);
-  QTemp.SQL.add(',t2= ' +Edit5.text);
-  QTemp.SQL.add(',t3= ' + Edit6.text);
-  QTemp.SQL.add(',r= ' + Edit7.text);
+  QTemp.SQL.add('t1= ' + Edit4.Text);
+  QTemp.SQL.add(',t2= ' + Edit5.Text);
+  QTemp.SQL.add(',t3= ' + Edit6.Text);
+  QTemp.SQL.add(',r= ' + Edit7.Text);
   QTemp.SQL.add(',nr= ' + Inttostr(StringGrid2.RowCount - 1));
   QTemp.SQL.add(',tip= ' + Inttostr(StringGrid1.col));
-  QTemp.SQL.add(',edizm= ' + Quotedstr(ComboBox1.text));
-  QTemp.SQL.add(',fn= ' + Quotedstr(label36.caption));
+  QTemp.SQL.add(',edizm= ' + Quotedstr(ComboBox1.Text));
+  QTemp.SQL.add(',fn= ' + Quotedstr(Label36.Caption));
   QTemp.SQL.add(' where nomer= ' + Quotedstr(nomer));
   QTemp.ExecSQL;
   FZamerV2.ImgSet(FZamerV2.Image5, true);
@@ -335,7 +335,7 @@ begin
   if (RadioButton1.Checked or RadioButton2.Checked or RadioButton3.Checked) then
   begin
 
-    times := Strtoint(Edit1.text);
+    times := Strtoint(Edit1.Text);
     BitBtn1.Enabled := false;
     BitBtn2.Enabled := true;
     ProgressBar1.min := 0;
@@ -409,7 +409,7 @@ begin
   If OpenDialog1.Execute then
   begin
     assignfile(f, OpenDialog1.filename);
-    label36.caption:=OpenDialog1.filename;
+    Label36.Caption := OpenDialog1.filename;
     reset(f);
     for i := 1 to 3 do
       for j := 1 to 12 do
@@ -424,37 +424,37 @@ end;
 
 procedure TFRH.command(b: Boolean);
 begin
-  FZamerV2.SendCommand(FZamerV2, b, Fsett.Edit6.text);
+  FZamerV2.SendCommand(FZamerV2, b, Fsett.Edit6.Text);
 end;
 
 procedure TFRH.Edit3Change(Sender: TObject);
 begin
   Label29.Caption := Inttostr(round(Strtofloat(Label24.Caption) / 100 *
-    myfloat(emp(Edit3.text))));
+    myfloat(emp(Edit3.Text))));
 end;
 
 procedure TFRH.Edit4KeyPress(Sender: TObject; var Key: Char);
 begin
- if key=#13 then
-   Edit5.SetFocus;
+  if Key = #13 then
+    Edit5.SetFocus;
 end;
 
 procedure TFRH.Edit5KeyPress(Sender: TObject; var Key: Char);
 begin
-  if key=#13 then
-   Edit6.SetFocus;
+  if Key = #13 then
+    Edit6.SetFocus;
 end;
 
 procedure TFRH.Edit6KeyPress(Sender: TObject; var Key: Char);
 begin
- if key=#13 then
-   Edit7.SetFocus;
+  if Key = #13 then
+    Edit7.SetFocus;
 end;
 
 procedure TFRH.Edit7KeyPress(Sender: TObject; var Key: Char);
 begin
- if key=#13 then
-   Bitbtn10.SetFocus;
+  if Key = #13 then
+    BitBtn10.SetFocus;
 end;
 
 procedure TFRH.FormActivate(Sender: TObject);
@@ -463,10 +463,10 @@ var
   f: textfile;
   s: string;
 begin
-  Label24.Caption := Inttostr(round(Strtofloat(FZamerV2.CombPisp.text) * 1000));
-  Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.text) * 1000);
+  Label24.Caption := Inttostr(round(Strtofloat(FZamerV2.CombPisp.Text) * 1000));
+  Label35.Caption := Floattostr(Strtofloat(FZamerV2.CombPisp.Text) * 1000);
   Label29.Caption := Inttostr(round(Strtofloat(Label24.Caption) / 100 *
-    myfloat(emp(Edit3.text))));
+    myfloat(emp(Edit3.Text))));
 
   for i := 1 to StringGrid1.RowCount - 1 do
     if StringGrid1.Cells[1, i] <> '' then
@@ -480,15 +480,15 @@ begin
   QTemp.Open('select * from zini where name=' + Quotedstr('rhfile'));
   if QTemp.FieldByName('value').AsString = '' then
   begin
-    //QTemp.ExecSQL('delete from zini where name=' + Quotedstr('rhfile'));
-    //QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
-    //  Quotedstr('rhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
-    //  Quotedstr('') + ')');
+    // QTemp.ExecSQL('delete from zini where name=' + Quotedstr('rhfile'));
+    // QTemp.ExecSQL('insert into zini (name, value, tip,tag) values (' +
+    // Quotedstr('rhfile') + ', ' + Quotedstr('') + ', ' + Quotedstr('') + ', ' +
+    // Quotedstr('') + ')');
   end
   else
   begin
     assignfile(f, QTemp.FieldByName('value').AsString);
-    label36.caption:= QTemp.FieldByName('value').AsString;
+    Label36.Caption := QTemp.FieldByName('value').AsString;
     reset(f);
     for i := 1 to 3 do
       for j := 1 to 12 do
@@ -506,17 +506,17 @@ begin
 
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.add('update zdelta set value= ' + Quotedstr(emp(Edit2.text)) +
+  QTemp.SQL.add('update zdelta set value= ' + Quotedstr(emp(Edit2.Text)) +
     ' where name=' + Quotedstr('urh'));
   QTemp.ExecSQL;
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.add('update zdelta set value= ' + Quotedstr(emp(Edit3.text)) +
+  QTemp.SQL.add('update zdelta set value= ' + Quotedstr(emp(Edit3.Text)) +
     ' where name=' + Quotedstr('prh'));
   QTemp.ExecSQL;
   QTemp.Close;
   QTemp.SQL.Clear;
-  QTemp.SQL.add('update zini set value= ' + Quotedstr(Edit1.text) +
+  QTemp.SQL.add('update zini set value= ' + Quotedstr(Edit1.Text) +
     ' where name=' + Quotedstr('rhtime'));
   QTemp.ExecSQL;
   savegrids;
@@ -545,8 +545,8 @@ begin
   Closefile(f);
 {$I+}
   CanClose := true;
-  QTemp.ExecSQL('update zini set value = ' + Quotedstr(label36.caption) + ' where name=' +
-    Quotedstr('rhfile'))
+  QTemp.ExecSQL('update zini set value = ' + Quotedstr(Label36.Caption) +
+    ' where name=' + Quotedstr('rhfile'))
 end;
 
 procedure TFRH.FormCreate(Sender: TObject);
@@ -596,11 +596,11 @@ begin
   nomer := Label6.Caption;
   enableclose := true;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('urh'));
-  Edit2.text := QTemp.FieldByName('value').AsString;
+  Edit2.Text := QTemp.FieldByName('value').AsString;
   QTemp.Open('select * from zdelta where name=' + Quotedstr('prh'));
-  Edit3.text := QTemp.FieldByName('value').AsString;
+  Edit3.Text := QTemp.FieldByName('value').AsString;
   QTemp.Open('select * from zini where name=' + Quotedstr('rhtime'));
-  Edit1.text := QTemp.FieldByName('value').AsString;
+  Edit1.Text := QTemp.FieldByName('value').AsString;
   loadgrids;
 
 end;
@@ -652,7 +652,7 @@ begin
   Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
   Label19.Caption := Label33.Caption;
   Label29.Caption := Inttostr(round(Strtofloat(Label24.Caption) / 100 *
-    myfloat(emp(Edit3.text))));
+    myfloat(emp(Edit3.Text))));
 end;
 
 procedure TFRH.StringGrid2DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -739,7 +739,7 @@ begin
       QinsAll.ParamByName('power').AsFloat :=
         simpleroundto(Strtofloat(MyPoint(QTemp.FieldByName('power')
         .AsString)), RazP);
-      QinsAll.ParamByName('NS').AsInteger := stringgrid2.Row;
+      QinsAll.ParamByName('NS').Asinteger := StringGrid2.row;
       QinsAll.ExecSQL;
       QTemp.Next;
       Qtemp2.Next;
@@ -749,17 +749,17 @@ begin
     Qselectsred.ParamByName('nomer').AsString := nomer;
     Qselectsred.ParamByName('uisp').AsFloat := Strtofloat(Label19.Caption);
     Qselectsred.ParamByName('pisp').AsFloat := Strtofloat(Label24.Caption);
-    Qselectsred.ParamByName('du').AsFloat := Strtofloat(Edit2.text);
+    Qselectsred.ParamByName('du').AsFloat := Strtofloat(Edit2.Text);
     Qselectsred.ParamByName('dp').AsFloat := Strtofloat(Label29.Caption);
     Qselectsred.Open;
     QInsSvod.Close;
     // -----------------------  u
     QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(nomer) +
-      ' and uisp=' + Label19.Caption + ' and du>' + Edit2.text + ' and pisp = '
+      ' and uisp=' + Label19.Caption + ' and du>' + Edit2.Text + ' and pisp = '
       + Label24.Caption);
     errcnt := QTemp.FieldByName('r').Asinteger;
     QTemp.Open('select count(*) r from zrhall where nomer=' + Quotedstr(nomer) +
-      ' and uisp=' + Label19.Caption + ' and du<=' + Edit2.text + ' and pisp = '
+      ' and uisp=' + Label19.Caption + ' and du<=' + Edit2.Text + ' and pisp = '
       + Label24.Caption);
     goodcnt := QTemp.FieldByName('r').Asinteger;
     StringGrid2.Cells[8, StringGrid2.row] :=
@@ -783,7 +783,8 @@ begin
     begin
       QTemp.SQL.Clear;
       QTemp.SQL.add('delete from zrhsvod where nomer=' + Quotedstr(nomer) +
-        ' and uisp=' + Label19.Caption + ' and pisp=' + Point(Label24.Caption) + ' and ns='+inttostr(Stringgrid2.row));
+        ' and uisp=' + Label19.Caption + ' and pisp=' + Point(Label24.Caption) +
+        ' and ns=' + Inttostr(StringGrid2.row));
       QTemp.ExecSQL;
 
       QInsSvod.ParamByName('nomer').AsString :=
@@ -812,7 +813,7 @@ begin
         [9, StringGrid2.row];
       QInsSvod.ParamByName('nr').Asinteger := StringGrid2.RowCount - 1;
       QInsSvod.ParamByName('tip').Asinteger := tipispyt;
-      QInsSvod.ParamByName('ns').Asinteger := Stringgrid2.row;
+      QInsSvod.ParamByName('ns').Asinteger := StringGrid2.row;
       QInsSvod.ParamByName('t1').AsFloat := 0;
       QInsSvod.ParamByName('t2').AsFloat := 0;
       QInsSvod.ParamByName('t3').AsFloat := 0;
@@ -850,7 +851,7 @@ begin
       Label24.Caption := StringGrid2.Cells[0, StringGrid2.row];
       Label29.Caption :=
         Inttostr(round(Strtofloat(Label24.Caption) / 100 *
-        myfloat(emp(Edit3.text))));
+        myfloat(emp(Edit3.Text))));
     end;
   end
   else
@@ -873,7 +874,7 @@ begin
 
   begin
     if ABS(QUp.FieldByName('U').AsFloat - Strtofloat(Label19.Caption)) >
-      Strtofloat(emp(trim(Edit2.text))) then
+      Strtofloat(emp(trim(Edit2.Text))) then
       Label9.Font.Color := clRed
     else
       Label9.Font.Color := clGreen;

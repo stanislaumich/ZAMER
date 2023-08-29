@@ -243,10 +243,9 @@ function isemptyfloat(f: string; s: string): string;
 begin
     if trim(s) = '' then
         isemptyfloat := ''
+    else if strtofloat(s) = 0 then
+        isemptyfloat := ''
     else
-      if strtofloat(s) = 0
-           then isemptyfloat := ''
-         else
         isemptyfloat := myformat(f, strtofloat(s))
 end;
 
@@ -424,14 +423,16 @@ begin
         AddReportString(fn, '1', 'stred2', FormHH.ComboBox1.Text);
         for i := 1 to 12 do
         begin
-            if length(FormHH.Stringgrid2.Cells[1, i])=5
-            then FormHH.Stringgrid2.Cells[1, i]:=FormHH.Stringgrid2.Cells[1, i]+'0';
+            if length(FormHH.Stringgrid2.Cells[1, i]) = 5 then
+                FormHH.Stringgrid2.Cells[1, i] := FormHH.Stringgrid2.Cells
+                  [1, i] + '0';
 
             wrepl('u' + inttostr(i) + 'hh', FormHH.Stringgrid2.Cells[1, i]);
             AddReportString(fn, '1', 'u' + inttostr(i) + 'hh',
               FormHH.Stringgrid2.Cells[1, i]);
         end;
-        for i := 1 to 12 do // isemptyfloat(tRazI, (ts))     ts := myzero(Frh.Stringgrid2.Cells[4, i]);
+        for i := 1 to 12 do
+        // isemptyfloat(tRazI, (ts))     ts := myzero(Frh.Stringgrid2.Cells[4, i]);
         begin
             ts := FormHH.Stringgrid2.Cells[2, i];
             wrepl('i' + inttostr(i) + 'hh', isemptyfloat(tRazI, (ts)));
@@ -440,9 +441,10 @@ begin
         end;
         for i := 1 to 12 do
         begin
-            if (length(FormHH.Stringgrid2.Cells[3, i])-1)=
-            (pos(',',FormHH.Stringgrid2.Cells[3, i])) then
-            FormHH.Stringgrid2.Cells[3, i]:=FormHH.Stringgrid2.Cells[3, i]+'0';
+            if (length(FormHH.Stringgrid2.Cells[3, i]) - 1)
+              = (pos(',', FormHH.Stringgrid2.Cells[3, i])) then
+                FormHH.Stringgrid2.Cells[3, i] := FormHH.Stringgrid2.Cells
+                  [3, i] + '0';
             wrepl('p' + inttostr(i) + 'hh', FormHH.Stringgrid2.Cells[3, i]);
             AddReportString(fn, '1', 'p' + inttostr(i) + 'hh',
               FormHH.Stringgrid2.Cells[3, i]);
@@ -458,7 +460,8 @@ begin
         // короткое замыкание
         FrepP.Label1.Caption := 'Короткое замыкание';
 
-        wrepl('stred3', isemptyfloat('0.0000', FKZ.Edit2.Text) + ' ' + FKZ.ComboBox1.Text);
+        wrepl('stred3', isemptyfloat('0.0000', FKZ.Edit2.Text) + ' ' +
+          FKZ.ComboBox1.Text);
         AddReportString(fn, '1', 'stred3', FKZ.ComboBox1.Text);
         for i := 1 to 5 do
             for j := 1 to 4 do
@@ -919,7 +922,7 @@ begin
     QUpdDvig.ParamByName('PISP').AsFloat := strtofloat(Comma(CombPIsp.Text));
     s := EditHumi.Text;
     s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
-    QUpdDvig.ParamByName('HUMID').AsString := s;
+    QUpdDvig.ParamByName('HUMID').Asstring := s;
     s := EditPress.Text;
     s := StringReplace(s, ',', '.', [rfReplaceAll, rfIgnoreCase]);
     QUpdDvig.ParamByName('PRESSUR').Asstring := s;
@@ -970,17 +973,18 @@ begin
             Qinsdvig.ParamByName('UNOM').AsInteger := strtoint(CombUnom.Text);
             Qinsdvig.ParamByName('UISP').AsInteger := strtoint(CombUisp.Text);
             try
-            Qinsdvig.ParamByName('PNOM').AsFloat :=
-              strtofloat(Comma(CombPNom.Text));
-            Qinsdvig.ParamByName('PISP').AsFloat :=
-              strtofloat(Comma(CombPIsp.Text));
-            Qinsdvig.ParamByName('HUMID').AsFloat := strtofloat(EditHumi.Text);
+                Qinsdvig.ParamByName('PNOM').AsFloat :=
+                  strtofloat(Comma(CombPNom.Text));
+                Qinsdvig.ParamByName('PISP').AsFloat :=
+                  strtofloat(Comma(CombPIsp.Text));
+                Qinsdvig.ParamByName('HUMID').AsFloat :=
+                  strtofloat(EditHumi.Text);
             except
-             on E:exception do
-              begin
-                //E:=NIL;
-                ShowMessage('Ошибка тут');
-              end;
+                on E: Exception do
+                begin
+                    // E:=NIL;
+                    ShowMessage('Ошибка тут');
+                end;
             end;
             s := EditPress.Text;
             s := StringReplace(s, '.', ',', [rfReplaceAll, rfIgnoreCase]);
@@ -1079,8 +1083,8 @@ procedure TFZamerV2.LoadIspyt(nomer: string);
 var
     s, s1, s2: string;
     tip, i, j, nr: integer;
-    f:textfile;
-    flf:string;
+    f: textfile;
+    flf: string;
 begin
     // двигатель целиком
     QTemp.Close;
@@ -1112,53 +1116,56 @@ begin
     QTemp.Close;
     QTemp.Open('select * from zhhsvod where nomer=' + Quotedstr(nomer) +
       ' order by ns');
-    //formhh.label9.Caption:=Qtemp.FieldByName('fn').Asstring;
+    // formhh.label9.Caption:=Qtemp.FieldByName('fn').Asstring;
     ImgSet(Image2, QTemp.RecordCount <> 0);
-    if QTemp.FieldByName('fn').Asstring<>''  then
-     begin
-    flf := QTemp.FieldByName('fn').Asstring;;
-    formhh.Label9.Caption:=flf;
-    assignfile(f, flf);
-    reset(f);
-    for i := 1 to 3 do
-      for j := 1 to 12 do
-      begin
-        Readln(f, s);
-        formhh.StringGrid1.Cells[i, j] := s;
-      end;
-    Closefile(f);
+    if QTemp.FieldByName('fn').Asstring <> '' then
+    begin
+        flf := QTemp.FieldByName('fn').Asstring;;
+        FormHH.Label9.Caption := flf;
+        AssignFile(f, flf);
+        reset(f);
+        for i := 1 to 3 do
+            for j := 1 to 12 do
+            begin
+                Readln(f, s);
+                FormHH.StringGrid1.Cells[i, j] := s;
+            end;
+        Closefile(f);
     end;
 
     tip := QTemp.FieldByName('tip').AsInteger;
-   { case tip of
+    { case tip of
+      1:
+      begin
+      FormHH.Radiobutton1Click(FormHH);
+      FormHH.radiobutton1.Checked := True;
+      end;
+      2:
+      begin }
+    // FormHH.Radiobutton2Click(FormHH);
+    FormHH.Stringgrid2.rowcount := 13;
+    for i := 1 to 12 do
+        FormHH.Stringgrid2.Cells[0, i] := FormHH.StringGrid1.Cells[tip, i];
+    FormHH.setispyt(tip);
+    case tip of
         1:
-            begin
-                FormHH.Radiobutton1Click(FormHH);
-                FormHH.radiobutton1.Checked := True;
-            end;
+            FormHH.radiobutton1.Checked := True;
         2:
-            begin}
-                //FormHH.Radiobutton2Click(FormHH);
-                formhh.Stringgrid2.rowcount:=13;
-                for i:=1 to 12 do
-                 formhh.Stringgrid2.cells[0,i]:=formhh.stringgrid1.cells[tip,i];
-                formhh.setispyt(tip);
-            case tip of
-            1: FormHH.radiobutton1.Checked := True;
-            2: FormHH.radiobutton2.Checked := True;
-            3: FormHH.radiobutton3.Checked := True;
-            end;
-       {
-
-                FormHH.radiobutton2.Checked := True;
-            end;
+            FormHH.radiobutton2.Checked := True;
         3:
-            begin
-                FormHH.Radiobutton3Click(FormHH);
-                FormHH.radiobutton3.Checked := True;
-            end;
+            FormHH.radiobutton3.Checked := True;
     end;
-     }
+    {
+
+      FormHH.radiobutton2.Checked := True;
+      end;
+      3:
+      begin
+      FormHH.Radiobutton3Click(FormHH);
+      FormHH.radiobutton3.Checked := True;
+      end;
+      end;
+    }
     tip := 1;
     FormHH.Stringgrid2.rowcount := QTemp.RecordCount + 2;
     FormHH.ComboBox1.Text := QTemp.FieldByName('edizm').Asstring;
@@ -1426,7 +1433,6 @@ begin
             end;
     end;
 
-
     if QTemp.FieldByName('t1').Asstring = '' then
         Frh.Edit4.Text := '0'
     else
@@ -1616,9 +1622,9 @@ var
     p1, p2: string;
 begin
     AssignFile(p, Extractfilepath(paramstr(0)) + 'path.ini');
-    Reset(p);
-    ReadLn(p, p1);
-    ReadLn(p, p2);
+    reset(p);
+    Readln(p, p1);
+    Readln(p, p2);
     Closefile(p);
     ShellExecute(Handle, 'open', PWideChar(p1), nil, nil, SW_SHOWNORMAL);
     ShellExecute(Handle, 'open', PWideChar(p2), nil, nil, SW_SHOWNORMAL);

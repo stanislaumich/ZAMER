@@ -75,7 +75,7 @@ type
     Button2: TButton;
     Button1: TButton;
     Tit: TTimer;
-    //tipispyt: Integer;
+    // tipispyt: Integer;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure TimUpTimer(Sender: TObject);
@@ -102,7 +102,7 @@ type
       Rect: TRect; State: TGridDrawState);
     procedure StringGrid1Click(Sender: TObject);
 
-   procedure Preparesg2(t:integer);
+    procedure Preparesg2(t: Integer);
     procedure Edit6Change(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -125,17 +125,18 @@ var
   enableclose: Boolean;
   ccol: Integer;
   fl: string;
-  sec:longint;
+  sec: longint;
+
 implementation
 
 uses Uzv2Main, UAuto, Usett;
 
 {$R *.dfm}
-procedure TFormHH.setispyt(t: Integer);
- begin
-  tipispyt:=t;
- end;
 
+procedure TFormHH.setispyt(t: Integer);
+begin
+  tipispyt := t;
+end;
 
 procedure TFormHH.command(b: Boolean);
 begin
@@ -318,7 +319,7 @@ begin
   If OpenDialog1.Execute then
   begin
     fl := OpenDialog1.Filename;
-    Label9.Caption:=fl;
+    Label9.Caption := fl;
     assignfile(f, OpenDialog1.Filename);
     reset(f);
     for i := 1 to 3 do
@@ -348,7 +349,7 @@ begin
         s := StringGrid1.Cells[i, j];
         Writeln(f, s);
       end;
-      label9.caption:=fl;
+    Label9.Caption := fl;
     Closefile(f);
   end;
 end;
@@ -389,7 +390,7 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zhhsvod where nomer=' + Quotedstr(Nomer) +
-      {' and uisp=' + StringGrid2.Cells[0, i]+}' and ns='+inttostr(i));
+      { ' and uisp=' + StringGrid2.Cells[0, i]+ } ' and ns=' + inttostr(i));
     QTemp.ExecSQL;
     QTemp.Close;
     QTemp.SQL.Clear;
@@ -423,7 +424,7 @@ begin
     QTemp.ParamByName('edizm').AsString := ComboBox1.text;
     QTemp.ParamByName('perc').Asinteger :=
       round(strtoint(StringGrid2.Cells[0, i]) / strtoint(Label7.Caption) * 100);
-    QTemp.ParamByName('ns').AsInteger := i;
+    QTemp.ParamByName('ns').Asinteger := i;
     QTemp.ParamByName('fn').AsString := Label9.Caption;
     QTemp.ExecSQL;
   end;
@@ -467,14 +468,14 @@ end;
 
 procedure TFormHH.Button1Click(Sender: TObject);
 begin
- Tit.Enabled:=true;
+  Tit.Enabled := true;
 end;
 
 procedure TFormHH.Button2Click(Sender: TObject);
 begin
- tit.Enabled:=false;
- sec:=0;
- Edit6.text:='00:00:00';
+  Tit.Enabled := false;
+  sec := 0;
+  Edit6.text := '00:00:00';
 end;
 
 procedure TFormHH.FormActivate(Sender: TObject);
@@ -496,17 +497,17 @@ begin
   else
   begin
     if FileExists(QTemp.FieldByName('value').AsString) then
-     begin
-    assignfile(f, QTemp.FieldByName('value').AsString);
-    reset(f);
-    for i := 1 to 3 do
-      for j := 1 to 12 do
-      begin
-        Readln(f, s);
-        StringGrid1.Cells[i, j] := s;
-      end;
-    Closefile(f);
-    Label9.Caption:=QTemp.FieldByName('value').AsString;
+    begin
+      assignfile(f, QTemp.FieldByName('value').AsString);
+      reset(f);
+      for i := 1 to 3 do
+        for j := 1 to 12 do
+        begin
+          Readln(f, s);
+          StringGrid1.Cells[i, j] := s;
+        end;
+      Closefile(f);
+      Label9.Caption := QTemp.FieldByName('value').AsString;
     end;
   end;
 end;
@@ -533,26 +534,26 @@ begin
       CanClose := false;
   end;
 
-  QTemp.ExecSQL('update zini set value = ' + Quotedstr(label9.caption) + ' where name=' +
-    Quotedstr('hhfile'));
+  QTemp.ExecSQL('update zini set value = ' + Quotedstr(Label9.Caption) +
+    ' where name=' + Quotedstr('hhfile'));
 
 end;
 
 procedure TFormHH.FormCreate(Sender: TObject);
 var
-f:textfile;
-i,j:integer;
-s:string;
+  f: textfile;
+  i, j: Integer;
+  s: string;
 begin
   loadgrids;
   ComboBox1.Items.LoadFromFile(extractfilepath(application.exename) +
     'R_SoprotListHH.txt');
   ComboBox1.ItemIndex := 0;
-  QTemp.Open('select * from zini where name=' +  Quotedstr('hhfile'));
-  label9.caption:=QTemp.FieldByName('value').Asstring;
-  if Label9.Caption<>'' then
-   begin
-  fl := label9.caption;
+  QTemp.Open('select * from zini where name=' + Quotedstr('hhfile'));
+  Label9.Caption := QTemp.FieldByName('value').AsString;
+  if Label9.Caption <> '' then
+  begin
+    fl := Label9.Caption;
     assignfile(f, fl);
     reset(f);
     for i := 1 to 3 do
@@ -563,8 +564,8 @@ begin
       end;
     Closefile(f);
 
-  //RadioButton1Click(Formhh);
-   end;
+    // RadioButton1Click(Formhh);
+  end;
 end;
 
 procedure TFormHH.FormHide(Sender: TObject);
@@ -590,14 +591,13 @@ begin
   TimUp.Enabled := true;
 end;
 
-procedure TFormhh.Preparesg2(t:integer);
+procedure TFormHH.Preparesg2(t: Integer);
 var
   i, j: Integer;
   cod: Integer;
- begin
+begin
 
-
- end;
+end;
 
 procedure TFormHH.RadioButton1Click(Sender: TObject);
 var
@@ -794,16 +794,18 @@ begin
       QInsAll.ParamByName('FU').AsFloat := QTemp.FieldByName('u').AsFloat;
       QInsAll.ParamByName('FI').AsFloat := QTemp.FieldByName('i').AsFloat;
       QInsAll.ParamByName('FP').AsFloat := QTemp.FieldByName('p').AsFloat;
-      QInsAll.ParamByName('ns').Asinteger := Stringgrid2.row;
+      QInsAll.ParamByName('ns').Asinteger := StringGrid2.row;
 
       QInsAll.ExecSQL;
       QTemp.Next;
     end;
     QTemp.Open('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label26.Caption + ' and dumax>' + Edit2.text+' and ns='+inttostr(Stringgrid2.row));
+      ' and uisp=' + Label26.Caption + ' and dumax>' + Edit2.text + ' and ns=' +
+      inttostr(StringGrid2.row));
     errcnt := QTemp.FieldByName('r').Asinteger;
     QTemp.Open('select count(*) r from zhhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label26.Caption + ' and dumax<=' + Edit2.text+' and ns='+inttostr(Stringgrid2.row));
+      ' and uisp=' + Label26.Caption + ' and dumax<=' + Edit2.text + ' and ns='
+      + inttostr(StringGrid2.row));
 
     goodcnt := QTemp.FieldByName('r').Asinteger;
     Qsred.Close;
@@ -811,7 +813,7 @@ begin
     Qsred.ParamByName('nomer').AsString := Nomer;
     Qsred.ParamByName('uisp').AsFloat := Strtofloat(Label26.Caption);
     Qsred.ParamByName('delta').AsFloat := myfloat(Edit2.text);
-    Qsred.ParamByName('ns').Asinteger := Stringgrid2.row;
+    Qsred.ParamByName('ns').Asinteger := StringGrid2.row;
     Qsred.Open;
     StringGrid2.Cells[1, StringGrid2.row] :=
       floattostr(Qsred.FieldByName('u').AsFloat);
@@ -840,20 +842,29 @@ end;
 
 procedure TFormHH.TitTimer(Sender: TObject);
 var
- st, ssh,ssm,sss:string;
- h,m,s, t:integer;
+  st, ssh, ssm, sss: string;
+  h, m, s, t: Integer;
 begin
-sec:=sec+1;
-t:=sec;
-s:=sec mod 60;
-if s<10 then  sss:='0'+ inttostr(s) else sss:= inttostr(s);
-t:=t div 60;
-m:= t mod 60;
-if m<10 then ssm:='0'+ inttostr(m) else ssm:=inttostr(m);
-h:=t div 60;
-if h<10 then ssh:='0'+inttostr(h) else ssh:=inttostr(h);
-st:=ssh+':'+ssm+':'+sss;
-edit6.text:=st;
+  sec := sec + 1;
+  t := sec;
+  s := sec mod 60;
+  if s < 10 then
+    sss := '0' + inttostr(s)
+  else
+    sss := inttostr(s);
+  t := t div 60;
+  m := t mod 60;
+  if m < 10 then
+    ssm := '0' + inttostr(m)
+  else
+    ssm := inttostr(m);
+  h := t div 60;
+  if h < 10 then
+    ssh := '0' + inttostr(h)
+  else
+    ssh := inttostr(h);
+  st := ssh + ':' + ssm + ':' + sss;
+  Edit6.text := st;
 end;
 
 end.

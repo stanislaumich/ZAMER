@@ -129,11 +129,12 @@ type
 var
   FNagr: TFNagr;
   enableclose: Boolean;
-  prev:string;
-  sec:longint;
+  prev: string;
+  sec: longint;
+
 implementation
 
-uses uzv2main, USett;
+uses uzv2main, USett, USopr;
 {$R *.dfm}
 
 function emp(s: string): string;
@@ -269,28 +270,45 @@ end;
 
 procedure TFNagr.Button1Click(Sender: TObject);
 begin
- sec:=0;
- Tit.Enabled:=true;
+  sec := 0;
+  Tit.Enabled := true;
 end;
 
 procedure TFNagr.Button2Click(Sender: TObject);
 begin
-  Tit.Enabled:=false;
-  sec:=0;
-  Edit6.Text:='00:00:00';
+  Tit.Enabled := false;
+  sec := 0;
+  Edit6.Text := '00:00:00';
 end;
 
 procedure TFNagr.Button3Click(Sender: TObject);
 var
- dQ,Th,Tg,Rh,Rg,L:single;
+  dQ, Th, Tg, Rh, Rg, L: single;
+  t1:single;
 begin
-Rg:=Strtofloat(edit7.Text);
-Rh:=Strtofloat(edit9.Text);
-Tg:=Strtofloat(edit8.Text);
-Th:=Strtofloat(edit10.Text);
-L:=Strtofloat(ComboBox4.Text);
-dQ:=((Rg-Rh)/Rh)*(L+Th)+Th-Tg;
-Edit12.Text:=Floattostr(dQ);
+  Edit7.Text:=StringGrid1.Cells[9,2];
+  Edit8.Text:=StringGrid1.Cells[6,2];
+
+  t1:=Strtofloat(fsopr.Stringgrid3.cells[1,1])+
+  Strtofloat(fsopr.Stringgrid3.cells[1,2])+
+  Strtofloat(fsopr.Stringgrid3.cells[1,3]);
+
+  Edit9.Text:=Floattostr(t1/3);
+  Edit10.Text:=FSopr.Edit8.Text;
+
+  if false then
+  begin
+
+    exit;
+  end;
+
+  Rg := strtofloat(Edit7.Text);
+  Rh := strtofloat(Edit9.Text);
+  Tg := strtofloat(Edit8.Text);
+  Th := strtofloat(Edit10.Text);
+  L := strtofloat(ComboBox4.Text);
+  dQ := ((Rg - Rh) / Rh) * (L + Th) + Th - Tg;
+  Edit12.Text := floattostr(dQ);
 
 end;
 
@@ -406,8 +424,8 @@ begin
 
   if not enableclose then
   begin
-    buttonselected := mrYes;//MessageDlg('Сохранить данные?', mtConfirmation,
-      //[mbYes, mbNo, mbCancel], 0);
+    buttonselected := mrYes; // MessageDlg('Сохранить данные?', mtConfirmation,
+    // [mbYes, mbNo, mbCancel], 0);
     if buttonselected = mrYes then
     begin
       BitBtn10.Click;
@@ -544,16 +562,15 @@ end;
 procedure TFNagr.StringGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
   enableclose := false;
-  if key=#13 then
-   begin
-    if (stringgrid1.col = 8) and (stringgrid1.row = 1) then
+  if Key = #13 then
+  begin
+    if (StringGrid1.col = 8) and (StringGrid1.row = 1) then
     begin
-     stringgrid1.Col:=6;
-     stringgrid1.row:=2;
+      StringGrid1.col := 6;
+      StringGrid1.row := 2;
     end
-   else
-  if stringgrid1.col in [6,7]  then
-  stringgrid1.Col:=stringgrid1.col+1;
+    else if StringGrid1.col in [6, 7] then
+      StringGrid1.col := StringGrid1.col + 1;
   end;
 end;
 
@@ -690,20 +707,29 @@ end;
 
 procedure TFNagr.TitTimer(Sender: TObject);
 var
- st, ssh,ssm,sss:string;
- h,m,s, t:integer;
+  st, ssh, ssm, sss: string;
+  h, m, s, t: Integer;
 begin
-sec:=sec+1;
-t:=sec;
-s:=sec mod 60;
-if s<10 then  sss:='0'+ inttostr(s) else sss:= inttostr(s);
-t:=t div 60;
-m:= t mod 60;
-if m<10 then ssm:='0'+ inttostr(m) else ssm:=inttostr(m);
-h:=t div 60;
-if h<10 then ssh:='0'+inttostr(h) else ssh:=inttostr(h);
-st:=ssh+':'+ssm+':'+sss;
-edit6.text:=st;
+  sec := sec + 1;
+  t := sec;
+  s := sec mod 60;
+  if s < 10 then
+    sss := '0' + inttostr(s)
+  else
+    sss := inttostr(s);
+  t := t div 60;
+  m := t mod 60;
+  if m < 10 then
+    ssm := '0' + inttostr(m)
+  else
+    ssm := inttostr(m);
+  h := t div 60;
+  if h < 10 then
+    ssh := '0' + inttostr(h)
+  else
+    ssh := inttostr(h);
+  st := ssh + ':' + ssm + ':' + sss;
+  Edit6.Text := st;
 
 end;
 
@@ -716,7 +742,7 @@ begin
   QUp.Close;
   QUp.Open();
 
-  Label13.Caption := myformat({trazn}'0', QUp.FieldByName('N').AsFloat);
+  Label13.Caption := myformat( { trazn } '0', QUp.FieldByName('N').AsFloat);
   Label10.Caption := myformat(trazi, QUp.FieldByName('I').AsFloat);
   Label12.Caption := myformat(trazm, QUp.FieldByName('M').AsFloat);
   Label11.Caption := myformat(trazp, QUp.FieldByName('P').AsFloat);

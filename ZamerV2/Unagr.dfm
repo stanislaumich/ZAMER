@@ -578,8 +578,8 @@ object FNagr: TFNagr
         Text = 'Edit12'
       end
       object Button3: TButton
-        Left = 154
-        Top = 104
+        Left = 156
+        Top = 102
         Width = 133
         Height = 33
         Caption = #1056#1072#1089#1089#1095#1080#1090#1072#1090#1100
