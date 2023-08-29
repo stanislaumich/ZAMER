@@ -441,7 +441,8 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.SQL.Add('delete from zhhall where nomer=' + Quotedstr(Nomer) +
-      ' and uisp=' + Label26.Caption);
+        ' and ns= '+ inttostr(stringgrid2.row));
+      //' and uisp=' + Label26.Caption);
     QTemp.ExecSQL;
 
     QTemp.Close;
