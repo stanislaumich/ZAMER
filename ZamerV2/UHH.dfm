@@ -746,14 +746,13 @@ object FormHH: TFormHH
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 500
+      Left = 546
       Top = 66
-      Width = 281
+      Width = 235
       Height = 25
       Alignment = taRightJustify
       Anchors = [akTop, akRight]
-      Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078#1077#1085#1080#1103', '#1042'.'#30':'
-      ExplicitLeft = 463
+      Caption = #1054#1090#1082#1083#1086#1085#1077#1085#1080#1077' '#1085#1072#1087#1088#1103#1078', '#1042'.'#30':'
     end
     object Label1: TLabel
       Left = 590

@@ -106,6 +106,7 @@ begin
    Log('Не удалось загрузить файл');
    Exit;
   end;
+  sleep(1500);
   //ShellExecute(Handle, 'open', PWideChar(Stringgrid1.cells[3,n]), nil, nil, SW_SHOWNORMAL);
   if Stringgrid1.cells[3,n]<>'' then
   begin
@@ -121,7 +122,7 @@ begin
  else
   begin
    Log('Ошибка обновления, возможно файл открыт?');
-   Exit;
+   //Exit;
   end;
  DeleteFile(fin);
  if Stringgrid1.cells[4,n]<>'' then

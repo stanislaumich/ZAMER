@@ -743,6 +743,46 @@ object FNagr: TFNagr
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Label34: TLabel
+      Left = 816
+      Top = 80
+      Width = 90
+      Height = 29
+      Caption = #1058#1072#1081#1084#1077#1088':'
+    end
+    object Label35: TLabel
+      Left = 1003
+      Top = 80
+      Width = 43
+      Height = 29
+      Caption = #1089#1077#1082'.'
+    end
+    object Edit6: TEdit
+      Left = 912
+      Top = 77
+      Width = 85
+      Height = 37
+      TabOrder = 0
+      Text = '30'
+    end
+    object Button1: TButton
+      Left = 820
+      Top = 120
+      Width = 113
+      Height = 33
+      Caption = #1057#1090#1072#1088#1090
+      TabOrder = 1
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 939
+      Top = 120
+      Width = 114
+      Height = 33
+      Caption = #1057#1090#1086#1087
+      TabOrder = 2
+      OnClick = Button2Click
+    end
   end
   object QTemp: TFDQuery
     Connection = FZamerV2.FDC
@@ -1047,5 +1087,11 @@ object FNagr: TFNagr
   object PrintDialog1: TPrintDialog
     Left = 1232
     Top = 535
+  end
+  object Timer1: TTimer
+    Enabled = False
+    OnTimer = Timer1Timer
+    Left = 1052
+    Top = 74
   end
 end

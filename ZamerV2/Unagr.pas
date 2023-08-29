@@ -76,6 +76,12 @@ type
     Label33: TLabel;
     SavePictureDialog1: TSavePictureDialog;
     PrintDialog1: TPrintDialog;
+    Label34: TLabel;
+    Edit6: TEdit;
+    Label35: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+    Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -94,6 +100,9 @@ type
     procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure StringGrid1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -106,7 +115,7 @@ type
 var
   FNagr: TFNagr;
   enableclose: Boolean;
-
+  prev:string;
 implementation
 
 uses uzv2main, USett;
@@ -241,6 +250,18 @@ begin
     Edit5.Text := '';
     enableclose := false;
   end;
+end;
+
+procedure TFNagr.Button1Click(Sender: TObject);
+begin
+ prev:= Edit6.Text;
+ Timer1.Enabled:=true;
+end;
+
+procedure TFNagr.Button2Click(Sender: TObject);
+begin
+  Timer1.Enabled:=false;
+  Edit6.Text:=prev;
 end;
 
 procedure TFNagr.command(b: Boolean);
@@ -634,6 +655,16 @@ begin
     if StringGrid1.row < StringGrid1.RowCount - 2 then
       StringGrid1.row := StringGrid1.row + 1;
   end;
+
+end;
+
+procedure TFNagr.Timer1Timer(Sender: TObject);
+var
+ t:integer;
+begin
+t:= Strtoint(Edit6.text);
+t:=t-1;
+edit6.text:=inttostr(t);
 
 end;
 

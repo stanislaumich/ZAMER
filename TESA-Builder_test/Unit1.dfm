@@ -90,8 +90,16 @@ object Form1: TForm1
   end
   object Timer1: TTimer
     Enabled = False
+    Interval = 1300
     OnTimer = Timer1Timer
     Left = 440
+    Top = 68
+  end
+  object Timer2: TTimer
+    Enabled = False
+    Interval = 1500
+    OnTimer = Timer2Timer
+    Left = 496
     Top = 68
   end
 end

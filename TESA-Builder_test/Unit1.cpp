@@ -39,6 +39,12 @@ unsigned char outcl2[1] = {0x02};
 unsigned char outcl3[1] = {0x42};
 unsigned char outcl4[1] = {0x03};
 
+unsigned char outsost[5] = {0xff, 0x02, 0x49, 0x03};
+unsigned char outsost1[1] = {0xff};
+unsigned char outsost2[1] = {0x02};
+unsigned char outsost3[1] = {0x49};
+unsigned char outsost4[1] = {0x03};
+
 unsigned char zero[1] = {0xFF};
 
 char ch[8] = "0123456";
@@ -64,6 +70,8 @@ void send(int c) {
 		WriteFile(handle, outstart3, 1, &numbytes_ok, &Overlap);
 		Sleep(t);
 		WriteFile(handle, outstart4, 1, &numbytes_ok, &Overlap);
+		Sleep(t);
+		ReadFile(handle, in, ComState.cbInQue, &numbytes_ok, &Overlap);
 		break;
 	case 1: // get
 		WriteFile(handle, outget1, 1, &numbytes_ok, &Overlap);
@@ -73,8 +81,8 @@ void send(int c) {
 		WriteFile(handle, outget3, 1, &numbytes_ok, &Overlap);
 		Sleep(t);
 		WriteFile(handle, outget4, 1, &numbytes_ok, &Overlap);
-
-
+		Sleep(t);
+		ReadFile(handle, in, ComState.cbInQue, &numbytes_ok, &Overlap);
 		break;
 	case 2: // close
 		WriteFile(handle, outcl1, 1, &numbytes_ok, &Overlap);
@@ -85,15 +93,25 @@ void send(int c) {
 		Sleep(t);
 		WriteFile(handle, outcl4, 1, &numbytes_ok, &Overlap);
 		Sleep(t);
-        WriteFile(handle, outcl1, 1, &numbytes_ok, &Overlap);
+		ReadFile(handle, in, ComState.cbInQue, &numbytes_ok, &Overlap);
+		/*WriteFile(handle, outcl1, 1, &numbytes_ok, &Overlap);
 		Sleep(t);
 		WriteFile(handle, outcl2, 1, &numbytes_ok, &Overlap);
 		Sleep(t);
 		WriteFile(handle, outcl3, 1, &numbytes_ok, &Overlap);
 		Sleep(t);
-		WriteFile(handle, outcl4, 1, &numbytes_ok, &Overlap);
+		WriteFile(handle, outcl4, 1, &numbytes_ok, &Overlap);*/
 		break;
-
+	case 3: // close
+		WriteFile(handle, outsost1, 1, &numbytes_ok, &Overlap);
+		Sleep(t);
+		WriteFile(handle, outsost2, 1, &numbytes_ok, &Overlap);
+		Sleep(t);
+		WriteFile(handle, outsost3, 1, &numbytes_ok, &Overlap);
+		Sleep(t);
+		WriteFile(handle, outsost4, 1, &numbytes_ok, &Overlap);
+		Sleep(t);
+		ReadFile(handle, in, ComState.cbInQue, &numbytes_ok, &Overlap);
 	}
 }
 
@@ -178,11 +196,13 @@ void __fastcall TForm1::OpenClick(TObject *Sender) {
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender) {
 	Timer1->Enabled = true;
+   //	Timer2->Enabled = true;
 }
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm1::Button2Click(TObject *Sender) {
 	Timer1->Enabled = false;
+	//Timer2->Enabled = false;
 }
 
 // ---------------------------------------------------------------------------
@@ -195,3 +215,10 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action) {
 	CloseClick(Form1);
 }
 // ---------------------------------------------------------------------------
+
+void __fastcall TForm1::Timer2Timer(TObject *Sender)
+{
+ //send(3);
+}
+//---------------------------------------------------------------------------
+
