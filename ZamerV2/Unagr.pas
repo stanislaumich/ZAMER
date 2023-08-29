@@ -285,6 +285,7 @@ procedure TFNagr.Button3Click(Sender: TObject);
 var
   dQ, Th, Tg, Rh, Rg, L: single;
   t1:single;
+
 begin
   Edit7.Text:=StringGrid1.Cells[9,2];
   Edit8.Text:=StringGrid1.Cells[6,2];
@@ -296,12 +297,19 @@ begin
   Edit9.Text:=Floattostr(t1/3);
   Edit10.Text:=FSopr.Edit8.Text;
 
-  if false then
+  if Edit9.text='0' then
   begin
-
+    ShowMessage('—опротивление холодное не должно быть равно нулю');
     exit;
   end;
-
+  {
+  if (Edit8.text='0' or Edit10.text='0') then
+  begin
+    ShowMessage('Ntvgthfnehf не должно быть равно нулю');
+    exit;
+  end;
+  }
+  try
   Rg := strtofloat(Edit7.Text);
   Rh := strtofloat(Edit9.Text);
   Tg := strtofloat(Edit8.Text);
@@ -309,7 +317,14 @@ begin
   L := strtofloat(ComboBox4.Text);
   dQ := ((Rg - Rh) / Rh) * (L + Th) + Th - Tg;
   Edit12.Text := floattostr(simpleroundto(dQ,-1));
+  except
+   on e:exception do
+    begin
+     ShowMessage('¬ процессе расчета произошла ошибка преобразовани€ дес€тичных величин');
+     e:=nil;
+    end;
 
+  end;
 end;
 
 procedure TFNagr.command(b: Boolean);

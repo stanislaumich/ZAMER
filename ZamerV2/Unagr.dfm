@@ -543,7 +543,6 @@ object FNagr: TFNagr
         Width = 65
         Height = 31
         TabOrder = 0
-        Text = 'Edit7'
       end
       object Edit8: TEdit
         Left = 175
@@ -551,7 +550,6 @@ object FNagr: TFNagr
         Width = 66
         Height = 31
         TabOrder = 1
-        Text = 'Edit8'
       end
       object Edit9: TEdit
         Left = 57
@@ -559,15 +557,13 @@ object FNagr: TFNagr
         Width = 64
         Height = 31
         TabOrder = 2
-        Text = 'Edit9'
       end
       object Edit10: TEdit
-        Left = 180
+        Left = 175
         Top = 65
-        Width = 61
+        Width = 66
         Height = 31
         TabOrder = 3
-        Text = 'Edit10'
       end
       object Edit12: TEdit
         Left = 57
@@ -575,7 +571,6 @@ object FNagr: TFNagr
         Width = 93
         Height = 31
         TabOrder = 4
-        Text = 'Edit12'
       end
       object Button3: TButton
         Left = 156
