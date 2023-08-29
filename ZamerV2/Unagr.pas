@@ -308,7 +308,7 @@ begin
   Th := strtofloat(Edit10.Text);
   L := strtofloat(ComboBox4.Text);
   dQ := ((Rg - Rh) / Rh) * (L + Th) + Th - Tg;
-  Edit12.Text := floattostr(dQ);
+  Edit12.Text := floattostr(simpleroundto(dQ,-1));
 
 end;
 
