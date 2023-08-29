@@ -10,7 +10,7 @@ CONST
   RazM = -1;
   RazR = -1;
   tRazU = '0.00';
-  tRazP = '0.00';
+  tRazP = '0.0';
   tRazI = '0.000';
   tRAZN = '0.0';
   tRazM = '0.0';
