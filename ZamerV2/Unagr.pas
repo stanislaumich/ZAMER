@@ -78,10 +78,9 @@ type
     PrintDialog1: TPrintDialog;
     Label34: TLabel;
     Edit6: TEdit;
-    Label35: TLabel;
     Button1: TButton;
     Button2: TButton;
-    Timer1: TTimer;
+    Tit: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -102,7 +101,7 @@ type
     procedure StringGrid1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
+    procedure TitTimer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -116,6 +115,7 @@ var
   FNagr: TFNagr;
   enableclose: Boolean;
   prev:string;
+  sec:longint;
 implementation
 
 uses uzv2main, USett;
@@ -254,14 +254,14 @@ end;
 
 procedure TFNagr.Button1Click(Sender: TObject);
 begin
- prev:= Edit6.Text;
- Timer1.Enabled:=true;
+ sec:=0;
+ Tit.Enabled:=true;
 end;
 
 procedure TFNagr.Button2Click(Sender: TObject);
 begin
-  Timer1.Enabled:=false;
-  Edit6.Text:=prev;
+  Tit.Enabled:=false;
+  //Edit6.Text:=prev;
 end;
 
 procedure TFNagr.command(b: Boolean);
@@ -658,13 +658,22 @@ begin
 
 end;
 
-procedure TFNagr.Timer1Timer(Sender: TObject);
+procedure TFNagr.TitTimer(Sender: TObject);
 var
- t:integer;
+ st, ssh,ssm,sss:string;
+ h,m,s, t:integer;
 begin
-t:= Strtoint(Edit6.text);
-t:=t-1;
-edit6.text:=inttostr(t);
+sec:=sec+1;
+t:=sec;
+s:=sec mod 60;
+if s<10 then  sss:='0'+ inttostr(s) else sss:= inttostr(s);
+t:=t div 60;
+m:= t mod 60;
+if m<10 then ssm:='0'+ inttostr(m) else ssm:=inttostr(m);
+h:=t div 60;
+if h<10 then ssh:='0'+inttostr(h) else ssh:=inttostr(h);
+st:=ssh+':'+ssm+':'+sss;
+edit6.text:=st;
 
 end;
 
