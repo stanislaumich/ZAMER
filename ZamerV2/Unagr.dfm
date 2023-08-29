@@ -205,16 +205,16 @@ object FNagr: TFNagr
       ExplicitTop = 205
     end
     object Label32: TLabel
-      Left = 502
-      Top = 23
+      Left = 480
+      Top = 24
       Width = 324
       Height = 23
       Caption = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103' '#1089#1086#1087#1088#1086#1090#1080#1074#1083#1077#1085#1080#1103':'
     end
     object StringGrid1: TStringGrid
-      Left = 2
-      Top = 57
-      Width = 1389
+      Left = 3
+      Top = 58
+      Width = 878
       Height = 129
       Anchors = [akLeft, akTop, akRight]
       ColCount = 13
@@ -482,11 +482,118 @@ object FNagr: TFNagr
       Text = #1054#1084
     end
     object ComboBox3: TComboBox
-      Left = 832
-      Top = 20
+      Left = 810
+      Top = 21
       Width = 69
       Height = 31
       TabOrder = 9
+    end
+    object GroupBox2: TGroupBox
+      Left = 884
+      Top = 16
+      Width = 365
+      Height = 173
+      Caption = #1056#1072#1089#1095#1077#1090
+      TabOrder = 10
+      object Label35: TLabel
+        Left = 16
+        Top = 31
+        Width = 34
+        Height = 23
+        Caption = 'R'#1075'='
+      end
+      object Label36: TLabel
+        Left = 16
+        Top = 68
+        Width = 35
+        Height = 23
+        Caption = 'Rx='
+      end
+      object Label37: TLabel
+        Left = 136
+        Top = 68
+        Width = 34
+        Height = 23
+        Caption = 'Tx='
+      end
+      object Label38: TLabel
+        Left = 136
+        Top = 31
+        Width = 33
+        Height = 23
+        Caption = 'T'#1075'='
+      end
+      object Label39: TLabel
+        Left = 257
+        Top = 31
+        Width = 40
+        Height = 23
+        Caption = '1/L='
+      end
+      object Label40: TLabel
+        Left = 16
+        Top = 108
+        Width = 38
+        Height = 23
+        Caption = 'dQ='
+      end
+      object Edit7: TEdit
+        Left = 56
+        Top = 28
+        Width = 65
+        Height = 31
+        TabOrder = 0
+        Text = 'Edit7'
+      end
+      object Edit8: TEdit
+        Left = 175
+        Top = 28
+        Width = 66
+        Height = 31
+        TabOrder = 1
+        Text = 'Edit8'
+      end
+      object Edit9: TEdit
+        Left = 57
+        Top = 65
+        Width = 64
+        Height = 31
+        TabOrder = 2
+        Text = 'Edit9'
+      end
+      object Edit10: TEdit
+        Left = 180
+        Top = 65
+        Width = 61
+        Height = 31
+        TabOrder = 3
+        Text = 'Edit10'
+      end
+      object Edit11: TEdit
+        Left = 303
+        Top = 28
+        Width = 46
+        Height = 31
+        TabOrder = 4
+        Text = '235'
+      end
+      object Edit12: TEdit
+        Left = 57
+        Top = 105
+        Width = 93
+        Height = 31
+        TabOrder = 5
+        Text = 'Edit12'
+      end
+      object Button3: TButton
+        Left = 154
+        Top = 104
+        Width = 133
+        Height = 33
+        Caption = #1056#1072#1089#1089#1095#1080#1090#1072#1090#1100
+        TabOrder = 6
+        OnClick = Button3Click
+      end
     end
   end
   object GroupBox1: TGroupBox
@@ -1074,8 +1181,8 @@ object FNagr: TFNagr
     Top = 343
   end
   object SavePictureDialog1: TSavePictureDialog
-    Left = 956
-    Top = 427
+    Left = 464
+    Top = 103
   end
   object PrintDialog1: TPrintDialog
     Left = 1232

@@ -81,6 +81,20 @@ type
     Button1: TButton;
     Button2: TButton;
     Tit: TTimer;
+    GroupBox2: TGroupBox;
+    Label35: TLabel;
+    Label36: TLabel;
+    Label37: TLabel;
+    Label38: TLabel;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Label39: TLabel;
+    Edit11: TEdit;
+    Label40: TLabel;
+    Edit12: TEdit;
+    Button3: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -102,6 +116,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure TitTimer(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -263,6 +278,20 @@ begin
   Tit.Enabled:=false;
   sec:=0;
   Edit6.Text:='00:00:00';
+end;
+
+procedure TFNagr.Button3Click(Sender: TObject);
+var
+ dQ,Th,Tg,Rh,Rg,L:single;
+begin
+Rg:=Strtofloat(edit7.Text);
+Rh:=Strtofloat(edit9.Text);
+Tg:=Strtofloat(edit8.Text);
+Th:=Strtofloat(edit10.Text);
+L:=Strtofloat(edit11.Text);
+dQ:=((Rg-Rh)/Rh)*(L+Th)+Th-Tg;
+Edit12.Text:=Floattostr(dQ);
+
 end;
 
 procedure TFNagr.command(b: Boolean);
