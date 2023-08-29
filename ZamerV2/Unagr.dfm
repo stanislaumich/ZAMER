@@ -569,20 +569,12 @@ object FNagr: TFNagr
         TabOrder = 3
         Text = 'Edit10'
       end
-      object Edit11: TEdit
-        Left = 303
-        Top = 28
-        Width = 46
-        Height = 31
-        TabOrder = 4
-        Text = '235'
-      end
       object Edit12: TEdit
         Left = 57
         Top = 105
         Width = 93
         Height = 31
-        TabOrder = 5
+        TabOrder = 4
         Text = 'Edit12'
       end
       object Button3: TButton
@@ -591,8 +583,19 @@ object FNagr: TFNagr
         Width = 133
         Height = 33
         Caption = #1056#1072#1089#1089#1095#1080#1090#1072#1090#1100
-        TabOrder = 6
+        TabOrder = 5
         OnClick = Button3Click
+      end
+      object ComboBox4: TComboBox
+        Left = 299
+        Top = 28
+        Width = 61
+        Height = 31
+        TabOrder = 6
+        Text = '235'
+        Items.Strings = (
+          '235'
+          '225')
       end
     end
   end

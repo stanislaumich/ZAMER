@@ -91,10 +91,10 @@ type
     Edit9: TEdit;
     Edit10: TEdit;
     Label39: TLabel;
-    Edit11: TEdit;
     Label40: TLabel;
     Edit12: TEdit;
     Button3: TButton;
+    ComboBox4: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure TimerUpTimer(Sender: TObject);
@@ -288,7 +288,7 @@ Rg:=Strtofloat(edit7.Text);
 Rh:=Strtofloat(edit9.Text);
 Tg:=Strtofloat(edit8.Text);
 Th:=Strtofloat(edit10.Text);
-L:=Strtofloat(edit11.Text);
+L:=Strtofloat(ComboBox4.Text);
 dQ:=((Rg-Rh)/Rh)*(L+Th)+Th-Tg;
 Edit12.Text:=Floattostr(dQ);
 
