@@ -70,6 +70,11 @@ type
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
     Label9: TLabel;
+    Label34: TLabel;
+    Edit6: TEdit;
+    Button2: TButton;
+    Button1: TButton;
+    Tit: TTimer;
     //tipispyt: Integer;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -98,6 +103,10 @@ type
     procedure StringGrid1Click(Sender: TObject);
 
    procedure Preparesg2(t:integer);
+    procedure Edit6Change(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure TitTimer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -116,7 +125,7 @@ var
   enableclose: Boolean;
   ccol: Integer;
   fl: string;
-
+  sec:longint;
 implementation
 
 uses Uzv2Main, UAuto, Usett;
@@ -131,6 +140,11 @@ procedure TFormHH.setispyt(t: Integer);
 procedure TFormHH.command(b: Boolean);
 begin
   FZamerv2.SendCommand(FZamerv2, b, FSett.Edit6.text);
+end;
+
+procedure TFormHH.Edit6Change(Sender: TObject);
+begin
+
 end;
 
 {
@@ -449,6 +463,18 @@ begin
   end
   else
     ShowMessage('Ќе выбран ни один вариант испытани€ в левой таблице!!');
+end;
+
+procedure TFormHH.Button1Click(Sender: TObject);
+begin
+ Tit.Enabled:=true;
+end;
+
+procedure TFormHH.Button2Click(Sender: TObject);
+begin
+ tit.Enabled:=false;
+ sec:=0;
+ Edit6.text:='00:00:00';
 end;
 
 procedure TFormHH.FormActivate(Sender: TObject);
@@ -810,6 +836,24 @@ begin
     ProgressBar1.Position := 0;
   end;
 
+end;
+
+procedure TFormHH.TitTimer(Sender: TObject);
+var
+ st, ssh,ssm,sss:string;
+ h,m,s, t:integer;
+begin
+sec:=sec+1;
+t:=sec;
+s:=sec mod 60;
+if s<10 then  sss:='0'+ inttostr(s) else sss:= inttostr(s);
+t:=t div 60;
+m:= t mod 60;
+if m<10 then ssm:='0'+ inttostr(m) else ssm:=inttostr(m);
+h:=t div 60;
+if h<10 then ssh:='0'+inttostr(h) else ssh:=inttostr(h);
+st:=ssh+':'+ssm+':'+sss;
+edit6.text:=st;
 end;
 
 end.

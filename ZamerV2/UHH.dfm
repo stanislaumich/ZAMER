@@ -764,6 +764,13 @@ object FormHH: TFormHH
       Caption = #1042#1088#1077#1084#1103' '#1079#1072#1087#1080#1089#1080', '#1089#1077#1082'.:'
       ExplicitLeft = 553
     end
+    object Label34: TLabel
+      Left = 567
+      Top = 102
+      Width = 78
+      Height = 25
+      Caption = #1058#1072#1081#1084#1077#1088':'
+    end
     object BitBtn2: TBitBtn
       Left = 4
       Top = 63
@@ -847,6 +854,33 @@ object FormHH: TFormHH
       Anchors = [akTop, akRight]
       TabOrder = 0
       Text = '15'
+    end
+    object Edit6: TEdit
+      Left = 664
+      Top = 97
+      Width = 106
+      Height = 37
+      TabOrder = 3
+      Text = '00:00:00'
+      OnChange = Edit6Change
+    end
+    object Button2: TButton
+      Left = 671
+      Top = 140
+      Width = 99
+      Height = 33
+      Caption = #1057#1090#1086#1087
+      TabOrder = 4
+      OnClick = Button2Click
+    end
+    object Button1: TButton
+      Left = 567
+      Top = 140
+      Width = 98
+      Height = 33
+      Caption = #1057#1090#1072#1088#1090
+      TabOrder = 5
+      OnClick = Button1Click
     end
   end
   object ComboBox1: TComboBox
@@ -1015,5 +1049,11 @@ object FormHH: TFormHH
   object SaveDialog1: TSaveDialog
     Left = 455
     Top = 534
+  end
+  object Tit: TTimer
+    Enabled = False
+    OnTimer = TitTimer
+    Left = 480
+    Top = 149
   end
 end

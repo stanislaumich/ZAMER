@@ -261,7 +261,8 @@ end;
 procedure TFNagr.Button2Click(Sender: TObject);
 begin
   Tit.Enabled:=false;
-  //Edit6.Text:=prev;
+  sec:=0;
+  Edit6.Text:='00:00:00';
 end;
 
 procedure TFNagr.command(b: Boolean);
