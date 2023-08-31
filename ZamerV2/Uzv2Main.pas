@@ -1134,15 +1134,7 @@ begin
     end;
 
     tip := QTemp.FieldByName('tip').AsInteger;
-    { case tip of
-      1:
-      begin
-      FormHH.Radiobutton1Click(FormHH);
-      FormHH.radiobutton1.Checked := True;
-      end;
-      2:
-      begin }
-    // FormHH.Radiobutton2Click(FormHH);
+
     FormHH.Stringgrid2.rowcount := 13;
     for i := 1 to 12 do
         FormHH.Stringgrid2.Cells[0, i] := FormHH.StringGrid1.Cells[tip, i];
@@ -1155,17 +1147,7 @@ begin
         3:
             FormHH.radiobutton3.Checked := True;
     end;
-    {
 
-      FormHH.radiobutton2.Checked := True;
-      end;
-      3:
-      begin
-      FormHH.Radiobutton3Click(FormHH);
-      FormHH.radiobutton3.Checked := True;
-      end;
-      end;
-    }
     tip := 1;
     FormHH.Stringgrid2.rowcount := QTemp.RecordCount + 2;
     FormHH.ComboBox1.Text := QTemp.FieldByName('edizm').Asstring;
@@ -1402,7 +1384,7 @@ begin
     QTemp.Close;
     QTemp.SQL.Clear;
     QTemp.Open('select * from zrhsvod where nomer=' + Quotedstr(nomer) +
-      ' order by pisp desc');
+      ' order by ns');
     FZamerV2.ImgSet(FZamerV2.Image5, QTemp.RecordCount <> 0);
 
     Frh.Stringgrid2.rowcount := QTemp.FieldByName('nr').AsInteger + 1;
