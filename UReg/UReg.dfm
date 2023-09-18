@@ -554,7 +554,7 @@ object FormReg: TFormReg
     Top = 136
   end
   object ActionList1: TActionList
-    Left = 588
+    Left = 592
     Top = 136
     object Up: TAction
       Caption = 'Up'
@@ -616,8 +616,8 @@ object FormReg: TFormReg
     Connection = FDC
     SQL.Strings = (
       'truncate table command')
-    Left = 156
-    Top = 144
+    Left = 160
+    Top = 140
   end
   object Timer3: TTimer
     Enabled = False

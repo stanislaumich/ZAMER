@@ -4,7 +4,7 @@ object FMain: TFMain
   BorderIcons = []
   BorderStyle = bsNone
   Caption = #1057#1073#1086#1088' UIP'
-  ClientHeight = 349
+  ClientHeight = 388
   ClientWidth = 625
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -126,7 +126,7 @@ object FMain: TFMain
       Top = 6
       Width = 25
       Height = 25
-      ComPort = ComPort1
+      ComPort = Com
       LedSignal = lsConn
       Kind = lkRedLight
     end
@@ -138,32 +138,21 @@ object FMain: TFMain
       Caption = #1042
     end
     object CheckBox1: TCheckBox
-      Left = 4
-      Top = 3
-      Width = 177
+      Left = 10
+      Top = 6
+      Width = 163
       Height = 30
       Caption = #1054#1089#1090#1072#1085#1086#1074#1083#1077#1085
       TabOrder = 0
       OnClick = CheckBox1Click
     end
-    object ComComboBox1: TComComboBox
-      Left = 503
-      Top = 3
-      Width = 94
-      Height = 33
-      ComPort = ComPort1
-      Text = ''
-      Style = csDropDownList
-      ItemIndex = -1
-      TabOrder = 1
-    end
     object Button7: TButton
-      Left = 4
-      Top = -10
+      Left = 478
+      Top = 7
       Width = 25
-      Height = 21
-      Caption = 'Button7'
-      TabOrder = 2
+      Height = 27
+      Caption = '*'
+      TabOrder = 1
       OnClick = Button7Click
     end
     object RadioButton1: TRadioButton
@@ -173,7 +162,7 @@ object FMain: TFMain
       Height = 17
       Caption = 'S1'
       Checked = True
-      TabOrder = 3
+      TabOrder = 2
       TabStop = True
     end
     object RadioButton2: TRadioButton
@@ -182,27 +171,44 @@ object FMain: TFMain
       Width = 50
       Height = 17
       Caption = 'S3'
-      TabOrder = 4
+      TabOrder = 3
     end
     object Edit2: TEdit
-      Left = 323
+      Left = 348
       Top = 4
-      Width = 62
+      Width = 37
       Height = 33
+      TabOrder = 4
+      Text = '1'
+    end
+    object Button8: TButton
+      Left = 406
+      Top = 6
+      Width = 71
+      Height = 27
+      Caption = #1055#1059#1057#1050
       TabOrder = 5
-      Text = 'Edit2'
+      OnClick = Button8Click
+    end
+    object ComComboBox1: TComboBox
+      Left = 504
+      Top = 4
+      Width = 89
+      Height = 33
+      TabOrder = 6
     end
   end
   object Panel3: TPanel
     Left = 0
     Top = 73
     Width = 625
-    Height = 257
+    Height = 296
     Align = alClient
     TabOrder = 2
+    ExplicitHeight = 257
     DesignSize = (
       625
-      257)
+      296)
     object Label1: TLabel
       Left = 54
       Top = 0
@@ -312,7 +318,7 @@ object FMain: TFMain
     end
     object BitBtn1: TBitBtn
       Left = 4
-      Top = 211
+      Top = 250
       Width = 615
       Height = 40
       Anchors = [akLeft, akRight, akBottom]
@@ -382,16 +388,18 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 0
       OnClick = BitBtn1Click
+      ExplicitTop = 211
     end
     object BitBtn3: TBitBtn
       Left = 4
-      Top = 186
+      Top = 225
       Width = 615
       Height = 25
       Anchors = [akLeft, akRight, akBottom]
       Caption = #1057#1086#1077#1076#1080#1085#1080#1090#1100
       TabOrder = 1
       OnClick = BitBtn3Click
+      ExplicitTop = 186
     end
     object Edit1: TEdit
       Left = 407
@@ -420,6 +428,7 @@ object FMain: TFMain
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 3
+      OnClick = Button1Click
     end
     object Button2: TButton
       Left = 364
@@ -434,6 +443,7 @@ object FMain: TFMain
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 4
+      OnClick = Button2Click
     end
     object Button3: TButton
       Left = 503
@@ -448,33 +458,90 @@ object FMain: TFMain
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 5
+      OnClick = Button3Click
     end
     object CheckBox2: TCheckBox
-      Left = 19
+      Left = 4
       Top = 135
-      Width = 162
+      Width = 213
       Height = 46
-      Caption = #1040#1074#1090#1086
+      Caption = #1040#1074#1090#1086#1088#1077#1075#1091#1083#1080#1088#1086#1074#1082#1072
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
-      Font.Height = -40
+      Font.Height = -21
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 6
-      OnClick = CheckBox1Click
+      OnClick = CheckBox2Click
+    end
+    object BitBtn4: TBitBtn
+      Left = 4
+      Top = 182
+      Width = 207
+      Height = 41
+      Caption = #1041#1054#1051#1068#1064#1045' (F4)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 7
+      OnClick = BitBtn4Click
+    end
+    object BitBtn5: TBitBtn
+      Left = 216
+      Top = 182
+      Width = 205
+      Height = 41
+      Caption = #1052#1045#1053#1068#1064#1045' (F5)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 8
+      OnClick = BitBtn5Click
+    end
+    object BitBtn6: TBitBtn
+      Left = 427
+      Top = 182
+      Width = 192
+      Height = 41
+      Caption = #1057#1058#1054#1055' (F9)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 9
+      OnClick = BitBtn6Click
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 330
+    Top = 369
     Width = 625
     Height = 19
     Panels = <
       item
         Text = '0.0.0.0'
+        Width = 100
+      end
+      item
+        Text = #1057#1090#1086#1087
+        Width = 80
+      end
+      item
+        Width = 50
+      end
+      item
         Width = 50
       end>
+    ExplicitTop = 330
   end
   object Button4: TButton
     Left = 217
@@ -489,6 +556,7 @@ object FMain: TFMain
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 4
+    OnClick = Button4Click
   end
   object Button5: TButton
     Left = 364
@@ -503,6 +571,7 @@ object FMain: TFMain
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 5
+    OnClick = Button5Click
   end
   object Button6: TButton
     Left = 503
@@ -517,6 +586,7 @@ object FMain: TFMain
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 6
+    OnClick = Button6Click
   end
   object ConLite: TFDConnection
     Params.Strings = (
@@ -879,7 +949,7 @@ object FMain: TFMain
     Left = 176
     Top = 157
   end
-  object ComPort1: TComPort
+  object Com: TComPort
     BaudRate = br9600
     Port = 'COM1'
     Parity.Bits = prNone
@@ -894,7 +964,33 @@ object FMain: TFMain
     FlowControl.XonXoffIn = False
     StoredProps = [spBasic]
     TriggersOnRxChar = True
-    Left = 128
-    Top = 258
+    Left = 520
+    Top = 318
+  end
+  object TimerCom: TTimer
+    Enabled = False
+    Interval = 200
+    OnTimer = TimerComTimer
+    Left = 468
+    Top = 322
+  end
+  object ActionList1: TActionList
+    Left = 576
+    Top = 285
+    object Action1: TAction
+      Caption = 'Action1'
+      ShortCut = 115
+      OnExecute = Action1Execute
+    end
+    object Action2: TAction
+      Caption = 'Action2'
+      ShortCut = 116
+      OnExecute = Action2Execute
+    end
+    object Action3: TAction
+      Caption = 'Action3'
+      ShortCut = 120
+      OnExecute = Action3Execute
+    end
   end
 end

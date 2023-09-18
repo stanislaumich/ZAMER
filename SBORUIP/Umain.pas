@@ -13,7 +13,8 @@ uses
   FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
   FireDAC.DApt, FireDAC.Comp.DataSet, KRComponentCollection, KRVariables,
   KRModbusClient, KRModbusMaster, KRConnector, KRTCPConnector, Math,
-  FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, CPortCtl, CPort;
+  FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef, CPortCtl, CPort, System.Actions,
+  Vcl.ActnList;
 
  CONST
   RAZU = -2;FormatU = '0.00';
@@ -75,13 +76,22 @@ type
     Button6: TButton;
     CheckBox2: TCheckBox;
     ComLed1: TComLed;
-    ComPort1: TComPort;
-    ComComboBox1: TComComboBox;
+    Com: TComPort;
     Button7: TButton;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     Edit2: TEdit;
     Label9: TLabel;
+    Button8: TButton;
+    TimerCom: TTimer;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    ComComboBox1: TComboBox;
+    ActionList1: TActionList;
+    Action1: TAction;
+    Action2: TAction;
+    Action3: TAction;
 
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -104,6 +114,21 @@ type
     procedure CheckBox1Click(Sender: TObject);
     procedure TstartTimer(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
+    procedure TimerComTimer(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure BitBtn6Click(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
+    procedure Action2Execute(Sender: TObject);
+    procedure Action3Execute(Sender: TObject);
+    procedure CheckBox2Click(Sender: TObject);
   private
    procedure GetData(var MessageData: TWMCopyData); message WM_COPYDATA;
   public
@@ -117,7 +142,7 @@ var
   pr, p1r, p2r, p3r:integer;
   sText: array[0..99] of Char;
   prevstat, Activated:boolean;
-
+  act:integer;
 
 
 implementation
@@ -155,6 +180,56 @@ begin
    qlite.ExecSQL;
 end;
 
+
+procedure TFMain.TimerComTimer(Sender: TObject);
+var
+    dU: single;
+begin
+        dU := strtofloat(Label1.Caption) - strtofloat(Edit1.Text);
+        if abs(dU) > strtoint(edit2.text) { большой шаг }
+        then
+        begin { большой шаг }
+            if dU > 0 then { надо уменьшить тек больше зад }
+            begin
+                BitBtn5.Click;
+            end
+            else
+            begin { надо увеличить }
+                BitBtn4.Click;
+            end;
+        end { конец большого шага }
+        else { малый шаг или стоп }
+        begin
+            if abs(dU) > strtofloat(Edit1.Text)
+            { все ещё не попали - малый шаг }
+            then
+            begin
+                if dU > 0 then { прибавить шажок }
+                begin
+                    TimerCom.Enabled := false;
+                    Com.WriteStr('1');
+                    Sleep(300);
+                    Com.WriteStr('0');
+                    TimerCom.Enabled := true;
+                end;
+                if dU < 0 then { убавить шажок }
+                begin { надо увеличить }
+                    TimerCom.Enabled := false;
+                    Com.WriteStr('2');
+                    Sleep(300);
+                    Com.WriteStr('0');
+                    TimerCom.Enabled := true;
+                end;
+                Sleep(200);
+            end
+            else { попали в погрешность }
+            begin
+                BitBtn6.Click;
+                Com.WriteStr('4');
+            end;
+        end;
+
+end;
 
 procedure TFMain.TstartTimer(Sender: TObject);
 begin
@@ -296,6 +371,21 @@ begin
 // Label3.Caption := FormatFloat('0.00', roundto(P.Value, RazP));
 end;
 
+procedure TFMain.Action1Execute(Sender: TObject);
+begin
+ BitBtn4.Click;
+end;
+
+procedure TFMain.Action2Execute(Sender: TObject);
+begin
+ BitBtn5.Click;
+end;
+
+procedure TFMain.Action3Execute(Sender: TObject);
+begin
+ BitBtn6.Click;
+end;
+
 procedure TFMain.BitBtn1Click(Sender: TObject);
 begin
  FSett.ShowModal;
@@ -347,17 +437,125 @@ begin
   Activated                        := True;
 end;
 
+procedure TFMain.BitBtn4Click(Sender: TObject);
+begin
+
+    if act <> 2 then
+    begin
+        Com.WriteStr('0');
+        Com.WriteStr('2');
+        act := 2;
+        StatusBar1.Panels[1].Text:='Больше';
+    end
+    else
+        act := 0;
+end;
+
+procedure TFMain.BitBtn5Click(Sender: TObject);
+begin
+
+    if act <> 1 then
+    begin
+        Com.WriteStr('0');
+        Com.WriteStr('1');
+        act := 1;
+        StatusBar1.Panels[1].Text:='Меньше';
+    end
+    else
+        act := 0;
+end;
+
+procedure TFMain.BitBtn6Click(Sender: TObject);
+begin
+    Com.WriteStr('0');
+    act := 0;
+    StatusBar1.Panels[1].Text:='Стоп';
+end;
+
+procedure TFMain.Button1Click(Sender: TObject);
+begin
+ Edit1.Text:=Button1.Caption;
+ act:=0;
+ SetIni('LAST',Edit1.TExt);
+end;
+
+procedure TFMain.Button2Click(Sender: TObject);
+begin
+ Edit1.Text:=Button2.Caption;
+ act:=0;
+ SetIni('LAST',Edit1.TExt);
+end;
+
+procedure TFMain.Button3Click(Sender: TObject);
+begin
+ Edit1.Text:=Button3.Caption;
+ act:=0;
+ SetIni('LAST',Edit1.TExt);
+end;
+
+procedure TFMain.Button4Click(Sender: TObject);
+begin
+ Edit1.Text:=Button4.Caption;
+ act:=0;
+ SetIni('LAST',Edit1.TExt);
+end;
+
+procedure TFMain.Button5Click(Sender: TObject);
+begin
+ Edit1.Text:=Button5.Caption;
+ act:=0;
+ SetIni('LAST',Edit1.TExt);
+end;
+
+procedure TFMain.Button6Click(Sender: TObject);
+begin
+ Edit1.Text:=Button6.Caption;
+ act:=0;
+ SetIni('LAST',Edit1.TExt);
+end;
+
 procedure TFMain.Button7Click(Sender: TObject);
 begin
-ComPort1.ShowSetupDialog;
+Com.ShowSetupDialog;
+ComComboBox1.Text:=Com.Port;
+end;
+
+procedure TFMain.Button8Click(Sender: TObject);
+begin
+    Com.Port := ComComboBox1.Text;
+    Com.Open;
+    //TimerCom.Enabled := true;
+end;
+
+procedure TFMain.CheckBox2Click(Sender: TObject);
+begin
+ if CheckBox2.Checked then
+ begin
+  CheckBox1.Caption:='Сбор данных';
+  TimerCom.Enabled := true;
+  CheckBox2.Font.Color:=clRed;
+ end
+ else
+ begin
+  CheckBox1.Caption:='Остановлен';
+  TimerCom.Enabled := False;
+  CheckBox2.Font.Color:=clBlack;
+  BitBtn6.Click;
+ end;
 end;
 
 procedure TFMain.CheckBox1Click(Sender: TObject);
 begin
  if CheckBox1.Checked then
-  CheckBox1.Caption:='Сбор данных'
+ begin
+  CheckBox1.Caption:='Сбор данных';
+  TimerCom.Enabled := true;
+ end
  else
+ begin
   CheckBox1.Caption:='Остановлен';
+  TimerCom.Enabled := False;;
+ end;
 end;
 
 procedure TFMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -369,7 +567,8 @@ begin
 
   SetIni('LEFT',IntToStr(Fmain.Left));
   SetIni('TOP',IntToStr(Fmain.Top));
-
+  SetIni('COMPORT',ComComboBox1.TExt);
+  SetIni('LAST',Edit1.TExt);
  ConLite.Connected:=false;
 end;
 
@@ -405,7 +604,19 @@ begin
  QTempOra.Close;
 
  FMain.left:=Strtoint(GetIni('LEFT'));
- FMain.left:=Strtoint(GetIni('TOP'));
+ FMain.top:=Strtoint(GetIni('TOP'));
+ ComComboBox1.Text:= GetIni('COMPORT');
+ Edit1.Text:= GetIni('LAST');
+ Button1.Caption:=GetIni('B1');
+ Button2.Caption:=GetIni('B2');
+ Button3.Caption:=GetIni('B3');
+ Button4.Caption:=GetIni('B4');
+ Button5.Caption:=GetIni('B5');
+ Button6.Caption:=GetIni('B6');
+
+
+
+
  FMain.Repaint;
  prevstat:=false;
  //BitBtn3.Click;
