@@ -174,9 +174,9 @@ object FMain: TFMain
       TabOrder = 3
     end
     object Edit2: TEdit
-      Left = 348
+      Left = 327
       Top = 4
-      Width = 37
+      Width = 58
       Height = 33
       TabOrder = 4
       Text = '1'
@@ -205,7 +205,6 @@ object FMain: TFMain
     Height = 272
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 296
     DesignSize = (
       625
       272)
@@ -388,7 +387,6 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 0
       OnClick = BitBtn1Click
-      ExplicitTop = 250
     end
     object BitBtn3: TBitBtn
       Left = 386
@@ -400,7 +398,6 @@ object FMain: TFMain
       TabOrder = 1
       Visible = False
       OnClick = BitBtn3Click
-      ExplicitTop = 250
     end
     object Edit1: TEdit
       Left = 407
@@ -542,7 +539,6 @@ object FMain: TFMain
       item
         Width = 50
       end>
-    ExplicitTop = 369
   end
   object Button4: TButton
     Left = 217
