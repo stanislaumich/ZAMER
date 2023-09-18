@@ -4,7 +4,7 @@ object FMain: TFMain
   BorderIcons = []
   BorderStyle = bsNone
   Caption = #1057#1073#1086#1088' UIP'
-  ClientHeight = 388
+  ClientHeight = 364
   ClientWidth = 625
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -202,13 +202,13 @@ object FMain: TFMain
     Left = 0
     Top = 73
     Width = 625
-    Height = 296
+    Height = 272
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 257
+    ExplicitHeight = 296
     DesignSize = (
       625
-      296)
+      272)
     object Label1: TLabel
       Left = 54
       Top = 0
@@ -317,12 +317,12 @@ object FMain: TFMain
       ParentFont = False
     end
     object BitBtn1: TBitBtn
-      Left = 4
-      Top = 250
-      Width = 615
+      Left = 460
+      Top = 226
+      Width = 159
       Height = 40
       Anchors = [akLeft, akRight, akBottom]
-      Caption = #1043#1083#1072#1074#1085#1086#1077' '#1086#1082#1085#1086
+      Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
@@ -388,18 +388,19 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 0
       OnClick = BitBtn1Click
-      ExplicitTop = 211
+      ExplicitTop = 250
     end
     object BitBtn3: TBitBtn
-      Left = 4
-      Top = 225
-      Width = 615
-      Height = 25
+      Left = 386
+      Top = 226
+      Width = 68
+      Height = 40
       Anchors = [akLeft, akRight, akBottom]
       Caption = #1057#1086#1077#1076#1080#1085#1080#1090#1100
       TabOrder = 1
+      Visible = False
       OnClick = BitBtn3Click
-      ExplicitTop = 186
+      ExplicitTop = 250
     end
     object Edit1: TEdit
       Left = 407
@@ -523,7 +524,7 @@ object FMain: TFMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 369
+    Top = 345
     Width = 625
     Height = 19
     Panels = <
@@ -541,7 +542,7 @@ object FMain: TFMain
       item
         Width = 50
       end>
-    ExplicitTop = 330
+    ExplicitTop = 369
   end
   object Button4: TButton
     Left = 217

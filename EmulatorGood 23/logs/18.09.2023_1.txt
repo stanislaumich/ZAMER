@@ -185,3 +185,12 @@
 18.09.2023 13:32:46.184 - TModbusTCPClient.Start
 18.09.2023 13:32:46.184 - TTCPAccept.InitSocket IN
 18.09.2023 13:32:57.62 - TModbusTCPServer.OnClientDisconnect
+18.09.2023 13:36:13.881 - TModbusTCPServer.Stop
+18.09.2023 13:36:13.881 - TTCPAccept.StopThread IN
+18.09.2023 13:36:13.882 - TTCPAccept.Execute OUT
+18.09.2023 13:36:13.882 - TTCPAccept.StopThread OUT
+18.09.2023 13:36:13.882 - TTCPAccept.Destroy IN
+18.09.2023 13:36:13.882 - TTCPAccept.Destroy OUT
+18.09.2023 13:36:15.514 - TModbusTCPServer.Stop
+18.09.2023 13:36:15.514 - TModbusTCPServer.Destroy
+18.09.2023 13:36:15.517 - Останов Modbus TCP/RTU Эмулятор
