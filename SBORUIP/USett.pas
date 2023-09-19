@@ -62,11 +62,13 @@ type
     Edit4: TEdit;
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -132,6 +134,11 @@ begin
   FMain.T2.Value := Strtofloat(Edit2.Text);
   FMain.T3.Value := Strtofloat(Edit3.Text);
   FMain.T4.Value := Strtofloat(Edit4.Text);
+end;
+
+procedure TFSett.Button3Click(Sender: TObject);
+begin
+ fMain.Get_Params;
 end;
 
 procedure TFSett.FormCreate(Sender: TObject);

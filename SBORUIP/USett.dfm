@@ -265,8 +265,7 @@ object FSett: TFSett
       Left = 2
       Top = 15
       Width = 242
-      Height = 172
-      Align = alClient
+      Height = 142
       DataSource = DataSource2
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -296,6 +295,15 @@ object FSett: TFSett
           Width = 50
           Visible = True
         end>
+    end
+    object Button3: TButton
+      Left = 8
+      Top = 160
+      Width = 229
+      Height = 25
+      Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100' '#1080' '#1089#1086#1093#1088#1072#1085#1080#1090#1100
+      TabOrder = 1
+      OnClick = Button3Click
     end
   end
   object GroupBox3: TGroupBox

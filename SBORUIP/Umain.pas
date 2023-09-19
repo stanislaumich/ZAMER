@@ -141,6 +141,8 @@ type
     procedure GetData(var MessageData: TWMCopyData); message WM_COPYDATA;
   public
     CURRPribor: string;
+    procedure set_params;
+    procedure get_params;
   end;
 
 var
@@ -534,7 +536,7 @@ end;
 
 procedure TFMain.BitBtn8Click(Sender: TObject);
 begin
-  CheckBox2.Checked:=False;
+    CheckBox2.Checked:=False;
     CheckBox1.Caption := 'Остановлен';
     TimerCom.Enabled := false;
     BitBtn6.Click;
@@ -647,15 +649,9 @@ begin
   end;
 end;
 
-procedure TFMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+procedure TFMain.set_params;
 begin
-  Com.Close;
-  CheckBox1.Checked := false;
-  KRModbusClient1.Active := false;
-  KRModbusMaster1.Active := false;
-  KRTCPConnector1.Active := false;
-
-  SetIni('LEFT', IntToStr(FMain.Left));
+ SetIni('LEFT', IntToStr(FMain.Left));
   SetIni('TOP', IntToStr(FMain.Top));
   SetIni('COMPORT', ComComboBox1.Text);
   SetIni('LAST', Edit1.Text);
@@ -668,7 +664,43 @@ begin
 
   SetIni('AUTO_REG_VOLT',inttostr(Auto_start_reg_after_volt));
 
+end;
+
+procedure TFMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  Com.Close;
+  CheckBox1.Checked := false;
+  KRModbusClient1.Active := false;
+  KRModbusMaster1.Active := false;
+  KRTCPConnector1.Active := false;
+
+  set_params;
+
   ConLite.Connected := false;
+end;
+
+procedure TFMain.get_params;
+begin
+   FMain.Left := Strtoint(GetIni('LEFT'));
+  FMain.Top := Strtoint(GetIni('TOP'));
+  ComComboBox1.Text := GetIni('COMPORT');
+  Edit1.Text := GetIni('LAST');
+  Button1.Caption := GetIni('B1');
+  Button2.Caption := GetIni('B2');
+  Button3.Caption := GetIni('B3');
+  Button4.Caption := GetIni('B4');
+  Button5.Caption := GetIni('B5');
+  Button6.Caption := GetIni('B6');
+
+  Edit2.Text := GetIni('dU');
+  S1 := GetIni('S1');
+  S3 := GetIni('S3');
+
+  STEP_MS := Strtoint(GetIni('STEP_MS'));
+  STOP_MS := Strtoint(GetIni('STOP_MS'));
+
+  Auto_start_reg_after_volt:=Strtoint(GetIni('AUTO_REG_VOLT'));
+
 end;
 
 procedure TFMain.FormCreate(Sender: TObject);
@@ -711,25 +743,7 @@ begin
   QTempOra.ExecSQL;
   QTempOra.Close;
 
-  FMain.Left := Strtoint(GetIni('LEFT'));
-  FMain.Top := Strtoint(GetIni('TOP'));
-  ComComboBox1.Text := GetIni('COMPORT');
-  Edit1.Text := GetIni('LAST');
-  Button1.Caption := GetIni('B1');
-  Button2.Caption := GetIni('B2');
-  Button3.Caption := GetIni('B3');
-  Button4.Caption := GetIni('B4');
-  Button5.Caption := GetIni('B5');
-  Button6.Caption := GetIni('B6');
-
-  Edit2.Text := GetIni('dU');
-  S1 := GetIni('S1');
-  S3 := GetIni('S3');
-
-  STEP_MS := Strtoint(GetIni('STEP_MS'));
-  STOP_MS := Strtoint(GetIni('STOP_MS'));
-
-  Auto_start_reg_after_volt:=Strtoint(GetIni('AUTO_REG_VOLT'));
+  get_params;
 
   FMain.Repaint;
   prevstat := false;
