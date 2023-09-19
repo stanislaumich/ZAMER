@@ -705,7 +705,7 @@ object FSett: TFSett
     IndexFieldNames = 'name'
     Connection = FMain.ConLite
     TableName = 'INI'
-    Left = 728
+    Left = 740
     Top = 260
   end
   object TStend: TFDTable
@@ -717,7 +717,7 @@ object FSett: TFSett
   end
   object DataSource3: TDataSource
     DataSet = TStend
-    Left = 416
-    Top = 204
+    Left = 380
+    Top = 208
   end
 end

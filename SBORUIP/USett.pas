@@ -3,7 +3,8 @@ unit USett;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
@@ -83,55 +84,61 @@ uses Umain;
 
 procedure TFSett.BitBtn1Click(Sender: TObject);
 begin
- FMain.QTemp.Close;
- FMain.QTemp.SQL.Clear;
- FMAin.QTemp.SQL.add('delete from ini where name like '+QuotedStr('CURR_%'));
- FMAin.QTemp.ExecSQL;
- FMain.QTemp.Close;
- FMain.QTemp.SQL.Clear;
- FMAin.QTemp.SQL.add('insert into ini (name, val, dop) values ('+QuotedStr('CURR_IP')+', '+QuotedStr(DBEdit1.Text)+', '+QuotedStr(DbText2.Caption)+')');
- FMAin.QTemp.ExecSQL;
- FMain.QTemp.Close;
- FMain.QTemp.SQL.Clear;
- FMAin.QTemp.SQL.add('insert into ini (name, val, dop) values ('+QuotedStr('CURR_PORT')+', '+QuotedStr(DBEdit2.Text)+', '+QuotedStr(DbText2.Caption)+')');
- FMAin.QTemp.ExecSQL;
- FMain.QTemp.Close;
- FMain.QTemp.SQL.Clear;
- FMAin.QTemp.SQL.add('insert into ini (name, val, dop) values ('+QuotedStr('CURR_ID')+', '+QuotedStr(DBEdit3.Text)+', '+QuotedStr(DbText2.Caption)+')');
- FMAin.QTemp.ExecSQL;
- TIni.Refresh;
+  FMain.QTemp.Close;
+  FMain.QTemp.SQL.Clear;
+  FMain.QTemp.SQL.add('delete from ini where name like ' + QuotedStr('CURR_%'));
+  FMain.QTemp.ExecSQL;
+  FMain.QTemp.Close;
+  FMain.QTemp.SQL.Clear;
+  FMain.QTemp.SQL.add('insert into ini (name, val, dop) values (' +
+    QuotedStr('CURR_IP') + ', ' + QuotedStr(DBEdit1.Text) + ', ' +
+    QuotedStr(DBText2.Caption) + ')');
+  FMain.QTemp.ExecSQL;
+  FMain.QTemp.Close;
+  FMain.QTemp.SQL.Clear;
+  FMain.QTemp.SQL.add('insert into ini (name, val, dop) values (' +
+    QuotedStr('CURR_PORT') + ', ' + QuotedStr(DBEdit2.Text) + ', ' +
+    QuotedStr(DBText2.Caption) + ')');
+  FMain.QTemp.ExecSQL;
+  FMain.QTemp.Close;
+  FMain.QTemp.SQL.Clear;
+  FMain.QTemp.SQL.add('insert into ini (name, val, dop) values (' +
+    QuotedStr('CURR_ID') + ', ' + QuotedStr(DBEdit3.Text) + ', ' +
+    QuotedStr(DBText2.Caption) + ')');
+  FMain.QTemp.ExecSQL;
+  TIni.Refresh;
 end;
 
 procedure TFSett.BitBtn2Click(Sender: TObject);
 begin
- TStend.Post;
+  TStend.Post;
 end;
 
 procedure TFSett.Button1Click(Sender: TObject);
 begin
- FMain.T1.UpdateValue;
- FMain.T2.UpdateValue;
- FMain.T3.UpdateValue;
- FMain.T4.UpdateValue;
- Edit1.Text:=FloatToStr(FMain.T1.Value);
- Edit2.Text:=FloatToStr(FMain.T2.Value);
- Edit3.Text:=FloatToStr(FMain.T3.Value);
- Edit4.Text:=FloatToStr(FMain.T4.Value);
+  FMain.T1.UpdateValue;
+  FMain.T2.UpdateValue;
+  FMain.T3.UpdateValue;
+  FMain.T4.UpdateValue;
+  Edit1.Text := FloatToStr(FMain.T1.Value);
+  Edit2.Text := FloatToStr(FMain.T2.Value);
+  Edit3.Text := FloatToStr(FMain.T3.Value);
+  Edit4.Text := FloatToStr(FMain.T4.Value);
 end;
 
 procedure TFSett.Button2Click(Sender: TObject);
 begin
- FMain.T1.Value:=Strtofloat(Edit1.Text);
- FMain.T2.Value:=Strtofloat(Edit2.Text);
- FMain.T3.Value:=Strtofloat(Edit3.Text);
- FMain.T4.Value:=Strtofloat(Edit4.Text);
+  FMain.T1.Value := Strtofloat(Edit1.Text);
+  FMain.T2.Value := Strtofloat(Edit2.Text);
+  FMain.T3.Value := Strtofloat(Edit3.Text);
+  FMain.T4.Value := Strtofloat(Edit4.Text);
 end;
 
 procedure TFSett.FormCreate(Sender: TObject);
 begin
- FSett.tini.active:=true;
- FSett.tpribor.active:=true;
- FSett.tstend.active:=true;
+  FSett.TIni.active := true;
+  FSett.TPribor.active := true;
+  FSett.TStend.active := true;
 end;
 
 end.

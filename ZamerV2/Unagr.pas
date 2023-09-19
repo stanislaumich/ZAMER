@@ -284,44 +284,45 @@ end;
 procedure TFNagr.Button3Click(Sender: TObject);
 var
   dQ, Th, Tg, Rh, Rg, L: single;
-  t1:single;
+  t1: single;
 
 begin
-  Edit7.Text:=StringGrid1.Cells[9,2];
-  Edit8.Text:=StringGrid1.Cells[6,2];
+  Edit7.Text := StringGrid1.cells[9, 2];
+  Edit8.Text := StringGrid1.cells[6, 2];
 
-  t1:=Strtofloat(fsopr.Stringgrid3.cells[1,1])+
-  Strtofloat(fsopr.Stringgrid3.cells[1,2])+
-  Strtofloat(fsopr.Stringgrid3.cells[1,3]);
+  t1 := strtofloat(fsopr.Stringgrid3.cells[1, 1]) +
+    strtofloat(fsopr.Stringgrid3.cells[1, 2]) +
+    strtofloat(fsopr.Stringgrid3.cells[1, 3]);
 
-  Edit9.Text:=Floattostr(t1/3);
-  Edit10.Text:=FSopr.Edit8.Text;
+  Edit9.Text := floattostr(t1 / 3);
+  Edit10.Text := fsopr.Edit8.Text;
 
-  if Edit9.text='0' then
+  if Edit9.Text = '0' then
   begin
     ShowMessage('Сопротивление холодное не должно быть равно нулю');
     exit;
   end;
   {
-  if (Edit8.text='0' or Edit10.text='0') then
-  begin
+    if (Edit8.text='0' or Edit10.text='0') then
+    begin
     ShowMessage('Ntvgthfnehf не должно быть равно нулю');
     exit;
-  end;
+    end;
   }
   try
-  Rg := strtofloat(Edit7.Text);
-  Rh := strtofloat(Edit9.Text);
-  Tg := strtofloat(Edit8.Text);
-  Th := strtofloat(Edit10.Text);
-  L := strtofloat(ComboBox4.Text);
-  dQ := ((Rg - Rh) / Rh) * (L + Th) + Th - Tg;
-  Edit12.Text := floattostr(simpleroundto(dQ,-1));
+    Rg := strtofloat(Edit7.Text);
+    Rh := strtofloat(Edit9.Text);
+    Tg := strtofloat(Edit8.Text);
+    Th := strtofloat(Edit10.Text);
+    L := strtofloat(ComboBox4.Text);
+    dQ := ((Rg - Rh) / Rh) * (L + Th) + Th - Tg;
+    Edit12.Text := floattostr(simpleroundto(dQ, -1));
   except
-   on e:exception do
+    on e: exception do
     begin
-     ShowMessage('В процессе расчета произошла ошибка преобразования десятичных величин');
-     e:=nil;
+      ShowMessage
+        ('В процессе расчета произошла ошибка преобразования десятичных величин');
+      e := nil;
     end;
 
   end;

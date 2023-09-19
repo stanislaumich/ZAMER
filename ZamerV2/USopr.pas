@@ -330,25 +330,25 @@ procedure TFSopr.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   buttonSelected: Integer;
 begin
-CanClose := true;
-{
+  CanClose := true;
+  {
 
-  if enableclose then
+    if enableclose then
     CanClose := true
-  else
-  begin
+    else
+    begin
     buttonSelected := MessageDlg('Сохранить данные?', mtConfirmation,
-      [mbYes, mbNo, mbCancel], 0);
+    [mbYes, mbNo, mbCancel], 0);
     if buttonSelected = mrYes then
     begin
-      CanClose := true;
-      BitBtn5.Click;
+    CanClose := true;
+    BitBtn5.Click;
     end;
     if buttonSelected = mrNo then
-      CanClose := true;
+    CanClose := true;
     if buttonSelected = mrCancel then
-      CanClose := false;
-  end;
+    CanClose := false;
+    end;
   }
 end;
 

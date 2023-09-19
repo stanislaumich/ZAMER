@@ -4,7 +4,7 @@ object FMain: TFMain
   BorderIcons = []
   BorderStyle = bsNone
   Caption = #1057#1073#1086#1088' UIP'
-  ClientHeight = 364
+  ClientHeight = 363
   ClientWidth = 625
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -121,15 +121,6 @@ object FMain: TFMain
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
-    object ComLed1: TComLed
-      Left = 594
-      Top = 6
-      Width = 25
-      Height = 25
-      ComPort = Com
-      LedSignal = lsConn
-      Kind = lkRedLight
-    end
     object Label9: TLabel
       Left = 386
       Top = 7
@@ -197,17 +188,27 @@ object FMain: TFMain
       Height = 33
       TabOrder = 6
     end
+    object Panel4: TPanel
+      Left = 600
+      Top = 4
+      Width = 21
+      Height = 29
+      Color = clRed
+      ParentBackground = False
+      TabOrder = 7
+    end
   end
   object Panel3: TPanel
     Left = 0
     Top = 73
     Width = 625
-    Height = 272
+    Height = 271
     Align = alClient
     TabOrder = 2
+    ExplicitHeight = 272
     DesignSize = (
       625
-      272)
+      271)
     object Label1: TLabel
       Left = 54
       Top = 0
@@ -317,7 +318,7 @@ object FMain: TFMain
     end
     object BitBtn1: TBitBtn
       Left = 460
-      Top = 226
+      Top = 225
       Width = 159
       Height = 40
       Anchors = [akLeft, akRight, akBottom]
@@ -387,10 +388,11 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 0
       OnClick = BitBtn1Click
+      ExplicitTop = 226
     end
     object BitBtn3: TBitBtn
       Left = 386
-      Top = 226
+      Top = 225
       Width = 68
       Height = 40
       Anchors = [akLeft, akRight, akBottom]
@@ -398,6 +400,7 @@ object FMain: TFMain
       TabOrder = 1
       Visible = False
       OnClick = BitBtn3Click
+      ExplicitTop = 226
     end
     object Edit1: TEdit
       Left = 407
@@ -478,7 +481,7 @@ object FMain: TFMain
       Top = 182
       Width = 207
       Height = 41
-      Caption = #1041#1054#1051#1068#1064#1045' (F4)'
+      Caption = #1041#1054#1051#1068#1064#1045
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -19
@@ -493,7 +496,7 @@ object FMain: TFMain
       Top = 182
       Width = 205
       Height = 41
-      Caption = #1052#1045#1053#1068#1064#1045' (F5)'
+      Caption = #1052#1045#1053#1068#1064#1045
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -19
@@ -508,7 +511,7 @@ object FMain: TFMain
       Top = 182
       Width = 192
       Height = 41
-      Caption = #1057#1058#1054#1055' (F9)'
+      Caption = #1057#1058#1054#1055' (F12)'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -19
@@ -521,7 +524,7 @@ object FMain: TFMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 345
+    Top = 344
     Width = 625
     Height = 19
     Panels = <
@@ -539,6 +542,7 @@ object FMain: TFMain
       item
         Width = 50
       end>
+    ExplicitTop = 345
   end
   object Button4: TButton
     Left = 217
@@ -947,7 +951,7 @@ object FMain: TFMain
     Top = 157
   end
   object Com: TComPort
-    BaudRate = br9600
+    BaudRate = br115200
     Port = 'COM1'
     Parity.Bits = prNone
     StopBits = sbOneStopBit
@@ -961,6 +965,8 @@ object FMain: TFMain
     FlowControl.XonXoffIn = False
     StoredProps = [spBasic]
     TriggersOnRxChar = True
+    OnAfterOpen = ComAfterOpen
+    OnAfterClose = ComAfterClose
     Left = 520
     Top = 318
   end
@@ -974,19 +980,9 @@ object FMain: TFMain
   object ActionList1: TActionList
     Left = 576
     Top = 285
-    object Action1: TAction
-      Caption = 'Action1'
-      ShortCut = 115
-      OnExecute = Action1Execute
-    end
-    object Action2: TAction
-      Caption = 'Action2'
-      ShortCut = 116
-      OnExecute = Action2Execute
-    end
     object Action3: TAction
       Caption = 'Action3'
-      ShortCut = 120
+      ShortCut = 123
       OnExecute = Action3Execute
     end
   end
