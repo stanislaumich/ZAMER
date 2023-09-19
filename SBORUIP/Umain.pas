@@ -95,6 +95,8 @@ type
     ActionList1: TActionList;
     Action3: TAction;
     Panel4: TPanel;
+    BitBtn7: TBitBtn;
+    BitBtn8: TBitBtn;
 
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -131,9 +133,10 @@ type
     procedure Action1Execute(Sender: TObject);
     procedure Action2Execute(Sender: TObject);
     procedure Action3Execute(Sender: TObject);
-    procedure CheckBox2Click(Sender: TObject);
     procedure ComAfterOpen(Sender: TObject);
     procedure ComAfterClose(Sender: TObject);
+    procedure BitBtn7Click(Sender: TObject);
+    procedure BitBtn8Click(Sender: TObject);
   private
     procedure GetData(var MessageData: TWMCopyData); message WM_COPYDATA;
   public
@@ -148,7 +151,7 @@ var
   act: Integer;
   S1, S3: String;
 
-  STEP_MS, STOP_MS: Integer;
+  STEP_MS, STOP_MS, Auto_start_reg_after_volt: Integer;
 
 implementation
 
@@ -507,7 +510,34 @@ procedure TFMain.BitBtn6Click(Sender: TObject);
 begin
   Com.WriteStr('0');
   act := 0;
+  //TimerCom.Enabled:=false;
+  //CheckBox2.Checked:=false;
   StatusBar1.Panels[1].Text := 'Стоп';
+end;
+
+procedure TFMain.BitBtn7Click(Sender: TObject);
+begin
+  CheckBox2.Checked:=True;
+    try
+    if Not Com.Connected then
+     Com.Open;
+    except
+     On e:exception do
+      begin
+       ShowMessage('Невозможно открыть порт, проверьте настройки');
+       exit;
+      end;
+    end;
+    CheckBox1.Caption := 'Сбор данных';
+    TimerCom.Enabled := true;
+end;
+
+procedure TFMain.BitBtn8Click(Sender: TObject);
+begin
+  CheckBox2.Checked:=False;
+    CheckBox1.Caption := 'Остановлен';
+    TimerCom.Enabled := false;
+    BitBtn6.Click;
 end;
 
 procedure TFMain.Button1Click(Sender: TObject);
@@ -515,6 +545,8 @@ begin
   Edit1.Text := Button1.Caption;
   act := 0;
   SetIni('LAST', Edit1.Text);
+  if Auto_start_reg_after_volt=1 then BitBtn7.Click;
+
 end;
 
 procedure TFMain.Button2Click(Sender: TObject);
@@ -529,6 +561,7 @@ begin
   Edit1.Text := Button3.Caption;
   act := 0;
   SetIni('LAST', Edit1.Text);
+  if Auto_start_reg_after_volt=1 then BitBtn7.Click;
 end;
 
 procedure TFMain.Button4Click(Sender: TObject);
@@ -536,6 +569,7 @@ begin
   Edit1.Text := Button4.Caption;
   act := 0;
   SetIni('LAST', Edit1.Text);
+  if Auto_start_reg_after_volt=1 then BitBtn7.Click;
 end;
 
 procedure TFMain.Button5Click(Sender: TObject);
@@ -543,6 +577,7 @@ begin
   Edit1.Text := Button5.Caption;
   act := 0;
   SetIni('LAST', Edit1.Text);
+  if Auto_start_reg_after_volt=1 then BitBtn7.Click;
 end;
 
 procedure TFMain.Button6Click(Sender: TObject);
@@ -550,6 +585,7 @@ begin
   Edit1.Text := Button6.Caption;
   act := 0;
   SetIni('LAST', Edit1.Text);
+  if Auto_start_reg_after_volt=1 then BitBtn7.Click;
 end;
 
 procedure TFMain.Button7Click(Sender: TObject);
@@ -585,23 +621,6 @@ begin
   Com.Port := ComComboBox1.Text;
   Com.Open;
   // TimerCom.Enabled := true;
-end;
-
-procedure TFMain.CheckBox2Click(Sender: TObject);
-begin
-  if CheckBox2.Checked then
-  begin
-    CheckBox1.Caption := 'Сбор данных';
-    TimerCom.Enabled := true;
-    CheckBox2.Font.Color := clRed;
-  end
-  else
-  begin
-    CheckBox1.Caption := 'Остановлен';
-    TimerCom.Enabled := false;
-    CheckBox2.Font.Color := clBlack;
-    BitBtn6.Click;
-  end;
 end;
 
 procedure TFMain.ComAfterClose(Sender: TObject);
@@ -641,11 +660,13 @@ begin
   SetIni('COMPORT', ComComboBox1.Text);
   SetIni('LAST', Edit1.Text);
   SetIni('dU', Edit2.Text);
-  SetIni('S1', Edit2.Text);
-  SetIni('S3', Edit2.Text);
+  SetIni('S1', S1);
+  SetIni('S3', S3);
 
-  SetIni('STEP_MS', Edit2.Text);
-  SetIni('STOP_MS', Edit2.Text);
+  SetIni('STEP_MS', inttostr(STEP_MS));
+  SetIni('STOP_MS', inttostr(STOP_MS));
+
+  SetIni('AUTO_REG_VOLT',inttostr(Auto_start_reg_after_volt));
 
   ConLite.Connected := false;
 end;
@@ -707,6 +728,8 @@ begin
 
   STEP_MS := Strtoint(GetIni('STEP_MS'));
   STOP_MS := Strtoint(GetIni('STOP_MS'));
+
+  Auto_start_reg_after_volt:=Strtoint(GetIni('AUTO_REG_VOLT'));
 
   FMain.Repaint;
   prevstat := false;

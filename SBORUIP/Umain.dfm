@@ -189,10 +189,10 @@ object FMain: TFMain
       TabOrder = 6
     end
     object Panel4: TPanel
-      Left = 600
-      Top = 4
-      Width = 21
-      Height = 29
+      Left = 595
+      Top = 3
+      Width = 26
+      Height = 33
       Color = clRed
       ParentBackground = False
       TabOrder = 7
@@ -474,14 +474,13 @@ object FMain: TFMain
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 6
-      OnClick = CheckBox2Click
     end
     object BitBtn4: TBitBtn
-      Left = 4
+      Left = 5
       Top = 182
       Width = 207
       Height = 41
-      Caption = #1041#1054#1051#1068#1064#1045
+      Caption = #1055#1054#1042#1067#1057#1048#1058#1068
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -19
@@ -496,7 +495,7 @@ object FMain: TFMain
       Top = 182
       Width = 205
       Height = 41
-      Caption = #1052#1045#1053#1068#1064#1045
+      Caption = #1055#1054#1053#1048#1047#1048#1058#1068
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -19
@@ -511,7 +510,7 @@ object FMain: TFMain
       Top = 182
       Width = 192
       Height = 41
-      Caption = #1057#1058#1054#1055' (F12)'
+      Caption = #1042#1067#1050#1051#1070#1063#1048#1058#1068
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -19
@@ -520,6 +519,36 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 9
       OnClick = BitBtn6Click
+    end
+    object BitBtn7: TBitBtn
+      Left = 4
+      Top = 225
+      Width = 185
+      Height = 40
+      Caption = #1057#1090#1072#1088#1090' '#1072#1074#1090#1086#1088#1077#1075#1091#1083#1080#1088#1086#1074#1082#1080
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBtnText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 10
+      OnClick = BitBtn7Click
+    end
+    object BitBtn8: TBitBtn
+      Left = 195
+      Top = 225
+      Width = 185
+      Height = 40
+      Caption = #1057#1090#1086#1087' '#1072#1074#1090#1086#1088#1077#1075#1091#1083#1080#1088#1086#1074#1082#1080
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBtnText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 11
+      OnClick = BitBtn8Click
     end
   end
   object StatusBar1: TStatusBar
