@@ -205,7 +205,6 @@ object FMain: TFMain
     Height = 271
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 272
     DesignSize = (
       625
       271)
@@ -316,6 +315,20 @@ object FMain: TFMain
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Label10: TLabel
+      Left = 34
+      Top = 157
+      Width = 148
+      Height = 19
+      Caption = #1040#1074#1090#1086#1088#1077#1075#1091#1083#1080#1088#1086#1074#1082#1072
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBackground
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Visible = False
+    end
     object BitBtn1: TBitBtn
       Left = 460
       Top = 225
@@ -388,7 +401,6 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 0
       OnClick = BitBtn1Click
-      ExplicitTop = 226
     end
     object BitBtn3: TBitBtn
       Left = 386
@@ -400,7 +412,6 @@ object FMain: TFMain
       TabOrder = 1
       Visible = False
       OnClick = BitBtn3Click
-      ExplicitTop = 226
     end
     object Edit1: TEdit
       Left = 407
@@ -461,33 +472,19 @@ object FMain: TFMain
       TabOrder = 5
       OnClick = Button3Click
     end
-    object CheckBox2: TCheckBox
-      Left = 4
-      Top = 135
-      Width = 213
-      Height = 46
-      Caption = #1040#1074#1090#1086#1088#1077#1075#1091#1083#1080#1088#1086#1074#1082#1072
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlue
-      Font.Height = -21
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 6
-    end
     object BitBtn4: TBitBtn
       Left = 5
       Top = 182
       Width = 207
       Height = 41
-      Caption = #1055#1054#1042#1067#1057#1048#1058#1068
+      Caption = #1041#1054#1051#1068#1064#1045
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -19
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 6
       OnClick = BitBtn4Click
     end
     object BitBtn5: TBitBtn
@@ -495,14 +492,14 @@ object FMain: TFMain
       Top = 182
       Width = 205
       Height = 41
-      Caption = #1055#1054#1053#1048#1047#1048#1058#1068
+      Caption = #1052#1045#1053#1068#1064#1045
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlue
       Font.Height = -19
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 7
       OnClick = BitBtn5Click
     end
     object BitBtn6: TBitBtn
@@ -517,7 +514,7 @@ object FMain: TFMain
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 8
       OnClick = BitBtn6Click
     end
     object BitBtn7: TBitBtn
@@ -532,7 +529,7 @@ object FMain: TFMain
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 10
+      TabOrder = 9
       OnClick = BitBtn7Click
     end
     object BitBtn8: TBitBtn
@@ -547,7 +544,7 @@ object FMain: TFMain
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 11
+      TabOrder = 10
       OnClick = BitBtn8Click
     end
   end
@@ -566,12 +563,12 @@ object FMain: TFMain
         Width = 80
       end
       item
-        Width = 50
+        Text = '0/0'
+        Width = 200
       end
       item
         Width = 50
       end>
-    ExplicitTop = 345
   end
   object Button4: TButton
     Left = 217

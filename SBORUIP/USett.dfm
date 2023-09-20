@@ -2,7 +2,7 @@ object FSett: TFSett
   Left = 0
   Top = 0
   Caption = #1043#1083#1072#1074#1085#1086#1077' '#1086#1082#1085#1086' '#1087#1088#1080#1083#1086#1078#1077#1085#1080#1103' SborUIP'
-  ClientHeight = 483
+  ClientHeight = 481
   ClientWidth = 820
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,7 +15,7 @@ object FSett: TFSett
   OnCreate = FormCreate
   DesignSize = (
     820
-    483)
+    481)
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -598,6 +598,14 @@ object FSett: TFSett
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+    end
+    object Memo1: TMemo
+      Left = 470
+      Top = 2
+      Width = 96
+      Height = 143
+      ScrollBars = ssBoth
+      TabOrder = 0
     end
   end
   object Panel2: TPanel

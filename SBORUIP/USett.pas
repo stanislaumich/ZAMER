@@ -63,6 +63,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -138,7 +139,8 @@ end;
 
 procedure TFSett.Button3Click(Sender: TObject);
 begin
- fMain.Get_Params;
+  Tini.Refresh;
+  FMain.Get_Params;
 end;
 
 procedure TFSett.FormCreate(Sender: TObject);
