@@ -835,7 +835,6 @@ object FormHH: TFormHH
         E6FE716FF95157F76370F85D65F84444F5FFFFFFFFFFFFFFFFFF}
       TabOrder = 2
       TabStop = False
-      OnClick = BitBtn1Click
     end
     object Edit2: TEdit
       Left = 787
@@ -859,7 +858,7 @@ object FormHH: TFormHH
       Left = 664
       Top = 97
       Width = 106
-      Height = 37
+      Height = 33
       TabOrder = 3
       Text = '00:00:00'
       OnChange = Edit6Change

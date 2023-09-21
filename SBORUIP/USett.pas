@@ -139,7 +139,7 @@ end;
 
 procedure TFSett.Button3Click(Sender: TObject);
 begin
-  Tini.Refresh;
+  TIni.Refresh;
   FMain.Get_Params;
 end;
 

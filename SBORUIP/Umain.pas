@@ -83,8 +83,6 @@ type
         Button6: TButton;
         Com: TComPort;
         Button7: TButton;
-        RadioButton1: TRadioButton;
-        RadioButton2: TRadioButton;
         Edit2: TEdit;
         Label9: TLabel;
         Button8: TButton;
@@ -98,7 +96,8 @@ type
         Panel4: TPanel;
         BitBtn7: TBitBtn;
         BitBtn8: TBitBtn;
-    Label10: TLabel;
+        Label10: TLabel;
+    Label12: TLabel;
 
         procedure BitBtn2Click(Sender: TObject);
         procedure BitBtn1Click(Sender: TObject);
@@ -145,6 +144,9 @@ type
         CURRPribor: string;
         procedure set_params;
         procedure get_params;
+        procedure WriteUp;
+        procedure WriteDown;
+        procedure WriteZero;
     end;
 
 var
@@ -155,6 +157,8 @@ var
     act: Integer;
     S1, S3: String;
 
+
+    pU:real;
     STEP_MS, STOP_MS, Auto_start_reg_after_volt: Integer;
 
     press: Integer;
@@ -168,6 +172,33 @@ implementation
 
 uses USett;
 
+procedure TFMain.WriteUp;
+begin
+    Com.WriteStr('2');
+    BitBtn4.Caption := '<ЅќЋ№Ў≈>';
+    BitBtn4.Font.Color := clRed;
+    BitBtn5.Caption := 'ћ≈Ќ№Ў≈';
+    BitBtn5.Font.Color := clBlue;
+end;
+
+procedure TFMain.WriteDown;
+begin
+    Com.WriteStr('1');
+    BitBtn5.Caption := '<ћ≈Ќ№Ў≈>';
+    BitBtn5.Font.Color := clRed;
+    BitBtn4.Caption := 'ЅќЋ№Ў≈';
+    BitBtn4.Font.Color := clBlue;
+end;
+
+procedure TFMain.WriteZero;
+begin
+    Com.WriteStr('0');
+    BitBtn5.Caption := 'ћ≈Ќ№Ў≈';
+    BitBtn5.Font.Color := clBlue;
+    BitBtn4.Caption := 'ЅќЋ№Ў≈';
+    BitBtn4.Font.Color := clBlue;
+end;
+ //***************************************************************************** Message
 procedure TFMain.GetData(var MessageData: TWMCopyData);
 var
     s: string;
@@ -179,10 +210,14 @@ begin
     begin
         {
           s[2]s[3]s[4] = U
+          надо получить напр€жение11111
         }
         CheckBox1.Checked := true;
         CheckBox1.Caption := '—бор данных';
         Panel2.Color := clGreen;
+        //***********************
+         //BitBtn7.Click;
+        //***********************
         MessageData.Result := 1;
     end
     else
@@ -190,10 +225,13 @@ begin
         CheckBox1.Checked := false;
         CheckBox1.Caption := 'ќстановлен';
         Panel2.Color := clbtnface;
+        //***********************
+         //BitBtn8.Click;
+        //***********************
         MessageData.Result := 1;
     end;
 end;
-
+ //***************************************************************************** Message
 procedure TFMain.SetIni(s: string; v: string);
 begin
     QLite.Close;
@@ -205,7 +243,7 @@ end;
 
 procedure TFMain.TimerComTimer(Sender: TObject);
 var
-    dU: single;
+    dU, cU: single;
     P: Integer;
     s: string;
 begin
@@ -220,20 +258,33 @@ begin
 
     Edit2.Text := StringReplace(Edit2.Text, '.', ',',
       [rfReplaceAll, rfIgnoreCase]);
+    if Edit1.text='' then edit1.text:='2';
 
-    dU := strtofloat(Label1.Caption) - strtofloat(Edit1.Text);
-    StatusBar1.Panels[3].Text := 'dU='+floattostr(dU);
-    fsett.memo1.lines.add(floattostr(dU));
-    if abs(dU) > strtofloat(Edit2.Text) { большой шаг }
+    cU:= strtofloat(Label1.Caption);
+    dU := cU - strtofloat(Edit1.Text);
+    StatusBar1.Panels[3].Text := 'dU=' + floattostr(dU);
+    fsett.memo1.lines.Add(floattostr(dU));
+   {
+    if dU<-1*strtofloat(S3) then
+      begin // напр€жение упало более чем на S3
+            // отмен€ем все действи€ пока не попадем в диапазон S3
+       Exit;// всЄ бросили и вышли
+      end
+     else
+      begin //всЄ нормально, запоминаем и работаем
+       pU:=cU;
+      end;
+    }
+    if abs(dU) >  strtofloat(s1) { большой шаг }
     then
     begin { большой шаг }
         if dU > 0 then { надо уменьшить тек больше зад }
         begin
-            BitBtn5.Click;
+            WriteDown;
         end
         else
         begin { надо увеличить }
-            BitBtn4.Click;
+            WriteUp;
         end;
     end { конец большого шага }
     else { малый шаг или стоп }
@@ -245,24 +296,24 @@ begin
             if dU > 0 then { прибавить шажок }
             begin
                 TimerCom.Enabled := false;
-                Com.WriteStr('1');
+                WriteDown;
                 Sleep(STEP_MS);
-                Com.WriteStr('0');
+                WriteZero;
                 TimerCom.Enabled := true;
             end;
             if dU < 0 then { убавить шажок }
             begin { надо увеличить }
                 TimerCom.Enabled := false;
-                Com.WriteStr('2');
+                WriteUp;
                 Sleep(STEP_MS);
-                Com.WriteStr('0');
+                WriteZero;
                 TimerCom.Enabled := true;
             end;
             Sleep(STOP_MS);
         end
         else { попали в погрешность }
         begin
-            BitBtn6.Click;
+            BitBtn6.Click;  //6
             Com.WriteStr('4');
         end;
     end;
@@ -281,27 +332,27 @@ begin
     Label1.Caption := FormatFloat(FormatU, Roundto(U.Value, RAZU));
     Label2.Caption := FormatFloat(FormatI, Roundto(I.Value, RAZI));
     Label3.Caption := FormatFloat(FormatP, Roundto(P.Value, RAZP));
-    if FSett.Visible then
+    if fsett.Visible then
     begin
-        FSett.Label7.Caption := FormatFloat(FormatU,
+        fsett.Label7.Caption := FormatFloat(FormatU,
           Simpleroundto(U1.Value, RAZU));
-        FSett.Label8.Caption := FormatFloat(FormatU,
+        fsett.Label8.Caption := FormatFloat(FormatU,
           Simpleroundto(U2.Value, RAZU));
-        FSett.Label9.Caption := FormatFloat(FormatU,
+        fsett.Label9.Caption := FormatFloat(FormatU,
           Simpleroundto(U3.Value, RAZU));
 
-        FSett.Label10.Caption := FormatFloat(FormatI,
+        fsett.Label10.Caption := FormatFloat(FormatI,
           Simpleroundto(I1.Value, RAZI));
-        FSett.Label11.Caption := FormatFloat(FormatI,
+        fsett.Label11.Caption := FormatFloat(FormatI,
           Simpleroundto(I2.Value, RAZI));
-        FSett.Label12.Caption := FormatFloat(FormatI,
+        fsett.Label12.Caption := FormatFloat(FormatI,
           Simpleroundto(I3.Value, RAZI));
 
-        FSett.Label13.Caption := FormatFloat(FormatP,
+        fsett.Label13.Caption := FormatFloat(FormatP,
           Simpleroundto(P1.Value, RAZP));
-        FSett.Label14.Caption := FormatFloat(FormatP,
+        fsett.Label14.Caption := FormatFloat(FormatP,
           Simpleroundto(P2.Value, RAZP));
-        FSett.Label15.Caption := FormatFloat(FormatP,
+        fsett.Label15.Caption := FormatFloat(FormatP,
           Simpleroundto(P3.Value, RAZP));
 
     end;
@@ -436,7 +487,7 @@ end;
 
 procedure TFMain.BitBtn1Click(Sender: TObject);
 begin
-    FSett.ShowModal;
+    fsett.ShowModal;
 end;
 
 procedure TFMain.BitBtn2Click(Sender: TObject);
@@ -496,12 +547,15 @@ begin
             Exit;
         end;
     end;
+
     if press = 0 then
     begin
         if act <> 2 then
         begin
-            Com.WriteStr('0');
-            Com.WriteStr('2');
+            WriteZero;
+            WriteUp;
+            BitBtn4.Caption := '<ЅќЋ№Ў≈>';
+            BitBtn4.Font.Color := clRed;
             act := 2;
             StatusBar1.Panels[1].Text := 'Ѕольше';
         end
@@ -511,9 +565,12 @@ begin
     end
     else
     begin
-        Com.WriteStr('0');
+        WriteZero;
+        BitBtn4.Caption := 'ЅќЋ№Ў≈';
+        BitBtn4.Font.Color := clBlue;
         StatusBar1.Panels[1].Text := '—“ќѕ';
         press := 0;
+        act:=0;
     end;
 end;
 
@@ -533,8 +590,10 @@ begin
     begin
         if act <> 1 then
         begin
-            Com.WriteStr('0');
-            Com.WriteStr('1');
+            WriteZero;
+            WriteDown;
+            BitBtn5.Caption := '<ћ≈Ќ№Ў≈>';
+            BitBtn5.Font.Color := clRed;
             act := 1;
             StatusBar1.Panels[1].Text := 'ћеньше';
         end
@@ -544,9 +603,12 @@ begin
     end
     else
     begin
-        Com.WriteStr('0');
+        WriteZero;
+        BitBtn5.Caption := 'ћ≈Ќ№Ў≈';
+        BitBtn5.Font.Color := clBlue;
         StatusBar1.Panels[1].Text := '—“ќѕ';
         press := 0;
+        act:=0;
     end;
 end;
 
@@ -555,6 +617,10 @@ begin
     Com.WriteStr('0');
     act := 0;
     press := 0;
+    BitBtn5.Caption := 'ћ≈Ќ№Ў≈';
+    BitBtn5.Font.Color := clBlue;
+    BitBtn4.Caption := 'ЅќЋ№Ў≈';
+    BitBtn4.Font.Color := clBlue;
     StatusBar1.Panels[1].Text := '—“ќѕ';
 end;
 
@@ -573,7 +639,7 @@ begin
     end;
     CheckBox1.Caption := '—бор данных';
     TimerCom.Enabled := true;
-    //StatusBar1.Panels[2].Text := inttostr(STEP_MS) + '/' + inttostr(STOP_MS);
+    // StatusBar1.Panels[2].Text := inttostr(STEP_MS) + '/' + inttostr(STOP_MS);
 end;
 
 procedure TFMain.BitBtn8Click(Sender: TObject);
@@ -701,7 +767,8 @@ procedure TFMain.set_params;
 begin
     SetIni('LEFT', inttostr(FMain.Left));
     SetIni('TOP', inttostr(FMain.Top));
-    SetIni('COMPORT', ComComboBox1.Text);
+    SetIni('COMPORT', Com.Port);
+
     SetIni('LAST', Edit1.Text);
     SetIni('dU', Edit2.Text);
     SetIni('S1', S1);
@@ -732,6 +799,7 @@ begin
     FMain.Left := Strtoint(GetIni('LEFT'));
     FMain.Top := Strtoint(GetIni('TOP'));
     ComComboBox1.Text := GetIni('COMPORT');
+    Com.Port := ComComboBox1.Text;
     Edit1.Text := GetIni('LAST');
     Button1.Caption := GetIni('B1');
     Button2.Caption := GetIni('B2');

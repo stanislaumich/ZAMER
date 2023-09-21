@@ -128,6 +128,13 @@ object FMain: TFMain
       Height = 25
       Caption = #1042
     end
+    object Label12: TLabel
+      Left = 231
+      Top = 8
+      Width = 87
+      Height = 25
+      Caption = #1044#1086#1087#1091#1089#1082':'
+    end
     object CheckBox1: TCheckBox
       Left = 10
       Top = 6
@@ -146,30 +153,12 @@ object FMain: TFMain
       TabOrder = 1
       OnClick = Button7Click
     end
-    object RadioButton1: TRadioButton
-      Left = 216
-      Top = 12
-      Width = 49
-      Height = 17
-      Caption = 'S1'
-      Checked = True
-      TabOrder = 2
-      TabStop = True
-    end
-    object RadioButton2: TRadioButton
-      Left = 271
-      Top = 12
-      Width = 50
-      Height = 17
-      Caption = 'S3'
-      TabOrder = 3
-    end
     object Edit2: TEdit
       Left = 327
       Top = 4
       Width = 58
       Height = 33
-      TabOrder = 4
+      TabOrder = 2
       Text = '1'
     end
     object Button8: TButton
@@ -178,7 +167,7 @@ object FMain: TFMain
       Width = 71
       Height = 27
       Caption = #1055#1059#1057#1050
-      TabOrder = 5
+      TabOrder = 3
       OnClick = Button8Click
     end
     object ComComboBox1: TComboBox
@@ -186,7 +175,7 @@ object FMain: TFMain
       Top = 4
       Width = 89
       Height = 33
-      TabOrder = 6
+      TabOrder = 4
     end
     object Panel4: TPanel
       Left = 595
@@ -195,7 +184,7 @@ object FMain: TFMain
       Height = 33
       Color = clRed
       ParentBackground = False
-      TabOrder = 7
+      TabOrder = 5
     end
   end
   object Panel3: TPanel
