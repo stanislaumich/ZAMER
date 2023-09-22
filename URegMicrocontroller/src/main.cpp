@@ -9,8 +9,8 @@
     5 - ������� ���� ����, 6 -�������� ��������� �����������
  
 */
-#define pinup 2
-#define pindown 3
+#define pinup 3
+#define pindown 2
 #define speed 115200
 #define pinbeep 9
 

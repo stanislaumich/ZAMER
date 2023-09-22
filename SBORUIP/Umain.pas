@@ -286,12 +286,12 @@ function getsred(s:real):real;
   getsred:=res;
  end;
 
- procedure initsred();
+ procedure initsred(f:real);
   var
    i:integer;
   begin
    NSred:=1;
-   for I := 1 to maxsred do Asred[i]:=0;
+   for I := 1 to maxsred do Asred[i]:=f;
   end;
 
 
@@ -321,6 +321,8 @@ begin
 
   cU := strtofloat(Label1.Caption);
   dU := cU - strtofloat(Edit1.Text);
+   if dU<strtofloat(edit2.text) then initsred(du);
+
   dU:=getsred(dU);
   StatusBar1.Panels[3].Text := 'dU=' + floattostr(dU);
   fsett.memo1.lines.Add(floattostr(dU));
