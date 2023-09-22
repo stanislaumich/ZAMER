@@ -127,7 +127,7 @@ type
         procedure FormReport;
         Procedure AddReportString(fn: string; s1, s2, s3: string);
         procedure SendCommand(Sender: TObject; b: Boolean; s: string);
-        procedure SendData(Sender: TObject; s: string);
+        procedure SendData(Sender: TObject; s: ansistring);
     end;
 
 var
@@ -153,7 +153,7 @@ uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH, UGRAPHN;
 
 /// /////////////////////////////////////////////////////////////////////////////
 
-procedure TFZamerV2.SendData(Sender: TObject; s: string);
+procedure TFZamerV2.SendData(Sender: TObject; s: ansistring);
 var
     aCopyData: TCopyDataStruct;
     hTargetWnd: HWND;
@@ -171,11 +171,13 @@ begin
     /// ////////////////////////////////////////////////
     // z1:= PWideChar('TST');
     ts := s;
+    //ShowMessage(s);
     with aCopyData do
     begin
         dwData := 0;
         pmes := pchar(ts);
-        cbData := StrLen(pmes) + 2;
+        //cbData := StrLen(pmes) + 2;
+        cbData := StrLen(pmes) + 8;
         lpData := pmes;
     end;
 
@@ -184,9 +186,10 @@ begin
         SendMessage(hTargetWnd, WM_COPYDATA, Longint(Handle),
           Longint(@aCopyData))
     else
-        ShowMessage('Не обнаружена программа сбора показаний ELSPEC');
+        ShowMessage('Не обнаружена программа сбора показаний UIP');
     /// ///////////////////////////////////////////////////
-    ss := s;
+
+   ss := ts;//s[1];
     with aCopyData do
     begin
         dwData := 0;
@@ -200,6 +203,7 @@ begin
           Longint(@aCopyData))
     else
         ShowMessage('Не обнаружена программа сбора показаний Т45');
+
 end;
 
 procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean; s: string);

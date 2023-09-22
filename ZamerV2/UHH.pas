@@ -103,10 +103,10 @@ type
     procedure StringGrid1Click(Sender: TObject);
 
     procedure Preparesg2(t: Integer);
-    procedure Edit6Change(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure TitTimer(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -140,34 +140,9 @@ end;
 
 procedure TFormHH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2, b, FSett.Edit6.text);
+  FZamerv2.SendCommand(FZamerv2, b, Label26.Caption);
 end;
 
-procedure TFormHH.Edit6Change(Sender: TObject);
-begin
-
-end;
-
-{
-  begin
-  if b then
-  begin
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('insert into command (nomer, command) values(' +
-  Quotedstr(Nomer) + ' , 11)');
-  QTemp.ExecSQL;
-  end
-  else
-  begin
-  QTemp.Close;
-  QTemp.SQL.Clear;
-  QTemp.SQL.Add('insert into command (nomer, command) values(' +
-  Quotedstr(Nomer) + ' , 10)');
-  QTemp.ExecSQL;
-  end;
-  end;
-}
 procedure TFormHH.loadgrids;
 var
   i, j, k: Integer;
@@ -288,23 +263,6 @@ begin
   end;
 end;
 
-{ var
-  s: string;
-  begin
-  // if not (gdFixed in State) then
-  // if arow=0 then canvas.Brush.Color:=clred;
-
-  with StringGrid2 do
-  begin
-  if ARow = 0 then
-  Canvas.Brush.Color := FSett.Panel1.Color;
-  Canvas.Brush.Style := bsSolid;
-  s := Cells[ACol, ARow];
-  Canvas.FillRect(Rect);
-  Canvas.TextRect(Rect, s, [tfWordBreak]);
-  end;
-  end;
-}
 procedure TFormHH.Action1Execute(Sender: TObject);
 begin
   BitStart.Click;
@@ -330,6 +288,23 @@ begin
       end;
     Closefile(f);
   end;
+end;
+
+procedure TFormHH.BitBtn2Click(Sender: TObject);
+var
+ s:ansistring;
+ t,t1,t2,t3, tt:integer;
+begin
+s:= LAbel26.Caption;
+tt:=strtoint(s);
+t3:=tt mod 10;
+t1:=tt div 100;
+tt:=tt div 10;
+t2:=tt mod 10;
+s:='2'+Inttostr(t1*100+t2*10+t3);
+//Showmessage(s);
+//s:='0198';
+FZamerV2.SendData(FormHH, s);
 end;
 
 procedure TFormHH.BitBtn3Click(Sender: TObject);

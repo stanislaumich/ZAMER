@@ -158,7 +158,7 @@ void __fastcall TForm1::MyData(TMessage &Message) {
 		Panel3->Color = clRed;
 		Panel3->Caption = "ÇÀÏÈÑÜ";
 	}
-	if (request[0] == '0') {
+	else /*if (request[0] == '0')*/ {
 		wr = 0; // do not write
 		EAvF->Text = oldA;
 		BDisconnectClick(Form1);

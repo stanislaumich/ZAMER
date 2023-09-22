@@ -212,16 +212,23 @@ end;
 procedure TFMain.GetData(var MessageData: TWMCopyData);
 var
   s: string;
+   t, t1,t2,t3:integer;
+
 begin
   StrLCopy(sText, MessageData.CopyDataStruct.lpData,
     MessageData.CopyDataStruct.cbData);
   s := sText;
   if s[1] = '1' then
   begin
-    {
-      s[2]s[3]s[4] = U
-      надо получить напряжение11111
-    }
+      Com.Open;
+      t1:=strtoint(s[2]);
+      t2:=strtoint(s[3]);
+      t3:=strtoint(s[4]);
+      t:=t1*100+t2*10+t3;
+      //showmessage(inttostr(t));
+      Edit1.Text:=inttostr(t);
+
+
     CheckBox1.Checked := true;
     CheckBox1.Caption := 'Сбор данных';
     Panel2.Color := clGreen;
@@ -232,6 +239,12 @@ begin
   end
   else
   begin
+      t1:=strtoint(s[2]);
+      t2:=strtoint(s[3]);
+      t3:=strtoint(s[4]);
+      t:=t1*100+t2*10+t3;
+      //showmessage(inttostr(t));
+      Edit1.Text:=inttostr(t);
     CheckBox1.Checked := false;
     CheckBox1.Caption := 'Остановлен';
     Panel2.Color := clbtnface;
