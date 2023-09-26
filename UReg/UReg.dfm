@@ -621,7 +621,7 @@ object FormReg: TFormReg
   end
   object Timer3: TTimer
     Enabled = False
-    Left = 548
+    Left = 552
     Top = 140
   end
   object Timer4: TTimer

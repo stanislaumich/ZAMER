@@ -169,7 +169,7 @@ begin
       Quotedstr('T45FormHeader'));
     z2 := PWideChar(QTemp.FieldByName('value').Asstring);
     /// ////////////////////////////////////////////////
-    // z1:= PWideChar('TST');
+
     ts := s;
     //ShowMessage(s);
     with aCopyData do
@@ -218,7 +218,7 @@ begin
     end
     else
     begin
-        SendData(FZamerV2, '0' + s);
+        SendData(FZamerV2, '2' + s);
     end;
 
 end;

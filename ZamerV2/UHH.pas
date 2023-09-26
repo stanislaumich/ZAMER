@@ -175,13 +175,7 @@ procedure TFormHH.savegrids;
 var
   i, j: Integer;
 begin
-  { SELECT
-    NAME, FORM, IROW,
-    ICOL, VAL
-    FROM ZAMER.ZGRIDS; }
-  // QTEmp.Close;
-  // QTemp.SQL.Clear;
-  // QTemp.SQl.Add('delete from')
+
 
 end;
 
@@ -219,23 +213,7 @@ begin
   end;
 end;
 
-{ var
-  s: string;
-  begin
-  // if not (gdFixed in State) then
-  // if arow=0 then canvas.Brush.Color:=clred;
 
-  with StringGrid1 do
-  begin
-  if ARow = 0 then
-  Canvas.Brush.Color := FSett.Panel1.Color;
-  Canvas.Brush.Style := bsSolid;
-  s := Cells[ACol, ARow];
-  Canvas.FillRect(Rect);
-  Canvas.TextRect(Rect, s, [tfWordBreak]);
-  end;
-  end;
-}
 procedure TFormHH.StringGrid2Click(Sender: TObject);
 begin
   if StringGrid2.row = StringGrid2.RowCount - 1 then
@@ -304,7 +282,7 @@ t2:=tt mod 10;
 s:='2'+Inttostr(t1*100+t2*10+t3);
 //Showmessage(s);
 //s:='0198';
-FZamerV2.SendData(FormHH, s);
+Command(false);
 end;
 
 procedure TFormHH.BitBtn3Click(Sender: TObject);

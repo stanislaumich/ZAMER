@@ -147,6 +147,7 @@ type
     procedure WriteUp;
     procedure WriteDown;
     procedure WriteZero;
+    procedure Log(s:string);
   end;
 
 
@@ -181,9 +182,15 @@ implementation
 
 uses USett;
 
+procedure TFMain.Log(s:string);
+ begin
+  FSett.Memo1.Lines.Add(s);
+ end;
+
 procedure TFMain.WriteUp;
 begin
   Com.WriteStr('2');
+  FSett.Memo1.Lines.Add('вкл ЅќЋ№Ў≈ ');
   BitBtn4.Caption := '<ЅќЋ№Ў≈>';
   BitBtn4.Font.Color := clRed;
   BitBtn5.Caption := 'ћ≈Ќ№Ў≈';
@@ -193,6 +200,7 @@ end;
 procedure TFMain.WriteDown;
 begin
   Com.WriteStr('1');
+  FSett.Memo1.Lines.Add('вкл ћ≈Ќ№Ў≈ ');
   BitBtn5.Caption := '<ћ≈Ќ№Ў≈>';
   BitBtn5.Font.Color := clRed;
   BitBtn4.Caption := 'ЅќЋ№Ў≈';
@@ -202,6 +210,7 @@ end;
 procedure TFMain.WriteZero;
 begin
   Com.WriteStr('0');
+  FSett.Memo1.Lines.Add('вкл —“ќѕ ');
   BitBtn5.Caption := 'ћ≈Ќ№Ў≈';
   BitBtn5.Font.Color := clBlue;
   BitBtn4.Caption := 'ЅќЋ№Ў≈';
@@ -233,11 +242,11 @@ begin
     CheckBox1.Caption := '—бор данных';
     Panel2.Color := clGreen;
     // ***********************
-    // BitBtn7.Click;
+     BitBtn7.Click;
     // ***********************
     MessageData.Result := 1;
-  end
-  else
+  end;
+  if s[1] = '2' then
   begin
       t1:=strtoint(s[2]);
       t2:=strtoint(s[3]);
@@ -249,7 +258,7 @@ begin
     CheckBox1.Caption := 'ќстановлен';
     Panel2.Color := clbtnface;
     // ***********************
-    // BitBtn8.Click;
+     BitBtn7.Click;
     // ***********************
     MessageData.Result := 1;
   end;
@@ -306,6 +315,12 @@ begin
   // Asred:array[1..Maxsred] of real;// сам массив
   // Rsred:real;// вычисленное среднее dU
   // *********/
+  if strtofloat(Label1.Caption)<10 then
+   begin
+    WriteZero;
+    Exit;
+   end;
+
   if not Com.Connected then
   begin
     TimerCom.Enabled := false;
@@ -320,13 +335,14 @@ begin
     Edit1.Text := '2';
 
   cU := strtofloat(Label1.Caption);
+
   dU := cU - strtofloat(Edit1.Text);
    if dU<strtofloat(edit2.text) then initsred(du);
 
   dU:=getsred(dU);
   StatusBar1.Panels[3].Text := 'dU=' + floattostr(dU);
   fsett.memo1.lines.Add(floattostr(dU));
-  {
+
     if dU<-1*strtofloat(S3) then
     begin // напр€жение упало более чем на S3
     // отмен€ем все действи€ пока не попадем в диапазон S3
@@ -336,7 +352,7 @@ begin
     begin //всЄ нормально, запоминаем и работаем
     pU:=cU;
     end;
-  }
+
   if abs(dU) > strtofloat(S1) { большой шаг }
   then
   begin { большой шаг }
@@ -390,7 +406,6 @@ end;
 
 procedure TFMain.TUpdTimer(Sender: TObject);
 begin
-
   Label1.Caption := FormatFloat(FormatU, Roundto(U.Value, RAZU));
   Label2.Caption := FormatFloat(FormatI, Roundto(I.Value, RAZI));
   Label3.Caption := FormatFloat(FormatP, Roundto(P.Value, RAZP));
@@ -835,7 +850,7 @@ begin
   SetIni('FACTOR',inttostr(Maxsred));
   SetIni('STEP_MS', inttostr(STEP_MS));
   SetIni('STOP_MS', inttostr(STOP_MS));
-
+  SetIni('COMSPEED',BaudRateToStr(Com.BaudRate));
   SetIni('AUTO_REG_VOLT', inttostr(Auto_start_reg_after_volt));
 
 end;
@@ -858,6 +873,7 @@ begin
   FMain.Left := Strtoint(GetIni('LEFT'));
   FMain.Top := Strtoint(GetIni('TOP'));
   ComComboBox1.Text := GetIni('COMPORT');
+  Com.BaudRate:=StrtoBaudRate(GetIni('COMSPEED'));
   Com.Port := ComComboBox1.Text;
   Edit1.Text := GetIni('LAST');
   Button1.Caption := GetIni('B1');
