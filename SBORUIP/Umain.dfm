@@ -415,6 +415,8 @@ object FMain: TFMain
       ParentFont = False
       TabOrder = 2
       Text = '380'
+      OnChange = Edit1Change
+      OnKeyPress = Edit1KeyPress
     end
     object Button1: TButton
       Left = 217

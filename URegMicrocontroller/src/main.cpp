@@ -1,14 +1,9 @@
 #include <Arduino.h>
-#define F_CPU 16000000UL  // ��������� ������� � ������
+#define F_CPU 16000000UL  
 
 
 #include <Arduino.h>
-// ����� 20 ����, 20 ���� ������ ����!!!
-/* �������� ������
-0 - ��� ���������� - 1 - ����������, 2-2 ���������, 3 - �������� ��� ����, 4 - ������� ���� �����, 
-    5 - ������� ���� ����, 6 -�������� ��������� �����������
- 
-*/
+
 #define pinup 3
 #define pindown 2
 #define speed 115200
@@ -67,7 +62,6 @@ void setup() {
 }
 
 void loop() {
-
 if (Serial.available()) {
  inChar = Serial.read();
  Serial.write(inChar);
