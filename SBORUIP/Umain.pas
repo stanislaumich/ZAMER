@@ -886,7 +886,6 @@ begin
     SetIni('LEFT', inttostr(FMain.Left));
     SetIni('TOP', inttostr(FMain.Top));
     SetIni('COMPORT', Com.Port);
-
     SetIni('LAST', Edit1.Text);
     SetIni('dU', Edit2.Text);
     SetIni('S1', S1);
@@ -906,9 +905,7 @@ begin
     KRModbusClient1.Active := false;
     KRModbusMaster1.Active := false;
     KRTCPConnector1.Active := false;
-
     set_params;
-
     ConLite.Connected := false;
 end;
 
@@ -926,7 +923,6 @@ begin
     Button4.Caption := GetIni('B4');
     Button5.Caption := GetIni('B5');
     Button6.Caption := GetIni('B6');
-
     Edit2.Text := GetIni('dU');
     S1 := GetIni('S1');
     S3 := GetIni('S3');
