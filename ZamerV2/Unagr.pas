@@ -231,7 +231,6 @@ end;
 
 procedure TFNagr.BitBtn1Click(Sender: TObject);
 begin
-
   enableclose := false;
   QTemp.Close;
   QTemp.SQL.Clear;
@@ -330,7 +329,7 @@ end;
 
 procedure TFNagr.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2, b, Fsett.Edit6.Text);
+  FZamerv2.SendCommand(FZamerv2, b, Label19.Caption{Fsett.Edit6.Text});
 end;
 
 {

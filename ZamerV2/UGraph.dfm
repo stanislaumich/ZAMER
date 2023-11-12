@@ -125,63 +125,6 @@ object Fgraph: TFgraph
     Height = 13
     Caption = 'Label9'
   end
-  object Chart1: TChart
-    Left = 0
-    Top = 0
-    Width = 1076
-    Height = 557
-    Legend.Alignment = laLeft
-    Title.Font.Height = -41
-    Title.Text.Strings = (
-      #1047#1072#1084#1077#1088' '#1084#1080#1085#1080#1084#1072#1083#1100#1085#1086#1075#1086' '#1084#1086#1084#1077#1085#1090#1072)
-    OnClickSeries = Chart1ClickSeries
-    View3D = False
-    Align = alTop
-    TabOrder = 0
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    OnMouseMove = Chart1MouseMove
-    DefaultCanvas = 'TGDIPlusCanvas'
-    PrintMargins = (
-      15
-      24
-      15
-      24)
-    ColorPaletteIndex = 13
-    object Series1: TFastLineSeries
-      Selected.Hover.Visible = True
-      Title = #1052#1086#1084#1077#1085#1090
-      LinePen.Color = 10708548
-      LinePen.Width = 5
-      TreatNulls = tnDontPaint
-      XValues.Name = 'X'
-      XValues.Order = loAscending
-      YValues.Name = 'Y'
-      YValues.Order = loNone
-    end
-    object Series2: TFastLineSeries
-      Selected.Hover.Visible = True
-      Title = #1054#1073#1086#1088#1086#1090#1099
-      LinePen.Color = 3513587
-      LinePen.Width = 5
-      TreatNulls = tnDontPaint
-      XValues.Name = 'X'
-      XValues.Order = loAscending
-      YValues.Name = 'Y'
-      YValues.Order = loNone
-    end
-    object Series3: TPointSeries
-      Legend.Text = #1052#1040#1056#1050#1045#1056
-      LegendTitle = #1052#1040#1056#1050#1045#1056
-      ClickableLine = False
-      Pointer.Emboss.Color = clRed
-      Pointer.InflateMargins = True
-      Pointer.Style = psRectangle
-      XValues.Name = 'X'
-      XValues.Order = loAscending
-      YValues.Name = 'Y'
-      YValues.Order = loNone
-    end
-  end
   object Button4: TButton
     Left = 993
     Top = 563
@@ -189,7 +132,7 @@ object Fgraph: TFgraph
     Height = 31
     Anchors = [akLeft, akBottom]
     Caption = #1055#1086#1089#1090#1088#1086#1080#1090#1100
-    TabOrder = 1
+    TabOrder = 0
     OnClick = Button4Click
   end
   object BitBtn1: TBitBtn
@@ -262,7 +205,7 @@ object Fgraph: TFgraph
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     OnClick = BitBtn1Click
   end
   object Edit1: TEdit
@@ -271,7 +214,7 @@ object Fgraph: TFgraph
     Width = 30
     Height = 21
     Anchors = [akRight, akBottom]
-    TabOrder = 3
+    TabOrder = 2
     Text = '6'
   end
   object UpDown1: TUpDown
@@ -291,7 +234,7 @@ object Fgraph: TFgraph
     Width = 33
     Height = 21
     Anchors = [akRight, akBottom]
-    TabOrder = 5
+    TabOrder = 3
     Text = '10'
   end
   object QTemp: TFDQuery
