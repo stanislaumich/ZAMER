@@ -424,7 +424,7 @@ end;
 
 procedure TFRH.command(b: Boolean);
 begin
-  FZamerV2.SendCommand(FZamerV2, b, Fsett.Edit6.Text);
+  FZamerV2.SendCommand(FZamerV2, b, Label19.Caption{Fsett.Edit6.Text});
 end;
 
 procedure TFRH.Edit3Change(Sender: TObject);

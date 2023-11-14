@@ -98,6 +98,7 @@ type
         BitBtn8: TBitBtn;
         Label10: TLabel;
         Label12: TLabel;
+    ComPort1: TComPort;
 
         procedure BitBtn2Click(Sender: TObject);
         procedure BitBtn1Click(Sender: TObject);

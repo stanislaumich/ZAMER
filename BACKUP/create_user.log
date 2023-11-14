@@ -5,8 +5,8 @@ ORACLE instance started.
 
 Total System Global Area 1071333376 bytes                                       
 Fixed Size                  1388352 bytes                                       
-Variable Size             612368576 bytes                                       
-Database Buffers          452984832 bytes                                       
+Variable Size             645923008 bytes                                       
+Database Buffers          419430400 bytes                                       
 Redo Buffers                4591616 bytes                                       
 Database mounted.
 Database opened.
@@ -20,16 +20,13 @@ ORACLE instance started.
 
 Total System Global Area 1071333376 bytes                                       
 Fixed Size                  1388352 bytes                                       
-Variable Size             612368576 bytes                                       
-Database Buffers          452984832 bytes                                       
+Variable Size             645923008 bytes                                       
+Database Buffers          419430400 bytes                                       
 Redo Buffers                4591616 bytes                                       
 Database mounted.
 Database opened.
-drop user zamer cascade
-          *
-ERROR at line 1:
-ORA-01918: user 'ZAMER' does not exist 
 
+User dropped.
 
 
 User created.
