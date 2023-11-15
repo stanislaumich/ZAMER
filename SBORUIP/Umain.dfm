@@ -967,6 +967,26 @@ object FMain: TFMain
     Left = 176
     Top = 157
   end
+  object Com: TComPort
+    BaudRate = br115200
+    Port = 'COM1'
+    Parity.Bits = prNone
+    StopBits = sbOneStopBit
+    DataBits = dbEight
+    Events = [evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR, evError, evRLSD, evRx80Full]
+    FlowControl.OutCTSFlow = False
+    FlowControl.OutDSRFlow = False
+    FlowControl.ControlDTR = dtrDisable
+    FlowControl.ControlRTS = rtsDisable
+    FlowControl.XonXoffOut = False
+    FlowControl.XonXoffIn = False
+    StoredProps = [spBasic]
+    TriggersOnRxChar = True
+    OnAfterOpen = ComAfterOpen
+    OnAfterClose = ComAfterClose
+    Left = 520
+    Top = 318
+  end
   object TimerCom: TTimer
     Enabled = False
     Interval = 200
@@ -982,23 +1002,5 @@ object FMain: TFMain
       ShortCut = 123
       OnExecute = Action3Execute
     end
-  end
-  object ComPort1: TComPort
-    BaudRate = br9600
-    Port = 'COM1'
-    Parity.Bits = prNone
-    StopBits = sbOneStopBit
-    DataBits = dbEight
-    Events = [evRxChar, evTxEmpty, evRxFlag, evRing, evBreak, evCTS, evDSR, evError, evRLSD, evRx80Full]
-    FlowControl.OutCTSFlow = False
-    FlowControl.OutDSRFlow = False
-    FlowControl.ControlDTR = dtrDisable
-    FlowControl.ControlRTS = rtsDisable
-    FlowControl.XonXoffOut = False
-    FlowControl.XonXoffIn = False
-    StoredProps = [spBasic]
-    TriggersOnRxChar = True
-    Left = 176
-    Top = 42
   end
 end
