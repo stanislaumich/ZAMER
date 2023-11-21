@@ -116,7 +116,7 @@ object FMH: TFMH
     end
     object Button32: TButton
       Left = 442
-      Top = 64
+      Top = 62
       Width = 130
       Height = 42
       Anchors = [akTop, akRight]

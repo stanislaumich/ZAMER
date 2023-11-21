@@ -203,7 +203,7 @@ begin
     ('delete from zamertmp where rot = 0 and torq = 0 and power = 0');
   QTemp.ExecSQL;
   QTemp.Close;
-  QTemp.Close;
+
   QTemp.Open('SELECT rot n, torq m, (CAST(ts as date) - date ' +
     Quotedstr('1970-01-01') + ') * 86400 + to_number(TO_CHAR(ts,' +
     Quotedstr(fstr) + ')) - to_number(to_char(ts,' + Quotedstr('SS') + ')) t ' +
@@ -613,7 +613,7 @@ end;
 
 procedure TFMH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2, b, label5.caption{Fsett.Edit7.Text});
+  FZamerv2.SendCommand(FZamerv2, b, label33.Caption{Fsett.Edit7.Text});
 end;
 
 procedure TFMH.downstartExecute(Sender: TObject);
