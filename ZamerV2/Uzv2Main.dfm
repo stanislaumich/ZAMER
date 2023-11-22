@@ -1040,6 +1040,7 @@ object FZamerV2: TFZamerV2
         Width = 55
         Height = 19
         Caption = 'Label21'
+        Visible = False
       end
       object DateTimePicker1: TDateTimePicker
         Left = 59

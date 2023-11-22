@@ -188,7 +188,7 @@ begin
     /// ///////////////////////////////////////////////////
 
    ss := s2;//ts;
-    ShowMessage(ss);
+    //ShowMessage(ss);
     with aCopyData do
     begin
         dwData := 0;
