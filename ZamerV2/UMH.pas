@@ -613,7 +613,7 @@ end;
 
 procedure TFMH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2, b, label33.Caption{Fsett.Edit7.Text});
+  FZamerv2.SendCommand(FZamerv2, b, label33.Caption, Fsett.Edit7.Text);
 end;
 
 procedure TFMH.downstartExecute(Sender: TObject);

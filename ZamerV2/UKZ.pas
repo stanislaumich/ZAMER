@@ -91,7 +91,7 @@ Uses uzv2Main, UAuto, USett;
 
 procedure TFKZ.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2, b, Fsett.Edit6.Text);
+  FZamerv2.SendCommand(FZamerv2, b, Label13.Caption, Fsett.Edit6.Text);
 end;
 
 procedure TFKZ.Edit2Change(Sender: TObject);

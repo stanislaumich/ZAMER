@@ -329,7 +329,7 @@ end;
 
 procedure TFNagr.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2, b, Label19.Caption{Fsett.Edit6.Text});
+  FZamerv2.SendCommand(FZamerv2, b, Label19.Caption, Fsett.Edit6.Text);
 end;
 
 {

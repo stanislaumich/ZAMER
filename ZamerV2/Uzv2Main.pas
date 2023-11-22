@@ -87,10 +87,8 @@ type
         Label10: TLabel;
         BitBtn2: TBitBtn;
         QUpdDvig: TFDQuery;
-        Button1: TButton;
-        Button2: TButton;
-        Button3: TButton;
         Panel3: TPanel;
+    Label21: TLabel;
         procedure FormCreate(Sender: TObject);
         procedure ExitBtnClick(Sender: TObject);
         procedure HideBtnClick(Sender: TObject);
@@ -126,8 +124,8 @@ type
         procedure enableispyt(f: Boolean);
         procedure FormReport;
         Procedure AddReportString(fn: string; s1, s2, s3: string);
-        procedure SendCommand(Sender: TObject; b: Boolean; s: string);
-        procedure SendData(Sender: TObject; s: ansistring);
+        procedure SendCommand(Sender: TObject; b: Boolean; s: string; s2: string);
+        procedure SendData(Sender: TObject; s: ansistring; s2:ansistring);
     end;
 
 var
@@ -153,7 +151,7 @@ uses UARC, UHH, USopr, UKZ, Unagr, URH, URepP, UProch, UMH, UGRAPHN;
 
 /// /////////////////////////////////////////////////////////////////////////////
 
-procedure TFZamerV2.SendData(Sender: TObject; s: ansistring);
+procedure TFZamerV2.SendData(Sender: TObject; s: ansistring; s2:ansistring);
 var
     aCopyData: TCopyDataStruct;
     hTargetWnd: HWND;
@@ -170,7 +168,7 @@ begin
     z2 := PWideChar(QTemp.FieldByName('value').Asstring);
     /// ////////////////////////////////////////////////
 
-    ts := s;
+    ts := s2[1]+s;
     //ShowMessage(s);
     with aCopyData do
     begin
@@ -189,7 +187,8 @@ begin
         ShowMessage('Не обнаружена программа сбора показаний UIP');
     /// ///////////////////////////////////////////////////
 
-   ss := s[1]+'010'+#0;//ts;
+   ss := s2;//ts;
+    ShowMessage(ss);
     with aCopyData do
     begin
         dwData := 0;
@@ -206,19 +205,19 @@ begin
 
 end;
 
-procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean; s: string);
+procedure TFZamerV2.SendCommand(Sender: TObject; b: Boolean; s: string; s2: string);
 
 begin
 
-    while length(s) < 3 do
-        s := '0' + s;
+    while length(s2) < 3 do
+        s2 := '0' + s2;
     if b then
     begin
-        SendData(FZamerV2, '1' + s);
+        SendData(FZamerV2, s,'1' + s2);
     end
     else
     begin
-        SendData(FZamerV2, '2' + s);
+        SendData(FZamerV2, s,'2' + s2);
     end;
 
 end;
@@ -1581,7 +1580,7 @@ end;
 
 procedure TFZamerV2.Button2Click(Sender: TObject);
 begin
-    SendCommand(FZamerV2, false, FSett.Edit7.Text);
+    //SendCommand(FZamerV2, false, FSett.Edit7.Text);
 end;
 
 procedure TFZamerV2.Button3Click(Sender: TObject);
@@ -1589,7 +1588,7 @@ var
     s: string;
 begin
     s := '1 234';
-    SendData(FZamerV2, s);
+    //SendData(FZamerV2, s);
 end;
 
 procedure TFZamerV2.FormCloseQuery(Sender: TObject; var CanClose: Boolean);

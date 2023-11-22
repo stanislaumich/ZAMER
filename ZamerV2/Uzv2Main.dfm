@@ -1034,6 +1034,13 @@ object FZamerV2: TFZamerV2
         Height = 19
         Caption = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072', '#1057':'
       end
+      object Label21: TLabel
+        Left = 216
+        Top = 440
+        Width = 55
+        Height = 19
+        Caption = 'Label21'
+      end
       object DateTimePicker1: TDateTimePicker
         Left = 59
         Top = 22
@@ -1470,36 +1477,6 @@ object FZamerV2: TFZamerV2
         TabOrder = 21
         OnClick = BitBtn2Click
       end
-      object Button1: TButton
-        Left = 228
-        Top = 439
-        Width = 21
-        Height = 18
-        Caption = 'Button1'
-        TabOrder = 22
-        Visible = False
-        OnClick = Button1Click
-      end
-      object Button2: TButton
-        Left = 255
-        Top = 439
-        Width = 21
-        Height = 19
-        Caption = 'Button2'
-        TabOrder = 23
-        Visible = False
-        OnClick = Button2Click
-      end
-      object Button3: TButton
-        Left = 284
-        Top = 439
-        Width = 17
-        Height = 19
-        Caption = 'Button3'
-        TabOrder = 24
-        Visible = False
-        OnClick = Button3Click
-      end
       object Panel3: TPanel
         Left = 4
         Top = 232
@@ -1507,7 +1484,7 @@ object FZamerV2: TFZamerV2
         Height = 17
         Color = clFuchsia
         ParentBackground = False
-        TabOrder = 25
+        TabOrder = 22
       end
     end
   end

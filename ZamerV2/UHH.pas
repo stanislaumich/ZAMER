@@ -140,7 +140,7 @@ end;
 
 procedure TFormHH.command(b: Boolean);
 begin
-  FZamerv2.SendCommand(FZamerv2, b, Label26.Caption);
+  FZamerv2.SendCommand(FZamerv2, b, Label26.Caption, Fsett.Edit6.Text);
 end;
 
 procedure TFormHH.loadgrids;
