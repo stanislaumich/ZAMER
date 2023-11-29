@@ -264,7 +264,7 @@ begin
         CheckBox1.Caption := 'Остановлен';
         Panel2.Color := clbtnface;
         // ***********************
-        if t = 999 then BitBtn7.Click;
+        BitBtn7.Click;
         // ***********************
         MessageData.Result := 1;
     end;
