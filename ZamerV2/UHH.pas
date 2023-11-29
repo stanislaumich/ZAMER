@@ -139,8 +139,12 @@ begin
 end;
 
 procedure TFormHH.command(b: Boolean);
+var s:string;
 begin
-  FZamerv2.SendCommand(FZamerv2, b, Label26.Caption, Fsett.Edit6.Text);
+  s:= Label26.Caption;
+  Label26.Caption:='0';
+  FZamerv2.SendCommand(FZamerv2, b, Label26.Caption , Fsett.Edit6.Text);
+  Label26.Caption:=s;
 end;
 
 procedure TFormHH.loadgrids;
