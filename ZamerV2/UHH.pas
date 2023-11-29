@@ -114,6 +114,7 @@ type
     procedure loadgrids;
     procedure savegrids;
     procedure command(b: Boolean);
+    procedure commandfp(b: Boolean);
     procedure setispyt(t: Integer);
   end;
 
@@ -138,15 +139,22 @@ begin
   tipispyt := t;
 end;
 
-procedure TFormHH.command(b: Boolean);
+procedure TFormHH.commandfp(b: Boolean);
 var s:string;
 begin
   s:= Label26.Caption;
-  Label26.Caption:='0';
+  Label26.Caption:='999';
   FZamerv2.SendCommand(FZamerv2, b, Label26.Caption , Fsett.Edit6.Text);
   Label26.Caption:=s;
 end;
 
+procedure TFormHH.command(b: Boolean);
+var s:string;
+begin
+
+  FZamerv2.SendCommand(FZamerv2, b, Label26.Caption , Fsett.Edit6.Text);
+
+end;
 procedure TFormHH.loadgrids;
 var
   i, j, k: Integer;
@@ -415,7 +423,7 @@ begin
     ProgressBar1.max := times;
     ProgressBar1.Step := 1;
     ProgressBar1.Position := 0;
-    command(true);
+    commandfp(true);
     enableclose := false;
     TimWork1000.Enabled := true;
     BitStart.Enabled := false;

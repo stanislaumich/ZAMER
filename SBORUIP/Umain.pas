@@ -248,7 +248,7 @@ begin
         CheckBox1.Caption := '—бор данных';
         Panel2.Color := clGreen;
         // ***********************
-        if t >0 then BitBtn7.Click;
+        if t = 999 then BitBtn7.Click;
         // ***********************
         MessageData.Result := 1;
     end;
@@ -264,7 +264,7 @@ begin
         CheckBox1.Caption := 'ќстановлен';
         Panel2.Color := clbtnface;
         // ***********************
-        if t >0 then BitBtn7.Click;
+        if t = 999 then BitBtn7.Click;
         // ***********************
         MessageData.Result := 1;
     end;
